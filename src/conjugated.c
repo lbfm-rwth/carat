@@ -65,7 +65,7 @@ main(int argc,char **argv){
   N = get_bravais(FILENAMES[2]);
 
   base = get_base(G);
-  strong = strong_generators(base,G,NULL);
+  strong = strong_generators(base,G,FALSE);
 
   erg = conjugated(G,H,N->gen,N->gen_no,strong);
 

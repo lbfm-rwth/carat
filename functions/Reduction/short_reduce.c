@@ -263,7 +263,7 @@ matrix_TYP *A, *Trf;
      if(Aneu->array.SZ[i][i] > max)
        max = A->array.SZ[i][i];  
    }
-   if(is_even = TRUE)
+   if(is_even == TRUE)
      len = min1 - 2;
    else
      len = min1 -1;

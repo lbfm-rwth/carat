@@ -22,9 +22,9 @@ main (int argc, char *argv[])
     printf("\n");
     printf("where file1 and file2 contain a matrix_TYP.\n");
     printf("\n");
-    printf("Calculates for each matrix A in file2 a matrix X with the\n");
+    printf("Calculates for each matrix A in 'file2' a matrix X with the\n");
     printf("property that\n");
-    printf(" \\sum_j X_{i,j} F_j = A^{tr} F_j A \n");
+    printf(" \\sum_j X_{i,j} F_j = A^{tr} F_j A with F_j in 'file1'\n");
     printf("\n");
     printf("CAUTION: The matrix describes the action on rows!\n");
     printf("\n");

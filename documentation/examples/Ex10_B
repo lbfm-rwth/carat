@@ -1,0 +1,22 @@
+#g2 f1 n1 c1% homogeneously decomposable bravais-group
+6	% generator
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+ 0 0 1 0 0 0
+ 0 0 0 1 0 0
+ 0 0 0 0 1 0
+ 0 0 0 0 0 1
+6	% generator
+ -1 0 0 0 0 0
+  0 0 0 0 0 1
+  0 1 0 0 0 0
+  0 0 1 0 0 0
+  0 0 0 1 0 0
+  0 0 0 0 1 0
+6d0	% invariant form
+1
+6d0	% generator of normalizer
+1
+6d0	% generator of centralizer
+-1
+2^10  * 3^2  * 5^1   = 46080 % order of the group

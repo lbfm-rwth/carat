@@ -17,6 +17,7 @@
 
 int SFLAG;
 int INFO_LEVEL;
+boolean GRAPH = FALSE;
 
 
 
@@ -91,7 +92,7 @@ bravais_TYP *get_zclass_by_name(bravais_TYP *G,
    if (G->form_no == 0)
       G->form = formspace(G->gen,G->gen_no,1,&G->form_no);
 
-   QCLASS = q2z(G,&number,TRUE,TRUE);
+   QCLASS = q2z(G,&number,TRUE,NULL,TRUE);
 
 
    if (number < *first){

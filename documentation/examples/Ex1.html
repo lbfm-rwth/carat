@@ -1,0 +1,91 @@
+<html>
+
+<head>
+<META NAME="author" CONTENT="Oliver Heidb&uuml;chel">
+<META NAME="publisher" CONTENT="Lehrstuhl B f&uuml;r Mathematik, RWTH Aachen, Germany">
+<META NAME="copyright" CONTENT="Lehrstuhl B f&uuml;r Mathematik, RWTH Aachen, Germany">
+<META NAME="keywords" CONTENT="CARAT, crystallography, bravaisgroup, bravaisgroups, bravais groups,
+bravais group, mathematics, algorithms, tables, algorithm, table, example, examples,
+Bravais_catalog, Datei, Bravais_inclusions">
+
+<META NAME="description" CONTENT="CARAT Introduction: Example 1 - List all names of Bravais groups
+of degree 4.">
+<META NAME="robots" CONTENT="follow">
+
+
+<title>CARAT Introduction / Examples / List all names of Bravais groups of degree 4.</title>
+
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Ex2.html">Next Example</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h3>Example 1</h3>
+
+List all names of Bravais groups of degree 4.
+
+<h3>Used Programs</h3>
+<a href="../progs/Bravais_catalog.html">Bravais_catalog</a>/<a
+href="../progs/Datei.html">Datei</a>,
+<a href="../progs/Bravais_inclusions.html">Bravais_inclusions</a>
+
+
+<h3>Solution</h3>
+
+
+<ol>
+<li> Call
+<pre>   Bravais_catalog</pre>
+and insert
+<pre>   1,1,1,1</pre>
+Calculate the Bravais groups and choose the filename 1111. Print all Bravais groups now (there is
+only one). <a href="./Ex1_screenshot">Screenshot</a>
+
+<p>
+Now <a href="./Ex1_1111">1111</a> contains the Bravais group &lt;-I<sub>4</sub>&gt;.
+<p>
+Note the normalizer N of &lt;-I_4&gt; in GL<sub>4</sub>(Z) is GL<sub>4</sub>(Z) itself.
+</li>
+
+<li>
+Call
+<pre>
+   Bravais_inclusions -S 1111 > b4
+</pre>
+to get all the Bravais supergroups of &lt;-I<sub>4</sub>&gt;,
+up to conjugacy under N = GL<sub>4</sub>(Z).
+The result is written on the file with name <a href="./Ex1_b4">b4</a>.
+</li>
+
+</ol>
+
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Ex2.html">Next Example</a></td>
+</tr>
+</table>
+<font size=1>last change: 11.09.2000</font>
+</center>
+
+
+</body>
+
+</html>

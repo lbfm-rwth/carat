@@ -219,7 +219,7 @@ void main(int argc,char **argv){
         if (is_trivial(G)){
            X[0] = init_mat(G->gen_no * G->dim,1,"");
            printf("#%d\n",1);
-           sprintf(comment,"the %d-th cozycle to the group of %s",
+           sprintf(comment,"%% the %d-th cozycle to the group of %s",
                    1,FN);
            put_cocycle(X[0],G->dim,G->gen_no,NULL,comment);
            free_mat(X[0]);
@@ -233,7 +233,7 @@ void main(int argc,char **argv){
      else{
         X[0] = init_mat(G->gen_no * G->dim,1,"");
         printf("#%d\n",1);
-        sprintf(comment,"the %d-th cozycle to the group of %s",
+        sprintf(comment,"%% the %d-th cozycle to the group of %s",
                 1,FN);
         put_cocycle(X[0],G->dim,G->gen_no,NULL,comment);
      }
@@ -306,7 +306,7 @@ void main(int argc,char **argv){
      for (i=0;i<anz;i++){
         NAME = mpz_get_str(NULL,10,names+i);
         sprintf(comment,
-             "the %d-th cozycle, length of orbit %d,name: %s",i+1,len[i],NAME);
+             "%% the %d-th cozycle, length of orbit %d,name: %s",i+1,len[i],NAME);
         put_cocycle(Y[i],G->dim,G->gen_no,NULL,comment);
         free_mat(Y[i]);
         mpz_clear(names+i);

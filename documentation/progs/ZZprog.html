@@ -1,0 +1,102 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / ZZprog</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Zass_main.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Add.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program ZZprog</h2>
+
+<h3>Usage</h3>
+
+<pre>
+ZZprog 'file1'  ['file2'] [-b] [-g] [-h] [-l=<#level>]
+       [-m] [-n=<#number>] [-p] [-q] [-r] [-s] [-t=out] [-u]
+</pre>
+
+file1: bravais_TYP containing a finite unimodular group G, ending with the order of G.<br>
+file2: (OPTIONAL) matrix_TYP containing the Gram matrix of a symmetric positive definite G-invariant
+bilinear form. This form is used for reduction purposes only. If this file is not given, the program
+computes such a form. In particular the forms possibly given in 'file1' are ignored.
+
+
+<h3>Description</h3>
+
+Calculates the the G-sublattices of the natural lattice Z<sup>n</sup> of
+finite index, the prime divisors of which divide the order of G
+as given in 'file1'. Sublattices of proper multiples of Z<sup>n</sup> are
+ignored.
+
+
+
+<h3>Options</h3>
+<pre>
+-b      : Print only the matrices of change of base and their inverse.
+-g      : Do not compute elementary divisors of the gram matrix.
+-l=#    : Stop after reaching level #level (default #=500).
+-n=#    : Stop after computation of #number "sublattices" (default #=1000).
+-q      : Quiet mode. Suppress any messages to stderr.
+-r      : With LLL-reduction for the bases, cf. 'file2'.
+-s      : Print less information.
+-t='out': Create an output file with additional information. The name
+          of the output file defaults to stdout. Specifying "none"
+          disables writing to the output file
+-u      : Do not compute elementary divisors of the basis
+          transformations.
+</pre>
+
+<p>
+Options for experts:
+<pre>
+-p&lt;N&gt;/&lt;d1&gt;/&lt;d2&gt;...&lt;dN&gt; : treat the lattice as a direct sum of &lt;N&gt;
+                         sublattices of dimensions &lt;d1&gt;, &lt;d2&gt; etc.
+                         (1 &lt;= N, di &lt;= 6) and compute only those
+                         sublattices that have surjective projections
+                         onto each of the N component lattices.
+</pre>
+
+
+<h3>Remarks</h3>
+<p>
+ZZprog is a synomym for <a href="./Sublattices.html">Sublattices</a>.
+<p>
+See also for <a href="./Order.html">Order</a>, <a
+href="./QtoZ.html">QtoZ</a> and <a href="./Z_equiv.html">Z_equiv</a>.
+
+<h3>Examples</h3>
+<ol>
+<li> <a href="../examples/Ex4.html">Find all space groups with a given point group and decide for
+which superlattices each extension splits.<a/>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Zass_main.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Add.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

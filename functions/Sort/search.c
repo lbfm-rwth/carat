@@ -66,7 +66,7 @@ int *M, **List;
 int	List_no, dim, (*comp)();
 {
 	int	low, med, high;
-        int found, test;
+        int found = FALSE, test;
 
         low = 0; high = List_no-1;
         while(found == FALSE && low <= high)
@@ -99,7 +99,7 @@ int **M, ***List;
 int	List_no, rows, cols, (*comp)();
 {
 	int	low, med, high;
-        int found, test;
+        int found = FALSE, test;
 
         low = 0; high = List_no;
         while(found == FALSE && low <= high)

@@ -416,7 +416,7 @@ static int einordnen(bahn** erg,
 @-----------------------------------------------------------------------
 @
 ************************************************************************/
-bahn **strong_generators(matrix_TYP **base,bravais_TYP *U,int *OPT)
+bahn **strong_generators(matrix_TYP **base,bravais_TYP *U,int OPT)
 {
    bahn **erg;
 

@@ -17,7 +17,7 @@ main (int argc, char *argv[])
         read_header(argc, argv);
         if(FILEANZ != 1)
         {
-           printf("Usage: 'file' [-t]\n",argv[0]);
+           printf("Usage: %s 'file' [-t]\n",argv[0]);
            printf("\n");
            printf("file: matrix_TYP containing a set of symmetric positive definite matrices.\n");
            printf("\n");

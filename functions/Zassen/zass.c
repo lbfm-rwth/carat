@@ -5,6 +5,10 @@
 #include<tools.h>
 #include"zass.h"
 
+
+
+
+
 matrix_TYP *scalar(long n,long a)
 /* liefert eine skalarmatrix mit dem eintrag a */
 {
@@ -18,7 +22,7 @@ matrix_TYP *scalar(long n,long a)
   return erg;
 }   /* scalar */
 
-static matrix_TYP *matrizen_in_word(matrix_TYP **mat,matrix_TYP **matinv,word g)
+matrix_TYP *matrizen_in_word(matrix_TYP **mat,matrix_TYP **matinv,word g)
 /* geht davon aus, das alle (benoetigten) matrizen in **mat
    quadratisch von gleicher groesse sind. anderfalls wird nicht abgebrochen */
 {
@@ -257,7 +261,7 @@ static matrix_TYP *fox_deriv_mat(matrix_TYP **mat, matrix_TYP **matinv,word a,lo
 }
 
 
-static matrix_TYP *calc_B(matrix_TYP **mat,long anz_erzeuger)
+matrix_TYP *calc_B(matrix_TYP **mat,long anz_erzeuger)
 {
   long i,k,l,n;
   matrix_TYP *B;
@@ -265,7 +269,7 @@ static matrix_TYP *calc_B(matrix_TYP **mat,long anz_erzeuger)
   n = mat[0]->cols;
 
   /* reservieren des speichers fuer die matrix B, die die
-     erzeuger - id hintereinander enthaelt */
+     erzeuger - id uebereinander enthaelt */
   B = init_mat(n*anz_erzeuger,n,"k");
 
   /* belegen der matrix B */
@@ -338,8 +342,12 @@ static matrix_TYP *calc_A(matrix_TYP **mat,matrix_TYP **matinv,word *relator,
 
 
 
-matrix_TYP** cohomology(long *dim,matrix_TYP **mat,matrix_TYP **matinv
-                     ,word *relator,int erzeuger,int relatoren)
+matrix_TYP** cohomology(long *dim,
+                        matrix_TYP **mat,
+                        matrix_TYP **matinv,
+                        word *relator,
+                        int erzeuger,
+                        int relatoren)
 {   matrix_TYP *A,
                *B,
                *B_tr,
@@ -372,7 +380,7 @@ matrix_TYP** cohomology(long *dim,matrix_TYP **mat,matrix_TYP **matinv
 
     /* enthaelt nur die erzeuger - id hintereinander,
        spannt also den raum der coraender auf */
-    B = calc_B(mat,erzeuger);
+    B = calc_B(mat, erzeuger);
     B_tr = tr_pose(B);
 
 

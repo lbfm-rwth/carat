@@ -17,12 +17,13 @@ main (int argc, char *argv[])
   read_header(argc, argv);
   if(FILEANZ <= 0)
   {
-     printf("usage: P_lse_solve 'file1' 'file2' -p=prime,\n");
-     printf("where file1 containes a set of matrices\n");
-     printf("and   file2 containes a set of matrices\n");
+     printf("usage: P_lse_solve 'file1' ['file2'] -p=prime\n");
+     printf("file1: matrix_TYP with matrix A\n");
+     printf("file2: matrix_TYP with matrix B\n");
      printf("\n");
+     printf("If 'file2' is not given, B = 0\n");
      printf("Solves the linear equations\n");
-     printf(" file1 * X = file2\n");
+     printf(" A * X = B\n");
      printf("modulo the given prime (default 1949).\n");
      printf("\n");
      if (is_option('h')){

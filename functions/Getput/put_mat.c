@@ -104,6 +104,7 @@ rational d, *max_lenQ;
 boolean Normalized;
 int i, j, str_len;
 char string[132];
+char format[32];
 
   Normalized = !(options & PM_RATIONAL);
   /*
@@ -243,9 +244,11 @@ char string[132];
           }
           Normal (&d);
           if ( d.n == 1 ) {
+            sprintf(format,"%%%dd",max_lenQ[j].z);
             fprintf(outfile,"%*d",max_lenQ[j].z+max_lenQ[j].n+1,d.z);
           } else {
-            fprintf(outfile,"%*d/%*-d",max_lenQ[j].z,d.z,max_lenQ[j].n,d.n);
+            sprintf(format,"%%%dd/%%-%dd",max_lenQ[j].z,max_lenQ[j].n);
+            fprintf(outfile,format,d.z,d.n);
           }                           
         }
         fprintf (outfile, "\n");

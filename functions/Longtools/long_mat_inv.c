@@ -76,7 +76,7 @@ matrix_TYP *A;
    if(abs(Ekgv._mp_size) > 1)
    {
      printf("Error: Integer overflow in 'MP_mat_to_matrix'\n");
-     printf(3);
+     exit(3);
    }
    erg->kgv = mpz_get_si(&Ekgv);
    for(i=0;i<A->cols;i++)

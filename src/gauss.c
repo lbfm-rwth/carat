@@ -29,7 +29,7 @@ main (int argc, char *argv[])
      printf("Options:\n");
      printf(" -t :     give the transforming matrices as well.\n");
      printf("\n");
-     printf("Cf. Solve, Long_solve.\n");
+     printf("Cf. Long_solve.\n");
      if (is_option('h')){
         exit(0);
      }

@@ -27,6 +27,7 @@ main (int argc, char *argv[])
     printf("Writes the entries of the matrices given in file in ONE\n");
     printf("matrix, which rows consists of the concatenation of the\n");
     printf("rows of the individual matrices in file.\n");
+    printf("Note that this function does exactly the inverse of Ltm!\n"); 
     printf("\n");
     if (is_option('h')){
        exit(0);

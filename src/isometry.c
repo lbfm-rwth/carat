@@ -29,8 +29,8 @@ main (int argc, char *argv[])
            printf("file2: matrix_TYP containing a set of m NxN-matrices, the first of which,\n");
            printf("       must be symmetric and positive definite.\n");
            printf("\n");
-           printf("Computes a single g in GL_n(Z) with the property g^Tr * F * g = F for all\n");
-           printf("F in file.\n");
+           printf("Computes a single g in GL_n(Z) with the property g^Tr * F_i_1 * g = F_i_2 for all\n");
+           printf("F_i_1 in 'file1' and F_i_2 in 'file2'.\n");
            printf("\n");
            printf("Options:\n");
            printf("-d=n    : Depth up to which scalar products are calculated. The value\n");

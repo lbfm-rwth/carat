@@ -6,6 +6,8 @@
 int INFO_LEVEL;
 extern int SFLAG;
 extern int IDEM_NO;
+boolean GRAPH = FALSE;
+boolean GRAPH_DEBUG = FALSE;
 
 void main(int argc,char **argv){
 
@@ -87,7 +89,7 @@ void main(int argc,char **argv){
     free(basis);
   }
 
-  Classes = q2z(G,&no,is_option('a'),is_option('q'));
+  Classes = q2z(G,&no,is_option('a'), NULL, is_option('q'));
 
   printf("####### There are %d classes of groups\n",no);
   for (i=0;i<no;i++){

@@ -1,0 +1,301 @@
+<html>
+
+<head>
+   <META NAME="author" CONTENT="Oliver Heidb&uuml;chel">
+   <META NAME="publisher" CONTENT="Lehrstuhl B f&uuml;r Mathematik, RWTH Aachen, Germany">
+   <META NAME="copyright" CONTENT="Lehrstuhl B f&uuml;r Mathematik, RWTH Aachen, Germany">
+   <META NAME="robots" CONTENT="follow">
+   <META NAME="keywords" CONTENT="CARAT, crystallography, spacegroups, space
+                                  groups, space group, spacegroup, group, mathematics, algorithms,
+                                  tables, algorithm, table, examples, example, affine,
+                                  affine class, Q-class, Z-class, Q class, Z class, torsion,
+                                  torsion free, Bieberbach, Bieberbach group, Q_catalog,
+                                  QtoZ, Extensions, Extract, Torsionfree, Presentation">
+
+   <META NAME="description" CONTENT="CARAT Introduction: Example 12 -  Find all Z-classes, affine
+                                     classes and torsion free space groups in a given Q-class">
+   <title>CARAT Introduction / Examples / Find all Z-classes, affine classes and torsion free space
+          groups in a given Q-class</title>
+</head>
+
+<body>
+
+<center>
+   <table border=0 cellpadding=5>
+      <tr align=center>
+         <td><a href="./Ex11.html">Previous Example</a></td>
+         <td><a href="../introduction.html">Introduction</a></td>
+         <td><a href="./Ex13.html">Next Example</a></td>
+      </tr>
+    </table>
+</center>
+
+<hr width=80%>
+
+
+<h3>Example 12</h3>
+Find all Z-classes, affine classes and torsion free space groups in the Q-class of min.108.
+
+
+
+<h3>Used Programs</h3>
+
+<a href="../progs/Extensions.html">Extensions</a>/<a
+href="../progs/Vector_systems.html">Vector_systems</a>,
+<a href="../progs/Extract.html">Extract</a>,
+<a href="../progs/Presentation.html">Presentation</a>,
+<a href="../progs/Q_catalog.html">Q_catalog</a>,
+<a href="../progs/QtoZ.html">QtoZ</a>,
+<a href="../progs/Torsionfree.html">Torsionfree</a>
+
+
+<h3>Solution</h3>
+
+
+<ol>
+   <li>
+      Call
+      <pre>
+         Q_catalog
+      </pre>
+      and enter
+      <pre>
+         s abb min.108
+      </pre>
+      to select the 5 dimensional Q-class with the CARAT name "min.108".
+      Write the generators to the file '<a href="./Ex12_min.108">min.108</a>' by entering
+      <pre>
+         w min.108
+      </pre>
+      Enter "q" to leave the program.
+   </li>
+
+   <li>
+      Call
+      <pre>
+      QtoZ -D min.108
+      </pre>
+      to calculate the Z-classes in the Q-class of min.108. We get the following files:
+      <center>
+         <table border=0 cellpadding=5>
+            <tr align=center>
+               <td><a href="./Ex12_min.108.1.1">min.108.1.1</a></td>
+               <td><a href="./Ex12_min.108.1.2">min.108.1.2</a></td>
+               <td><a href="./Ex12_min.108.1.3">min.108.1.3</a></td>
+               <td><a href="./Ex12_min.108.1.4">min.108.1.4</a></td>
+            </tr>
+            <tr>
+               <td><a href="./Ex12_min.108.2.1">min.108.2.1</a></td>
+               <td><a href="./Ex12_min.108.2.2">min.108.2.2</a></td>
+               <td><a href="./Ex12_min.108.2.3">min.108.2.3</a></td>
+               <td><a href="./Ex12_min.108.2.4">min.108.2.4</a></td>
+            </tr>
+         </table>
+      </center>
+   </li>
+
+   <li>
+      Split the Z-classes into affine classes:
+      <pre>
+         for x in min.108.* ; do
+            Extensions $x > ex.$x ;
+         done
+      </pre>
+      For every Z-class the programm "Extensions" calculates a presentation. Since the presentation
+      is equal for each Z-class, it is faster to calculate a presentation with "Presentation" bevore
+      and to start "Extensions" with the calculated presentation:
+      <pre>
+         Presentation min.108 > pres ;
+         for x in min.108.* ; do
+            Extensions pres $x > ex.$x ;
+         done
+      </pre>
+      Especially when there are many Z-classes, it is much faster to calcualte the presentation
+      bevore.
+   </li>
+
+   <li>
+      For each of the cozycles for each Z-class write it into a file 'coz' and call
+      <pre>
+         Extract -r ex.min.108.i.j coz > min.108.i.j.k
+      </pre>
+      to construct the affine classes in the Z-class of G in standard form (i.e. the translation
+      lattice is Z<sup>n</sup>):
+      <center>
+         <table border=0 cellpadding=5>
+            <tr>
+               <td><a href="./Ex12_min.108.1.1.1">min.108.1.1.1</a></td>
+               <td><a href="./Ex12_min.108.1.1.2">min.108.1.1.2</a></td>
+               <td><a href="./Ex12_min.108.1.1.3">min.108.1.1.3</a></td>
+               <td><a href="./Ex12_min.108.1.1.4">min.108.1.1.4</a></td>
+            </tr>
+            <tr>
+               <td><a href="./Ex12_min.108.1.2.1">min.108.1.2.1</a></td>
+               <td><a href="./Ex12_min.108.1.2.2">min.108.1.2.2</a></td>
+            </tr>
+            <tr>
+               <td><a href="./Ex12_min.108.1.3.1">min.108.1.3.1</a></td>
+               <td><a href="./Ex12_min.108.1.3.2">min.108.1.3.2</a></td>
+               <td><a href="./Ex12_min.108.1.3.3">min.108.1.3.3</a></td>
+               <td><a href="./Ex12_min.108.1.3.4">min.108.1.3.4</a></td>
+            </tr>
+            <tr>
+               <td><a href="./Ex12_min.108.1.4.1">min.108.1.4.1</a></td>
+               <td><a href="./Ex12_min.108.1.4.2">min.108.1.4.2</a></td>
+            </tr>
+            <tr>
+               <td><a href="./Ex12_min.108.2.1.1">min.108.2.1.1</a></td>
+               <td><a href="./Ex12_min.108.2.1.2">min.108.2.1.2</a></td>
+               <td><a href="./Ex12_min.108.2.1.3">min.108.2.1.3</a></td>
+               <td><a href="./Ex12_min.108.2.1.4">min.108.2.1.4</a></td>
+            </tr>
+            <tr>
+               <td><a href="./Ex12_min.108.2.2.1">min.108.2.2.1</a></td>
+               <td><a href="./Ex12_min.108.2.2.2">min.108.2.2.2</a></td>
+            </tr>
+            <tr>
+               <td><a href="./Ex12_min.108.2.3.1">min.108.2.3.1</a></td>
+               <td><a href="./Ex12_min.108.2.3.2">min.108.2.3.2</a></td>
+               <td><a href="./Ex12_min.108.2.3.3">min.108.2.3.3</a></td>
+               <td><a href="./Ex12_min.108.2.3.4">min.108.2.3.4</a></td>
+            </tr>
+            <tr>
+               <td><a href="./Ex12_min.108.2.4.1">min.108.2.4.1</a></td>
+               <td><a href="./Ex12_min.108.2.4.2">min.108.2.4.2</a></td>
+            </tr>
+         </table>
+      </center>
+   </li>
+
+   <li>
+      Call
+      <pre>
+         for x in min.108.*.*.* ; do
+            echo $x ;
+            Torsionfree $x ;
+            echo ;
+         done
+      </pre>
+      We get
+      <pre>
+min.108.1.1.1
+The group in min.108.1.1.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.1.1.2
+The group in min.108.1.1.2 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.1.1.3
+The group in min.108.1.1.3 is torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.1.1.4
+The group in min.108.1.1.4 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.1.2.1
+The group in min.108.1.2.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.1.2.2
+The group in min.108.1.2.2 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.1.3.1
+The group in min.108.1.3.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.1.3.2
+The group in min.108.1.3.2 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.1.3.3
+The group in min.108.1.3.3 is torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.1.3.4
+The group in min.108.1.3.4 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.1.4.1
+The group in min.108.1.4.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.1.4.2
+The group in min.108.1.4.2 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.2.1.1
+The group in min.108.2.1.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.2.1.2
+The group in min.108.2.1.2 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.2.1.3
+The group in min.108.2.1.3 is torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.2.1.4
+The group in min.108.2.1.4 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.2.2.1
+The group in min.108.2.2.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.2.2.2
+The group in min.108.2.2.2 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.2.3.1
+The group in min.108.2.3.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.2.3.2
+The group in min.108.2.3.2 is torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.2.3.3
+The group in min.108.2.3.3 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.2.3.4
+The group in min.108.2.3.4 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.2.4.1
+The group in min.108.2.4.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+min.108.2.4.2
+The group in min.108.2.4.2 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+      </pre>
+      We see that there are 4 torsion free space groups. None has trivial center.
+   </li>
+</ol>
+
+See also for <a href="./Ex11.html">Example 11</a>!
+
+
+
+<hr width=80%>
+
+<center>
+   <table border=0 cellpadding=5>
+      <tr align=center>
+         <td><a href="./Ex11.html">Previous Example</a></td>
+         <td><a href="../introduction.html">Introduction</a></td>
+         <td><a href="./Ex13.html">Next Example</a></td>
+      </tr>
+   </table>
+   <font size=1>last change: 13.09.2000</font>
+</center>
+
+
+</body>
+
+</html>

@@ -22,7 +22,7 @@ main (int argc, char *argv[])
         read_header(argc, argv);
         if(FILEANZ != 1)
         {
-          printf("usage: polyeder 'file',\n");
+          printf("usage: Polyeder 'file',\n");
           printf("where 'file' contains a matrix, whose rows are interpreted as linear inequalities\n");
           if (is_option('h')){
              exit(0);

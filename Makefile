@@ -18,7 +18,7 @@
 ############################################################################
 
 
-TOPDIR= /usb/carat
+TOPDIR= /usb2/carat
 CC = gcc
 
 # There are some special preprocessor flags which set some
@@ -34,7 +34,7 @@ CFLAGS = -g -Wall -DDIAG1 -fwritable-strings # for a HP-UX-machine using gcc (mo
 
 # CFLAGS = -g -Aa                        # for a HP-UX-machine using cc
 
-# CFLAGS = -m486 -O2                     # on a Linux machine (i486)
+# CFLAGS = -m486
 
 
 # The part below doesn't (better: shouldn't) need any editing
@@ -53,6 +53,7 @@ ALL: Makefile\
      Contrib\
      Datei\
      Getput\
+     Graph\
      Hyperbolic\
      Idem\
      Links\
@@ -92,6 +93,9 @@ Datei: Makefile functions/Datei/Makefile
 Getput: Makefile functions/Getput/Makefile
 	cd functions/Getput;make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
+Graph: Makefile functions/Graph/Makefile
+	cd functions/Graph;make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
 Hyperbolic: Makefile functions/Hyperbolic/Makefile
 	cd functions/Hyperbolic; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
@@ -126,7 +130,7 @@ Presentation: Makefile functions/Presentation/Makefile
 	cd functions/Presentation; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
 Qcatalog: Makefile tables/qcatalog.tar.gz
-	cd tables; if [ !  -d qcatalog ] ; then tar xvzf qcatalog.tar.gz ; fi
+	cd tables; if [ !  -d qcatalog ] ; then gunzip -c qcatalog.tar.gz | tar xvf - ; fi
 
 Reduction: Makefile functions/Reduction/Makefile
 	cd functions/Reduction; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
@@ -150,7 +154,8 @@ ZZ: Makefile functions/ZZ/Makefile
 	cd functions/ZZ; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
 Gmp: functions/Gmp/Makefile
-	cd functions/Gmp ; ./configure --prefix=../.. ; make CFLAGS="$(CFLAGS)" CC="$(CC)" install
+	cd functions/Gmp ; ./configure --prefix=../.. ;\
+         make CFLAGS="$(CFLAGS)" CC="$(CC)" libgmp.a ; mv libgmp.a ../../lib
 
 Executables: bin/Makefile
 	if $(RANLIB_TEST) ; then $(RANLIB) lib/functions.a; else true; fi
@@ -166,6 +171,7 @@ clean:
 	cd functions/Contrib; make clean
 	cd functions/Datei; make clean
 	cd functions/Getput; make clean
+	cd functions/Graph; make clean
 	cd functions/Hyperbolic; make clean
 	cd functions/Idem; make clean
 	cd functions/Longtools; make clean
@@ -187,3 +193,4 @@ clean:
 	rm -f lib/libm_alloc.a
 	rm -f lib/libpresentation.a
 	rm -f lib/functions.a
+	rm -f lib/libgraph.a

@@ -299,7 +299,7 @@ matrix_TYP *G, *Trf;
   /* ------------------------------------------------------------------- *\
   |     Allocieren und Initialisierung des Speicherplatzes                |
   \* ------------------------------------------------------------------- */
-  erg->flags.Symmetric == TRUE;
+  erg->flags.Symmetric = TRUE;
   if(n == 0 || n == 1)
      return(erg);
 

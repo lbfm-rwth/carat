@@ -1,0 +1,771 @@
+<html>
+
+<head>
+
+<title>CARAT Introduction</title>
+
+</head>
+<META NAME="author" CONTENT="Oliver Heidb&uuml;chel">
+<META NAME="publisher" CONTENT="Lehrstuhl B f&uuml;r Mathematik, RWTH Aachen, Germany">
+<META NAME="copyright" CONTENT="Lehrstuhl B f&uuml;r Mathematik, RWTH Aachen, Germany">
+<META NAME="keywords" CONTENT="CARAT, crystallography, spacegroups, space groups, space group,
+spacegroup, bravaisgroup, bravaisgroups, bravais groups, bravais group, mathematics, introduction,
+programs, program, example, examples, matrix_TYP, bravais_TYP, matrix, presentation">
+<META NAME="description" CONTENT="CARAT is a compilation of various small programs written in C,
+which can solve certain problems in crystallography. Here you get a program list and an
+introduction to the file formats.">
+<META NAME="robots" CONTENT="follow">
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="http://wwwb.math.rwth-aachen.de/carat/index.html">CARAT Homepage</a></td>
+<td><a href="mailto:carat@momo.math.rwth-aachen.de">e-Mail</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+
+<h1><a name="top_of_page">INTRODUCTION TO CARAT</a></h1>
+
+<p>
+CARAT is a compilation of various small programs written in C, which
+can solve certain problems in crystallography.  It is distributed via
+</p>
+
+<center>
+     Lehrstuhl B f&uuml;r Mathematik<br>
+     RWTH-Aachen<br>
+     Prof. Plesken<br>
+     Templergraben 64<br>
+     52064 Aachen<br>
+     Germany<br>
+     email: <a href="mailto:carat@momo.math.rwth-aachen.de">carat@momo.math.rwth-aachen.de</a>
+</center>
+
+
+<h2>Contents</h2>
+<ul type=square>
+<li><a href="#programs">Programs</a></li>
+   <ul type=circle>
+   <li><a href="#most">Most frequently used programs</a></li>
+   <li><a href="#less">Less frequently used programs</a></li>
+   <li><a href="#seldom">Programs seldom used and those for debugging</a></li>
+   <li><a href="./abc.html">Alphabetical Program List</a></li>
+   </ul>
+<li><a href="#files">Files for in/output</a></li>
+   <ul type=circle>
+   <li><a href="#matrix_TYP">matrix_TYP</a></li>
+   <li><a href="#bravais_TYP">bravais_TYP</a></li>
+   </ul>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#remarks">Remarks</a></li>
+</ul>
+
+
+<h2><a name="programs">Programs</a></h2>
+
+There are three categories of programs in CARAT, regarding their importance.
+<p>
+Every program should give some online-help if used with the option -h.
+</p>
+
+
+
+<h3><a name="most">Most frequently used programs</a></h3>
+
+<p>
+Here a short list of the most important executables is given.
+</p>
+
+<table border=0 cellpadding=5>
+<tr align=left>
+   <th>Program/Synonyms</th>	<th>Short description</th>
+</tr>
+<tr>
+<td><a href="./progs/Aut_grp.html">Aut_grp</a></td>		
+                                <td>Calculates the automorphism group of
+				one or more quadratic forms.</td>
+</tr>
+<tr>
+<td><a href="./progs/Bravais_catalog.html">Bravais_catalog</a></td>	
+                                <td>Provides a list of all Bravais groups up
+				to degree 6. Bravais_catalog is a synonym for
+				<a href="./progs/Datei.html">Datei</a>.</td>
+</tr>	
+<tr>
+<td><a href="./progs/Bravais_grp.html">Bravais_grp</a></td>		
+                                <td>Calculates the Bravais group of a finite
+				unimodular group</td>
+</tr>	
+<tr>
+<td><a href="./progs/Bravais_inclusions.html">Bravais_inclusions</a></td>	
+                                <td>Outputs Bravais subgroups/supergroups for a
+				given Bravais group.</td>
+</tr>	
+<tr>
+<td><a href="./progs/Bravais_type.html">Bravais_type</a></td>	
+                                <td>Calculates the family symbol of a finite
+				unimodular group. Also calculates an equivalent
+				group in the catalog of Bravais groups.<br>
+				Note that Bravais_type is nothing else then
+				<a href="./progs/Symbol.html">Symbol</a> -i.</td>
+</tr>	
+<tr>
+<td><a href="./progs/Datei.html">Datei</a></td>	
+                                <td>Provides a list of all Bravais groups up
+				to degree 6. Datei is a synonym for
+				<a href="./progs/Bravais_catalog.html">Bravais_catalog</a>.</td>
+</tr>	
+<tr>
+<td><a href="./progs/Extensions.html">Extensions</a></td>	
+                                <td>Calculates all non-isomorphic extensions of
+				a finite unimodular group with a given lattice.<br>
+				Extensions is a synonym for
+				<a href="./progs/Vector_systems.html">Vector_systems</a></td>
+</tr>	
+<tr>
+<td><a href="./progs/Form_space.html">Form_space</a></td>		
+                                <td>Calculates the space of invariant forms of
+				a unimodular group.</td>
+</tr>	
+<tr>
+<td><a href="./progs/Graph.html">Graph</a></td>		
+                                <td>Calculates the "graph of inclusions" for a
+                                given geometric class.</td>
+</tr>	
+<tr>
+<td><a href="./progs/Is_finite.html">Is_finite</a></td>		
+                                <td>Decides finiteness of a given subgroup of
+				GL_n(Z). Calculates the order in case the group
+				is finite.</td>
+</tr>	
+<tr>
+<td><a href="./progs/K_Subgroups.html">K_Subgroups</a></td>		
+                                <td>Calculates the maximal klassengleich subgroups
+                                of a spacegroup for some prime-power index.</td>
+</tr>	
+<tr>
+<td><a href="./progs/K_Supergroups.html">K_Supergroups</a></td>		
+                                <td>Calculates the maximal klassengleich
+                                supergroups of a spacegroup for some
+                                prime-power index.</td>
+</tr>	
+<tr>
+<td><a href="./progs/Name.html">Name</a></td>
+                                <td>Give a space group a name, ie. calculate
+                                a string which describes the isomorphism
+                                type uniquely, cf. Reverse_name.</td>
+</tr>	
+<tr>
+<td><a href="./progs/Normalizer.html">Normalizer</a></td>		
+                                <td>Calculates the Normalizer in GL_n(Z) of a given
+				finite unimodular group.</td>
+</tr>	
+<tr>
+<td><a href="./progs/Orbit.html">Orbit</a></td>			
+                                <td>Fairly general implementation of the
+                                orbit/stabilizer algorithm.</td>
+</tr>	
+<tr>
+<td><a href="./progs/Order.html">Order</a></td>
+        			<td>Calculates the order of a given finite subgroup
+				of GL_n(Q).</td>
+</tr>	
+<tr>
+<td><a href="./progs/Q_catalog.html">Q_catalog</a></td>
+                                <td>Provides a list of all Q_classes up
+				to degree 6.</td>
+</tr>	
+<tr>
+<td><a href="./progs/QtoZ.html">QtoZ</a></td>	
+                		<td>Splits a Q-class into Z-classes.</td>
+</tr>	
+<tr>
+<td><a href="./progs/Reverse_name.html">Reverse_name</a></td>
+                                <td>Constructs a space group with given name,
+                                and check whether the name is valid, cf.
+                                <a href="./progs/Name.html">Name.</td>
+</tr>	
+<tr>
+<td><a href="./progs/Same_generators.html">Same_generators</a></td>	
+                                <td>Transforms the generators of a space group
+				to a prescribed linear part.</td>
+</tr>	
+<tr>
+<td><a href="./progs/Symbol.html">Symbol</a></td>	
+                                <td>Calculates the family symbol of a finite
+				unimodular group. Also calculates an equivalent
+				group in the catalog of Bravais groups.
+				Note that Symbol -i is nothing else then
+				<a href="./progs/Bravais_type.html">Bravais_type</a><td>
+</tr>	
+<tr>
+<td><a href="./progs/Torsionfree.html">Torsionfree</a></td>
+                                <td>Decides whether a given space group is
+                                torsion free. WARNING: The program assumes
+                                the translation subgroup to be Z^n.</td>
+</tr>	
+<tr>
+<td><a href="./progs/Vector_systems.html">Vector_systems</a></td>	
+                                <td>Calculates all non-isomorphic extensions of
+				a finite unimodular group with a given lattice.<br>
+				Vector_systems is a synonym for
+				<a href="./progs/Extensions.html">Extensions</a></td>
+</tr>	
+<tr>
+<td><a href="./progs/Z_equiv.html">Z_equiv</a></td>		
+                                <td>Decides whether two given finite unimodular
+				groups are conjugated in GL_n(Z).</td>
+</table>
+
+
+
+
+
+<h3><a name="less">Less frequently used programs</a></h3>
+
+<p>
+We continue with given the name of some additional functions which the
+user might find useful.
+</p>
+
+<table border=0 cellpadding=5>
+<tr align=left>
+   <th>Program/Synonyms</th>	<th>Short description</th>
+</tr>
+<tr>
+<td><a href="./progs/Bravais_equiv.html">Bravais_equiv</a></td>		
+                                <td>Decides whether the Bravais groups of two
+                                given finite unimodular groups are conjugated</td>
+</tr>
+<tr>
+<td><a href="./progs/Conj_bravais.html">Conj_bravais</a></td>		
+                                <td>Conjugates a Bravais group with a given matrix</td>
+</tr>
+<tr>
+<td><a href="./progs/Extract.html">Extract</a></td>        	
+                                <td>Tool to get from space groups to point groups
+				and vice versa. </td>
+</tr>
+<tr>
+<td><a href="./progs/Idem.html">Idem</a></td>			
+                                <td>Calculates (rational) central primitive
+				idempotents of the enveloping algebra of a
+				given matrix group.</td>
+</tr>
+<tr>
+<td><a href="./progs/Invar_space.html">Invar_space</a></td>
+                                <td>Form_space. Is much faster than this,
+				but uses some random methods.</td>
+</tr>
+<tr>
+<td><a href="./progs/Isometry.html">Isometry</a></td>		
+                                <td>Calculates an isometry of  with respect to
+                                tuples of bilinear forms.</td>
+</tr>
+<tr>
+<td><a href="./progs/Long_solve.html">Long_solve</a></td>			
+                                <td>Solves linear systems of equations using
+				multiple precision integers.</td>
+</tr>
+<tr>
+<td><a href="./progs/Mink_red.html">Mink_red</a></td>			
+                                <td>The Minkowski reduction of bilinear forms.
+				Gives very good results, but use Pair_red
+				before.</td>
+</tr>
+<tr>
+<td><a href="./progs/Pair_red.html">Pair_red</a></td>			
+                                <td>Pair reduction of bilinear forms. Very fast.</td>
+</tr>
+<tr>
+<td><a href="./progs/Presentation.html">Presentation</a></a></td>		
+                                <td>Calculates a presentation of a finite soluble
+				subgroup of GL_n(Z)</td>
+</tr>	
+<tr>
+<td><a href="./progs/Red_gen.html">Red_gen</a></td>			
+                                <td>Tries to reduce the number of elements of
+				a generating set of a finite matrix group.</td>
+</tr>
+<tr>
+<td><a href="./progs/Rein.html">Rein</a></td>				
+                                <td>Purifies a lattice.</td>
+</tr>
+<tr>
+<td><a href="./progs/Rform.html">Rform</a></td>				
+                                <td>Mostly used for finding a positive definite
+				G-invariant form or a finite unimodular group
+				G.</td>
+</tr>
+<tr>
+<td><a href="./progs/Scpr.html">Scpr</a></td>				
+                                <td>Calculates scalar products w.r.t a given form.</td>
+</tr>
+<tr>
+<td><a href="./progs/Short.html">Short</a></td>				
+                                <td>Calculates short vectors of a given positive
+				definite symmetric form.</td>
+</tr>
+<tr>
+<td><a href="./progs/Shortest.html">Shortest</a></td>			
+                                <td>Shortest vectors of a given positive definite
+				symmetric quadratic form.</td>
+</tr>
+<tr>
+<td><a href="./progs/Signature.html">Signature</a></td>			
+                                <td>Sylvester type of a quadratic form. In
+				particular it decides whether a given form
+				is positive definite.</td>
+</tr>
+<tr>
+<td><a href="./progs/Standard_affine_form.html">Standard_affine_form</a></td>
+                                <td>Standard_affine_form is just
+                                <a href="./progs/Extract.html">Extract</a> -t</td>
+</tr>
+<tr>
+<td><a href="./progs/Sublattices.html">Sublattices</a></td>	
+                                <td>Find G-invariant sublattices of Z^n. Note
+				that this is a dualisation of finding
+				centerings. ZZprog is a synonym for
+				<a href="./progs/ZZprog.html">ZZProg</a>.</td>
+</tr>
+<tr>
+<td><a href="./progs/Tr_bravais.html">Tr_bravais</a></td>			
+                                <td>Transposes a finite unimodular group.</td>
+</tr>
+<tr>
+<td><a href="./progs/Zass_main.html">Zass_main</a></td>			
+                                <td>Calculates H^1(G,Q^n/Z^n) for a given finite
+				unimodular group.</td>
+</tr>
+<tr>
+<td><a href="./progs/ZZprog.html">ZZprog</a></td>	
+                                <td>Find G-invariant sublattices of Z^n. Note
+				that this is a dualisation of finding
+				centerings. ZZprog is a synonym for
+				<a href="./progs/Sublattices.html">Sublattices</a>.</td>
+</tr>
+</table>
+
+
+
+
+<h3><a name="seldom">Programs seldom used and those for debugging</a></h3>
+
+<p>
+The remaining functions are merely of debugging and processing the results,
+nevertheless an experienced user might calculate relevant data with them.
+</p>
+
+<table border=0 cellpadding=5>
+<tr align=left>
+   <th>Program/Synonyms</th>	<th>Short description</th>
+</tr>
+<tr>
+<td><a href="./progs/Add.html">Add</a></td>				<td>Adds matrices</td>
+</tr>
+<tr>
+<td><a href="./progs/Con.html">Con</a></td>				<td>Conjugates matrices</td>
+</tr>
+<tr>
+<td><a href="./progs/Conjugated.html">Conjugated</a></td>			<td>Decides whether two groups are conjugate
+				under third group.</td>
+</tr>
+<tr>
+<td><a href="./progs/Conv.html">Conv</a></td>				<td>Converts CARAT input-file (matrix_TYP)
+				into GAP and Maple format.</td>
+</tr>
+<tr>
+<td><a href="./progs/Elt.html">Elt</a></td>t				<td>An elementary divisors algorithm.</td>
+</tr>
+<tr>
+<td><a href="./progs/First_perfect.html">First_perfect</a></td>			<td>Find G-perfect forms.</td>
+</tr>
+<tr>
+<td><a href="./progs/Form_elt.html">Form_elt</a></td>			<td>Elementary divisors of the trace bilinear form
+				of a finite unimodular group. Useful for
+				distinguishing Bravais groups.</td>
+</tr>
+<tr>
+<td><a href="./progs/Formtovec.html">Formtovec</a></td>			<td>Writes a given form as linear combination
+				of others.</td>
+</tr>
+<tr>
+<td><a href="./progs/Full.html">Full</a></td>				<td>Outputs given matrices in a full form, which
+				might be easier to edit.</td>
+</tr>
+<tr>
+<td><a href="./progs/Gauss.html">Gauss</a></td>				<td>An implementation of Gauss's algorithm.</td>
+</tr>
+<tr>
+<td><a href="./progs/Inv.html">Inv</a>	</td>			<td>Inverts matrices.</td>
+</tr>
+<tr>
+<td><a href="./progs/Kron.html">Kron</a></td>				<td>Kronecker product of matrices.</td>
+</tr>
+<tr>
+<td><a href="./progs/Ltm.html">Ltm</a>	</td>			<td>Inverse to Mtl.</td>
+</tr>
+<tr>
+<td><a href="./progs/Minpol.html">Minpol</a></td>				<td>Minimal polynomial of integral matrices.</td>
+</tr>
+<tr>
+<td><a href="./progs/Modp.html">Modp</a></td>				<td>Takes all entries of a matrix mod p a prime.</td>
+</tr>
+<tr>
+<td><a href="./progs/Mtl.html">Mtl</a>	</td>			<td>Writes matrices in lines.</td>
+</tr>
+<tr>
+<td><a href="./progs/Mul.html">Mul</a></td>		        <td>Multiplies matrices.</td>
+</tr>
+<tr>
+<td><a href="./progs/Normalizer_in_N.html">Normalizer_in_N</a></td>			<td>Calculates the normalizer of a finite group
+				in a second one.</td>
+</tr>
+<tr>
+<td><a href="./progs/Normlin.html">Normlin</a></td> <td>Calculates for each matrix A in 'file2' a
+matrix X with the property that Sum<sub>j</sub> X<sub>i,j</sub> F<sub>j</sub> = A<sup>tr</sup>
+F<sub>j</sub> A with F<sub>j</sub> in 'file1'.</td> </tr>
+<tr>
+<td><a href="./progs/P_lse_solve.html">P_lse_solve</a>	</td>		
+<td>Solves a system of equations modularly.</td> </tr>
+<tr>
+<td><a href="./progs/Pdet.html">Pdet</a></td>				<td>Determinant of a matrix mod p.</td>
+</tr>
+<tr>
+<td><a href="./progs/Perfect_neighbours.html">Perfect_neighbours</a></td>		<td>Gives the perfect neighbours of a given
+				G-perfect form.</td>
+</tr>
+<tr>
+<td><a href="./progs/Polyeder.html">Polyeder</a></td>
+</tr>
+<tr>
+<td><a href="./progs/Rest_short.html">Rest_short</a></td>
+</tr>
+<tr>
+<td><a href="./progs/Scalarmul.html">Scalarmul</a></td><td>Multiplies matrices with rational
+number.</td>
+</tr>
+<tr>
+<td><a href="./progs/Short_reduce.html">Short_reduce</a></td>
+</tr>
+<tr>
+<td><a href="./progs/Simplify_mat.html">Simplify_mat</a></td>			<td>Divides all entries of a matrix by their
+				greatest common divisor.</td>
+</tr>
+<tr>
+<td><a href="./progs/Tr.html">Tr</a></td>			<td>Transposes matrices.</td>
+</tr>
+<tr>
+<td><a href="./progs/Trace.html">Trace</a></td>				<td>Trace of matrices.</td>
+</tr>
+<tr>
+<td><a href="./progs/Trbifo.html">Trbifo</a></td>				<td>Trace bilinear form of a finite unimodular
+				group.</td>
+</tr>
+<tr>
+<td><a href="./progs/Vectoform.html">Vectoform</a></td> <td>Calculates a linear combintion of
+forms.</td>
+</tr>
+<tr>
+<td><a href="./progs/Vor_vertices.html">Vor_vertices</a></td>
+</tr>
+</table>
+
+
+<p align=center>There is also an <a href="./abc.html">alphabetical program list</a>!</p>
+
+
+
+
+
+<h2><a name="files">Files for in/output</a></h2>
+
+In principle CARAT does know two different file formats in which the
+in/output takes place. The first and most basic one is <a href="#matrix_TYP">matrix_TYP</a> and the
+second and most frequent one is <a href="#bravais_TYP">bravais_TYP</a>.
+
+
+<h3><a name="matrix_TYP">matrix_TYP</a></h3>
+
+The format of a single matrix for CARAT is a preceding line
+
+<pre>
+NxM  % comment
+</pre>
+
+telling the programs to read a matrix with N lines and M columns. Spaces,
+tabs and so on are ignored, and so is everything behind % in the
+same line.<br>
+Following this line the program will read N*M integers, which represent
+the matrix ROW BY ROW, regardless of spaces, cr, tabs and so on.
+Therefore all the following examples stand for the same matrix.
+
+<pre>
+3x4  % most natural way to put it
+1  2  3  4
+5  6  7  8
+9 10 11 12
+
+3x4  % even this
+1 2 3 4 5 6 7 8 9 10 11 12
+
+3x4
+1 2 3 4 5 6
+7 8 9 10 11 12
+</pre>
+
+Furthermore there are some abbreviations allowed, which deal with
+square matrices and those having symmetries.
+In the header line of a matrix N is equivalent to NxN. The following
+examples describe the same matrix:
+
+<pre>
+2x2
+1 2
+3 4
+
+2
+1 2
+3 4
+</pre>
+
+Again, formating characters are ignored. Coming to matrices which obey
+symmetries CARAT follows the konvention that Nx0 means an symmetric N by
+N matrix, of which program just will read the lower triangular.
+Note that all the following examples have the same meaning:
+
+<pre>
+2
+1 2
+2 1
+
+2x0
+1
+2 1
+
+2x0
+1 2 1
+</pre>
+
+The last abbreviation are meant for diagonal matrices, which are Nd1
+for a N by N diagonal matrix, of which program will read N diagonal entries,
+and Nd0 for a N by N scalar matrix, of which only the defining scalar is read.
+Again a couple of outputs meaning the same thing should make it clear.
+
+<pre>
+3x3
+2 0 0
+0 2 0
+0 0 2
+
+3d1
+2 2 2
+
+3d0
+2
+</pre>
+
+Most programs will read more than one matrix. Therefore a matrix_TYP
+normaly constits of a preceding line of the form #A , where A is
+the number of matrices to be read.
+
+In the next example we give a matrix_TYP consisting of 2 matrices
+(which generate a group isomorphic to S_4, the permutation group
+on four letters).
+
+<pre>
+#2
+3    % presentation for a transposition
+0 1 0
+1 0 0
+0 0 1
+
+3    % presentation of a 4-cycle
+ 0  1  0
+ 0  0  1
+-1 -1 -1
+</pre>
+
+<h4>rational matrices</h4>
+
+The way CARAT presents rational matrices is to divide the whole thing
+by an integer:
+
+<pre>
+3/2    % divide the whole matrix by 2
+1 2 3
+4 5 6
+7 8 9
+</pre>
+
+<h4>A matrix discribing a presentation</h4>
+
+<p>
+This is a slight abuse of notation, but nevertheless a matrix_TYP in
+CARAT can discribe a finitely presented group.
+</p><p>
+A single line of this matrix will present a relation fullfilled by the
+generators of the group, and the biggest entry in modulus will be the
+number of generators.
+Words in the free group translate in the obvious way to a line
+of a matrix, therefore we just give a couple of ways of presenting
+the group V<sub>4</sub> = C<sub>2</sub> X C<sub>2</sub>. To make the matrix rectangular, fill
+the shorter rows with zeroes.
+<p>
+
+<pre>
+3x4       % we will need 3 relations, the longest of which will have 4 entries
+1 1  0  0
+2 2  0  0
+1 2 -1 -2
+</pre>
+
+The three lines read: x<sub>1</sub>x<sub>1</sub> = 1, x<sub>2</sub>x<sub>2</sub> = 1,
+x<sub>1</sub>x<sub>2</sub>x<sub>1</sub><sup>-1</sup>x<sub>2</sub><sup>-1</sup> = 1.
+
+Of course there are various ways to put it, like
+
+<pre>
+3x4
+1 1 0 0
+2 2 0 0
+1 2 1 2
+</pre>
+
+or
+
+<pre>
+3x4
+1 1 2 2
+1 1 0 0
+1 2 1 2
+</pre>
+
+<a name="bravais_TYP"><h3>bravais_TYP</h3></a>
+
+A bravais_TYP in CARAT is used to decribe a group generated by matrices
+together with additional information like their normalizers and
+a basis for the space of invariant forms.<br>
+
+The bravais_TYP consists of a header line, which tells the program how
+many matrices to be read, and how to interpret them.<br>
+
+This header line takes the following form:
+
+<pre>
+#gA fB ZC nD cE % just a comment
+</pre>
+
+<p>
+where A, B, C, D and E are natural numbers. It advises the program to read
+A + B + C + D + E matrices, where A matrices are meant to generate the group,
+the next B matrices form an integral basis of the space of fixed forms,
+followed by C matrices giving so called "centerings". The program proceeds
+in reading D matrices which generate the normalizer of the group (modulo
+the group generated by the group and its centralizer), and E matrices
+which generate the centralizer of the group.</p>
+
+<p>
+Note: It is possible to ommit any of the records which discribe generators,
+the space of forms and so on, but it is NOT possible to switch components.
+</p>
+
+The next example gives a bravais_TYP:
+
+<pre>
+#g2 f1 n3 % group with complete normalizer
+3	% generator
+ 0 1 0
+ 1 0 0
+ 0 0 1
+3	% generator
+  0  1  0
+  0  0  1
+ -1 -1 -1
+3x0	% invariant form
+ 2
+ 1 2
+ 1 1 2
+3	% generator of normalizer
+  1  1 1
+  0 -1 0
+ -1  0 0
+3	% generator of normalizer
+ -1 0  0
+  0 0 -1
+  1 1  1
+3x0	% generator of normalizer
+ 1
+ 0 0
+ 0 1 0
+2^3  * 3^1   = 24 % order of the group
+</pre>
+
+Note that the order of the group is given at the end, and that it
+is factorized. Some programs are using this line. These programs assume the
+order given to be right.
+</p>
+
+
+
+<h2><a name="examples">Examples</a></h2>
+<ol>
+<li> <a href="./examples/Ex1.html">List all names of Bravais groups of degree 4.</a>
+<li> <a href="./examples/Ex2.html">How do the Z-classes in the Q-class of a given group distribute
+into their Bravais flocks?</a>
+<li> <a href="./examples/Ex3.html">Determine the maximal finite subgroups of GL<sub>5</sub>(Z)</a>
+<li> <a href="./examples/Ex4.html">Find all space groups with a given point group and decide for
+which superlattices each extension splits.</a>
+<li> <a href="./examples/Ex5.html">Do two given matrices generate a space group?</a>
+<li> <a href="./examples/Ex6.html">Find the dual pairs of Bravais groups in family 1;1;1;1</a>
+<li> <a href="./examples/Ex7.html">Is the normalizer of a given group finite?</a>
+<li> <a href="./examples/Ex8.html">Find all Bravaisgroups of degree 6 consisting of permutation
+matrices and their negatives only.</a>
+<li> <a href="./examples/Ex9.html">Do two given groups have Z-equivalent copies which lie in a
+finite unimodular group?</a>
+<li> <a href="./examples/Ex10.html">Find the stabilizer of a sublattice in the Bravais
+group of the unit form F=I<sub>6</sub>.</a>
+<li> <a href="./examples/Ex11.html">Find the fundamental group of the Handtsche-Wendt manifold!</a>
+<li> <a href="./examples/Ex12.html">Find all Z-classes, affine classes and
+torsion free space groups in a given Q-class.</a>
+<li> <a href="./examples/Ex13.html">Calculate the "graph of inclusions"
+for a given geometric class.</a>
+</ol>
+
+
+<h2><a name="remarks">Remarks</a></h2>
+
+<p>
+If you find any Bug in CARAT, we would be pleased to hear from you.
+Please send us a copy of the file you produced the error with, and a log
+from the things you did with it.<br>
+A short explanation why you encounter the result (if you got any) to
+be wrong would be helpful as well.</p>
+<p> We would also be pleased to hear from you, if you find any errors or misprints in this
+introduction.
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="http://wwwb.math.rwth-aachen.de/carat/index.html">CARAT Homepage</a></td>
+<td><a href="mailto:carat@momo.math.rwth-aachen.de">e-Mail</a></td>
+<td><a href="#top_of_page">Up</a></td>
+</tr>
+</table>
+<p>
+<font size=1>last change: 16.03.2001</font>
+</center>
+
+
+</body>
+
+</html>

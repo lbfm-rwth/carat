@@ -25,7 +25,7 @@ main(int argc, char *argv[])
 
         read_header(argc, argv);
         if(FILEANZ != 3)
-        { printf("Usage: perfect_neighbours 'file1' 'file2' 'file3'\n");
+        { printf("Usage: Perfect_neighbours 'file1' 'file2' 'file3'\n");
           printf("with: file1 contains the bravais_TYP G\n");
           printf("      file2 contains the bravais_TYP G^{tr}\n");
           printf("      file3 contains a  G-perfect form\n");

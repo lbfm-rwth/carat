@@ -1,0 +1,75 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / Z_equiv</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Vector_systems.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Bravais_equiv.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program Z_equiv</h2>
+
+<h3>Usage</h3>
+
+<pre>
+Z_equiv 'file1' 'file2' [-f] [-d]
+</pre>
+
+file1: bravais_TYP containing G.<br>
+file1: bravais_TYP containing H.
+
+
+<h3>Description</h3>
+Searches for a matrix X in GL<sub>n</sub>(Z) such that { X g X<sup>-1</sup> | g  in G } = H.
+If no such matrix exists, an error messages is printed to stdout.
+
+
+<h3>Options</h3>
+<pre>
+-f   : recalculate the formspace of the groups even if it
+       is given already.
+-d   : some special files for debugging are created. Do not
+       use this option unless you know what you are doing.
+</pre>
+
+<h3>Remarks</h3>
+<p>
+WARNING: THE GROUPS IN file1 AND file2 HAVE TO BE FINITE!
+<p>
+See also for <a href="./Bravais_equiv.html">Bravais_equiv</a> and <a
+href="./Is_finite.html">Is_finite</a>.
+
+<h3>Examples</h3>
+<ol>
+<li>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Vector_systems.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Bravais_equiv.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

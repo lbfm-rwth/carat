@@ -3,7 +3,7 @@
 %%Title: a2ps output
 %%For: CARAT PSEUDO USER
 %%Creator: a2ps version 4.8.4
-%%CreationDate: Wed May 24 19:17:37 2000
+%%CreationDate: Wed Mar 28 16:25:07 2001
 %%DocumentData: Clean7Bit
 %%Orientation: Landscape
 %%Pages: 4
@@ -629,6 +629,12 @@ x0 y0 moveto
 (of) K
 () p n
 () S 8 T () S 16 T () S 24 T () S 32 T (a unimodular group.) N
+(Graph                           Calculates the "graph ) S
+(of) K
+( inclusions" ) p
+(for) K
+( a) p n
+(                                given geometric class. ) N
 (Is_finite) S 16 T () S 24 T () S 32 T (Decides finiteness ) S
 (of) K
 ( a given subgroup ) p
@@ -638,6 +644,19 @@ x0 y0 moveto
 (in) K
 ( case the group) p n
 () S 8 T () S 16 T () S 24 T () S 32 T (is finite.) N
+(K_Subgroups                     Calculates the maximal klassengleich subgroups ) N
+(                                ) S
+(of) K
+( a spacegroup ) p
+(for) K
+( some prime-power index.) p n
+(K_Supergroups                   Calculates the maximal klassengleich ) N
+(                                supergroups ) S
+(of) K
+( a spacegroup ) p
+(for) K
+( some ) p n
+(                                prime-power index.) N
 (Name                            Give a space group a name, ie. calculate) N
 (                                a ) S
 (string) k
@@ -650,7 +669,13 @@ x0 y0 moveto
 ( GL_n\(Z\) ) p
 (of) K
 ( a given) p n
-() S 8 T () S 16 T () S 24 T () S 32 T (finite unimodular group.) N
+(README.short) (Page 1/7) (Mar 28, 01 16:03) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+() p 8 T () S 16 T () S 24 T () S 32 T (finite unimodular group.) N
 (Orbit) S 8 T () S 16 T () S 24 T () S 32 T (Fairly general ) S
 (implementation ) K
 (of the) L
@@ -662,19 +687,7 @@ x0 y0 moveto
 () S 8 T () S 16 T () S 24 T () S 32 T () S
 (of) K
 ( GL_n\(Q\).) p n
-(Presentation) S 16 T () S 24 T () S 32 T (Calculates a presentation ) S
-(of) K
-( a finite soluble) p n
-() S 8 T () S 16 T () S 24 T () S 32 T (subgroup ) S
-(of) K
-( GL_n\(Z\)) p n
-(README.short) (Page 1/7) (Oct 05, 99 18:47) title
-border
-/v 1 store
-/x0 x v get 3.362408 add sx cw mul add store
-/y0 y v get bfs th add sub store
-x0 y0 moveto
-(Q_catalog                       Provides a list ) p
+(Q_catalog                       Provides a list ) S
 (of) K
 ( all Q_classes up) p n
 () S 8 T () S 16 T () S 24 T () S 32 T () S
@@ -768,6 +781,12 @@ x0 y0 moveto
 (Pair_red) S 16 T () S 24 T () S 32 T (Pair reduction ) S
 (of) K
 ( bilinear forms. Very fast.) p n
+(Presentation                    Calculates a presentation ) S
+(of) K
+( a finite soluble) p n
+(                                subgroup ) S
+(of) K
+( GL_n\(Z\)) p n
 (Red_gen) S 8 T () S 16 T () S 24 T () S 32 T (Tries ) S
 (to) K
 ( reduce the number ) p
@@ -788,16 +807,6 @@ x0 y0 moveto
 (or) K
 ( a finite unimodular group) p n
 () S 8 T () S 16 T () S 24 T () S 32 T (G.) N
-(Roundcor) S 16 T () S 24 T () S 32 T (A ) S
-(program ) K
-(calculating a presentation for) L
-() p n
-() S 8 T () S 16 T () S 24 T () S 32 T (finite unimodular groups. ) S
-(Not) K
-( very reliable,) p n
-() S 8 T () S 16 T () S 24 T () S 32 T (is ) S
-(to) K
-( be replaced by a better version soon.) p n
 (Scpr) S 8 T () S 16 T () S 24 T () S 32 T (Calculates scalar products w.r.t a given form.) N
 (Short) S 8 T () S 16 T () S 24 T () S 32 T (Calculates short vectors ) S
 (of) K
@@ -816,20 +825,12 @@ x0 y0 moveto
 () p n
 () S 8 T () S 16 T () S 24 T () S 32 T (particular it decides whether a given form) N
 () S 8 T () S 16 T () S 24 T () S 32 T (is positive definite.) N
-(Sublattices ZZprog) S 24 T () S 32 T (Find G-invariant sublattices ) S
-(of) K
-( Z^n. Note) p n
-() S 8 T () S 16 T () S 24 T () S 32 T (that this is a dualisation ) S
-(of) K
-( finding) p n
-() S 8 T () S 16 T () S 24 T () S 32 T (centerings.) N
-(Tr_bravais) S 16 T () S 24 T () S 32 T (Transposes a finite unimodular group.) N
-(README.short) (Page 2/7) (Oct 05, 99 18:47) title
+(README.short) (Page 2/7) (Mar 28, 01 16:03) title
 border
 % End of virtual page
 grestore
 (Printed by CARAT PSEUDO USER) rhead
-(README.short) (1/4) (Wednesday May 24, 00) footer
+(README.short) (1/4) (Wednesday March 28, 01) footer
 end % of Latin1dict
 pagesave restore
 showpage
@@ -847,7 +848,15 @@ llx lly 12 add translate
 /x0 x v get 3.362408 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
-(Zass_main) p 16 T () S 24 T () S 32 T (Calculates H^1\(G,Q^n/Z^n\) ) S
+(Sublattices ZZprog) p 24 T () S 32 T (Find G-invariant sublattices ) S
+(of) K
+( Z^n. Note) p n
+() S 8 T () S 16 T () S 24 T () S 32 T (that this is a dualisation ) S
+(of) K
+( finding) p n
+() S 8 T () S 16 T () S 24 T () S 32 T (centerings.) N
+(Tr_bravais) S 16 T () S 24 T () S 32 T (Transposes a finite unimodular group.) N
+(Zass_main) S 16 T () S 24 T () S 32 T (Calculates H^1\(G,Q^n/Z^n\) ) S
 (for) K
 ( a given finite) p n
 () S 8 T () S 16 T () S 24 T () S 32 T (unimodular group.) N
@@ -869,8 +878,8 @@ x0 y0 moveto
 ( them.) p n
 () N
 (Program/Synonyms) S 24 T () S 32 T (Short description) N
-(================) S 24 T () S 32 T (=================) N
-(Add) S 8 T () S 16 T () S 24 T () S 32 T (Adds matrices) N
+(================) S 24 T () S 32 T (================= Add) S 56 T () S 64 T () S 72 T () S 80 T () N
+(Adds matrices) N
 (Con) S 8 T () S 16 T () S 24 T () S 32 T (Conjugates matrices) N
 (Conjugated) S 16 T () S 24 T () S 32 T (Decides whether two groups are conjugate) N
 () S 8 T () S 16 T () S 24 T () S 32 T (under third group.) N
@@ -930,7 +939,28 @@ x0 y0 moveto
 () S 8 T () S 16 T () S 24 T () S 32 T () S
 (in) K
 ( a second one.) p n
-(Normlin) N
+(Normlin                         Calculates ) S
+(for) K
+( each matrix A ) p
+(in) K
+( ) p
+(file) K
+(2 a matrix ) p n
+(                                X ) S
+(with) K
+( the property that) p n
+(                                \\sum_j X_) S
+({i,j}) c
+( F_j = A^) p
+({tr}) c
+( F_j A) p n
+(                                ) S
+(with) K
+( F_j ) p
+(in) K
+( ') p
+(file1) str
+(') p n
 (P_lse_solve) S 16 T () S 24 T () S 32 T (Solves a system ) S
 (of) K
 ( equations modularly.) p n
@@ -945,7 +975,9 @@ x0 y0 moveto
 () S 8 T () S 16 T () S 24 T () S 32 T (G-perfect form.) N
 (Polyeder) N
 (Rest_short) N
-(Scalarmul) N
+(Scalarmul                       Multiplies matrices ) S
+(with) K
+( rational number.) p n
 (Short_reduce) N
 (Simplify_mat) S 16 T () S 24 T () S 32 T (Divides all entries ) S
 (of) K
@@ -959,7 +991,9 @@ x0 y0 moveto
 (of) K
 ( a finite unimodular) p n
 () S 8 T () S 16 T () S 24 T () S 32 T (group.) N
-(Vectoform) N
+(Vectoform                       Calculates a linear combintion ) S
+(of) K
+( forms.) p n
 (Vor_vertices) N
 () N
 (1.2 Files ) S
@@ -967,7 +1001,13 @@ x0 y0 moveto
 ( ) p
 (in) K
 (/output) p n
-(========================) N
+(README.short) (Page 3/7) (Mar 28, 01 16:03) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(========================) p n
 () N
 (In) K
 ( principle CARAT does know two different ) p
@@ -986,13 +1026,7 @@ x0 y0 moveto
 ( most frequent one is bravais_TYP, cf.) p n
 (1.2.2 below.) N
 () N
-(README.short) (Page 3/7) (Oct 05, 99 18:47) title
-border
-/v 1 store
-/x0 x v get 3.362408 add sx cw mul add store
-/y0 y v get bfs th add sub store
-x0 y0 moveto
-(1.2.1 matrix_TYP) p n
+(1.2.1 matrix_TYP) N
 (================) N
 () N
 (The format ) S
@@ -1092,7 +1126,30 @@ x0 y0 moveto
 (2x0) N
 (1 2 1) N
 () N
-(The last abbreviation are meant ) S
+(README.short) (Page 4/7) (Mar 28, 01 16:03) title
+border
+% End of virtual page
+grestore
+(Printed by CARAT PSEUDO USER) rhead
+(README.short) (2/4) (Wednesday March 28, 01) footer
+end % of Latin1dict
+pagesave restore
+showpage
+%%Page: (3) 3
+%%BeginPageSetup
+/pagesave save def
+%%EndPageSetup
+sh 0 translate
+90 rotate
+% Encoding is ISO8859-1
+Latin1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(The last abbreviation are meant ) p
 (for) K
 ( diagonal matrices, which are Nd1) p n
 (for) K
@@ -1116,30 +1173,7 @@ x0 y0 moveto
 () N
 (3x3) N
 (2 0 0) N
-(README.short) (Page 4/7) (Oct 05, 99 18:47) title
-border
-% End of virtual page
-grestore
-(Printed by CARAT PSEUDO USER) rhead
-(README.short) (2/4) (Wednesday May 24, 00) footer
-end % of Latin1dict
-pagesave restore
-showpage
-%%Page: (3) 3
-%%BeginPageSetup
-/pagesave save def
-%%EndPageSetup
-sh 0 translate
-90 rotate
-% Encoding is ISO8859-1
-Latin1dict begin
-gsave
-llx lly 12 add translate
-/v 0 store
-/x0 x v get 3.362408 add sx cw mul add store
-/y0 y v get bfs th add sub store
-x0 y0 moveto
-(0 2 0) p n
+(0 2 0) N
 (0 0 2) N
 () N
 (3d1) N
@@ -1250,7 +1284,13 @@ x0 y0 moveto
 (of) K
 ( which will have 4 entries) p n
 (1 1  0  0) N
-(2 2  0  0) N
+(README.short) (Page 5/7) (Mar 28, 01 16:03) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(2 2  0  0) p n
 (1 2 -1 -2) N
 () N
 (The three lines ) S
@@ -1262,13 +1302,7 @@ x0 y0 moveto
 (to) K
 ( put it, like) p n
 () N
-(README.short) (Page 5/7) (Oct 05, 99 18:47) title
-border
-/v 1 store
-/x0 x v get 3.362408 add sx cw mul add store
-/y0 y v get bfs th add sub store
-x0 y0 moveto
-(3x4) p n
+(3x4) N
 (1 1 0 0) N
 (2 2 0 0) N
 (1 2 1 2) N
@@ -1321,13 +1355,13 @@ x0 y0 moveto
 () N
 (#gA fB ZC nD cE % just a comment) N
 () N
-(where A,B,C,D ) S
+(where A, B, C, D ) S
 (and) K
 ( E are natural numbers. It advises the ) p
 (program ) K
 (to read) L
 () p n
-(A+B+C+D+E matrices, where A matrices are meant ) S
+(A + B + C + D + E matrices, where A matrices are meant ) S
 (to) K
 ( generate the group,) p n
 (the next B matrices form an integral basis ) S
@@ -1361,9 +1395,7 @@ x0 y0 moveto
 (of) K
 ( forms ) p
 (and) K
-( ) p
-(do) K
-( on, but it is ) p
+( so on, but it is ) p
 (NOT) K
 ( possible ) p
 (to) K
@@ -1392,21 +1424,12 @@ x0 y0 moveto
 (3) S 8 T (% generator ) S
 (of) K
 ( normalizer) p n
-(  1  1 1) N
-(  0 -1 0) N
-( -1  0 0) N
-(3) S 8 T (% generator ) S
-(of) K
-( normalizer) p n
-( -1 0  0) N
-(  0 0 -1) N
-(  1 1  1) N
-(README.short) (Page 6/7) (Oct 05, 99 18:47) title
+(README.short) (Page 6/7) (Mar 28, 01 16:03) title
 border
 % End of virtual page
 grestore
 (Printed by CARAT PSEUDO USER) rhead
-(README.short) (3/4) (Wednesday May 24, 00) footer
+(README.short) (3/4) (Wednesday March 28, 01) footer
 end % of Latin1dict
 pagesave restore
 showpage
@@ -1424,7 +1447,16 @@ llx lly 12 add translate
 /x0 x v get 3.362408 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
-(3x0) p 8 T (% generator ) S
+(  1  1 1) p n
+(  0 -1 0) N
+( -1  0 0) N
+(3) S 8 T (% generator ) S
+(of) K
+( normalizer) p n
+( -1 0  0) N
+(  0 0 -1) N
+(  1 1  1) N
+(3x0) S 8 T (% generator ) S
 (of) K
 ( normalizer) p n
 ( 1) N
@@ -1508,12 +1540,12 @@ x0 y0 moveto
 (to) K
 (: carat@momo.math.rwth-aachen.de) p n
 () N
-(README.short) (Page 7/7) (Oct 05, 99 18:47) title
+(README.short) (Page 7/7) (Mar 28, 01 16:03) title
 border
 % End of virtual page
 grestore
 (Printed by CARAT PSEUDO USER) rhead
-(README.short) (4/4) (Wednesday May 24, 00) footer
+(README.short) (4/4) (Wednesday March 28, 01) footer
 end % of Latin1dict
 pagesave restore
 showpage

@@ -143,7 +143,7 @@ static char *identify_hom(bravais_TYP *G,int clear)
        multiplicity,
       *list;
 
-   static atom_no;
+   static int atom_no;
 
    FILE *atom_file;
 

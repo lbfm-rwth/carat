@@ -47,7 +47,7 @@ static void con_reduce(int *w){
 } /* con_reduce */
 
 
-static void normalize_word(int *w){
+void normalize_word(int *w){
 
   int i,
       j;

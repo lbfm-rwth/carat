@@ -30,7 +30,7 @@ static void mod(int *a,int b)
    if (a[0]<0) a[0] += b;
 }
 
-static void valuation(matrix_TYP *x,matrix_TYP *D,MP_INT *val)
+void valuation(matrix_TYP *x,matrix_TYP *D,MP_INT *val)
 {
    int first,
        last,
@@ -162,18 +162,18 @@ static int smallest(struct tree *p)
 @ -------------------------------------------------------------------------
 @
 ***************************************************************************/
-static matrix_TYP *orbit_rep(matrix_TYP *x,
-                             matrix_TYP **N,
-                             int nanz,
-                             matrix_TYP *D,
-                             int option,
-                             char *B,
-                             MP_INT *l,
-                             int *anz,
-                             int **word,
-                             int word_flag,
-                             int ***WORDS,
-                             int *NUMBER_OF_WORDS)
+matrix_TYP *orbit_rep(matrix_TYP *x,
+                      matrix_TYP **N,
+                      int nanz,
+                      matrix_TYP *D,
+                      int option,
+                      char *B,
+                      MP_INT *l,
+                      int *anz,
+                      int **word,
+                      int word_flag,
+                      int ***WORDS,
+                      int *NUMBER_OF_WORDS)
 {
    int first,
        last,
@@ -237,8 +237,8 @@ static matrix_TYP *orbit_rep(matrix_TYP *x,
             if (WORDS){
 
                /* we got a new generator of the stabilizer of the cozycle */
-               WORDS[0][NUMBER_OF_WORDS[0]] = (int *) malloc(
-                             (orb_words[h][0]+orb_words[i][0]+2)* sizeof(int));
+               WORDS[0][NUMBER_OF_WORDS[0]] = (int *) calloc(
+                             orb_words[h][0]+orb_words[i][0]+2, sizeof(int));
                WORDS[0][NUMBER_OF_WORDS[0]][0] =
                               orb_words[h][0]+orb_words[i][0]+1;
                for (k=1;k<=orb_words[h][0];k++){
@@ -296,7 +296,6 @@ static matrix_TYP *orbit_rep(matrix_TYP *x,
 
             /* mark this element got in the element list B */
             if (B!= NULL) B[mpz_get_ui(&new_val)] = TRUE;
-
          }
       }
    }
@@ -497,12 +496,12 @@ matrix_TYP *normalop(matrix_TYP *cozycle,
 }
 
 
-static void translation(matrix_TYP *TR,
-                        matrix_TYP *rep,
-                        matrix_TYP *ext,
-                        matrix_TYP *cocycle,
-                        matrix_TYP *D,
-                        bravais_TYP *G)
+void translation(matrix_TYP *TR,
+                 matrix_TYP *rep,
+                 matrix_TYP *ext,
+                 matrix_TYP *cocycle,
+                 matrix_TYP *D,
+                 bravais_TYP *G)
 {
 
    int i,

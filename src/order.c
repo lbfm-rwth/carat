@@ -60,7 +60,7 @@ main(int argc,char **argv){
 
   base = get_base(G);
 
-  strong = strong_generators(base,G,NULL);
+  strong = strong_generators(base,G,FALSE);
 
   siz = G->order = size(strong);
 

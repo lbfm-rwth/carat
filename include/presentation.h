@@ -10,6 +10,8 @@ extern matrix_TYP *pres(bahn **s,
                         bravais_TYP *G,
                         int *OPT);
 
+extern void normalize_word(int *w);
+
 /**********************************************************************
 |  FILE: mapped_word.c
 ***********************************************************************/
@@ -35,6 +37,8 @@ void put_word(int *w,
 |  FILE: presentation.c
 ***********************************************************************/
 extern matrix_TYP *pres();
+
+extern void normalize_word();
 
 /**********************************************************************
 |  FILE: mapped_word.c

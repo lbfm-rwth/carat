@@ -19,7 +19,7 @@ main (int argc, char *argv[])
   read_header(argc, argv);
   if(FILEANZ != 1)
   {
-    printf("Usage: %s 'file' [-n]\n",argv[0]);
+    printf("Usage: %s 'file' [-n] [-i]\n",argv[0]);
     printf("\n");
     printf("file: bravais_TYP of the finite unimodular group G.\n");
     printf("\n");
@@ -41,6 +41,11 @@ main (int argc, char *argv[])
 
   G = get_bravais(FILENAMES[0]);
   H = tr_bravais(G,!is_option('n'),is_option('i'));
+
+  if (G->order){
+     H->order = G->order;
+     factorize_new(H->order,H->divisors);
+  }
 
   put_bravais(H,NULL,NULL);
 

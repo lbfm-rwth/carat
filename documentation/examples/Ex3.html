@@ -1,0 +1,196 @@
+<html>
+
+<head>
+<META NAME="author" CONTENT="Oliver Heidb&uuml;chel">
+<META NAME="publisher" CONTENT="Lehrstuhl B f&uuml;r Mathematik, RWTH Aachen, Germany">
+<META NAME="copyright" CONTENT="Lehrstuhl B f&uuml;r Mathematik, RWTH Aachen, Germany">
+<META NAME="keywords" CONTENT="CARAT, crystallography, groups, group,
+mathematics, algorithms, tables, algorithm, table, examples,
+example, Bravais_catalog, Datei, Bravais_inclusions, subgroups, subgroup, GL">
+
+<META NAME="description" CONTENT="CARAT Introduction: Example 3 - Determine the maximal finite
+subgroups of GL<sub>5</sub>(Z)">
+<META NAME="robots" CONTENT="follow">
+
+
+<title>CARAT Introduction / Examples / Determine the maximal finite subgroups of
+GL_5(Z)</title>
+
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Ex2.html">Previous Example</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Ex4.html">Next Example</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h3>Example 3</h3>
+
+Determine the maximal finite subgroups of GL<sub>5</sub>(Z)
+
+
+<h3>Used Programs</h3>
+<a href="../progs/Bravais_catalog.html">Bravais_catalog</a>/<a
+href="../progs/Datei.html">Datei</a>, <a
+href="../progs/Bravais_inclusions.html">Bravais_inclusions</a>
+
+
+<h3>Solution</h3>
+
+
+<ol>
+   <li>
+      Call
+      <pre>
+         Bravais_catalog
+      </pre>
+      Input family symbol 1,1,1,1,1, calculate the groups, choose file name 11111 and
+      print all groups.
+      The Bravais group &lt;-I<sub>5</sub>&gt; is written to file '<a href="./Ex3_11111">11111</a>'.
+      Note, each Bravais group of degree 5 contains this group.
+   </li>
+
+   <li>
+      Call
+      <pre>
+         Bravais_inclusions 11111 -S > all
+      </pre>
+      Now the file '<a href="./Ex3_all">all</a>' contains a list of the names of all Bravais
+      groups of degree 5, more precisely representatives of the Z-classes.<br>
+      (Note:
+      <pre>
+         grep Symbol all | wc
+      </pre>
+      would tell us that there are 189 Z-classes of Bravais groups of degree 5.)
+   </li>
+
+   <li>
+      Call
+      <pre>
+         Bravais_catalog
+      </pre>
+      Input family symbol 5-1, calculate the groups, choose file name 51 and print all groups.
+      All Bravais groups in family 5-1 are now listed in file '<a href="./Ex3_51">51</a>'.<br>
+      There are three Bravais groups in file '51' now. By irreducibility
+      all three Bravais groups are maximal finite. Later we want to
+      omit their proper Bravais subgroups from the file 'all'. To
+      prepare this edit the file '51' and split it up into three
+      files '<a href="./Ex3_51a">51a</a>', '<a href="./Ex3_51b">51b</a>' and '<a
+      href="./Ex3_51c">51c</a>' containing one Bravais group each.
+   </li>
+
+   <li>
+      Call
+      <pre>
+         Bravais_catalog
+      </pre>
+      Input family symbol 5-2 calculate the groups, choose file name 52 and print all groups.
+      All Bravais groups in family 5-1 are now listed in file '<a href="./Ex3_52">52</a>'.<br>
+      There are four Bravais groups in file 52 now. By irreducibility
+      all four Bravais groups are maximal finite. Later we want to
+      omit their proper Bravais subgroups from the file 'all'. To
+      prepare this edit the file '52' and split it up into four
+      files '<a href="./Ex3_52a">52a</a>', '<a href="./Ex3_52b">52b</a>', '<a
+      href="./Ex3_52c">52c</a>' and  '<a href="./Ex3_52d">52d</a>'
+      containing one Bravais group each.
+   </li>
+
+   <li>
+      Call
+      <pre>
+         Bravais_inclusions 51a > notmax
+         Bravais_inclusions 51b >> notmax
+         Bravais_inclusions 51c >> notmax
+         Bravais_inclusions 52a >> notmax
+         Bravais_inclusions 52b >> notmax
+         Bravais_inclusions 52c >> notmax
+         Bravais_inclusions 52d >> notmax
+      </pre>
+      to write the names of the Bravais subgroups of the five maximal finite
+      subgroups known so far on file '<a href="./Ex3_notmax">notmax</a>'.
+   </li>
+
+   <li>
+      Call
+      <pre>
+         grep Symbol notmax > compare
+         sort -u compare > notmax
+      </pre>
+      Now the file '<a href="./Ex3_notmax2">notmax</a>' contains the names of the seven maximal
+      groups and of their proper Bravais subgroups, each one listed just once.
+      By editing the file 'notmax', one writes the lines corresponding to
+      maximal groups on a new file '<a href="./Ex3_MAX">MAX</a>. (These are the last seven lines.)
+   </li>
+
+   <li>
+      Call
+      <pre>
+         sort all > allsort
+         diff allsort notmax | grep Symbol > all
+      </pre>
+      Now the file '<a href="./Ex3_all2">all</a>' contains a complete list of Bravais groups,
+      which are not contained in one of the groups of the file 'MAX'.
+   </li>
+
+   <li>
+      The last lines of the file 'all', more precisely the ones
+      involving a symbol of the form 4-x;1 are the following:
+      <pre>
+         < Symbol: 4-1;1  homogeneously d.: 2 zclass: 1
+         < Symbol: 4-2';1  homogeneously d.: 1 zclass: 1
+         < Symbol: 4-2;1  homogeneously d.: 1 zclass: 1
+         < Symbol: 4-2;1  homogeneously d.: 2 zclass: 1
+         < Symbol: 4-3';1  homogeneously d.: 1 zclass: 1
+         < Symbol: 4-3;1  homogeneously d.: 1 zclass: 1
+         < Symbol: 4-3;1  homogeneously d.: 2 zclass: 1
+      </pre>
+      By using
+      <pre>
+         Bravais_inclusions -S
+      </pre>
+      one can rule out the two groups involving a ' as maximal finite
+      groups. For the remaining five groups it is clear now that they
+      are maximal finite. So by repeating the above computations with
+      these five groups leads us to a new file 'MAX' containig 7+5
+      groups and a new file 'all' containing all Bravais groups not
+      contained in any of the groups in 'MAX' (up to Z-equivalence).
+      It turns out that the process terminates after the next step
+      with 'MAX' looking like
+      <pre>
+         5-1a       5-1c       5-2b       5-2d
+         5-1b       5-2a       5-2c
+         4-112   4-211   4-212   4-311   4-312
+         32-11   32-13   32-21   32-22   32-23
+      </pre>
+   </li>
+
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Ex2.html">Previous Example</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Ex4.html">Next Example</a></td>
+</tr>
+</table>
+<font size=1>last change: 11.09.2000</font>
+</center>
+
+
+</body>
+
+</html>

@@ -39,7 +39,7 @@ char *file_name;
 
 {
 char  string[80],
-      slash, *str , *strpbrk () ;
+      slash, *str ;
 char f[80];
 /* changed from "static char fn[80]" to switch away from static variables */
 char *fn;

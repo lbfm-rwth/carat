@@ -1,0 +1,85 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / Formtovec</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Form_elt.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Full.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program Formtovec</h2>
+
+<h3>Usage</h3>
+
+<pre>
+Formtovec 'file1' 'file2' [-m] [-d]
+</pre>
+
+file1: matrix_TYP<br>
+file2: matrix_TYP or bravais_TYP.
+
+
+
+<h3>Description</h3>
+For each matrix A in file1 a vector V is calculated
+with the following property:
+<p>
+  A = 1/V[NO+1] * (V[1] * F<sub>1</sub> + V[2] * F<sub>2</sub> +...+ V[NO] * F<sub>NO</sub>)
+</p>
+where F<sub>i</sub> are the matrices in 'file2' if 'file2' is a
+matrix_TYP, otherwise are the matrices describing the
+form space of the bravais group in 'file2'.
+
+
+<h3>Options</h3>
+<pre>
+ -m: Use a modular (but exact) method to calculate
+     the result. The result is calculated for a couple
+     of big primes and fitted together with the chinese
+     remainder theorem.
+     This method is much faster and avoids trouble with
+     overflow, BUT IS ABLE TO HANDLE THE CASE V[NO+1] == 1
+     ONLY (AND WILL RUN INTO AN INFINITE LOOP OTHERWISE).
+ -d: give the denominator in the NO+1-th colunm.
+</pre>
+
+<h3>Remarks</h3>
+CAUTION: if not used with the option -d, the denominator is not printed, so you will get a vector
+with only NO columns.
+<p>
+See also for <a href="./Vectoform.html">Vectoform</a>.
+
+<h3>Examples</h3>
+<ol>
+<li>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Form_elt.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Full.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

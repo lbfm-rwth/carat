@@ -62,7 +62,7 @@ main(int argc,char **argv){
 
   for (i=0;i<anz;i++){
      RG = (matrix_TYP **) malloc( R[i]->gen_no * sizeof(matrix_TYP*));
-     words = (int **) malloc(R[i]->gen_no * sizeof(int *));
+     words = (int **) malloc(P->gen_no * sizeof(int *));
      denominator = 1;
      for (j=0;j<R[i]->gen_no;j++){
        RG[j] = copy_mat(R[i]->gen[j]);

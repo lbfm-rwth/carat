@@ -5,16 +5,18 @@
 #include <base.h>
 #include <datei.h>
 #include <idem.h>
+#include <longtools.h>
 
 int INFO_LEVEL;
 extern int SFLAG;
 
-main(int argc,char **argv){
+void main(int argc,char **argv){
 
   bravais_TYP *G = NULL,
               *H;
 
   matrix_TYP *F,
+             *FI,
              *ID,
              *T= NULL;
 
@@ -45,7 +47,7 @@ main(int argc,char **argv){
      printf("\n");
      printf("Options:\n");
      printf("-S:   Search for all supergroups\n");
-     printf("-G:   Calculate generators for the subgroups as well\n");
+     printf("-G:   Calculate generators for the groups as well\n");
      printf("\n");
      printf("Cf. Bravais_catalog, Symbol.\n");
      if (is_option('h')){
@@ -118,11 +120,22 @@ main(int argc,char **argv){
         for (i=0;i<number;i++){
            for (j=0;j<RES[i]->N_orbits;j++){
               F = mat_mul(T,RES[i]->TR[j]);
-              H = konj_bravais(RES[i]->grp,F);
+              FI = long_mat_inv(F);
+              H = konj_bravais(RES[i]->grp,FI);
               free_mat(F);
+              free_mat(FI);
               sprintf(comment,"%s %d %d, %d-th N-orbit",RES[i]->symbol,
                            RES[i]->almost,RES[i]->zclass,j+1);
+
+
+              if (is_option('A')){
+                 sprintf(comment,"%s.%s.%d.%d.%d",FILENAMES[0],RES[i]->symbol,
+                           RES[i]->almost,RES[i]->zclass,j+1);
+                 put_bravais(H,comment,NULL);
+              }
+              else{
               put_bravais(H,NULL,comment);
+              }
               free_bravais(H);
            }
         }

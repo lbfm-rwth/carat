@@ -8,9 +8,13 @@
 extern void ZZ_free_node _ZZ_P_PROTO_( (ZZ_data_t * data, ZZ_node_t * n) );
 extern void ZZ_make_endo _ZZ_P_PROTO_( (ZZ_data_t * data) );
 extern void ZZ_test_konst _ZZ_P_PROTO_( (ZZ_data_t * data) );
-extern void ZZ_get_data _ZZ_P_PROTO_( (bravais_TYP * group, matrix_TYP * gram,
-				       int *divisors, ZZ_data_t * data, 
-				       ZZ_tree_t *, int *projections) );
+extern void ZZ_get_data _ZZ_P_PROTO_( (bravais_TYP *group,
+                                        matrix_TYP *gram,
+				       int *divisors,
+				       ZZ_data_t *data,
+				       ZZ_tree_t *tree,
+				       int *projections,
+				       int konst_flag) );
 extern matrix_TYP *ZZ_fget_data _ZZ_P_PROTO_( (ZZ_data_t * data,
 					       ZZ_tree_t * tree,
 					       char *file_name) );
@@ -30,7 +34,13 @@ extern boolean ZZ_successor _ZZ_P_PROTO_( (ZZ_data_t * data,
 extern int ZZ_ins_node _ZZ_P_PROTO_( (matrix_TYP * Gram,
 				      ZZ_data_t * data, ZZ_tree_t * tree,
 				      ZZ_node_t * father, ZZ_node_t * new,
-				      int ii, int jj) );
+				      int ii, int jj,
+				      QtoZ_TYP *inzidenz,
+				      int *nr,
+				      int *NEU,
+				      int *flagge,
+				      int *g,
+				      ZZ_node_t **nnn) );
 extern void ZZ_pick_epi _ZZ_P_PROTO_( (ZZ_data_t * data, int number, 
 				       int ii, int jj) );
 

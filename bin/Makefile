@@ -3,7 +3,7 @@ CFLAGS = -fwritable-strings -DDIAG1 -pg
 TOPDIR = /usb/carat
 
 # LIB = -L$(TOPDIR)/lib -lcarat -lm
-LIB = -L$(TOPDIR)/lib -lpresentation -lfunctions -lgmp -lm_alloc -lm
+LIB = -L$(TOPDIR)/lib -lgraph -lpresentation -lfunctions -lgmp -lm_alloc -lm
 SRC = $(TOPDIR)/src
 INCL = $(TOPDIR)/include
 OBJ = $(TOPDIR)/obj
@@ -26,8 +26,9 @@ PROGRAMS: Add Aut_grp Bravais_equiv\
           Conv Datei\
           Elt Extract Extensions\
           First_perfect Form_space Form_elt\
-          Formtovec Full Gauss\
+          Formtovec Full Gauss Graph\
           Idem Inv Invar_space Isometry Is_finite\
+          K_Subgroups K_Supergroups\
           Kron Long_solve Ltm\
           Modp Mtl Mul Mink_red Minpol\
           Name Normalizer Normalizer_in_N Normlin\
@@ -68,7 +69,7 @@ Bravais_grp:  $(SRC)/bravaisgroup.c
 	$(COMP) -o Bravais_grp\
         $(SRC)/bravaisgroup.c  $(LIB)
 
-Bravais_inclusions:  $(SRC)/bravaisgroup.c
+Bravais_inclusions:  $(SRC)/bravais_inclusions.c
 	$(COMP) -o Bravais_inclusions\
         $(SRC)/bravais_inclusions.c  $(LIB)
 
@@ -138,6 +139,10 @@ Gauss:  $(SRC)/gauss.c
 	$(COMP) -o Gauss\
         $(SRC)/gauss.c  $(LIB)
 
+Graph:  $(SRC)/graph.c
+	$(COMP) -o Graph\
+        $(SRC)/graph.c  $(LIB)
+
 #Gittstab:  $(SRC)/gittstab.c
 #	$(COMP) -o Gittstab\
 #        $(SRC)/gittstab.c  $(LIB)
@@ -173,6 +178,14 @@ Is_finite:  $(SRC)/is_finite.c
 Kron:  $(SRC)/kron.c
 	$(COMP) -o Kron\
         $(SRC)/kron.c  $(LIB)
+
+K_Subgroups:  $(SRC)/k_subgroups.c
+	$(COMP) -o K_Subgroups\
+	$(SRC)/k_subgroups.c  $(LIB)
+
+K_Supergroups:  $(SRC)/k_supergroups.c
+	$(COMP) -o K_Supergroups\
+	$(SRC)/k_supergroups.c  $(LIB)
 
 Long_solve:  $(SRC)/long_solve.c
 	$(COMP) -o Long_solve\
@@ -404,6 +417,7 @@ clean:
 	rm -f Full
 	rm -f Fundamental_domain
 	rm -f Gauss
+	rm -f Graph
 	rm -f Gittstab
 	rm -f Hypisom
 	rm -f Hypstab
@@ -413,6 +427,8 @@ clean:
 	rm -f Isometry
 	rm -f Is_finite
 	rm -f Conj_bravais
+	rm -f K_Subgroups
+	rm -f K_Supergroups
 	rm -f Kron
 	rm -f Long_solve
 	rm -f Ltm

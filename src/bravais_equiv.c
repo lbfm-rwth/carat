@@ -29,7 +29,7 @@ main (int argc, char *argv[])
 
   read_header(argc, argv);
   if ((FILEANZ < 2) || (is_option('h') && optionnumber('h') ==0)){
-    printf("Usage: Bravais_flock file1 file2\n");
+    printf("Usage: %s 'file1' 'file2'\n",argv[0]);
     printf("\n");
     printf("file1: bravais_TYP containing G.\n");
     printf("file2: bravais_TYP containing H.\n");

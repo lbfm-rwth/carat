@@ -1,0 +1,87 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / Normalizer</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Name.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Orbit.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program Normalizer</h2>
+
+<h3>Usage</h3>
+
+<pre>
+Normalizer 'file1' ['file2' ['file3']] [-p=prime] [-o]
+</pre>
+
+file1: bravais_TYP containing the group G.<br>
+file2: (OPTIONAL) bravais_TYP containing the transposed of G. (cf.
+<a href="./Tr_bravais.html">Tr_bravais</a>)<br>
+file3: (OPTIONAL) matrix_TYP of a G-perfect form. (cf. <a
+href="./First_perfect.html">First_perfect</a>)<br>
+
+
+<h3>Description</h3>
+
+Calculates a set of matrices which together with G generate the
+normalizer N<sub>GL<sub>n</sub>(Z)</sub>(G) of G in GL<sub>n</sub>(Z).<br>
+NOTE: the output echoes any input information about G, except input about
+generators of the normalizer.<br>
+NOTE: The dimension of the space of invariant forms is a measure for the
+complexity of the algorithm. Up to degree 6 the only infeasible case are
+&lt;I<sub>6</sub>&gt; and &lt;-I<sub>6</sub>&gt;. Here the generators of the normalizer can be taken
+from <a href="./Bravais_catalog.html">Bravais_catalog.html</a>/<a href="./Datei.html">Datei</a>
+with family 1,1,1,1,1,1.
+
+<h3>Options</h3>
+<pre>
+-b      :  The normalizer of the bravais group B(G) is calculated. With this
+           option the program is much faster. (The normalizer of G is a
+           subgroup of N_GL_n(Z) (B(G)). )
+-p=prime:  The determinants of the perfect forms are
+           calculated module prime. The default is 1949.
+-o      :  The G-perfect forms are given as additional output.
+</pre>
+
+<h3>Remarks</h3>
+See also for <a href="./Bravais_catalog.html">Bravais_catalog.html</a>/<a
+href="./Datei.html">Datei</a>,  <a href="./First_perfect.html">First_perfect</a> and <a
+href="./Tr_bravais.html">Tr_bravais</a>.
+
+<h3>Examples</h3>
+<ol>
+<li> <a href="../examples/Ex4.html">Find all space groups with a given point group and decide for
+which superlattices each extension splits.</a>
+<li> <a href="../examples/Ex7.html">Is the normalizer of a given group finite?</a>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Name.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Orbit.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

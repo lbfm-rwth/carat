@@ -22,7 +22,7 @@ main (int argc, char *argv[])
     printf("\n");
     printf("Converts the matrix_TYP into the format of other\n");
     printf("programs available. The options specify the program,\n");
-    printf("and only one of them is allowedat one time.\n");
+    printf("and only one of them is allowed at one time.\n");
     printf("\n");
     printf("-g or -G: GAP-format\n");
     printf("-m or -M: MAPLE-format\n");

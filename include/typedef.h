@@ -169,4 +169,32 @@ typedef struct {
   int *v;
   int kgv;
 }vector_TYP;
+
+
+/* for QtoZ */
+typedef struct {
+  int *s;
+  matrix_TYP ****Delta;
+  int k;
+  int r;
+} QtoZ_konst_TYP;
+
+typedef struct {
+   int anz;
+   int *I;
+   int *J;
+   int *flag;
+   matrix_TYP **lattice;
+   matrix_TYP **lsf;		/* standard form of the lattices */
+} QtoZ_entry_TYP;
+
+typedef struct {
+   matrix_TYP **gitter;
+   matrix_TYP **tr_gitter;
+   matrix_TYP **inv_tr_gitter;
+   int anz;
+   QtoZ_entry_TYP **entry;
+   matrix_TYP ***zoogitter;
+} QtoZ_TYP;
+
 #endif /* _CARAT_TYPEDEF_H_ */

@@ -1,0 +1,114 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / Extensions</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Datei.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Form_space.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program Extensions</h2>
+
+<h3>Usage</h3>
+
+<pre>
+Extensions ['file1'] 'file2' ['file3'] [-n] [-i] [-t=n] [-v]
+</pre>
+
+file1:  matrix_TYP containing a presentation of the group (cf. <a
+href="./Presentation.html">Presentation</a>)<br>
+file2:  bravais_TYP containing the group (and its normalizer).<br>
+file3:  (OPTIONAL) containing cocycles for identification.<br>
+
+<h3>Description</h3>
+
+Calculates representatives of the isomorphism classes of extension of
+the group in file2 with presentation in file1 with the natural lattice.
+Output lists representative vectorsystems. (Output can be used as input
+for <a href="./Extract.html">Extract</a>). Also the isomorphism type of the extension group is
+given.
+
+<h3>Options</h3>
+<pre>
+ -n:      only calculates the number of extensions, without computing
+          representatives. This option is much faster for big cohomology
+          groups. WARNING: Try this option first for 2-groups in dimension
+          greater than 4.
+ -v:      verbose mode. Give some echoing to stderr to
+          indicate a little what the program is doing.
+ -i:      Identify the cozycles given in file3, ie. give
+          the described space groups a name. CAUTION: The
+          name will depend on the generating set of the group
+          in file2 and the presentation in file1.
+          Can be used to test isomorphism of space groups with equal
+          point groups. The name is 0 iff the extension splits.
+ -t=n:    Has an effect only if given with -i. Outputs the
+          isomophism needed to transform the space group
+          By default, only the linear part is calculated. To
+          get a full transformation matrix, use -t=2.
+ -C:      Ignore the operation of the normalizer, just work
+          on the level of extensions.
+ -H:      echo the isomorphism type of the cohomology group
+          H^1(G,Q^n/Z^n) to stderr.
+ -F:      Only construct those extensions which gie rise to
+          torsion free space groups. Does not work in conjunction
+          with -n.
+</pre>
+
+<h3>Remarks</h3>
+<p>
+THE PROGRAM RELIES HEAVILY ON THE FOLLOWING TWO FACTS:
+<ul type=disc>
+<li>THE PRESENTATION GIVEN IN file1 IS INDEED A PRESENTATION. CHECKED IS ONLY THAT THE GIVEN
+GENERATORS FULFILL THE RELATIONS.</li>
+<li> THE NORMALIZER IN GL<sub>n</sub>(Z) FOR THE GROUP IN file2 IS CORRECT. THE PROGRAM MIGHT NOT
+FINISH OR GIVE WRONG ANSWERS OTHERWISE.</li>
+</ul>
+</p>
+<p>
+'file1' can be left out, but the program is faster, if the presentation is given.
+<p>
+See also for <a href="./Extract.html">Extract</a>, <a href="./Presentation.html">Presentation</a>,
+<a href="./Same_generators.html">Same_generators</a> and <a href="./Zass_main.html">Zass_main</a>.
+</p>
+<p>
+Extensions is a synonym for <a href="Vector_systems.html">Vector_systems</a>.
+</p>
+
+<h3>Examples</h3>
+<ol>
+<li> <a href="../examples/Ex4.html">Find all space groups with a given point group and decide for
+which superlattices each extension splits.</a>
+<li> <a href="../examples/Ex12.html">Find all Z-classes, affine classes and torsion free space
+groups in a given Q-class.</a>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Datei.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Form_space.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

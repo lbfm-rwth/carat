@@ -59,8 +59,8 @@ matrix_TYP *left_trans, *Mat, *right_trans;
      }
      if(left_trans->cols != left_trans->rows)
      {
-       printf("error: matrix 'left_trans' in 'long_elt_mat' has to be a
-		square matrix\n");        exit(3);
+       printf("error: matrix 'left_trans' in 'long_elt_mat' has to be a square matrix\n");
+       exit(3);
      }
    }
    else
@@ -78,8 +78,8 @@ matrix_TYP *left_trans, *Mat, *right_trans;
      }
      if(left_trans->cols != left_trans->rows)
      {
-       printf("error: matrix 'left_trans' in 'long_elt_mat' has to be a
-		square matrix\n");        exit(3);
+       printf("error: matrix 'left_trans' in 'long_elt_mat' has to be a square matrix\n");
+       exit(3);
      }
    }
    else

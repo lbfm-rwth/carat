@@ -1,0 +1,73 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / Vectoform</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Trbifo.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Vor_vertices.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program Vectoform</h2>
+
+<h3>Usage</h3>
+
+<pre>
+Vectoform 'file1' 'file2'
+</pre>
+
+file1: matrix_TYP of 1 by n matrices.<br>
+file2: matrix_TYP or bravais_TYP. If file2 is a matrix_TYP, it has to
+       contain exactly n matrices, if it contains a bravais_TYP its
+       space of invariant forms should be of dimension n.
+
+
+<h3>Description</h3>
+For each row vector V in 'file1' a matrix A is calculated
+with the following property:
+<p>
+  A =  (V[1] * F<sub>1</sub> + V[2] * F<sub>2</sub> +...+ V[NO] * F<sub>NO</sub>),
+<p>
+Where is F<sub>i</sub> are the matrices in 'file2' if 'file2' is a
+matrix_TYP, otherwise are the matrices describing the
+space of invariant forms of the bravais group in 'file2'.
+
+
+
+<h3>Remarks</h3>
+See also for <a href="./Formtovec.html">Formtovec</a>.
+
+
+<h3>Examples</h3>
+<ol>
+<li>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Trbifo.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Vor_vertices.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

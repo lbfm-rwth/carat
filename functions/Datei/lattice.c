@@ -1,7 +1,7 @@
 #include "typedef.h"
 #include "datei.h"
 
-extern INFO_LEVEL;
+extern int INFO_LEVEL;
 
 lattice_element **lattice(char *symb,int dim,int almost,int zclass,int *no,
                           int OPTION)

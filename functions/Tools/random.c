@@ -5,7 +5,7 @@
 int random_own()
 {
 
-  static erg;
+  static int erg;
 
   erg += step;
   erg = erg % RANDOM_PRIME;

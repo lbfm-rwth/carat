@@ -13,13 +13,14 @@
 #include "ZZ_cen_fun_P.h"
 
 extern int IDEM_NO;
-static int *SUB_VEC;
-static matrix_TYP **PrI;
+int *SUB_VEC;
+matrix_TYP **PrI;
+QtoZ_konst_TYP *KONSTITUENTEN = NULL;
 
 /* eingefuegt von Oliver am 5.2.99 */
 int OANZ = 0;
 matrix_TYP **OMAT;
-int OFLAG = FALSE;
+int OFLAG = FALSE;	
 /* ------------------------------- */
 
 
@@ -148,6 +149,9 @@ void ZZ_free_node (data, n)
 	}
 	if (n->U != NULL) {
 		free_mat (n->U);
+	}
+	if (n->Q != NULL) {
+		free_mat (n->Q);
 	}
 	if (n->U_inv != NULL) {
 		free_mat (n->U_inv);
@@ -281,19 +285,41 @@ void ZZ_test_konst (data)
  *  Diese Funktion fuellt die Datenstrukturen "data" und "tree"
  *  insbesondere werden die irreduziblen Konstituenten fuer die
  *  Primteiler der Gruppenordnung errechnet
+ *  q2z ruft diese Fufnktion ueber ZZ mehrmals auf; einige Daten brauchen nicht mehrmals
+ *  ausgerechnet werden; das kann noch verbessert werden!
  */
-void ZZ_get_data (group, gram, divisors, data, tree, projections)
+void ZZ_get_data (group, gram, divisors, data, tree, projections, konst_flag)
      bravais_TYP *group;
      matrix_TYP *gram;
      int *divisors;
      ZZ_data_t *data;
      ZZ_tree_t *tree;
      int *projections;
+     int konst_flag;
 {
 	int i, j, k;
 	matrix_TYP **help2;
+	QtoZ_konst_TYP *data_neu;
 
+	
+	if (konst_flag == -3 && GRAPH){
+	   for (i = 0; i < KONSTITUENTEN->k; i++){
+	      for (j = 0; j < KONSTITUENTEN->s[i]; j++){
+	         for (k = 0; k < KONSTITUENTEN->r; k++){
+	            free_mat(KONSTITUENTEN->Delta[i][j][k]);
+	         }
+	         free(KONSTITUENTEN->Delta[i][j]);
+	      }
+	      free(KONSTITUENTEN->Delta[i]);
+	   }
+	   free(KONSTITUENTEN->Delta);
+	   free(KONSTITUENTEN->s);
+	   free(KONSTITUENTEN);	
+	   return;
+	}
+	
 	tree->root = tree->last = (ZZ_node_t *) malloc(sizeof(ZZ_node_t));
+	data->N = group->dim;
 
 	if (ZCLASS > 0){
 		group->gen_no -= IDEM_NO;
@@ -307,6 +333,7 @@ void ZZ_get_data (group, gram, divisors, data, tree, projections)
 		tree->root->N_no_orbits = 0;
 		tree->root->perfect = NULL;
 		tree->root->perfect_no = 0;
+		tree->root->Q = init_mat(data->N, data->N, "1");
         } else {
 		tree->root->col_group = NULL;
 		tree->root->group = NULL;
@@ -317,16 +344,22 @@ void ZZ_get_data (group, gram, divisors, data, tree, projections)
 		tree->root->N_no_orbits = 0;
 		tree->root->perfect = NULL;
 		tree->root->perfect_no = 0;
+		tree->root->Q = NULL;
 	}
 
-	data->N = group->dim;
 	tree->root->U = init_mat (data->N, data->N, "");
 	tree->root->U_inv = init_mat (data->N, data->N, "");
+	/* changed by oliver (6.11.00) from
 	tree->root->el_div = init_mat (1, data->N, "");
+	to: */
+	tree->root->el_div = init_mat (data->N, data->N, "");	
 	for (i = 0; i < data->N; i++) {
 		tree->root->U->array.SZ[i][i] =
 			tree->root->U_inv->array.SZ[i][i]  =
+			/* changed by oliver (6.11.00) from
 			tree->root->el_div->array.SZ[0][i] = 1;
+			to: */
+			tree->root->el_div->array.SZ[i][i] = 1;			
 	}
 	tree->root->number =
 		tree->node_count  =
@@ -376,32 +409,59 @@ void ZZ_get_data (group, gram, divisors, data, tree, projections)
 	/*
 	 * Read the i'th prime and the number of constituents for i
 	 */
-	for (i = 0; i < data->p_consts.k; i++) {
-		help2 = ZZ_irr_const (data->DELTA, data->r,
-				      data->p_consts.p[i],
-				      &data->p_consts.s[i]);
+	
+	/* if - else eingefuegt von Oliver: 8.8.00 */
+        if (konst_flag == 0 && GRAPH){
+	   for (i = 0; i < KONSTITUENTEN->k; i++) {
+              data->p_consts.s[i] = KONSTITUENTEN->s[i];
+	      data->n[i] = (int *)malloc(data->p_consts.s[i] * sizeof (int));
+	      data->p_consts.Delta[i] =
+		   (matrix_TYP ***)malloc(data->p_consts.s[i] *
+				          sizeof (matrix_TYP **));
+	      for (j = 0; j < data->p_consts.s[i]; j++) {
+			   data->p_consts.Delta[i][j] =
+				   (matrix_TYP **)malloc(data->r *
+						         sizeof (matrix_TYP *));
+			   for (k = 0; k < KONSTITUENTEN->r; k++) {
+				   data->p_consts.Delta[i][j][k] =
+				                copy_mat(KONSTITUENTEN->Delta[i][j][k]);
+				   data->p_consts.Delta[i][j][k]->prime =
+					   data->p_consts.p[i];
+			   }
+			   data->n[i][j] = data->p_consts.Delta[i][j][0]->rows;		
+	      }
+           }
+        }
+        else{
+           /* alte Version */
+	   for (i = 0; i < data->p_consts.k; i++) {
+	   	   help2 = ZZ_irr_const (data->DELTA, data->r,
+				         data->p_consts.p[i],
+				         &data->p_consts.s[i]);
 
-		data->n[i] = (int *)malloc(data->p_consts.s[i] * sizeof (int));
-		data->p_consts.Delta[i] =
-			(matrix_TYP ***)malloc(data->p_consts.s[i] *
-					       sizeof (matrix_TYP **));
-		for (j = 0; j < data->p_consts.s[i]; j++) {
-			data->p_consts.Delta[i][j] =
-				(matrix_TYP **)malloc(data->r *
-						      sizeof (matrix_TYP *));
-			for (k = 0; k < data->r; k++) {
-				data->p_consts.Delta[i][j][k] =
-					help2[j * data->r + k];
-				data->p_consts.Delta[i][j][k]->prime =
-					data->p_consts.p[i];
-			}
-			data->n[i][j] = data->p_consts.Delta[i][j][0]->rows;
-		}
-		free (help2);
+		   data->n[i] = (int *)malloc(data->p_consts.s[i] * sizeof (int));
+		   data->p_consts.Delta[i] =
+			   (matrix_TYP ***)malloc(data->p_consts.s[i] *
+					          sizeof (matrix_TYP **));
+		   for (j = 0; j < data->p_consts.s[i]; j++) {
+			   data->p_consts.Delta[i][j] =
+				   (matrix_TYP **)malloc(data->r *
+						         sizeof (matrix_TYP *));
+			   for (k = 0; k < data->r; k++) {
+				   data->p_consts.Delta[i][j][k] =
+					   help2[j * data->r + k];
+				   data->p_consts.Delta[i][j][k]->prime =
+					   data->p_consts.p[i];
+			   }
+			   data->n[i][j] = data->p_consts.Delta[i][j][0]->rows;
+		   }
+		   free (help2);
+	   }
+	   ZZ_test_konst(data);
+	   ZZ_test_konst(data);
+	   ZZ_test_konst(data);
 	}
-	ZZ_test_konst(data);
-	ZZ_test_konst(data);
-	ZZ_test_konst(data);
+	
 	/*
 	 * initialize Endomorphisms
 	 */
@@ -451,6 +511,30 @@ void ZZ_get_data (group, gram, divisors, data, tree, projections)
 			k += SUB_VEC[i];
 		}
 	}
+	
+	
+	if (konst_flag == 1 && GRAPH){
+	   KONSTITUENTEN = (QtoZ_konst_TYP *)calloc(1, sizeof(QtoZ_konst_TYP));
+	   KONSTITUENTEN->k = data->p_consts.k;
+	   KONSTITUENTEN->s = (int *)calloc(data->p_consts.k, sizeof(int));
+	   KONSTITUENTEN->r = (data->r - IDEM_NO);
+	   KONSTITUENTEN->Delta = (matrix_TYP ****)malloc(KONSTITUENTEN->k *
+					sizeof (matrix_TYP ***));
+
+	   for (i = 0; i < data->p_consts.k; i++) {
+              KONSTITUENTEN->s[i] = data->p_consts.s[i];
+  	      KONSTITUENTEN->Delta[i] = (matrix_TYP ***)malloc(KONSTITUENTEN->s[i] *
+					          sizeof (matrix_TYP **));
+		   for (j = 0; j < KONSTITUENTEN->s[i]; j++) {
+			   KONSTITUENTEN->Delta[i][j] = (matrix_TYP **)malloc(KONSTITUENTEN->r *
+						         sizeof (matrix_TYP *));
+			   for (k = 0; k < KONSTITUENTEN->r; k++) {
+				   KONSTITUENTEN->Delta[i][j][k] =
+					   copy_mat(data->p_consts.Delta[i][j][k]);
+			   }
+		   }
+	   }
+	}
 }
 
 /*****************************************************************************/
@@ -477,9 +561,9 @@ void ZZ_put_data (group, data, tree)
 	n = tree->root;
 	i = 0;
 	do {
-		group->zentr[i] = n->U;
-		n->U = NULL;
-		if (SHORTLIST) {
+		group->zentr[i] = copy_mat(n->U);
+		/* n->U = NULL; oliver: 16.8.00 */
+ 		if (SHORTLIST) {
 			if (SUBDIRECT) {
 				printf ("\t L%d: Number of Sublattices: %d ",
 					n->number, n->anz_tg);
@@ -496,8 +580,9 @@ void ZZ_put_data (group, data, tree)
 			fflush (stdout);
 		}
 		i++;
-		t = n->next;
-		ZZ_free_node (data, n);
+		t = n->next;		
+		/* oliver: 11.8.00
+		ZZ_free_node (data, n); */
 	} while ((n = t) != NULL);
 }
 
@@ -893,7 +978,7 @@ ZZ_node_t *ZZ_center (data, father, ii, jj)
 	n->number = -1;
 	n->index = -1;
 	n->level = father->level + 1;
-	n->U = n->U_inv = n->el_div = NULL;
+	n->U = n->Q = n->U_inv = n->el_div = NULL;
 	n->next = NULL;
 	n->parent = n->child = NULL;
 	n->k_vec = (int **) malloc (data->p_consts.k * sizeof (int *));
@@ -933,6 +1018,7 @@ ZZ_node_t *ZZ_center (data, father, ii, jj)
 	 * Calculate the invariant factors of that generating set
 	 */
 	Check_mat (n->U);
+	
 	if (U_option) {
 		n->el_div = long_elt_mat(NULL,n->U, NULL);
 		/*
@@ -940,7 +1026,10 @@ ZZ_node_t *ZZ_center (data, father, ii, jj)
 		 */
 		n->index = n->el_div->array.SZ[0][0];
 		for (i = 1; i < n->el_div->cols; i++) {
+		        /* changed by oliver (6.11.00) from:
 			n->index *= n->el_div->array.SZ[0][i];
+			to: */
+			n->index *= n->el_div->array.SZ[i][i];
 		}
 	} else {
 		n->el_div = init_mat (1, 1, "");
@@ -1130,19 +1219,42 @@ boolean ZZ_successor (data, act)
 
 
 
-int ZZ_ins_node (Gram, data, tree, father, new, ii, jj)
+/*------------------------------------------------------------------------------- */
+static int suche_mat(matrix_TYP *mat,
+                     matrix_TYP **liste,
+                     int anz)
+{
+   int i;
+
+   for (i = 0; i < anz; i++){
+      if (cmp_mat(mat, liste[i]) == 0)
+         return(i);
+   }
+   return(-1);
+}
+
+
+
+/*------------------------------------------------------------------------------- */
+int ZZ_ins_node (Gram, data, tree, father, new, ii, jj, inzidenz, nr, NEU, flagge, g, nnn)
      matrix_TYP *Gram;
      ZZ_data_t *data;
      ZZ_tree_t *tree;
      ZZ_node_t *father, *new;
      int ii, jj;
+     QtoZ_TYP *inzidenz;
+     int *nr;
+     int *NEU;
+     int *flagge;
+     int *g;
+     ZZ_node_t **nnn;
 {
 	ZZ_node_t *n;
 	ZZ_couple_t *c;
-	matrix_TYP *Tmp1, *Tmp2;
+	matrix_TYP *Tmp1, *Tmp2, *U_vor, *tmp;
 	matrix_TYP *Mat, *Trf, *el, *GMat;
-	int **U, **CC, sum, f, g;
-	int i, j, k, nl, flag;
+	int **U, **CC, sum, f;
+	int i, j, k, nl, flag, ff, gg;
 	int ABBRUCH;
 
 	/* inserted tilman 6/2/97 */
@@ -1150,7 +1262,7 @@ int ZZ_ins_node (Gram, data, tree, father, new, ii, jj)
 
 	sum =
 		f =
-		g = 0;
+		g[0] = 0;
 	U = new->U->array.SZ;
 	ABBRUCH = FALSE;
 
@@ -1170,11 +1282,11 @@ int ZZ_ins_node (Gram, data, tree, father, new, ii, jj)
 	if (n != NULL) {
 		/* We found a node on the same level, now look for
                    all on this level for an identical lattice */
-		g = new->el_div->array.SZ[0][0];
+		g[0] = new->el_div->array.SZ[0][0];
 		nl = new->level;
 		do {
 			f = n->U_inv->kgv;
-			f *= g;
+			f *= g[0];
 			flag = TRUE;
 			for (i = 0; (i < data->p_consts.k) && flag; i++) {
 				flag = memcmp (n->k_vec[i],
@@ -1208,6 +1320,15 @@ int ZZ_ins_node (Gram, data, tree, father, new, ii, jj)
 				while (c != NULL) {
 					if (c->he == n) {
 						ZZ_free_node (data, new);
+				                /* next 7 lines by oliver: 9.8.00: for graph for QtoZ */
+						if (ZCLASS == 1 && GRAPH){
+						   nr[0] = suche_mat(n->U, inzidenz->gitter, inzidenz->anz);
+						   if (nr[0] == -1){
+						      fprintf(stderr,"ERROR 1 in ZZ_ins_node!\n");
+						      exit(2);
+						   }
+						   flagge[0] += 1;
+						}
 						return ABBRUCH;
 					}
 					c = c->elder;
@@ -1238,17 +1359,25 @@ int ZZ_ins_node (Gram, data, tree, father, new, ii, jj)
 			}
 			if (i > SUBDIRECT) {
 				ZZ_free_node (data, new);
+				
+				/* next 2 lines by oliver: 9.8.00: for graph for QtoZ */
+				if (GRAPH)
+				   nr[0] = -1;
+				
 				return ABBRUCH;
 			}
 		}
 
 		if (ZCLASS == 1){
-			if (orbit_under_normalizer(data,tree,father,new,ii,jj)){
+		        /* second call of ZZ by q2z */
+			if (orbit_under_normalizer(data,tree,father,new,ii,jj,inzidenz,nr,nnn)){
 				ZZ_free_node (data, new);
+				flagge[0] += 10;
 				return ABBRUCH;
 			}
                 }
 		if (ZCLASS == 2){
+		        /* first call of ZZ by q2z */
 			if (deal_with_ZCLASS(data, tree, father, new)){
 				ZZ_free_node (data, new);
 				return ABBRUCH;
@@ -1259,7 +1388,42 @@ int ZZ_ins_node (Gram, data, tree, father, new, ii, jj)
 		 * New lattice:
 		 * Calculate the scalarproducts of the generating system
 		 */
+		NEU[0] = 1;
+		
+		if (ZCLASS == 2 && GRAPH){
+		   U_vor = mat_inv(new->U);
+		}
+		
+		/* !!!!!!!!!!!!!! new->U is changed in scal_pr !!!!!!!!!!!!!!!!!!! */
 		GMat = Mat = scal_pr (new->U, Gram, FALSE);
+		if (ZCLASS == 2 && GRAPH){
+		   /* save transformation matrix */
+		   tmp = mat_mul(new->U, U_vor);
+		   new->Q = tr_pose(tmp);
+		   free_mat(tmp);
+		   free_mat(U_vor);
+		}
+		
+		if (ZCLASS == 1 && GRAPH){
+	           /* now calculate the (integral) representation
+                      on the new lattice (bare in mind that it is
+   	              row invariant. There is a flaw: normalizer and
+ 	              centralizer won't be correct */
+	           ff = tree->root->group->normal_no;
+ 	           tree->root->group->normal_no = 0;
+	           gg = tree->root->group->cen_no;
+ 	           tree->root->group->cen_no = 0;
+	           new->group = konj_bravais(tree->root->group, new->U);
+	           tree->root->group->normal_no = ff;
+	           tree->root->group->cen_no = gg;
+
+	           /* the second flaw of konj_bravais is the formspace */
+	           for (f = 0; f < new->group->form_no; f++)
+		      new->group->form[f]->kgv = 1;
+	           long_rein_formspace(new->group->form, new->group->form_no, 1);
+	           new->col_group = tr_bravais(new->group, 1, FALSE);
+	        }
+	
 		if (LLLREDUCED)	{
 			/*
 			 * Perform MLLL-Reduction
@@ -1353,11 +1517,21 @@ int ZZ_ins_node (Gram, data, tree, father, new, ii, jj)
 		 */
 		if (!QUIET) {
 			fprintf (stderr, "L%d with (%d,%d) yields %d.L%d\n",
-				 father->number, ii, jj, g, n->number);
+				 father->number, ii, jj, g[0], n->number);
 		}
 		if (TEMPORAER && !NURUMF) {
 			fprintf (ZZ_temp, "L%d with (%d,%d) yields %d.L%d\n",
-				 father->number, ii, jj, g, n->number);
+				 father->number, ii, jj, g[0], n->number);
+		}
+		
+                /* next 7 lines by oliver: 9.8.00: for graph for QtoZ */
+		if (ZCLASS == 1 && GRAPH){		
+		   nr[0] = suche_mat(n->U, inzidenz->gitter, inzidenz->anz);
+		   if (nr[0] == -1){
+		      fprintf(stderr,"ERROR 2 in ZZ_ins_node!\n");
+		      exit(3);
+		   }
+		   flagge[0] += 100;
 		}
 		ZZ_free_node (data, new);
 		new = n;
@@ -1370,7 +1544,7 @@ int ZZ_ins_node (Gram, data, tree, father, new, ii, jj)
 	c->he = father;
 	c->she.i = ii;
 	c->she.j = jj;
-	c->factor = g;
+	c->factor = g[0];
 	c->elder = new->parent;
 	new->parent = c;
 
@@ -1381,11 +1555,14 @@ int ZZ_ins_node (Gram, data, tree, father, new, ii, jj)
 	c->he = new;
 	c->she.i = ii;
 	c->she.j = jj;
-	c->factor = g;
+	c->factor = g[0];
 	c->elder = father->child;
 	father->child = c;
 	return ABBRUCH;
 }
+
+
+
 
 /*}}}  */
 /*{{{  ZZ_pick_epi */

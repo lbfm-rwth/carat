@@ -28,7 +28,7 @@ main (int argc, char *argv[])
            printf("\n");
            printf("For each matrix A in file1 a vector V is calculated\n");
            printf("with the following property:\n");
-           printf("  A = 1/V[NO+1] * (V[1] F_1 + V[2] * F_2 +...+ V[NO] * F_NO),\n");
+           printf("  A = 1/V[NO+1] * (V[1] * F_1 + V[2] * F_2 +...+ V[NO] * F_NO),\n");
            printf("Where is F_i are the matrices in file2 if file2 is a\n");
            printf("matrix_TYP, otherwise are the matrices describing the\n");
            printf("form space of the bravais group in file2.\n");

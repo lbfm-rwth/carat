@@ -6,11 +6,16 @@
 #include "tools.h"
 #include "ZZ_P.h"
 #include "ZZ_cen_fun_P.h"
+#include "ZZ_zclass_P.h"
+#include "ZZ.h"
+#include "longtools.h"
 
 boolean QUIET = FALSE, TEMPORAER = FALSE, SHORTLIST = FALSE, NURUMF = FALSE,
   U_option = TRUE, G_option = TRUE, LLLREDUCED = FALSE;
 
 int ZCLASS;
+extern int *SUB_VEC;
+extern matrix_TYP **PrI;
 
 int COUNTER = 0;
 int NUMBER = 1000, SUBDIRECT = FALSE, LEVEL = 500;	/*Default-Werte der maximalen Anzahl der berechneten
@@ -19,18 +24,56 @@ FILE *ZZ_temp, *ZZ_list;
 int MAT_ALLOC = 0;
 int constituents = 0;
 int verbose = 0;
+extern ZZ_super_TYP **SUPER_info, *SUPER_INFO;
 
-void ZZ_intern (Gram, data, tree)
+
+/*------------------------------------------------------------------------------- */
+static int suche_mat(matrix_TYP *mat,
+                     matrix_TYP **liste,
+                     int anz)
+{
+   int i;
+
+   for (i = 0; i < anz; i++){
+      if (cmp_mat(mat, liste[i]) == 0)
+         return(i);
+   }
+   return(-1);
+}
+
+
+/*------------------------------------------------------------------------------- */
+void ZZ_intern (Gram, data, tree, inzidenz)
      matrix_TYP *Gram;
      ZZ_data_t *data;
      ZZ_tree_t *tree;
+     QtoZ_TYP *inzidenz;
 {
-    ZZ_node_t *act, *new;
-    int i, j, k, n, d, di, end_num, act_anz;
+    ZZ_node_t *act, *new, *nnn;
+    int g, i, j, k, l, m, n, d, di, end_num, act_anz, flag, nr, NEU, zahl, flagge;
     int ABBRUCH = FALSE;
-    
+    matrix_TYP *gitter, *tmp, *X, *Li;
+
+
     act = tree->root;
     do {
+       if (ZCLASS == 1 && GRAPH){
+          flag = suche_mat(act->U, inzidenz->gitter, inzidenz->anz);
+          if (flag == -1 && inzidenz->anz != 0){
+             /* Das aktuelle Gitter kommt nicht vor in der Liste */
+             fprintf(stderr,"ERROR 1 in ZZ_intern\n");
+             exit(2);
+          }
+          if (flag == -1 && inzidenz->anz == 0){
+             /* insert start-lattice */
+             inzidenz->anz++;
+             inzidenz->gitter[0] = copy_mat(act->U);
+             inzidenz->tr_gitter[0] = tr_pose(inzidenz->gitter[0]);
+             inzidenz->inv_tr_gitter[0] = mat_inv(inzidenz->tr_gitter[0]);
+             inzidenz->entry[0] = (QtoZ_entry_TYP *)calloc(1024, sizeof(QtoZ_entry_TYP));
+             flag = 0;
+          }
+       }
 	for (i = 0; i < data->p_consts.k; i++) {
 	    for (j = 0; j < data->p_consts.s[i]; j++) {
 		d = ZZ_epimorphs (data, i, j);
@@ -43,13 +86,132 @@ void ZZ_intern (Gram, data, tree)
 			    act_anz++;
 			    ZZ_pick_epi (data, n, i, j);
 			    new = ZZ_center (data, act, i, j);
-			    ABBRUCH = ZZ_ins_node (Gram, data, tree, 
-						   act, new, i, j);
+			    nr = 0;
+			    NEU = 0;
+			
+			    if (ZCLASS == 1 && GRAPH){
+ 			       gitter = tr_pose(new->U);
+ 			    }
+ 			    flagge = 0;
+			    ABBRUCH = ZZ_ins_node (Gram, data, tree,
+						   act, new, i, j,
+						   inzidenz, &nr, &NEU, &flagge, &g, &nnn);
+		            if (ZCLASS == 1 && GRAPH){
+			       if (NEU != 1){
+			          /* not a new lattice for the graph or lattice in another zoo */
+			          if (nr == -1){
+			             /* lattice possibly in another zoo */
+			             zahl = inzidenz->entry[flag][0].anz;
+			             if (zahl == 0){
+                                        inzidenz->entry[flag][0].I = (int *)calloc(1024,
+                                                                           sizeof(int));
+                                        inzidenz->entry[flag][0].J = (int *)calloc(1024,
+                                                                           sizeof(int));
+                                        inzidenz->entry[flag][0].flag = (int *)calloc(1024,
+                                                                           sizeof(int));
+                                        inzidenz->entry[flag][0].lattice = (matrix_TYP
+                                                       **)calloc(1024, sizeof(matrix_TYP *));
+                                        inzidenz->zoogitter[flag] = (matrix_TYP **)calloc(1024,
+                                                                     sizeof(matrix_TYP *));			
+			             }
+			             inzidenz->entry[flag][0].I[zahl] = i;
+                                     inzidenz->entry[flag][0].J[zahl] = j;
+                                     inzidenz->entry[flag][0].flag[zahl] = -10;
+                                     inzidenz->zoogitter[flag][zahl] = gitter;
+
+                                     /* This isn't the correct conjugating matrix yet! */
+                                     inzidenz->entry[flag][0].lattice[zahl] =
+                                        copy_mat(inzidenz->inv_tr_gitter[flag]);
+                                     gitter = NULL;
+                                     inzidenz->entry[flag][0].anz++;
+			          }
+  			          else{
+			             /* not a new lattice */
+			             nr++;
+			             zahl = inzidenz->entry[flag][nr].anz;
+			             if (zahl == 0){
+                                        inzidenz->entry[flag][nr].I = (int *)calloc(1024,
+                                                                           sizeof(int));
+                                        inzidenz->entry[flag][nr].J = (int *)calloc(1024,
+                                                                           sizeof(int));			
+                                        inzidenz->entry[flag][nr].flag = (int *)calloc(1024,
+                                                                           sizeof(int));			
+                                        inzidenz->entry[flag][nr].lattice = (matrix_TYP
+                                                       **)calloc(1024, sizeof(matrix_TYP *));
+                                     }
+ 			             inzidenz->entry[flag][nr].I[zahl] = i;
+                                     inzidenz->entry[flag][nr].J[zahl] = j;
+                                     inzidenz->entry[flag][nr].flag[zahl] = flagge;
+                                     inzidenz->entry[flag][nr].anz++;
+
+                                     switch (flagge){
+                                        case 1:
+                                           inzidenz->entry[flag][nr].lattice[zahl] =
+                                                mat_mul(inzidenz->inv_tr_gitter[flag],
+                                                        inzidenz->tr_gitter[nr - 1]);
+                                           break;
+
+                                        case 100:
+                                           inzidenz->entry[flag][nr].lattice[zahl] =
+                                                mat_mul(inzidenz->inv_tr_gitter[flag],
+                                                        inzidenz->tr_gitter[nr - 1]);
+                                           for (l = 0; l < gitter->rows; l++){
+                                              for (m = 0; m < gitter->cols; m++){
+                                                 inzidenz->entry[flag][nr].lattice[zahl]->array.SZ[l][m]
+                                                    *= g;
+                                              }
+                                           }
+                                           break;
+
+                                        case 10:
+                                           Li = mat_inv(gitter);
+                                           X = konjugierende(Li, tree->root->col_group, nnn);
+                                           free_mat(Li);
+                                           if (X == NULL){
+                                              fprintf(stderr, "ERROR 2 in ZZ_intern!\n");
+                                              exit(9);
+                                           }
+                                           inzidenz->entry[flag][nr].lattice[zahl] =
+                                                mat_mul(inzidenz->inv_tr_gitter[flag], gitter);
+                                           mat_muleq(inzidenz->entry[flag][nr].lattice[zahl], X);
+                                           free_mat(X);
+                                           break;
+                                     }
+			          }
+			       }
+			       else{
+			          /* new lattice in the graph */
+                                  inzidenz->gitter[inzidenz->anz] = copy_mat(new->U);
+                                  inzidenz->tr_gitter[inzidenz->anz] = tr_pose(new->U);
+                                  inzidenz->inv_tr_gitter[inzidenz->anz] =
+                                       mat_inv(inzidenz->tr_gitter[inzidenz->anz]);
+                                  inzidenz->entry[inzidenz->anz] = (QtoZ_entry_TYP *)calloc(1024,
+                                                                   sizeof(QtoZ_entry_TYP));
+                                  inzidenz->anz++;
+                                  inzidenz->entry[flag][inzidenz->anz].anz = 1;
+                                  inzidenz->entry[flag][inzidenz->anz].I = (int *)calloc(1024,
+                                                                           sizeof(int));
+                                  inzidenz->entry[flag][inzidenz->anz].J = (int *)calloc(1024,
+                                                                           sizeof(int));
+                                  inzidenz->entry[flag][inzidenz->anz].flag = (int *)calloc(1024,
+                                                                           sizeof(int));
+                                  inzidenz->entry[flag][inzidenz->anz].lattice = (matrix_TYP
+                                                       **)calloc(1024, sizeof(matrix_TYP *));
+                                  inzidenz->entry[flag][inzidenz->anz].I[0] = i;
+                                  inzidenz->entry[flag][inzidenz->anz].J[0] = j;
+                                  inzidenz->entry[flag][inzidenz->anz].flag[0] = 0;
+                                  inzidenz->entry[flag][inzidenz->anz].lattice[0] =
+                                          mat_mul(inzidenz->inv_tr_gitter[flag],
+                                                  inzidenz->tr_gitter[inzidenz->anz - 1]);
+                               }
+                               if (gitter != NULL)
+                                  free_mat(gitter);
+                            }
 			}
 		    }
 		    act->anz_tg = act_anz;
-		    
-		    for (k = 0; k < di; k++) {
+		
+  	            for (k = 0; k < di; k++) {
 			free_mat (data->epi_base[k]);
 		    }
 		    free (data->epi_base);
@@ -59,8 +221,13 @@ void ZZ_intern (Gram, data, tree)
 	}
     } while ((!ABBRUCH) && (ZZ_successor (data, &act)));
     ZZ_fput_data (data, tree, ABBRUCH);
+    nnn = NULL;
 }
 
+
+
+
+/******************************************************************************/
 void ZZ_transpose_array (int **array, int size)
 {
 	int i, j, ZZ_swap;
@@ -221,8 +388,8 @@ static void scan_options (char *options, int *projections, FILE *outputfile)
 		if (projections[0] == 0) {
 			fprintf (stderr, "\"p\" option requires number of sublattices and their dimensions to be given.\n");
 			exit (3);
-		} else if (projections[0] > 6) {
-			fprintf (stderr, "Maximal dimension is 6\n");
+		} else if (projections[0] > 8) {
+			fprintf (stderr, "Maximal dimension is 8\n");
 			exit(3);
 		} else {
 #if DEBUG
@@ -287,24 +454,30 @@ static void scan_options (char *options, int *projections, FILE *outputfile)
 	}
 }
 
-void ZZ(group, gram, divisors, options, outputfile)
+void *ZZ(group, gram, divisors, inzidenz, options, outputfile, super_nr, konst_flag)
      bravais_TYP *group;
      matrix_TYP *gram;
      int *divisors;
+     QtoZ_TYP *inzidenz;
      char *options;
      FILE *outputfile;
+     int super_nr;
+     int konst_flag;
 {
-	ZZ_data_t data;
-	ZZ_tree_t tree;
+	ZZ_data_t *data;
+	ZZ_tree_t *tree;
 	int i, result = 0;
 	matrix_TYP *sylv, *help;
-	int projections[7];
+	int projections[9];
+	QtoZ_konst_TYP *data_neu;
+	ZZ_node_t *n, *t;
+	ZZ_super_TYP *DATEN;
 
 	/* zuerst wird getestet, ob alle noetigen Daten vorhanden sind. */
 	if (group == NULL) {
 		printf("ZZ: Error: no bravais group specified.\n");
 		exit(3);
-	} 
+	}
 	if (gram == NULL) {
 		printf("ZZ: Error: no gram matrix specified.\n");
 		exit(3);
@@ -366,10 +539,47 @@ void ZZ(group, gram, divisors, options, outputfile)
                         exit(3);
 		}
 	} */
+	
+	
+        data = (ZZ_data_t *)calloc(1, sizeof(ZZ_data_t));
+	tree = (ZZ_tree_t *)calloc(1, sizeof(ZZ_tree_t));
 
-	ZZ_get_data (group, gram, divisors, &data, &tree, projections);
-	ZZ_intern (gram, &data, &tree);
-	ZZ_put_data (group, &data, &tree);
+        ZZ_get_data (group, gram, divisors, data, tree, projections, konst_flag);	
+	ZZ_intern (gram, data, tree, inzidenz);
+	ZZ_put_data (group, data, tree);
+	
+	if (!GRAPH){
+	   /* free tree and data */
+	   n = tree->root;
+	   do {
+              t = n->next;		
+	      ZZ_free_node (data, n);
+	   } while ((n = t) != NULL);
+	   ZZ_free_data(data);
+	   free(data);
+	   free(tree);
+	}
+	else{
+	   DATEN = (ZZ_super_TYP *)calloc(1,sizeof(ZZ_super_TYP));
+	   if (SUBDIRECT) {
+		if (PrI) {
+			for (i = 0; i < SUBDIRECT; i++) {
+				if (PrI[i]) {
+					free_mat (PrI[i]);
+				}
+			}
+			free (PrI);
+			PrI = NULL;
+		}
+		if (SUB_VEC) {
+			free (SUB_VEC);
+			SUB_VEC = NULL;
+		}
+	   }
+	   DATEN->tree = tree;
+	   DATEN->data = data;
+	}
+	
 	for (i = 0; i < group->zentr_no; i++) {
 		ZZ_transpose_array(group->zentr[i]->array.SZ,
 				   group->zentr[i]->cols);
@@ -378,5 +588,25 @@ void ZZ(group, gram, divisors, options, outputfile)
 		ZZ_transpose_array (group->gen[i]->array.SZ, 
 				    group->gen[i]->cols);
 	}
-	ZZ_free_data (&data);
+	
+	
+	if (ZCLASS == 2 && GRAPH){
+	   SUPER_INFO = DATEN;
+	}
+	if (ZCLASS == 1 && GRAPH){
+	   SUPER_info[super_nr] = DATEN;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

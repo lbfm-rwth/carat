@@ -23,7 +23,7 @@ symbol_out *read_symbol_from_string(symb)
 char *symb;
 {
 char  string[80],
-      slash, *str , *strpbrk () ;
+      slash, *str ;
 char f[80];
 char *fn;
 char *dat;

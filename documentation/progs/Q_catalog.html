@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / Q_catalog</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Order.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./QtoZ.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program Q_catalog</h2>
+
+<h3>Usage</h3>
+
+<pre>
+Q_catalog [file] [-T] [-i] [-s]
+</pre>
+
+file: bravais_TYP containing the finite unimodular group G.
+
+
+<h3>Description</h3>
+
+The program Q_catalog as two identities:<br>
+If called without an input file, it gives access to the
+database of all Q-classes of finite unimodular groups of degree
+up to 6. In this mode, the command 'h' will provide further help.
+If called with an input file, it searches for the given group
+in the database, and gives a unique name choosen for this
+Q-class.
+
+<h3>Options</h3>
+<pre>
+-T    : calculate a transformation matrix transforming the input
+        group G into the group given in the catalog. (2nd mode only).
+-i    : output the group in the catalog which is Q-equivalent
+        to the input group G. (2nd mode only).
+-s    : output the family symbol of G. (2nd mode only).
+</pre>
+
+<h3>Remarks</h3>
+It is faster to calculate the familiy symbol with <a href="./Bravais_type.html">Bravais_type</a>/<a
+href="./Symbol.html">Symbol</a>. The option "-s" makes sense in combination with the option
+"-i".<br>
+See also for <a href="./Bravais_catalog.html">Bravais_catalog</a>/<a
+href="./Datei.html">Datei</a>, <a href="./Bravais_type.html">Bravais_type</a>/<a
+href="./Symbol.html">Symbol</a> and <a href="./Conj_bravais.html">Conj_bravais</a>.
+
+<h3>Examples</h3>
+<ol>
+<li> <a href="../examples/Ex12.html">Find all Z-classes, affine classes and torsion free space
+groups in a given Q-class.</a>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Order.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./QtoZ.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

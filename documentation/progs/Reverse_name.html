@@ -1,0 +1,88 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / Reverse_name</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./QtoZ.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Same_generators.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program Reverse_name</h2>
+
+<h3>Usage</h3>
+
+<pre>
+Reverse_name [-c] [-i]
+</pre>
+
+<h3>Description</h3>
+The program enables you to construct a space group corresponding
+to a name as given by CARAT. The program will read the various
+components of the name for the desired space group from stdin.
+It will then output generators for the space group, which are
+understood to generate the space group together with Z<sup>n</sup>.<br>
+Please note: not every name is a valid name!
+
+
+<h3>Options</h3>
+<pre>
+-c     : do not check the name given, ie. verify that it is a valid name.
+         WARNING: this could lead to a wrong name in the header of the
+         resulting group
+-i     : ignore that the name is invalid, and give a space group at least
+         in the desired Q-class, and if exists one in the desired Z-class.
+         If given without -c the resulting group will also indicate the valid
+         name.
+</pre>
+
+<h3>Remarks</h3>
+<p>
+Note:
+<table border = 0>
+<tr align=center><th>The Q-classes in</th><th>correspond to the Q-classes in degree</th></tr>
+<tr align=center><td>min.1, max.1</td><td>1</td></tr>
+<tr align=center><td>min.2-5, group.1-4, max.2-3</td><td>2</td></tr>
+<tr align=center><td>min.6-14, group.5-25, max.4-5</td><td>3</td></tr>
+<tr align=center><td>min.15-57, group.26-205, max.6-9</td><td>4</td></tr>
+<tr align=center><td>min.58-169, group.206-1042, max.10-15</td><td>5</td></tr>
+<tr align=center><td>min.170-667, group.1043-7636, max.16-27</td><td>6</td></tr>
+</table>
+<p>
+See also for <a href="./Extensions.html">Extensions</a>/<a
+href="./Vector_system.html">Vector_system</a>, <a href="./Name.html">Name</a>, <a
+href="./Q_catalog.html">Q_catalog</a> and <a href="./QtoZ.html">QtoZ</a>.
+
+<h3>Examples</h3>
+<ol>
+<li>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./QtoZ.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Same_generators.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

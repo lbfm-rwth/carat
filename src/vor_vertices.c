@@ -20,7 +20,7 @@ main (int argc, char *argv[])
         read_header(argc, argv);
         if(FILEANZ != 2)
 	{
-          printf("usage:  vor_vertices 'file1' 'file2',\n");
+          printf("usage:  Vor_vertices 'file1' 'file2',\n");
           printf("where 'file1' containes a G-invariant positive definite, symmetric matrix and\n");
           printf("      'file2' containes a group G, given as bravais_TYP\n");
           if (is_option('h')){

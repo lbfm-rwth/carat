@@ -243,6 +243,7 @@ order = 1;
 /* If P is trivial, then it's torsion-free ( Z^n)  */
  
  if (order == 1){  
+   RES[0] = TRUE;
    order_out[0] = 1;
    number_of_conjugacy_classes[0] = 1;
    free_mat (ele[0]);

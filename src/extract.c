@@ -23,17 +23,21 @@ void main(int argc,char **argv){
   matrix_TYP *X,
             **XX,
             **base,
-             *T;
+             *T,
+            **COZ;
 
   bahn **strong;
 
   int i,
       j,
+      k,
       type,         /* TRUE iff the function has been called via 
                         ...Standart_affine_form */
-      kgv;
+      kgv,
+      cozanz;
 
-  char comment[1000];
+  char comment[1000],
+       file[1000];
 
   G = NULL;
   H = NULL;
@@ -77,7 +81,7 @@ void main(int argc,char **argv){
         printf("Note: This program is a synonym for Extract -t.\n");
      }
      else{
-     printf("Usage: %s 'file1' ['file2'] [-c] [-p] [-f] [-r] [-t=n]\n",argv[0]);
+     printf("Usage: %s 'file1' ['file2'] [-c] [-p] [-f] [-r [-D]] [-t=n]\n",argv[0]);
      printf("\n");
      printf("file1: bravais_TYP containing a space or (in case of option -r) a point group.\n");
      printf("file2: matrix_TYP only used with options -r and -t, cf. below.  \n");
@@ -91,8 +95,10 @@ void main(int argc,char **argv){
      printf("-c    : extracts the translational part as a vector system (1-cozycle).\n");
      printf("-f    : do not calculate the formspace of the point group.\n");
      printf("-r    : reverses the process: Reads in the generators of the point group \n");
-     printf("        of file1 and the vector system for these generators from file2 \n");
-     printf("        and outputs the resulting space group. Overwrites any other option.\n");
+     printf("        of file1 and multiple vector systems for these generators from file2 \n");
+     printf("        and outputs the resulting space groups. Overwrites any other option.\n");
+     printf("-D    : this option only works together with '-r'. The spacegroups are written\n");
+     printf("        to 'file.i' with i = 1, ...\n");
      printf("-t=n  : transform the space group with generators in  file1 into standard\n");
      printf("        form, ie. the translation lattice is transformed to Z^n. If a \n");
      printf("        parameter n>0 is specified, the transforming matrix will be\n");
@@ -216,37 +222,51 @@ void main(int argc,char **argv){
   }
   else{
      if (is_option('r')){
-        X = get_mat(FILENAMES[1]);
-        rat2kgv(X);
-        Check_mat(X);
-        convert_cocycle_to_column(&X,1,G->dim,G->gen_no);
+        COZ = mget_mat(FILENAMES[1], &cozanz);
+        for (k = 0; k < cozanz; k++){
+           rat2kgv(COZ[k]);
+           Check_mat(COZ[k]);
+           convert_cocycle_to_column(&COZ[k],1,G->dim,G->gen_no);
 
-        /* is it a valid cozycle? */ 
-        if ((G->dim * G->gen_no != X->rows) || (X->cols != 1)){
-          fprintf(stderr,"The cozycle is not compatible to this point group\n");
-          fprintf(stderr,"It should have %d * %d = %d rows\n",G->dim,G->gen_no,
-                           G->dim*G->gen_no);
-          exit(3);
-        }
-        H = init_bravais(G->dim+1);
-        H->gen_no = G->gen_no;
-        H->gen = (matrix_TYP **) malloc(G->gen_no * sizeof(matrix_TYP *));
+           /* is it a valid cozycle? */
+           if ((G->dim * G->gen_no != COZ[k]->rows) || (COZ[k]->cols != 1)){
+             fprintf(stderr,"The cozycle is not compatible to this point group\n");
+             fprintf(stderr,"It should have %d * %d = %d rows\n",G->dim,G->gen_no,
+                     G->dim*G->gen_no);
+             exit(3);
+           }
+           H = init_bravais(G->dim+1);
+           H->gen_no = G->gen_no;
+           H->gen = (matrix_TYP **) malloc(G->gen_no * sizeof(matrix_TYP *));
 
-        for (i=0;i<H->gen_no;i++){
-           H->gen[i] = copy_mat(G->gen[i]);
-           rat2kgv(H->gen[i]);
-           Check_mat(H->gen[i]);
-           real_mat(H->gen[i],H->dim,H->dim);
-           iscal_mul(H->gen[i],X->kgv);
-           H->gen[i]->kgv = H->gen[i]->kgv * X->kgv;
-           for (j=0;j<H->dim-1;j++)
-              H->gen[i]->array.SZ[j][H->dim-1] = X->array.SZ[i*(H->dim-1)+j][0];
-           H->gen[i]->array.SZ[H->dim-1][H->dim-1] = X->kgv;
-           Check_mat(H->gen[i]);
+           for (i=0;i<H->gen_no;i++){
+              H->gen[i] = copy_mat(G->gen[i]);
+              rat2kgv(H->gen[i]);
+              Check_mat(H->gen[i]);
+              real_mat(H->gen[i],H->dim,H->dim);
+              iscal_mul(H->gen[i],COZ[k]->kgv);
+              H->gen[i]->kgv = H->gen[i]->kgv * COZ[k]->kgv;
+              for (j=0;j<H->dim-1;j++)
+                 H->gen[i]->array.SZ[j][H->dim-1] = COZ[k]->array.SZ[i*(H->dim-1)+j][0];
+              H->gen[i]->array.SZ[H->dim-1][H->dim-1] = COZ[k]->kgv;
+              Check_mat(H->gen[i]);
+           }
+           if (is_option('D')){
+              sprintf(file, "%s.%d", FILENAMES[0], k + 1);
+              sprintf(comment, "space group to the point group of %s and the %d-th cozycle of %s",
+                      FILENAMES[0], k+1, FILENAMES[1]);
+              put_bravais(H, file, comment);
+           }
+           else{
+              sprintf(comment, "space group to the point group of %s and the %d-th cozycle of %s",
+                      FILENAMES[0], k+1, FILENAMES[1]);
+              put_bravais(H, NULL, comment);
+           }
+           free_bravais(H);
+           free_mat(COZ[k]);
         }
-        sprintf(comment,"space group to the point group of %s and cozycle %s",
-                 FILENAMES[0],FILENAMES[1]);
-        put_bravais(H,NULL,comment);
+        H = NULL;
+        free(COZ);
      }
      else if (is_option('p') || (!is_option('p') && ! is_option('c'))){
         /* extract the point group */

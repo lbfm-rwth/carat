@@ -37,7 +37,8 @@ static int position(matrix_TYP **a,matrix_TYP *x,int n)
 }
 
 
-static int is_conjugated_ZZ(n,new)
+/*------------------------------------------------------------------------------- */
+static matrix_TYP *is_conjugated_ZZ(n,new)
      ZZ_node_t *n, *new;
 {
 	int i,
@@ -45,6 +46,8 @@ static int is_conjugated_ZZ(n,new)
 
 	matrix_TYP *Tmp1,
 		   *Tmp2,
+		   *A,
+		   *X = NULL,
 	          **BASE,
                   **N;
 
@@ -81,7 +84,7 @@ static int is_conjugated_ZZ(n,new)
 		/* we should get a stabchain for n->col_group */
 		if (n->stab_chain == NULL){
 			BASE = get_base(n->col_group);
-			n->stab_chain=strong_generators(BASE,n->col_group,NULL);
+			n->stab_chain=strong_generators(BASE,n->col_group,FALSE);
 			/* free the base again */
 			for (i=0;i<n->col_group->dim;i++){
 				free_mat(BASE[i]);
@@ -91,7 +94,6 @@ static int is_conjugated_ZZ(n,new)
 
 		Tmp2 = long_mat_inv(Tmp1);
 		H = konj_bravais(new->col_group,Tmp2);
-		free_mat(Tmp1);
 		free_mat(Tmp2);
 
 		/* now we are in the position to look if H and n->col_group
@@ -113,22 +115,32 @@ static int is_conjugated_ZZ(n,new)
 			exit(3);
 		}
 
-		Tmp1 = conjugated(n->col_group,H,N,Nanz,
+		A = conjugated(n->col_group,H,N,Nanz,
 				n->stab_chain);
 
 		free(N);
+		
+		if (A == NULL){
+		   free_mat(Tmp1);
+		}
+		else{
+		   X = mat_mul(Tmp1, A);
+		   free_mat(A);
+		   free_mat(Tmp1);
+		}
 	}
 
 	if (H!=NULL){
 		free_bravais(H);
 	}
 
-	if (Tmp1 != NULL) free_mat(Tmp1);
 
-	return (Tmp1 != NULL);
+	return (X);
 }
 
 
+
+/*------------------------------------------------------------------------------- */
 int deal_with_ZCLASS(data, tree, father, new)
      ZZ_data_t *data;
      ZZ_tree_t *tree;
@@ -141,6 +153,9 @@ int deal_with_ZCLASS(data, tree, father, new)
 	bravais_TYP *H;
 
 	ZZ_node_t *n;
+	
+	matrix_TYP *X;
+	
 
 
 	/* now calculate the (integral) representation
@@ -165,7 +180,9 @@ int deal_with_ZCLASS(data, tree, father, new)
 	/* see if we've got an Z-equivalent rep. already */
 	n = tree->root;
 	while (n != NULL){
-		if (is_conjugated_ZZ(n,new)){
+	        X = is_conjugated_ZZ(n,new);
+		if (X != NULL){
+		        free_mat(X);
 			return TRUE;
 		}
 		n = n->next;
@@ -176,6 +193,47 @@ int deal_with_ZCLASS(data, tree, father, new)
 	return FALSE;
 }
 
+
+
+
+/* -------------------------------------------------------------------------- */
+matrix_TYP *special_deal_with_zclass(ZZ_tree_t *tree,
+                                     bravais_TYP *group,
+                                     int *nr)
+{
+   ZZ_node_t *n,
+             *new;
+
+   matrix_TYP *X;
+
+
+   nr[0] = 0;
+   new = (ZZ_node_t *)calloc(1, sizeof(ZZ_node_t));
+   new->col_group = group;
+   new->group = tr_bravais(group, 1, FALSE);
+
+   n = tree->root;
+   while (n != NULL){
+      X = is_conjugated_ZZ(n, new);
+      if (X != NULL){
+         free_bravais(new->group);
+         new->col_group = NULL;
+         free(new);
+         n = NULL;
+         return(X);
+      }
+      nr[0]++;
+      n = n->next;
+   }
+
+   fprintf(stderr,"ERROR in special_deal_with_zclass\n");
+   exit(4);
+}
+
+
+
+
+/*------------------------------------------------------------------------------- */
 static int is_contained(matrix_TYP *U,matrix_TYP *V)
 {
 
@@ -216,23 +274,65 @@ static int is_contained(matrix_TYP *U,matrix_TYP *V)
 }
 
 
-int orbit_under_normalizer(data,tree,father,new,ii,jj)
+
+/*------------------------------------------------------------------------------- */
+static int suche_mat(matrix_TYP *mat,
+                     matrix_TYP **liste,
+                     int anz)
+{
+   int i;
+
+   for (i = 0; i < anz; i++){
+      if (cmp_mat(mat, liste[i]) == 0)
+         return(i);
+   }
+   return(-1);
+}
+
+
+
+/*------------------------------------------------------------------------------- */
+int in_bahn(matrix_TYP *lattice,
+            ZZ_node_t *father,
+            int *i)
+{
+   int flag = 0;
+
+
+
+   for (i[0] = 0; i[0] < father->N_no_orbits && !flag; i[0]++){
+      flag = (mat_search(lattice, father->N_orbits[i[0]], father->N_lengths[i[0]], mat_comp) != -1);
+   }
+
+   return(flag);
+}
+
+
+
+/*------------------------------------------------------------------------------- */
+int orbit_under_normalizer(data,tree,father,new,ii,jj,inzidenz,nr,nnn)
      ZZ_data_t *data;
      ZZ_tree_t *tree;
      ZZ_node_t *father, *new;
      int ii, jj;
+     QtoZ_TYP *inzidenz;
+     int *nr;
+     ZZ_node_t **nnn;
 {
 
 	int i__,
 	    j__,
+	    i, pos, oflag = 0,
 	    father_flag = FALSE,
 	    flag = FALSE;
 
-	static orb[6];
+	static int orb[6];
 
 	matrix_TYP *tmp;
 
 	ZZ_node_t *p;
+	
+	ZZ_couple_t *laeufer;
 
 	bravais_TYP *G;
 
@@ -245,13 +345,12 @@ int orbit_under_normalizer(data,tree,father,new,ii,jj)
 
 	/* search the whole tree */
 	p = tree->root;
-	while (p!= NULL && !flag){
-	for (i__=0;i__<p->N_no_orbits && p->level==father->level
-					&& !flag;i__++){
-			flag = (mat_search(tmp,p->N_orbits[i__],
-				p->N_lengths[i__],mat_comp) != -1);
-		}
-		p = p->next;
+	while (p!= NULL){
+	   for (i__=0;i__<p->N_no_orbits && p->level==father->level && !flag;i__++){
+	      flag = (mat_search(tmp,p->N_orbits[i__], p->N_lengths[i__],mat_comp) != -1);
+	   }
+	   if (flag) break;
+	   p = p->next;
 	}
 
 	/* search the father
@@ -261,9 +360,26 @@ int orbit_under_normalizer(data,tree,father,new,ii,jj)
 				p->N_lengths[i__]) != -1);
 	} */
 	free_mat(tmp);
-
-	p = father;
-	if (!flag){
+	
+	/* next 14 lines: oliver 10.8.00: graph for QtoZ */	
+	if (flag && GRAPH){
+	   laeufer = p->child;
+	   for (i = 0; i < p->N_no_orbits - i__; i++){
+	      laeufer = laeufer->elder;
+	      if (laeufer == NULL){
+	         fprintf(stderr,"ERROR 1 in orbit_under_normalizer!\n");
+	         exit(2);
+	      }
+	   }
+	   nnn[0] = laeufer->he;
+	   nr[0] = suche_mat(laeufer->he->U, inzidenz->gitter, inzidenz->anz);
+	   if (nr[0] == -1){
+	      fprintf(stderr,"ERROR 2 in orbit_under_normalizer!\n");
+	      exit(3);
+	   }
+	}
+	else {
+	        p = father;
 		tmp = tr_pose(new->U);
 		if (p->N_no_orbits == 0){
 			p->N_orbits = (matrix_TYP ***) malloc(1 *
@@ -281,7 +397,7 @@ int orbit_under_normalizer(data,tree,father,new,ii,jj)
 
 		/* tilman: changed on 06.05.1998:
                 G->gen_no = tree->root->col_group->normal_no;
-		G->gen = tree->root->col_group->normal; */
+		G->gen = tree->root->col_group->normal; */		
 		G->gen_no = tree->root->group->normal_no;
 		G->gen = tree->root->group->normal;
 
@@ -317,4 +433,54 @@ int orbit_under_normalizer(data,tree,father,new,ii,jj)
 	return (flag || father_flag);
 
 }
+
+
+
+/* ---------------------------------------------------------------------------------------- */
+matrix_TYP *konjugierende(matrix_TYP *Li,
+                          bravais_TYP *G,
+                          ZZ_node_t *n)
+{
+   ZZ_node_t *new;
+
+   matrix_TYP *X;
+
+   bravais_TYP *group;
+
+   int f, g;
+
+
+
+   f = G->normal_no; G->normal_no = 0;
+   g = G->cen_no; G->cen_no = 0;
+   group = konj_bravais(G, Li);
+   G->normal_no = f;
+   G->cen_no = g;
+   for (f = 0; f <  group->form_no; f++)
+      group->form[f]->kgv = 1;
+   long_rein_formspace(group->form, group->form_no, 1);
+
+   new = (ZZ_node_t *)calloc(1, sizeof(ZZ_node_t));
+   new->col_group = group;
+   new->group = tr_bravais(group, 1, FALSE);
+
+   X = is_conjugated_ZZ(n, new);
+
+   /* clean */
+   free_bravais(new->group);
+   free_bravais(new->col_group);
+   free(new);
+
+   return(X);
+}
+
+
+
+
+
+
+
+
+
+
 

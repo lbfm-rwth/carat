@@ -1,0 +1,142 @@
+The Program Graph:
+==================
+
+This program calculates the "graph of inclusions" for a
+geometric class. The following examples shall help you
+to understand the output of this program.
+
+
+
+Example 1:
+==========
+
+
+File G:
+-------
+#g2
+3       % generator
+ 1  0  0
+ 1 -1  0
+ 0  0 -1
+3       % generator
+ -1 1 0
+ -1 0 0
+  0 0 1
+2^1  * 3^1   = 6 % order of the group       
+
+
+Output of "Graph G":
+--------------------
+3       % graph for the arithmetic classes      (1)
+ 3 2 1                                          
+ 0 2 1                                          (2)
+ 1 0 3
+There are 3 Z-Classes with 2 1 2 Space Groups!  (3)
+1: 1 (2, 2^1)                                   (4)
+1: 1 (4, 2^2)
+1: 1 (3, 3^1)  2 (6, 3^1)                       (5)
+2: 2 (2, 2^1)
+2: 2 (4, 2^2)
+1: 3 (18, 3^1)
+1: 4 (9, 3^1)
+2: 5 (9, 3^1)
+3: 3 (2, 2^1)
+3: 3 (4, 2^2)
+3: 4 (3, 3^1)  5 (6, 3^1)
+4: 1 (1, 3^1)
+5: 2 (1, 3^1)
+4: 4 (2, 2^1)
+4: 4 (4, 2^2)
+4: 4 (3, 3^1)  5 (6, 3^1)
+5: 5 (2, 2^1)
+5: 5 (4, 2^2)
+5       % inclusions for all spacegroups
+ 3 1 1 1 0                                      (6)
+ 0 2 0 0 1
+ 0 0 2 1 1
+ 1 0 0 3 1
+ 0 1 0 0 2  
+
+(1) The number in this line is the number of Z-classes.
+(2) This matrix yields information about the graph
+    of the arithmetic classes. There are 3 + 2 + 1 = 6
+    maximal sublattices of a representative of the first
+    Z-class which are invariant under this group. If you
+    conjugate this representative with the sublattices, 
+    you get 3 groups in the first Z-class, 2 groups in 
+    the second Z-class and 1 group in the third Z-class.
+(3) This line gives you the numbers of the affine classes
+    in the various Z-classes.
+    The affine classes are numbered in ascending order
+    with respect to the Z-classes. So the first affine class
+    of the third Z-class gets the number 4.
+    The first affine class in each Z-class contains the
+    symmorphic space groups.
+(4) The first space group has 2 maximal k-subgroups of index
+    2^1 which are conjugated under the affine normalizer
+    of the spacegroup. These subgroups are in the first
+    affine class.
+(5) The first space group has 3 maximal k-subgroups of index
+    3^1 which are conjugated under the affine normalizer
+    of the spacegroup. These subgroups are in the first
+    affine class. There are 2 maximal k-subgroups of index
+    3^1 which are conjugated under the affine normalizer
+    of the spacegroup. The translation lattices for all
+    these subgroups are in one orbit under the stabilizer of
+    the cocycle of the spacegroup, so we print the orbits
+    in one line.
+(6) This matrix gives you the numbers of orbits under the
+    affine normalizer of a spacegroup on the maximal
+    k-subgroups. There are 3 + 1 + 1 + 1 orbits for a
+    representative of the first affine class. The groups
+    in 3 of these orbits are in the first affine class.
+    The groups in one orbit are in the second affine
+    class, etc.
+
+
+
+Example 2:
+==========
+
+
+File G:
+-------
+g2
+3       % generator
+ -1  0  0
+  0 -1  0
+  0  0 -1
+3       % generator
+  0  1 0
+ -1 -1 0
+  0  0 1
+2^1  * 3^1   = 6 % order of the group  
+
+
+Output of "Graph G":
+--------------------
+2       % graph for the arithmetic classes
+ 4 2
+ 1 2
+There are 2 Z-Classes with 1 1 Space Groups!
+1: 1 (2, 2^1)
+1: 1 (4, 2^2)
+1: 1 (3, 3^1)                                   (1)
+1: 1 (3, 3^1)                                   (2)
+1: 2 (6, 3^1)
+2: 1 (3, 3^1)
+2: 2 (2, 2^1)
+2: 2 (4, 2^2)
+2       % inclusions for all spacegroups
+ 4 1
+ 1 2            
+
+In this example, there are two orbits each with 3 maximal
+k-subgroups of a representative of the first affine class.
+They are printed in separate lines ((1) and (2)) because
+the translation lattices for these groups are NOT conjugated
+under the stabilizer of the cocycle of a representative for
+the first affine class.
+
+
+

@@ -70,6 +70,8 @@ void main(int argc,char **argv){
 
   if (is_option('D'))
      OPT[0] = 1;
+  else
+     OPT[0] = 0;
 
   M = pres(strong,G,OPT);
 
@@ -79,12 +81,11 @@ void main(int argc,char **argv){
     printf("quit;\n");
   }
   else{
-    sprintf(comment,"presentation for gorup in %s\n",FILENAMES[0]);
+    sprintf(comment,"presentation for group in %s",FILENAMES[0]);
     put_mat(M,0,comment,0);
   }
 
   free_mat(M);
-  free_bravais(G);
   for (i=0;i<G->dim;i++){
      free_mat(base[i]);
      free_bahn(strong[i]);
@@ -92,6 +93,7 @@ void main(int argc,char **argv){
   }
   free(strong);
   free(base);
+  free_bravais(G);
 
   if (INFO_LEVEL & 12){
      pointer_statistics(0,0);

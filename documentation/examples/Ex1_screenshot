@@ -1,0 +1,10 @@
+# Bravais_catalog
+Please input the symbol for the crystal-family: 1,1,1,1
+1,1,1,1
+The crystal-family 1,1,1,1 contains 1 homogeneously decomposable bravais-groups with
+ 1
+ Z-classes of Bravais groups.
+Do you want to calculate bravais-groups? (y or n): y
+Please input a filename (stdout = standard output): 1111
+Which bravais-groups should be printed? (a(ll) or s(election): a
+#  

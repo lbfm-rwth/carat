@@ -15,14 +15,6 @@ typedef struct {
 
 
 #ifdef __STDC__
-extern void matrix_2_word(matrix_TYP *matrix,word *relator,long zeile);
-
-extern matrix_TYP **cohomology(long *dim,matrix_TYP **mat,matrix_TYP **matinv,
-                word *relator,int erzeuger,int relatoren);
-
-extern int wordfree(word *a);
-
-matrix_TYP *scalar(long n, long a);
 
 
 /**********************************************************************\
@@ -99,6 +91,27 @@ extern matrix_TYP **identify(matrix_TYP *cozycle,
                              int ***WORDS,
                              int *NUMBER_OF_WORDS);
 
+extern void translation(matrix_TYP *TR,
+                        matrix_TYP *rep,
+                        matrix_TYP *ext,
+                        matrix_TYP *cocycle,
+                        matrix_TYP *D,
+                        bravais_TYP *G);
+
+extern void valuation(matrix_TYP *x,matrix_TYP *D,MP_INT *val);
+
+extern matrix_TYP *orbit_rep(matrix_TYP *x,
+                             matrix_TYP **N,
+                             int nanz,
+                             matrix_TYP *D,
+                             int option,
+                             char *B,
+                             MP_INT *l,
+                             int *anz,
+                             int **word,
+                             int word_flag,
+                             int ***WORDS,
+                             int *NUMBER_OF_WORDS);
 
 /**********************************************************************\
 | FILE: reverse_valuation.c
@@ -112,12 +125,37 @@ extern matrix_TYP *reverse_valuation(MP_INT *val,matrix_TYP *D);
 
 extern matrix_TYP *reget_gen(matrix_TYP **map,int number,bravais_TYP *G,
                              int **words, int word_flag);
+
+
+/**********************************************************************\
+| FILE: zass.c
+\**********************************************************************/
+
+extern matrix_TYP *matrizen_in_word(matrix_TYP **mat,
+                                    matrix_TYP **matinv,
+                                    word g);
+
+extern void matrix_2_word(matrix_TYP *matrix,
+                          word *relator,
+                          long zeile);
+
+extern matrix_TYP **cohomology(long *dim,
+                               matrix_TYP **mat,
+                               matrix_TYP **matinv,
+                               word *relator,
+                               int erzeuger,
+                               int relatoren);
+
+extern int wordfree(word *a);
+
+extern matrix_TYP *scalar(long n,
+                          long a);
+
+extern matrix_TYP *calc_B(matrix_TYP **mat,
+                          long anz_erzeuger);
+
 #else
 
-extern void matrix_2_word();
-extern matrix_TYP **cohomology();
-extern int wordfree();
-matrix_TYP *scalar();
 
 /**********************************************************************\
 | FILE: cobundary.c
@@ -163,6 +201,13 @@ extern void no_of_extensions();
 
 extern matrix_TYP **identify();
 
+extern void translation();
+
+extern void valuation();
+
+extern matrix_TYP *orbit_rep();
+                   
+
 /**********************************************************************\
 | FILE: reverse_valuation.c
 \**********************************************************************/
@@ -174,6 +219,22 @@ extern matrix_TYP *reverse_valuation();
 \**********************************************************************/
 
 extern matrix_TYP *reget_gen();
+
+/**********************************************************************\
+| FILE: zass.c
+\**********************************************************************/
+
+extern matrix_TYP *matrizen_in_word();
+
+extern void matrix_2_word();
+
+extern matrix_TYP **cohomology();
+
+extern int wordfree();
+
+extern matrix_TYP *scalar();
+
+extern matrix_TYP *calc_B();
 
 #endif
 #endif

@@ -1,0 +1,248 @@
+<html>
+
+<head>
+<META NAME="author" CONTENT="Oliver Heidb&uuml;chel">
+<META NAME="publisher" CONTENT="Lehrstuhl B f&uuml;r Mathematik, RWTH Aachen, Germany">
+<META NAME="copyright" CONTENT="Lehrstuhl B f&uuml;r Mathematik, RWTH Aachen, Germany">
+<META NAME="keywords" CONTENT="CARAT, crystallography, spacegroups, space
+groups, space group, spacegroup, mathematics, algorithms, algorithm, examples,
+example, Extract, Is_finite, Presentation, Standard_affine_form, matrix, matrices, generator,
+generators, Name">
+
+<META NAME="description" CONTENT="CARAT Introduction: Example 5 - Do given matrices generate a space
+group? If so, find its name and normal representation.">
+<META NAME="robots" CONTENT="follow">
+
+<title>CARAT Introduction / Examples / Do given matrices generate a space group? If so, find
+its name and normal representation.</title>
+
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Ex4.html">Previous Example</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Ex6.html">Next Example</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h3>Example 5</h3>
+
+Do the following given matrices generate a space group? If so, find its name and normal
+representation.
+
+<table border=0 cellpadding=10>
+<tr><td valign=top>A.</td><td>
+<pre>
+7
+0 1 0 0 0 0 1
+1 0 0 0 0 0 -1
+0 0 0 1 0 0 0
+0 0 1 0 0 0 0
+0 0 0 0 1 0 0
+0 0 0 0 0 1 0
+0 0 0 0 0 0 1
+7
+0 0 1 0 0 0 0
+0 0 0 1 0 0 0
+0 0 0 0 1 0 0
+0 0 0 0 0 1 0
+1 0 0 0 0 0 0
+0 1 0 0 0 0 0
+0 0 0 0 0 0 1
+</pre>
+</td>
+<td valign=top>B.</td>
+<td>
+<pre>
+6       /2
+ -1  1 0  0 -1 -2
+ -3  1 2  0 -1 -2
+  3  1 0  0  1 -4
+  3 -1 2  0  1 -2
+  0  0 2 -2  2  0
+  0  0 0  0  0  2
+6       /2
+ -2  0 0 0 -1 -1
+ -4  0 2 0 -1 -1
+  2 -2 0 2 -1 -1
+  2 -2 2 0  1 -1
+  2  0 2 0  0  0
+  0  0 0 0  0  2
+</pre>
+</td>
+
+</tr>
+</table>
+
+
+<h3>Used Programs</h3>
+<a href="../progs/Extract.html">Extract</a>,
+<a href="../progs/Is_finite.html">Is_finite</a>,
+<a href="../progs/Name.html">Name</a>,
+<a href="../progs/Order.html">Order</a>,
+<a href="../progs/Presentation.html">Presentation</a>,
+<a href="../progs/Standard_affine_form.html">Standard_affine_form</a>
+
+
+<h3>Solution</h3>
+
+<ol type=A>
+<li>
+<ol>
+<li> Write the two matrices in a file '<a href="./Ex5_g">group</a>' and add
+<pre>
+  #g2
+</pre>
+or
+<pre>
+  #2
+</pre>
+as top row.
+
+<li> Call
+<pre>
+  Extract group > linear_part
+</pre>
+to write the linear part of the affine group, whose generators
+are in the file 'group', to the file '<a href="./Ex5_gp">linear_part</a>' in bravais_TYP as format.
+At the same time invariant forms are calculated.
+
+<li> Call
+<pre>
+   Is_finite linear_part
+</pre>
+to find that the potential point group has finite order, 12 in
+this case. The output is
+<pre>
+The order of the group is: 12
+</pre>
+
+<li> Call
+<pre>
+   Presentation linear_part > pres
+</pre>
+to get a presentation of the group in file 'linear_part' and to write
+this to the file '<a href="./Ex5_gpp">pres</a>' in matrix_TYP as format.
+
+<li> Call
+<pre>
+   Standard_affine_form group pres
+</pre>
+to find that the rank of the translation lattice of the affine
+group in 'g' is not full, i. e. 6, but only 3. Hence one has a
+subperiodic group and not a space group. The output is
+<pre>
+The rank of the translation lattice is 3
+</pre>
+
+</ol>
+</li>
+
+
+
+
+<li>
+<ol>
+<li> Write the two matrices in a file '<a href="./Ex5_C">group</a>' and add
+<pre>
+  #g2
+</pre>
+or
+<pre>
+  #2
+</pre>
+as top row.
+
+<li> Call
+<pre>
+  Extract group > linear_part
+</pre>
+to write the linear part of the affine group, whose generators
+are in the file 'group', to the file '<a href="./Ex5_P">linear_part</a>' in bravais_TYP as format.
+At the same time invariant forms are calculated.
+
+<li> Call
+<pre>
+   Order linear_part
+</pre>
+to find that the potential point group has finite order, 720 in
+this case (Here we use "Order" in contrast to part A. because "Is_finite" only works for integral
+matrices). The output is
+<pre>
+The order of the group is 720
+</pre>
+
+<li> Call
+<pre>
+   Presentation linear_part > pres
+</pre>
+to get a presentation of the group in file 'linear_part' and to write
+this to the file '<a href="./Ex5_Ppres">pres</a>' in matrix_TYP as format.
+
+<li> Call
+<pre>
+   Standard_affine_form group pres > S
+</pre>
+to get the space group in standard form in file '<a href="./Ex5_S">S</a>'. So the given matrices
+really generate a space group.
+
+<li>
+   Call
+   <pre>
+   Name -o S
+   </pre>
+   to get the CARAT name and the CARAT representative for this affine class:
+   <pre>
+   #g2 % standard group for S
+   6       /2              % generator
+     0 2  0 0 -2 -2
+     0 0  2 0  0  0
+     2 0  0 0  2 -1
+    -2 2 -2 0 -2  0
+     0 0  2 2  2  0
+     0 0  0 0  0  2
+   6       /2              % generator
+    -2  0  0  0 -2 -1
+     0  0  2  0  0  0
+     2 -2  0 -2  0  0
+    -2  2 -2  0 -2  0
+     2  0  2  0  0  0
+     0  0  0  0  0  2
+   % order of the group unknown
+   qname: group.1040 zname: 3 1 aff_name: 1
+   </pre>
+</li>
+
+</ol>
+
+
+</li>
+
+</ol>
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Ex4.html">Previous Example</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Ex6.html">Next Example</a></td>
+</tr>
+</table>
+<font size=1>last change: 22.09.2000</font>
+</center>
+
+
+</body>
+
+</html>

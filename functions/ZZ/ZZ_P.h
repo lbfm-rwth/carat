@@ -22,7 +22,6 @@
  */
 
 /*{{{  typedef, private types. */
-
 typedef struct {
 	int low, hi;
 } ZZ_prod_t;
@@ -43,7 +42,9 @@ struct ZZ_node {
 	ZZ_prod_t *path;
 	long index;
 	matrix_TYP *U, *U_inv, *el_div;
-	ZZ_node_t *next;
+	matrix_TYP *Q;             /* Q = Uvor^{-tr} * U^{tr} with U_vor = (U bevore scal_pr in
+                                                                            ZZ_ins_node) */ 	
+        ZZ_node_t *next;
 	ZZ_couple_t *parent, *child;
 	bravais_TYP *group;        /* the groups representation on lattice U */
 	bravais_TYP *col_group;    /* transposed of group */
@@ -65,6 +66,7 @@ struct ZZ_node {
 | EnCo [i][j] = # endomorphisms for Delta[i][j]  "   "      "          |
 | VK[i] = Vielfachheitenvektor der Konstituenten zur i-ten Primzahl    |
 \*--------------------------------------------------------------------*/
+
 typedef struct {
 	int k;
 	int *s, *p;
@@ -82,10 +84,21 @@ typedef struct {
 	int **VK;
 } ZZ_data_t;
 
+
+
 typedef struct {
 	ZZ_node_t *root, *last;
 	int node_count;
 } ZZ_tree_t;
+
+
+
+typedef struct {
+	ZZ_data_t *data;
+	ZZ_tree_t *tree;
+} ZZ_super_TYP;
+
+
 
 /*{{{  global variables */
 extern boolean QUIET;
@@ -95,6 +108,7 @@ extern boolean NURUMF;
 extern boolean U_option;
 extern boolean G_option;
 extern boolean LLLREDUCED;
+extern boolean GRAPH;
 extern int COUNTER;
 extern int NUMBER;
 extern int ABBRUCH;
@@ -120,12 +134,20 @@ extern void ZZ_transpose_array _ZZ_P_PROTO_((int **array, int size));
 
 extern void ZZ_intern _ZZ_P_PROTO_((matrix_TYP * Gram,
 				    ZZ_data_t * data,
-				    ZZ_tree_t * tree)) ;
-extern void ZZ _ZZ_P_PROTO_((bravais_TYP * group, 
+				    ZZ_tree_t * tree,
+				    QtoZ_TYP * inzidenz)) ;
+extern void *ZZ _ZZ_P_PROTO_((bravais_TYP * group,
 			     matrix_TYP * gram, 
-			     int *divisors, 
+			     int *divisors,
+			     QtoZ_TYP *inzidenz,
 			     char *options,
-			     FILE *putputfile)) ;
+			     FILE *putputfile,
+			     int super_nr,
+			     int konst_flag)) ;
+			
+extern bravais_TYP **get_groups _ZZ_P_PROTO_((bravais_TYP **ADGROUPS,
+                         int ad_no,
+                         int *number)) ;
 
 #endif /* _ZZ_P_H */
 

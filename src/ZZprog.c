@@ -4,6 +4,9 @@
 extern int INFO_LEVEL;
 extern int SFLAG;
 extern int IDEM_NO;
+boolean GRAPH = FALSE;
+boolean GRAPH_DEBUG = FALSE;
+
 
 extern char *optarg;
 extern int optind;
@@ -194,7 +197,7 @@ int main (argc, argv)
     fput_mat( stderr, gram, "Form", 0);
 #endif
 
-    ZZ (group, gram, group->divisors, options, outputfile);
+    ZZ (group, gram, group->divisors, NULL, options, outputfile, 0, 0);
 
 #if DEBUG
     fprintf (stderr, "num_zentr: %d\n", group->zentr_no);

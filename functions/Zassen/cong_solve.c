@@ -31,6 +31,9 @@ matrix_TYP **cong_solve(matrix_TYP *A)
 
     A_tr = tr_pose(A);
     loesungen[1] = long_elt_mat(umform,A_tr,NULL);
+    loesungen[1]->kgv = A->kgv;
+    loesungen[1]->flags.Integral = A->flags.Integral;
+    Check_mat(loesungen[1]);
     loesungen[2] = tr_pose(umform);
     loesungen[3] = copy_mat(loesungen[1]);
     real_mat(loesungen[3], loesungen[3]->rows, loesungen[3]->rows);

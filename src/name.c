@@ -16,6 +16,7 @@
 
 #define DATABASE_NAME TOPDIR "/tables/qcatalog/data"
 
+boolean GRAPH = FALSE;
 int SFLAG;
 int INFO_LEVEL;
 int main (int argc, char *argv[])
@@ -67,6 +68,7 @@ int main (int argc, char *argv[])
       printf("The program is used to give crystallographic groups a name, i.e.\n");
       printf("compute a string which is depends only on the crystallographic\n");
       printf("class of the group R/G, and determines it uniquely.\n");
+      printf("CAUTION: the program assumes the translation lattice to be Z^n.\n");
       printf("If called with -Z, the program assumes file to contain a finite unimodular\n");
       printf("group G, and will output a name for the arithmetic class of G.\n");
       printf("Otherwise, it will assume file to contain generators for the space group\n");
@@ -86,7 +88,7 @@ int main (int argc, char *argv[])
       printf("        isomorphic to the given only (has an effect only if the\n");
       printf("        degree of R is three\n");
       printf("\n");
-      printf("Cf.: Q_catalog, QtoZ, Extensions, Symbol.\n");
+      printf("Cf.: Q_catalog, QtoZ, Extensions, Symbol, Standard_affine_form.\n");
 
       if (FILEANZ == 0)
          exit(0);

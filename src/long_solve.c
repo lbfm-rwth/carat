@@ -17,7 +17,7 @@ main (int argc, char *argv[])
         read_header(argc, argv);
         if(FILEANZ != 1 && FILEANZ != 2)
         {
-           printf("Usage: %s 'file1' ['file2']\n");
+           printf("Usage: %s 'file1' ['file2']\n", argv[0]);
            printf("\n");
            printf("file1: matrix_TYP containing the matrices A_i\n");
            printf("file2: matrix_TYP containing the matrices B_i\n");

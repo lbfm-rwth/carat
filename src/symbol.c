@@ -42,7 +42,12 @@ main(int argc,char **argv){
   }
 
   if ((is_option('h') && optionnumber('h')==0) || (FILEANZ < 1)){
-     printf("Usage: %s 'file' [-i]\n",argv[0]);
+     if (!type){
+        printf("Usage: %s 'file' [-i] [-B] [-t] [-f]\n",argv[0]);
+     }
+     else{
+        printf("Usage: %s 'file' [-B] [-t] [-f]\n",argv[0]);
+     }
      printf("\n");
      printf("file: bravais_TYP.\n");
      printf("\n");

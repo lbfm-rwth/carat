@@ -112,7 +112,7 @@ int Fanz, Erzanz, *options;
        if(SV1->rows != SV2->rows)
           return(NULL);
 /* FF.v[i][j] is the transposed of the product of the Gram-matrix FF.A[i] 
-/* get the flags from the command line */
+   get the flags from the command line */
 	getflags(&flags, options);
         if(Erzanz > 0)
           flags.GEN = 1;
@@ -707,7 +707,7 @@ int Erzanz, *options, Panz, Pdim;
        perpdim = Pdim;
        perp_no = Panz;
 /* FF.v[i][j] is the transposed of the product of the Gram-matrix FF.A[i] 
-/* get the flags from the command line */
+   get the flags from the command line */
 	getflags(&flags, options);
         if(Erzanz > 0)
           flags.GEN = 1;

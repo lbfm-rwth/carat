@@ -100,7 +100,7 @@ int anz;
         erg->wall[k]->next_no = mauern[i]->next_no;  /* 7 lines anne 8/10/97 */
         erg->wall[k]->next = NULL;
         if(mauern[i]->next != NULL){		
-           erg->wall[k]->next = (int*)malloc(mauern[i]->next_no*sizeof(int));
+           erg->wall[k]->next = (int**)malloc(mauern[i]->next_no*sizeof(int*));
            memcpy(erg->wall[k]->next, mauern[i]->next, 
                   mauern[i]->next_no * sizeof(int)); 
         }

@@ -66,7 +66,7 @@ int rM, cM;
 int **M;
 matrix_TYP *mat;
 flag_TYP flags;
-char  string[256], *str , *strpbrk () ;
+char  string[256], *str ;
 int i, j ;         
 
 

@@ -30,10 +30,10 @@ char *argv[];
   read_header(argc, argv);
   if(FILEANZ < 2)
   {
-    printf("usage: Add 'file1' 'file2' -x -l=n1 -r=n2 -n=n3\n");
+    printf("usage: Add 'file1' 'file2' [-x] -l=n1 -r=n2 -n=n3\n");
     printf(" where file1 and file2 contain a matrix_TYP .\n");
     printf("\n");
-    printf(" Calculates the sums (n1 * A + n2 * B)/n3 with matrices A,B\n");
+    printf(" Calculates the sums (n1 * A + n2 * B)/n3 with matrices A, B\n");
     printf(" taken from file1, file2 respectively.\n");
     printf("\n");
     printf("-x:    Calculates all possible sums of matrices of file1\n");

@@ -20,7 +20,7 @@ main (int argc, char *argv[])
         read_header(argc, argv);
         if(FILEANZ != 2)
         {
-          printf("usage: short 'file1' 'file2' [-l=n -m=n -f -c -n],\n");
+          printf("usage: Rest_short 'file1' 'file2' [-l=n -m=n -f -c -n],\n");
           printf("where 'file1' contains a positive definite symmetric matrix\n");
           printf("and   'file2' contains a matrix\n");
           if (is_option('h')){
