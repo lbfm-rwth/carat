@@ -81,7 +81,7 @@ static int is_conjugated_ZZ(n,new)
 		/* we should get a stabchain for n->col_group */
 		if (n->stab_chain == NULL){
 			BASE = get_base(n->col_group);
-			n->stab_chain = strong_generators(BASE,n->col_group);
+			n->stab_chain=strong_generators(BASE,n->col_group,NULL);
 			/* free the base again */
 			for (i=0;i<n->col_group->dim;i++){
 				free_mat(BASE[i]);

@@ -150,7 +150,7 @@ ZZ: Makefile functions/ZZ/Makefile
 	cd functions/ZZ; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
 Gmp: functions/Gmp/Makefile
-	cd functions/Gmp ; configure --prefix=../.. ; make CFLAGS="$(CFLAGS)" CC="$(CC)" install
+	cd functions/Gmp ; ./configure --prefix=../.. ; make CFLAGS="$(CFLAGS)" CC="$(CC)" install
 
 Executables: bin/Makefile
 	if $(RANLIB_TEST) ; then $(RANLIB) lib/functions.a; else true; fi

@@ -59,7 +59,7 @@ int main (int argc, char *argv[])
   
   if ((is_option('h') && INFO_LEVEL != 8) || FILEANZ == 0)
     {
-      printf("Usage: %s file [-T] [-Z] [-o]\n",argv[0]);
+      printf("Usage: %s file [-T] [-Z] [-o] [-M]\n",argv[0]);
       printf("\n");
       printf("file: bravais_TYP containing the space group R or the finite unimodular\n");
       printf("      group G.\n");
@@ -82,6 +82,9 @@ int main (int argc, char *argv[])
       printf("-o    : output CARAT's representative for this affine/arithmetic class.\n");
       printf("-Z    : assume file to contain a finite unimodular group, more details\n");
       printf("        see above.\n");
+      printf("-M    : give short Hermann-Mauguin symbols to describe a group\n");
+      printf("        isomorphic to the given only (has an effect only if the\n");
+      printf("        degree of R is three\n");
       printf("\n");
       printf("Cf.: Q_catalog, QtoZ, Extensions, Symbol.\n");
 
@@ -175,6 +178,10 @@ int main (int argc, char *argv[])
   printf("qname: %s ",qname);
   printf("zname: %d %d ",zname[0],zname[1]);
   printf("aff_name: "); mpz_out_str(stdout,10,&aff_name); printf("\n");
+
+  if (is_option('M') && R->dim == 4){
+     display_HM_symbol(qname,zname[0],zname[1],&aff_name);
+  }
 
   free_mat(PRES);
   free_mat(TZ);

@@ -13,24 +13,10 @@ GLOBAL = -DTOPDIR=\"$(TOPDIR)\" -DTABLES=\"$(TOPDIR)/tables/\" \
 
 COMP = $(CC) $(CFLAGS) $(OBJFLAGS) $(GLOBAL) -I$(INCL)
 
-OBJS = Back.o\
-       barzen.o\
-       KKGV.o\
-       Pres.o\
-       T_polyeder.o\
-       T_ungleich_wand.o\
-       barzen.o\
-       easy_torus_orbit.o\
-       fub.o\
-       fub_tools.o\
-       modshort.o\
-       neugram.o\
-       neukandidat.o\
-       presentation_point_grp.o\
-       prog.o\
-       sscal.o\
-       stab_orbit.o\
-       tietze_tools.o
+OBJS = check_base.o\
+       mapped_word.o\
+       presentation.o\
+       put_word.o
 
 .c.o:
 	$(COMP) $< -o $@

@@ -57,7 +57,13 @@ matrix_TYP *A;
    free(E);
    mpz_clear(&Ekgv);
 
-   ergt = tr_pose(erg);
+   if (erg){
+      ergt = tr_pose(erg);
+   }
+   else{
+      ergt = NULL;
+   }
+
    /* inserted the if 28/1/97 tilman, problems with a matrix having
       0 rows */
    if (erg != NULL){

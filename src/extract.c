@@ -4,24 +4,31 @@
 #include <matrix.h>
 #include <orbit.h>
 #include <bravais.h>
+#include <base.h>
+#include <tools.h>
+#include <zass.h>
+#include <datei.h>
+#include <presentation.h>
 
 int INFO_LEVEL;
 extern int SFLAG;
 
 matrix_TYP *translation_lattice(matrix_TYP **G,int number,matrix_TYP *P);
 
-main(int argc,char **argv){
+void main(int argc,char **argv){
 
   bravais_TYP *G,
               *H;
 
   matrix_TYP *X,
             **XX,
+            **base,
              *T;
+
+  bahn **strong;
 
   int i,
       j,
-      l,
       type,         /* TRUE iff the function has been called via 
                         ...Standart_affine_form */
       kgv;
@@ -46,7 +53,7 @@ main(int argc,char **argv){
   }
 
 
-  if ((type && FILEANZ != 2) ||
+  if ((type && FILEANZ < 1) ||
       (!type && ((is_option('h') && optionnumber('h')==0)||
       (FILEANZ < 1) ||
       ((FILEANZ < 2) && (is_option('r')))))){
@@ -117,13 +124,45 @@ main(int argc,char **argv){
 
   if (is_option('t') || type){
 
-     XX = mget_mat(FILENAMES[1],&i);
-     if (i>1){
-        fprintf(stderr,"you should only give a single matrix as presention\n");
-        exit(3);
+     if (FILEANZ == 2){
+       XX = mget_mat(FILENAMES[1],&i);
+       if (i>1){
+          fprintf(stderr,"you should only give a single matrix as presention\n");
+          exit(3);
+       }
+       X = XX[0];
+       free(XX);
+
      }
-     X = XX[0];
-     free(XX);
+     else{
+
+       /* get the point group */
+       H = init_bravais(G->dim-1);
+       H->gen_no = G->gen_no;
+       H->gen = (matrix_TYP **) malloc(H->gen_no * sizeof(matrix_TYP *));
+       for (i=0;i<H->gen_no;i++){
+          H->gen[i] = copy_mat(G->gen[i]);
+          real_mat(H->gen[i],G->dim,G->dim-1);
+          real_mat(H->gen[i],G->dim-1,G->dim-1);
+       }
+
+
+       /* calculate a presentation */
+       base = get_base(H);
+
+       strong = strong_generators(base,H,TRUE);
+
+       X = pres(strong,H,NULL);
+
+       for (i=0;i<H->dim;i++){
+         free_mat(base[i]);
+         free_bahn(strong[i]);
+         free(strong[i]);
+       }
+       free(strong);
+       free(base);
+       free_bravais(H); H = NULL;
+     }
 
      if (is_option('T')){
         real_mat(X,X->rows+G->dim-1,X->cols);

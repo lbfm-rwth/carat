@@ -159,6 +159,7 @@ typedef struct{
         matrix_TYP **representatives;
         matrix_TYP **rep_invs;
         matrix_TYP **generators;
+        int **words;
         int gen_no;
         struct tree *hash;
         } bahn;

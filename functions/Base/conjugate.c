@@ -65,7 +65,7 @@ int found=1,  /* number of conjugated subgroups found so far */
    flag = TRUE;
    k = 0;
    while ((k<H->gen_no) && flag){
-      if (!is_element(H->gen[k],G,strong)){
+      if (!is_element(H->gen[k],G,strong,NULL)){
          flag = FALSE;
       }
       k++;
@@ -104,7 +104,7 @@ int found=1,  /* number of conjugated subgroups found so far */
            while (flag && (k<G->gen_no)){
               tmp4 = mat_mul(tmp2,G->gen[k]);
               tmp4 = mat_muleq(tmp4,tmp3);
-              if (!is_element(tmp4,G,strong)){
+              if (!is_element(tmp4,G,strong,NULL)){
                  flag = FALSE;
               }
               free_mat(tmp4);
@@ -129,7 +129,7 @@ int found=1,  /* number of conjugated subgroups found so far */
            while(flag && (k<H->gen_no)){
               tmp2 = mat_mul(test_subgroup,H->gen[k]);
               mat_muleq(tmp2,tmp);
-              if (!is_element(tmp2,G,strong)){
+              if (!is_element(tmp2,G,strong,NULL)){
                  flag = FALSE;
               }
               free_mat(tmp2);

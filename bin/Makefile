@@ -26,13 +26,13 @@ PROGRAMS: Add Aut_grp Bravais_equiv\
           Conv Datei\
           Elt Extract Extensions\
           First_perfect Form_space Form_elt\
-          Formtovec Full Fundamental_domain Gauss\
+          Formtovec Full Gauss\
           Idem Inv Invar_space Isometry Is_finite\
           Kron Long_solve Ltm\
           Modp Mtl Mul Mink_red Minpol\
           Name Normalizer Normalizer_in_N Normlin\
           Orbit Order\
-          Pair_red Pdet Perfect_neighbours Poincare Polyeder P_lse_solve\
+          Pair_red Pdet Perfect_neighbours Polyeder P_lse_solve\
           Presentation Q_catalog QtoZ Red_gen Rest_short\
           Rein Rform Reverse_name\
           Same_generators Scalarmul Scpr Short\
@@ -130,9 +130,9 @@ Full:  $(SRC)/full.c
 	$(COMP) -o Full\
         $(SRC)/full.c  $(LIB)
 
-Fundamental_domain:  $(SRC)/fundamental_domain.c
-	$(COMP) -o Fundamental_domain\
-        $(SRC)/fundamental_domain.c  $(LIB)
+#Fundamental_domain:  $(SRC)/fundamental_domain.c
+#	$(COMP) -o Fundamental_domain\
+#        $(SRC)/fundamental_domain.c  $(LIB)
 
 Gauss:  $(SRC)/gauss.c
 	$(COMP) -o Gauss\
@@ -246,9 +246,9 @@ Perfect_neighbours:  $(SRC)/perfect_neighbours.c
 	$(COMP) -o Perfect_neighbours\
         $(SRC)/perfect_neighbours.c  $(LIB)
 
-Poincare:  $(SRC)/poincare.c
-	$(COMP) -o Poincare\
-        $(SRC)/poincare.c  $(LIB)
+#Poincare:  $(SRC)/poincare.c
+#	$(COMP) -o Poincare\
+#        $(SRC)/poincare.c  $(LIB)
 
 Polyeder:  $(SRC)/polyeder.c
 	$(COMP) -o Polyeder\

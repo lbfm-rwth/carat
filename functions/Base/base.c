@@ -88,6 +88,7 @@ extern void init_bahn(bahn *a)
                                          , sizeof(matrix_TYP *));
    a->rep_invs = (matrix_TYP **) calloc(MIN_SPEICHER
                                          , sizeof(matrix_TYP *));
+   a->words = (int **) calloc(MIN_SPEICHER, sizeof(int *));
    a->generators = (matrix_TYP **) calloc(MIN_SPEICHER
                                          , sizeof(matrix_TYP *));
    a->hash = (struct tree *) malloc(1*sizeof(struct tree));
@@ -126,6 +127,7 @@ extern void extend_bahn(bahn **a)
                  sizeof(matrix_TYP *) * a[0]->speicher);
    a[0]->rep_invs = (matrix_TYP **) realloc(a[0]->rep_invs,
                  sizeof(matrix_TYP *) * a[0]->speicher);
+   a[0]->words = (int **) realloc(a[0]->words,sizeof(int*));
    a[0]->generators = (matrix_TYP **) realloc(a[0]->generators,
                  sizeof(matrix_TYP *) * a[0]->speicher);
 }
@@ -153,6 +155,9 @@ extern void free_bahn(bahn *a)
      if (a->rep_invs[i] != NULL){
         free_mat(a->rep_invs[i]);
      }
+     if (a->words[i] != NULL){
+        free(a->words[i]);
+     }
    }
    a->length =0;
    a->gen_no = 0;
@@ -160,6 +165,7 @@ extern void free_bahn(bahn *a)
    free(a->orbit);
    free(a->representatives);
    free(a->rep_invs);
+   free(a->words);
    free(a->generators);
    a->orbit = NULL;
    a->representatives = NULL;
@@ -184,12 +190,48 @@ static int position(matrix_TYP **a,matrix_TYP *x,int n)
   return -1;
 }
 
+static void inv_word(int *w,
+                     int *w_to_inv)
+{
+   int i,
+       j;
+
+   for (i=1,j=w_to_inv[0];i<=w_to_inv[0];i++,j--)
+      w[i] = -w_to_inv[j];
+
+   w[0] = w_to_inv[0];
+
+   return;
+} /* inv_word */
+
+static int *get_word_to_generator(bahn *A,
+                                  matrix_TYP *h)
+{
+
+  int i,
+     *w;
+
+  for (i=0;i<A->length && mat_comp(A->representatives[i],h) ; i++);
+
+  w = (int *) malloc((A->words[i][0]+1)*sizeof(int));
+  memcpy(w,A->words[i],(A->words[i][0]+1)*sizeof(int));
+
+  return w;
+
+} /* get_word_to_generator */
+
+
+
 /***************************************************************************
 @
 @ --------------------------------------------------------------------------
 @
-@  int einordnen(bahn** erg,matrix_TYP *h, matrix_TYP *new_vec,int l,
-@                       int flag)
+@  int einordnen(bahn** erg,
+@                matrix_TYP *h,
+@                matrix_TYP *new_vec,
+@                int *w,
+@                int l,
+@                int flag)
 @
 @  bahn **erg          :  the set of base/strong generators for a finite
 @                         group G. it's the ONLY variable to be changed.
@@ -215,12 +257,17 @@ static int position(matrix_TYP **a,matrix_TYP *x,int n)
 @ --------------------------------------------------------------------------
 @
 ***************************************************************************/
-int einordnen(bahn** erg,matrix_TYP *h, matrix_TYP *new_vec,int l,
-                      int flag)
+static int einordnen(bahn** erg,
+                     matrix_TYP *h,
+                     matrix_TYP *new_vec,
+                     int *w,
+                     int l,
+                     int flag)
 {
    int tmp = erg[0]->representatives[0]->cols,
        tmp2,
-       i;
+       i,
+      *wn;
 
    matrix_TYP  *hinv,
                *nv,
@@ -259,15 +306,28 @@ int einordnen(bahn** erg,matrix_TYP *h, matrix_TYP *new_vec,int l,
             free_mat(h);
             h = hinv;
             new_vec = mat_mul(h,erg[l+1]->orbit[0]);
+
+            if (w){
+	      wn = (int *) malloc((erg[l]->words[tmp2][0]+w[0]+1)
+                             *sizeof(int));
+              inv_word(wn,erg[l]->words[tmp2]);
+              memcpy(wn+wn[0]+1,w+1,w[0]*sizeof(int));
+              wn[0] = wn[0] + w[0];
+              free(w);
+            }
+            else{
+               wn = NULL;
+            }
          }
          else{
             /* only clean up memory */
             free_mat(h);
+            if (w) free(w);
             return FALSE;
          }
 
          /* enter the next stage */
-         flag = einordnen(erg,h,new_vec,++l,TRUE);
+         flag = einordnen(erg,h,new_vec,wn,++l,TRUE);
       }
       else{
          if (l != (-1)){
@@ -281,6 +341,14 @@ int einordnen(bahn** erg,matrix_TYP *h, matrix_TYP *new_vec,int l,
             erg[l]->representatives[erg[l]->length]=h;
             /* inserted to reduce the number of mat_inv s */
             erg[l]->rep_invs[erg[l]->length] = mat_inv(h);
+
+            if (w){
+               /* deal with the words */
+	       erg[l]->words[erg[l]->length] 
+                     = (int *) malloc((w[0]+1) * sizeof(int));
+               memcpy(erg[l]->words[erg[l]->length],w,(w[0]+1) * sizeof(int));
+               free(w);
+	    }
             erg[l]->length++;
 
             if (INFO_LEVEL & 1){
@@ -311,7 +379,18 @@ int einordnen(bahn** erg,matrix_TYP *h, matrix_TYP *new_vec,int l,
                h = erg[tmp2]->generators[i];
                nv = mat_mul(h,erg[l]->orbit[tmp]);
                nh = mat_mul(h,erg[l]->representatives[tmp]);
-               einordnen(erg,nh,nv,l,FALSE);
+               if (w){
+                  wn = get_word_to_generator(erg[tmp2],h);
+                  wn = (int *) realloc(wn,
+                             (wn[0]+erg[l]->words[tmp][0]+1) * sizeof(int));
+                  memcpy(wn+wn[0]+1,erg[l]->words[tmp]+1,
+                             erg[l]->words[tmp][0] * sizeof(int));
+                  wn[0] = wn[0] + erg[l]->words[tmp][0];
+               }
+               else{
+                  wn = NULL;
+               }
+               einordnen(erg,nh,nv,wn,l,FALSE);
             }
          }
       }
@@ -337,7 +416,7 @@ int einordnen(bahn** erg,matrix_TYP *h, matrix_TYP *new_vec,int l,
 @-----------------------------------------------------------------------
 @
 ************************************************************************/
-bahn **strong_generators(matrix_TYP **base,bravais_TYP *U)
+bahn **strong_generators(matrix_TYP **base,bravais_TYP *U,int *OPT)
 {
    bahn **erg;
 
@@ -345,7 +424,8 @@ bahn **strong_generators(matrix_TYP **base,bravais_TYP *U)
        j,
        k,
        m,
-       dim = U->dim;
+       dim = U->dim,
+      *w;
 
    matrix_TYP **gen=U->gen,
                *new_vec,
@@ -363,6 +443,8 @@ bahn **strong_generators(matrix_TYP **base,bravais_TYP *U)
    for (i=0;i<dim;i++){
       erg[i]->representatives[0] = init_mat(U->dim,U->dim,"1");
       erg[i]->rep_invs[0] = init_mat(U->dim,U->dim,"1");
+      erg[i]->words[0] = (int *) malloc(sizeof(int));
+      erg[i]->words[0][0] = 0;
       erg[i]->orbit[0] = copy_mat(base[i]);
       erg[i]->length = 1;
       erg[i]->hash->no = 0;
@@ -398,7 +480,17 @@ bahn **strong_generators(matrix_TYP **base,bravais_TYP *U)
         h = mat_mul(g,erg[0]->representatives[j]);
         new_vec = mat_mul(g,erg[0]->orbit[j]);
 
-        einordnen(erg,h,new_vec,0,FALSE);
+
+        if (OPT){
+           w = (int *) malloc((erg[0]->words[j][0] + 2) * sizeof(int));
+           w[0] = erg[0]->words[j][0] + 1;
+           w[1] = k+1;
+           memcpy(w+2,erg[0]->words[j]+1,erg[0]->words[j][0] * sizeof(int));
+        }
+        else{
+           w = NULL;
+	}
+        einordnen(erg,h,new_vec,w,0,FALSE);
 
       }
     }
@@ -428,7 +520,7 @@ extern matrix_TYP **get_base(bravais_TYP *U)
 @
 @ --------------------------------------------------------------------------
 @
-@ int is_element(matrix_TYP *x,bravais_TYP *G,bahn **strong)
+@ int is_element(matrix_TYP *x,bravais_TYP *G,bahn **strong,int **w)
 @
 @      matrix_TYP *x:  the matrix in question
 @      bravais_TYP *G: actually the only thing asked for is G->dim!
@@ -445,12 +537,13 @@ extern matrix_TYP **get_base(bravais_TYP *U)
 @ --------------------------------------------------------------------------
 @
 ***************************************************************************/
-extern int is_element(matrix_TYP *x,bravais_TYP *G,bahn **strong)
+extern int is_element(matrix_TYP *x,bravais_TYP *G,bahn **strong,int **w)
 {
   int erg=TRUE,
       dim = G->dim,
       i=0,
-      pos;
+      pos,
+     *w2;
 
   matrix_TYP *g_neu,
              *bild,
@@ -472,12 +565,36 @@ extern int is_element(matrix_TYP *x,bravais_TYP *G,bahn **strong)
        free_mat(bild);
      }
      else{
-       h = mat_inv(g_neu);
+       /* h = mat_inv(g_neu);
        free_mat(g_neu);
        free_mat(bild);
        g_neu = mat_mul(h,strong[i]->representatives[pos]);
-       free_mat(h);
+       free_mat(h); */
+       free_mat(bild);
+       h = mat_mul(strong[i]->rep_invs[pos],g_neu);
+       free_mat(g_neu);
+       g_neu = h;
+
+       if (w){
+	 if (w[0]){
+	   w2 = (int *) calloc(w[0][0]+strong[i]->words[pos][0]+1, 
+			       sizeof(int));
+           w2[0] = w[0][0]+strong[i]->words[pos][0];
+           memcpy(w2+1,w[0]+1,w[0][0] * sizeof(int));
+           memcpy(w2+w[0][0]+1,(strong[i]->words[pos])+1,
+		  strong[i]->words[pos][0]* sizeof(int));
+           free(w[0]);
+	 }
+         else{
+           w2 = (int *) calloc(strong[i]->words[pos][0]+1,sizeof(int));
+           w2[0] = strong[i]->words[pos][0];
+           memcpy(w2+1,strong[i]->words[pos]+1,strong[i]->words[pos][0]*
+		  sizeof(int));
+	 }
+         w[0] = w2;
+       }
        i++;
+
      }
   }
 
@@ -569,7 +686,7 @@ extern matrix_TYP **normalizer_in_N(bravais_TYP *U,bravais_TYP *N,int *anz,
 
    /* getting the standart basis for the vectorspace */
    base = get_base(U);
-   strong = strong_generators(base,U);
+   strong = strong_generators(base,U,FALSE);
 
    /* set the order of U */
    U->order = size(strong);
@@ -661,7 +778,7 @@ extern matrix_TYP **normalizer_in_N(bravais_TYP *U,bravais_TYP *N,int *anz,
                   printf("l= %d\n",l);
                }
 
-               if (!is_element(tmp2,U,strong)){
+               if (!is_element(tmp2,U,strong,NULL)){
                  l = U->gen_no + 1;
                }
                l++;
@@ -701,13 +818,13 @@ extern matrix_TYP **normalizer_in_N(bravais_TYP *U,bravais_TYP *N,int *anz,
                   BN.gen = erg;
                   BN.gen_no = 1;
                   BN.dim = dim;
-                  strong_N = strong_generators(base,&BN);
+                  strong_N = strong_generators(base,&BN,FALSE);
                   strong_N[0]->generators[0] = stab_element;
                   strong_N[0]->gen_no = 1;
                }
                else{
                   /* we might already got this element in our stabilizer */
-                  if (is_element(stab_element,&BN,strong_N)){
+                  if (is_element(stab_element,&BN,strong_N,NULL)){
                      free_mat(stab_element);
                      stab_element = NULL;
                   }
@@ -720,7 +837,8 @@ extern matrix_TYP **normalizer_in_N(bravais_TYP *U,bravais_TYP *N,int *anz,
                                 erg_speicher*sizeof(matrix_TYP *));
                      }
                      erg[anz[0]-1] = stab_element;
-                     einordnen(strong_N,stab_element,stab_element,-1,TRUE);
+                     einordnen(strong_N,stab_element,
+                               stab_element,NULL,-1,TRUE);
                   }
                }
             }
@@ -826,15 +944,15 @@ extern int red_gen(bravais_TYP *G,matrix_TYP **base,bahn ***strong,int i)
    if (strong[0] == NULL){
       G->gen_no = 1;
       i=1;
-      strong[0] = strong_generators(base,G);
+      strong[0] = strong_generators(base,G,FALSE);
       strong[0][0]->gen_no = 1;
       strong[0][0]->generators[0] = G->gen[0];
    }
 
    /* this will free all irrelevant generators */
    while (i<G_gen_no){
-      if (!is_element(G->gen[i],G,strong[0])){
-         einordnen(strong[0],G->gen[i],G->gen[i],-1,TRUE);
+      if (!is_element(G->gen[i],G,strong[0],NULL)){
+         einordnen(strong[0],G->gen[i],G->gen[i],NULL,-1,TRUE);
       }
       else{
          free_mat(G->gen[i]);

@@ -1,68 +1,103 @@
-#include "typedef.h"
-#include "matrix.h"
-#include "symm.h"
-#include "getput.h"
-#include "bravais.h"
-#include "sort.h"
-#include "polyeder.h"
-#include "presentation.h"
-#include "tools.h"
-#include "tietzetrans.h"
-#include "datei.h"
+#include <typedef.h>
+#include <getput.h>
+#include <matrix.h>
+#include <base.h>
+#include <bravais.h>
+#include <datei.h>
+#include <longtools.h>
+#include <presentation.h>
 
+#define DEBUG FALSE
+
+int INFO_LEVEL;
 extern int SFLAG;
 
-void main (int argc, char *argv[])
-{
-  bravais_TYP 		*G;
-  presentation_TYP	*erg;
 
-  read_header(argc, argv);
-  if(FILEANZ != 1)
-  {
-    printf("\n");
-    printf("Usage\n");
-    printf("  Presentation file [-G]\n");
-    printf(" \n");
-    printf(" where file contains a bravais_TYP describing\n");
-    printf(" a FINITE INTEGRAL group.\n");
-    printf(" \n");
-    printf(" Calculates a presentation of the group in file, and writes\n");
-    printf(" it to the stdout.\n");
-    printf(" \n");
-    printf(" The options are:\n");
-    printf("\n");
-    printf(" -G   : Output the presentation in Gap format on a file\n");
-    printf("        called <file>.gap.short .\n");
-    printf(" -h   : Gives you this help.\n");
-    printf("\n");
-    printf("\n");
-    if (is_option('h')){
-       exit(0);
-    }
-    else{
-       exit(31);
-    }
+void main(int argc,char **argv){
+
+  bravais_TYP *G;
+
+  matrix_TYP **base,
+              *M;
+
+  bahn **strong;
+
+  int i,
+      siz,
+      OPT[6];
+
+  char comment[1000];
+
+
+  read_header(argc,argv);
+
+  if ((is_option('h') && optionnumber('h')==0) || (FILEANZ < 1)){
+     printf("Usage: %s 'file' [-D]\n",argv[0]);
+     printf("\n");
+     printf("file: bravais_TYP containing a finite matrix group G.\n");
+     printf("\n");
+     printf("Calculates a presentation of the finite group G.\n");
+     printf("\n");
+     printf("Options:\n");
+     printf("-D  : meant for debugging. Do not use.\n");
+     printf("\n");
+     printf("Cf. Is_finite\n");
+     if (is_option('h')){
+        exit(0);
+     }
+     else{
+        exit(31);
+     }
   }
 
-  /* setting SFLAG according to optionnumber('h') */
-  if (is_option('h') && optionnumber('h') == 8){
+  INFO_LEVEL = optionnumber('h');
+
+  if (INFO_LEVEL & 12){
      SFLAG = 1;
   }
 
   G = get_bravais(FILENAMES[0]);
 
-  erg = presentation_point_grp(G);
+  base = get_base(G);
 
-  put_presentation(erg,NULL,"C");
+  strong = strong_generators(base,G,TRUE);
 
-  free_presentation(erg);
+  if (DEBUG){
+    check_base(strong,G);
+  }
 
+  siz = G->order = size(strong);
+
+  if (is_option('D'))
+     OPT[0] = 1;
+
+  M = pres(strong,G,OPT);
+
+
+  if (is_option('D')){
+    printf("Size(G) = %d;\n",siz);
+    printf("quit;\n");
+  }
+  else{
+    sprintf(comment,"presentation for gorup in %s\n",FILENAMES[0]);
+    put_mat(M,0,comment,0);
+  }
+
+  free_mat(M);
   free_bravais(G);
+  for (i=0;i<G->dim;i++){
+     free_mat(base[i]);
+     free_bahn(strong[i]);
+     free(strong[i]);
+  }
+  free(strong);
+  free(base);
 
-  if (SFLAG == 1){
+  if (INFO_LEVEL & 12){
      pointer_statistics(0,0);
   }
 
   exit(0);
-}
+
+} /* main */
+

@@ -80,6 +80,13 @@ matrix_TYP *z_class_inf(bravais_TYP *G,
    /* calculate the almost decomposable lattice */
    ADLATTICE = almost_decomposable_lattice(G);
    G_ALMOST = konj_bravais(G,ADLATTICE);
+
+   /* added tilman 28.02.00 */
+   if (G_ALMOST->form == NULL){
+      G_ALMOST->form = formspace(G_ALMOST->gen,
+                                 G_ALMOST->gen_no,1,&G_ALMOST->form_no);
+   }
+
    long_rein_formspace(G_ALMOST->form,G_ALMOST->form_no,1);
 
    if (INFO_LEVEL & 4){

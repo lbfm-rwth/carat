@@ -95,7 +95,7 @@ matrix_TYP *z_equivalent(bravais_TYP *G,
 
      /* get strong generators for G_neu */
      base = get_base(G_neu);
-     strong = strong_generators(base,G_neu);
+     strong = strong_generators(base,G_neu,FALSE);
      G_neu->order = size(strong);
      if (is_option('d')) put_bravais(G_neu,NULL,NULL);
 
@@ -117,7 +117,7 @@ matrix_TYP *z_equivalent(bravais_TYP *G,
      }
      else{
         /* they are conjugate iff the have the same order */
-        strong = strong_generators(base,H);
+        strong = strong_generators(base,H,FALSE);
         if (size(strong) == G_neu->order){
            mat_muleq(A,erg);
            free_mat(erg);

@@ -110,7 +110,7 @@ matrix_TYP *row_spin(matrix_TYP *x,matrix_TYP **G,int no,int option)
         /* multiply the the i-th row in A with the j-th generator in G,
            and stick it in the rows-th row */
         for (k=0;k<dim;k++){
-           mpz_set(A[rows]+k,0);
+           mpz_set_si(A[rows]+k,0);
            for (l=0;l<dim;l++){
               /* A[rows][k] += A[i][l] * G[j]->array.SZ[k][l] */
               mpz_set_si(&tmp,G[j]->array.SZ[l][k]);

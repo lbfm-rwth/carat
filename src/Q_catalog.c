@@ -144,8 +144,6 @@ void display_info_text (int *search_list, database *database,
     z_counter = 0,
     aff_counter = 0;
   
-  int *list_of_possible;
-
   char part1[4];
   
   fprintf (stdout, "Conditions:  ");
@@ -155,20 +153,10 @@ void display_info_text (int *search_list, database *database,
   for (i=0; i<database->nr; i++)
     if (search_list [i] == ALL_MATCH){
       q_counter ++; 
+      z_counter += database->entry[i].zclasses;
+      aff_counter += database->entry[i].affine;
     }
  
-  z_counter = possible_arguments  (search_list, database,
-				   &list_of_possible,
-				   COND_ZCLASSES);
-  free (list_of_possible);
-  
-  
-  aff_counter = possible_arguments  (search_list, database,
-				     &list_of_possible,
-				     COND_AFFINE);
-  free (list_of_possible);
-  
-  
   fprintf (stdout, "\nQ_Classes: # %i,   Z_Classes: # %i,   Affine Classes: #%i\n\n",q_counter, z_counter, aff_counter);
   
 
@@ -306,8 +294,13 @@ int prompt_input (int *search_list, database *database, conditions *cond)
 						    &list_of_possible, i);
 
 	  fprintf (stdout, "Possible input for %s:\n", name_element [i]);
-	  for (j=0; j<number_of_possible; j++)
+	  for (j=0; j<number_of_possible; j++){
+	    if ( ! (j % 4) )
+	       fprintf (stdout, "\n");
+            else
+               fprintf (stdout, "\t");
 	    (display_element [i]) ( & (database->entry[list_of_possible[j]]) );
+	  }
 
 	  fprintf (stdout, "\n\n");
 

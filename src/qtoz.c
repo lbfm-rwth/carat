@@ -1,24 +1,28 @@
 #include <ZZ.h>
 #include <typedef.h>
 #include <bravais.h>
+#include <base.h>
 
 int INFO_LEVEL;
 extern int SFLAG;
 extern int IDEM_NO;
 
-main(int argc,char **argv){
+void main(int argc,char **argv){
 
   bravais_TYP *G,
              **Classes;
 
+  bahn **ST;
+
   int i,
       no,
-      adnumber,
+      adnumber = 0,
       second_number;
 
   char comment[1000],
        file[1000];
 
+  matrix_TYP **basis;
 
   read_header(argc,argv);
 
@@ -66,6 +70,21 @@ main(int argc,char **argv){
       G->form_no == 0 ||
       is_option('f')){
      G->form = formspace(G->gen,G->gen_no,1,&G->form_no);
+  }
+
+  if (G->order == 0){
+    basis = get_base(G);
+    ST = strong_generators(basis,G,FALSE);
+    G->order = 1;
+    for (i=0;i<G->dim;i++){
+      G->order *= ST[i]->length;
+      free_mat(basis[i]);
+      free_bahn(ST[i]);
+      free(ST[i]);
+    }
+    factorize_new(G->order,G->divisors);
+    free(ST);
+    free(basis);
   }
 
   Classes = q2z(G,&no,is_option('a'),is_option('q'));

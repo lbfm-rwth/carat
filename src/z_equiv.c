@@ -14,7 +14,7 @@
 int INFO_LEVEL;
 extern int SFLAG;
 
-void main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
 
   bravais_TYP *G,
@@ -154,7 +154,7 @@ void main (int argc, char *argv[])
 
      /* get strong generators for G_neu */
      base = get_base(G_neu);
-     strong = strong_generators(base,G_neu);
+     strong = strong_generators(base,G_neu,0);
      G_neu->order = size(strong);
      if (is_option('d')) put_bravais(G_neu,NULL,NULL);
 
@@ -176,7 +176,7 @@ void main (int argc, char *argv[])
      }
      else{
         /* they are conjugate iff the have the same order */
-        strong = strong_generators(base,H);
+        strong = strong_generators(base,H,0);
         if (size(strong) == G_neu->order){
            mat_muleq(A,erg);
            free_mat(erg);
@@ -242,5 +242,6 @@ void main (int argc, char *argv[])
   if (INFO_LEVEL & 12){
      pointer_statistics(0,0);
   }
+
   exit(0);
 }

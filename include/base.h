@@ -16,11 +16,11 @@ extern void init_bahn(bahn *a);
 
 extern void free_bahn(bahn *a);
 
-extern bahn **strong_generators(matrix_TYP **base,bravais_TYP *U);
+extern bahn **strong_generators(matrix_TYP **base,bravais_TYP *U,int OPT);
 
 extern matrix_TYP **get_base(bravais_TYP *U);
 
-extern int is_element(matrix_TYP *x,bravais_TYP *G,bahn **strong);
+extern int is_element(matrix_TYP *x,bravais_TYP *G,bahn **strong,int **w);
 
 extern matrix_TYP **normalizer_in_N(bravais_TYP *U,bravais_TYP *N,int *anz,
                                     int finite_flag);

@@ -90,7 +90,9 @@ main(int argc,char **argv){
   }
 
   G = get_bravais(FILENAMES[0]);
-  long_rein_formspace(G->form,G->form_no,1);
+
+  if (G->form)
+     long_rein_formspace(G->form,G->form_no,1);
 
   /* avoid silly mistakes */
   for (i=0;i<G->gen_no;i++){

@@ -12,7 +12,8 @@ GLOBAL = -DTOPDIR=\"$(TOPDIR)\" -DTABLES=\"$(TOPDIR)/tables/\" \
 
 COMP = $(CC) $(CFLAGS) -c $(GLOBAL) -I$(INCL)
 
-OBJS = Q_catalog.o\
+OBJS = HM_symbol.o\
+       Q_catalog.o\
        aff_class_inf.o\
        compute_q_matrix.o\
        point_group.o\

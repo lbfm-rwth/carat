@@ -375,6 +375,12 @@ matrix_TYP** cohomology(long *dim,matrix_TYP **mat,matrix_TYP **matinv
     B = calc_B(mat,erzeuger);
     B_tr = tr_pose(B);
 
+
+    /* shrink the linear system of equations by a gauss algorithm,
+       note that this also removes the dependence of the result
+       from the given presentation */
+    long_row_hnf(A);
+
     /* loesen der gleichungssysteme */
     tmp = cong_solve(A);
 

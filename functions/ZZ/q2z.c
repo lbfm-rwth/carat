@@ -284,6 +284,43 @@ static matrix_TYP *good_initial_basis(matrix_TYP *B,
    return NEW;
 }
 
+
+static matrix_TYP **GL_n_Z(int dim,int *no)
+{
+
+   int i;
+
+   matrix_TYP **RES;
+
+   if (dim == 1){
+      *no = 1;
+      RES = (matrix_TYP **) malloc(1*sizeof(matrix_TYP *));
+      RES[0] = init_mat(1,1,"i0");
+      RES[0]->array.SZ[0][0] = -1;
+   }
+   else{
+      *no = 4;
+      RES = (matrix_TYP **) malloc(4*sizeof(matrix_TYP *));
+      RES[0] = init_mat(dim,dim,"i1");
+      RES[0]->array.SZ[0][0] = -1;
+      RES[1] = init_mat(dim,dim,"i1");
+      RES[1]->array.SZ[0][1] = 1;
+      RES[2] = init_mat(dim,dim,"i1");
+      RES[2]->array.SZ[0][1] = 1;
+      RES[2]->array.SZ[1][0] = 1;
+      RES[2]->array.SZ[0][0] = 0;
+      RES[2]->array.SZ[1][1] = 0;
+      RES[3] = init_mat(dim,dim,"i0");
+      for (i=0;i<dim;i++)
+         RES[3]->array.SZ[i][(i+1)%dim] = 1;
+      for (i=0;i<4;i++)
+         Check_mat(RES[i]);
+   }
+
+   return RES;
+
+}
+
 bravais_TYP **q2z(bravais_TYP *G,
                   int *number,
                   int ADFLAG,
@@ -314,7 +351,7 @@ bravais_TYP **q2z(bravais_TYP *G,
 
    /* handle the case of the groups G=<I> and G=<-I> differently,
       because the first one couldn't be handled by this anyway,
-      and the second one is is but computationaly hard in dim 5 & 6 */
+      and the second one trivial is but computationaly hard in dim 5 & 6 */
    k = TRUE;
    for (i=0;i<G->gen_no && k;i++){
       Check_mat(G->gen[i]);
@@ -323,6 +360,11 @@ bravais_TYP **q2z(bravais_TYP *G,
    if (k){
       GROUPS = (bravais_TYP **) malloc(1 * sizeof(bravais_TYP *));
       GROUPS[0] = copy_bravais(G);
+      if (GROUPS[0]->normal && GROUPS[0]->normal_no > 0){
+         for (k=0;k<GROUPS[0]->normal_no;k++) free_mat(GROUPS[0]->normal[i]);
+         free(GROUPS[0]->normal);
+      }
+      GROUPS[0]->normal = GL_n_Z(G->dim,&GROUPS[0]->normal_no);
       *number = 1;
       if (ADFLAG){
           GROUPS[0]->zentr = (matrix_TYP **) malloc(1 * sizeof(matrix_TYP));

@@ -1,23 +1,38 @@
 #include <typedef.h>
 #include <getput.h>
 #include <matrix.h>
-#include <base.h>
-
+#include <datei.h>
 #include <gmp.h>
 #include <zass.h>
 #include <longtools.h>
+#include <presentation.h>
+#include <base.h>
 
+#define DEBUG FALSE
 
 int INFO_LEVEL;
 extern int SFLAG;
 
 
-main(int argc,char **argv){
+static int is_trivial(bravais_TYP *G){
+
+  int i;
+
+  for (i=0;i<G->gen_no;Check_mat(G->gen[i]),i++);
+  for (i=0;i<G->gen_no &&
+           G->gen[i]->flags.Scalar &&
+           G->gen[i]->array.SZ[i][i] == 1;i++);
+
+  return i == G->gen_no;
+
+}
+void main(int argc,char **argv){
 
   matrix_TYP **X,
               *N,
              **Y,
              **TR,
+             **base,
               *relator_input,
              **matinv;
 
@@ -31,17 +46,21 @@ main(int argc,char **argv){
 
   long dim;
 
+  bahn **strong;
+
+
   MP_INT number,
         *names;
 
   char comment[1000],
-      *NAME;
+      *NAME,
+      *FN;
 
   read_header(argc,argv);
 
-  if ((is_option('h') && optionnumber('h')==0) || (FILEANZ < 2)
-      || (is_option('i') && FILEANZ<3)){
-      printf("Usage: %s 'file1' 'file2' ['file3'] [-n] [-i] [-t=n] [-v]\n",argv[0]);
+  if ((is_option('h') && optionnumber('h')==0) || (FILEANZ < 1)
+      || (is_option('i') && FILEANZ<2)){
+      printf("Usage: %s ['file1'] 'file2' ['file3'] [-n] [-i] [-t=n] [-v]\n",argv[0]);
       printf("\n");
       printf("file1:  matrix_TYP containing a presentation of the group (cf. Presentation,\n");
       printf("        Roundcor)\n");
@@ -103,17 +122,50 @@ main(int argc,char **argv){
      SFLAG = 1;
   }
 
-  /* reading the presentation */
-  X = mget_mat(FILENAMES[0],&i);
-  if (i>1){
-    fprintf(stderr,"you should only give a single matrix as presentation\n");
-    exit(3);
+
+  if ((FILEANZ > 2)
+      || (FILEANZ == 2 && ! is_option('i'))){
+    /* reading the group */
+    G = get_bravais(FILENAMES[1]);
+
+    /* reading the presentation */
+    X = mget_mat(FILENAMES[0],&i);
+    if (i>1){
+      fprintf(stderr,"you should only give a single matrix as presentation\n");
+      exit(3);
+    }
+
+    FN = FILENAMES[1];
   }
+  else{
+    /* reading the group */
+    G = get_bravais(FILENAMES[0]);
+
+    /* calculate a presentation */
+    base = get_base(G);
+
+    strong = strong_generators(base,G,TRUE);
+
+    if (DEBUG){
+      check_base(strong,G);
+    }
+
+    X = (matrix_TYP **) malloc(sizeof(matrix_TYP *));
+    X[0] = pres(strong,G,NULL);
+
+    for (i=0;i<G->dim;i++){
+      free_mat(base[i]);
+      free_bahn(strong[i]);
+      free(strong[i]);
+    }
+    free(strong);
+    free(base);
+    FN = FILENAMES[0];
+  }
+
+
   relator_input = X[0];
   free(X);
-
-  /* reading the group */
-  G = get_bravais(FILENAMES[1]);
 
   /* if C is an option, completely forget the normalizer and centralizer */
   if (is_option('C')){
@@ -157,22 +209,32 @@ main(int argc,char **argv){
      }
      if (is_option('n')){
         printf("number of extensions of group in %s with natural lattice %d\n",
-              FILENAMES[1],1);
+              FN,1);
      }
      else if(is_option('i')){
         printf("There is only one extension of this group with the natural\n");
         printf("lattice, and this splits.\n");
      }
      else if(is_option('F')){
-        /* only one extension, this splits and is not torsion free
-           for this reason */
-        printf("#0\n");
+        if (is_trivial(G)){
+           X[0] = init_mat(G->gen_no * G->dim,1,"");
+           printf("#%d\n",1);
+           sprintf(comment,"the %d-th cozycle to the group of %s",
+                   1,FN);
+           put_cocycle(X[0],G->dim,G->gen_no,NULL,comment);
+           free_mat(X[0]);
+        }
+        else{
+           /* only one extension, this splits and is not torsion free
+              for this reason */
+           printf("#0\n");
+        }
      }
      else{
         X[0] = init_mat(G->gen_no * G->dim,1,"");
         printf("#%d\n",1);
         sprintf(comment,"the %d-th cozycle to the group of %s",
-                1,FILENAMES[1]);
+                1,FN);
         put_cocycle(X[0],G->dim,G->gen_no,NULL,comment);
      }
      exit(0);
@@ -198,26 +260,33 @@ main(int argc,char **argv){
       mpz_set_si(&number,0);
       no_of_extensions(X[0],X[1],X[2],G,&number);
       printf("number of extensions of group in %s with natural lattice ",
-              FILENAMES[1]);
+              FN);
       mpz_out_str(stdout,10,&number);
       printf("\n");
       mpz_clear(&number);
   }
   else if(is_option('i')){
-     Y = mget_mat(FILENAMES[2],&anz);
+
+     if (FILEANZ > 2){
+       Y = mget_mat(FILENAMES[2],&anz);
+     }
+     else{
+       Y = mget_mat(FILENAMES[1],&anz);
+     }
+
      convert_cocycle_to_column(Y,anz,G->dim,G->gen_no);
      names = (MP_INT *) malloc(anz*sizeof(MP_INT));
      for (i=0;i<anz;i++) mpz_init_set_si(names+i,0);
      i = is_option('t');
-     if (i || optionnumber('t') == 2) i = 3;
+     if (i && optionnumber('t') == 2) i = 3;
      TR = identify(X[0],X[1],X[2],G,Y,names,anz,i,NULL,NULL);
      for (i=0;i<anz;i++){
-        printf("Name for the %d-th extension in %s: ",i+1,FILENAMES[1]);
+        printf("Name for the %d-th extension in %s: ",i+1,FN);
         mpz_out_str(stdout,10,names+i);
         printf("\n");
         if (TR!=NULL){
            sprintf(comment,"transformation matrix to extension %d of %s",
-                    i+1,FILENAMES[1]);
+                    i+1,FN);
            put_mat(TR[i],NULL,comment,2);
         }
      }

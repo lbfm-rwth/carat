@@ -238,7 +238,7 @@ static matrix_TYP *orbit_rep(matrix_TYP *x,
 
                /* we got a new generator of the stabilizer of the cozycle */
                WORDS[0][NUMBER_OF_WORDS[0]] = (int *) malloc(
-                             (orb_words[h][0]+orb_words[i][0]+1)* sizeof(int));
+                             (orb_words[h][0]+orb_words[i][0]+2)* sizeof(int));
                WORDS[0][NUMBER_OF_WORDS[0]][0] =
                               orb_words[h][0]+orb_words[i][0]+1;
                for (k=1;k<=orb_words[h][0];k++){
