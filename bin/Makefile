@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -fwritable-strings -DDIAG1
+CFLAGS = -fwritable-strings -DDIAG1 -pg
 TOPDIR = /usb/carat
 
 # LIB = -L$(TOPDIR)/lib -lcarat -lm
@@ -24,14 +24,14 @@ ALL: Add Aut_grp Bravais_equiv\
      Conv Datei\
      Elt Extract Extensions\
      First_perfect Form_space Form_elt\
-     Formtovec Full Gauss\
+     Formtovec Full Fundamental_domain Gauss\
      Idem Inv Invar_space Isometry Is_finite\
      Kron Long_solve Ltm\
      Modp Mtl Mul Mink_red Minpol\
      Normalizer Normalizer_in_N Normlin\
      Orbit Order\
-     Pair_red Pdet Perfect_neighbours Polyeder P_lse_solve\
-     Presentation QtoZ Red_gen Rest_short Rein Rform Roundcor\
+     Pair_red Pdet Perfect_neighbours Poincare Polyeder P_lse_solve\
+     Presentation QtoZ Red_gen Rest_short Rein Rform\
      Same_generators Scalarmul Scpr Short\
      Shortest Short_reduce Signature\
      Simplify_mat Symbol\
@@ -118,6 +118,10 @@ Formtovec:  $(SRC)/formtovec.c
 Full:  $(SRC)/full.c
 	$(COMP) -o Full\
         $(SRC)/full.c  $(LIB)
+
+Fundamental_domain:  $(SRC)/fundamental_domain.c
+	$(COMP) -o Fundamental_domain\
+        $(SRC)/fundamental_domain.c  $(LIB)
 
 Gauss:  $(SRC)/gauss.c
 	$(COMP) -o Gauss\
@@ -227,6 +231,10 @@ Perfect_neighbours:  $(SRC)/perfect_neighbours.c
 	$(COMP) -o Perfect_neighbours\
         $(SRC)/perfect_neighbours.c  $(LIB)
 
+Poincare:  $(SRC)/poincare.c
+	$(COMP) -o Poincare\
+        $(SRC)/poincare.c  $(LIB)
+
 Polyeder:  $(SRC)/polyeder.c
 	$(COMP) -o Polyeder\
         $(SRC)/polyeder.c  $(LIB)
@@ -239,9 +247,9 @@ QtoZ:  $(SRC)/qtoz.c
 	$(COMP) -o QtoZ\
         $(SRC)/qtoz.c  $(LIB)
 
-Presentation:  $(SRC)/kommureihe.c
+Presentation:  $(SRC)/presentation.c
 	$(COMP) -o Presentation\
-        $(SRC)/kommureihe.c $(LIB)
+        $(SRC)/presentation.c $(LIB)
 
 Red_gen:  $(SRC)/red_gen.c
 	$(COMP) -o Red_gen\
@@ -258,10 +266,6 @@ Rest_short:  $(SRC)/rest_short.c
 Rform:  $(SRC)/rform.c
 	$(COMP) -o Rform\
         $(SRC)/rform.c  $(LIB)
-
-Roundcor:  $(SRC)/roundcor.c
-	$(COMP) -o Roundcor\
-        $(SRC)/roundcor.c $(LIB)
 
 Same_generators:  $(SRC)/same_generators.c
 	$(COMP) -o Same_generators\
@@ -371,6 +375,7 @@ clean:
 	rm -f Form_space
 	rm -f Formtovec
 	rm -f Full
+	rm -f Fundamental_domain
 	rm -f Gauss
 	rm -f Gittstab
 	rm -f Hypisom
@@ -401,6 +406,7 @@ clean:
 	rm -f Pdet
 	rm -f Perfect_neighbours
 	rm -f Polyeder
+	rm -f Poincare
 	rm -f Rein
 	rm -f Rest_short
 	rm -f Rform
@@ -429,7 +435,6 @@ clean:
 	rm -f Red_gen
 	rm -f Conjugated
 	rm -f Order
-	rm -f Roundcor
 	rm -f Malloc_liste
 	rm -f Presentation
 	rm -f QtoZ

@@ -109,7 +109,15 @@ main(int argc,char **argv){
 
   /* here it is important that G is really a bravais group */
   if (!is_option('B')){
-     H = bravais_group(G);
+     anz = 0;
+     for (i=0;i<G->dim;i++)
+        if (anz < form->array.SZ[i][i]) anz = form->array.SZ[i][i];
+
+     if (anz > 10)
+        H = bravais_group(G,TRUE);
+     else
+        H = bravais_group(G,FALSE);
+
      free_bravais(G);
      G = H;
      H = NULL;

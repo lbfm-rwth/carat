@@ -18,8 +18,8 @@
 ############################################################################
 
 
-TOPDIR= /usb/carat/tmp/carat
-CC = cc
+TOPDIR= /usb/carat
+CC = gcc
 
 # There are some special preprocessor flags which set some
 # memory diagnostics:
@@ -28,11 +28,11 @@ CC = cc
 # have a general control whats going on. THIS IS VERY SLOW.
 # For the normal user we recommend neither to use -DDIAG1 nor -DDIAG2!
 
-# CFLAGS = -g -fwritable-strings -DDIAG1 # for a HP-UX-machine using gcc (momo)
+CFLAGS = -g -fPIC -fwritable-strings -DDIAG1 # for a HP-UX-machine using gcc (momo)
                                        # the flag -fwritable-strings is
                                        # required for the use with gcc
 
-CFLAGS = -g -Aa                        # for a HP-UX-machine using cc
+# CFLAGS = -g -Aa                        # for a HP-UX-machine using cc
 
 # CFLAGS = -m486 -O2                     # on a Linux machine (i486)
 

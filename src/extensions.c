@@ -11,6 +11,57 @@
 int INFO_LEVEL;
 extern int SFLAG;
 
+static void put_cozycle(matrix_TYP *COZ,
+                        int dim,
+                        char *file,
+                        char *comment)
+{
+   int i,
+       rr = 0;
+
+   FILE *F;
+
+   if (file == NULL){
+      F = stdout;
+   }
+   else{
+      F = fopen(file,"rw");
+   }
+
+   if (F == NULL){
+      fprintf(stderr,"problems opening %s\n",file);
+      exit(4);
+   }
+
+   if (COZ->cols != 1){
+      fprintf(stderr,"cozycle with more than 1 columns?\n");
+      exit(3);
+   }
+
+   rat2kgv(COZ);
+   Check_mat(COZ);
+
+   if (COZ->kgv == 1 ||
+       COZ->kgv == 0){
+      fprintf(F,"%dx%d\t%s\n",COZ->rows,COZ->cols,comment);
+   }
+   else{
+      fprintf(F,"%dx%d/%d\t%s\n",COZ->rows,COZ->cols,COZ->kgv,comment);
+   }
+
+   for (i=0;i<COZ->rows;i++){
+      
+      fprintf(F,"%d ",COZ->array.SZ[i][0]);
+
+      rr = (rr+1) % dim;
+      if (rr == 0){
+         fprintf(F,"\n");
+      }
+   }
+
+   return;
+}
+
 
 
 main(int argc,char **argv){
@@ -227,7 +278,7 @@ main(int argc,char **argv){
         NAME = mpz_get_str(NULL,10,names+i);
         sprintf(comment,
              "the %d-th cozycle, length of orbit %d,name: %s",i+1,len[i],NAME);
-        put_mat(Y[i],NULL,comment,2);
+        put_cozycle(Y[i],G->dim,NULL,comment);
         free_mat(Y[i]);
         mpz_clear(names+i);
         free(NAME);

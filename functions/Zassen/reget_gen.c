@@ -109,7 +109,9 @@ matrix_TYP *reget_gen(matrix_TYP **map,int number,bravais_TYP *G,
 
          for (j=0;j<number;j++){
             tmp = mat_mul(ele[i],map[j]);
+            tmp->cols--;tmp->rows--;  /* for red_pos */
             if (red_pos(tmp,ele,length) == (-1)){
+               tmp->cols++;tmp->rows++;
 
                if (length >= speicher){
                   speicher = speicher + MIN_SPEICHER;
@@ -134,6 +136,7 @@ matrix_TYP *reget_gen(matrix_TYP **map,int number,bravais_TYP *G,
                found[red_pos(tmp,G->gen,G->gen_no)] = TRUE;
             }
             else{
+               tmp->cols++;tmp->rows++;
                free_mat(tmp);
             }
          }

@@ -41,7 +41,7 @@ main (int argc, char *argv[])
 
   G = get_bravais(FILENAMES[0]);
 
-  H = bravais_group(G);
+  H = bravais_group(G,FALSE);
 
   sprintf(comment,"bravais group to %s",FILENAMES[0]);
   put_bravais(H,NULL,comment);

@@ -44,23 +44,29 @@
 int mat_comp(m1, m2)
 matrix_TYP *m1, *m2;
 {
-  int i,j;
+  int i,
+      j,
+     *m1SZ,
+     *m2SZ;
+
   if(m1->cols != m2->cols || m1->rows != m2->rows)
   {
     printf("cannot compare %dx%d with %dx%d-matrix\n", m1->rows, m1->cols, m2->rows, m2->cols);
     exit(3);
   }
-  for(i=0;i<m1->rows;i++)
-   for(j=0; j<m1->cols;j++)
-   {
-     if(m1->array.SZ[i][j] != m2->array.SZ[i][j])
-     {
-        if(m1->array.SZ[i][j] > m2->array.SZ[i][j])
-           return(1);
-        return(-1);
+
+  for(i=0;i<m1->rows;i++){
+     m1SZ = m1->array.SZ[i];
+     m2SZ = m2->array.SZ[i];
+     for(j=0; j<m1->cols;j++,m1SZ++,m2SZ++){
+       if(*m1SZ > *m2SZ)
+          return(1);
+       if(*m1SZ != *m2SZ)
+          return(-1);
      }
-   }
-   return(0);
+  }
+
+  return(0);
 }
 
 

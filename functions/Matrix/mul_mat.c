@@ -86,6 +86,9 @@ matrix_TYP *L_mat, *R_mat ;
 {
 matrix_TYP *P_mat;
 int **L, **R, **P ;
+int *L_i,
+    *R_j,
+    *P_i;
 int  rL, cL, rR, cR, rP, cP ;
 int i, j, k ;
 
@@ -100,19 +103,23 @@ int i, j, k ;
   R = R_mat->array.SZ;
   P = P_mat->array.SZ;
   
-  for (i = 0; i < rL; i++)
-    for (j = 0; j < cL; j++ ) 
+  for (i = 0; i < rL; i++){
+    L_i = L[i];
+    P_i = P[i];
+    for (j = 0; j < cL; j++) 
     {
-      if ( L[i][j])
+      R_j = R[j];
+      if ( L_i[j])
         if ( R_mat->flags.Diagonal ) 
         {
-          if (R[j][j]) P[i][j] = L[i][j] * R[j][j];
+          if (R_j[j]) P_i[j] = L_i[j] * R_j[j];
         }
         else
           for (k = 0; k < cR; k++)
-            if (R[j][k]) P[i][k] += L[i][j] * R[j][k];
+            if (R_j[k])
+               P_i[k] += L_i[j] * R_j[k];
     }
-  
+  } 
   P_mat->kgv = L_mat->kgv * R_mat->kgv;
   P_mat->flags.Integral  = (P_mat->kgv == 1);
   P_mat->flags.Scalar = L_mat->flags.Scalar && R_mat->flags.Scalar;

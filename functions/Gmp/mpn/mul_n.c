@@ -1,1 +1,0 @@
-./generic/mul_n.c

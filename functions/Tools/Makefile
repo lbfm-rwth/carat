@@ -17,6 +17,7 @@ OBJS = chin_remainder.o\
        min_div.o\
        ovfl_mul.o\
        prime_tools.o\
+       random.o\
        tools.o
 
 .c.o:

@@ -126,7 +126,7 @@ extern void extend_bahn(bahn **a)
                  sizeof(matrix_TYP *) * a[0]->speicher);
    a[0]->rep_invs = (matrix_TYP **) realloc(a[0]->rep_invs,
                  sizeof(matrix_TYP *) * a[0]->speicher);
-   a[0]->generators = (matrix_TYP **) realloc(a[0]->representatives,
+   a[0]->generators = (matrix_TYP **) realloc(a[0]->generators,
                  sizeof(matrix_TYP *) * a[0]->speicher);
 }
 
@@ -273,6 +273,9 @@ int einordnen(bahn** erg,matrix_TYP *h, matrix_TYP *new_vec,int l,
          if (l != (-1)){
             if (erg[l]->speicher<=erg[l]->length){
                extend_bahn(erg+l);
+
+               /* this is so seldom used that we might as well check wheter
+                  the group is infinite, find a solution later !! */
             }
             erg[l]->orbit[erg[l]->length]=new_vec;
             erg[l]->representatives[erg[l]->length]=h;

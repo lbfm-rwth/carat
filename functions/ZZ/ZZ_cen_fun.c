@@ -16,6 +16,12 @@ extern int IDEM_NO;
 static int *SUB_VEC;
 static matrix_TYP **PrI;
 
+/* eingefuegt von Oliver am 5.2.99 */
+int OANZ = 0;
+matrix_TYP **OMAT;
+int OFLAG = FALSE;
+/* ------------------------------- */
+
 
   /*============================================================*\
   ||                                                            ||
@@ -1336,6 +1342,14 @@ int ZZ_ins_node (Gram, data, tree, father, new, ii, jj)
 			ZZ_transpose_array(new->U_inv->array.SZ, new->U->cols);
 			fflush (ZZ_temp);
 		}
+		
+		/* eingefuegt von Oliver am 5.2.99 */
+                if (OFLAG){
+			OMAT[OANZ] = copy_mat(new->U);
+      			OANZ += 1;
+                }
+		/* ------------------ */
+		
 		if (G_option) {
 			free_mat (el);
 		}

@@ -64,7 +64,7 @@ static int is_conjugated_ZZ(n,new)
 
 	/* look whether we already got the bravais group n->brav */
 	if (n->brav == NULL){
-		n->brav = bravais_group(n->col_group);
+		n->brav = bravais_group(n->col_group,TRUE);
 	}
 
 	if (n->col_group->normal != NULL &&

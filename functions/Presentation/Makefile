@@ -1,3 +1,8 @@
+TOPDIR =/usb/carat
+CFLAGS = -g -fwritable-strings -DDIAG1
+CC = gcc
+
+OBJFLAGS = -c
 INCL = $(TOPDIR)/include
 
 AR = ar rvuc $(TOPDIR)/lib/libpresentation.a
@@ -6,29 +11,26 @@ GLOBAL = -DTOPDIR=\"$(TOPDIR)\" -DTABLES=\"$(TOPDIR)/tables/\" \
          -DATOMS=\"$(TOPDIR)/tables/atoms/\" \
          -DTABLEDIM=\"$(TOPDIR)/tables/dim\"
 
-COMP = $(CC) $(CFLAGS) -c $(GLOBAL) -I$(INCL)
+COMP = $(CC) $(CFLAGS) $(OBJFLAGS) $(GLOBAL) -I$(INCL)
 
-OBJS = calc_orders.o\
-       carat_out.o\
-       cayley_out.o\
-       delta.o\
-       derived_rc.o\
-       dumprelators.o\
-       dumprelators_file.o\
-       exist.o\
-       fundi.o\
-       gap_out.o\
-       generate_pres.o\
-       inverse_prods.o\
-       is_equal.o\
-       is_identity.o\
-       magma_out.o\
-       normalize.o\
-       old_as_new.o\
-       shorter.o\
-       sub_relator.o\
-       substit.o\
-       tietzetrans_rc.o
+OBJS = Back.o\
+       barzen.o\
+       KKGV.o\
+       Pres.o\
+       T_polyeder.o\
+       T_ungleich_wand.o\
+       barzen.o\
+       easy_torus_orbit.o\
+       fub.o\
+       fub_tools.o\
+       modshort.o\
+       neugram.o\
+       neukandidat.o\
+       presentation_point_grp.o\
+       prog.o\
+       sscal.o\
+       stab_orbit.o\
+       tietze_tools.o
 
 .c.o:
 	$(COMP) $< -o $@

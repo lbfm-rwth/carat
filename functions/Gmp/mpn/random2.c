@@ -1,1 +1,0 @@
-./generic/random2.c

@@ -102,6 +102,7 @@ int wall_no;
 @      w->ext_no = 0;
 @      w->extra= NULL;
 @      w->neu = 0;
+@      w->paar = 0;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
@@ -118,13 +119,25 @@ int dim;
   erg->product = NULL;
   erg->nproduct = 0;
   erg->word = NULL;
-  erg->next_no = 0;	/* next 4 lines anne 8/10/97 */
+  erg->next_no = 0;	/* next 5 lines anne 8/10/97 */
   erg->next = NULL;
   erg->ext_no = 0;
   erg->extra = NULL;
   erg->neu = 0;
+  erg->paar = 0;
   return(erg);
 }
+
+
+/**************************************************************************\
+@---------------------------------------------------------------------------
+@ corner_TYP *init_corner()
+@
+@
+@
+@---------------------------------------------------------------------------
+@
+\**************************************************************************/
 
 
 /**************************************************************************\
@@ -139,6 +152,8 @@ int dim;
 @     P->is_closed = FALSE;
 @     P->vert_SIZE = (vert_no/extsize1 +1) * extsize1;
 @     P->wall_SIZE = (wall_no/extsize1 +1) * extsize1;
+@     P->corner = NULL;
+@     P->corner_no = 0, P->corner_SIZE = 0;
 @     P->vert = **vertex_TYP, size:  P->vert_no.
 @     P->wall = **wall_TYP,   size:  P->wall_no.
 @
@@ -168,6 +183,9 @@ int vert_no, wall_no;
   erg->wall = (wall_TYP **)malloc(j*sizeof(wall_TYP *));
   for(i=0;i<erg->wall_SIZE;i++)
     erg->wall[i] = NULL;
+  erg->corner = NULL;			/* next 3 lines inserted by anne */
+  erg->corner_no = 0;
+  erg->corner_SIZE = 0;
   return(erg);
 }
 
@@ -668,6 +686,9 @@ polyeder_TYP *P;
    if(P->wall[i] != 0)
         free_wall(&P->wall[i]);
   }
-  free(P->wall);
+  if(P->corner != NULL) 
+    free(P->corner);
+  if(P->wall != NULL)
+    free(P->wall);
   free(P);
 }

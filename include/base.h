@@ -23,7 +23,7 @@ extern matrix_TYP **get_base(bravais_TYP *U);
 extern int is_element(matrix_TYP *x,bravais_TYP *G,bahn **strong);
 
 extern matrix_TYP **normalizer_in_N(bravais_TYP *U,bravais_TYP *N,int *anz,
-                                    int finite);
+                                    int finite_flag);
 
 extern int size(bahn **a);
 

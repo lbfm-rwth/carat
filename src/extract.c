@@ -90,6 +90,7 @@ main(int argc,char **argv){
      printf("        presentation for the point group.  If the translation lattice \n");
      printf("        is of smaller rank, it will give the rank. Synonymous command:\n");
      printf("        Standard_affine_form\n");
+     printf("-T     : RESERVED\n");
      printf("\n");
      printf("Cf. Extensions, Vector_systems\n");
      }
@@ -120,6 +121,13 @@ main(int argc,char **argv){
      }
      X = XX[0];
      free(XX);
+
+     if (is_option('T')){
+        real_mat(X,X->rows+G->dim-1,X->cols);
+        for (i=0;i<G->dim-1;i++){
+           X->array.SZ[X->rows-G->dim+1+i][0] = G->gen_no - i ;
+        }
+     }
 
      /* set the transformation matrix */
      T = translation_lattice(G->gen,G->gen_no,X);

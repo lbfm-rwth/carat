@@ -10,6 +10,7 @@
 #include "polyeder.h"
 #include "tools.h"
 #include "sort.h"
+#include "longtools.h"
 
 extern int INFO_LEVEL;
 
@@ -292,6 +293,10 @@ void transform_pair(bravais_TYP *H,bravais_TYP *Htr,matrix_TYP *x)
   tmp = konj_bravais(Htr,x);
   tmp = konj_bravais(H,xitr); */
 
+  /* inserted: tilman 26.08.98 to get a better
+     basis for the formspace of H,Htr */
+  long_rein_formspace(H->form,H->form_no,1);
+  long_rein_formspace(Htr->form,Htr->form_no,1);
 
   free_mat(xtr);
   free_mat(xi);

@@ -22,6 +22,7 @@ extern polyeder_TYP *get_polyeder(char *file_name);
 extern void put_polyeder(polyeder_TYP *F);
 extern int wall_times_vertex(wall_TYP *w, vertex_TYP *v);
 extern void free_vertex(vertex_TYP **v);
+extern void free_word(word_TYP *word);
 extern void free_wall(wall_TYP **v);
 extern wall_TYP *mat_to_wall(matrix_TYP *M);
 extern void normal_wall(wall_TYP *v);

@@ -83,7 +83,7 @@ main (int argc, char *argv[])
       G = copy_bravais(H);
    }
    else{
-      G = bravais_group(H);
+      G = bravais_group(H,FALSE);
    }
 
    /* let's see whether we already got the formspace */
@@ -136,6 +136,7 @@ main (int argc, char *argv[])
    put_bravais(H, NULL, "group with complete normalizer");
 
    if(is_option('o')){
+      put_bravais(Gtr, NULL, "Transposed group");
       for(i=0;i<Vanz;i++)
          put_voronoi(V[i]);
    }

@@ -425,7 +425,7 @@ matrix_TYP *normalop(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
    for (first = 0;first<D->cols && D->array.SZ[first][first] == 1;first++);
    for (last = 0;last<D->cols && D->array.SZ[last][last] != 0;last++);
 
-   GLS = mat_inv(R);
+   GLS = long_mat_inv(R);
 
    if (INFO_LEVEL & 4){
       fprintf(stderr,"entered normalop\n");

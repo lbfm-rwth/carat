@@ -1,1 +1,0 @@
-./generic/gcd_1.c

@@ -1,1 +1,0 @@
-./generic/scan1.c
