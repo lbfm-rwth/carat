@@ -1,0 +1,150 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <title>Torsion free space group database</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+   <meta name="Author" content="Gehrt Hartjen">
+</head>
+<body>
+
+<center>
+<h1>
+Torsion Free Space Groups</h1></center>
+
+This form will provide the full information about the selected groups below.
+Please enter all relevant data by ticking the appropriate checkboxes.
+
+<form action="http://wwwb.math.rwth-aachen.de/cgi-bin/sdb.html" method=post>
+
+<p>Degree: 
+<input type=checkbox name="DEG" value="1"> 1  
+<input type=checkbox name="DEG" value="2"> 2  
+<input type=checkbox name="DEG" value="3"> 3
+<input type=checkbox name="DEG" value="4"> 4  
+<input type=checkbox name="DEG" value="5"> 5  
+<input type=checkbox name="DEG" value="6"> 6   
+<input type=checkbox name="DEG" value="0"> all   </p>
+
+<p>Has trivial center:
+<input type=checkbox name="has_trivial_center" value="Y"> Yes  
+<input type=checkbox name="has_trivial_center" value="N"> No  
+<input type=checkbox name="has_trivial_center" value="A"> all  </p>
+
+<p>Order of point group:
+<input type=checkbox name="order" value="1"> 1  
+<input type=checkbox name="order" value="2"> 2  
+<input type=checkbox name="order" value="3"> 3  
+<input type=checkbox name="order" value="4"> 4  
+<input type=checkbox name="order" value="5"> 5  
+<input type=checkbox name="order" value="6"> 6  
+<input type=checkbox name="order" value="8"> 8  
+<input type=checkbox name="order" value="9"> 9  
+<input type=checkbox name="order" value="10"> 10  
+<input type=checkbox name="order" value="12"> 12  
+<input type=checkbox name="order" value="16"> 16  
+<input type=checkbox name="order" value="18"> 18  
+<input type=checkbox name="order" value="20"> 20  
+<input type=checkbox name="order" value="24"> 24  
+<input type=checkbox name="order" value="32"> 32  
+<input type=checkbox name="order" value="36"> 36  
+<input type=checkbox name="order" value="48"> 48  
+<input type=checkbox name="order" value="64"> 64  
+<input type=checkbox name="order" value="72"> 72  
+<input type=checkbox name="order" value="80"> 80  
+<input type=checkbox name="order" value="96"> 96  
+<input type=checkbox name="order" value="120"> 120  
+<input type=checkbox name="order" value="0"> all  </p>
+
+<p>Isomorphism type of point group:  
+<table>
+<td width=20%><input type=checkbox name="isom" value="C_1"> id  <br>
+<input type=checkbox name="isom" value="C_2"> C<sub>2</sub> <br>  
+<input type=checkbox name="isom" value="C_2 X C_2"> C<sub>2</sub><sup>2</sup>  <br>
+<input type=checkbox name="isom" value="C_2 X C_2 X C_2"> C<sub>2</sub><sup>3</sup>  <br>
+<input type=checkbox name="isom" value="C_2 X C_2 X C_2 X C_2"> C<sub>2</sub><sup>4</sup>  <br>
+<input type=checkbox name="isom" value="C_2 X C_2 X C_2 X C_2 X C_2"> C<sub>2</sub><sup>5</sup><br>  
+<input type=checkbox name="isom" value="C_3"> C<sub>3</sub>   <br>
+<input type=checkbox name="isom" value="C_2 X C_3"> C<sub>2</sub> x C<sub>3</sub>  <br>
+<input type=checkbox name="isom" value="C_2 X C_2 X C_3"> C<sub>2</sub><sup>2</sup> x C<sub>3</sub> <br>
+<input type=checkbox name="isom" value="C_2 X C_2 X C_2 X C_3"> C<sub>2</sub><sup>3</sup> x C<sub>3</sub> <br>
+<input type=checkbox name="isom" value="C_2 X C_2 X C_2 X C_2 X C_3"> C<sub>2</sub><sup>4</sup> x C<sub>3</sub><br>
+<input type=checkbox name="isom" value="C_3 X C_3"> C<sub>3</sub><sup>2</sup><br>
+<input type=checkbox name="isom" value="C_2 X C_3 X C_3"> C<sub>2</sub> x C<sub>3</sub><sup>2</sup><br>
+<input type=checkbox name="isom" value="C_2 X C_2 X C_3 X C_3"> C<sub>2</sub><sup>2</sup> x C<sub>3</sub><sup>2</sup><br>
+<input type=checkbox name="isom" value="C_4"> C<sub>4</sub>   <br>
+<input type=checkbox name="isom" value="C_2 X C_4"> C<sub>2</sub> x C<sub>4</sub>  <br>
+<input type=checkbox name="isom" value="C_2 X C_2 X C_4"> C<sub>2</sub><sup>2</sup> x C<sub>4</sub> <br></td>
+<td width=20%><input type=checkbox name="isom" value="C_2 X C_2 X C_2 X C_4"> C<sub>2</sub><sup>3</sup> x C<sub>4</sub> <br>
+<input type=checkbox name="isom" value="C_3 X C_4"> C<sub>3</sub> x C<sub>4</sub>  <br>
+<input type=checkbox name="isom" value="C_2 X C_3 X C_4"> C<sub>2</sub> x C<sub>3</sub> x C<sub>4</sub><br>
+<input type=checkbox name="isom" value="C_2 X C_2 X C_3 X C_4"> C<sub>2</sub><sup>2</sup> x C<sub>3</sub> x C<sub>4</sub><br>
+<input type=checkbox name="isom" value="C_4 X C_4"> C<sub>4</sub><sup>2</sup><br>
+<input type=checkbox name="isom" value="C_5"> C<sub>5</sub>   <br>
+<input type=checkbox name="isom" value="C_2 X C_5"> C<sub>2</sub> x C<sub>5</sub>  <br>
+<input type=checkbox name="isom" value="C_2 X C_2 X C_5"> C<sub>2</sub><sup>2</sup> x C<sub>5</sub> <br>
+<input type=checkbox name="isom" value="C_8"> C<sub>8</sub>   <br>
+<input type=checkbox name="isom" value="C_2 X C_8"> C<sub>2</sub> x C<sub>8</sub>  <br>
+<input type=checkbox name="isom" value="D8"> D<sub>8</sub>   <br>
+<input type=checkbox name="isom" value="C_2 X D8"> C<sub>2</sub> x D<sub>8</sub>  <br>
+<input type=checkbox name="isom" value="C_2 X C_2 X D8"> C<sub>2</sub><sup>2</sup> x D<sub>8</sub> <br>
+<input type=checkbox name="isom" value="C_3 X D8"> C<sub>3</sub> x D<sub>8</sub>  <br>
+<input type=checkbox name="isom" value="C_2 X C_3 X D8"> C<sub>2</sub> x C<sub>3</sub> x D<sub>8</sub><br>
+<input type=checkbox name="isom" value="C_4 X D8"> C<sub>4</sub> x D<sub>8</sub> <br></td> 
+<td width=20%><input type=checkbox name="isom" value="D10"> D<sub>10</sub>   <br>
+<input type=checkbox name="isom" value="C_2 X D10"> C<sub>2</sub> x D<sub>10</sub>  <br>
+<input type=checkbox name="isom" value="D16"> D<sub>16</sub>   <br>
+<input type=checkbox name="isom" value="D24"> D<sub>24</sub>   <br>
+<input type=checkbox name="isom" value="C_2 X D24"> C<sub>2</sub> x D<sub>24</sub>  <br>
+<input type=checkbox name="isom" value="S(3)"> S<sub>3</sub>   <br>
+<input type=checkbox name="isom" value="C_2 X S(3)"> C<sub>2</sub> x S<sub>3</sub>  <br>
+<input type=checkbox name="isom" value="C_2 X C_2 X S(3)"> C<sub>2</sub><sup>2</sup> x S<sub>3</sub> <br>
+<input type=checkbox name="isom" value="C_2 X C_2 X C_2 X S(3)"> C<sub>2</sub><sup>3</sup> x S<sub>3</sub> <br>
+<input type=checkbox name="isom" value="C_3 X S(3)"> C<sub>3</sub> x S<sub>3</sub>  <br>
+<input type=checkbox name="isom" value="C_2 X C_3 X S(3)"> C<sub>2</sub> x C<sub>3</sub> x S<sub>3</sub><br>
+<input type=checkbox name="isom" value="C_4 X S(3)"> C<sub>4</sub> x S<sub>3</sub>  <br>
+<input type=checkbox name="isom" value="C_2 X C_4 X S(3)"> C<sub>2</sub> x C<sub>4</sub> x S<sub>3</sub><br>
+<input type=checkbox name="isom" value="S(3) X S(3)"> S<sub>3</sub><sup>2</sup><br>
+<input type=checkbox name="isom" value="S(4)"> S<sub>4</sub>   <br>
+<input type=checkbox name="isom" value="C_2 X S(4)"> C<sub>2</sub> x S<sub>4</sub> <br></td> 
+<td width=20%><input type=checkbox name="isom" value="C_3 X S(4)"> C<sub>3</sub> x S<sub>4</sub>  <br>
+<input type=checkbox name="isom" value="A(4)"> A<sub>4</sub>   <br>
+<input type=checkbox name="isom" value="C_2 X A(4)"> C<sub>2</sub> x A<sub>4</sub>  <br>
+<input type=checkbox name="isom" value="C_2 X C_2 X A(4)"> C<sub>2</sub><sup>2</sup> x A<sub>4</sub> <br>
+<input type=checkbox name="isom" value="C_2 X C_2 X C_2 X A(4)"> C<sub>2</sub><sup>3</sup> x A<sub>4</sub> <br>
+<input type=checkbox name="isom" value="C_3 X A(4)"> C<sub>3</sub> x A<sub>4</sub>  <br>
+<input type=checkbox name="isom" value="C_2 X C_3 X A(4)"> C<sub>2</sub> x C<sub>3</sub> x A<sub>4</sub><br>
+<input type=checkbox name="isom" value="C_4 X A(4)"> C<sub>4</sub> x A<sub>4</sub>  <br>
+<input type=checkbox name="isom" value="C_2 X C_4 X A(4)"> C<sub>2</sub> x C<sub>4</sub> x A<sub>4</sub><br>
+<input type=checkbox name="isom" value="Q8"> Q<sub>8</sub>   <br>
+<input type=checkbox name="isom" value="C_3 X Q8"> C<sub>3</sub> x Q<sub>8</sub>  <br>
+<input type=checkbox name="isom" value="(C3 ><| C4)"> C<sub>3</sub> ><| C<sub>4</sub>  <br>
+<input type=checkbox name="isom" value="C_2 X (C3 ><| C4)"> C<sub>2</sub> x (C<sub>3</sub> ><| C<sub>4</sub>)  <br>
+<input type=checkbox name="isom" value="C_3 X (C3 ><| C4)"> C<sub>3</sub> x (C<sub>3</sub> ><| C<sub>4</sub>)  <br>
+<input type=checkbox name="isom" value="( C3 ><| C8)"> C<sub>3</sub> ><| C<sub>8</sub>  <br>
+<input type=checkbox name="isom" value="( (C3 X C3) ><| C2)"> C<sub>3</sub><sup>2</sup>  ><| C<sub>2</sub>  <br></td>
+<td width=20%><input type=checkbox name="isom" value="C_2 X ( (C3 X C3) ><| C2)"> C<sub>2</sub> x (C<sub>3</sub><sup>2</sup>  ><| C<sub>2</sub>)  <br>
+<input type=checkbox name="isom" value="[ 16, 8 ]"> [16,8]   <br>
+<input type=checkbox name="isom" value="[ 16, 9 ]"> [16,9]   <br>
+<input type=checkbox name="isom" value="C_2 X [ 16, 9 ]"> C<sub>2</sub> x [16,9]   <br>
+<input type=checkbox name="isom" value="[ 16, 10 ]"> [16,10]   <br>
+<input type=checkbox name="isom" value="[ 16, 11 ]"> [16,11]   <br>
+<input type=checkbox name="isom" value="[ 16, 13 ]"> [16,13]   <br>
+<input type=checkbox name="isom" value="[ 24, 11 ]"> [24,11]   <br>
+<input type=checkbox name="isom" value="[ 32, 31 ]"> [32,31]   <br>
+<input type=checkbox name="isom" value="[ 32, 33 ]"> [32,33]   <br>
+<input type=checkbox name="isom" value="[ 32, 36 ]"> [32,36]   <br>
+<input type=checkbox name="isom" value="[ 32, 46 ]"> [32,46]   <br>
+<input type=checkbox name="isom" value="[ 32, 47 ]"> [32,47]   <br>
+<input type=checkbox name="isom" value="[ 64, 250 ]"> [64,250]   <br>
+<input type=checkbox name="isom" value="[ 80, 52 ]"> [80,52]   <br>
+<input type=checkbox name="isom" value="C_2 X [ 80, 52 ]"> C<sub>2</sub> x [80,52]   <br>
+<input type=checkbox name="isom" value="all"> all  <br></td> </table></p>
+
+<input type=submit value="Count selected groups">
+<input type=reset value="Reset selections">
+
+
+
+</form>
+</body>
+</html>

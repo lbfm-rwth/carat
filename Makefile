@@ -18,7 +18,7 @@
 ############################################################################
 
 
-TOPDIR= /usb2/carat
+TOPDIR=/usb/carat
 CC = gcc
 
 # There are some special preprocessor flags which set some
@@ -107,7 +107,8 @@ Links:
 	cd tables/symbol; make
 	cd lib ; rm -f libfunctions.a ; ln -f -s functions.a libfunctions.a
 	rm -f $(TOPDIR)/functions/Gmp/m_alloc.h
-	ln -f -s $(TOPDIR)/include/m_alloc.h $(TOPDIR)/functions/Gmp/m_alloc.h
+	ln -f -s $(TOPDIR)/functions/Gmp/longlong.h $(TOPDIR)/include/longlong.h
+	ln -f -s $(TOPDIR)/functions/gmp-4.1.2 $(TOPDIR)/functions/Gmp
 
 Longtools: Makefile functions/Longtools/Makefile
 	cd functions/Longtools; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
@@ -157,9 +158,10 @@ Zassen: Makefile functions/Zassen/Makefile
 ZZ: Makefile functions/ZZ/Makefile
 	cd functions/ZZ; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
-Gmp: functions/Gmp/Makefile
-	cd functions/Gmp ; ./configure --prefix=../.. ;\
-         make CFLAGS="$(CFLAGS)" CC="$(CC)" libgmp.a ; mv libgmp.a ../../lib
+Gmp:
+	cd functions ; tar xvzf gmp-4.1.2.tar.gz
+	cd functions/Gmp ; ./configure --prefix="$(TOPDIR)" ;\
+         make CFLAGS="$(CFLAGS)" CC="$(CC)" install 
 
 Executables: bin/Makefile
 	if $(RANLIB_TEST) ; then $(RANLIB) lib/functions.a; else true; fi
@@ -193,12 +195,14 @@ clean:
 	cd functions/Voronoi; make clean
 	cd functions/Zassen; make clean
 	cd functions/ZZ; make clean
-	cd functions/Gmp; make clean
+	rm -rf functions/gmp-4.1.2
+	rm -rf functions/Gmp
 	rm -f lib/libgmp.a
+	rm -f lib/*gmp*
 	rm -f lib/libm_alloc.a
 	rm -f lib/libpresentation.a
 	rm -f lib/functions.a
-
+	rm -f include/longlong.h
 
 
 
