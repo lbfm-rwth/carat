@@ -2,7 +2,6 @@
 #include "gmp.h"
 /* #include "gmp-impl.h" */
 #include "longtools.h"
-#include "matrix.h"
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @---------------------------------------------------------------------------
@@ -13,38 +12,32 @@
 \**************************************************************************/
 
 
-
-
-
 /**************************************************************************\
 @---------------------------------------------------------------------------
-@ matrix_TYP *long_elt_mat(left_trans, Mat, right_trans)
-@ matrix_TYP *Mat, *left_trans, *right_trans;
+@ matrix_TYP *long_elt_mat(Mat, left_trans)
+@ matrix_TYP *Mat, *left_trans;
 @
 @ calculates the elementary divisors of the matrix Mat, t.m.
-@ calculates a 'diagonal' matrix D in Gl_n(Z) such that
+@ calulates a 'diagonal' matrix D such that
 @     L * Mat * R = D for some matrices L and R
 @ 'left_trans' has to be a matrix of size Mat->rows x Mat->rows
 @ it is changed to L * left_trans.
 @ It is possible to start the function with left_trans = NULL.
-@ 'right_trans' has to be a matrix of size Mat->cols x Mat->cols
-@ it is changed to right_trans * R.
-@ It is possible to start the function with right_trans = NULL.
 @
 @ The calculations are done using multiple precision integers.
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *long_elt_mat(left_trans, Mat, right_trans)
-matrix_TYP *left_trans, *Mat, *right_trans;
+matrix_TYP *long_elt_mat(Mat, left_trans)
+matrix_TYP *Mat, *left_trans;
 {
 
-   int i,j,k,l, m, step, stepclear, flag;
+   int i,j,k, step, stepclear;
    int cols, rows, rang;
-   MP_INT **trf, **M, **Mt, *merkpointer, **rtrf, *help, **hilf;
+   MP_INT **trf, **M, **Mt, *merkpointer;
    matrix_TYP *erg;
-   int t_option, r_t_option;
-   MP_INT a1, a2, x1, x2, y1, y2, merk, g, f, o, pos1, pos2;
+   int t_option;
+   MP_INT a1, a2, x1, x2, y1, y2, merk, g, f;
  
    cols = Mat->cols;
    rows = Mat->rows;
@@ -59,76 +52,17 @@ matrix_TYP *left_trans, *Mat, *right_trans;
      }
      if(left_trans->cols != left_trans->rows)
      {
-       printf("error: matrix 'left_trans' in 'long_elt_mat' has to be a
-		square matrix\n");        exit(3);
+       printf("error: matrix 'left_trans' in 'long_elt_met' has to be a square matrix\n");
+       exit(3);
      }
    }
    else
     t_option = FALSE;
-    
-   /* inserted the next 17 lines: oliver 2/3/1999 */ 
-   if(right_trans != NULL)
-   {
-     r_t_option = TRUE;
-     if(right_trans->rows != cols)
-     {
-       printf("error in 'long_elt_mat':\n");
-       printf("the matrix 'right_trans' has to be a %dx%d-matrix, but has %d  rows\n", cols, cols, left_trans->rows);
-       exit(3);
-     }
-     if(left_trans->cols != left_trans->rows)
-     {
-       printf("error: matrix 'left_trans' in 'long_elt_mat' has to be a
-		square matrix\n");        exit(3);
-     }
-   }
-   else
-    r_t_option = FALSE;
-   
    mpz_init(&a1), mpz_init(&a2);
    mpz_init(&x1), mpz_init(&x2);
    mpz_init(&y1), mpz_init(&y2);
-   mpz_init(&f), mpz_init(&g); mpz_init(&o);
-   mpz_init(&merk); mpz_init(&pos1); mpz_init(&pos2); 
-   
-   /***************************************************************\
-   | (inserted the next 33 lines: oliver 29/4/1999)
-   | Set hilf =  right_trans^tr
-   \***************************************************************/
-   if(r_t_option == TRUE)
-   {
-     if((rtrf = (MP_INT **)malloc(cols *sizeof(MP_INT *))) == NULL)
-     {
-       printf("malloc of 'rtrf' in 'long_elt_mat' failed\n");
-       exit(2);
-     }
-     for(i=0;i<cols;i++)
-     {
-       if((rtrf[i] = (MP_INT *)malloc(cols *sizeof(MP_INT))) == NULL)
-       {
-         printf("malloc of 'rtrf[%d]' in 'long_elt_mat' failed\n", i);
-         exit(2);
-       }
-     }
-     if((hilf = (MP_INT **)malloc(cols *sizeof(MP_INT *))) == NULL)
-     {
-       printf("malloc of 'hilf' in 'long_elt_mat' failed\n");
-       exit(2);
-     }
-     for(i=0;i<cols;i++)
-     {
-       if((hilf[i] = (MP_INT *)malloc(cols *sizeof(MP_INT))) == NULL)
-       {
-         printf("malloc of 'hilf[%d]' in 'long_elt_mat' failed\n", i);
-         exit(2);
-       }
-       for(j=0;j<cols;j++)
-       {
-       mpz_init_set_si(&hilf[i][j], right_trans->array.SZ[j][i]);
-       }
-     }
-   }
-
+   mpz_init(&f), mpz_init(&g);
+   mpz_init(&merk);
    /***************************************************************\
    | Set Mt= Mat^{tr} transform Mt to Hermite normal form.
    \***************************************************************/
@@ -147,19 +81,9 @@ matrix_TYP *left_trans, *Mat, *right_trans;
      for(j=0;j<rows;j++)
        mpz_init_set_si(&Mt[i][j], Mat->array.SZ[j][i]);
    }
-
-   /* changed on 29/4/1999 oliver from 
    rang = MP_hnf(Mt, cols, rows);
-   to: */
-   if(r_t_option == TRUE)
-   {
-     rang = MP_hnf_simultaneous(Mt, cols, rows, hilf, cols);
-   } 
-   else
-     rang = MP_hnf(Mt, cols, rows);
-   
    /***************************************************************\
-   | Set trf =  left_trans
+   | Set trf =  left_tans
    \***************************************************************/
    if(t_option == TRUE)
    {
@@ -179,7 +103,6 @@ matrix_TYP *left_trans, *Mat, *right_trans;
          mpz_init_set_si(&trf[i][j], left_trans->array.SZ[i][j]);
      }
    }
-
    /***************************************************************\
    | Set M= Mt^{tr} transform Mt to Hermite normal form.
    \***************************************************************/
@@ -198,19 +121,12 @@ matrix_TYP *left_trans, *Mat, *right_trans;
      for(j=0;j<cols;j++)
        mpz_init_set(&M[i][j], &Mt[j][i]);
    }
-
-   /* the hnf produces big enties in the transformation matrix, there do
-   hnf only if the transformation matrix is not wanted
    if(t_option == TRUE)
      rang = MP_hnf_simultaneous(M, rows, cols, trf, rows);
    else
-     rang = MP_hnf(M, rows, cols); */
-   if(t_option != TRUE)
      rang = MP_hnf(M, rows, cols);
-
    /***************************************************************\
-   | Clear the space allocated for 'Mt'.
-   | Set rtrf = hilf^tr and free hilf.
+   | Clear the space allocated for 'Mt'
    \***************************************************************/
    for(i=0;i<cols;i++)
    {
@@ -219,151 +135,108 @@ matrix_TYP *left_trans, *Mat, *right_trans;
      free(Mt[i]);
    }
    free(Mt);
-
-   if (r_t_option){
-      for (i=0; i<cols; i++)
-      {
-         for(j=0; j<cols; j++)
-           {
-            mpz_init_set(&rtrf[j][i], &hilf[i][j]);
-            mpz_clear(&hilf[i][j]);
-            }
-         free(hilf[i]);
-      }
-      free(hilf);
-   }
    /***************************************************************\
    | Now the elementary divisor algorithm starts
    \***************************************************************/
-   for(step = 0; step < rang; step++)
+   for(step = 0; step < rang;step++)
    {
 
       do
       {
-         /* output for debugging */
-         /* dump_MP_mat(M,rang,rang,"M"); */
+         /* output for debugging
+         dump_MP_mat(M,rang,rang,"M"); */
 
          /*------------------------------------------------------*\
          | Clear the 'step'^th row of M
          \*------------------------------------------------------*/
-          for(i=step;i<cols && mpz_cmp_si(&M[step][i], 0) == 0; i++);
-
-          if (i<cols){
-            if(i!=step)
+          for(i=step;i<rang && mpz_cmp_si(&M[step][i], 0) == 0; i++);
+          if(i!=step)
+          {
+            for(j=step;j<rang;j++)
             {
-              for(j=step;j<rows;j++)
-              {
-                mpz_set(&merk, &M[j][step]);
-                mpz_set(&M[j][step], &M[j][i]);
-                mpz_set(&M[j][i], &merk);
-              }
-
-              /* inserted the following 9 lines: oliver 29/4/99 */
-              if (r_t_option == TRUE)
-              {
-                 for(j=0;j<cols;j++)
-                 {
-                   mpz_set(&merk, &rtrf[j][step]);
-                   mpz_set(&rtrf[j][step], &rtrf[j][i]);
-                   mpz_set(&rtrf[j][i], &merk);
-                 }                
-              }
+              mpz_set(&merk, &M[j][step]);
+              mpz_set(&M[j][step], &M[j][i]);
+              mpz_set(&M[j][i], &merk);
             }
-
-            if(mpz_cmp_si(&M[step][step], 0) < 0)
-            {
-              for(i=step;i<rows;i++)
+          }
+          if(mpz_cmp_si(&M[step][step], 0) < 0)
+          {
+            for(i=step;i<rows;i++)
               mpz_neg(&M[i][step], &M[i][step]);
-              /* inserted oliver 30/04/99 */  
-              if (r_t_option == TRUE)
-                 {
-                 for(i=0;i<cols;i++)
-                    mpz_neg(&rtrf[i][step], &rtrf[i][step]);
-                 }
-            }
-            for(i=step+1;i<cols;i++)
+          }
+          for(i=step+1;i<rang;i++)
+          {
+            if(mpz_cmp_si(&M[step][i], 0) != 0)
             {
-              if(mpz_cmp_si(&M[step][i], 0) != 0)
+              if(mpz_cmp_si(&M[step][step], 1) == 0)
               {
-                if(mpz_cmp_si(&M[step][step], 1) == 0)
+                mpz_set(&f, &M[step][i]);
+                for(j=step+1;j<rang;j++)
                 {
-                  mpz_set(&f, &M[step][i]);
-                  for(j=step+1;j<rows;j++)
-                  {
-                    mpz_mul(&merk, &M[j][step], &f);
-                    mpz_sub(&M[j][i], &M[j][i], &merk);
-                  }
-                  mpz_set_si(&M[step][i], 0);
-
-                  /* inserted the next 8 lines: oliver 2/3/99 */
-                  if(r_t_option == TRUE)
-                  {
-                     for(j=0;j<cols;j++)
-                     {
-                       mpz_mul(&merk, &rtrf[j][step], &f);
-                       mpz_sub(&rtrf[j][i], &rtrf[j][i], &merk);
-                     }
-                  }
+                  mpz_mul(&merk, &M[j][step], &f);
+                  mpz_sub(&M[j][i], &M[j][i], &merk);
                 }
-                else
-                {
-                   /* changed 30/04/99 (tilman) from
-                   mpz_gcdext(&g, &a1, &a2, &M[step][step], &M[step][i]); to */
-                   mpz_abs( &g,&M[step][i]);
-                   if (mpz_cmp(&M[step][step],&g) == 0){
-                      mpz_set_si(&a1,1);
-                      mpz_set_si(&a2,0);
-                   }
-                   else{
-                      mpz_gcdext(&g, &a1, &a2, &M[step][step], &M[step][i]);
-                   }
-                   mpz_div(&x1, &M[step][i], &g);
-                   mpz_div(&x2, &M[step][step], &g);
-                   mpz_neg(&x2, &x2);
+                mpz_set_si(&M[step][i], 0);
 
-                   for(j=step+1; j<rows;j++)
+                /* commented the next 8 lines out: tilman 5/12/96
+                if(t_option == TRUE)
+                {
+                   for(j=0;j<rows;j++)
                    {
-                      mpz_mul(&y1, &a1, &M[j][step]);
-                      mpz_mul(&merk, &a2, &M[j][i]);
+                     mpz_mul(&merk, &trf[j][step], &f);
+                     mpz_sub(&trf[j][i], &trf[j][i], &merk);
+                   }
+                }*/
+
+              }
+              else
+              {
+                 mpz_gcdext(&g, &a1, &a2, &M[step][step], &M[step][i]);
+                 mpz_div(&x1, &M[step][i], &g);
+                 mpz_div(&x2, &M[step][step], &g);
+                 mpz_neg(&x2, &x2);
+
+                 for(j=step+1; j<rang;j++)
+                 {
+                    mpz_mul(&y1, &a1, &M[j][step]);
+                    mpz_mul(&merk, &a2, &M[j][i]);
+                    mpz_add(&y1, &y1, &merk);
+
+                    mpz_mul(&y2, &x1, &M[j][step]);
+                    mpz_mul(&merk, &x2, &M[j][i]);
+                    mpz_add(&y2, &y2, &merk);
+
+                    mpz_set(&M[j][step], &y1);
+                    mpz_set(&M[j][i], &y2);
+                 }
+                 mpz_set(&M[step][step], &g);
+                 mpz_set_si(&M[step][i], 0);
+
+                 /* commented the next 16 lines out: tilman 5/12/96
+                 if(t_option == TRUE)
+                 {
+                   for(j=0; j<rows;j++)
+                   {
+                      mpz_mul(&y1, &a1, &trf[j][step]);
+                      mpz_mul(&merk, &a2, &trf[j][i]);
                       mpz_add(&y1, &y1, &merk);
 
-                      mpz_mul(&y2, &x1, &M[j][step]);
-                      mpz_mul(&merk, &x2, &M[j][i]);
+                      mpz_mul(&y2, &x1, &trf[j][step]);
+                      mpz_mul(&merk, &x2, &trf[j][i]);
                       mpz_add(&y2, &y2, &merk);
 
-                      mpz_set(&M[j][step], &y1);
-                      mpz_set(&M[j][i], &y2);
+                      mpz_set(&trf[j][step], &y1);
+                      mpz_set(&trf[j][i], &y2);
                    }
+                 }*/
 
-                   /* inserted the next 16 lines: oliver 2/3/99 */
-                   if(r_t_option == TRUE)
-                   {
-                     for(j=0; j<cols; j++)
-                     {
-                        mpz_mul(&y1, &a1, &rtrf[j][step]);
-                        mpz_mul(&merk, &a2, &rtrf[j][i]);
-                        mpz_add(&y1, &y1, &merk);
-
-                        mpz_mul(&y2, &x1, &rtrf[j][step]);
-                        mpz_mul(&merk, &x2, &rtrf[j][i]);
-                        mpz_add(&y2, &y2, &merk);
-
-                        mpz_set(&rtrf[j][step], &y1);
-                        mpz_set(&rtrf[j][i], &y2);
-                     }
-                   }
-
-                   mpz_set(&M[step][step], &g);
-                   mpz_set_si(&M[step][i], 0);
-                }
               }
             }
           }
-
          /*------------------------------------------------------*\
          | Clear the 'step'^th column of M
          \*------------------------------------------------------*/
-          for(i=step;i<rows && mpz_cmp_si(&M[i][step], 0) == 0; i++);
+          for(i=step;i<rang && mpz_cmp_si(&M[i][step], 0) == 0; i++);
           if(i!=step)
           {
             merkpointer = M[step];
@@ -380,22 +253,15 @@ matrix_TYP *left_trans, *Mat, *right_trans;
           {
             for(i=step;i<rows;i++)
               mpz_neg(&M[i][step], &M[i][step]);
-
-              /* inserted following 5 lines: 30/04/99 oliver */
-              if (r_t_option == TRUE)
-              {
-               for(i=0;i<cols;i++)
-                  mpz_neg(&rtrf[i][step], &rtrf[i][step]);
-              } 
           }
-          for(i=step+1;i<rows;i++)
+          for(i=step+1;i<rang;i++)
           {
             if(mpz_cmp_si(&M[i][step], 0) != 0)
             {
               if(mpz_cmp_si(&M[step][step], 1) == 0)
               {
                 mpz_set(&f, &M[i][step]);
-                for(j=step+1;j<cols;j++)
+                for(j=step+1;j<rang;j++)
                 {
                   mpz_mul(&merk, &M[step][j], &f);
                   mpz_sub(&M[i][j], &M[i][j], &merk);
@@ -417,20 +283,13 @@ matrix_TYP *left_trans, *Mat, *right_trans;
                  /* changed on 8/1/97 tilman from
                  mpz_gcdext(&g, &a1, &a2, &M[step][step], &M[i][step]);
                  to : */
-                 mpz_abs( &g,&M[i][step]);
-                 if (mpz_cmp(&M[step][step],&g) == 0){
-                    mpz_set_si(&a1,1);
-                    mpz_set_si(&a2,0);
-                 }
-                 else{
-                    mpz_gcdext(&g, &a1, &a2, &M[step][step], &M[i][step]);
-                 }
+                 mpz_gcdext(&g, &a1, &a2, &M[step][step], &M[step][i]);
 
                  mpz_div(&x1, &M[i][step], &g);
                  mpz_div(&x2, &M[step][step], &g);
                  mpz_neg(&x2, &x2);
 
-                 for(j=step+1; j<cols;j++)
+                 for(j=step+1; j<rang;j++)
                  {
                     mpz_mul(&y1, &a1, &M[step][j]);
                     mpz_mul(&merk, &a2, &M[i][j]);
@@ -482,18 +341,8 @@ matrix_TYP *left_trans, *Mat, *right_trans;
          }
       }while(stepclear == FALSE);
       if(mpz_cmp_si(&M[step][step], 0) < 0)
-         {
          mpz_neg(&M[step][step], &M[step][step]);
-
-         /* inserted next 6 lines: oliver 2/5/99 */
-         if (r_t_option == TRUE)
-           {
-           for(i=0;i<cols;i++)
-              mpz_neg(&rtrf[i][step], &rtrf[i][step]);
-           }
-         }
    }
-
    /*******************************************************************\
    | Now M is diagonal.
    | Now one has transform M such that M[i][i] divides M[i+1][i+1]
@@ -521,77 +370,35 @@ matrix_TYP *left_trans, *Mat, *right_trans;
            trf[step] = trf[j];
            trf[j] = merkpointer;
         }
-
-        /* inserted following 6 lines: oliver 30/4/1999 */
-        if(r_t_option != 0)
-        {
-           for(m=0;m<cols;m++)
-           {
-             mpz_set(&merk, &rtrf[m][step]);
-             mpz_set(&rtrf[m][step], &rtrf[m][j]);
-             mpz_set(&rtrf[m][j], &merk);
-           }                
-        }
       }
       for(i=step+1;i<rang;i++)
       {
          mpz_mod(&merk, &M[i][i], &M[step][step]);
-
-         /*changed the following if else: 2/3/1999 oliver */
          if(mpz_cmp_si(&merk, 0) != 0)
          {
-           if(t_option == TRUE || r_t_option == TRUE)
+           if(t_option == TRUE)
            {
-             mpz_gcdext(&g, &a1, &a2, &M[step][step], &M[i][i]);
-             if(t_option == TRUE)
-             {
-               for(j=0;j<rows;j++)
-                  mpz_add(&trf[step][j], &trf[step][j], &trf[i][j]);
+            mpz_gcdext(&g, &a1, &a2, &M[step][step], &M[i][i]);
+            for(j=0;j<rows;j++)
+               mpz_add(&trf[step][j], &trf[step][j], &trf[i][j]);
 
-               mpz_div(&f, &M[i][i], &g);
-               mpz_mul(&f, &f, &a2);
-               for(j=0;j<rows;j++)
-               {
-                  mpz_mul(&merk, &f, &trf[step][j]);
-                  mpz_sub(&trf[i][j], &trf[i][j], &merk);
-               }
- 
-             }
-             if(r_t_option == TRUE)
-             {
-               if((help = (MP_INT *)malloc(cols *sizeof(MP_INT))) == NULL)
-                 {
-                 printf("malloc of 'help' in 'long_elt_mat' failed\n");
-                 exit(2);
-                 }
-               for(j=0;j<cols;j++)
-               {
-                  mpz_init_set(&help[j], &rtrf[j][step]);
-                  mpz_mul(&rtrf[j][step],&rtrf[j][step],&a1);
-                  mpz_mul(&merk, &rtrf[j][i], &a2);
-                  mpz_add(&rtrf[j][step], &rtrf[j][step], &merk);
-               }
-               mpz_div(&o, &M[step][step], &g );
-               mpz_div(&f, &M[i][i], &g);
-               for(j=0;j<cols;j++)
-               {
-                  mpz_mul(&merk, &f, &help[j]);
-                  mpz_clear(&help[j]);
-                  mpz_mul(&rtrf[j][i], &rtrf[j][i], &o); 
-                  mpz_sub(&rtrf[j][i], &rtrf[j][i], &merk);
-               }
-               free(help);
-             }
-             mpz_div(&merk, &M[i][i], &g);
-             mpz_mul(&M[i][i], &merk, &M[step][step]);
-            
-             /* changed 28/2/97 tilman from
-             mpz_div(&M[step][step], &M[step][step], &g);
-             to: */
-             mpz_set(&M[step][step],&g);
-           }           
-          else
-          {
+            mpz_div(&f, &M[i][i], &g);
+            mpz_mul(&f, &f, &a2);
+            for(j=0;j<rows;j++)
+            {
+               mpz_mul(&merk, &f, &trf[step][j]);
+               mpz_sub(&trf[i][j], &trf[i][j], &merk);
+            }
+            mpz_div(&merk, &M[i][i], &g);
+            mpz_mul(&M[i][i], &merk, &M[step][step]);
+
+            /* changed 28/2/97 tilman from
+            mpz_div(&M[step][step], &M[step][step], &g);
+            to: */
+            mpz_set(&M[step][step],&g);
+           }
+           else
+           {
              mpz_gcd(&g, &M[step][step], &M[i][i]);
              mpz_div(&merk, &M[i][i], &g);
              mpz_mul(&M[i][i], &merk, &M[step][step]);
@@ -604,11 +411,7 @@ matrix_TYP *left_trans, *Mat, *right_trans;
          }
       }
    }
-
-   if (0) dump_MP_mat(NULL,0,0,NULL);
-
    erg = MP_mat_to_matrix(M, rows, cols);
-
    if(t_option == TRUE)
    {
      for(i=0;i<rows;i++)
@@ -622,25 +425,6 @@ matrix_TYP *left_trans, *Mat, *right_trans;
          left_trans->array.SZ[i][j] = mpz_get_si(&trf[i][j]);
        }
    }
-   /* inserted following "if": oliver 2/3/1999 */
-   if(r_t_option == TRUE)
-   {
-     for(i=0;i<cols;i++)
-     {
-       for(j=0;j<cols;j++)
-       {
-         if(abs(rtrf[i][j]._mp_size) > 1)
-         {
-           printf("Error: Integer overflow in 'long_mat_elt'\n");
-           exit(3);
-         }
-         right_trans->array.SZ[i][j] = mpz_get_si(&rtrf[i][j]);
-         mpz_clear(&rtrf[i][j]);
-       }
-     free(rtrf[i]);
-     }
-   }      
-
    for(i=0;i<rows;i++)
    {
       if(t_option == TRUE)
@@ -656,25 +440,12 @@ matrix_TYP *left_trans, *Mat, *right_trans;
    free(M);
    if(t_option == TRUE)
      free(trf);
-   if(r_t_option == TRUE)
-     free(rtrf);
    merkpointer = NULL;
    mpz_clear(&a1), mpz_clear(&a2);
    mpz_clear(&x1), mpz_clear(&x2);
    mpz_clear(&y1), mpz_clear(&y2);
-   mpz_clear(&f), mpz_clear(&g); mpz_clear(&o);
-   mpz_clear(&merk); mpz_clear(&pos1); mpz_clear(&pos2);
+   mpz_clear(&f), mpz_clear(&g);
+   mpz_clear(&merk);
    Check_mat(erg);
-   if(t_option == TRUE)
-     Check_mat(left_trans);
-   if(r_t_option == TRUE)
-     Check_mat(right_trans);
-
-   /*inserted next 2 lines: oliver 16/3/99 */
-   erg->kgv = Mat->kgv;
-   Check_mat(erg);
-
-
    return(erg);
 }
-

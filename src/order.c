@@ -34,9 +34,9 @@ main(int argc,char **argv){
      printf("Calculates the order of G via an Algorithm by Schreier and Sims.\n");
      printf("Options:\n");
      printf("\n");
-     printf("-O   : writes the group to stdout again, including the order and\n");
+     printf("-o   : writes the group to stdout again, including the order and\n");
      printf("       a factorisation of it.\n");
-     printf("-o   : write a factorisation and the order to stdout. This can\n");
+     printf("-O   : write a factorisation and the order to stdout. This can\n");
      printf("       be used to append it to a bravais_TYP.\n");
      printf("\n");
      printf("WARNING: THE PROGRAM WILL TERMINATE IFF THE GROUP IS FINITE.\n");
@@ -74,10 +74,10 @@ main(int argc,char **argv){
      }
   }
 
-  if (is_option('o')){
+  if (is_option('O')){
      fput_order(stdout,G->divisors,G->order);
   }
-  if (is_option('O')){
+  if (is_option('o')){
      put_bravais(G,NULL,NULL);
   }
   fprintf(stderr,"The order of the group is %d\n",G->order);

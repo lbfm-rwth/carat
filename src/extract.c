@@ -51,23 +51,20 @@ main(int argc,char **argv){
       (FILEANZ < 1) ||
       ((FILEANZ < 2) && (is_option('r')))))){
      if (type){
-        printf("Usage: %s 'file1' 'file2' [-t]\n",argv[0]);
-        printf("\n");
-        printf("file1: bravais_TYP containing a space group G.\n");
-        printf("file2: matrix_TYP contatining a presentation of the point\n");
-        printf("       group of G.\n");
-        printf("\n");
-        printf("Transforms the space group with generators in  file1 into standard\n");
-        printf("form, ie. the translation lattice is transformed to Z^n.\n");
-        printf("In case the translation subgroup has dimension smaller than n, i.\n");
-        printf("e. the group is not an n-dimensional space group, the program\n");
-        printf("will indicate an error, gives the rank, and exit.\n");
-        printf("\n");
-        printf("Options:\n");
-        printf("-t    : The transforming matrix will be given as well.\n");
-        printf("\n");
-        printf("Cf. Extensions, Vector_systems\n");
-        printf("Note: This program is a synonym for Extract -t.\n");
+     printf("Usage: %s 'file1' 'file2' [-t]\n",argv[0]);
+     printf("\n");
+     printf("file1: bravais_TYP containing a space group G.\n");
+     printf("file2: matrix_TYP contatining a presentation of the point\n");
+     printf("       group of G.\n");
+     printf("\n");
+     printf("Transforms the space group with generators in  file1 into standard\n");
+     printf("form, ie. the translation lattice is transformed to Z^n.\n");
+     printf("\n");
+     printf("Options:\n");
+     printf("-t    : The transforming matrix will be given as well.\n");
+     printf("\n");
+     printf("Cf. Extensions, Vector_systems\n");
+     printf("Note: This program is a synonym for Extract -t.\n");
      }
      else{
      printf("Usage: %s 'file1' ['file2'] [-c] [-p] [-f] [-r] [-t=n]\n",argv[0]);
@@ -93,7 +90,6 @@ main(int argc,char **argv){
      printf("        presentation for the point group.  If the translation lattice \n");
      printf("        is of smaller rank, it will give the rank. Synonymous command:\n");
      printf("        Standard_affine_form\n");
-     printf("-T     : RESERVED\n");
      printf("\n");
      printf("Cf. Extensions, Vector_systems\n");
      }
@@ -124,13 +120,6 @@ main(int argc,char **argv){
      }
      X = XX[0];
      free(XX);
-
-     if (is_option('T')){
-        real_mat(X,X->rows+G->dim-1,X->cols);
-        for (i=0;i<G->dim-1;i++){
-           X->array.SZ[X->rows-G->dim+1+i][0] = G->gen_no - i ;
-        }
-     }
 
      /* set the transformation matrix */
      T = translation_lattice(G->gen,G->gen_no,X);
@@ -180,7 +169,6 @@ main(int argc,char **argv){
         X = get_mat(FILENAMES[1]);
         rat2kgv(X);
         Check_mat(X);
-        convert_cocycle_to_column(&X,1,G->dim,G->gen_no);
 
         /* is it a valid cozycle? */ 
         if ((G->dim * G->gen_no != X->rows) || (X->cols != 1)){
@@ -250,7 +238,7 @@ main(int argc,char **argv){
 
         Check_mat(X);
         sprintf(comment,"cozycle to the group of %s",FILENAMES[0]);
-        put_cocycle(X,G->dim-1,G->gen_no,NULL,comment);
+        put_mat(X,NULL,comment,2);
      }
   }
 

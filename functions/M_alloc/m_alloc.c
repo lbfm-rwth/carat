@@ -15,7 +15,6 @@ int *STAT_LIST_SIZE = NULL;
 int *STAT_LIST_USED = NULL;
 STAT_LIST_TYPE **STAT_MALLOC_LIST = NULL;
 
-#define M_ALLOC_MAGIC -4711
 
 	/*============================================================*\
 	||                                                            ||
@@ -194,9 +193,9 @@ if( (p = (int*)malloc(4*newsize+32)) == NULL) {
 	}
 if(SFLAG) pointer_statistics(p, 1);
 p[3] = newsize;
-p[1] = p[2] = p[0] = M_ALLOC_MAGIC;
+p[1] = p[2] = p[0] = -1;
 p += 4;
-p[newsize] = p[newsize+1] = p[newsize+2] = p[newsize+3] = M_ALLOC_MAGIC;
+p[newsize] = p[newsize+1] = p[newsize+2] = p[newsize+3] = -1;
 if(p == (int *)SMEMORY) {
 	SHELP++;
 	}
@@ -216,9 +215,9 @@ if( (p = (int*)malloc(4*newsize+32)) == NULL) {
 	}
 if(SFLAG) pointer_statistics(p, 1);
 p[3] = newsize;
-p[1] = p[2] = p[0] = M_ALLOC_MAGIC;
+p[1] = p[2] = p[0] = -1;
 p += 4;
-p[newsize] = p[newsize+1] = p[newsize+2] = p[newsize+3] = M_ALLOC_MAGIC;
+p[newsize] = p[newsize+1] = p[newsize+2] = p[newsize+3] = -1;
 while((--newsize) >= 0) {
 	p[newsize] = 0;
 	}
@@ -234,17 +233,14 @@ int *re_alloc_d1(int *old_p, int size_t)
 int *p;
 int oldsize, sizestore;
 
-if(old_p == NULL)
-  return(m_alloc_d1(size_t));
- 
 old_p -= 4;
-if((old_p[1]!=M_ALLOC_MAGIC)||(old_p[2]!=M_ALLOC_MAGIC)||(old_p[0]!=M_ALLOC_MAGIC)) {
+if((old_p[1]!=-1)||(old_p[2]!=-1)||(old_p[0]!=-1)) {
 	fprintf(stderr,"Error in re_alloc-control sequence\n");
 	exit(2);
 	}
 oldsize = old_p[3]+4;
-if((old_p[oldsize  ] != M_ALLOC_MAGIC) || (old_p[oldsize+1] != M_ALLOC_MAGIC) ||
-   (old_p[oldsize+2] != M_ALLOC_MAGIC) || (old_p[oldsize+3] != M_ALLOC_MAGIC)) {
+if((old_p[oldsize  ] != -1) || (old_p[oldsize+1] != -1) ||
+   (old_p[oldsize+2] != -1) || (old_p[oldsize+3] != -1)) {
 	fprintf(stderr,"Error in re_alloc-control sequence\n");
 	exit(2);
 	}
@@ -258,7 +254,7 @@ if( (p = (int*)realloc(old_p, sizestore*4 +32)) == NULL) {
 	}
 if(SFLAG) pointer_statistics(p,1);
 p[3] = sizestore;
-p[1] = p[2] = p[0] = M_ALLOC_MAGIC;
+p[1] = p[2] = p[0] = -1;
 p += 4;
 if(p == (int *)SMEMORY) {
 	SHELP++;
@@ -266,7 +262,7 @@ if(p == (int *)SMEMORY) {
 if(sizestore > oldsize) {
 	memset(p + oldsize, 0, (sizestore-oldsize) * sizeof(int));
 	}
-p[sizestore] = p[sizestore+1] = p[sizestore+2] = p[sizestore+3] = M_ALLOC_MAGIC;
+p[sizestore] = p[sizestore+1] = p[sizestore+2] = p[sizestore+3] = -1;
 return(p);
 }
 
@@ -280,12 +276,12 @@ if(p == (int *)SMEMORY) {
 	}
 p -= 4;
 oldsize = p[3] + 4;
-if((p[1] != M_ALLOC_MAGIC) || (p[2] != M_ALLOC_MAGIC) || (p[0] != M_ALLOC_MAGIC)) {
+if((p[1] != -1) || (p[2] != -1) || (p[0] != -1)) {
 	fprintf(stderr,"Error in fr_ee-control sequence\n");
 	exit(2);
 	}
-if( (p[oldsize  ] != M_ALLOC_MAGIC) || (p[oldsize+1] != M_ALLOC_MAGIC) || 
-	(p[oldsize+2] != M_ALLOC_MAGIC) || (p[oldsize+3] != M_ALLOC_MAGIC)) {
+if( (p[oldsize  ] != -1) || (p[oldsize+1] != -1) || 
+	(p[oldsize+2] != -1) || (p[oldsize+3] != -1)) {
 	fprintf(stderr,"Error in fr_ee-control sequence\n");
 	exit(2);
 	}
@@ -332,12 +328,12 @@ if(PCOUNT == PERIOD) {
 		if(MALLOC_LIST[i] != NULL) {
 			p = MALLOC_LIST[i] - 4;
 			oldsize = p[3] + 4;
-			if((p[1] != M_ALLOC_MAGIC) || (p[2] != M_ALLOC_MAGIC) || (p[0] != M_ALLOC_MAGIC)) {
+			if((p[1] != -1) || (p[2] != -1) || (p[0] != -1)) {
 				fprintf(stderr,"Error in alloc-control sequence\n");
 				exit(2);
 				}
-			if( (p[oldsize  ] != M_ALLOC_MAGIC) || (p[oldsize+1] != M_ALLOC_MAGIC) || 
-				(p[oldsize+2] != M_ALLOC_MAGIC) || (p[oldsize+3] != M_ALLOC_MAGIC)) {
+			if( (p[oldsize  ] != -1) || (p[oldsize+1] != -1) || 
+				(p[oldsize+2] != -1) || (p[oldsize+3] != -1)) {
 				fprintf(stderr,"Error in alloc-control sequence\n");
 				exit(2);
 				}
@@ -363,13 +359,13 @@ MALLOC_LIST[i] = NULL;
 LIST_USED--;
 PCOUNT ++;
 p -= 4;
-if((p[1]!=M_ALLOC_MAGIC)||(p[2]!=M_ALLOC_MAGIC)||(p[0]!=M_ALLOC_MAGIC)) {
+if((p[1]!=-1)||(p[2]!=-1)||(p[0]!=-1)) {
 	fprintf(stderr,"Error in alloc-control sequence\n");
 	exit(2);
 	}
 oldsize = p[3]+4;
-if((p[oldsize  ] != M_ALLOC_MAGIC) || (p[oldsize+1] != M_ALLOC_MAGIC) ||
-   (p[oldsize+2] != M_ALLOC_MAGIC) || (p[oldsize+3] != M_ALLOC_MAGIC)) {
+if((p[oldsize  ] != -1) || (p[oldsize+1] != -1) ||
+   (p[oldsize+2] != -1) || (p[oldsize+3] != -1)) {
 	fprintf(stderr,"Error in re_alloc-control sequence\n");
 	exit(2);
 	}
@@ -379,12 +375,12 @@ if(PCOUNT == PERIOD) {
 		if(MALLOC_LIST[i] != NULL) {
 			p = MALLOC_LIST[i] - 4;
 			oldsize = p[3] + 4;
-			if((p[1] != M_ALLOC_MAGIC) || (p[2] != M_ALLOC_MAGIC) || (p[0] != M_ALLOC_MAGIC)) {
+			if((p[1] != -1) || (p[2] != -1) || (p[0] != -1)) {
 				fprintf(stderr,"Error in alloc-control sequence\n");
 				exit(2);
 				}
-			if( (p[oldsize  ] != M_ALLOC_MAGIC) || (p[oldsize+1] != M_ALLOC_MAGIC) || 
-				(p[oldsize+2] != M_ALLOC_MAGIC) || (p[oldsize+3] != M_ALLOC_MAGIC)) {
+			if( (p[oldsize  ] != -1) || (p[oldsize+1] != -1) || 
+				(p[oldsize+2] != -1) || (p[oldsize+3] != -1)) {
 				fprintf(stderr,"Error in alloc-control sequence\n");
 				exit(2);
 				}
@@ -407,9 +403,9 @@ if( (p = (int*)malloc(4*newsize+32)) == NULL) {
 	}
 if(SFLAG) pointer_statistics(p, 1);
 p[3] = newsize;
-p[1] = p[2] = p[0] = M_ALLOC_MAGIC;
+p[1] = p[2] = p[0] = -1;
 p += 4;
-p[newsize] = p[newsize+1] = p[newsize+2] = p[newsize+3] = M_ALLOC_MAGIC;
+p[newsize] = p[newsize+1] = p[newsize+2] = p[newsize+3] = -1;
 if(p == (int *)SMEMORY) {
 	SHELP++;
 	}
@@ -437,9 +433,6 @@ int *re_alloc_d2(int *old_p, int size_t)
 int *p;
 int sizestore;
 
-if(old_p == NULL)
-  return(m_alloc_d2(size_t));
-
 delete_pointer(old_p);
 
 old_p -= 4;
@@ -452,9 +445,9 @@ if( (p = (int*)realloc(old_p, sizestore*4 +32)) == NULL) {
 	}
 if(SFLAG) pointer_statistics(p, 1);
 p[3] = sizestore;
-p[1] = p[2] = p[0] = M_ALLOC_MAGIC;
+p[1] = p[2] = p[0] = -1;
 p += 4;
-p[sizestore] = p[sizestore+1] = p[sizestore+2] = p[sizestore+3] = M_ALLOC_MAGIC;
+p[sizestore] = p[sizestore+1] = p[sizestore+2] = p[sizestore+3] = -1;
 if(p == (int *)SMEMORY) {
 	SHELP++;
 	}

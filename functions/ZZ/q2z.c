@@ -7,7 +7,6 @@
 #include "base.h"
 #include "idem.h"
 #include "longtools.h"
-#include "reduction.h"
 
 int IDEM_NO;
 extern int INFO_LEVEL;
@@ -105,7 +104,6 @@ static bravais_TYP **almost(bravais_TYP *H)
       else{
          tmp = mat_inv(H->zentr[i]);
          RES[i] = konj_bravais(H,tmp);
-         free_mat(tmp);
       }
       for (j=0;j<H->form_no;j++){
          RES[i]->form[j]->kgv = 1;
@@ -127,167 +125,73 @@ static bravais_TYP **almost(bravais_TYP *H)
    return RES;
 }
 
-
-
-/* this function was for test purposes only
-static matrix_TYP *better_base2(matrix_TYP *B,
-                                int number,
-                                matrix_TYP **SP)
+static bravais_TYP **get_groups(bravais_TYP **ADGROUPS,int ad_no,int *number)
 {
-
    int i,
        j,
        k,
-       offset = 0;
+       normal_no,
+       centr_no;
 
-   matrix_TYP *NEW,
-              *C;
+   bravais_TYP **GROUPS,
+                *G1,
+                *G2;
 
-   put_mat(B,NULL,"B",0);
-   NEW = init_mat(B->rows,B->cols,"i");
+   matrix_TYP  *tmp,
+              **centerings,
+              **normal;
 
-   for (i=0;i<number;i++){
-      C = init_mat(SP[i]->rows,B->rows,"i");
-      for (j=0;j<SP[i]->rows;j++){
-         for (k=0;k<B->rows;k++){
-            C->array.SZ[j][k] = B->array.SZ[k][j+offset];
+   G1 = init_bravais(ADGROUPS[0]->dim);
+
+   /* look for all the centerings and so on */
+   number[0] = 0;
+   for (i=0;i<ad_no;i++){
+     number[0] += ADGROUPS[i]->zentr_no;
+   }
+   GROUPS = (bravais_TYP **) malloc(number[0] * sizeof(bravais_TYP *));
+
+   k=0;
+   for (i=0;i<ad_no;i++){
+      centerings = ADGROUPS[i]->zentr;
+      centr_no = ADGROUPS[i]->zentr_no;
+      ADGROUPS[i]->zentr = NULL;
+      ADGROUPS[i]->zentr_no = 0;
+      normal = ADGROUPS[i]->normal;
+      ADGROUPS[i]->normal = NULL;
+      normal_no = ADGROUPS[i]->normal_no;
+      ADGROUPS[i]->normal_no = 0;
+      G1->gen = normal;
+      G1->gen_no = normal_no;
+      for (j=0;j<centr_no;j++){
+         tmp = mat_inv(centerings[j]);
+         if (j==0){
+            GROUPS[k] = konj_bravais(ADGROUPS[i],tmp);
+            GROUPS[k]->normal = normal;
+            GROUPS[k]->normal_no = normal_no;
          }
-      }
-
-      long_row_basis(C,TRUE);
-
-      for (j=0;j<SP[i]->rows;j++){
-         for (k=0;k<B->rows;k++){
-            NEW->array.SZ[k][j+offset] = C->array.SZ[j][k];
+         else{
+            G2 = gittstab(G1,centerings[j]);
+            ADGROUPS[i]->normal = G2->gen;
+            ADGROUPS[i]->normal_no = G2->gen_no;
+            GROUPS[k] = konj_bravais(ADGROUPS[i],tmp);
+            long_rein_formspace(GROUPS[k]->form,GROUPS[k]->form_no,1);
+            ADGROUPS[i]->normal = NULL;
+            ADGROUPS[i]->normal_no = 0;
+            free(G2);
          }
+         free_mat(tmp);
+         free_mat(centerings[j]);
+         k++;
       }
-      free_mat(C);
-
-      offset += SP[i]->rows;
+      free(centerings);
    }
 
-   free_mat(B);
+   free(G1);
 
-   return NEW;
-}  */
-
-static matrix_TYP *better_base(matrix_TYP *B,
-                               matrix_TYP *F,
-                               int number,
-                               matrix_TYP **SP)
-{
-
-   int i,
-       j,
-       k,
-       offset = 0;
-
-
-   matrix_TYP *NEW,
-              *TR,
-              *C,
-              *D;
-
-   /* put_mat(B,NULL,"B",0); */
-
-   TR = init_mat(B->cols,B->cols,"i");
-   for (i=0;i<number;i++){
-      C = init_mat(SP[i]->rows,B->rows,"i");
-      for (j=0;j<B->rows;j++){
-         for (k=0;k<SP[i]->rows;k++){
-            C->array.SZ[k][j] = B->array.SZ[j][k+offset];
-         }
-      }
-
-      /* calculate the form on this subspace */
-      NEW = scal_pr(C,F,TRUE);
-      free_mat(C);
-
-      /* reduce the form */
-      C = init_mat(NEW->rows,NEW->rows,"i1");
-      D = pair_red(NEW,C);
-      free_mat(D);
-
-      /* store the transformation */
-      for (j=0;j<C->rows;j++){
-         for (k=0;k<C->cols;k++){
-            TR->array.SZ[offset+k][offset+j] = C->array.SZ[j][k];
-         }
-      }
-
-      free_mat(C);
-      free_mat(NEW);
-      offset += SP[i]->rows;
-   }
-
-   /* put_mat(TR,0,"TR",0); */
-   NEW = mat_mul(B,TR);
-   free_mat(B);
-   free_mat(TR);
-
-   return NEW;
+   return GROUPS;
 }
 
-
-static void get_better_base(bravais_TYP *H,
-                            matrix_TYP *F,
-                            int number,
-                            matrix_TYP **SPACES)
-{
-
-   int i;
-
-   matrix_TYP *id = NULL;
-
-   if (F == NULL){
-      id = init_mat(H->dim,H->dim,"i1");
-      F = rform(H->gen,H->gen_no,id,101);
-   }
-
-   for (i=1;i<H->zentr_no;i++){
-      H->zentr[i] = better_base(H->zentr[i],F,number,SPACES);
-   }
-
-   if (id){
-      free_mat(F);
-      free_mat(id);
-   }
-
-   return;
-
-}
-
-static matrix_TYP *good_initial_basis(matrix_TYP *B,
-                                      matrix_TYP *F)
-{
-
-   int i;
-
-   matrix_TYP *NEW,
-              *C,
-              *D;
-
-   NEW = scal_pr(B,F,TRUE);
-
-   /* reduce */
-   C = init_mat(NEW->rows,NEW->rows,"i1");
-   D = pair_red(NEW,C);
-
-   free_mat(D);
-   free_mat(NEW);
-
-   NEW = mat_mul(C,B);
-
-   free_mat(C);
-   free_mat(B);
-
-   return NEW;
-}
-
-bravais_TYP **q2z(bravais_TYP *G,
-                  int *number,
-                  int ADFLAG,
-                  int quiet)
+bravais_TYP **q2z(bravais_TYP *G,int *number,int ADFLAG)
 {
    bravais_TYP **GROUPS,
                **ADGROUPS,
@@ -312,26 +216,6 @@ bravais_TYP **q2z(bravais_TYP *G,
        dimc,
        dimcc;
 
-   /* handle the case of the groups G=<I> and G=<-I> differently,
-      because the first one couldn't be handled by this anyway,
-      and the second one is is but computationaly hard in dim 5 & 6 */
-   k = TRUE;
-   for (i=0;i<G->gen_no && k;i++){
-      Check_mat(G->gen[i]);
-      k = k && G->gen[i]->flags.Scalar;
-   }
-   if (k){
-      GROUPS = (bravais_TYP **) malloc(1 * sizeof(bravais_TYP *));
-      GROUPS[0] = copy_bravais(G);
-      *number = 1;
-      if (ADFLAG){
-          GROUPS[0]->zentr = (matrix_TYP **) malloc(1 * sizeof(matrix_TYP));
-          GROUPS[0]->zentr[0] = init_mat(G->dim,G->dim,"1");
-          GROUPS[0]->zentr_no = 1;
-      }
-      return GROUPS;
-   }
-
    /* avoid silly mistakes */
    if (G->form == NULL ||
       G->form_no == 0 ||
@@ -353,8 +237,7 @@ bravais_TYP **q2z(bravais_TYP *G,
    for (i=0;i<IDEM_NO;i++){
       G->gen[i+G->gen_no] = IDEM[i];
       tmp = tr_pose(IDEM[i]);
-      IDEM_SPACES[i] = long_rein_mat(tmp);
-      IDEM_SPACES[i] = good_initial_basis(IDEM_SPACES[i],F);
+      IDEM_SPACES[i] =  long_rein_mat(tmp);
       free_mat(tmp);
    }
    G->gen_no += IDEM_NO;
@@ -380,10 +263,7 @@ bravais_TYP **q2z(bravais_TYP *G,
    free_mat(tmp);
 
    /* make the ZZ options for the first call of ZZ */
-   if (quiet)
-      sprintf(zzoptions,"qtugZ");
-   else
-      sprintf(zzoptions,"tugZ");
+   sprintf(zzoptions,"tugZ");
 
    if (INFO_LEVEL & 4){
       put_mat(new_base,NULL,"new_base",2);
@@ -400,22 +280,16 @@ bravais_TYP **q2z(bravais_TYP *G,
       put_bravais(H,NULL,"H");
    }
 
-   /* apply a base reduction algorithm to the found new basises */
-   get_better_base(H,F,IDEM_NO,IDEM_SPACES);
-
    /* get all almost decomposable groups */
    ad_no = H->zentr_no;
    ADGROUPS = almost(H);
 
    if (INFO_LEVEL & 4){
-      fprintf(stderr,"=== Number of almost decomposable groups %d\n",ad_no);
    }
+      fprintf(stderr,"=== Number of almost decomposable groups %d\n",ad_no);
 
    /* make the ZZ options for the second call of ZZ */
-   if (quiet)
-      sprintf(zzoptions,"tuqzgp%d",IDEM_NO);
-   else
-      sprintf(zzoptions,"tuzgp%d",IDEM_NO);
+   sprintf(zzoptions,"tuzgp%d",IDEM_NO);
    for (i=0;i<IDEM_NO;i++){
       sprintf(string,"%s/%d",zzoptions,IDEM_SPACES[i]->rows);
       sprintf(zzoptions,"%s",string);
@@ -427,9 +301,6 @@ bravais_TYP **q2z(bravais_TYP *G,
    IDEM_NO = 0;
    for (i=0;i<ad_no;i++){
       ZZ(ADGROUPS[i],F,NULL,zzoptions,NULL);
-      /* apply a base reduction algorithm to the found new basises */
-      get_better_base(ADGROUPS[i],NULL,1,ADGROUPS[i]->gen);
-
    }
 
    if (!ADFLAG){

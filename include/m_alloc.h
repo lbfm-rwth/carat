@@ -43,8 +43,6 @@ void *m_alloc_d2(int );
 void *c_alloc_d2(int , int );
 void *re_alloc_d2(void *, int );
 void fr_ee_d2(void *);
-
-void pointer_statistics(unsigned *,int);
 #else
 void *m_alloc_d1();
 void *c_alloc_d1();
@@ -55,8 +53,6 @@ void *m_alloc_d2();
 void *c_alloc_d2();
 void *re_alloc_d2();
 void fr_ee_d2();
-
-void pointer_statistics();
 #endif
 
 /*====================================================================*\

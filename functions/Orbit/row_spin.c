@@ -390,9 +390,9 @@ matrix_TYP *translation_lattice(matrix_TYP **G,int number,matrix_TYP *P)
               mat_muleq(X,G[P->array.SZ[i][j]-1]);
            }
            else if (P->array.SZ[i][j] < 0){
-              if (Ginv[-P->array.SZ[i][j]-1] == NULL)
-                 Ginv[-P->array.SZ[i][j]-1] = mat_inv(G[-P->array.SZ[i][j]-1]);
-              mat_muleq(X,Ginv[-P->array.SZ[i][j]-1]);
+              if (Ginv[-P->array.SZ[i][j]+1] == NULL)
+                 Ginv[-P->array.SZ[i][j]+1] = mat_inv(G[-P->array.SZ[i][j]+1]);
+              mat_muleq(X,Ginv[-P->array.SZ[i][j]+1]);
            }
            Check_mat(X);
         }

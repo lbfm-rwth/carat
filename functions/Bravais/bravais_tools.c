@@ -17,17 +17,15 @@
 @
 @------------------------------------------------------------------------------
 @
-@ bravais_TYP *bravais_group(bravais_TYP *H,int flag)
+@ bravais_TYP *bravais_group(bravais_TYP *H)
 @
 @ Calculates the bravais group of H. the result G of this function
 @ will have G->gen and G->form assigned.
 @ The program relies on H->form to be correct if it is given.
-@ If flag>0, then the function will pair reduce the first form.
-@ It is save to use this optiuon, but slower in well behaved examples.
 @------------------------------------------------------------------------------
 @
 ******************************************************************************/
-bravais_TYP *bravais_group(bravais_TYP *H,int flag)
+bravais_TYP *bravais_group(bravais_TYP *H)
 {
    int i,
        F_no;
@@ -41,10 +39,7 @@ bravais_TYP *bravais_group(bravais_TYP *H,int flag)
 
    ID = init_mat(H->dim,H->dim,"1");
    PF = rform(H->gen,H->gen_no,ID,101);
-
-   if (!flag){
-      SV = short_vectors(PF,max_diagonal_entry(PF),0,0,0,&i);
-   }
+   SV = short_vectors(PF,max_diagonal_entry(PF),0,0,0,&i);
 
    /* calculate the formspace if not given */
    if (H->form_no == 0){
@@ -57,13 +52,8 @@ bravais_TYP *bravais_group(bravais_TYP *H,int flag)
    for (i=0;i<F_no;i++) F[i+1] = copy_mat(H->form[i]);
    F[0] = PF;
 
-   if (!flag){
-      /* call autgrp to get the result */
-      G = autgrp(F,F_no+1,SV,NULL,0,NULL);
-   }
-   else{
-      G = pr_aut(F,F_no+1,NULL,0,NULL);
-   }
+   /* call autgrp to get the result */
+   G = autgrp(F,F_no+1,SV,NULL,0,NULL);
 
    /* copy the forms to G->form */
    G->form = (matrix_TYP **) malloc(F_no * sizeof(matrix_TYP *));
@@ -73,7 +63,7 @@ bravais_TYP *bravais_group(bravais_TYP *H,int flag)
    /* clean up */
    free(F);
    free_mat(PF);
-   if (!flag) free_mat(SV);
+   free_mat(SV);
    free_mat(ID);
 
    return G;   

@@ -46,18 +46,17 @@ main(int argc,char **argv){
      printf("\n");
      printf("file: bravais_TYP.\n");
      printf("\n");
-     printf("Identify the family symbol of a finite unimodular group\n");
-     printf("given in 'file'.\n");
+     printf("Identify the family symbol of a BRAVAIS GROUP\n");
+     printf("given in file.\n");
      printf("\n");
      printf("Options:\n");
      if (!type){
      printf(" -i    : Identify the group in file even more,\n");
      printf("         ie. give the position and representative of it's\n");
-     printf("         Bravais group in the catalog.\n");
+     printf("         BRAVAIS GROUP in the catalog.\n");
      }
-     printf(" -B    : Assume the group to be a Bravais group, ie. do not\n");
-     printf("         calculate the bravais group of it. Note, the order of\n");
-     printf("         the Bravais group must be correct.\n");
+     printf(" -B    : Assume the group to be a BRAVAIS GROUP, ie. do not\n");
+     printf("         calculate the bravais group of it.\n");
      if (!type){
      printf(" -t    : (Does only work in conjunction with -i) Give\n");
      printf("         the transformation matrix which conjugates\n");
@@ -110,15 +109,7 @@ main(int argc,char **argv){
 
   /* here it is important that G is really a bravais group */
   if (!is_option('B')){
-     anz = 0;
-     for (i=0;i<G->dim;i++)
-        if (anz < form->array.SZ[i][i]) anz = form->array.SZ[i][i];
-
-     if (anz > 10)
-        H = bravais_group(G,TRUE);
-     else
-        H = bravais_group(G,FALSE);
-
+     H = bravais_group(G);
      free_bravais(G);
      G = H;
      H = NULL;

@@ -339,7 +339,7 @@ char *symbol(bravais_TYP *G,matrix_TYP *F)
   /* calculate the bravais group for each homogenous module,
      and search it in the list */
   for (i=0;i<hom_no;i++){
-     brav = bravais_group(hom[i].group,FALSE);
+     brav = bravais_group(hom[i].group);
      symb[i] = identify_hom(brav,i==(hom_no-1));
      free_bravais(brav);
      len += strlen(symb[i]);

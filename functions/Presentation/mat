@@ -1,0 +1,813 @@
+calc_orders.c:/*-------------------------------------------------------------------------
+calc_orders.c:   also der Elemente in presentation->generators.
+calc_orders.c:       presentation - Praesentation (Ein/Ausgabe)
+calc_orders.c:       orders - Ordnungen der Generatoren (Ausgabe)
+calc_orders.c:       dim - Dimension des Raumes (Eingabe)
+calc_orders.c:--------------------------------------------------------------------------*/
+calc_orders.c:for (i=0; i<presentation->generators->firstfree;i++)
+calc_orders.c:    if (presentation->norelators>=(presentation->ext_factor*EXT_SIZE))
+calc_orders.c:       presentation->ext_factor++;
+calc_orders.c:       presentation->relators=(relator_TYP*) realloc (presentation->relators,
+calc_orders.c:          sizeof(relator_TYP)*presentation->ext_factor*EXT_SIZE);
+calc_orders.c:    k=presentation->norelators;
+calc_orders.c:    presentation->relators[k].lhsnproduct = 0;
+calc_orders.c:    presentation->relators[k].lhsproduct = (int*) malloc (sizeof(int));
+calc_orders.c:    presentation->relators[k].rhsnproduct = 0;
+calc_orders.c:       presentation->relators[k].lhsnproduct++;
+calc_orders.c:       presentation->relators[k].lhsproduct = (int*) realloc 
+calc_orders.c:            (presentation->relators[k].lhsproduct, sizeof(int)*
+calc_orders.c:               presentation->relators[k].lhsnproduct);
+calc_orders.c:       presentation->relators[k].lhsproduct[
+calc_orders.c:           presentation->relators[k].lhsnproduct-1]
+calc_orders.c:    orders[i] = presentation->relators[k].lhsnproduct;
+calc_orders.c:    presentation->norelators++;
+calc_orders.c:/*-------------------------------------------------------------------------
+calc_orders.c:    Praesentation und zwar des letzten in der Liste presentation->generators
+calc_orders.c:        presentation - Praesentation (Ein/Ausgabe)
+calc_orders.c:        orders - Ordnungen der Erzeuger (Ausgabe)
+calc_orders.c:        dim - Dimension des Raumes (Eingabe)
+calc_orders.c:-------------------------------------------------------------------------*/
+calc_orders.c:i=presentation->generators->firstfree-1;
+calc_orders.c:if (presentation->norelators>=(presentation->ext_factor*EXT_SIZE))
+calc_orders.c:   presentation->ext_factor++;
+calc_orders.c:   presentation->relators=(relator_TYP*) realloc (presentation->relators,
+calc_orders.c:      sizeof(relator_TYP)*presentation->ext_factor*EXT_SIZE);
+calc_orders.c:k=presentation->norelators;
+calc_orders.c:presentation->relators[k].lhsnproduct = 0;
+calc_orders.c:presentation->relators[k].lhsproduct = (int*) malloc (sizeof(int));
+calc_orders.c:presentation->relators[k].rhsnproduct = 0;
+calc_orders.c:   presentation->relators[k].lhsnproduct++;
+calc_orders.c:   presentation->relators[k].lhsproduct = (int*) realloc 
+calc_orders.c:        (presentation->relators[k].lhsproduct, sizeof(int)*
+calc_orders.c:           presentation->relators[k].lhsnproduct);
+calc_orders.c:   presentation->relators[k].lhsproduct[
+calc_orders.c:       presentation->relators[k].lhsnproduct-1]
+calc_orders.c:orders[i] = presentation->relators[k].lhsnproduct;
+calc_orders.c:presentation->norelators++;
+carat_out.c:/*-------------------------------------------------------------------------
+carat_out.c:   Prozedur zur Ausgabe einer Praesentation im CARAT-Format.
+carat_out.c:        presentation - Praesentation
+carat_out.c:        filename - Dateiname fuer die Ausgabe
+carat_out.c:---------------------------------------------------------------------------*/
+carat_out.c:for (i=0;i<presentation->norelators;i++)
+carat_out.c:    if (presentation->relators[i].lhsnproduct>max_cols)
+carat_out.c:	max_cols = presentation->relators[i].lhsnproduct;
+carat_out.c:erg = init_mat(presentation->norelators, max_cols,"k");
+carat_out.c:for (i=0;i<presentation->norelators;i++)
+carat_out.c:		erg->array.SZ[i][j] = 0;
+carat_out.c:for (i=0;i<presentation->norelators;i++)
+carat_out.c:	for (j=0;j<presentation->relators[i].lhsnproduct;j++)
+carat_out.c:		erg->array.SZ[i][j] = 1+presentation->relators[i].lhsproduct[j];
+cayley_out.c:/*--------------------------------------------------------------------------
+cayley_out.c:  Prozedur zur Ausgabe einer Praesentation im Cayley-Format.
+cayley_out.c:      presentation - Praesentation
+cayley_out.c:      filename - Name des outputfiles
+cayley_out.c:---------------------------------------------------------------------------*/
+cayley_out.c:for (i=1;i<presentation->generators->firstfree;i++)
+cayley_out.c:for (i=0;i<presentation->norelators;i++)
+cayley_out.c:    if (presentation->relators[i].lhsnproduct>0) 
+cayley_out.c:      fprintf(outfile,"%c",gens[presentation->relators[i].lhsproduct[0]]);
+cayley_out.c:    for (j=1;j<presentation->relators[i].lhsnproduct;j++)
+cayley_out.c:        fprintf(outfile,"*%c",gens[presentation->relators[i].lhsproduct[j]]);
+cayley_out.c:    if (presentation->relators[i].rhsnproduct>0)
+cayley_out.c:       fprintf(outfile,"%c",gens[presentation->relators[i].rhsproduct[0]]);
+cayley_out.c:    for (j=1;j<presentation->relators[i].rhsnproduct;j++)
+cayley_out.c:        fprintf(outfile,"*%c",gens[presentation->relators[i].rhsproduct[j]]);
+cayley_out.c:    if (i<presentation->norelators-1)
+derived_rc.c:/* Prototypenliste -------------------------------------------------------*/
+derived_rc.c:/*------------------------------------------------------------------------
+derived_rc.c:   abgespeichert werden. Dabei wird das 1-Element der Gruppe bereits
+derived_rc.c:-------------------------------------------------------------------------*/
+derived_rc.c:hilf->list=(derived_TYP **) malloc (sizeof(derived_TYP*)*EXT_SIZE);
+derived_rc.c:hilf->sizemult=1;
+derived_rc.c:hilf->list[0]=(derived_TYP*)malloc(sizeof(derived_TYP));
+derived_rc.c:hilf->list[0]->element=init_mat(dimension,dimension,"k");
+derived_rc.c:hilf->list[0]->right=NIL;
+derived_rc.c:hilf->list[0]->left=NIL;
+derived_rc.c:hilf->firstfree=1;
+derived_rc.c:         hilf->list[0]->element->array.SZ[i][i]=1;
+derived_rc.c:hilf->list[0]->product=(int*)malloc(sizeof(int));
+derived_rc.c:hilf->list[0]->product[0]=NIL;
+derived_rc.c:hilf->list[0]->nproduct=0;
+derived_rc.c:/* ------------------------------------------------------------------------
+derived_rc.c:---------------------------------------------------------------------------*/
+derived_rc.c:hilf->list=(derived_TYP **)malloc(sizeof(derived_TYP*)*EXT_SIZE);
+derived_rc.c:hilf->firstfree=0;
+derived_rc.c:hilf->sizemult=1;
+derived_rc.c:/*------------------------------------------------------------------------- 
+derived_rc.c:---------------------------------------------------------------------------*/
+derived_rc.c:hilf->element=copy_mat(oriderived->element);
+derived_rc.c:hilf->nproduct=oriderived->nproduct;
+derived_rc.c:hilf->product=(int*) malloc (hilf->nproduct*sizeof(int));
+derived_rc.c:hilf->left=oriderived->left;
+derived_rc.c:hilf->right=oriderived->right;
+derived_rc.c:for (i=0;i<hilf->nproduct;i++)
+derived_rc.c:    hilf->product[i]=oriderived->product[i];
+derived_rc.c:/*---------------------------------------------------------------------------
+derived_rc.c:----------------------------------------------------------------------------*/
+derived_rc.c:hilf=(int*) malloc (oriderived->nproduct*sizeof(int));
+derived_rc.c:for (i=0;i<oriderived->nproduct;i++)
+derived_rc.c:    hilf[i]=oriderived->product[i];
+derived_rc.c:/*---------------------------------------------------------------------------
+derived_rc.c:----------------------------------------------------------------------------*/
+derived_rc.c:copysg->list=(derived_TYP **)malloc(sizeof(derived_TYP*)*EXT_SIZE*oriderivedsg->sizemult);
+derived_rc.c:copysg->firstfree=oriderivedsg->firstfree;
+derived_rc.c:copysg->sizemult=oriderivedsg->sizemult;
+derived_rc.c:for (i=0;i<oriderivedsg->firstfree;i++)
+derived_rc.c:    copysg->list[i]=copy_derived(oriderivedsg->list[i]); 
+derived_rc.c:/*--------------------------------------------------------------------------
+derived_rc.c:----------------------------------------------------------------------------*/
+derived_rc.c:fprintf(outdat, "%dx%d\n",matrix->rows, matrix->cols);
+derived_rc.c:for (i=0;i<matrix->rows;i++)
+derived_rc.c:	for (j=0;j<matrix->cols;j++)
+derived_rc.c:		fprintf(outdat, "%d ",matrix->array.SZ[i][j]);
+derived_rc.c:/*--------------------------------------------------------------------------
+derived_rc.c:----------------------------------------------------------------------------*/
+derived_rc.c:for (i=0;i<matrix->rows;i++)
+derived_rc.c:	for (j=0;j<matrix->cols;j++)
+derived_rc.c:		printf("%d ",matrix->array.SZ[i][j]);
+derived_rc.c:/* ------------------------------------------------------------------------
+derived_rc.c:-------------------------------------------------------------------------*/
+derived_rc.c:fprintf(outdat,"\n%d\n", derivedsg->list[0]->element->rows);
+derived_rc.c:fprintf(outdat,"%d\n", derivedsg->firstfree);
+derived_rc.c:for (i=0;i<derivedsg->firstfree;i++)
+derived_rc.c:	dumpmat_file(outdat, derivedsg->list[i]->element);
+derived_rc.c:/* ------------------------------------------------------------------------
+derived_rc.c:-------------------------------------------------------------------------*/
+derived_rc.c:for (i=0;i<derivedsg->firstfree;i++)
+derived_rc.c:	dumpmat(derivedsg->list[i]->element);
+derived_rc.c:         printf(" left= %d, right= %d",derivedsg->list[i]->left,derivedsg->list[i]->right);
+derived_rc.c:/*------------------------------------------------------------------------ 
+derived_rc.c:-------------------------------------------------------------------------*/
+derived_rc.c:for (i=0;i<derivedsg->firstfree;i++)
+derived_rc.c:    free_mat(derivedsg->list[i]->element);
+derived_rc.c:    if (derivedsg->list[i]->nproduct>0)
+derived_rc.c:       free(derivedsg->list[i]->product);
+derived_rc.c:    free(derivedsg->list[i]);
+derived_rc.c:free(derivedsg->list);
+derived_rc.c:/*------------------------------------------------------------------------ 
+derived_rc.c:-------------------------------------------------------------------------*/
+derived_rc.c:for (i=0;i<derivedsg->firstfree;i++)
+derived_rc.c:    free_mat(derivedsg->list[i]->element);
+derived_rc.c:    free(derivedsg->list[i]->product);
+derived_rc.c:    free(derivedsg->list[i]);
+derived_rc.c:free(derivedsg->list);
+derived_rc.c:/*-------------------------------------------------------------------------
+derived_rc.c:-------------------------------------------------------------------------*/
+derived_rc.c:free_mat(derivedele->element);
+derived_rc.c:if (derivedele->nproduct!=0)
+derived_rc.c:	free(derivedele->product);
+derived_rc.c:/*------------------------------------------------------------------------- 
+derived_rc.c:-------------------------------------------------------------------------*/
+derived_rc.c:return(!mat_vergleich(element1->element, element2->element));
+derived_rc.c:/*-------------------------------------------------------------------------
+derived_rc.c:-------------------------------------------------------------------------*/
+derived_rc.c:for (i=0;i<element1->element->rows;i++)
+derived_rc.c:    for (j=0;j<element1->element->cols;j++)
+derived_rc.c:        if (element2->element->array.SZ[i][j] !=
+derived_rc.c:              element1->element->array.SZ[i][j])
+derived_rc.c:/*-------------------------------------------------------------------------
+derived_rc.c:-------------------------------------------------------------------------*/
+derived_rc.c:for (i=0;i<element1->element->rows;i++)
+derived_rc.c:    for (j=0;j<element1->element->cols;j++)
+derived_rc.c:        if (element2->element->array.SZ[i][j] !=
+derived_rc.c:              element1->element->array.SZ[i][j])
+derived_rc.c:            if (element2->element->array.SZ[i][j] <
+derived_rc.c:                 element1->element->array.SZ[i][j])
+derived_rc.c:/*-----------------------------------------------------------------------
+derived_rc.c:----------------------------------------------------------------------------*/
+derived_rc.c:for (i=0;i<derivedlist->firstfree;i++)
+derived_rc.c:   if (is_equal(derivedlist->list[i],element))
+derived_rc.c:/*-----------------------------------------------------------------------
+derived_rc.c:----------------------------------------------------------------------------*/
+derived_rc.c:if (derivedlist->firstfree==0) return (FALSE);
+derived_rc.c:   if (is_equal(derivedlist->list[lauf],element))
+derived_rc.c:   if (isgreater(derivedlist->list[lauf],element))
+derived_rc.c:      lauf=derivedlist->list[lauf]->right;
+derived_rc.c:      lauf=derivedlist->list[lauf]->left;
+derived_rc.c:   if (is_equal(derivedlist->list[lauf],element))
+derived_rc.c:      hilf=derivedlist->list[lauf]->element;
+derived_rc.c:      lauf=derivedlist->list[laufalt]->right;
+derived_rc.c:            derivedlist->list[laufalt]->element=derivedlist->list[lauf]->element;
+derived_rc.c:            lauf=derivedlist->list[laufalt]->right; 
+derived_rc.c:         if (derivedlist->list[laufalt]->left!=NIL) 
+derived_rc.c:            derivedlist->list[laufuralt]->right=derivedlist->list[laufalt]->left;
+derived_rc.c:            derivedlist->list[laufuralt]->right=NIL;
+derived_rc.c:         derivedlist->list[laufalt]->element=hilf;
+derived_rc.c:         hilfderived=derivedlist->list[laufalt];
+derived_rc.c:         for (i=laufalt;i<derivedlist->firstfree-1;i++)
+derived_rc.c:             derivedlist->list[i]=derivedlist->list[i+1];
+derived_rc.c:         derivedlist->list[derivedlist->firstfree-1]=hilfderived;
+derived_rc.c:         free_derived(derivedlist->list[derivedlist->firstfree-1]);
+derived_rc.c:         hilfderived=derivedlist->list[laufalt];
+derived_rc.c:         for (i=laufalt;i<derivedlist->firstfree-1;i++)
+derived_rc.c:             derivedlist->list[i]=derivedlist->list[i+1];
+derived_rc.c:         derivedlist->list[derivedlist->firstfree-1]=hilfderived;
+derived_rc.c:         free_derived(derivedlist->list[derivedlist->firstfree-1]);
+derived_rc.c:      derivedlist->firstfree--;
+derived_rc.c:   if (isgreater(derivedlist->list[lauf],element))
+derived_rc.c:      lauf=derivedlist->list[lauf]->right;
+derived_rc.c:      lauf=derivedlist->list[lauf]->left;
+derived_rc.c:/*----------------------------------------------------------------------------
+derived_rc.c:-----------------------------------------------------------------------------*/
+derived_rc.c:if (derivedlist->firstfree >= derivedlist->sizemult*EXT_SIZE)
+derived_rc.c:  derivedlist->sizemult++;
+derived_rc.c:  derivedlist->list=(derived_TYP**)
+derived_rc.c:                    realloc(derivedlist->list,derivedlist->sizemult*
+derived_rc.c:derivedlist->list[derivedlist->firstfree]=element;
+derived_rc.c:derivedlist->list[derivedlist->firstfree]->left=NIL;
+derived_rc.c:derivedlist->list[derivedlist->firstfree]->right=NIL;
+derived_rc.c:derivedlist->firstfree++;
+derived_rc.c:if (derivedlist->firstfree!=1) 
+derived_rc.c:      if (isgreater(derivedlist->list[lauf],element))
+derived_rc.c:         lauf=derivedlist->list[lauf]->right;
+derived_rc.c:         lauf=derivedlist->list[lauf]->left;
+derived_rc.c:   if (isgreater(derivedlist->list[laufalt],element))
+derived_rc.c:      derivedlist->list[laufalt]->right=derivedlist->firstfree-1;
+derived_rc.c:      derivedlist->list[laufalt]->left=derivedlist->firstfree-1;
+dumprelators.c:/*--------------------------------------------------------------------------
+dumprelators.c:       relators - Relatoren
+dumprelators.c:       relator_no - Anzahl Relatoren
+dumprelators.c:---------------------------------------------------------------------------*/
+dumprelators_file.c:/*--------------------------------------------------------------------------
+dumprelators_file.c:        outdat - Pointer auf den Ausgabefile
+dumprelators_file.c:        relators - Relatoren
+dumprelators_file.c:        relator_no - Anzahl Relatore
+dumprelators_file.c:---------------------------------------------------------------------------*/
+exist.c:/*-----------------------------------------------------------------------
+exist.c:        filename - Name der Datei
+exist.c:        1 - Datei existiert
+exist.c:        0 - Datei existiert nicht
+exist.c:------------------------------------------------------------------------*/
+fundi.c:/* Prototypenliste ---------------------------------------------------------*/
+fundi.c:/*---------------------------------------------------------------------------*/
+fundi.c:/*-----------------------------------------------------------------------------
+fundi.c:       walls - Liste der Waende.
+fundi.c:-----------------------------------------------------------------------------*/
+fundi.c:int lauf=0, laufalt=0, laufuralt, mark=(-1), markalt=0;
+fundi.c:   if (walls->wall_list[lauf]->right == nichts)
+fundi.c:      lauf = walls->wall_list[lauf]->right;
+fundi.c:if (mark==(-1))
+fundi.c:   walls->wall_list[laufuralt]->right=nichts;
+fundi.c:   walls->wall_list[markalt]->right = walls->wall_list[mark]->left; 
+fundi.c:   walls->wall_list[mark]->left = nichts;
+fundi.c:/*-----------------------------------------------------------------------------
+fundi.c:         walls - Liste der Waende im Format wall_Typ (definiert in roundtype.h)
+fundi.c:-----------------------------------------------------------------------------*/
+fundi.c:allwalls = (wall_TYP**) malloc (sizeof(wall_TYP*) * walls->firstfree);
+fundi.c:for (i=1;i<walls->firstfree;i++)
+fundi.c:    allwalls[i-1] = (wall_TYP*) malloc (sizeof(wall_TYP));
+fundi.c:    allwalls[i-1]->gl = (int*) malloc (sizeof(int)*walls->dimension);
+fundi.c:    allwalls[i-1]->nproduct = walls->wall_list[isml]->nproduct;
+fundi.c:    allwalls[i-1]->product = (int*) malloc (sizeof(int)*allwalls[i-1]->nproduct);
+fundi.c:    for (j=0;j<allwalls[i-1]->nproduct;j++)
+fundi.c:        allwalls[i-1]->product[j] = walls->wall_list[isml]->product[j];
+fundi.c:    for (j=0;j<walls->dimension;j++)
+fundi.c:        allwalls[i-1]->gl[j] = walls->wall_list[isml]->hplane[j];
+fundi.c:    allwalls[i-1]->norm = walls->wall_list[isml]->dist;
+fundi.c:    allwalls[i-1]->dim = walls->dimension;
+fundi.c:    allwalls[i-1]->mat = NULL;
+fundi.c:/*-----------------------------------------------------------------------------
+fundi.c:              walls - Waende um einen gegebenen generating vector
+fundi.c:              generators - Generatoren der Gruppe
+fundi.c:-----------------------------------------------------------------------------*/
+fundi.c:wallno = walls->firstfree-1;
+fundi.c:	exit(-1);
+fundi.c:fprintf(stderr," First fundamental domain has %d walls. \n",fudo->wall_no);
+fundi.c:fprintf(stderr," Refined fundamental domain has %d walls. \n",fudo->wall_no);
+fundi.c:for (i=0;i<fudo->wall_no;i++)
+fundi.c:    fudo->wall[i]->mat = init_mat(walls->dimension, walls->dimension,"1");
+fundi.c:    for (j=0;j<fudo->wall[i]->nproduct;j++)
+fundi.c:        hilf = mat_mul(generators->list[fudo->wall[i]->product[j]]->element,
+fundi.c:                       fudo->wall[i]->mat);
+fundi.c:        free_mat(fudo->wall[i]->mat);
+fundi.c:        fudo->wall[i]->mat=hilf;
+fundi.c:    /*fudo->wall[i]->mat = mat_inv(hilf);*/
+fundi.c:       if fudo->wall[i]->nproduct == 0 ,  tilman 6/3/97
+fundi.c:    fudo->wall[i]->mat = copy_mat(hilf);
+fundi.c:        if (allwalls[i]->gl!=NULL) free(allwalls[i]->gl);
+fundi.c:        if (allwalls[i]->nproduct!=0) free(allwalls[i]->product);
+gap_out.c:/*-------------------------------------------------------------------------
+gap_out.c:   Prozedur zur Ausgabe einer Praesentation im GAP-Format.
+gap_out.c:        presentation - Praesentation
+gap_out.c:        filename - Dateiname fuer die Ausgabe
+gap_out.c:---------------------------------------------------------------------------*/
+gap_out.c:fprintf(outfile," G := FreeGroup(%d);\n", presentation->generators->firstfree);
+gap_out.c:for (i=0;i<presentation->norelators;i++)
+gap_out.c:    if (presentation->relators[i].lhsnproduct>0)
+gap_out.c:       fprintf(outfile,"G.%c",gens[presentation->relators[i].lhsproduct[0]]);
+gap_out.c:    for (j=1;j<presentation->relators[i].lhsnproduct;j++)
+gap_out.c:        fprintf(outfile,"*G.%c",gens[presentation->relators[i].lhsproduct[j]]);
+gap_out.c:    if (presentation->relators[i].rhsnproduct>0)
+gap_out.c:       fprintf(outfile,"G.%c",gens[presentation->relators[i].rhsproduct[0]]);
+gap_out.c:    for (j=1;j<presentation->relators[i].rhsnproduct;j++)
+gap_out.c:        fprintf(outfile,"*G.%c",gens[presentation->relators[i].rhsproduct[j]]);
+gap_out.c:    if (i<presentation->norelators-1)
+generate_pres.c:/*------------------------------------------------------------------------------
+generate_pres.c:     ar - Feld von Integer (Eingabe)
+generate_pres.c:     ar_len - Laenge des Feldes (Eingabe)
+generate_pres.c:     -1, falls keine Null vorhanden ist.
+generate_pres.c:-----------------------------------------------------------------------------*/
+generate_pres.c:return(-1);
+generate_pres.c:/*----------------------------------------------------------------------------
+generate_pres.c:     ar - Integerfeld (Ein/Ausgabe)
+generate_pres.c:     no - Position im Feld, die gesetzt werden soll. (Eingabe)
+generate_pres.c:     ar_len - Laenge des Integerfeldes ar. (Eingabe)
+generate_pres.c:----------------------------------------------------------------------------*/
+generate_pres.c:if ((no>-1)&&(no<ar_len) && (!ar[no]))
+generate_pres.c:/*--------------------------------------------------------------------------
+generate_pres.c:    Gruppenelement g auf den Integer-Vektor mit dem Index
+generate_pres.c:    vert in der Liste fudo->vert[] anwenden.
+generate_pres.c:              g 	- Matrix des Gruppenelements
+generate_pres.c:              vert 	- Index des Vektors in der Liste fudo->vert[]
+generate_pres.c:              fudo 	- Fundamentalbereich, enthaelt unter anderem den
+generate_pres.c:              end 	- Liste mit den Zielecken.
+generate_pres.c:              endlen 	- Anzahl der Zielecken.
+generate_pres.c:              dim 	- Dimension der Raumes.
+generate_pres.c:----------------------------------------------------------------------------*/
+generate_pres.c:         v[i]+= (g->array.SZ[j][i]*fudo->vert[vert]->v[j]);
+generate_pres.c:       is_eq = is_eq && (v[j]==fudo->vert[end[k]]->v[j]);
+generate_pres.c:/*--------------------------------------------------------------------------
+generate_pres.c:    Inverses des Gruppenelements g auf den Integer-Vektor mit dem Index
+generate_pres.c:    vert in der Liste fudo->vert[] anwenden.
+generate_pres.c:              g - Matrix des Gruppenelements
+generate_pres.c:              vert - Index des Vektors in der Liste fudo->vert[]
+generate_pres.c:              fudo - Fundamentalbereich, enthaelt unter anderem den
+generate_pres.c:              dim - Dimension der Raumes.
+generate_pres.c:   -1, wenn kein vert identifiziert.
+generate_pres.c:----------------------------------------------------------------------------*/
+generate_pres.c:         v[i]+= (hilf->array.SZ[j][i]*fudo->vert[vert]->v[j]);
+generate_pres.c:for (i=0;i<fudo->vert_no;i++)
+generate_pres.c:        is_eq = is_eq && (v[j]==fudo->vert[i]->v[j]);
+generate_pres.c:return(-1);
+generate_pres.c:/*-----------------------------------------------------------------------
+generate_pres.c:          wall - Wand, um die es geht.
+generate_pres.c:          fudo - Fundamentalbereich mit allen Daten ueber verts und Waende
+generate_pres.c:          dim - Dimension des Raumes.
+generate_pres.c:          -1, wenn die Ergebniswand nicht identifiziert werden konnte.
+generate_pres.c:------------------------------------------------------------------------*/
+generate_pres.c:v = (int*) malloc (sizeof(int)*fudo->vert[0]->wall_no);
+generate_pres.c:for (i=0; i<fudo->vert_no;i++)
+generate_pres.c:    for (j=0;(j<fudo->vert[i]->wall_no) && (!is_in_list);j++)
+generate_pres.c:        is_in_list = is_in_list || (wall==fudo->vert[i]->wall[j]);
+generate_pres.c:       v[k] = op_vector( fudo->wall[wall]->mat, i, fudo, dim );
+generate_pres.c:for (j=0;j<fudo->wall_no;j++)
+generate_pres.c:       for (l=0;(l<fudo->vert[v[i]]->wall_no)&&(!is_in_list);l++)
+generate_pres.c:           is_in_list = is_in_list || (fudo->vert[v[i]]->wall[l]==j); 
+generate_pres.c:return(-1);
+generate_pres.c:/*---------------------------------------------------------------------------
+generate_pres.c:       act_vert - Index der aktuell zu behandelnden Ecke in der vert_list
+generate_pres.c:       vert_list - Liste aller Ecken des Fundamentalbereichs
+generate_pres.c:       vert_no - Anzahl Ecken in vert_list
+generate_pres.c:       fudo - Der Fundamentalbereich
+generate_pres.c:       dim - Dimension des Raumes in dem gerechnet wird.
+generate_pres.c:---------------------------------------------------------------------------*/
+generate_pres.c:        is_eq = op_vector_normal(fudo->wall[vert_list[act_vert].w[0]]->mat,
+generate_pres.c:/*----------------------------------------------------------------------------
+generate_pres.c:  Speicherplatz der Ecken-liste wieder freigeben. Wird in generate_vert_list
+generate_pres.c:----------------------------------------------------------------------------*/
+generate_pres.c:/*------------------------------------------------------------------------------
+generate_pres.c:            fudo - Fundamentalbereich
+generate_pres.c:            dim - Dimension des Raumes
+generate_pres.c:            no - Rueckgabewert; Anzahl der generierten Ecken
+generate_pres.c:-----------------------------------------------------------------------------*/
+generate_pres.c:vert_anz = (fudo->wall_no-1)*fudo->wall_no/2;
+generate_pres.c:for (i=1; i<fudo->wall_no;i++)
+generate_pres.c:        for (k=0;k<fudo->vert_no;k++)
+generate_pres.c:            for (l=0;l<fudo->vert[k]->wall_no;l++)
+generate_pres.c:                jok = jok || (fudo->vert[k]->wall[l]==j);
+generate_pres.c:                iok = iok || (fudo->vert[k]->wall[l]==i);
+generate_pres.c:          /*      if (fudo->vert[k]->wall[l]==j)
+generate_pres.c:          /*    if (fudo->vert[k]->wall[l]==i)
+generate_pres.c:/* Ueberpruefen, ob der Schnitt der Waende einen codim-2 Raum bildet.
+generate_pres.c:            if (m>=(dim-2))
+generate_pres.c:/*--------------------------------------------------------------------------
+generate_pres.c:            fudo - Fundamentalbereich, mit allen Daten ueber die 
+generate_pres.c:--------------------------------------------------------------------------*/
+generate_pres.c:dim = fudo->wall[0]->dim;
+generate_pres.c:for (i=0;i<fudo->vert_no;i++)
+generate_pres.c:    if (fudo->vert[i]->wall_no>maxwalls)
+generate_pres.c:        maxwalls = fudo->vert[i]->wall_no;
+generate_pres.c:   einen Raum der Co-dim. 2 bilden, falls nicht werden Sie bereits aus-
+generate_pres.c:   Problem: Wenn Inverses eines Generators auch eine Wand des Fundamental-
+generate_pres.c:presentation->generators = init_derivedgen(dim);
+generate_pres.c:inverse_list_i = (int*) malloc (sizeof(int)*fudo->wall_no);
+generate_pres.c:gen_list = (int*) malloc (sizeof(int)*fudo->wall_no);
+generate_pres.c:presentation->norelators = 0;
+generate_pres.c:presentation->relators = (relator_TYP*) malloc (sizeof(relator_TYP)*EXT_SIZE);
+generate_pres.c:presentation->ext_factor = 1;
+generate_pres.c:for (i=0;i<fudo->wall_no;i++)
+generate_pres.c:    hilf->nproduct =0;
+generate_pres.c:    hilf->element = copy_mat (fudo->wall[i]->mat);
+generate_pres.c:    hilf2->nproduct = 0;
+generate_pres.c:    hilf2->element = mat_inv (fudo->wall[i]->mat);
+generate_pres.c:    if ((!is_in_list(presentation->generators, hilf2, &index))&&
+generate_pres.c:      (!is_in_list(presentation->generators, hilf, &index)))
+generate_pres.c:       free_mat(hilf2->element);
+generate_pres.c:       hilf->nproduct = fudo->wall[i]->nproduct;
+generate_pres.c:       hilf->product = copy_product_r( fudo->wall[i]->product, hilf->nproduct);
+generate_pres.c:       insert_list(presentation->generators, hilf);
+generate_pres.c:       is_in_list(presentation->generators, hilf2, &index);
+generate_pres.c:       free_mat(hilf2->element);
+generate_pres.c:       hilf->nproduct=orders[index]-1;
+generate_pres.c:       hilf->product = (int*) malloc (sizeof(int)*hilf->nproduct);
+generate_pres.c:       for (l=0;l<hilf->nproduct;l++)
+generate_pres.c:           hilf->product[l]=index;
+generate_pres.c:       hilf2->element = copy_mat(hilf->element);
+generate_pres.c:       hilf2->nproduct = fudo->wall[i]->nproduct;
+generate_pres.c:       hilf2->product = copy_product_r( fudo->wall[i]->product, hilf2->nproduct);
+generate_pres.c:       insert_list(presentation->generators, hilf2);
+generate_pres.c:                    presentation->generators->firstfree);
+generate_pres.c:     printf(" presentation->norelators %d \n",presentation->norelators);
+generate_pres.c:     if (start_vert==(-1))
+generate_pres.c:     if (presentation->norelators>=(presentation->ext_factor*EXT_SIZE))
+generate_pres.c:        presentation->ext_factor++;
+generate_pres.c:        presentation->relators=(relator_TYP*) realloc (presentation->relators,
+generate_pres.c:            sizeof(relator_TYP)*presentation->ext_factor*EXT_SIZE);
+generate_pres.c:     k=presentation->norelators;
+generate_pres.c:     presentation->relators[k].lhsnproduct = 0;
+generate_pres.c:     presentation->relators[k].lhsproduct = (int*) malloc (sizeof(int));
+generate_pres.c:     presentation->relators[k].rhsnproduct = 0;
+generate_pres.c:       presentation->relators[k].lhsnproduct++;
+generate_pres.c:       presentation->relators[k].lhsproduct = (int*) realloc 
+generate_pres.c:            (presentation->relators[k].lhsproduct, sizeof(int)*
+generate_pres.c:               presentation->relators[k].lhsnproduct);
+generate_pres.c:       presentation->relators[k].lhsproduct[
+generate_pres.c:           presentation->relators[k].lhsnproduct-1]
+generate_pres.c:              insert_in_product(&presentation->relators[k].lhsproduct, presentation->relators[k].lhsnproduct-1, &presentation->relators[k].lhsnproduct,inverse_list->list[jk]->product, inverse_list->list[jk]->nproduct);
+generate_pres.c:              ende = is_identity_new(presentation,inverse_list->list[jk]->nproduct, dim);
+generate_pres.c:           presentation->relators[k].lhsproduct[
+generate_pres.c:           presentation->relators[k].lhsnproduct-1]
+generate_pres.c:          exit(-1);
+generate_pres.c:     presentation->norelators++;
+inverse_prods.c:/*--------------------------------------------------------------------------
+inverse_prods.c:   als Wort ebendieses Generators. Also a^(-1) = a^(n-1), wobei a der 
+inverse_prods.c:      presentation - Praesentation
+inverse_prods.c:      orders - Ordnung der Generatoren
+inverse_prods.c:--------------------------------------------------------------------------*/ 
+inverse_prods.c:inverse_product = (int**) malloc (sizeof(int*)*presentation->generators->firstfree);
+inverse_prods.c:inverse_nproduct = (int*) malloc (sizeof(int)*presentation->generators->firstfree);
+inverse_prods.c:for (i=0;i<presentation->generators->firstfree;i++)
+inverse_prods.c:    inverse_product[i]=(int*) malloc (sizeof(int)*(orders[i]-1));
+inverse_prods.c:    inverse_nproduct[i]=orders[i]-1;
+inverse_prods.c:    for (j=0;j<orders[i]-1;j++)
+inverse_prods.c:for (i=0;i<presentation->generators->firstfree;i++)
+is_equal.c:/*-------------------------------------------------------------------------
+is_equal.c:-------------------------------------------------------------------------*/
+is_equal.c:for (i=0;i<element1->element->rows;i++)
+is_equal.c:    for (j=0;j<element1->element->cols;j++)
+is_equal.c:        if (element2->element->array.SZ[i][j] !=
+is_equal.c:              element1->element->array.SZ[i][j])
+is_identity.c:if (presentation->relators[presentation->norelators].lhsnproduct==1)
+is_identity.c:   mat = copy_mat(presentation->generators->list[
+is_identity.c:             presentation->relators[presentation->norelators].lhsproduct[0]
+is_identity.c:                              ]->element);
+is_identity.c:   mat = mat_mul (presentation->generators->list[
+is_identity.c:        presentation->relators[presentation->norelators].lhsproduct[
+is_identity.c:        presentation->relators[presentation->norelators].lhsnproduct-1]
+is_identity.c:                ]->element,del);
+is_identity.c:           if (mat->array.SZ[i][j]!=delta(i,j)) 
+is_identity.c:if (presentation->relators[presentation->norelators].lhsnproduct==anzahl)
+is_identity.c:   mat = copy_mat(presentation->generators->list[
+is_identity.c:             presentation->relators[presentation->norelators].lhsproduct[0]
+is_identity.c:                              ]->element);
+is_identity.c:   for (i=0;i<(anzahl-1);i++)
+is_identity.c:   werden, denn die letzten anzahl-Elemente sind gleich. */
+is_identity.c:       mat = mat_mul (del, presentation->generators->list[
+is_identity.c:        presentation->relators[presentation->norelators].lhsproduct[
+is_identity.c:        /* presentation->relators[presentation->norelators].lhsnproduct-1] */
+is_identity.c:                ]->element);
+is_identity.c:       mat = mat_mul (del, presentation->generators->list[
+is_identity.c:        presentation->relators[presentation->norelators].lhsproduct[
+is_identity.c:        presentation->relators[presentation->norelators].lhsnproduct-1]
+is_identity.c:                ]->element);
+is_identity.c:          if (mat->array.SZ[i][j]!=delta(i,j)) 
+magma_out.c:/*--------------------------------------------------------------------------
+magma_out.c:  Prozedur zur Ausgabe einer Praesentation im magma-Format.
+magma_out.c:      presentation - Praesentation
+magma_out.c:      filename - Name des outputfiles
+magma_out.c:---------------------------------------------------------------------------*/
+magma_out.c:for (i=1;i<presentation->generators->firstfree;i++)
+magma_out.c:fprintf(outfile," > := FreeGroup(%d); \n", presentation->generators->firstfree);
+magma_out.c:for (i=0;i<presentation->norelators;i++)
+magma_out.c:    if (presentation->relators[i].lhsnproduct>0) 
+magma_out.c:      fprintf(outfile,"%c",gens[presentation->relators[i].lhsproduct[0]]);
+magma_out.c:    for (j=1;j<presentation->relators[i].lhsnproduct;j++)
+magma_out.c:        fprintf(outfile,"*%c",gens[presentation->relators[i].lhsproduct[j]]);
+magma_out.c:    if (presentation->relators[i].rhsnproduct>0)
+magma_out.c:       fprintf(outfile,"%c",gens[presentation->relators[i].rhsproduct[0]]);
+magma_out.c:    for (j=1;j<presentation->relators[i].rhsnproduct;j++)
+magma_out.c:        fprintf(outfile,"*%c",gens[presentation->relators[i].rhsproduct[j]]);
+magma_out.c:    if (i<presentation->norelators-1)
+normalize.c:/*------------------------------------------------------------------------
+normalize.c:        string_ele - Input und Output - string, der den zu verwschiebenden
+normalize.c:        string_length - Laenge des Strings string_ele
+normalize.c:        no_steps - Anzahl der Stellen, um die Verschoben werden soll.
+normalize.c:-------------------------------------------------------------------------*/
+normalize.c:/*----------------------------------------------------------------------------
+normalize.c:      relators_string - Liste der Relatoren
+normalize.c:      relators_length - Liste der Laengen der Relatoren
+normalize.c:      relator_count - Anzahl der Relatoren
+normalize.c:      relatorindex - Index des zu loeschenden Relators
+normalize.c:----------------------------------------------------------------------------*/
+normalize.c:if ((relator_count-1)==relatorindex)
+normalize.c:    relators_string[relator_count-1] = NULL;
+normalize.c:   relators_string [relatorindex] = relators_string[relator_count-1];
+normalize.c:   relators_string[relator_count-1] = NULL;
+normalize.c:   relators_length[relatorindex] = relators_length[relator_count-1];
+normalize.c:   relators_length[relator_count-1] = 0;
+normalize.c:/*--------------------------------------------------------------------------
+normalize.c:       relators_string - Liste der Relatorenstrings
+normalize.c:       relators_length - Liste der Laengen der Relatoren
+normalize.c:       relator_count - Anzahl der Relatoren
+normalize.c:-------------------------------------------------------------------------*/
+normalize.c:for (i=0;i<relator_count-1;i++)
+normalize.c:    for (j=i;j<relator_count-1;)
+normalize.c:               relator_count--;
+normalize.c:/*----------------------------------------------------------------------------
+normalize.c:    char_table - Charactertabelle
+normalize.c:    character - Character, der in der Tabelle gesucht werden soll.
+normalize.c:----------------------------------------------------------------------------*/
+normalize.c:return(-1);
+normalize.c:/*-----------------------------------------------------------------------------
+normalize.c:      relators_string - Relator.
+normalize.c:      relators_length - Laenge des Relators.
+normalize.c:      relatornum - Anzahl Relatoren
+normalize.c:      char_table - Charactertabelle
+normalize.c:----------------------------------------------------------------------------*/
+normalize.c:           if (((j-block_start)>=max_block) && (max_block_val>=block_val))
+normalize.c:                 first_block = j-block_start;
+normalize.c:              if (((j-block_start)>max_block) || (max_block_val>block_val))
+normalize.c:                 max_block = j-block_start;
+normalize.c:                    max_block = j-block_start;
+normalize.c:           if ((first_block+block_start-relators_length>max_block)
+normalize.c:              if (((first_block+block_start-relators_length)>max_block)
+normalize.c:                 max_block = first_block+block_start-relators_length;
+normalize.c:                    max_block = j-block_start;
+normalize.c:/*-----------------------------------------------------------------------------
+normalize.c:      relators_string - Liste der Relatoren.
+normalize.c:      relators_length - Liste der Laengen der Relatoren.
+normalize.c:      relatornum - Anzahl Relatoren.
+normalize.c:      char_table - Charactertabelle
+normalize.c:----------------------------------------------------------------------------*/
+normalize.c:           if (((j-block_start)>=max_block) && (max_block_val>=block_val))
+normalize.c:                 first_block = j-block_start;
+normalize.c:              if (((j-block_start)>max_block) || (max_block_val>block_val))
+normalize.c:                 max_block = j-block_start;
+normalize.c:                    max_block = j-block_start;
+normalize.c:           if ((first_block+block_start-relators_length[i]>max_block)
+normalize.c:              if (((first_block+block_start-relators_length[i])>max_block)
+normalize.c:                 max_block = first_block+block_start-relators_length[i];
+normalize.c:                    max_block = j-block_start;
+normalize.c:/*---------------------------------------------------------------------------
+normalize.c:     relators_string - Relator
+normalize.c:     relators_length - Relatorlaenge
+normalize.c:     orders - Ordnungen der Generatoren.
+normalize.c:     char_table - Zuordnungstabelle Character - Indizes. 
+normalize.c:---------------------------------------------------------------------------*/
+normalize.c:block_char = relators_string[relators_length-1];
+normalize.c:for (i=relators_length-2;i>=0;i--)
+normalize.c:       for (j=0;j<(block_count*(orders[index_table(char_table, block_char)]-1))
+normalize.c:   for (j=0;j<(block_count*(orders[index_table(char_table, block_char)]-1))
+normalize.c:/*---------------------------------------------------------------------------
+normalize.c:---------------------------------------------------------------------------*/
+normalize.c:              relator_count--;
+normalize.c:/*----------------------------------------------------------------------------
+normalize.c:        presentation - In- und Output; Beinhaltet die Praesentation, die 
+normalize.c:        orders - Liste der Ordnungen der Generatoren der Gruppe (in der 
+normalize.c:                 presentation->generators.
+normalize.c:----------------------------------------------------------------------------*/
+normalize.c:gen_no = presentation->generators->firstfree;
+normalize.c:relators_length = (int*) malloc (sizeof(int)*presentation->norelators);
+normalize.c:relators_string = (char**) malloc (sizeof(char*)*presentation->norelators);
+normalize.c:for (i=0;i<presentation->norelators;i++)
+normalize.c:    relators_string[i] = (char*) malloc (sizeof(char)*(presentation->relators[i].lhsnproduct+1));
+normalize.c:    relators_length[i] = presentation->relators[i].lhsnproduct;
+normalize.c:        relators_string[i][j] = char_table[presentation->relators[i].lhsproduct[j]];
+normalize.c:for (i=0;i<presentation->norelators;i++)
+normalize.c:relator_count = presentation->norelators;
+normalize.c:for (i=relator_count;i<presentation->norelators;i++)
+normalize.c:    free(presentation->relators[i].lhsproduct);
+normalize.c:    presentation->relators[i].lhsnproduct = 0;
+normalize.c:presentation->norelators = relator_count;
+normalize.c:    presentation->relators[i].lhsproduct = (int*) realloc (presentation->relators[i].lhsproduct, sizeof(int)*relators_length[i]);
+normalize.c:    presentation->relators[i].lhsnproduct = relators_length[i];
+normalize.c:        presentation->relators[i].lhsproduct[j] = index_table(char_table,relators_string[i][j]); 
+normalize.c:for (i=0;i<presentation->norelators;i++)
+old_as_new.c:anzahl=groupcomplete->firstfree;
+old_as_new.c:while ((start!=anzahl)&&(gencount<groupgennew->firstfree)) 
+old_as_new.c:       for (k=0;k<groupgennew->firstfree;k++)
+old_as_new.c:	   hilf->nproduct = 0;
+old_as_new.c:           hilf->element=mat_mul(groupcomplete->list[i]->element,groupgennew->list[k]->element); 
+old_as_new.c:             hilf->nproduct=groupcomplete->list[i]->nproduct+1;
+old_as_new.c:             hilf->product=(int*)malloc(sizeof(int)*
+old_as_new.c:                                hilf->nproduct);
+old_as_new.c:             for (j=0;j<groupcomplete->list[i]->nproduct;j++)
+old_as_new.c:                 hilf->product[j]=groupcomplete->list[i]->product[j];
+old_as_new.c:             hilf->product[hilf->nproduct-1]=k;
+old_as_new.c:             for (l=0;l<groupgenold->firstfree;l++)
+old_as_new.c:                 if (is_in_list(groupcomplete, groupgenold->list[l],&index))
+old_as_new.c:                    if (groupgenold->list[l]->nproduct == 0)
+old_as_new.c:                       groupgenold->list[l]->product=copy_product(groupcomplete->list[index]);
+old_as_new.c:                       groupgenold->list[l]->nproduct=groupcomplete->list[index]->nproduct;
+old_as_new.c:   anzahl=groupcomplete->firstfree;
+shorter.c:/*-------------------------------------------------------------------------
+shorter.c:       presentation - Praesentation
+shorter.c:       inverse_product - Liste der Darstellungen der Inversen der 
+shorter.c:       inverse_nproduct - Laenge der Darstellungen in inverse_product.
+shorter.c:--------------------------------------------------------------------------*/
+shorter.c:for (i=0;i<presentation->norelators;i++)
+shorter.c:    while (lauf<presentation->relators[i].lhsnproduct)
+shorter.c:       blockcount=block_detect(presentation->relators[i].lhsproduct,presentation->relators[i].lhsnproduct, lauf);
+shorter.c:          inverse_nproduct[presentation->relators[i].lhsproduct[lauf]])
+shorter.c:        &&(!((blockcount==presentation->relators[i].lhsnproduct)
+shorter.c:          ==inverse_nproduct[presentation->relators[i].lhsproduct[lauf]]+1))))
+shorter.c:                number+=(inverse_nproduct[presentation->relators[i].lhsproduct[lauf]]+1);
+shorter.c:          if (blockcount==presentation->relators[i].lhsnproduct)
+shorter.c:             number-=(inverse_nproduct[presentation->relators[i].lhsproduct[lauf]]+1);
+shorter.c:          number-=(inverse_nproduct[presentation->relators[i].lhsproduct[lauf]]+1);
+shorter.c:          remove_product(&presentation->relators[i].lhsproduct,
+shorter.c:                &presentation->relators[i].lhsnproduct,lauf,number);
+sub_relator.c:if (presentation->norelators>=presentation->ext_factor*EXT_SIZE)
+sub_relator.c:   presentation->ext_factor++;
+sub_relator.c:   presentation->relators = (relator_TYP*) realloc (presentation->relators,
+sub_relator.c:     sizeof(relator_TYP)*EXT_SIZE*presentation->ext_factor);
+sub_relator.c:k=presentation->norelators;
+sub_relator.c:presentation->relators[k].lhsnproduct = endsub - beginsub;
+sub_relator.c:presentation->relators[k].lhsproduct = (int*) malloc (sizeof(int)*(endsub-beginsub));
+sub_relator.c:presentation->relators[k].rhsproduct = NULL;
+sub_relator.c:presentation->relators[k].rhsnproduct = 0;
+sub_relator.c:    presentation->relators[k].lhsproduct[i-beginsub] = presentation->relators[relatorno].lhsproduct[i+1];
+sub_relator.c:for (i=endsub+1;i<presentation->relators[relatorno].lhsnproduct;i++)
+sub_relator.c:    presentation->relators[relatorno].lhsproduct[i-endsub+beginsub] =
+sub_relator.c:    presentation->relators[relatorno].lhsproduct[i];
+sub_relator.c:presentation->relators[relatorno].lhsnproduct = presentation->relators[relatorno].lhsnproduct - endsub + beginsub;
+sub_relator.c:presentation->norelators++;
+sub_relator.c:for (i=(-1);i<presentation->norelators-1;)
+sub_relator.c:    vector_list = (matrix_TYP **) malloc (sizeof(matrix_TYP *)*presentation->relators[i].lhsnproduct);
+sub_relator.c:    vector_list[0] = presentation->generators->list[
+sub_relator.c:                     presentation->relators[i].lhsproduct[0]]->element;
+sub_relator.c:    for (j=1;(j<presentation->relators[i].lhsnproduct)&&(!flag);j++)
+sub_relator.c:        vector_list[j] = mat_mul(vector_list[j-1],presentation->
+sub_relator.c:          generators->list[presentation->relators[i].lhsproduct[j]]->element);
+sub_relator.c:        finish =presentation->relators[i].lhsnproduct;
+substit.c:/*---------------------------------------------------------------------------
+substit.c:   Generatoren beinhalten. Dies kann sichergestellt werden, durch vor-
+substit.c:---------------------------------------------------------------------------*/
+substit.c:inverse_nproduct = order -1;
+substit.c:for (i=0;i<presentation->norelators;i++)
+substit.c:    while (j<presentation->relators[i].lhsnproduct)
+substit.c:        if (presentation->relators[i].lhsproduct[j]==generator)
+substit.c:           insert_in_product(&presentation->relators[i].lhsproduct, j, &presentation->relators[i].lhsnproduct,inverse_product, inverse_nproduct);
+substit.c:    while (j<presentation->relators[i].rhsnproduct)
+substit.c:        if (presentation->relators[i].rhsproduct[j]==generator)
+substit.c:           insert_in_product(&presentation->relators[i].rhsproduct, j, &presentation->relators[i].rhsnproduct, inverse_product, inverse_nproduct);
+tietzetrans_rc.c:/*-----------------------------------------------------------------------------
+tietzetrans_rc.c:------------------------------------------------------------------------------*/
+tietzetrans_rc.c:for (i=relatorindex; i<(presentation->norelators-1);i++)
+tietzetrans_rc.c:    if (presentation->relators[i].lhsnproduct>0)
+tietzetrans_rc.c:       free(presentation->relators[i].lhsproduct);
+tietzetrans_rc.c:       presentation->relators[i].lhsnproduct=0;
+tietzetrans_rc.c:       presentation->relators[i].lhsproduct=NULL;
+tietzetrans_rc.c:    presentation->relators[i].lhsnproduct=presentation->relators[i+1].lhsnproduct;
+tietzetrans_rc.c:    if (presentation->relators[i].lhsnproduct!=0)
+tietzetrans_rc.c:       presentation->relators[i].lhsproduct = (int*) malloc (sizeof(int)*presentation->relators[i].lhsnproduct);
+tietzetrans_rc.c:       for (j=0;j<presentation->relators[i].lhsnproduct;j++)
+tietzetrans_rc.c:           presentation->relators[i].lhsproduct[j]=presentation->relators[i+1].lhsproduct[j];
+tietzetrans_rc.c:    if (presentation->relators[i].rhsnproduct>0)
+tietzetrans_rc.c:        free(presentation->relators[i].rhsproduct);
+tietzetrans_rc.c:        presentation->relators[i].rhsnproduct=0;
+tietzetrans_rc.c:        presentation->relators[i].rhsproduct=NULL;
+tietzetrans_rc.c:    presentation->relators[i].rhsnproduct=presentation->relators[i+1].rhsnproduct;
+tietzetrans_rc.c:    if (presentation->relators[i].rhsnproduct!=0)
+tietzetrans_rc.c:       presentation->relators[i].rhsproduct = (int*) malloc (sizeof(int)*presentation->relators[i].rhsnproduct);
+tietzetrans_rc.c:       for (j=0;j<presentation->relators[i].rhsnproduct;j++)
+tietzetrans_rc.c:           presentation->relators[i].rhsproduct[j]=presentation->relators[i+1].rhsproduct[j];
+tietzetrans_rc.c:presentation->norelators--;
+tietzetrans_rc.c:if (presentation->relators[presentation->norelators].lhsnproduct>0)
+tietzetrans_rc.c:   free(presentation->relators[presentation->norelators].lhsproduct);
+tietzetrans_rc.c:   presentation->relators[presentation->norelators].lhsproduct = NULL;
+tietzetrans_rc.c:   presentation->relators[presentation->norelators].lhsnproduct = 0;
+tietzetrans_rc.c:if (presentation->relators[presentation->norelators].rhsnproduct>0)
+tietzetrans_rc.c:   free(presentation->relators[presentation->norelators].rhsproduct);
+tietzetrans_rc.c:   presentation->relators[presentation->norelators].rhsproduct = NULL;
+tietzetrans_rc.c:   presentation->relators[presentation->norelators].rhsnproduct = 0;
+tietzetrans_rc.c:/*-----------------------------------------------------------------------------
+tietzetrans_rc.c:------------------------------------------------------------------------------*/
+tietzetrans_rc.c:for (i=0;i<presentation->norelators;i++)
+tietzetrans_rc.c:    if ((presentation->relators[i].lhsnproduct==1) && (presentation->relators[i].lhsproduct[0]==gen))
+tietzetrans_rc.c:/*---------------------------------------------------------------------------
+tietzetrans_rc.c:----------------------------------------------------------------------------*/
+tietzetrans_rc.c:*nproduct = (*nproduct)+ninsproduct-1;
+tietzetrans_rc.c:for (i=naltproduct-2;i>=position;i--)
+tietzetrans_rc.c:/*---------------------------------------------------------------------------
+tietzetrans_rc.c:   Integer-Feld loescht, ab einer bestimmten Position.
+tietzetrans_rc.c:---------------------------------------------------------------------------*/
+tietzetrans_rc.c:*nproduct = (*nproduct)-number;
+tietzetrans_rc.c:/*----------------------------------------------------------------------------
+tietzetrans_rc.c:----------------------------------------------------------------------------*/
+tietzetrans_rc.c:/*-------------------------------------------------------------------------
+tietzetrans_rc.c:-------------------------------------------------------------------------*/
+tietzetrans_rc.c:/*---------------------------------------------------------------------------
+tietzetrans_rc.c:   Generatoren beinhalten. Dies kann sichergestellt werden, durch vor-
+tietzetrans_rc.c:---------------------------------------------------------------------------*/
+tietzetrans_rc.c:for (i=0;i<presentation->norelators;i++)
+tietzetrans_rc.c:    while (j<presentation->relators[i].lhsnproduct)
+tietzetrans_rc.c:        if (presentation->relators[i].lhsproduct[j]==gen)
+tietzetrans_rc.c:           insert_in_product(&presentation->relators[i].lhsproduct, j, &presentation->relators[i].lhsnproduct, presentation->relators[relatorind].rhsproduct, presentation->relators[relatorind].rhsnproduct);
+tietzetrans_rc.c:           j+=presentation->relators[relatorind].rhsnproduct;
+tietzetrans_rc.c:    while (j<presentation->relators[i].rhsnproduct)
+tietzetrans_rc.c:        if (presentation->relators[i].rhsproduct[j]==gen)
+tietzetrans_rc.c:           insert_in_product(&presentation->relators[i].rhsproduct, j, &presentation->relators[i].rhsnproduct, presentation->relators[relatorind].rhsproduct, presentation->relators[relatorind].rhsnproduct);
+tietzetrans_rc.c:           j+=presentation->relators[relatorind].rhsnproduct;
+tietzetrans_rc.c:for (i=0;i<presentation->norelators;i++)
+tietzetrans_rc.c:    for (j=0;j<presentation->relators[i].lhsnproduct;j++)
+tietzetrans_rc.c:        if (presentation->relators[i].lhsproduct[j]==oldindex)
+tietzetrans_rc.c:           presentation->relators[i].lhsproduct[j]=newindex;
+tietzetrans_rc.c:    for (j=0;j<presentation->relators[i].rhsnproduct;j++)
+tietzetrans_rc.c:        if (presentation->relators[i].rhsproduct[j]==oldindex)
+tietzetrans_rc.c:           presentation->relators[i].rhsproduct[j]=newindex;
+tietzetrans_rc.c:/* -------------------------------------------------------------------------
+tietzetrans_rc.c:    groupgenold abgelegt sind. groupgenold beinhaltet ausserdem die Dar-
+tietzetrans_rc.c:----------------------------------------------------------------------------*/
+tietzetrans_rc.c:   falls sie noch nicht vorhanden sind. Gleichzeitig wird ein Relator hin-
+tietzetrans_rc.c:   group theory", Magnus-Karrass-Solitar, Dover Publications, Inc. 1976
+tietzetrans_rc.c:for (i=0;i<groupgenold->firstfree;i++)
+tietzetrans_rc.c:    if (!is_in_list_l(presentation->generators, groupgenold->list[i],&index))
+tietzetrans_rc.c:       if (presentation->norelators>=(presentation->ext_factor*EXT_SIZE))
+tietzetrans_rc.c:          presentation->ext_factor++;
+tietzetrans_rc.c:          presentation->relators=(relator_TYP*) realloc(presentation->relators, sizeof(relator_TYP)*EXT_SIZE*presentation->ext_factor);
+tietzetrans_rc.c:       hilfgen=copy_derived(groupgenold->list[i]);
+tietzetrans_rc.c:       insert_list(presentation->generators, hilfgen);
+tietzetrans_rc.c:      dumplist(presentation->generators);
+tietzetrans_rc.c:       k=presentation->norelators;
+tietzetrans_rc.c:    /*  printf(" add generator %d + add relator %d  \n",presentation->generators->firstfree,presentation->norelators);*/
+tietzetrans_rc.c:       presentation->relators[k].lhsnproduct = 1;
+tietzetrans_rc.c:       presentation->relators[k].lhsproduct = (int*) malloc (sizeof(int));
+tietzetrans_rc.c:       presentation->relators[k].lhsproduct[0] = presentation->generators->firstfree-1;
+tietzetrans_rc.c:       presentation->relators[k].rhsnproduct = groupgenold->list[i]->nproduct;
+tietzetrans_rc.c:       presentation->relators[k].rhsproduct = (int*) malloc (sizeof(int)*presentation->relators[k].rhsnproduct);
+tietzetrans_rc.c:       for (j=0;j<presentation->relators[k].rhsnproduct;j++)
+tietzetrans_rc.c:           presentation->relators[k].rhsproduct[j] = groupgenold->list[i]->product[j];
+tietzetrans_rc.c:       presentation->norelators++;
+tietzetrans_rc.c:dumprelators(presentation->relators,presentation->norelators);
+tietzetrans_rc.c:for (i=0;i<groupgennew->firstfree;i++)
+tietzetrans_rc.c:    if (!is_in_list_l(groupgenold, groupgennew->list[i],&index))
+tietzetrans_rc.c: /*     printf(" add relator %d  \n",presentation->norelators);*/
+tietzetrans_rc.c:       k=presentation->norelators;
+tietzetrans_rc.c:       presentation->relators[k].lhsnproduct = 1;
+tietzetrans_rc.c:       presentation->relators[k].lhsproduct = (int*) malloc (sizeof(int));
+tietzetrans_rc.c:       presentation->relators[k].lhsproduct[0] = i;
+tietzetrans_rc.c:       presentation->relators[k].rhsnproduct = groupgennew->list[i]->nproduct;
+tietzetrans_rc.c:       presentation->relators[k].rhsproduct = (int*) malloc (sizeof(int)*(presentation->relators[k].rhsnproduct +1));
+tietzetrans_rc.c:       for (j=0;j<presentation->relators[k].rhsnproduct;j++)
+tietzetrans_rc.c:           is_in_list_l(presentation->generators, groupgenold->list[groupgennew->list[i]->product[j]], &index);
+tietzetrans_rc.c:           presentation->relators[k].rhsproduct[j] = index;
+tietzetrans_rc.c:       presentation->norelators++;
+tietzetrans_rc.c:   gewollten ausdrueckt. Damit sind die Vorraussetzungen fuer die Tietze-
+tietzetrans_rc.c:for (i=0;i<groupgennew->firstfree;i++)
+tietzetrans_rc.c:    if (!is_in_list_l(groupgenold, groupgennew->list[i],&index))
+tietzetrans_rc.c:       is_in_list_l(presentation->generators, groupgennew->list[i], &index);
+tietzetrans_rc.c:for (i=0;i<presentation->generators->firstfree;i++)
+tietzetrans_rc.c:   act_relators(presentation,i,i+presentation->generators->firstfree);
+tietzetrans_rc.c:for (i=0;i<groupgenold->firstfree;i++)
+tietzetrans_rc.c:    is_in_list_l(presentation->generators,groupgenold->list[i],&oldindex);
+tietzetrans_rc.c:    act_relators(presentation,oldindex+presentation->generators->firstfree,i);
+tietzetrans_rc.c:free_derivedsg(presentation->generators);
+tietzetrans_rc.c:presentation->generators=copy_derivedsg(groupgenold);
+tietzetrans_rc.c:dumprelators(presentation->relators,presentation->norelators);*/
+tietzetrans_rc.c:/* Nun liegt eigentlich die gewuenschte Praesentation vor. Sie muss aller-
+tietzetrans_rc.c:inverse_product=(int**) malloc(sizeof(int*)*presentation->generators->firstfree);
+tietzetrans_rc.c:inverse_nproduct=(int*) malloc(sizeof(int)*presentation->generators->firstfree);
+tietzetrans_rc.c:hilfcomplete=init_derivedcomplete(presentation->generators->list[0]->element->cols);
+tietzetrans_rc.c:hilf->nproduct = 0;
+tietzetrans_rc.c:for (i=0;i<presentation->generators->firstfree;i++)
+tietzetrans_rc.c:    hilf->element=copy_mat(presentation->generators->list[i]->element);
+tietzetrans_rc.c:       hilf2=copy_mat(hilf->element);
+tietzetrans_rc.c:       free_mat(hilf->element);
+tietzetrans_rc.c:       hilf->element=mat_mul(hilf2,presentation->generators->list[i]->element);
+tietzetrans_rc.c:    inverse_product[i]=(int*) malloc (sizeof(int)*(orderno-1));
+tietzetrans_rc.c:    inverse_nproduct[i]=orderno-1;
+tietzetrans_rc.c:    for (j=0;j<orderno-1;j++)
+tietzetrans_rc.c:for (i=0;i<presentation->norelators;i++)
+tietzetrans_rc.c:    while (presentation->relators[i].rhsnproduct>0)
+tietzetrans_rc.c:         j=presentation->relators[i].rhsproduct[presentation->relators[i].rhsnproduct-1];
+tietzetrans_rc.c:         add_product(&presentation->relators[i].lhsproduct,&presentation->relators[i].lhsnproduct, inverse_product[j], inverse_nproduct[j]);          
+tietzetrans_rc.c:         presentation->relators[i].rhsnproduct--;
+tietzetrans_rc.c:    if (presentation->relators[i].rhsnproduct>0) 
+tietzetrans_rc.c:       free(presentation->relators[i].rhsproduct);
+tietzetrans_rc.c:       presentation->relators[i].rhsnproduct=0;
+tietzetrans_rc.c:       presentation->relators[i].rhsproduct=NULL;
+tietzetrans_rc.c:for (i=0;i<presentation->norelators;i++)
+tietzetrans_rc.c:    while (lauf<presentation->relators[i].lhsnproduct)
+tietzetrans_rc.c:       blockcount=block_detect(presentation->relators[i].lhsproduct,presentation->relators[i].lhsnproduct, lauf);
+tietzetrans_rc.c:          inverse_nproduct[presentation->relators[i].lhsproduct[lauf]])
+tietzetrans_rc.c:        &&(!((blockcount==presentation->relators[i].lhsnproduct)
+tietzetrans_rc.c:          ==inverse_nproduct[presentation->relators[i].lhsproduct[lauf]]+1))))
+tietzetrans_rc.c:                number+=(inverse_nproduct[presentation->relators[i].lhsproduct[lauf]]+1);
+tietzetrans_rc.c:          number-=(inverse_nproduct[presentation->relators[i].lhsproduct[lauf]]+1);
+tietzetrans_rc.c:          remove_product(&presentation->relators[i].lhsproduct,
+tietzetrans_rc.c:                &presentation->relators[i].lhsnproduct,lauf,number);
+tietzetrans_rc.c:while (i<presentation->norelators)
+tietzetrans_rc.c:    if (presentation->relators[i].lhsnproduct==0)
+tietzetrans_rc.c:for (i=0;i<presentation->generators->firstfree;i++)

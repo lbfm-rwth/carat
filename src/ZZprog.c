@@ -1,5 +1,4 @@
 #include "ZZ.h"
-#include "bravais.h"
 
 extern int INFO_LEVEL;
 extern int SFLAG;
@@ -12,129 +11,120 @@ FILE *outputfile;
 void ZZ_usage (progname)
      char *progname;
 {
-     printf("Usage: %s 'file1'  ['file2'] [-b] [-g] [-h] [-l=<#level>] \n"
-                                  ,progname);
-     printf("       [-m] [-n=<#number>] [-p] [-q] [-r] [-s] [-t=out] [-u]\n");
-     printf("\n");
-     printf("file1: bravais_TYP containing a finite unimodular group G,\n");
-     printf("       ending with the order of G.\n");
-     printf("file2: (OPTIONAL) matrix_TYP containing the Gram matrix of a symmetric \n");
-     printf("       positive definite G-invariant bilinear form. This form is\n");
-     printf("       used for reduction purposes only. If this file is not\n");
-     printf("       given, the program computes such a form. In particular\n");
-     printf("       the forms possibly given in 'file1' are ignored.\n");
-     printf("\n");
-     printf("Calculates the the G-sublattices of the natural lattice Z^n of\n");
-     printf("finite index, the prime divisors of which divide the order of G\n");
-     printf("as given in 'file1'. Sublattices of proper multiples of Z^n are\n");
-     printf("ignored.\n");
-     printf("\n");
-     printf("Options:\n");
-     printf("-b      : Print only the matrices of change of base and their inverse.\n");
-     printf("-g      : Do not compute elementary divisors of the gram matrix.\n");
-     printf("-l=#    : Stop after reaching level #level (default #=500).\n");
-     printf("-n=#    : Stop after computation of #number \"sublattices\" (default #=1000).\n");
-     printf("-q      : Quiet mode. Suppress any messages to stderr.\n");
-     printf("-r      : With LLL-reduction for the bases, cf. 'file2'.\n");
-     printf("-s      : Print less information.\n");
-     printf("-t='out': Create an output file with additional information. The name \n");
-     printf("          of the output file defaults to stdout. Specifying \"none\" \n");
-     printf("          disables writing to the output file\n");
-     printf("-u      : Do not compute elementary divisors of the basis\n");
-     printf("          transformations.\n");
-     printf("\n");
-     printf("Options for experts:\n");
-     printf("-p<N>/<d1>/<d2>...<dN> : treat the lattice as a direct sum of <N>  \n");
-     printf("                         sublattices of dimensions <d1>, <d2> etc.  \n");
-     printf("                         (1 <= N, di <= 6) and compute only those\n");
-     printf("                         sublattices that have surjective projections  \n");
-     printf("                         onto each of the N component lattices.\n");
-     printf("\n");
-     printf("Cf. Order, QtoZ, Z_equiv, Q_equiv\n");
 
+        IDEM_NO = 0;
+
+	fprintf (stderr,
+ "Usage: %s -b -g -h -l <#level> -m -n <#number> -p -q -r -s -t out -u bravais-file gram-file\n\n",
+		 progname);
+    fprintf (stderr,
+"-b  : Print only the matrices of change of base and their inverse.\n");
+    fprintf (stderr,
+"-g  : Do not compute elementary divisors of the gram matrix.\n");
+    fprintf (stderr,
+"-h  : Print this help\n");
+    fprintf (stderr,
+"-l #: Stop after reaching level #level (default #=%d).\n", LEVEL);
+    fprintf (stderr,
+"-n #: Stop after computation of #number \"Zentrierungen\" (default #=%d).\n", NUMBER);
+    fprintf (stderr,
+"-p<d0>/<d1>/<d2> ... : treat the lattice as a direct sum of <d0> sublattices\n");
+    fprintf (stderr,
+"      of dimensions <d1>, <d2> etc. (0 <= d0 <= 6) and compute only those\n");
+    fprintf (stderr,
+"      centerings that have surjective projections on them.\n");
+    fprintf (stderr,
+"-q  : Quiet mode. Suppress any messages to stdin/stdout.\n");
+    fprintf (stderr,
+"-r  : With ZZ_lll-reduction.\n");
+    fprintf (stderr,
+"-s  : Print less information.\n");
+    fprintf (stderr, 
+"-t  : Create an output file with additional information. The name of the\n");
+    fprintf (stderr, 
+"      output file defaults to stdout. Specifying \"none\" disables\n");
+    fprintf (stderr,
+"      writing to the output file\n");
+    fprintf (stderr,
+"-m  : Used for debugging, do not use!\n");
+    fprintf (stderr,
+"-u  : Do not compute elementary divisors of the change of base\n");
+    fprintf (stderr, 
+"\"bravais-file\" is a file containing a bravais group\n");
+    fprintf (stderr,
+"\"gram-file\" contains a positive definite invariant gram matrix.\n");
+    fprintf (stderr, "\n");
 }
 
-int parse_options(int argc,
-                  char *argv[],
-                  char *option)
+int parse_options(argc, argv, options)
+     int argc;
+     char *argv[];
+     char *options;
 {
+	int c;
+	int errflag = 0;
+	int i;
+	char *p;
 
-   int i,
-       errflag = 0;
-
-   *option++ = 't';
-   outputfile = stdout;
-
-   if (is_option('b')){
-      *option='b';
-      option++;
-   }
-   if (is_option('g')){
-      *option='g';
-      option++;
-   }
-   if (is_option('q')){
-      *option='q';
-      option++;
-   }
-   if (is_option('r')){
-      *option='r';
-      option++;
-   }
-   if (is_option('s')){
-      *option='s';
-      option++;
-   }
-   if (is_option('m')){
-      *option='m';
-      option++;
-   }
-   if (is_option('u')){
-      *option='u';
-      option++;
-   }
-   if (is_option('z')){
-      *option='z';
-      option++;
-   }
-   if (is_option('Z')){
-      *option='Z';
-      option++;
-   }
-
-   if (is_option('l')){
-      *option='l';
-      option++;
-      sprintf(option,"%d ",optionnumber('l'));
-      option=strchr(option,' ');
-   }
-   if (is_option('n')){
-      *option='n';
-      option++;
-      sprintf(option,"%d ",optionnumber('n'));
-      option=strchr(option,' ');
-   }
-
-   if (is_option('p')){
-      *option='p';
-      option++;
-      for (i=1;i<argc && strstr(argv[i],"-p") != argv[i];i++);
-      sprintf(option,"%s ",argv[i]+2);
-      option=strchr(option,' ');
-   }
-   if (is_option('t')){
-      *option='t';
-      option++;
-      for (i=1;i<argc && strstr(argv[i],"-t") != argv[i];i++);
-      outputfile = fopen(argv[i]+3, "w+");
-      if (outputfile == NULL) {
-         fprintf(stderr,"ZZprog: Error, could not open temporary file %s\n",
-                       argv[i]+3);
-         errflag = 1;
-      }
-   }
-
-   return errflag == 0;
+	*options++ = 't';
+	outputfile = stdout;
+	/*  Ok, it seems to be carat convention to allow a '=' sign
+	 *  between the option and the argument.
+	 *  We cope with this by simply replacing any occurences of a '=' sign 
+	 *  with spaces.
+	 */
+	for (i=1; i < argc; i++) {
+		for (p=argv[i]; *p != '\0'; p++) {
+			if (*p == '=') {
+				strcpy(p, p+1);
+				break;
+			}
+		}
+	}
+	while ((c = getopt(argc, argv, "bghl:n:p:zZD:qrst:mu")) != -1) {
+		switch(c) {
+		case 'b':
+		case 'g':
+		case 'q':
+		case 'r':
+		case 's':
+		case 'm':
+		case 'u':
+		case 'z':
+		case 'Z':
+			*options++ = (char)c;
+			break;
+		case 'l':
+		case 'D':
+		case 'n':
+		case 'p':
+			*options++ = (char)c;
+			strcpy(options, optarg);
+			options += strlen(optarg);
+			break;			
+		case 't':
+			*options++ = (char)c;
+			if (strcmp("none", optarg)) {
+				if (strcmp(optarg, "-")) {
+					outputfile = fopen(optarg, "w+");
+				}
+				if (outputfile == NULL) {
+					perror("ZZprog: Error, could not open temporary file\n");
+					errflag = 1;
+				}
+			} else {
+				outputfile = NULL;
+			}
+			break;			
+		case 'h':
+		case '?':
+		default:
+			fprintf(stderr, "Unrecognized option\n");
+			errflag++;
+			break;
+		}
+	}
+	return errflag == 0;
 }
 
 int main (argc, argv)
@@ -142,8 +132,7 @@ int main (argc, argv)
      char *argv[];
 {
     bravais_TYP *group;
-    matrix_TYP *gram = NULL,
-               *ID;
+    matrix_TYP *gram = NULL;
     char *prog_name = argv[0];
     char options[256];
 
@@ -151,7 +140,6 @@ int main (argc, argv)
      *  ANSI standard, i.e. getopt() :-(
      */
     read_header(argc, argv);
-    IDEM_NO = 0;
 
     if (is_option('D') && optionnumber('D') == 8){
        SFLAG = 1;
@@ -162,7 +150,6 @@ int main (argc, argv)
 	    ZZ_usage (prog_name);
 	    exit(31);
     }
-
 #if DEBUG
     printf("Options: %s\n", options);
     {
@@ -173,16 +160,14 @@ int main (argc, argv)
 	    }
     }
 #endif
-    switch (FILEANZ) {
+    switch (argc - optind) {
     case 1:
-	    group = get_bravais (FILENAMES[0]);
-            ID = init_mat(group->dim,group->dim,"i1");
-	    gram = rform(group->gen,group->gen_no,ID,101);
-            free_mat(ID);
+	    group = get_bravais (argv[optind]);
+	    gram = group->form[0];
 	    break;
     case 2:
-	    group = get_bravais (FILENAMES[0]);
-	    gram = get_mat(FILENAMES[1]);
+	    group = get_bravais (argv[optind]);
+	    gram = get_mat(argv[optind+1]);
 	    break;
     default:
 	    ZZ_usage (prog_name);

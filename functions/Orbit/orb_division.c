@@ -46,11 +46,13 @@ int is_sorted;
    extern int mat_comp();
 
   erg = init_mat(2, Manz, "");
-  if((merk = (int *)calloc(Manz , sizeof(int))) == NULL)
+  if((merk = (int *)malloc(Manz *sizeof(int))) == NULL)
   {
-    printf("calloc of 'merk' in 'orbit_representatives' failed\n");
+    printf("malloc of 'merk' in 'orbit_representatives' failed\n");
     exit(2);
   }
+  for(i=0;i<Manz;i++)
+     merk[i] = 0;
 
   i = 0;
   no = 0;

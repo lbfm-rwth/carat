@@ -78,7 +78,7 @@ main (int argc, char *argv[])
 
   tmp = trace_bifo(G->form,G_tr->form,G->form_no);
 
-  tmp2 = long_elt_mat(NULL,tmp,NULL);
+  tmp2 = long_elt_mat(tmp,NULL);
 
   sprintf(comment,"elementary divisors of the trace_bifo for G in %s",
                                                        FILENAMES[0]);

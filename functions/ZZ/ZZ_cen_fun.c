@@ -16,12 +16,6 @@ extern int IDEM_NO;
 static int *SUB_VEC;
 static matrix_TYP **PrI;
 
-/* eingefuegt von Oliver am 5.2.99 */
-int OANZ = 0;
-matrix_TYP **OMAT;
-int OFLAG = FALSE;
-/* ------------------------------- */
-
 
   /*============================================================*\
   ||                                                            ||
@@ -481,7 +475,7 @@ void ZZ_put_data (group, data, tree)
 		n->U = NULL;
 		if (SHORTLIST) {
 			if (SUBDIRECT) {
-				printf ("\t L%d: Number of Sublattices: %d ",
+				printf ("\t L%d: Anzahl Teilgitter: %d ",
 					n->number, n->anz_tg);
 			} else {
 				printf ("\t L%d: ", n->number);
@@ -517,18 +511,18 @@ void ZZ_fput_data (data, tree, ABBRUCH)
 	do {
 		if (old_lev != n->level) {
 			if (TEMPORAER && (old_lev)) {
-				fprintf (ZZ_temp, "\n======= %d Lattices on level %d ====================================\n", lev_cnt, old_lev);
+				fprintf (ZZ_temp, "\n======= %d Zentrierungen auf Level %d ====================================\n", lev_cnt, old_lev);
 			}
 			old_lev = n->level;
 			lev_cnt = 0;
 		}
 		if (TEMPORAER && !(ABBRUCH & 1)) {
 			fprintf (ZZ_temp,
-				 "\n\t      L%3.d: %13s\tConstituent\n",
-				 n->number, "Lattice");
+				 "\n\t      L%3-d: %13s\tKonstituent\n",
+				 n->number, "Gitter");
 			if (SUBDIRECT) {
 				fprintf (ZZ_temp,
-					 "\n Number of sublattices: %d ",
+					 "\n Anzahl Teilgitter: %d ",
 					 n->anz_tg);
 			}
 			if ((m = n->parent) != NULL) {
@@ -558,7 +552,7 @@ void ZZ_fput_data (data, tree, ABBRUCH)
 	} while ((n = t) != NULL);
 	if (TEMPORAER) {
 		fprintf (ZZ_temp,
-			 "\n======= %d Lattices on level %d ====================================\n", lev_cnt, old_lev);
+			 "\n======= %d Zentrierungen auf Level %d ====================================\n", lev_cnt, old_lev);
 	}
 	if (ABBRUCH & 2) {
 		if (TEMPORAER) {
@@ -934,7 +928,7 @@ ZZ_node_t *ZZ_center (data, father, ii, jj)
 	 */
 	Check_mat (n->U);
 	if (U_option) {
-		n->el_div = long_elt_mat(NULL,n->U, NULL);
+		n->el_div = long_elt_mat(n->U, NULL);
 		/*
 		 * Calculate index as product of the invariant factors
 		 */
@@ -1225,7 +1219,7 @@ int ZZ_ins_node (Gram, data, tree, father, new, ii, jj)
 		if (SUBDIRECT) {
 			for (i = 0; i < SUBDIRECT; i++) {
 				Tmp1 = mat_mul (new->U, PrI[i]);
-				Tmp2 = long_elt_mat(NULL,Tmp1, NULL);
+				Tmp2 = long_elt_mat(Tmp1, NULL);
 				free_mat (Tmp1);
 				/* changed 30/06/97 tilman form:
 				if (Tmp2->array.SZ[0][Tmp2->cols - 1] != 1) {
@@ -1278,7 +1272,7 @@ int ZZ_ins_node (Gram, data, tree, father, new, ii, jj)
 			free_mat(Trf);
 		}
 		if (G_option) {
-			el = long_elt_mat(NULL,GMat, NULL);
+			el = long_elt_mat(GMat, NULL);
 		}
 		/*
 		 * Invert the Basis-Transformation
@@ -1297,52 +1291,51 @@ int ZZ_ins_node (Gram, data, tree, father, new, ii, jj)
 		}
 
 		if (!QUIET) {
-			fprintf (stderr, "L%d with (%d,%d) yields L%d\n",
+			fprintf (stderr, "L%d unter (%d,%d) liefert L%d\n",
 				 father->number, ii, jj, tree->node_count);
 		}
 		/*
 		 * write new lattice to temporary file ZZ.tmp
 		 */
 		if (TEMPORAER && !NURUMF) {
-			fprintf (ZZ_temp, "L%d with (%d,%d) yields L%d\n",
+			fprintf (ZZ_temp, "L%d unter (%d,%d) liefert L%d\n",
 				 father->number, ii, jj, tree->node_count);
 			
 			if (U_option) {
 				fput_mat (ZZ_temp, new->el_div,
-					  "Elementary divisors    :", 2);
+					  "Elementarteiler           :", 2);
 			}
 			ZZ_transpose_array(new->U->array.SZ, new->U->cols);
 			/* fput_mat (ZZ_temp, new->U,
-				  "Change of basis          :", 4); */
+				  "Basiswechselmatrix        :", 4); */
+			/* inserted 6/2/97 tilman */
+			if (is_option('m')){
+				sprintf(filename,"bas.%d",tree->node_count);
+				put_mat(new->U,filename,"Basiswechsel",4);
+				sprintf(filename,"gram.%d",tree->node_count);
+				put_mat(GMat,filename,"Gram",4);
+			}
 			ZZ_transpose_array(new->U->array.SZ, new->U->cols);
 			
 			if (G_option) {
 				fput_mat(ZZ_temp, el,
-				 "Elementary divisors of the Gram matrix:", 2);
+					 "Grammatrix Elementarteiler:", 2);
 			}
 			fput_mat (ZZ_temp, GMat,
-				  "Gram matrix               :", 2);
+				  "Grammatrix                :", 2);
 			fflush (ZZ_temp);
 		}
 		if (TEMPORAER && NURUMF) {
 			ZZ_transpose_array(new->U->array.SZ, new->U->cols);
 			fput_mat (ZZ_temp, new->U,
-				  "Change of basis:", 4);
+				  "Basiswechselmatrix        :", 4);
 			ZZ_transpose_array(new->U->array.SZ, new->U->cols);
 			ZZ_transpose_array(new->U_inv->array.SZ, new->U->cols);
 			fput_mat (ZZ_temp, new->U_inv,
-				  "Inverse of it  :", 4);
+				  "Inverse        :", 4);
 			ZZ_transpose_array(new->U_inv->array.SZ, new->U->cols);
 			fflush (ZZ_temp);
 		}
-		
-		/* eingefuegt von Oliver am 5.2.99 */
-                if (OFLAG){
-			OMAT[OANZ] = copy_mat(new->U);
-      			OANZ += 1;
-                }
-		/* ------------------ */
-		
 		if (G_option) {
 			free_mat (el);
 		}
@@ -1352,11 +1345,11 @@ int ZZ_ins_node (Gram, data, tree, father, new, ii, jj)
 		 * We got that lattice already
 		 */
 		if (!QUIET) {
-			fprintf (stderr, "L%d with (%d,%d) yields %d.L%d\n",
+			fprintf (stderr, "L%d unter (%d,%d) liefert %d.L%d\n",
 				 father->number, ii, jj, g, n->number);
 		}
 		if (TEMPORAER && !NURUMF) {
-			fprintf (ZZ_temp, "L%d with (%d,%d) yields %d.L%d\n",
+			fprintf (ZZ_temp, "L%d unter (%d,%d) liefert %d.L%d\n",
 				 father->number, ii, jj, g, n->number);
 		}
 		ZZ_free_node (data, new);

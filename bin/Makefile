@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -fwritable-strings -DDIAG1 -pg
+CFLAGS = -fwritable-strings -DDIAG1
 TOPDIR = /usb/carat
 
 # LIB = -L$(TOPDIR)/lib -lcarat -lm
@@ -14,41 +14,30 @@ GLOBAL = -DTOPDIR=\"$(TOPDIR)\" -DTABLES=\"$(TOPDIR)/tables/\" \
 
 COMP = $(CC) $(CFLAGS) $(GLOBAL) -I$(INCL)
 
-ALL: DIR
-
 #
-#   PROGRAMS
+#   PROGRAMME
 #
 
-PROGRAMS: Add Aut_grp Bravais_equiv\
-          Bravais_grp Bravais_inclusions\
-          Con Conjugated Conj_bravais\
-          Conv Datei\
-          Elt Extract Extensions\
-          First_perfect Form_space Form_elt\
-          Formtovec Full Fundamental_domain Gauss\
-          Idem Inv Invar_space Isometry Is_finite\
-          Kron Long_solve Ltm\
-          Modp Mtl Mul Mink_red Minpol\
-          Name Normalizer Normalizer_in_N Normlin\
-          Orbit Order\
-          Pair_red Pdet Perfect_neighbours Poincare Polyeder P_lse_solve\
-          Presentation Q_catalog QtoZ Red_gen Rest_short\
-          Rein Rform Reverse_name\
-          Same_generators Scalarmul Scpr Short\
-          Shortest Short_reduce Signature\
-          Simplify_mat Symbol\
-          Torsionfree Tr Trace Trbifo Tr_bravais\
-          Vor_vertices Vectoform ZZprog Zass_main Z_equiv
+ALL: Add Aut_grp Bravais_equiv\
+     Bravais_grp Bravais_inclusions\
+     Con Conjugated Conj_bravais\
+     Conv Datei\
+     Elt Extract Extensions\
+     First_perfect Form_space Form_elt\
+     Formtovec Full Gauss\
+     Idem Inv Invar_space Isometry Is_finite\
+     Kron Long_solve Ltm\
+     Modp Mtl Mul Mink_red Minpol\
+     Normalizer Normalizer_in_N Normlin\
+     Orbit Order\
+     Pair_red Pdet Perfect_neighbours Polyeder P_lse_solve\
+     Presentation QtoZ Red_gen Rest_short Rein Rform Roundcor\
+     Same_generators Scalarmul Scpr Short\
+     Shortest Short_reduce Signature\
+     Simplify_mat Symbol\
+     Tr Trace Trbifo Tr_bravais\
+     Vor_vertices Vectoform ZZprog Zass_main Z_equiv
 
-
-DIR: ./Makefile ./config.guess
-	if [ ! -d `./config.guess`-$(CC) ] ; then \
-	   mkdir `./config.guess`-$(CC) ; \
-	fi
-	cp Makefile `./config.guess`-$(CC)
-	cd `./config.guess`-$(CC) ;\
-         make TOPDIR="$(TOPDIR)" CC="$(CC)" CFLAGS="$(CFLAGS)" PROGRAMS
 
 #-------------------------------------------------------------
 
@@ -130,10 +119,6 @@ Full:  $(SRC)/full.c
 	$(COMP) -o Full\
         $(SRC)/full.c  $(LIB)
 
-Fundamental_domain:  $(SRC)/fundamental_domain.c
-	$(COMP) -o Fundamental_domain\
-        $(SRC)/fundamental_domain.c  $(LIB)
-
 Gauss:  $(SRC)/gauss.c
 	$(COMP) -o Gauss\
         $(SRC)/gauss.c  $(LIB)
@@ -202,10 +187,6 @@ Mul:  $(SRC)/mul.c
 	$(COMP) -o Mul\
         $(SRC)/mul.c  $(LIB)
 
-Name:  $(SRC)/name.c
-	$(COMP) -o Name\
-        $(SRC)/name.c  $(LIB)
-
 Normalizer:  $(SRC)/normalizer.c
 	$(COMP) -o Normalizer\
         $(SRC)/normalizer.c  $(LIB)
@@ -246,10 +227,6 @@ Perfect_neighbours:  $(SRC)/perfect_neighbours.c
 	$(COMP) -o Perfect_neighbours\
         $(SRC)/perfect_neighbours.c  $(LIB)
 
-Poincare:  $(SRC)/poincare.c
-	$(COMP) -o Poincare\
-        $(SRC)/poincare.c  $(LIB)
-
 Polyeder:  $(SRC)/polyeder.c
 	$(COMP) -o Polyeder\
         $(SRC)/polyeder.c  $(LIB)
@@ -258,17 +235,13 @@ P_lse_solve:  $(SRC)/p_lse_solve.c
 	$(COMP) -o P_lse_solve\
         $(SRC)/p_lse_solve.c  $(LIB)
 
-Q_catalog:  $(SRC)/Q_catalog.c
-	$(COMP) -o Q_catalog\
-        $(SRC)/Q_catalog.c  $(LIB)
-
 QtoZ:  $(SRC)/qtoz.c
 	$(COMP) -o QtoZ\
         $(SRC)/qtoz.c  $(LIB)
 
-Presentation:  $(SRC)/presentation.c
+Presentation:  $(SRC)/kommureihe.c
 	$(COMP) -o Presentation\
-        $(SRC)/presentation.c $(LIB)
+        $(SRC)/kommureihe.c $(LIB)
 
 Red_gen:  $(SRC)/red_gen.c
 	$(COMP) -o Red_gen\
@@ -286,9 +259,9 @@ Rform:  $(SRC)/rform.c
 	$(COMP) -o Rform\
         $(SRC)/rform.c  $(LIB)
 
-Reverse_name:  $(SRC)/reverse_name.c
-	$(COMP) -o Reverse_name\
-        $(SRC)/reverse_name.c  $(LIB)
+Roundcor:  $(SRC)/roundcor.c
+	$(COMP) -o Roundcor\
+        $(SRC)/roundcor.c $(LIB)
 
 Same_generators:  $(SRC)/same_generators.c
 	$(COMP) -o Same_generators\
@@ -331,10 +304,6 @@ Symbol:  $(SRC)/symbol.c
         $(SRC)/symbol.c  $(LIB)
 	rm -f Bravais_type
 	ln -f -s Symbol Bravais_type
-
-Torsionfree:  $(SRC)/torsionfree.c
-	$(COMP) -o Torsionfree\
-        $(SRC)/torsionfree.c  $(LIB)
 
 Tr:  $(SRC)/tr.c
 	$(COMP) -o Tr\
@@ -402,7 +371,6 @@ clean:
 	rm -f Form_space
 	rm -f Formtovec
 	rm -f Full
-	rm -f Fundamental_domain
 	rm -f Gauss
 	rm -f Gittstab
 	rm -f Hypisom
@@ -433,9 +401,7 @@ clean:
 	rm -f Pdet
 	rm -f Perfect_neighbours
 	rm -f Polyeder
-	rm -f Poincare
 	rm -f Rein
-	rm -f Reverse_name
 	rm -f Rest_short
 	rm -f Rform
 	rm -f Same_generators
@@ -448,7 +414,6 @@ clean:
 	rm -f Simplify_mat
 	rm -f Solve
 	rm -f Symbol ; rm -f Bravais_type
-	rm -f Torsionfree
 	rm -f Tr
 	rm -f Tr_bravais
 	rm -f Trace
@@ -460,14 +425,13 @@ clean:
 	rm -f Bravais_flok
 	rm -f Extensions ; rm -f Vector_systems
 	rm -f Extract ; rm -f Standard_affine_form
-	rm -f Name
 	rm -f Minpol
 	rm -f Red_gen
 	rm -f Conjugated
 	rm -f Order
+	rm -f Roundcor
 	rm -f Malloc_liste
 	rm -f Presentation
-	rm -f Q_catalog
 	rm -f QtoZ
 	rm -f Z_equiv
 	rm -f Bravais_equiv
@@ -478,5 +442,4 @@ clean:
 
 strip:
 	strip *
-
 

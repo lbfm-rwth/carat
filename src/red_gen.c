@@ -13,9 +13,9 @@ main(int argc,char **argv){
 
   bravais_TYP *G;
 
-  matrix_TYP **base = NULL;
+  matrix_TYP **base;
 
-  bahn **strong = NULL;
+  bahn **strong;
 
   read_header(argc,argv);
 

@@ -81,7 +81,7 @@ main(int argc,char **argv){
      }
 
      /* if (!is_option('b')){
-        H = bravais_group(G,FALSE);
+        H = bravais_group(G);
         free_bravais(G);
         G = H;
         H = NULL;

@@ -15,13 +15,11 @@ main (int argc, char *argv[])
   read_header(argc, argv);
   if(FILEANZ != 1)
   {
-     printf("Usage:  %s 'file' [-t]\n",argv[0]);
+     printf("Usage:  Gauss 'file' [-t]\n");
      printf("\n");
      printf("file:   matrix_TYP containing rational matrices.\n");
      printf("\n");
      printf("Calculates for each matrix in file a Gauss reduced matrix (row reduced).\n");
-     printf("More precisely, by applying integral elementary transformations\n");
-     printf("from the left, a staircase form of the input matrix is achieved.\n");
      printf("\n");
      printf("CAUTION: The program works with single precision and should be used only\n");
      printf("         for small examples.\n");

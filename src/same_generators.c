@@ -97,8 +97,8 @@ main(int argc,char **argv){
      Check_mat(coz);
 
      /* output */
-     sprintf(comment,"standartized cozycle for the group of %s",FILENAMES[i+1]);
-     put_cocycle(coz,P->dim,P->gen_no,NULL,comment);
+     sprintf(comment,"standartized cozycle for the group of %s",FILENAMES[i]);
+     put_mat(coz,NULL,comment,2);
 
 
      for (j=0;j<R[i]->gen_no;j++){

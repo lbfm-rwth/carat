@@ -93,7 +93,7 @@ main (int argc, char *argv[])
     B[ad_no] = get_symbol(filename);
     ad_no++;
   }
-  printf("The crystal-family %s contains %d homogeneously decomposable bravais-groups with\n", family_name, ad_no);
+  printf("The cristal-family %s contains %d homogeneously decomposable bravais-groups with\n", family_name, ad_no);
   j=0;
   for(i=0; i<ad_no; i++)
   {

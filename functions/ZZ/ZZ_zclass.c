@@ -64,7 +64,7 @@ static int is_conjugated_ZZ(n,new)
 
 	/* look whether we already got the bravais group n->brav */
 	if (n->brav == NULL){
-		n->brav = bravais_group(n->col_group,TRUE);
+		n->brav = bravais_group(n->col_group);
 	}
 
 	if (n->col_group->normal != NULL &&
@@ -277,7 +277,7 @@ int orbit_under_normalizer(data,tree,father,new,ii,jj)
 				(p->N_no_orbits + 1) * sizeof(int));
 		}
 
-		G = init_bravais(tree->root->group->dim);
+		G = init_bravais(p->group->dim);
 
 		/* tilman: changed on 06.05.1998:
                 G->gen_no = tree->root->col_group->normal_no;
@@ -301,7 +301,7 @@ int orbit_under_normalizer(data,tree,father,new,ii,jj)
 	}
 
 	if (!flag){
-		fprintf(stderr,"father: level %d number of orbits %d lengths %d\n",
+		fprintf(stderr,"father: level %d bahnen %d lengths%d\n",
 			p->level,p->N_no_orbits,p->N_lengths[p->N_no_orbits-1]);
 	}
 

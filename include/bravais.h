@@ -10,7 +10,7 @@
 /*-------------------------------------------------------------*\
 | FILE: bravais_tools.c
 \*-------------------------------------------------------------*/
-bravais_TYP *bravais_group(bravais_TYP *H,int FLAG);
+bravais_TYP *bravais_group(bravais_TYP *H);
 bravais_TYP *copy_bravais(bravais_TYP *H);
 
 /*-------------------------------------------------------------*\

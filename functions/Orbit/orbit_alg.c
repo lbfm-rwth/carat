@@ -1,7 +1,6 @@
-#include "typedef.h"
-#include "longtools.h"
-#include "matrix.h"
-#include "sort.h"
+#include"typedef.h"
+#include"longtools.h"
+#include"matrix.h"
 
 /**************************************************************************\
 @---------------------------------------------------------------------------
@@ -137,6 +136,23 @@ extern matrix_TYP *init_mat();
 
 
 
+static int mat_vergleich(A, B)
+matrix_TYP *A, *B;
+{
+  int i,j;
+    for(i=0; i<A->rows; i++)
+     for(j=0; j<A->cols; j++)
+       if(A->array.SZ[i][j] != B->array.SZ[i][j])
+       {
+          if(A->array.SZ[i][j] < B->array.SZ[i][j])
+             return(-1);
+          return(1);
+       }
+    return(0);
+}
+
+
+
 static struct baum *addbaum(mat, L, anz, verz, schonda)
 matrix_TYP *mat;
 matrix_TYP **L;
@@ -154,7 +170,7 @@ int *schonda;
   }
   else
   {
-     vergleich = mat_comp(mat, L[verz->no]);
+     vergleich = mat_vergleich(mat, L[verz->no]);
      if(vergleich<0)
        verz->left = addbaum(mat, L, anz, verz->left, schonda);
      if(vergleich > 0)
@@ -166,7 +182,7 @@ int *schonda;
 }
 
 
-struct baum *hash_addbaum(mat, L, anz, verz, schonda, hashnumber, hashverz)
+static struct baum *hash_addbaum(mat, L, anz, verz, schonda, hashnumber, hashverz)
 matrix_TYP *mat;
 matrix_TYP **L;
 int anz;
@@ -192,7 +208,7 @@ int *schonda, hashnumber, *hashverz;
      }
      else
      {
-       vergleich = mat_comp(mat, L[verz->no]);
+       vergleich = mat_vergleich(mat, L[verz->no]);
        if(vergleich<0)
          verz->left = hash_addbaum(mat, L, anz, verz->left, schonda, hashnumber, hashverz);
        if(vergleich > 0)
@@ -239,7 +255,6 @@ int *make_orbit_options()
    option[2] = optionnumber('L');
    option[3] = is_option('S');
    option[4] = optionnumber('S');
-   if (option[4] == -1) option[4] = 0;
    option[5] = is_option('i');
  return(option);
 }
@@ -570,18 +585,13 @@ int *option, *length;
         {
            K1 = grp_mul(hist[num], Erz[erzj]);
            K2 = grp_mul(K1, histinv[schonda]);
-           if(mat_comp(K2, I) != 0)
+           if(mat_vergleich(K2, I) != 0)
            {
             Sverz = addbaum(K2, S->gen, S->gen_no, Sverz, &sch);
             if(sch == -1)
              matrix_speichern(K2, &S->gen, &Ssize, &S->gen_no);
            }
-           else{
-              /* inserted this case on 21 Oct 98 tilman */
-              free_mat(K2);
-              K2 = NULL;
-           }
-           if ((schonda == -1 || (schonda != -1 && sch != -1)) && K2 != NULL)
+           if(schonda == -1 || (schonda != -1 && sch != -1))
               free_mat(K2);
            free_mat(K1); K2 = NULL;
         }

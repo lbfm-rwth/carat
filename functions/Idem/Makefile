@@ -12,13 +12,11 @@ GLOBAL = -DTOPDIR=\"$(TOPDIR)\" -DTABLES=\"$(TOPDIR)/tables/\" \
 
 COMP = $(CC) $(CFLAGS) -c $(GLOBAL) -I$(INCL)
 
-OBJS = almost_decomposable_lattice.o\
+OBJS = centr.o\
        bravais_catalog.o\
-       centr.o\
        min_pol.o\
        symbol.o\
-       v4_catalog.o\
-       z_equivalent.o
+       v4_catalog.o
 
 .c.o:
 	$(COMP) $< -o $@

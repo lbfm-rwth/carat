@@ -13,13 +13,7 @@ GLOBAL = -DTOPDIR=\"$(TOPDIR)\" -DTABLES=\"$(TOPDIR)/tables/\" \
 
 COMP = $(CC) $(CFLAGS) -c $(GLOBAL) -I$(INCL)
 
-OBJS = coboundary.o\
-       cong_solve.o\
-       convert_cocycle_to_column.o\
-       convert_to_cozycle.o\
-       put_cocycle.o\
-       reget_gen.o\
-       reverse_valuation.o\
+OBJS = reget_gen.o\
        normalop.o\
        zass.o
 

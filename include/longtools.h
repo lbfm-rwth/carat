@@ -55,9 +55,7 @@ extern MP_INT ***MP_solve_mat(MP_INT **M, int rows, int cols, MP_INT **B,
 /*-------------------------------------------------------------*\
 | FILE: long_elt.c
 \*-------------------------------------------------------------*/
-extern matrix_TYP *long_elt_mat(matrix_TYP *left_trans,
-                                matrix_TYP *Mat,
-                                matrix_TYP *right_trans);
+extern matrix_TYP *long_elt_mat(matrix_TYP *Mat, matrix_TYP *left_trans);
 
 /*-------------------------------------------------------------------*\
 |  FILE: long_gauss.c

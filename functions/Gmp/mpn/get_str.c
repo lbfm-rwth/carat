@@ -1,0 +1,1 @@
+./generic/get_str.c

@@ -12,6 +12,7 @@ int INFO_LEVEL;
 extern int SFLAG;
 
 
+
 main(int argc,char **argv){
 
   matrix_TYP **X,
@@ -41,7 +42,7 @@ main(int argc,char **argv){
 
   if ((is_option('h') && optionnumber('h')==0) || (FILEANZ < 2)
       || (is_option('i') && FILEANZ<3)){
-      printf("Usage: %s 'file1' 'file2' ['file3'] [-n] [-i] [-t=n] [-v]\n",argv[0]);
+      printf("Usage: %s 'file1' 'file2' ['file3'] [-n] [-i] [-t] [-v]\n",argv[0]);
       printf("\n");
       printf("file1:  matrix_TYP containing a presentation of the group (cf. Presentation,\n");
       printf("        Roundcor)\n");
@@ -67,17 +68,12 @@ main(int argc,char **argv){
       printf("          in file2 and the presentation in file1.\n");
       printf("          Can be used to test isomorphism of space groups with equal\n");
       printf("          point groups. The name is 0 iff the extension splits.\n");
-      printf(" -t=n:    Has an effect only if given with -i. Outputs the\n");
+      printf(" -t:      Has an effect only if given with -i. Outputs the\n");
       printf("          isomophism needed to transform the space group\n");
-      printf("          By default, only the linear part is calculated. To\n");
-      printf("          get a full transformation matrix, use -t=2.\n");
       printf(" -C:      Ignore the operation of the normalizer, just work\n");
       printf("          on the level of extensions.\n");
       printf(" -H:      echo the isomorphism type of the cohomology group\n");
       printf("          H^1(G,Q^n/Z^n) to stderr.\n");
-      printf(" -F:      Only construct those extensions which gie rise to\n");
-      printf("          torsion free space groups. Does not work in conjunction\n");
-      printf("          with -n.\n");
       printf("\n");
       printf(" CAUTION: THE PROGRAM RELIES HEAVILY ON THE FOLLOWING TWO FACTS:\n");
       printf("           - THE PRESENTATION GIVEN IN file1 IS INDEED A\n");
@@ -156,24 +152,19 @@ main(int argc,char **argv){
         fprintf(stderr,"H^1(G,Q^n/Z^n) is trivial\n");
      }
      if (is_option('n')){
-        printf("number of extensions of group in %s with natural lattice %d\n",
+        printf("number of extensions of group in %s with natural lattice %d",
               FILENAMES[1],1);
      }
      else if(is_option('i')){
         printf("There is only one extension of this group with the natural\n");
         printf("lattice, and this splits.\n");
      }
-     else if(is_option('F')){
-        /* only one extension, this splits and is not torsion free
-           for this reason */
-        printf("#0\n");
-     }
      else{
         X[0] = init_mat(G->gen_no * G->dim,1,"");
         printf("#%d\n",1);
         sprintf(comment,"the %d-th cozycle to the group of %s",
                 1,FILENAMES[1]);
-        put_cocycle(X[0],G->dim,G->gen_no,NULL,comment);
+        put_mat(X[0],NULL,comment,2);
      }
      exit(0);
   }
@@ -205,12 +196,10 @@ main(int argc,char **argv){
   }
   else if(is_option('i')){
      Y = mget_mat(FILENAMES[2],&anz);
-     convert_cocycle_to_column(Y,anz,G->dim,G->gen_no);
      names = (MP_INT *) malloc(anz*sizeof(MP_INT));
      for (i=0;i<anz;i++) mpz_init_set_si(names+i,0);
      i = is_option('t');
-     if (i || optionnumber('t') == 2) i = 3;
-     TR = identify(X[0],X[1],X[2],G,Y,names,anz,i,NULL,NULL);
+     TR = identify(X[0],X[1],X[2],G,Y,names,anz,i);
      for (i=0;i<anz;i++){
         printf("Name for the %d-th extension in %s: ",i+1,FILENAMES[1]);
         mpz_out_str(stdout,10,names+i);
@@ -231,14 +220,14 @@ main(int argc,char **argv){
      if (TR != NULL) free(TR);
   }
   else{
-     Y = extensions(X[0],X[1],X[2],G,&len,&names,&anz,is_option('F'));
+     Y = extensions(X[0],X[1],X[2],G,&len,&names,&anz);
 
      printf("#%d\n",anz);
      for (i=0;i<anz;i++){
         NAME = mpz_get_str(NULL,10,names+i);
         sprintf(comment,
              "the %d-th cozycle, length of orbit %d,name: %s",i+1,len[i],NAME);
-        put_cocycle(Y[i],G->dim,G->gen_no,NULL,comment);
+        put_mat(Y[i],NULL,comment,2);
         free_mat(Y[i]);
         mpz_clear(names+i);
         free(NAME);

@@ -93,8 +93,8 @@ matrix_TYP *is_z_equivalent_datei(bravais_TYP *G,bravais_TYP *G_tr,
       put_mat(htrbifo,NULL,"htrbifo",2); */
 
       /* the two trace bifos should have the same elementary devisors */
-      tmp = long_elt_mat(NULL,gtrbifo,NULL);
-      tmp2 = long_elt_mat(NULL,htrbifo,NULL);
+      tmp = long_elt_mat(gtrbifo,NULL);
+      tmp2 = long_elt_mat(htrbifo,NULL);
 
       if (mat_comp(tmp,tmp2) == 0){
          free_mat(tmp);

@@ -10,7 +10,6 @@
 #include "polyeder.h"
 #include "tools.h"
 #include "sort.h"
-#include "longtools.h"
 
 extern int INFO_LEVEL;
 
@@ -229,14 +228,10 @@ int neighbours(matrix_TYP ***perf,bravais_TYP *G,matrix_TYP **Ftr,
 /*********************************
   put_polyeder(pol);
 ***********************************/
-
-  /* changed 14.04.99 to save this variable from being freed, it
-     causes trouble on some machines */
-  i = pol->vert_no;
   free_polyeder(pol);
 
   /* return the number of neighbours */
-  return i;
+  return pol->vert_no;
 
 }
 
@@ -297,10 +292,6 @@ void transform_pair(bravais_TYP *H,bravais_TYP *Htr,matrix_TYP *x)
   tmp = konj_bravais(Htr,x);
   tmp = konj_bravais(H,xitr); */
 
-  /* inserted: tilman 26.08.98 to get a better
-     basis for the formspace of H,Htr */
-  long_rein_formspace(H->form,H->form_no,1);
-  long_rein_formspace(Htr->form,Htr->form_no,1);
 
   free_mat(xtr);
   free_mat(xi);
@@ -397,8 +388,8 @@ matrix_TYP *is_z_equivalent(bravais_TYP *G,bravais_TYP *G_tr,
       put_mat(htrbifo,NULL,"htrbifo",2); */
 
       /* the two trace bifos should have the same elementary devisors */
-      tmp = long_elt_mat(NULL,gtrbifo,NULL);
-      tmp2 = long_elt_mat(NULL,htrbifo,NULL);
+      tmp = long_elt_mat(gtrbifo,NULL);
+      tmp2 = long_elt_mat(htrbifo,NULL);
 
       if (mat_comp(tmp,tmp2) == 0){
          free_mat(tmp);

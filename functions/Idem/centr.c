@@ -401,10 +401,7 @@ static matrix_TYP **get_idem2(matrix_TYP **gen,int number,int *anz)
       zero = zeros(min);
       erg = (matrix_TYP **) malloc(1 * sizeof(matrix_TYP *));
       erg[0] = copy_mat(gen[0]);
-      if (zero->cols == 1)
-         erg[0]->kgv = zero->array.SZ[0][0];
-      else
-         erg[0]->kgv = zero->array.SZ[0][1];
+      erg[0]->kgv = zero->array.SZ[0][1];
       Check_mat(erg[0]);
       anz[0] = 1;
       free_mat(min);

@@ -91,24 +91,16 @@ typedef struct{
   int dim;
   int *product;
   int nproduct;
-  int norm;          /* next 4 lines inserted by anne, 8/10/97 */
-  int next_no;       /* Anzahl der Nachbarwaende */
-  int **next;        /* Gleichungen der Nachbarwaende */
-  int ext_no;        /* Anzahl der virtuellen Waende */
-  int **extra;       /* Gleichungen der virtuellen Waende */
-  int neu;           /* neu[i] = 0 falls die Wand neu hinzugekommen ist */
-  int paar;          /* No. der zu dieser Wand gepaarten Wand */
-  matrix_TYP *mat;   /* Seitentransformation */
-  word_TYP *word;    /* Wort der Seitentrafo in den Gruppenerzeugern */
+  int norm;
+  int next_no;		/* next 4 lines inserted by anne, 8/10/97 */
+  int **next;
+  int ext_no;
+  int **extra;
+  int neu;
+  matrix_TYP *mat;
+  word_TYP *word;
 }wall_TYP;
 
-			/* next 5 lines inserted by anne, 8/10/98 */
-typedef struct{
-	int w[2];
-	int *v;
-	int v_anz;
-	} corner_TYP;
- 
 typedef struct {
    vertex_TYP **vert;
    int vert_no;
@@ -116,9 +108,6 @@ typedef struct {
    wall_TYP **wall;
    int wall_no;
    int wall_SIZE;
-   corner_TYP *corner;  /* next 3 lines inserted by anne, 8/10/98 */
-   int corner_no;
-   int corner_SIZE;
    int is_closed;
    int is_degenerate;
 } polyeder_TYP;
