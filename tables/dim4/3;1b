@@ -1,0 +1,27 @@
+#g3 f2 % almost decomposable bravais-group
+4	% generator
+ -1 -1 -1 0
+  0  1  0 0
+  0  0  1 0
+  0  0  0 1
+4	% generator
+ -1  0 0 0
+  1  1 1 0
+  0 -1 0 0
+  0  0 0 1
+4	% generator
+ 1 0 0  0
+ 0 1 0  0
+ 0 0 1  0
+ 0 0 0 -1
+4	% invariant form
+ 8 4 4 0
+ 4 8 4 0
+ 4 4 8 0
+ 0 0 0 0
+4	% invariant form
+ 0 0 0 0
+ 0 0 0 0
+ 0 0 0 0
+ 0 0 0 1
+2^5  * 3^1   = 96 % order of the group

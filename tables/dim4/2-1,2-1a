@@ -1,0 +1,29 @@
+#g2 f3 % almost decomposable bravais-group
+4	% generator
+ 1  0 0 0
+ 0 -1 0 0
+ 0  0 0 1
+ 0  0 1 0
+4	% generator
+ 0 -1  0 0
+ 1  0  0 0
+ 0  0  0 1
+ 0  0 -1 0
+4	% invariant form
+ 1 0 0 0
+ 0 1 0 0
+ 0 0 0 0
+ 0 0 0 0
+4	% invariant form
+ 0  0 1  1
+ 0  0 1 -1
+ 1  1 0  0
+ 1 -1 0  0
+4	% invariant form
+ 0 0 0 0
+ 0 0 0 0
+ 0 0 1 0
+ 0 0 0 1
+ 2^3   = 8 % order of the group
+dim4/2-1,2-1b
+

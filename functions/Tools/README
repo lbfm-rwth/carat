@@ -1,0 +1,212 @@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: carat_exit.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void carat_exit(fmt, va_alist)
+@ char *fmt;
+@ va_dcl
+@ 
+@ carat_exit has been implemented because our debugger cannot stop
+@ at exit.
+@ The Syntax is to use in the same way as printf.
+@ After printing the programm exits.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: chin_remainder.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@-------------------------------------------------------------------------
+@ chinrest(x1, x2, p1, p2) calculates for positive primes p1,p2
+@ and integers x1, x2 an integer x with
+@   -(p1*p2)/2 < x < (p1*p2)/2 and
+@ x kongruent x1 modulo p1 and x konguent x2 modulo p2
+@-------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: intpow.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@
+@ int intpow(a,b);
+@
+@ compute the b-th power of the integer a (int a, int b)
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: itoa.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void itoa(n, s)
+@ int n;
+@ char s[];
+@
+@ changes the integer 'n' to a character 's', for example:  124 --> '124'
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE:  malloc2dim.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@
+@-------------------------------------------------------------------------
+@ char **calloc2dim ( r, c, size )
+@ int r,c,size;
+@
+@ allocates a 2-dimensional array with 'r' rows and 'c' columns
+@ the size of the entries in bytes is given by the argument 'size'.
+@
+@-------------------------------------------------------------------------
+@ char **malloc2dim ( r, c, size )
+@ int r,c,size;
+@
+@ allocates a 2-dimensional array with 'r' rows and 'c' columns
+@ the size of the entries in bytes is given by the argument 'size'.
+@
+@-------------------------------------------------------------------------
+@-------------------------------------------------------------------------
+@ void memcpy2dim ( dest, src, r, c, size )
+@        copies a 2-dimesional array
+@
+@ char **dest: destination
+@ char **src:  source
+@ int r, int c: rows x columns of the arrays
+@ int size: size of an entry in bytes
+@
+@-------------------------------------------------------------------------
+@-------------------------------------------------------------------------
+@ void memset2dim ( dest, r, c, size, value )
+@  initializes a 2-dimensional array
+@
+@ char **dest: destination
+@ int r, int c: rows x columns of the arrays
+@ int size: size of an entry in bytes
+@ char *value: pointer to the entry, the array shall be initialized with
+@
+@-------------------------------------------------------------------------
+@-------------------------------------------------------------------------
+@ void free2dim ( old, rows )
+@ frees a 2-dimensional array
+@
+@ char **old: pointer to the array
+@ int rows: number of rows (upper bound for the first index of the array)
+@
+@-------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: min_div.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@-------------------------------------------------------------------------
+@ int min_div(a,b)
+@ int a,b;
+@
+@ calculates intger c such that a = c*b + r with r of minimal absulute
+@ size
+@
+@-------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: ovfl_mul.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@-------------------------------------------------------------------------
+@  int ovfl_mul( a, b);
+@ int a,b;
+@
+@  The routine should catch an integer-overflow.
+@  Slow. Unluckily "c" does not provide machine-independent access to the
+@  integer hardware overflow-routines.
+@  if there is no overflow the function returns the product a*b,
+@  otherwise the program exits.
+@
+@-------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: prime_tools.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@-------------------------------------------------------------------------
+@ This file exports the global variables
+@ int act_prime  - This the actual used prime_number
+@
+@ int (*S)(int,int), (*P)(int,int)
+@ S is the function for addition modulo act_prime and
+@ P the function for multiplication
+@
+@ void cleanup_prime();
+@             releases all memory that was allocated by init_prime(). Only 
+@             useful for debugging memory allocation.
+@ void init_prime( int prime);
+@    This function MUST be called before the functions S(a,b) and P(a,b)
+@    can be used, since otherwise they are not defined.
+@    The argument of init_prime is the new prime number, modulo which
+@    the calculations shoud be done, i.e. act_prime is set to prime.
+@
+@-------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: tools.c
+@ containes some general small tools.
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@
+@ Exports the globale variables Zero and One.
+@        rational Zero=  { 0,1 };
+@        rational One =  { 1,1 };
+@
+@ int GGT( int a, int b );
+@       calculates the greatest common divisor of a and b.
+@       The result is always > 0
+@
+@ int KGV( int a, int b );
+@       calculates the least commom multiple of a and b.
+@       The result is always > 0
+@
+@ void Normal ( rational *a );
+@       divides the numerator  and the denominator of a rational number
+@       by their greatest common divisor
+@
+@ void Normal2 ( int *z, *n );
+@       divides z and n by their greatest common divisor.
+@       Caution: z and n are changed in Normal2
+@
+@ void rat_add ( int *az, int *an, int bz, int bn);
+@                   cz       az   bz
+@      calculates   --  :=   -- + --
+@                   cn       an   bn
+@       The result is stored in az and an.
+@
+@ int *factorize_new( int zahl,int *erg);
+@
+@ int *factorize ( int zahl );
+@       The integer 'zahl' is factorized. If for example
+@       zahl = p1^a1 *p2^a2,
+@       erg[p1] is set to a1 and erg[p2] is set to a2,
+@       all other entries of erg are 0.
+@       Caution: the result is a pointer to an integer of length 100.
+@                So factorize works only for intergers that
+@                have prime factors smaller then 100.
+@
+@  void gcd_darstell( int a1, int a2, int *v1, int *v2, int *gcd);
+@      calculates a presentation of the greatest commom divisor of a1 and a2:
+@      gcd = v1*a1 + v2*a2
+@
+@  int p_inv(int a, int p)
+@      calculates number ai such that a * ai is kongruent 1 modulo p (if exists)
+@
+@-------------------------------------------------------------------------

@@ -1,0 +1,524 @@
+#g4 f4 z2 n1 c4% almost decomposable bravais-group
+6	% generator
+  0 1  0 0 0 0
+ -1 1  0 0 0 0
+  0 0  0 1 0 0
+  0 0 -1 1 0 0
+  0 0  0 0 1 0
+  0 0  0 0 0 1
+6	% generator
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+ 0 0 0 1 0 0
+ 0 0 1 0 0 0
+ 0 0 0 0 1 0
+ 0 0 0 0 0 1
+6	% generator
+ 1 0 0 0  0 0
+ 0 1 0 0  0 0
+ 0 0 1 0  0 0
+ 0 0 0 1  0 0
+ 0 0 0 0  0 1
+ 0 0 0 0 -1 1
+6	% generator
+ 1 0 0 0 0 0
+ 0 1 0 0 0 0
+ 0 0 1 0 0 0
+ 0 0 0 1 0 0
+ 0 0 0 0 0 1
+ 0 0 0 0 1 0
+6x0	% invariant form
+  2
+ -1 2
+  0 0 0
+  0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0 0
+6x0	% invariant form
+  0
+  0  0
+  2 -1 0
+ -1  2 0 0
+  0  0 0 0 0
+  0  0 0 0 0 0
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0  2
+ 0 0 -1 2
+ 0 0  0 0 0
+ 0 0  0 0 0 0
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 0
+ 0 0 0 0  2
+ 0 0 0 0 -1 2
+6	% zentr
+ 1 0  0  0  0 0
+ 0 1  0  0  0 0
+ 0 0  0  0  1 1
+ 0 0 -1 -1  0 1
+ 0 0  1  0 -1 1
+ 0 0  0  1  0 0
+6	% zentr
+ 1 0 0 0  0  0
+ 0 1 0 0  0  0
+ 0 0 1 0 -1  0
+ 0 0 0 1  0 -1
+ 0 0 1 0  1  0
+ 0 0 0 1  0  1
+6d0	% generator of normalizer
+1
+6d1	% generator of centralizer
+-1 -1 1 1 1 1 
+6	% generator of centralizer
+ -1  0 0 0 0 0
+  0 -1 0 0 0 0
+ -1  0 1 0 0 0
+  0 -1 0 1 0 0
+  0  0 0 0 1 0
+  0  0 0 0 0 1
+6x0	% generator of centralizer
+ 0
+ 0 0
+ 1 0 0
+ 0 1 0 0
+ 0 0 0 0 1
+ 0 0 0 0 0 1
+6d1	% generator of centralizer
+1 1 1 1 -1 -1 
+2^4  * 3^2   = 144 % order of the group
+#g6 f4 n1 c8% not almost decomposable bravais-group
+6	% generator
+ 0 1  0  0  0 0
+ 1 0  0  0  0 0
+ 0 0  0 -1 -1 0
+ 0 0  0  1  0 0
+ 0 0 -1 -1  0 0
+ 0 0  0  0  0 1
+6	% generator
+ 1 -1  0 0  0  0
+ 1  0  0 0  0  0
+ 0  0  1 0 -1  0
+ 0  0 -1 1  1 -1
+ 0  0  1 0  0  0
+ 0  0  0 1  1  0
+6	% generator
+ 1 0 0 0  0  0
+ 0 1 0 0  0  0
+ 0 0 0 1  1 -1
+ 0 0 1 0 -1  1
+ 0 0 0 0  1  0
+ 0 0 0 0  0  1
+6	% generator
+ -1 1  0  0  0 0
+ -1 0  0  0  0 0
+  0 0  0 -1  0 1
+  0 0  0  1  0 0
+  0 0 -1 -1  0 0
+  0 0  0  0 -1 0
+6	% generator
+ -1 0 0 0  0  0
+ -1 1 0 0  0  0
+  0 0 1 0  0  0
+  0 0 0 1  0  0
+  0 0 0 0  0 -1
+  0 0 0 0 -1  0
+6	% generator
+  0 1  0  0 0  0
+ -1 1  0  0 0  0
+  0 0  1  0 0  1
+  0 0 -1  1 1 -1
+  0 0  0 -1 0  1
+  0 0 -1  0 0  0
+6x0	% invariant form
+  2
+ -1 2
+  0 0 0
+  0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0 0
+6x0	% invariant form
+ 0
+ 0  0
+ 1 -2 0
+ 1 -2 0 0
+ 2 -1 0 0 0
+ 1  1 0 0 0 0
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0  2
+ 0 0  2  2
+ 0 0  1  1 2
+ 0 0 -1 -1 1 2
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0  2
+ 0 0 -1  2
+ 0 0 -2  1  2
+ 0 0  2 -1 -2 2
+6d0	% generator of normalizer
+1
+6d1	% generator of centralizer
+-1 -1 1 1 1 1 
+6d0	% generator of centralizer
+1
+6	% generator of centralizer
+ 1 0  0  0 -1 -1
+ 0 1  1  1  0 -1
+ 0 0 -1  0  0  0
+ 0 0  0 -1  0  0
+ 0 0  0  0 -1  0
+ 0 0  0  0  0 -1
+6	% generator of centralizer
+ 1 0 0 0 -1 -1
+ 0 1 1 1  0 -1
+ 0 0 1 0  0  0
+ 0 0 0 1  0  0
+ 0 0 0 0  1  0
+ 0 0 0 0  0  1
+6d1	% generator of centralizer
+1 1 -1 -1 -1 -1 
+6	% generator of centralizer
+ 1 0  0  0 1 1
+ 0 1 -1 -1 0 1
+ 0 0  1  0 0 0
+ 0 0  0  1 0 0
+ 0 0  0  0 1 0
+ 0 0  0  0 0 1
+6	% generator of centralizer
+ 2  0  0  0 -1 -1
+ 0  2  1  1  0 -1
+ 1 -2 -1 -2 -1  1
+ 0  0  0  1  0  0
+ 2 -1 -1 -1 -1 -1
+ 1  1  1  1 -1 -1
+6d0	% generator of centralizer
+-1
+2^3  * 3^2   = 72 % order of the group
+#g7 f4 n1 c5% not almost decomposable bravais-group
+6	% generator
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+ 0 0 0 0 0 0
+ 0 0 0 0 0 0
+ 0 0 0 0 0 0
+ 0 0 0 0 0 0
+6	% generator
+ -1 1 0  0 0  0
+ -1 0 0  0 0  0
+  0 0 0  0 1 -1
+  0 0 0  0 1  0
+  0 0 1 -1 0  0
+  0 0 1  0 0  0
+6	% generator
+  0 1  0 0  0 0
+ -1 1  0 0  0 0
+  0 0  0 1  0 0
+  0 0 -1 1  0 0
+  0 0  0 0  0 1
+  0 0  0 0 -1 1
+6	% generator
+ -1 1  0 0  0 0
+  0 1  0 0  0 0
+  0 0 -1 1  0 0
+  0 0  0 1  0 0
+  0 0  0 0 -1 1
+  0 0  0 0  0 1
+6	% generator
+ 1 -1  0 0  0 0
+ 1  0  0 0  0 0
+ 0  0  0 0 -1 1
+ 0  0  0 0 -1 0
+ 0  0 -1 1  0 0
+ 0  0 -1 0  0 0
+6	% generator
+  0 -1 0 0 0 0
+ -1  0 0 0 0 0
+  0  0 0 0 0 0
+  0  0 0 0 0 0
+  0  0 0 0 0 0
+  0  0 0 0 0 0
+6	% generator
+ -1 0 0  0 0  0
+ -1 1 0  0 0  0
+  0 0 0  0 1  0
+  0 0 0  0 1 -1
+  0 0 1  0 0  0
+  0 0 1 -1 0  0
+6x0	% invariant form
+  2
+ -1 2
+  0 0 0
+  0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0 0
+6x0	% invariant form
+  0
+  0  0
+  2 -1 0
+ -1  2 0 0
+ -2  1 0 0 0
+  1 -2 0 0 0 0
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0  2
+ 0 0 -1  2
+ 0 0 -2  1  2
+ 0 0  1 -2 -1 2
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0  2
+ 0 0 -1  2
+ 0 0  2 -1  2
+ 0 0 -1  2 -1 2
+6d0	% generator of normalizer
+1
+6d1	% generator of centralizer
+-1 -1 1 1 1 1 
+6	% generator of centralizer
+ 0 0 -1  0 1 0
+ 0 0  0 -1 0 1
+ 0 0  0  0 1 0
+ 0 0  0  0 0 1
+ 0 0  1  0 0 0
+ 0 0  0  1 0 0
+6x0	% generator of centralizer
+ 1
+ 0 1
+ 0 0  0
+ 0 0  0  0
+ 0 0 -1  0 0
+ 0 0  0 -1 0 0
+6d0	% generator of centralizer
+1
+6	% generator of centralizer
+ 1 0 -1  0 1 0
+ 0 1  0 -1 0 1
+ 0 0  0  0 1 0
+ 0 0  0  0 0 1
+ 0 0  1  0 0 0
+ 0 0  0  1 0 0
+2^3  * 3^1   = 24 % order of the group
+#g4 f4 z2 % almost decomposable bravais-group
+6	% generator
+  0 1  0 0 0 0
+ -1 1  0 0 0 0
+  0 0  0 1 0 0
+  0 0 -1 1 0 0
+  0 0  0 0 1 0
+  0 0  0 0 0 1
+6	% generator
+ 0 1  0  0 0 0
+ 1 0  0  0 0 0
+ 0 0  0 -1 0 0
+ 0 0 -1  0 0 0
+ 0 0  0  0 1 0
+ 0 0  0  0 0 1
+6	% generator
+ 1 0 0 0  0 0
+ 0 1 0 0  0 0
+ 0 0 1 0  0 0
+ 0 0 0 1  0 0
+ 0 0 0 0  0 1
+ 0 0 0 0 -1 1
+6	% generator
+ 1 0 0 0 0 0
+ 0 1 0 0 0 0
+ 0 0 1 0 0 0
+ 0 0 0 1 0 0
+ 0 0 0 0 0 1
+ 0 0 0 0 1 0
+6x0	% invariant form
+  2
+ -1 2
+  0 0 0
+  0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0 0
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0  2
+ 0 0 -1 2
+ 0 0  0 0 0
+ 0 0  0 0 0 0
+6x0	% invariant form
+ 0
+ 0  0
+ 0 -1 0
+ 1  0 0 0
+ 0  0 0 0 0
+ 0  0 0 0 0 0
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 0
+ 0 0 0 0  2
+ 0 0 0 0 -1 2
+6	% zentr
+ 1 0  0  0  0 0
+ 0 1  0  0  0 0
+ 0 0  0  0  1 1
+ 0 0 -1 -1  0 1
+ 0 0  1  0 -1 1
+ 0 0  0  1  0 0
+6	% zentr
+ 1 0 0 0  0  0
+ 0 1 0 0  0  0
+ 0 0 1 0 -1  0
+ 0 0 0 1  0 -1
+ 0 0 1 0  1  0
+ 0 0 0 1  0  1
+2^4  * 3^2   = 144 % order of the group
+#g5 f4 % not almost decomposable bravais-group
+6	% generator
+ -1 1 0  0 0 0
+  0 1 0  0 0 0
+  0 0 0 -1 0 1
+  0 0 0  1 0 0
+  0 0 0  0 1 0
+  0 0 1  1 0 0
+6	% generator
+ 1 -1  0 0  0  0
+ 1  0  0 0  0  0
+ 0  0  1 0 -1  0
+ 0  0 -1 1  1 -1
+ 0  0  1 0  0  0
+ 0  0  0 1  1  0
+6	% generator
+ 1 0 0 0  0  0
+ 0 1 0 0  0  0
+ 0 0 0 1  1 -1
+ 0 0 1 0 -1  1
+ 0 0 0 0  1  0
+ 0 0 0 0  0  1
+6	% generator
+ -1 1  0  0  0 0
+ -1 0  0  0  0 0
+  0 0  0 -1  0 1
+  0 0  0  1  0 0
+  0 0 -1 -1  0 0
+  0 0  0  0 -1 0
+6	% generator
+  0 1  0  0 0  0
+ -1 1  0  0 0  0
+  0 0  1  0 0  1
+  0 0 -1  1 1 -1
+  0 0  0 -1 0  1
+  0 0 -1  0 0  0
+6x0	% invariant form
+  2
+ -1 2
+  0 0 0
+  0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0 0
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0  2
+ 0 0  2  2
+ 0 0  1  1 2
+ 0 0 -1 -1 1 2
+6x0	% invariant form
+  0
+  0  0
+ -1  0 0
+ -1  0 0 0
+  0 -1 0 0 0
+  1 -1 0 0 0 0
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0  2
+ 0 0 -1  2
+ 0 0 -2  1  2
+ 0 0  2 -1 -2 2
+2^3  * 3^2   = 72 % order of the group
+#g7 f4 % not almost decomposable bravais-group
+6	% generator
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+ 0 0 0 0 0 0
+ 0 0 0 0 0 0
+ 0 0 0 0 0 0
+ 0 0 0 0 0 0
+6	% generator
+ -1 1 0  0 0  0
+ -1 0 0  0 0  0
+  0 0 0  0 1 -1
+  0 0 0  0 1  0
+  0 0 1 -1 0  0
+  0 0 1  0 0  0
+6	% generator
+  0 1  0 0  0 0
+ -1 1  0 0  0 0
+  0 0  0 1  0 0
+  0 0 -1 1  0 0
+  0 0  0 0  0 1
+  0 0  0 0 -1 1
+6	% generator
+ -1 1  0 0  0 0
+  0 1  0 0  0 0
+  0 0  0 0 -1 1
+  0 0  0 0  0 1
+  0 0 -1 1  0 0
+  0 0  0 1  0 0
+6	% generator
+ 1 -1  0 0  0 0
+ 1  0  0 0  0 0
+ 0  0  0 0 -1 1
+ 0  0  0 0 -1 0
+ 0  0 -1 1  0 0
+ 0  0 -1 0  0 0
+6	% generator
+  0 -1 0 0 0 0
+ -1  0 0 0 0 0
+  0  0 0 0 0 0
+  0  0 0 0 0 0
+  0  0 0 0 0 0
+  0  0 0 0 0 0
+6	% generator
+ -1 0 0  0 0  0
+ -1 1 0  0 0  0
+  0 0 1  0 0  0
+  0 0 1 -1 0  0
+  0 0 0  0 1  0
+  0 0 0  0 1 -1
+6x0	% invariant form
+  2
+ -1 2
+  0 0 0
+  0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0 0
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0  2
+ 0 0 -1  2
+ 0 0 -2  1  2
+ 0 0  1 -2 -1 2
+6x0	% invariant form
+  0
+  0  0
+  0 -1 0
+  1  0 0 0
+  0  1 0 0 0
+ -1  0 0 0 0 0
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0  2
+ 0 0 -1  2
+ 0 0  2 -1  2
+ 0 0 -1  2 -1 2
+2^3  * 3^1   = 24 % order of the group

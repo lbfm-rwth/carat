@@ -1,0 +1,134 @@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: compare.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@ This file conatain functions that compare matrices or pointer
+@ to integer with respect to different lexikographic orders.
+@ The functions return -1 if the first arument is smaller with
+@                         respect to the lexicographic order,
+@                       0 if tboth arguments are equal
+@                       1 if the first argument is bigger
+@
+@ If the arguments are 1-dimensional arrays, then the first
+@ entry in which they differ decides.
+@ For two dimensional arrays v < w if and only if
+@    v[i][j] < w[i][j] and
+@    v[k][j] == w[k][j] for all k < i and 0<=j<= dim
+@    v[i][k] == w[i][k] for all k < j
+@ For two dimensional symmetric arrays v < w if and only if
+@    v[i][j] < w[i][j] and
+@    v[k][j] == w[k][j] for all k < i and j<= i and
+@    v[i][k] == w[i][k] for all k < j
+@
+@ for functions that compare first cols v < w if v^{tr} < w^{tr}
+@ in the above sense.
+@---------------------------------------------------------------------------
+@ int mat_comp(m1, m2)
+@ matrix_TYP *m1, *m2;
+@
+@ compares m1->array.SZ and m2->array.SZ
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int mat_col_comp(m1, m2)
+@ matrix_TYP *m1, *m2;
+@
+@ compares m1->array.Sz and m2->array.SZ by going to the columns
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int lower_triangular_mat_comp(m1,m2)
+@ matrix_TYP *m1, *m2;
+@
+@ compares the symmetric arrays m1->array.SZ and m2->array.SZ
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int vec_comp(v1, v2, dim)
+@ int *v1, *v2, dim;
+@
+@ compares the 1-dimensional arrays v1 and v2 of length dim
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int pointer_mat_comp(m1, m2, rows, cols)
+@ int **m1, **m2, rows, cols;
+@
+@ compares the araays m1 and m2 of size rows x cols
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int pointer_lower_triangular_mat_comp(m1,m2, n, m)
+@ int **m1, **m2, n, m;
+@
+@ compares the symmetric arrays m1 and m2 of size n x m
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: quicksort.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@	standard quicksort algorithms
+@   the are called like 'quicksort(V, 0, n-1, comp)
+@   where V is a pointer to n objects and comp is a function that
+@   compares the objects.
+@---------------------------------------------------------------------------
+@ void mat_quicksort(M, inf, sup, comp)
+@ matrix_TYP **M;
+@ int	inf, sup, (*comp)();
+@
+@ sorts a list of matrices M from M[inf] to M[sup] with respect to comp.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void vec_quicksort(v, inf, sup, dim, comp)
+@ int **v;
+@ int	inf, sup, (*comp)(), dim;
+@
+@ sorts a list of vectors v from v[inf] to v[sup] with respect to comp.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void pointer_mat_quicksort(v, inf, sup, rows, cols, comp)
+@ int ***v;
+@ int	inf, sup, rows, cols, (*comp)();
+@
+@---------------------------------------------------------------------------
+@
+@ sorts a list of 2-dimensional vecotrs v from v[inf] to v[sup]
+@ with respect to comp.
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: search.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@	standard algorithms for searching vectors or matrices in
+@       sortet  lists (sorted with respect to a function comp
+@       that compares to elements in a list.
+@
+@       The functions return -1, if the element is not in the list
+@       or the integer 0<= i < List_no where i denotes the
+@       index where the element was found in the list.
+@---------------------------------------------------------------------------
+@ int mat_search(M, List, List_no, comp)
+@ matrix_TYP *M, **List;
+@ int	List_no, (*comp)();
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int vec_search(M, List, List_no, dim, comp)
+@ int *M, **List;
+@ int	List_no, dim, (*comp)();
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int pointer_mat_search(M, List, List_no, rows, cols, comp)
+@ int **M, ***List;
+@ int	List_no, rows, cols, (*comp)();
+@---------------------------------------------------------------------------
+@

@@ -1,0 +1,83 @@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: mink_red.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *mink_red(G, Trf)
+@ matrix_TYP *G, *Trf;
+@
+@ calculates a matrices A and Trf such that A = Trf * G * Trf^{tr}
+@ is Minkowski_reduced
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: pair_red.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void pr_red(G, T, n)
+@ int **G, **T, n;
+@
+@  applies a pair_reduction to the 2-dimensional array G of size n x n
+@  and makes the simutaneous row operations on the array T of the same size
+@ The function can be called with T = NULL
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *pair_red(Gram, Tr)
+@ matrix_TYP *Gram, *Tr;
+@
+@ calculates matrices A and Tr such that A = Tr * Gram * Tr^{tr}
+@ is pair_reduced.
+@ The function can be called with Tr = NULL
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE:  reduction_sort.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void reduction_sort(G,T,n)
+@ int **G, **T, n;
+@
+@ make simultaneous row and colum permutations on the twodimensional
+@ array G of size n x n such that G[i][i] <= G[j][j] for 0<=i<=j<n.
+@ Simultaneously the row operations are applied to T, that
+@ has to be an array of the same size or NULL
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: short_reduce.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *short_reduce(A, SV, Trf)
+@ matrix_TYP *A, *SV, *Trf;
+@
+@ short_reduce make a reduction of the matrix A using the shortvectors
+@ given in SV.
+@ If an entry in SV is 1 or -1 the vector is used to make A better
+@ afterwards the vectors in SV are transformed and the same is tried
+@ again.
+@ A and SV are not changed in this function.
+@ the result is the reduced matrix and the transformation is
+@ applied to the matrix Trf.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *pr_short_red(A, Trf)
+@ matrix_TYP *A, *Trf;
+@
+@ The same as short_reduce but before and after using this function
+@ a pair_redduction is used.
+@ The shortest vectors are calculated by the function itsself.
+@---------------------------------------------------------------------------
+@

@@ -1,0 +1,137 @@
+Here are some small hints which inprovements could be made.
+
+
+1 Functions to be improved
+===========================
+
+1.1 In directory Zassen
+=======================
+   
+   * the function reget_gen should use a stabilizer chain technique like
+     applied in the function strong_generators.
+     The technique use so far is an orbit algorithm which calculated
+     in the point group.
+     In any case the function can be improved by really calculating
+     only in the point group, or at least do an orbit algorithm which
+     only has as many point as the point group has elements.
+
+   * the function identify should return the translational part of the
+     transforming matrix as well.
+
+1.2 In directory Voronoi
+========================
+
+   * the function normalizer should handle the cases of Bravais groups
+     isomorphic to V_4 or C_2 (=<-I_n>) seperately via the normalizer
+     of the homogenously decomposable group (which is a direct product
+     of GL_n(Z) with possibly a twist for groups with Symbol 1;1
+     1,1;1,1  1,1,1;1,1,1 and so on.
+     The normalizer will then be calculated via gittstabneu.
+     More generally it could handle all Bravais groups which are isormorphic
+     to a direct product of C_2's.
+
+   * the function normalizer should return I_n as normalizing element
+     if the group is self normalizing.
+
+   * the function normalizer should to more of the calculations in
+     gmp-arithmetic.
+
+1.3 In directory Orbit
+======================
+
+   * Write an all purpose orbit, which takes the operation,
+     the standardisation, and equality via function pointers.
+
+1.4 In directory Base
+=====================
+
+   * strong_generators could yield a presentation of the group in question
+     if one is prepared to keep track of the words involved and makes a
+     lot of tietze transformation.
+
+   * the function normalizer_in_N should check whehter a returned generator
+     of the normalizer is itself in the group it normalizes, and then skipp
+     it. Tools are there, just adding an if!
+
+1.5 In directory Idem
+=====================
+
+   * improve the function bravais_catalog via the following method:
+     firstly transform the group to the next homogeneously decomposable
+     Bravais group and find this in the catalog (NB: we got this group
+     already in the function symbol).
+     The when searching for the zclass, take the index (exactly elementary
+     divisors) of the lattice in the smallest homogenously decomposable
+     group into account. (Note that this has been cacluated in symbol as
+     well).
+
+   * the function idempotents just works for finite groups up to dimension
+     7. This is a result of the algorithm which factorizes polynomials,
+     and it migth give wrong results for higher degrees. Fix this, at
+     least get a somewhat higher degree.
+     This could be done by considering quadratic factors when factorizing.
+     There are two places where changes have to be made (in get_idem2),
+     and both of them are documented in the source code.
+
+1.6 In directory ZZ
+===================
+
+    * QtoZ could easily return the matrices which conjugate the input
+      group to the output one.
+
+    * ZZprog should react on the level option -l in the way one would
+      expect, and not calculate childrens of the first lattice in
+      the last layer computed. Should be easy to fix.
+
+    * QtoZ calls ZZ several times, and ZZ recomputes the same modular
+      constituents every time. should be changed for speed up.
+
+1.7 In directory Sort
+=====================
+
+    * we should employ a hash function which assigns each matrix
+      an integer straight away, and store it in the matrix record.
+      This should speed up searching emormously, because mat_comp
+      is quite slow in some instances.
+
+2 Programs to be developed
+==========================
+
+Here is a small compilation of programs which are desirable.
+
+    * a program deciding equivalence of space groups in one go. This
+      would involve the following strategy:
+      - Standardize both given space groups, ie. claculate a presentation
+        for the point group (in the natural generators) and transform
+        the translation lattice to Z^n (this is now done in
+        Extract/Standard_affine_form)
+      - extract the Z-class of the point groups and decide Z-equivalence
+        (now done in Z_equiv). The following only if they are in the same
+        Z-class.
+      - Transform the space groups to corresponding generators, which
+        is now done in Same_generators.
+      - Identify the resulting cozycles, Extract -i
+      In all the process: keep track of the transforming matrices!
+
+    * a program which splits a Q-class into affine classes and calculates
+      the "graph of inclusion":
+      a short description of the algorithm doing this:
+      splitting Q-class into Z-classes: see QtoZ.
+      splitting a Z-class into affine classes: see extensions
+      now to the graph: for each group in the graph calculate
+                        all minimal centerings, ie. all minimal
+                        invariant superlattices of Z^n (see ZZprog).
+                        Now "throw" theses lattices to the group
+                        in question and see to which of the groups it
+                        becomes isomorphic. This yield the edges of the
+                        directed graph, and the vertices are the affines
+                        in that Q-class.
+
+    * a program which effectively decides Q-equivalence of groups.
+      There is an algorithm outlined in [OPS97].
+      A workaround for the moment (which is not good in any consideration):
+      Given G,H, and decide whether they are Q-equivalent by calculation
+      the Q-class of G (by QtoZ), and see if one of the resulting
+      groups is Z-equivalent to H (cf. Z_equiv).
+
+

@@ -1,0 +1,37 @@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: hyp_isom.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *hyperbolic_isometry(x1, x2, S)
+@ matrix_TYP *x1, *x2, *S;
+@
+@ The first row in the matrix x1 (resp. x2) is interpreted as a vector
+@ v1 (resp. v2) in Z^n.
+@ The function calculates a matrix A in GL_n(Q) (if exists) with
+@          v1A = v2 and ASA^{tr} = S
+@ Any integral matrix with this property must be of the form BA where
+@ B is a matrix of the group that can be caluclated with
+@    B = hyperbolic_stabilizer(x1, S)
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: hyp_stabilizer.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ bravais_TYP *hyperbolic_stabilizer(x, S)
+@ matrix_TYP *x, *S;
+@
+@ the functions 'hyperbolic_stabilizer' calculates generators 
+@ for a finite subgroup G of GL_n(Q) with
+@    vg = v   and gSg^{tr} = S for all g in G.
+@ where v denotes the first row of x.
+@ The group H of all integral matrices with this property is
+@ a subgroup of H.
+@---------------------------------------------------------------------------
+@

@@ -1,0 +1,36 @@
+Dear user,
+
+CARAT is a package for solving certain problems in mathematical
+cristalography.
+
+It is distributed via
+     Lehrstuhl B fuer Mathematik
+     RWTH-Aachen
+     Prof. Plesken
+     Templergraben 64
+     52064 Aachen
+     Germany
+     email: carat@momo.math.rwth-aachen.de
+
+INSTALATION:
+
+Just edit the Makefile in the directory you installed CARAT in, and
+change the variables
+     CFLAGS
+     TOPDIR
+according to your needs. Some additional explaination/examples are given
+there.
+Afterwards just do
+   % make
+or to be sure everything is made from the scratch:
+   % make clean ; make 
+
+If you have any problems installing CARAT, please feel free to contact
+me under
+   carat@momo.math.rwth-aachen.de
+
+Faithfully yours
+
+Tilman Schulz
+
+

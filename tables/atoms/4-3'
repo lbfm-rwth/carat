@@ -1,0 +1,34 @@
+#g2 f2 n1 c2% almost decomposable bravais-group
+4	% generator
+ 0 -1  0  0
+ 0  0 -1  0
+ 0  0  0 -1
+ 1  1  1  1
+4	% generator
+ 0 0 0 1
+ 0 0 1 0
+ 0 1 0 0
+ 1 0 0 0
+4x0	% invariant form
+ 2
+ 1 2
+ 1 1 2
+ 1 1 1 2
+4x0	% invariant form
+  2
+  0  0
+  1 -1 0
+  2  1 0  2
+4	% generator of normalizer
+ 0  0  0 -1
+ 0 -1  0  0
+ 1  1  1  1
+ 0  0 -1  0
+4d0	% generator of centralizer
+-1
+4	% generator of centralizer
+  0  0  1  1
+ -1 -1 -1  0
+  0 -1 -1 -1
+  1  1  0  0
+2^2  * 5^1   = 20 % order of the group

@@ -1,0 +1,90 @@
+@
+@  (void)ZZ( group, gram, divisors, options );
+@
+@  or
+@
+@  (void)ZZ( group, gram, divisors, options, num_sublattices, dim1, dim2, ... )
+@
+@  bravais_TYP *group;
+@  matrix_TYP  *gram;
+@  int *divisors;
+@  char *options;     
+@  int num_sublattices, dim1, ...
+@
+@  group: bravais group, the algorithm applies the ZZ-algorithm with regard
+@         to the prime-divisors of the order of the group.
+@  gram:  a gram matrix of a quadratic form that is invariant under the group
+@         This form must be totally anisotropic.
+@  divisors: an array of integers that REALLY MUST HAVE 100 (ONEHUNDRET) 
+@            entries. The index of the array specifies the prime number and the
+@            contents of the array the multiplicity of the prime as divisor of
+@            the group order. The ZZ function does not need the multiplicity
+@            it just uses a subset of the prime divisors of the group order 
+@            to compute irreducible constituents of the matrix representation 
+@            of the group modulo those primes. Thus it is all right to set
+@            the entries of the array to some non-zero number, e. g. if one 
+@            wants to compute the irreducible constituents modulo 2 and 
+@            modulo 5, then one has to write
+@             
+@              divisors[2] = 1; divisors[5] = 1;
+@
+@            All other entries must be set to zero. (at least those that belong 
+@            to prime number indices). 
+@
+@            If one simply wants to compute the irreducible constituents for
+@            all divisors of the group order, it suffices to specify the 
+@            value NULL for the argument divisors.
+@
+@  options: a string of characters, (i.e. "n30l24rq"), supported are:
+@  num_sublattices, dim1, ... : see option "p". Must only be specified if the
+@                               option "p" was specified
+@
+@           "n#": terminate after computation of "#" centerings
+@           "l#": terminate afer  "#" iterations of the algorithm
+@           "r" : use the "lll"-algorithm on the Z-bases of the centerings
+@           "q" : "quit-mode" - suppress messages on stdout/stderr
+@           "v" : "verbose-mode" - opposite of "q"
+@           "t" : create a file in the current directory that
+@                 contains additional information. See also options "ugsb"
+@                 This feature is on by default and the file name defaults
+@                 to ZZ.tmp. If this option is given the argument
+@                 "none", then no output file is created.
+@           "u" : computes elementary divisors of the matrices that contain
+@                 the bases of the invariant sublattices (i.e. of
+@                 group->zentr[i]) and writes them to the
+@                 outputfile.
+@           "g" : computes the elementary divisors of the gram-matrices of
+@                 the invariant sublattices and writes them to the output file.
+@                 Implies option "t".
+@           "s" : "shortlist" - prints in short form the messages that are
+@                 suppressed by "q". Independent of "q" option
+@           "b" : "print change of base only" -- suppresses the output of
+@                 the gram-matrices and elementary devisors to the output file.
+@           "p" : "projections" -- compute only thos sublattices, that have
+@                 surjective projections on a given number of sublattices
+@                 with a given dimension. The number of the sublattices is
+@                 given by the first argument after "options", that is, by
+@                 "num_sublattices". The dimension of the first sublattice
+@                 is given by "dim1", the second by the argument "dim2" etc
+@
+@                 NOTE: the number of the "dim#" arguments MUST match the
+@                       "num_sublattices"
+@
+@                 Given this information, the algorithm devides the original
+@                 lattice in sublattices that are spanned by
+@                 <e_1, ..., e_dim1>,
+@                 <e_(dim1+1), ..., e_(dim1+dim2)>, etc
+@   
+@   The computed centerings are stored in "group->zentr" as Z-bases
+@   (matrix_TYP **zentr). The number of centerings is stored in 
+@   "group->zentr_no".
+@
+@   The functions exits by calling carat_exit() in case of an error of if
+@   the parameters are inconsistent.
+@
+@   NOTE: the bravais group is supposed to operate on a lattice of column
+@         vectors. "SPALTENKONVENTION"
+@
+@  TODO:
+@        write more documentation.
+@

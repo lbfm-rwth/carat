@@ -1,0 +1,143 @@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: dsylv.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *dsylv(M)
+@ matrix_TYP *M;
+@ 
+@ The return of 'dsylv' is a diagonal matrix D with diaogonal elements
+@ D[i][i] in {-1,1,0}.
+@ The function diagonalizes the symmetric matrix 'M' by simultanous row
+@ and col-operations.
+@ If the entry in the diagonalised matrix is positiv it is replaced
+@ by 1, if negativ by -1, if zero by 0.
+@ This is done with floating-point arithmetic.
+@ So rounding errows may occur.
+@ Therefore a diaogonal entry it is assumed to be zero
+@ if its absolute value is less then eps = 0.000001
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int definite_test(M)
+@ matrix_TYP *M;
+@ 
+@ Does the same as 'dsolve' but testes during the Diagonalisation
+@ if the matrix is indefinite.
+@ The return is
+@ 
+@      0:  if M is zero
+@      1:  if M is positiv semidefinite, but not positiv definite.
+@      2:  if M is positiv definite.
+@     -1:  if M is negativ semidefinite, but not negativ definite.
+@     -2:  if M is negativ definite.
+@     -3:  if M is indefinite.
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: rest_short.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *rest_short(mat, restvec, rkgv, zaehler, nenner,
+@                        find_opt, count_opt, anz)
+@ matrix_TYP *mat;
+@ int *restvec, rkgv;
+@ int zaehler, nenner, find_opt, count_opt, *anz;
+@
+@ The matrix mat must be a symmetric, positiv definite nxn-Matrix.
+@ The function calculates all x in Z^n  with 
+@ 
+@          lengthmin <= n(x - 1/rkgv * restvec)  <= length
+@ where
+@          n(y) := y * mat * y^{tr}.
+@ 
+@ In the pointer 'anz' the number of all these vectors is returned.
+@ The vectors x are the rows of the returned matrix, called 'SV' in the
+@ following.
+@ So 'SV' is an integral matrix with 'anz' rows and 'n' columns.
+@ For 'SV' n+1 columns are allocated. The last column contains the norm n(x).
+@ Although n+1 columns are allocated, SV->cols = n.
+@ 
+@ If 'findoption == 1' the Algorithm stops,
+@ if a vector of desired norm is found.
+@ In this case the Matrix 'SV' has only one row.
+@ 
+@ If 'count_option == 1',  shortest_vectors returns a zero-pointer,
+@ only the number of found vectors is returned in the pointer 'anz'.
+@ 
+@ Warning: if 'mat' is not positiv definite, the function runs into an 
+@          infinite loop.
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: short.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *short_vectors(mat, length, lengthmin, find_opt, count_opt, anz)
+@ matrix_TYP *mat;
+@ int length, lengthmin, find_opt, count_opt, *anz;
+@ 
+@ The matrix mat must be a symmetric, positiv definite nxn-Matrix.
+@ The function calculates all x in Z^n ( up to multiplication with -1) with 
+@ 
+@          lengthmin <= n(x)  <= length
+@ where
+@          n(x) := x * mat * x^{tr}.
+@ 
+@ In the pointer 'anz' the number of all these vectors is returned.
+@ The vectors x are the rows of the returned matrix,
+@ called 'SV' in the following.
+@ So 'SV' is an integral matrix with 'anz' rows and 'n' columns.
+@ For 'SV' n+1 columns are allocated. The last column contains the norm n(x).
+@ Although n+1 columns are allocated, SV->cols = n.
+@ 
+@ If 'findoption == 1' the Algorithm stops,
+@ if a vector of desired norm is found.
+@ In this case the Matrix 'SV' has only one row.
+@ 
+@ If 'count_option == 1',  shortest_vectors returns a zero-pointer,
+@ only the number of found vectors is returned in the pointer 'anz'.
+@ 
+@ Warning: if 'mat' is not positiv definite, the function runs into an 
+@          infinite loop.
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: shortest.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *shortest(mat, min_norm)
+@ matrix_TYP *mat;
+@ int  *min_norm;
+@ 
+@ The function callulates the shortest vectors of the integral, symmetric,
+@ positiv definite matrix 'mat'.
+@ The minmum
+@ 
+@    m(mat) := min{  v * mat *v^{tr} | v in Z^n and v not 0}
+@ 
+@ is returned in the pointer 'min_norm'. The shortest vectors are the vectors
+@ with n(x) = min(x).
+@ They are stored as rows in the returned matrix called 'SV' in the following.
+@ For 'SV' n+1 columns are allocated. The last column contains the norm n(x).
+@ Although n+1 columns are allocated, SV->cols = n.
+@ 
+@ Warning: if 'mat' is not positiv definite, the function runs into an 
+@         infinite loop.
+@---------------------------------------------------------------------------
+@

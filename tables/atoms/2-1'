@@ -1,0 +1,29 @@
+#g1 f2 z2 n1 c2
+  2x  2
+  0 -1
+  1  0
+
+  2x  2
+  1  0
+  0  1
+
+  2x  2
+  0  1
+ -1  0
+2x2 % zentr
+0 -1
+1 0
+2x2 % zentr
+-1 0
+0 -1
+2x2 %normalizer
+0 1
+1 0
+2x2 %cen
+0 -1
+1 0
+2x2 %cen
+-1 0
+0 -1
+2^2 = 4 %order of the group
+

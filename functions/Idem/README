@@ -1,0 +1,193 @@
+@
+@-----------------------------------------------------------------------------
+@ FILE: bravais_catalog.c
+@-----------------------------------------------------------------------------
+@
+@
+@------------------------------------------------------------------------------
+@
+@ bravais_TYP *catalog_number_v4(bravais_TYP *G,char *symb,
+@                             matrix_TYP **TR,int *almost,int *zclass)
+@
+@ The function searches for a Bravais group Z-equivalent to G in the
+@ catalog. It will return this group, a transformation matrix via TR[0],
+@ and the coordinates of the group in the catalog via almost[0], zclass[0].
+@
+@ It will return a transfromation matrix via TR[0], and the position
+@ in the catalog via almost[0] and zclass[0].
+@
+@ bravais_TYP *G : The group in question. Its order must be given.
+@ char *symb     : The symbol of the group. It can be calculated via symbol(..)
+@ matrix_TYP **TR: pointer for the transformation matrix which transforms
+@                  the given group G to the group returned via konj_bravais,
+@                  ie. TR[0]  * G * TR[0]^-1 = group returned.
+@ int *almost    : the position of the almost decomposable group in the
+@                  catalog is returned via this pointer.
+@ int *zclass    : 2 coordinate of the group in the catalog.
+@
+@------------------------------------------------------------------------------
+@
+@
+@--------------------------------------------------------------------------
+@--------------------------------------------------------------------------
+@ FILE: centr.c
+@--------------------------------------------------------------------------
+@--------------------------------------------------------------------------
+@
+@
+@--------------------------------------------------------------------------
+@
+@ matrix_TYP **solve_endo(matrix_TYP **A,matrix_TYP **B,int anz,int *dim)
+@
+@ Let A[0],..,A[anz-1] be mxm matrices, and B[0],..,B[anz-1] nxn matrices.
+@ The function returns a Q-basis of the space of mxn matrices with
+@ A[i] * X = X * B[i] for all i. The dimension is returned via dim[0].
+@
+@ SIDEEFFECTS: The matrices in A,B are checked with Check_mat and
+@              converted with rat2kgv.
+@--------------------------------------------------------------------------
+@
+@
+@--------------------------------------------------------------------------
+@
+@ matrix_TYP **calc_ccentralizer(matrix_TYP **centr,int dim_centr,
+@                                matrix_TYP **gen,int gen_no,int *dim_cc)
+@
+@
+@--------------------------------------------------------------------------
+@
+@
+@---------------------------------------------------------------------------
+@
+@ matrix_TYP *min_pol(matrix_TYP *A)
+@
+@ Let A be an integral NON ZERO matrix. Then the function returns an
+@ integral 1xn matrix B with the property:
+@ \sum_i=0^n B->array.SZ[0][i] * A^i =0,
+@ and n is minimal.
+@
+@ SIDEEFECTS: the matrix A is checked via Check_mat !!!
+@---------------------------------------------------------------------------
+@
+@
+@---------------------------------------------------------------------------
+@
+@ matrix_TYP *zeros(matrix_TYP *minpol)
+@
+@---------------------------------------------------------------------------
+@
+@
+@--------------------------------------------------------------------------
+@
+@ int pos(matrix_TYP **list,int no,matrix_TYP *x)
+@
+@--------------------------------------------------------------------------
+@
+@
+@-------------------------------------------------------------------------
+@
+@ static matrix_TYP **get_idem2(matrix_TYP **gen,int number,int *anz)
+@
+@
+@-------------------------------------------------------------------------
+@
+@
+@------------------------------------------------------------------------
+@
+@ matrix_TYP **idempotente(matrix_TYP **gen,int gen_no,matrix_TYP *form,
+@                          int *anz,int *dimc,int *dimcc,int *options)
+@
+@------------------------------------------------------------------------
+@
+@
+@-----------------------------------------------------------------------------
+@ FILE: symbol.c
+@-----------------------------------------------------------------------------
+@
+@
+@-----------------------------------------------------------------------------
+@
+@ static constituent *homogenous(bravais_TYP *G,matrix_TYP *F,int *anz)
+@
+@-----------------------------------------------------------------------------
+@
+@
+@-----------------------------------------------------------------------------
+@
+@ static char *identify_hom(bravais_TYP *G,int clear)
+@
+@-----------------------------------------------------------------------------
+@
+@
+@-----------------------------------------------------------------------------
+@
+@ char *symbol(bravais_TYP *G,matrix_TYP *F)
+@
+@ bravais_TYP *G: the group in question
+@ matrix_TYP *F : a positive definite G-invariant form
+@
+@ Calculates the symbol of the FINITE INTEGRAL group in G.
+@ F is assumed to be a positive definite G-invariant form.
+@ The information needed from G are the records G->gen & G->gen_no,
+@ and G->form & G->form_no. 
+@
+@ Sideefects: The matrices in G->gen and G->form might be checked via
+@             Check_mat
+@-----------------------------------------------------------------------------
+@
+@
+@------------------------------------------------------------------------------
+@ FILE: v4_catalog.c
+@------------------------------------------------------------------------------
+@
+@
+@------------------------------------------------------------------------------
+@
+@ static matrix_TYP *test_v4(bravais_TYP *G)
+@
+@ Tests whether the given Bravais group G is isomorphic to V_4 = C_2 x C_2.
+@ The order of the group has to be 4, and this order has to sit in G->order.
+@
+@ The return is NULL if the group is not isomophic to V_4, and otherwise
+@ a matrix with non negative trace in G.
+@------------------------------------------------------------------------------
+@
+@
+@------------------------------------------------------------------------------
+@
+@ static matrix_TYP *basis_part(matrix_TYP *g, matrix_TYP *h,
+@                               matrix_TYP **plse,int rank2,int eps)
+@
+@------------------------------------------------------------------------------
+@
+@
+@------------------------------------------------------------------------------
+@
+@ static matrix_TYP *normalize(matrix_TYP *g,int *dim,int flag)
+@
+@------------------------------------------------------------------------------
+@
+@
+@------------------------------------------------------------------------------
+@
+@ bravais_TYP *catalog_number_v4(bravais_TYP *G,char *symb,
+@                             matrix_TYP **TR,int *almost,int *zclass)
+@
+@ Tests wheter the Bravais group G is isomorphic to C_2 or V_4.
+@ In these cases it will return a group which is Z-equivalent to G
+@ from the catalog which sits in TOPDIR/tables.
+@
+@ It will return a transfromation matrix via TR[0], and the position
+@ in the catalog via almost[0] and zclass[0].
+@
+@ bravais_TYP *G : The group in question. Its order must be given.
+@ char *symb     : The symbol of the group. It can be calculated via symbol(..)
+@ matrix_TYP **TR: pointer for the transformation matrix which transforms
+@                  the given group G to the group returned via konj_bravais,
+@                  ie. TR[0]  * G * TR[0]^-1 = group returned.
+@ int *almost    : the position of the almost decomposable group in the
+@                  catalog is returned via this pointer.
+@ int *zclass    : 2 coordinate of the group in the catalog.
+@
+@------------------------------------------------------------------------------
+@

@@ -1,0 +1,300 @@
+@
+@--------------------------------------------------------------------
+@  FILE: all_vor_neighbours.c
+@--------------------------------------------------------------------
+@
+@ matrix_TYP *all_voronoi_neighbours(P, G, Ftr, tr_bifo)
+@ matrix_TYP *P, **Ftr, *tr_bifo;
+@ bravais_TYP *G;
+@--------------------------------------------------------------------
+@
+@ The arguments of 'all_voronoi_neighbours' are:
+@ P:		a G-perfect form
+@ G:		the group for which P is G-perfect
+@ Ftr:		a basis for the integral forms in the formspace of G^{tr}
+@ trbifo:	The matrix of the bilinear form
+@		F(G)xF(G^{tr})--> R: (A,B)---> trace(AB)
+@		with respect to the Z-bases given by G->form and Ftr
+@ Let Fdim be the dimension of the formspace of G and m be the number of
+@ G-perfect forms that are neighbours of P.
+@ Then the result of 'all_perfect_neighbours' is a matrix N with m rows
+@ and Fdim+3 columns.
+@ For 0 < i< m let R[i] be the form in F(G) represented by the
+@ first Fdim entries of the i-th row of N, t.m.
+@     R[i] = N[i][0] * G->form[0] + ..... + N[i][Fdim-1] * G->form[Fdim-1]
+@ Further let
+@     p[i] := N[i][Fdim], r[i] := N[i][Fdim+1], c[i] := N[i][Fdim+2]
+@ Then P[i] := (p[i]*P + r[i]*R[i]) / c[i]
+@ is a G-perfect form  neighboured to P.
+@--------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: calc_voronoi_data.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void calc_voronoi_basics(V, G, Gtr, prime)
+@ voronoi_TYP *V;
+@ bravais_TYP *G, *Gtr;
+@ int prime;
+@
+@ For using this function V->gram must be a G-perfect form
+@ The function calculates:
+@
+@  V->SV_no:       the number of shortest vectors of V->gram.
+@  V->min:         the minimum of V->gram.
+@  V->pdet:        the determinante of V->gram modulo prime.
+@  V->prime:       = prime.
+@  V->vert:        the coordinates of the voronoi vertices with
+@                  respect to the Z-basis of the space of invariant
+@                  symmetric matrices of G^{tr} given in Gtr->form.
+@  V->vert_no:     the number of voronoi_vertices.
+@  V->red_inv:     the pair-reduced of (V->gram)^{-1} (with kgv = 1).
+@  V->T:           the matrix such that
+@                     T  *(V->gram)^{-1} * T^{tr} = V->red_inv
+@  V->Ti:          the inverse matrix of V->T
+@  V->Gtrred:      the bravais_TYP obtained by konjugating Gtr with
+@                  the transposed of V->Ti with the function
+@                  'konj_bravais'
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void calc_voronoi_pol(V, bifo)
+@ voronoi_TYP *V;
+@
+@  calculates the polyeder_TYP V->pol where the walls of V->pol
+@  are the walls in 'V->vert' multiplied with the transposed of bifo,
+@  i.e. V->vert[i] * bifo^{tr} 0 <= i <V->vert_no
+@  is the input for 'first_polyeder' and 'refine_polyeder' used
+@ to calculate 'V->pol'.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void calc_voronoi_good_inv(V, Gtr)
+@ voronoi_TYP *V;
+@ bravais_TYP *Gtr;
+@
+@ applies 'short_red' and 'mink_red' to V->red_inv to obtain a better
+@ form.
+@ V->T, V->Ti and V->Gtrred are changed in the same manner as described
+@ for 'calc_voronoi_basics'
+@
+@ Furthermore the shortest vectors of the better reduced form are
+@ calculated up to the norm that equals the maximal diagonal entry
+@ of V->red_inv.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void calc_voronoi_stab(V, G, Gtr, bifo)
+@ voronoi_TYP *V;
+@ bravais_TYP *G, *Gtr;
+@ matrix_TYP *bifo;
+@
+@ calculates a generating set for
+@  H = { h\in GL_n(Z) | h^{tr} * V->gram * h = V->gram and
+@                       h G h^{-1} = G                      }
+@
+@  Furthermore the bravais_TYP* V->linstab is calculated, that
+@  describes the linear action for H on the space of G-invariant
+@  symmetric matrices with respect to the Z-basis given in 
+@  G->form (c.f. the function 'nomlin' in directory 'Bravais'
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *calc_voronoi_isometry(V1, V2, G, Gtr, bifo)
+@ voronoi_TYP *V1, *V2;
+@ bravais_TYP *G, *Gtr;
+@ matrix_TYP *bifo;
+@
+@  calculates a matrix X in GL_N(Z) such that
+@     X * V1->gram * X^{tr} = V2->gram and  X * G * X^{-1} = G
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void calc_voronoi_dir_reps(V, G, Gtr, bifo)
+@ voronoi_TYP *V;
+@ bravais_TYP *G, *Gtr;
+@ matrix_TYP *bifo;
+@ 
+@  calculates representatives of the orbits of V->stab on the
+@  Voronoi-directions given in V->pol->vert.
+@  The representatives are stored in V->dir_reps in the following way
+@  V->dir_reps->cols is the number of representatives.
+@  Each column discribes a representatives
+@  The integer in the first row describs the number of the representative,
+@  i.e. V->dir_reps->array.SZ[0][i] = k means that V->pol->vert[k]
+@  is a representative of the i-th orbit.
+@  The entry in the second row is the length of the orbit.
+@  The third row is allocated in 'normalizer', where repesentatives
+@  V[0],...,V[t] of the G-perfect forms are calculated
+@  V->dir_reps->array.SZ[2][i] = k means, that V is a neighbour of
+@  V[k] and the Voronoi-direction from V to V[k] is the one
+@ given in the first row.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void calc_voronoi_complete(V, G, Gtr, bifo, prime)
+@ voronoi_TYP *V;
+@ bravais_TYP *G, *Gtr;
+@ matrix_TYP *bifo;
+@ int prime;
+@
+@  applies:
+@    calc_voronoi_basics(V, G, Gtr, prime);
+@    calc_voronoi_pol(V, bifo);
+@    calc_voronoi_good_inv(V, Gtr);
+@    calc_voronoi_stab(V, G, Gtr, bifo);
+@    calc_voronoi_dir_reps(V, G, Gtr, bifo);
+@---------------------------------------------------------------------------
+@
+@
+@---------------------------------------------------------------------
+@  FILE: first_perfect.c
+@---------------------------------------------------------------------
+@
+@
+@ matrix_TYP *first_perfect(A, G, Ftr, trbifo, min)
+@ matrix_TYP *A, **Ftr, *trbifo;
+@ bravais_TYP *G;
+@ int *min;
+@
+@ 'first_perfect' calculates a G-perfect Form.
+@ The arguments of 'first_perfect' are
+@ A:		a G-invariant, positive definite Form
+@ G:		the group for which a perfect form will be calculated
+@ Ftr:		a Z-basis for the integral forms in the formspace of G^{tr}
+@ trbifo:	The matrix of the bilinear form
+@		F(G)xF(G^{tr})--> R: (A,B)---> trace(AB)
+@		with respect to the Z-bases given by G->form and Ftr
+@ min:		The pointer min returns the minimum of the calculated
+@               perfect form.
+@---------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: init_voronoi.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ voronoi_TYP *init_voronoi()
+@
+@ allocates storage for a pointer to voronoi_TYP and sets all intergers
+@ and all pointers of it to 0 resp. NULL.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void clear_voronoi(V)
+@ voronoi_TYP *V;
+@
+@  frees all pointers that are allocated in the the voronoi_TYP *V
+@  and sets them to NULL
+@  All integers are set 0.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void put_voronoi(V)
+@ voronoi_TYP *V;
+@
+@ Prints the informations in V to standard-output with comments
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: normalizer.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ voronoi_TYP **normalizer(P, G, Gtr, prime, V_no)
+@ matrix_TYP *P;
+@ bravais_TYP *G, *Gtr;
+@ int prime, *V_no;
+@
+@  The arguments of normalizer are
+@  P:     A G-perfect form (can be calculated with 'first_perfect')
+@  G:     A group given as 'bravais_TYP*' where 'G->form' must contain a
+@         Z-Basis of the integral G-invariant matrices.
+@  Gtr:   The group G^{tr} given as 'bravais_TYP', also
+@         with a Z-basis in 'G->form'
+@  prime: a prime number (used to calculate determinates modulo p
+@         for a simple criterion of two symmetric matrices been
+@         not isometric.
+@  V_no:  via this pointer the number of returned 'voronoi_TYP'
+@         is returned.
+@
+@ 'normalizer' calculates representatives of the G-perfect forms.
+@ The are returned in a list 'voronoi_TYP**'
+@ Furthermore generators of the integral normalizer of G are calculated
+@ and written to G->normal. Their number is G->normal_no.
+@  
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: pair_red_inv.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *pair_red_inv(A, T)
+@ matrix_TYP *A, *T;
+@
+@  calculates a matrices B and T such that  T A^{-1} T^{tr} = B 
+@  is pair_reduced.
+@  B is returned with B->kgv = 1 and the transformation is written to T.
+@  The function used GNU MP to avoid overflow
+@---------------------------------------------------------------------------
+@
+@  -----------------------------------------------------------------------
+@  FILE: vor_neighbour.c:
+@  -----------------------------------------------------------------------
+@
+@
+@ matrix_TYP *voronoi_neighbour(A, X, Amin, lc, rc)
+@ matrix_TYP *A, *X;
+@ int Amin, *lc, *rc;
+@
+@ The arguments of 'voronoi_neigbour' are
+@ A:        a positiv definite matrix
+@ Amin:     The Minimum of A, min(A) :=  min{yAy^{tr} | y in Z^n, y not 0}
+@ X:        a symmetric matrix, which is not positiv semidefinite 
+@ lc, rc:   These pointer to an integer return the values of the
+@           coefficients N = lc * A + rc *X for the result N of the
+@           function
+@
+@  For A positive definite let M(A) denote the set of all y in Z^n
+@  with yAy^{tr} = min(A) and
+@  Z(A, X) the set of all y in M(A) with yXy^{tr} = 0.
+@  The function voronoi_neigbbour calculates a Matrix N = lc *A + rc * X
+@  with positive integral coefficients lc and rc such that
+@  Z(A, X) is a proper subset of M(N).
+@  In particular  min(N) = lc * min(A).
+@-----------------------------------------------------------------------
+@ 
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE:  vor_vertices.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP **voronoi_vertices(form, grp, anz, form_min, SV_no)
+@ matrix_TYP *form;
+@ bravais_TYP *grp;
+@ int *anz, *form_min, *SV_no;
+@
+@ calculates the voronoi_vertices, i.e. the matrices in the space of
+@ symmetric matrices, that are invariant under the action of G^{tr},
+@ where the voronoi vertices are defined by the sum over all g in the
+@ group 'grp'  of
+@      g x^{tr}x g,
+@ where x is a shortest vector of 'form'.
+@
+@ The number of these vertices is returned via (int *anz)
+@ the number of shortest vectors of 'form' via (int *SV_no) and
+@ the minimum of 'form' via (int *form_min)
+@---------------------------------------------------------------------------
+@

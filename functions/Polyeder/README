@@ -1,0 +1,231 @@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: first_polyeder.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ polyeder_TYP *first_polyeder(mauern, anz)
+@ wall_TYP **mauern;
+@ int anz;
+@
+@ The arguments of 'first_polyeder' are linear inequalities
+@ representent by 'mauern'.
+@ 'anz' is the number of these equalities.
+@ 'first_polyeder' returns NULL if there are not n = mauern[0]->dim
+@ independent inequalities among the walls.
+@ Otherwise, 'first_polyeder' selects n linear independent inequalities
+@ and calculates the linear simplex defined by them.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: polyeder_to_vecs.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP **polyeder_to_vecs(P)
+@ polyeder_TYP *P;
+@
+@ polyeder_to_vecs calculates two matrices X[0] and X[1]
+@ where the rows of X[0] contain the coordinates of the vertices
+@ i.e. X[0]->array.SZ[i] = P->vert[i]->v
+@ and the rows of X[1] contain the coordinates of the walls
+@ i.e. X[1]->array.SZ[i] = P->wall[i]->gl.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: polyeder_tools.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ vertex_TYP *init_vertex(dim, wall_no) 
+@ int dim;
+@ int wall_no;
+@
+@  'init_vertex' allocates a vertex_TYP *v.
+@  For v the following is allocated:
+@     v->dim = dim
+@     v->wall_no = wall_no
+@     v->v:    pointer to integer, size: dim.
+@     v->wall_size: 0, if wall_no = 0
+@                   (wall_no/extsize1 +1) * extsize1, else
+@     v->wall: pointer to integer
+@               size: 0, if wall_no = 0
+@                        else (wall_no/extsize1 +1) * extsize1
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ word_TYP *init_word(dim)
+@ int dim;
+@ 
+@   'init_word' allocates a word_TYP *word.
+@   For word the following is allocated:
+@   word->word = NULL;
+@   matrix_TYP *trans = init_mat(dim,1,"");
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ wall_TYP *init_wall(dim)
+@ int dim;
+@   'init_wall' allocates a wall_TYP *w.
+@   For w the following is allocated:
+@      w->dim = dim
+@      w->gl:    pointer to integer, size: dim.
+@      w->mat = NULL
+@      w->product = NULL
+@      w->nproduct = 0
+@      w->word = NULL
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ polyeder_TYP *init_polyeder(vert_no, wall_no)
+@ int vert_no, wall_no;
+@ 
+@   'init_polyeder' allocates a polyeder_TYP *P.
+@   For P the following is allocated:
+@     P->vert_no = vert_no;
+@     P->wall_no = wall_no;
+@     P->is_closed = FALSE;
+@     P->vert_SIZE = (vert_no/extsize1 +1) * extsize1;
+@     P->wall_SIZE = (wall_no/extsize1 +1) * extsize1;
+@     P->vert = **vertex_TYP, size:  P->vert_no.
+@     P->wall = **wall_TYP,   size:  P->wall_no.
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ polyeder_TYP *get_polyeder(file_name)
+@ char *file_name;
+@ 
+@    Read a polyeder from the file 'file_name'.
+@    If 'file_name' is NULL, get+polyeder reads from standard input.
+@ 
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void put_polyeder(F)
+@ polyeder_TYP *F;
+@ 
+@    prints a polyeder_TYP to standard output
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int wall_times_vertex(w, v)
+@ wall_TYP *w;
+@ vertex_TYP *v;
+@ 
+@     calculates the sum of v->v[i] * w->gl[i].
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void free_vertex(v)
+@ vertex_TYP **v;
+@
+@    frees, what was allocated in *v and sets (*v) = NULL 
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void free_wall(v)
+@ wall_TYP **v;
+@ 
+@    frees, what was allocated in *v and sets (*v) = NULL 
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void free_word(word)
+@ word_TYP *word; 
+@
+@    frees, what was allocated in word and sets word = NULL 
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ wall_TYP *mat_to_wall(M)
+@ matrix_TYP *M;
+@ 
+@     creates a wall_TYP *w with w->dim = M->cols
+@     and the entries of w->gl equal to the entries of the first row of M.
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void normal_wall(v)
+@ wall_TYP *v;
+@ 
+@     Divides the entries of v->gl by their greatest common divisor.
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void normal_vertex(v)
+@ vertex_TYP *v;
+@ 
+@     Divides the entries of v->v by their greatest common divisor.
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int is_vertex_of_wallno(v, w)
+@ vertex_TYP *v;
+@ int w;
+@ 
+@     Checks if the inter w is an entry of v->wall.
+@     If w is an entry of w->wall, the result is 1, otherwise 0.
+@     CAUTION: the entries of v->wall have to be ordered, t.m. 
+@              v->wall[i] < v->wall[i+1].
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ word_TYP *copy_word(w)
+@ word_TYP *w;
+@  make returns a copy of w.
+@ in w->word[0] the length of w->word is encoded.
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ wall_TYP *copy_wall(w)
+@ wall_TYP *w;
+@  make returns a copy of w.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void free_polyeder(P)
+@ polyeder_TYP *P;
+@
+@  frees all the pointers allocated in P, and P itself
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: refine_polyeder.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int refine_polyeder(F, h)
+@ polyeder_TYP *F;
+@ wall_TYP *h;
+@ 
+@  calculates the intersection of the linear Polyeder 'F' with the halfspace
+@  defined by the inequality
+@              H :=  h->gl * X^{tr} >= 0
+@  and stores it in F.
+@  If the intersection of F and H is already F, 'refine_polyeder returns 0,
+@  otherwise 1.
+@  All vertices of the intersecting polyeder are calculated.
+@  If the intersection has not full dimension, i.e the new Polyeder is
+@  non-degenerate, F->is_denerate is set to 0.
+@
+@  CAUTION: The result is correct only if the new Polyeder is non-degenerate.
+@
+@---------------------------------------------------------------------------
+@

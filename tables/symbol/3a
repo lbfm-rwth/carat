@@ -1,0 +1,13 @@
+#g2 f1 z1 c1  % not really a bravais group, just top foul the program symbol
+  3d0
+  1
+  3d0
+  1
+  3d0
+  1
+3d0  % zentr
+-1
+3d0  % cen
+-1
+2^3 * 3^1 = 24 %order of the group
+

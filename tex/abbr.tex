@@ -1,0 +1,23 @@
+% bewirkt, dass die Kapitel mit I,II,... numeriert werden
+\renewcommand{\thesection}{\Roman{section}}
+
+% bewirkt, dass enumerate i,ii,.., a,b, numeriert
+\renewcommand{\labelenumi}{\roman{enumi})}
+\renewcommand{\labelenumii}{\arabic{enumii})}
+
+% Blackboardletters
+\newcommand{\N}{\mathbb N}  % die natuerlichen Zahlen
+\newcommand{\F}{\mathbb F}  % endliche Koerper
+\newcommand{\Q}{\mathbb Q}  % die rationalen Zahlen
+\newcommand{\Z}{\mathbb Z}  % die ganzen Zahlen
+\newcommand{\R}{\mathbb R}  % die komplexen Zahlen
+
+% einige algebraische Strukturen, die in *roman* geschrieben werden,
+% z.T mit Abstandhalter bei symbolen, die nicht mit klammern geschrieben
+% werden
+\newcommand{\ch}{{\rm char\,}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\GL}{{\rm GL}}
+\newcommand{\End}{{\rm End}}
+

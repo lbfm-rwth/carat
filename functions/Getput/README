@@ -1,0 +1,193 @@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE:  get_bravais.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ bravais_TYP *get_bravais (file_name)
+@ char *file_name;
+@    reads a bravais_TYP from the file 'file_name'
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: get_mat.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *fget_mat (infile)
+@ FILE *infile;
+@ reads a matrix from infile
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *get_mat (file_name)
+@ char *file_name;
+@ reads a matrix from the file with name 'file_name'
+@---------------------------------------------------------------------------
+@
+@-------------------------------------------------------------------------
+@
+@  mat_array = mget_mat( file_name, anz );
+@
+@  differs from fmget_mat() only in specifying the file name instead of the
+@  file-pointer.
+@
+@-------------------------------------------------------------------------
+@-------------------------------------------------------------------------
+@
+@ mat_array = fmget_mat( infile, anz );
+@
+@ matrix_TYP **mat_array: array of matrices read from infile
+@
+@ FILE *infile: the file the matrices are read from
+@ int *anz:     the number of matrices that have been read from infile.
+@               is set by the function.
+@-------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: put_bravais.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void fput_bravais(outfile, G, comment)
+@ FILE *outfile;
+@ bravais_TYP *G;
+@ char *comment;
+@  the same as put_bravais, but outfile must already have         |
+@  been opened                                                    |
+@
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void put_bravais(G, filename, comment)
+@ bravais_TYP *G;
+@ char *filename;
+@ char *comment;
+@
+@ prints the bravais_TYP G to the file with name 'filename'.
+@ If 'filename' == NULL, G is printed to standard output.
+@ comment is a string to write comments that will be ignored if
+@ the output is used as input for another programm
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: put_mat.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@
+@ void put_mat( mat, file_name, comment, options );
+@ void fput_mat (outfile, mat, comment, options)
+@ 
+@ result: void
+@ arguments: 
+@    matrix_TYP *mat  -- the matrix to be written
+@    char * file_name -- the name of the file the matrix will be written to
+@                        if file_name == NULL, we write to stdout
+@    char * comment   -- optional comment written to the output-file
+@  unsigned int options -- options to controll the output of the matrix
+@
+@     Currently, there are two options. The one is called PM_RATIONAL and
+@     has a value of 0x00000001 (defined in ../../include/matrix.h ). It
+@     causes the matrix to be written with numerator and denominator for
+@     each entry if it isn't
+@     integral. The flag is still ignored for matrices that have array.N
+@     allocated. If PM_NORMALIZED is not set, even rational matrices are
+@     written in lcd-representation]
+@     The other flag is called PM_SHORTCUT and causes the flag-entries
+@     of the matrix not to be ignored, i.e. the matrix is not printed as 
+@     an NxM array, if it is symmetric, diagonal or even scalar.
+@
+@     This is the first time since I started to compet with this confused
+@     source-code that I discover that someone used bit-flags, wich is a
+@     nice thing, though the one forgot to #define and document them.
+@
+@     These flags should be used the following way:
+@
+@         put_mat( ... , PM_RATIONAL );
+@ or      put_mat( ... , PM_SHORTCUT );             
+@ or      put_mat( ... , PM_SHORTCUT | PM_RATIONAL );
+@ or just put_mat( ... , 0UL );
+@
+@   Note: "0UL" means just "(unsigned long)0"
+@-------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: put_order.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void fput_order(outfile, divisors, ord)
+@ FILE *outfile;
+@ int *divisors;
+@ int ord;
+@ A tools to print the order of a bravais_TYP
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: read_header.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ void read_header(argc,argv)
+@ int argc, char *argv[], 
+@ 
+@   reads the filenames and options for a programm
+@   the filenames are stored in:             extern char **FILENAMES;
+@   the numer of files is stored in:         extern int *FILEANZ;
+@   the options are stored in:               extern char *OPTIONS;
+@   the number of options is stored in:      extern int *OPTIONANZ;
+@   additional integers to the options in :  extern int *OPTIONNUMBERS;
+@   These extern variables are defined in globals.h
+@
+@   The option are allowed to be alphbetic letters and the function
+@   distinguishes between upper and lower letters.
+@   In the calling of the program, options have to be set behind a '-'.
+@   If one wants read an additional integer 'i' to an option 'p', one has to
+@   call this in the form: -p=i
+@
+@
+@    Example:
+@         program file1 file2 -p=10 -P -d=-1
+@    In this example 
+@        FILENAMES[1] = file1
+@        FILENAMES[2] = file2
+@        FILEANZ = 2
+@        OPTIONS[0] = p
+@        OPTIONS[1] = P
+@        OPTIONS[2] = d
+@        OPTIONNUMBERS[0] = 10
+@        OPTIONNUMBERS[1] = 0
+@        OPTIONNUMBERS[2] = -1
+@        OPTIONANZ = 3
+@
+@     WARNING: a call -CF reads only C as an option, not F.
+@              there are no blanks allowed in a word "-p=10"
+@     
+@
+@-------------------------------------------------------------------------
+@ int is_option(c)
+@ char c;
+@
+@   The return of this function is 1 if the character c is among the options,
+@   otherwise 0.
+@   A typical call of this function is:  is_option('p');
+@
+@-------------------------------------------------------------------------
+@
+@ int optionnumber(c)
+@ char c;
+@
+@   optionnumber('p') returns the additional number to the option 'p'.
+@   If 'p' is no option, the return is 0.
+@-------------------------------------------------------------------------
+@

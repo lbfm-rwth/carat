@@ -1,0 +1,70 @@
+README FOR THE SUBLATTICE DATABASE:
+
+The following example is taken for the file 
+   lattice_3_3_1
+to explain the data structure involved.
+Firstly concerning the filename itself:
+   CARAT_DIR/tables/lattices/dim3/lattice_3_3_1
+                             ^            ^
+                             |            | Symbol of the group is "3", and
+                             |              it's position in the catalog is
+                             |              3rd almost decomposable group,
+                             |              1st Zclass
+                             dimension of the group
+
+
+#7                    <= the group has 7 bravais Z-classes of Bravais subgroups
+
+3 3 1                 <= Symbol of the class "3", position 3,1
+1                     <= number of subgroups Z-equivalent to the group this grp
+#1                    <= number of orbits of normalizer of G this groups
+3	%             <= for each orbit a matrix, which conjugates the
+ 1 0 0                   group in the catalog to a subgroup of G in the i-th
+ 0 1 0                   orbit
+ 0 0 1
+1,1,1 1 1
+1 
+#1 
+3	% 
+ 1 0 0
+ 0 1 0
+ 0 0 1
+1,1;1 1 2
+9 
+#2 
+3	% 
+  0 -1 -1
+ -1 -1  0
+  1  1  1
+3	% 
+ -1 -1 -1
+  0 -1  0
+  0  1  1
+2-2;1 1 2
+4 
+#1 
+3	% 
+ 0  0 -1
+ 1  0  0
+ 0 -1 -1
+1;1;1 1 4
+3 
+#1 
+3	% 
+  1 0 1
+ -1 0 0
+  0 1 0
+1;1;1 1 3
+1 
+#1 
+3	% 
+  0 -1  0
+  0  0 -1
+ -1  0 -1
+2-1;1 1 2
+3 
+#1 
+3	% 
+  1 1  1
+  0 0 -1
+ -1 0 -1

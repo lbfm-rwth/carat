@@ -1,0 +1,196 @@
+\section{The structure of relevant files}
+
+There are two file types related to CARAT, {\rm matrix\_TYP} and {\rm
+bravais\_TYP}. Both of them consist of a set of matrices, combined
+in different ways. Firstly we describe the format of matrices which
+CARAT is able to read.
+
+\subsection{Format of a single matrix in CARAT}
+
+A matrix in a CARAT file is represented by a headline which gives
+information about the dimension of the matrix and the body, which
+carries the entries of the matrix in question.
+
+The headline has the format
+\begin{verbatim} NxM    % comment \end{verbatim}
+for a matrix which has $N$ rows and $N$ columns. All characters in this
+line behind {\rm \%} are ignored. There are some abbreviations allowed, and
+these are {\rm N} for {\rm NxN}, {\rm Nd0} for an $N \times N$ scalar matrix,
+{\rm Nd1} for an $N \times N$ diagonal matrix, and {\rm Nx0} for an $N\times
+N$ symmetric matrix.
+
+The body consists of the entries of the matrix. Two numbers are separated
+by any combination of spaces, newlines or tabulators.
+
+For simplicity of the description a couple of examples are given, the left
+side of these discribing the input, and the right hand side stating it's
+meaning.
+
+\bigskip
+\begin{minipage}{6cm}
+\begin{verbatim}
+3x2  % this will be ignored
+1 2
+3 4
+5 6
+\end{verbatim}
+\end{minipage}\hfill
+\begin{minipage}{5cm}
+$\left( \begin{array}{cc} 1 & 2\\
+                           3 & 4\\
+                           5 & 6 \end{array}\right)$
+\end{minipage}\\
+
+\bigskip
+\begin{minipage}{6cm}
+\begin{verbatim}
+3
+1 2 3
+4 5 6
+7 8 9
+\end{verbatim}
+\end{minipage}\hfill
+\begin{minipage}{5cm}
+$\left( \begin{array}{ccc} 1 & 2 & 3\\
+                           4 & 5 & 6\\
+                           7 & 8 & 9\end{array}\right)$
+\end{minipage}\\
+\bigskip
+\begin{minipage}{6cm}
+\begin{verbatim}
+3d1 % and also this
+1 -1 2
+\end{verbatim}
+\end{minipage}\hfill
+\begin{minipage}{5cm}
+$ \left( \begin{array}{ccc} 1 & 0 & 0\\
+                            0 & -1& 0\\
+                            0 & 0 & 2\end{array}\right)$
+\end{minipage}\\
+
+\bigskip
+\begin{minipage}{6cm}
+\begin{verbatim}
+2d0
+4
+\end{verbatim}
+\end{minipage}\hfill
+\begin{minipage}{5cm}
+$ \left( \begin{array}{cc} 4 & 0\\
+                           0 & 4\end{array}\right)$
+\end{minipage}
+
+\bigskip
+All files which are read by CARAT programs consist of a sequence of
+one or more of these matrices, sometimes with a header line describing
+to meaning of all these matrices (see below).
+
+\subsection{\rm matrix\_TYP}
+
+Some programs in CARAT will read/output more than one matrix. Therefore
+we created a file type which is called {\rm matrix\_TYP} and describes
+a sequence of matrices.
+
+Files of this type will simply begin with $\sharp N$, where $N$ is the
+number of matrices in the file. If CARAT reads such a file, it will
+read exactly $N$ matrices and will ignore the rest of the file.
+
+Now we give an example of a file consisting of $3$ matrices of dimension $4$
+which generate a bravais group of Order $384$ (which is isomorphic to
+$C_2 \wr S_4$).
+\begin{verbatim}
+#3
+4	% generator
+ -1 0 0 0
+  0 1 0 0
+  0 0 1 0
+  0 0 0 1
+4	% generator
+ 0 1 0 0
+ 1 0 0 0
+ 0 0 1 0
+ 0 0 0 1
+4	% generator
+ 1 0 0 0
+ 0 0 0 1
+ 0 1 0 0
+ 0 0 1 0
+\end{verbatim}
+
+
+\subsection{\rm bravais\_TYP}
+
+Sometimes it is convenient not only to give matrices which generate a
+group, but feed programs more information, ie.\ the order of the group,
+it's normalizer in $GL_n(\Z)$.
+
+Therefore the header line of a file of {\rm bravais\_TYP} takes the
+following form:
+\begin{verbatim}
+\sharp gN\ fM\ zO\ nP\ cQ
+\end{verbatim}
+This will cause programs to read $N+M+O+P+Q$ matrices, and interpret
+the first $N$ matrices as those generating the group, the next $M$
+to be a $\Z$-basis of the form space, $O$ matrices representing ``centerings'',
+$P$ matrices which form a generating set for the normalizer (in $GL_n(\Z)$)
+modulo the group, and finally $Q$ matrices which generated it's centralizer
+(again in $GL_n(\Z)$).
+
+It is possible to omit one or more of these letter, which will cause
+programs to think that the described components are not know.
+
+Here are some legal header lines given
+\begin{verbatim}
+#g2 f2 n3
+
+#g2 n4
+
+#g2 n4
+\end{verbatim}
+Note: All tough it is possible to omit components, it is NOT possible to switch
+them.
+
+The end of a {\rm bravais\_TYP} file states the order of the group. This
+component is also optional, and takes the following form:
+\begin{displaymath}
+p_1^{n_1}\ \ast\ p_2^n2\ \dots\ \ast p_m^{n_m} = N\%
+\end{displaymath}
+where $\prod_i p_i^{m_i} = N$ is the order of the described group.
+
+\subsection{A format for finitely presented Groups}
+
+Some programs we need or generate a presentation for a finite group.
+CARAT reads them in form of a matrix, which will be interpreted in the
+following way:
+\begin{itemize}
+\item The biggest entry in modulus is the number of generators of
+      the free group.
+\item Each ROW of the matrix represents a relation, ie. a word in
+      the generators of the free group. A word
+      $w=x_{i_1}^{\epsilon_1} \cdot x_{i_2}^{\epsilon_2} \cdots
+         x_{i_n}^{\epsilon_n}$ with $\epsilon_j \in \{-1,1\}$ translate
+      into a row of the matrix by $\epsilon_1 i_1\ espilon_2 i_2\ \dots\
+      \epsilon_n i_n$.
+\end{itemize}
+
+Again we just give two examples for CARAT presentations (which both
+are presentations for the $A_5$).
+
+\bigskip
+\begin{verbatim}
+3x10
+1 1 0 0 0 0 0 0 0 0
+2 2 2 0 0 0 0 0 0 0
+1 2 1 2 1 2 1 2 1 2
+\end{verbatim}
+Meaning:
+\begin{displaymath}
+\langle x_1,x_2 | x_1\cdot x_1=1,\ x_2 \cdot x_2\cdot x_2=1,\ 
+                  x_1\cdot x_2 \cdots x_1 \cdot x_2 = (x_1 \cdot x_2)^5 = 1
+\rangle
+\end{displaymath}
+
+\bigskip
+\begin{verbatim}
+3x10
+\end{verbatim}

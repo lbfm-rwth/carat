@@ -1,0 +1,60 @@
+#g2 f3 n1 c3% almost decomposable bravais-group
+6	% generator
+  0  0  0  0  0 1
+  0  0  0  0 -1 1
+ -1  0  0  0  0 0
+  0 -1  0  0  0 0
+  0  0 -1  0  0 0
+  0  0  0 -1  0 0
+6	% generator
+ 0 0 0 0 0 1
+ 0 0 0 0 1 0
+ 0 0 0 1 0 0
+ 0 0 1 0 0 0
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+6x0	% invariant form
+  2
+ -1 2
+  0 0  2
+  0 0 -1 2
+  0 0  0 0  2
+  0 0  0 0 -1 2
+6x0	% invariant form
+  0
+  0 0
+  1 0  0
+ -1 1  0 0
+  0 1  1 0 0
+ -1 0 -1 1 0 0
+6x0	% invariant form
+  0
+  0 0
+  0 1  0
+ -1 0  0 0
+  1 0  0 1 0
+ -1 1 -1 0 0 0
+6	/1		% generator of normalizer
+ 0 0  0 0 1 -1
+ 0 0  0 0 0 -1
+ 0 0 -1 0 0  0
+ 0 0 -1 1 0  0
+ 0 1  0 0 0  0
+ 1 0  0 0 0  0
+6d0	% generator of centralizer
+-1
+6	% generator of centralizer
+  0 0 1 0 0 -1
+  0 0 0 1 1 -1
+  1 0 0 0 1  0
+  0 1 0 0 0  1
+ -1 1 1 0 0  0
+ -1 0 0 1 0  0
+6	% generator of centralizer
+  0  0  0  1 -1  0
+  0  0 -1  1  0 -1
+  1 -1  0  0  0  1
+  1  0  0  0 -1  1
+ -1  0  1 -1  0  0
+  0 -1  1  0  0  0
+2^2  * 3^2   = 36 % order of the group

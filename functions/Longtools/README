@@ -1,0 +1,356 @@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: MP_conv_mat.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ MP_INT **matrix_to_MP_mat(M)
+@ matrix_TYP *M;
+@
+@  allocated an 2-dimensional array of MP_INT of the size
+@  Mat->rows x Mat->cols,
+@  converts the entries of Mat->array.SZ to MP_INt and writes 
+@  them into the array.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *MP_mat_to_matrix(M, rows, cols)
+@ MP_INT **M;
+@ int rows, cols;
+@
+@ converts the 2-dimensional array M of MP_INT to a matrix_TYP.
+@ if the entries in M are to big, the function exits with an error message.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void write_MP_mat_to_matrix(Mat, mp)
+@ matrix_TYP *Mat;
+@ MP_INT **mp;
+@
+@ converts the entries of 'mp' and write them to mat->array.SZ
+@ If the entries are to big, the programm exits
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ MP_INT **init_MP_mat(rows, cols)
+@ int rows, cols;
+@
+@ intitializes a 2-dimensional array of MP_INT of size rows x cols
+@ and sets all entries 0.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void free_MP_mat(M, rows, cols)
+@ MP_INT **M;
+@ int rows, cols;
+@
+@ Clears the entries in the 2-dimensional array 'M' and frees
+@ M[i] for 0 <= i < rows
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: MP_gauss.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@-------------------------------------------------------------------------
+@ int MP_trf_gauss(M, Trf, rows, cols)
+@ MP_INT **M, **Trf;
+@ int rows, cols;
+@ The Matrix M is transformed to a matrix M such that
+@ M_new = Trf * M_old is Gauss-reduced, with Trf integral with
+@ determinant +-1.
+@ CAUTION: The entries of the matrix M are changed.
+@-------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ int MP_row_gauss(M, rows, cols)
+@ MP_INT **M;
+@ int rows, cols;
+@
+@ The same as MP_trf_gauss without calulating the transformation
+@ matrix.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int MP_row_gauss_simultaneous(M, rows, cols, B, Bcols)
+@ MP_INT **M, **B;
+@ int rows, cols, Bcols;
+@
+@ applies an integral gaussian algorithm (on the rows) to to 2-dimensional
+@ array 'M' and does the simultaneous row operations on B.
+@---------------------------------------------------------------------------
+@
+@
+@------------------------------------------------------------------------
+@
+@ void MP_row_gauss_reverse(MP_INT **A,int rows,int cols,int option)
+@
+@ Performs a manhattan style gauss algorithm on the MP_INT matrix
+@ M, which has to be gauss reduced by MP_row_gauss before.
+@ The algorithm is not done complete for sake of speed!
+@
+@ MP_INT **A   : The matrix in question. It will be changed!
+@ int rows     : the rows of A. It is suffisient to feed the rank in here.
+@ int cols     : the number of columns of A.
+@ int option   : this flag determines the behaviour of the function:
+@                for option == 0 it will only perform Z elementary
+@                tranformations, for option == 1 it will divide every
+@                row by the gcd of it's entries (so do it Q style)!
+@------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: MP_hnf.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@
+@ The algorithms do the same as the algorithms in the
+@ file MP_gauss.c, the only difference the the matrix is in
+@ Hermite-normal-form after the algorithm
+@
+@---------------------------------------------------------------------------
+@ int MP_trf_hnf(M, Trf, rows, cols)
+@ MP_INT **M, **Trf;
+@ int rows, cols;
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ int MP_hnf(M, rows, cols)
+@ MP_INT **M;
+@ int rows, cols;
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int MP_hnf_simultaneous(M, rows, cols, B, Bcols)
+@ MP_INT **M, **B;
+@ int rows, cols, Bcols;
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: MP_pair_red.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void MP_pair_red(G, T, n)
+@ MP_INT **G, **T;
+@ int   n;
+@
+@  Applies a pair reduction to the positive definite n x n - matrix G
+@  and does the row operations simultaneous on T, i.e.
+@  G is changed to T * G * T^{tr}
+@  T must be initialized before calling the function.
+@  It is possible to call the function with T = NULL.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: MP_red_sort.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void MP_reduction_sort(G,T,n)
+@ MP_INT **G, **T;
+@ int n;
+@
+@ The same as 'red_sort' in directory 'Reduction' for MP_INT** insted
+@ of matrix_TYP*
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE:  MP_solve.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@-------------------------------------------------------------------------
+@ MP_INT ***MP_solve_mat(M, rows, cols, B, Bcols, X1cols, X0kgv)
+@ MP_INT **M, **B, *X0kgv;
+@ int rows, cols, Bcols, *X1cols;
+@
+@ MP_solve_mat(M) calculates Matrix X[0] with MX[0] = B, and
+@ a matrix X[1] with MX[1] = 0, such that
+@ the cols of X[1] are a Z-basis of the solution space.
+@ The number of the cols of X[1] are returned via the pointer 'X1cols'.
+@ CAUTION: the function changes the values of M;
+@-------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: dump_MP_mat.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ void *dump_MP_mat(Mat,rows,cols,comment)
+@ MP_int **Mat;
+@ int rows,
+@     cols;
+@ char *comment;
+@
+@ dumps an array of MP_int to stdout
+@ 
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: long_elt.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *long_elt_mat(Mat, left_trans)
+@ matrix_TYP *Mat, *left_trans;
+@
+@ calculates the elementary divisors of the matrix Mat, t.m.
+@ calulates a 'diagonal' matrix D such that
+@     L * Mat * R = D for some matrices L and R
+@ 'left_trans' has to be a matrix of size Mat->rows x Mat->rows
+@ it is changed to L * left_trans.
+@ It is possible to start the function with left_trans = NULL.
+@
+@ The calculations are done using multiple precision integers.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: long_gauss.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int long_row_gauss(Mat)
+@ matrix_TYP *Mat;
+@
+@  applies an integral gaussian algorithm to the rows of mat.
+@  the rank is returned
+@  the function uses GNU MP to avoid overflow
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int long_row_trf_gauss(Mat,T)
+@ matrix_TYP *Mat, *T;
+@
+@  applies an integral gaussian algorithm to the rows of mat.
+@  the rank is returned
+@  the function uses GNU MP to avoid overflow.
+@  The tranformation is written to the matrix T.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ int long_row_gauss_simultaneous(A, B)
+@ matrix_TYP *A, *B;
+@
+@  Applies an integral gaussian algorithm to the rows of mat.
+@  The rank is returned
+@  The function uses GNU MP to avoid overflow.
+@  The tranformations are applied simultaneously to the matrix B.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE:  long_hnf.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ The function to the same as the functions in long_gauss.c,
+@ they additionaly clear the columns upwards and transform 'Mat'
+@ to a matrix in Hermite-normal-form
+@---------------------------------------------------------------------------
+@ int long_row_hnf(Mat)
+@ matrix_TYP *Mat;
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ int long_row_trf_hnf(Mat, T)
+@ matrix_TYP *Mat, *T;
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ int long_row_hnf_simultaneous(A, B)
+@ matrix_TYP *A, *B;
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE:  long_kernel_mat.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@ matrix_TYP *long_kernel_mat(A)
+@ matrix_TYP *A;
+@
+@ long_kernel_mat(A) calculates Matrix X with AX = 0
+@ the cols of X are a Z-basis of the solution space.
+@ The functions uses GNU MP
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: long_mat_inv.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@ matrix_TYP *long_mat_inv(A)
+@ matrix_TYP *A;
+@
+@ long_mat_inv(A) calculates the matrix A^{-1} using GNU MP
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: long_qbase.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *long_qbase(Mat)
+@ matrix_TYP *Mat;
+@
+@ long_qbase calculetes a matrix M1 with rows from Mat, such that
+@ the rows of M1 form a qbase of the vectorspace generated by
+@ the rows of Mat.
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: long_rein_mat.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@ matrix_TYP *long_rein_mat(Mat)
+@ matrix_TYP *Mat;
+@
+@ long_rein_mat calculates a matrix M such that the rows of M
+@ form a Z-basis of the lattice of all integral points in the
+@ the vectorspace generated by the rows of Mat.
+@---------------------------------------------------------------------------
+@
+@
+@------------------------------------------------------------------------
+@
+@ void long_rein_formspace(matrix_TYP **forms,int number,int option)
+@
+@ option:       drives the behaviour of the function, for
+@               option == 0 there is no assumption on the symetry
+@                           of these matrices made.
+@               option == 1 the matrices are assumed to be symetric.
+@               option == 2 the matrices are assumed to be skew symetric.
+@
+@------------------------------------------------------------------------
+@
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@ FILE: long_solve_mat.c
+@---------------------------------------------------------------------------
+@---------------------------------------------------------------------------
+@
+@-------------------------------------------------------------------------
+@ matrix_TYP **long_solve_mat(A, B)
+@ matrix_TYP *A, *B;
+@
+@ long_solve_mat(A,B) calculates Matrix X[0] with AX[0] = B, and
+@ a matrix X[1] with MX[1] = 0, such that
+@ the cols of X[1] are a Z-basis of the solution space.
+@-------------------------------------------------------------------------
