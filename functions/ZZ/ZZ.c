@@ -146,11 +146,13 @@ void ZZ_intern (Gram, data, tree, inzidenz)
 
                                      switch (flagge){
                                         case 1:
+/*
                                            inzidenz->entry[flag][nr].lattice[zahl] =
                                                 mat_mul(inzidenz->inv_tr_gitter[flag],
                                                         inzidenz->tr_gitter[nr - 1]);
+fprintf(stderr, "F A L L   1!!!!!!!!!!!!!\n");
                                            break;
-
+*/
                                         case 100:
                                            inzidenz->entry[flag][nr].lattice[zahl] =
                                                 mat_mul(inzidenz->inv_tr_gitter[flag],

@@ -1,3 +1,8 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #ifndef _PRESENTATION_h_ 
 #define _PRESENTATION_h_
 
@@ -56,5 +61,9 @@ void check_base();
 void put_word();
 
 #endif
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 

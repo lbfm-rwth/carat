@@ -1,3 +1,7 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 
 /* check that this routine is included only once */
 #ifndef _MALLOC_
@@ -79,4 +83,8 @@ extern void (*fr_ee   ) (void *    );
 
 #endif /* #ifndef _MALLOC_ */
 
+
+#ifdef __cplusplus
+}
+#endif
 

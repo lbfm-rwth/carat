@@ -27,9 +27,9 @@ char *file_name;
 
 {  
 
-char string[80];
+char string[1024];
 char *str, *strin;
-char merk[10];
+char merk[256];
 bravais_TYP *grp;
 boolean header = FALSE;
 char  st;

@@ -17,6 +17,7 @@
 #include"polyeder.h"
 #include <graph.h>
 
+boolean GRAPH = FALSE;
 
 
 /* ---------------------------------------------------------------------------- */
@@ -66,6 +67,7 @@ Q_data_TYP *get_Q_data(bravais_TYP *G,
    data->first_aff = (int *)calloc(data->Z_no, sizeof(int));
    data->list_of_names = (int **)calloc(data->Z_no, sizeof(int *));
    for (i = 0; i < data->Z_no; i++){
+      cen_to_norm(data->Z[i]);
       data->first_aff[i] = data->all;
       data->WORDS[i] = (int ***)calloc(MIN_SPEICHER, sizeof(int **));
       data->NUMBER_OF_WORDS[i] = (int *)calloc(MIN_SPEICHER, sizeof(int));
@@ -122,11 +124,22 @@ void put_Q_data(Q_data_TYP *data,
    char  comment[1000],
  	 file[1000];
 
+   matrix_TYP *form, *id;
+
+   id = init_mat(data->G->dim, data->G->dim, "1");
+
    if (printflag){
       for (i = 0; i < data->Z_no; i++){
          sprintf(comment, "%d-th Z-class of %s", i+1, groupname);
          sprintf(file, "%s.%d",groupname, i+1);
          put_bravais(data->Z[i], file, comment);
+
+         form = rform(data->Z[i]->gen, data->Z[i]->gen_no, id, 100);
+         sprintf(comment, "form of the %d-th Z-class of %s", i+1, groupname);
+         sprintf(file, "form.%s.%d",groupname, i+1);
+         put_mat(form, file, comment,0);
+         free_mat(form);
+
          for (j = 0; j < data->aff_no[i]; j++){
             sprintf(comment, "%d-th affine class of the %d-th Z-class of %s",
 		    j+1, i+1, groupname);
@@ -141,6 +154,8 @@ void put_Q_data(Q_data_TYP *data,
       printf("%i ",data->aff_no[i]);
    }
    printf("Space Groups!\n");
+
+   free_mat(id);
 }
 
 

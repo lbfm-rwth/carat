@@ -17,6 +17,7 @@
 typedef struct{
    int **x;
    int ***l;
+   int ***o;
 } SOL_TYP;
 
 
@@ -24,7 +25,8 @@ typedef struct{
 /* ----------------------------------------------------------------------------- */
 static SOL_TYP *init_SOL_TYP(int gitter_no,
                              int aff_i,
-                             int aff_j)
+                             int aff_j,
+			     boolean oflag)
 {
    int i, j;
 
@@ -37,9 +39,13 @@ static SOL_TYP *init_SOL_TYP(int gitter_no,
    for (i = 0; i < gitter_no; i++){
       sol[i].x = (int **)calloc(aff_i, sizeof(int *));
       sol[i].l = (int ***)calloc(aff_i, sizeof(int **));
+      if (oflag)
+         sol[i].o = (int ***)calloc(aff_i, sizeof(int **));
       for (j = 0; j < aff_i; j++){
          sol[i].x[j] = (int *)calloc(aff_j, sizeof(int));
          sol[i].l[j] = (int **)calloc(aff_j, sizeof(int *));
+	 if (oflag)
+	    sol[i].o[j] = (int **)calloc(aff_j, sizeof(int *));
       }
    }
 
@@ -59,15 +65,20 @@ static void free_SOL_TYP(SOL_TYP *sol,
    for (i = 0; i < gitter_no; i++){
       for (j = 0; j < aff_i; j++){
          for (k = 0; k < aff_j; k++){
-            if (sol[i].l[j][k] != NULL){
+            if (sol[i].l[j][k] != NULL)
                free(sol[i].l[j][k]);
-            }
+            if (sol[i].o != NULL && sol[i].o[j] != NULL && sol[i].o[j][k] != NULL)
+               free(sol[i].o[j][k]);
          }
          free(sol[i].l[j]);
          free(sol[i].x[j]);
+	 if (sol[i].o != NULL && sol[i].o[j] != NULL)
+	    free(sol[i].o[j]);
       }
       free(sol[i].l);
       free(sol[i].x);
+      if (sol[i].o != NULL)
+         free(sol[i].o);
    }
    free(sol);
 }
@@ -151,8 +162,10 @@ static int test_fkt(bravais_TYP *t,
 
 /* ----------------------------------------------------------------------------- */
 /* calculate graph of incidences for k-subgroups for a given geometric class     */
+/* beeing not 1 or -1!                                                           */
 /* ----------------------------------------------------------------------------- */
-matrix_TYP *subgroupgraph(Q_data_TYP *data)
+matrix_TYP *subgroupgraph(Q_data_TYP *data,
+                          boolean oflag)
 {
    int i, j, k, l, m, q, flagge, reps_no,
        image_gen_no, S1_word_no, norm_no, kernel_order, orbit_no,
@@ -161,7 +174,7 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data)
        i__, j__, counter, translanz, *kernel_factor,
        lattice_orbits_no, *lattice_orbits, *lattice_orbit_length,
        **gitter_no, *smallest, i__first, reps_flag,
-       *primes, *exponent;
+       *primes, *exponent, *konj_wort;
 
    QtoZ_entry_TYP entry;
 
@@ -222,7 +235,7 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data)
 
       for (j = 0; j < data->Z_no; j++){
          entry = data->INZ->entry[i][j];
-         zwischenerg = init_SOL_TYP(entry.anz, data->aff_no[i], data->aff_no[j]);
+         zwischenerg = init_SOL_TYP(entry.anz, data->aff_no[i], data->aff_no[j], oflag);
          gitter_no = (int **)calloc(data->aff_no[i], sizeof(int *));
          for (k = 0; k < data->aff_no[i]; k++){
             gitter_no[k] = (int *)calloc(entry.anz + 1, sizeof(int));
@@ -285,7 +298,7 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data)
                                         kernel_mat->cols, data->X[j][1], &kernel_order);
             free_bravais(G);
 
-            /* calculate S1 */
+            /* calculate S1 = Stab_N(L)*/
             if (phi->cols > 0){
                norm_no = data->Z[j]->normal_no;
                lNli = (matrix_TYP **)calloc(norm_no, sizeof(matrix_TYP *));
@@ -313,9 +326,10 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data)
 
                /* orbit on H^1(G,Q^n/lattice) / Ker(phi) */
                reps = H1_mod_ker_orbit_alg(H1_mod_ker, new_rep, S1_word_no, &reps_no, &length,
-                                           &WORDS, &WORDS_no);
+                                           &WORDS, &WORDS_no, NULL);
 
-               /* orbit on 0 + Ker(phi): l = 0 */
+               /* l = 0 (d.h. Untergruppen der zerfallenden Gruppe) */
+	       /* orbit on 0 + Ker(phi): l = 0 */
                orbit_rep = orbit_ker(kernel_elements, kernel_order, data->X[j][1], S1,
                                      S1_word_no, data->coho_size[j], kernel_list, &orbit_no,
                                      &orbit_length);
@@ -326,15 +340,27 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data)
                   gitter_no[0][0]++;
                   gitter_no[0][gitter_no[0][0]] = k;
                }
+
                for (m = 0; m < orbit_no; m++){
-                  j__ = number_of_affine_class(data, orbit_rep[m], j, 0);
+                  j__ = number_of_affine_class(data, orbit_rep[m], j, 0, oflag, &konj_wort);
                   zwischenerg[k].x[0][j__]++;
                   if (zwischenerg[k].l[0][j__] == NULL){
                      zwischenerg[k].l[0][j__] = (int *)calloc(orbit_no + 1, sizeof(int));
                   }
+		  if (oflag && zwischenerg[k].o[0][j__] == NULL){
+                     zwischenerg[k].o[0][j__] = (int *)calloc(orbit_no + 1, sizeof(int));
+		  }
                   zwischenerg[k].l[0][j__][0]++;
                   zwischenerg[k].l[0][j__][ zwischenerg[k].l[0][j__][0] ] =
                      orbit_length[m];
+		  if (oflag){
+		     zwischenerg[k].o[0][j__][0]++;
+		     zwischenerg[k].o[0][j__][ zwischenerg[k].o[0][j__][0] ] =
+		        obergruppenzahl(invlattice, data->Z[j]->normal,
+			                data->norm_inv[j], data->stab_coz[j][j__],
+					data->stab_gen_no[j][j__], konj_wort);
+                     free(konj_wort);
+                  }
                }
                free(orbit_length);
                for (m = 0; m < orbit_no; m++){
@@ -342,14 +368,18 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data)
                }
                free(orbit_rep);
 
-               /* orbit on ksi + Ker(phi): l > 0 */
-               kernel_elements_2_affine(kernel_elements, data->coho_size[j]);
-               for (l = 1; l < reps_no; l++){
 
+               /* l > 0 (d.h. Untergruppen der nicht zerfallenden Gruppen) */
+	       /* orbit on ksi + Ker(phi): l = 0 */
+               kernel_elements_2_affine(kernel_elements, data->coho_size[j]);
+
+               for (l = 1; l < reps_no; l++){
+	          /* welcher Repraesentant ist Untergruppe des
+		     Standardvertreter einer affinen Klasse (welcher?)? */
                   reps_flag = 0;
                   for (m = 0; m < length[l]; m++){
                      coz_i = mat_mul(phi, reps[l][m]);
-                     i__ = number_of_affine_class(data, coz_i, i, 1);
+                     i__ = number_of_affine_class(data, coz_i, i, 1, FALSE, NULL);
                      free_mat(coz_i);
                      if (m == 0)
                         i__first = i__;
@@ -364,7 +394,19 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data)
                      }
                   }
 
-                  if (reps_flag == 1){
+                  if (reps_flag != 1){
+                     /* printf("HHHHHHHHHHHHHHHHHHHHH\n"); */
+		     /* Die Gruppen U_{l,m}, die gegeben sind durch reps[l][m],
+		        sind Untergruppen einer Raumgruppe R, die nicht der
+			Standardvertreter S der affinen Klasse ist (fuer alle m)!
+			Es sei n mit R^n = S. Dann ist U_l^n Untergruppe
+			von S. Diese Gruppen werden bei dem Gitter nL betrachtet,
+			wobei L das aktuell betrachtete Gitter sei. L und nL sind
+			offensichtlich nicht in einer Bahn unter der Punktgruppe
+			des affinen Nomalisators von S, d.h. unter dem Stabilisator
+			des Coykels von S. */
+		  }
+		  else{
                      i__ = abs(i__); /* nur noetig, wenn break auskommentiert */
 
                      /* consider only standard representatives */
@@ -387,6 +429,8 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data)
                         }
                      }
 
+		     /* Da es uns nur um Anzahlen geht, koennen wir auch o.B.d.A. Bahnen auf
+		        reps[l][0] + Kern (phi) berechnen */
                      orbit_rep = orbit_ksi_plus_ker(reps[l][0], kernel_elements, kernel_order,
                                                     data->X[j][1], S_ksi, counter,
                                                     data->coho_size[j], kernel_list, &orbit_no,
@@ -399,15 +443,26 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data)
                      }
                      for (m = 0; m < orbit_no; m++){
                         coz_j = mat_add(orbit_rep[m], reps[l][0], eins, eins);
-                        j__ = number_of_affine_class(data, coz_j, j, 0);
+                        j__ = number_of_affine_class(data, coz_j, j, 0, oflag, &konj_wort);
                         free_mat(coz_j);
                         zwischenerg[k].x[i__][j__]++;
                         if (zwischenerg[k].l[i__][j__] == NULL){
                            zwischenerg[k].l[i__][j__] = (int *)calloc(orbit_no + 1, sizeof(int));
                         }
+                        if (oflag && zwischenerg[k].o[i__][j__] == NULL){
+                           zwischenerg[k].o[i__][j__] = (int *)calloc(orbit_no + 1, sizeof(int));
+                        }
                         zwischenerg[k].l[i__][j__][0]++;
                         zwischenerg[k].l[i__][j__][ zwischenerg[k].l[i__][j__][0] ] =
                            orbit_length[m];
+			if (oflag){
+                           zwischenerg[k].o[i__][j__][0]++;
+                           zwischenerg[k].o[i__][j__][ zwischenerg[k].o[i__][j__][0] ] =
+                              obergruppenzahl(invlattice, data->Z[j]->normal,
+			                      data->norm_inv[j], data->stab_coz[j][j__],
+					      data->stab_gen_no[j][j__], konj_wort);
+			   free(konj_wort);
+			}
                      }
 
                      /* clean */
@@ -439,14 +494,25 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data)
                         gitter_no[0][gitter_no[0][0]] = k;
                      }
                      for (m = 0; m < orbit_no; m++){
-                        j__ = number_of_affine_class(data, orbit_rep[m], j, 0);
+                        j__ = number_of_affine_class(data, orbit_rep[m], j, 0, oflag, &konj_wort);
                         zwischenerg[k].x[0][j__]++;
                         if (zwischenerg[k].l[0][j__] == NULL){
                            zwischenerg[k].l[0][j__] = (int *)calloc(orbit_no + 1, sizeof(int));
                         }
+                        if (oflag && zwischenerg[k].o[0][j__] == NULL){
+                           zwischenerg[k].o[0][j__] = (int *)calloc(orbit_no + 1, sizeof(int));
+                        }
                         zwischenerg[k].l[0][j__][0]++;
                         zwischenerg[k].l[0][j__][ zwischenerg[k].l[0][j__][0] ] =
                            orbit_length[m];
+			if (oflag){
+                           zwischenerg[k].o[0][j__][0]++;
+                           zwischenerg[k].o[0][j__][ zwischenerg[k].o[0][j__][0] ] =
+                              obergruppenzahl(invlattice, data->Z[j]->normal,
+			                      data->norm_inv[j], data->stab_coz[j][j__],
+					      data->stab_gen_no[j][j__], konj_wort);
+			   free(konj_wort);
+			}
                      }
                      free(orbit_length);
                      for (m = 0; m < orbit_no; m++){
@@ -460,6 +526,14 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data)
                      zwischenerg[k].l[0][0] = (int *)calloc(2, sizeof(int));
                      zwischenerg[k].l[0][0][0] = 1;
                      zwischenerg[k].l[0][0][1] = 1;
+		     if (oflag){
+                        zwischenerg[k].o[0][0] = (int *)calloc(2, sizeof(int));
+                        zwischenerg[k].o[0][0][0] = 1;
+                        zwischenerg[k].o[0][0][1] =
+			   obergruppenzahl(invlattice, data->Z[j]->normal,
+			                   data->norm_inv[j], data->stab_coz[j][0],
+				   	   data->stab_gen_no[j][0], NULL);
+		     }
                      gitter_no[0][0]++;
                      gitter_no[0][gitter_no[0][0]] = k;
                      break;
@@ -522,6 +596,8 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data)
 
          /* output */
          for (k = 0; k < data->aff_no[i] && entry.anz > 1; k++){
+
+	   /* mehrere Teilgitter */
             if (gitter_no[k][0] > 1){
                /* orbit on lattices for each affine class with subgroups from
                   different lattices */
@@ -547,11 +623,13 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data)
                      for (m = 0; m < data->aff_no[j]; m++){
                         if (zwischenerg[smallest[l]].x[k][m] > 0){
                            for (q = 0; q < zwischenerg[smallest[l]].x[k][m]; q++){
-                              printf("%i (%i, %i^%i)  ", m + 1 + data->first_aff[j],
+                              printf("%i (%i, ", m + 1 + data->first_aff[j],
                                                 lattice_orbit_length[l] *
                                                 zwischenerg[smallest[l]].l[k][m][q + 1] *
-                                                kernel_factor[smallest[l]],
-                                                primes[smallest[l]], exponent[smallest[l]]);
+                                                kernel_factor[smallest[l]]);
+			      if (oflag)
+			         printf("%i, ", zwischenerg[smallest[l]].o[k][m][q + 1]);
+                              printf("%i^%i)  ", primes[smallest[l]], exponent[smallest[l]]);
                               erg->array.SZ[k + data->first_aff[i]][m + data->first_aff[j]]++;
                            }
                         }
@@ -571,10 +649,12 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data)
                   for (l = 0; l < data->aff_no[j]; l++){
                      if (zwischenerg[gitter_no[k][1]].x[k][l] > 0){
                         for (q = 0; q < zwischenerg[gitter_no[k][1]].x[k][l]; q++){
-                           printf("%i (%i, %i^%i)  ", l + 1 + data->first_aff[j],
+                           printf("%i (%i, ", l + 1 + data->first_aff[j],
                                                zwischenerg[gitter_no[k][1]].l[k][l][q + 1] *
-                                               kernel_factor[gitter_no[k][1]],
-                                               primes[gitter_no[k][1]], exponent[gitter_no[k][1]]);
+                                               kernel_factor[gitter_no[k][1]]);
+			   if (oflag)
+                              printf("%i, ", zwischenerg[gitter_no[k][1]].o[k][l][q + 1]);
+                           printf("%i^%i)  ", primes[gitter_no[k][1]], exponent[gitter_no[k][1]]);
                            erg->array.SZ[k + data->first_aff[i]][l + data->first_aff[j]]++;
                         }
                      }
@@ -591,10 +671,12 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data)
                   for (l = 0; l < data->aff_no[j]; l++){
                      if (zwischenerg[0].x[k][l] > 0){
                         for (q = 0; q < zwischenerg[0].x[k][l]; q++){
-                           printf("%i (%i, %i^%i)  ", l + 1 + data->first_aff[j],
-                                               zwischenerg[0].l[k][l][q + 1] *
-                                               kernel_factor[0],
-                                               primes[0], exponent[0]);
+			   printf("%i (%i, ", l + 1 + data->first_aff[j],
+			                      zwischenerg[0].l[k][l][q + 1] *
+                                              kernel_factor[0]);
+                           if (oflag)
+			       printf("%i, ", zwischenerg[0].o[k][l][q + 1]);
+                           printf("%i^%i)  ", primes[0], exponent[0]);
                            erg->array.SZ[k + data->first_aff[i]][l + data->first_aff[j]]++;
                         }
                      }

@@ -1,3 +1,8 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #ifndef _LONGTOOLS_H_
 #define _LONGTOOLS_H_
 
@@ -189,3 +194,9 @@ extern matrix_TYP **long_solve_mat();
 
 #endif
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+

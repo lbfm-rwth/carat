@@ -1,3 +1,7 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 
 #ifndef _CARAT_TYPEDEF_H_
 #define _CARAT_TYPEDEF_H_
@@ -198,3 +202,9 @@ typedef struct {
 } QtoZ_TYP;
 
 #endif /* _CARAT_TYPEDEF_H_ */
+
+
+#ifdef __cplusplus
+}
+#endif
+

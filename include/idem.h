@@ -1,3 +1,8 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #ifndef _IDEM_H_
 #define _IDEM_H_
 
@@ -133,3 +138,10 @@ matrix_TYP *z_equivalent(bravais_TYP *G,
 #endif
 
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+
+

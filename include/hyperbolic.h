@@ -1,3 +1,8 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #ifndef _HYPERBOLIC_H_
 #define _HYPERBOLIC_H_
 
@@ -29,3 +34,9 @@ extern bravais_TYP *hyperbolic_stabilizer();
 
 #endif
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+

@@ -1,3 +1,9 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+
 #ifndef _REDUCTION_H_
 #define _REDUCTION_H_
 
@@ -53,3 +59,10 @@ extern matrix_TYP *pr_short_red();
 
 #endif
 #endif
+
+
+
+#ifdef __cplusplus
+}
+#endif
+

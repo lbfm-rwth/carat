@@ -3,7 +3,7 @@ CFLAGS = -fwritable-strings -DDIAG1 -pg
 TOPDIR = /usb/carat
 
 # LIB = -L$(TOPDIR)/lib -lcarat -lm
-LIB = -L$(TOPDIR)/lib -lgraph -lpresentation -lfunctions -lgmp -lm_alloc -lm
+LIB = -L$(TOPDIR)/lib -lpresentation -lfunctions -lpresentation -lgmp -lm_alloc -lm
 SRC = $(TOPDIR)/src
 INCL = $(TOPDIR)/include
 OBJ = $(TOPDIR)/obj
@@ -28,7 +28,7 @@ PROGRAMS: Add Aut_grp Bravais_equiv\
           First_perfect Form_space Form_elt\
           Formtovec Full Gauss Graph\
           Idem Inv Invar_space Isometry Is_finite\
-          K_Subgroups K_Supergroups\
+          KSubgroups KSupergroups\
           Kron Long_solve Ltm\
           Modp Mtl Mul Mink_red Minpol\
           Name Normalizer Normalizer_in_N Normlin\
@@ -39,6 +39,7 @@ PROGRAMS: Add Aut_grp Bravais_equiv\
           Same_generators Scalarmul Scpr Short\
           Shortest Short_reduce Signature\
           Simplify_mat Symbol\
+	  TSubgroups TSupergroups\
           Torsionfree Tr Trace Trbifo Tr_bravais\
           Vor_vertices Vectoform ZZprog Zass_main Z_equiv
 
@@ -179,13 +180,13 @@ Kron:  $(SRC)/kron.c
 	$(COMP) -o Kron\
         $(SRC)/kron.c  $(LIB)
 
-K_Subgroups:  $(SRC)/k_subgroups.c
-	$(COMP) -o K_Subgroups\
-	$(SRC)/k_subgroups.c  $(LIB)
+KSubgroups:  $(SRC)/sub-k-groups.c
+	$(COMP) -o KSubgroups\
+	$(SRC)/sub-k-groups.c  $(LIB)
 
-K_Supergroups:  $(SRC)/k_supergroups.c
-	$(COMP) -o K_Supergroups\
-	$(SRC)/k_supergroups.c  $(LIB)
+KSupergroups:  $(SRC)/super-k-groups.c
+	$(COMP) -o KSupergroups\
+	$(SRC)/super-k-groups.c  $(LIB)
 
 Long_solve:  $(SRC)/long_solve.c
 	$(COMP) -o Long_solve\
@@ -345,6 +346,14 @@ Symbol:  $(SRC)/symbol.c
 	rm -f Bravais_type
 	ln -f -s Symbol Bravais_type
 
+TSubgroups:  $(SRC)/tsubgroups.c
+	$(COMP) -o TSubgroups\
+        $(SRC)/tsubgroups.c  $(LIB)
+
+TSupergroups:  $(SRC)/tsupergroups.c
+	$(COMP) -o TSupergroups\
+        $(SRC)/tsupergroups.c  $(LIB)
+
 Torsionfree:  $(SRC)/torsionfree.c
 	$(COMP) -o Torsionfree\
         $(SRC)/torsionfree.c  $(LIB)
@@ -427,8 +436,8 @@ clean:
 	rm -f Isometry
 	rm -f Is_finite
 	rm -f Conj_bravais
-	rm -f K_Subgroups
-	rm -f K_Supergroups
+	rm -f KSubgroups
+	rm -f KSupergroups
 	rm -f Kron
 	rm -f Long_solve
 	rm -f Ltm
@@ -464,6 +473,8 @@ clean:
 	rm -f Simplify_mat
 	rm -f Solve
 	rm -f Symbol ; rm -f Bravais_type
+	rm -f TSubgroups
+	rm -f TSupergroups
 	rm -f Torsionfree
 	rm -f Tr
 	rm -f Tr_bravais

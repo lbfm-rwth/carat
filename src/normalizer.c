@@ -1,32 +1,21 @@
 #include"typedef.h"
 #include"bravais.h"
 #include"base.h"
-
-#include"voronoi.h"
 #include"matrix.h"
 #include"getput.h"
-#include"symm.h"
-#include"autgrp.h"
-#include"reduction.h"
+
 
 int INFO_LEVEL;
 extern int SFLAG;
 
 main (int argc, char *argv[])
 {
-   bravais_TYP *G,      /* the bravais group of H */
-               *Gtr,
+   bravais_TYP *Gtr,
                *H;
 
-   matrix_TYP *A,
-              *tmp,
-              *tmp2;
-
-   voronoi_TYP **V;
-
-   int Vanz,
-       prime,
-       i;
+   matrix_TYP *A;
+   
+   int prime;
 
 
    read_header(argc, argv);
@@ -69,34 +58,15 @@ main (int argc, char *argv[])
       SFLAG = 1;
    }
 
+
+   /* get data */
    H = get_bravais(FILENAMES[0]);
 
-   /* throw away the normalizer of H */
-   for (i=0;i<H->normal_no;i++){
-      free_mat(H->normal[i]);
-   }
-   if (H->normal != NULL && H->normal_no > 0) free(H->normal);
-   H->normal = NULL;
-   H->normal_no = 0;
-
-   if (is_option('b')){
-      G = copy_bravais(H);
-   }
-   else{
-      G = bravais_group(H,FALSE);
-   }
-
-   /* let's see whether we already got the formspace */
-   if (G->form == NULL){
-      G->form = formspace(G->gen,G->gen_no,1,&G->form_no);
-   }
-
-   /* read the transposed group if it is given */
    if (FILEANZ > 1){
       Gtr = get_bravais(FILENAMES[1]);
    }
    else{
-      Gtr = tr_bravais(G,1,FALSE);
+      Gtr = NULL;
    }
 
    /* read an G-perfect form if it is given */
@@ -104,59 +74,31 @@ main (int argc, char *argv[])
       A = get_mat(FILENAMES[2]);
    }
    else{
-      /* firstly calculate an positive definite G-invariant form */
-      tmp2 = init_mat(G->dim,G->dim,"1");
-      tmp = rform(G->gen,G->gen_no,tmp2,101);
-      free_mat(tmp2);
-
-      /* now calculate the trace bifo */
-      tmp2 = trace_bifo(G->form,Gtr->form,G->form_no);
-      A = first_perfect(tmp,G,Gtr->form,tmp2,&Vanz);
-      free_mat(tmp2);
-      free_mat(tmp);
+      A = NULL;
    }
+
    prime = optionnumber('p');
-   if(prime == 0)
-    prime = 1949;
-   V = normalizer(A, G, Gtr, prime, &Vanz);
 
-   /* now we got G and it's normalizer, so see what we can do with H */
-   if (is_option('b')){
-      /* very easy in this case */
-      H->normal = G->normal;
-      H->normal_no = G->normal_no;
-      G->normal = NULL;
-      G->normal_no = 0;
 
-   }
-   else{
-      H->normal = normalizer_in_N(H,G,&H->normal_no,FALSE);
+   /* calculate normalizer */
+   normalisator(H, Gtr, A, prime, is_option('b'), is_option('o'));
+   if(!is_option('o')){
+      put_bravais(H, NULL, "group with complete normalizer");
    }
 
-   put_bravais(H, NULL, "group with complete normalizer");
-
-   if(is_option('o')){
-      put_bravais(Gtr, NULL, "Transposed group");
-      for(i=0;i<Vanz;i++)
-         put_voronoi(V[i]);
-   }
 
    /* cleaning up the memory */
-   for(i=0;i<Vanz;i++){
-      clear_voronoi(V[i]);
-      free(V[i]);
-   }
-   free(V);
-   free_mat(A);
+   if (A != NULL)
+      free_mat(A);
    free_bravais(H);
-   free_bravais(G);
-   free_bravais(Gtr);
+   if (Gtr != NULL)
+      free_bravais(Gtr);
 
    /* some diagnostic for memory leakage */
    if (INFO_LEVEL & 12){
       pointer_statistics(0,0);
    }
-   exit(0);
 
+   exit(0);
 }
 

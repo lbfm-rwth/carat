@@ -13,101 +13,100 @@
 #include <zass.h>
 #include <tools.h>
 #include <longtools.h>
+#include <voronoi.h>
+#include <symm.h>
+#include <autgrp.h>
+#include <reduction.h>
 
 #define MYSIZE 1024
 
-extern int OANZ;
-extern matrix_TYP **OMAT;
-extern int OFLAG;
-boolean GRAPH = FALSE;
+/* boolean GRAPH = FALSE; */
 
 
-
-/* -------------------------------------------------------------------- */
-/* P < GL_n(Z) finite                                                   */
-/* Returns the P-invariant maximal sublattices of Z^n                   */
-/* (matrices in long_col_hnf - Form)				        */
-/* with p_i-power-index, where p_i is a prime given in P->divisors.     */
-/* Returns the number of these sublattices via anz.                     */
-/* set trivialflag[x] = TRUE iff lattices[x] = p_i * Z^n                */
-/* -------------------------------------------------------------------- */
-static matrix_TYP **max_sublattices(bravais_TYP *P,
-                                    int *anz,
-                                    int **trivialflag,
-                                    boolean debugflag)
+/* --------------------------------------------------------------------- */
+/* Konjugiere bravais_TYP                                                */
+/* (genauer berechne T B T^{-1})                                         */
+/* Quellcode konj_bravais.c und normalizer.c entnommen                   */
+/* Es wird nur ->gen, ->gen_no, ->normal, ->normal_no, ->order und       */
+/* ->divisors, ->form, ->form_no angelegt.                               */
+/* --------------------------------------------------------------------- */
+/* B: zu konjugierende Gruppe                                            */
+/* T: Matrix mit der konjugiert wird                                     */
+/* Ti: Inverse zu T                                                      */
+/* --------------------------------------------------------------------- */
+static bravais_TYP *my_konj_bravais(bravais_TYP *B,
+                                    matrix_TYP *T,
+				    matrix_TYP *Ti)
 {
-   matrix_TYP *F, *tmp, *std, **lattices;
+   int i, dim, Vanz;
+   bravais_TYP *G, *BG, *BGtr;
+   matrix_TYP *Titr, *waste, *tmp, *tmp2, *A;
+   voronoi_TYP **V;
 
-   int p, X[100], i, j;
+   G = init_bravais(B->dim);
 
-
-   anz[0] = 0;
-   OFLAG = TRUE;
-   OANZ = 0;
-   memcpy(X, P->divisors, 100 * sizeof(int));
-   OMAT = (matrix_TYP **)calloc(1000, sizeof(matrix_TYP *));
-   trivialflag[0] = (boolean *)calloc(1000, sizeof(boolean));
-   F = init_mat(P->dim, P->dim, "1");
-
-   for (p = 2; p < 100 ; p++){
-      if (X[p]){
-         memset(P->divisors, 0, 100 * sizeof(int));
-         P->divisors[p] = 1;
-         ZZ(P, F, P->divisors, NULL, "rbgl1", 0, 0, 0);
-
-         if (OANZ == anz[0]){
-            /* trivial lattice isn't returned */
-            OMAT[OANZ] = init_mat(P->dim, P->dim, "");
-            for(i = 0; i < OMAT[OANZ]->rows; i++){
-               OMAT[OANZ]->array.SZ[i][i] = p;
-            }
-            Check_mat(OMAT[OANZ]);
-            trivialflag[0][OANZ] = TRUE;
-            OANZ++;
-         }
-         else{
-            for (i = anz[0]; i < OANZ; i++){
-               ZZ_transpose_array(OMAT[i]->array.SZ, OMAT[i]->cols);
-               long_col_hnf(OMAT[i]);
-               trivialflag[0][i] = FALSE;
-            }
-         }
-         cleanup_prime();
-      }
-      anz[0] = OANZ;
+   /* Order */
+   if (B->order != 0){
+     G->order = B->order;
+     memcpy(G->divisors,B->divisors,100*sizeof(int));
    }
 
-   OANZ = 0;
-   OFLAG = FALSE;
-   free_mat(F);
-   lattices = (matrix_TYP **)calloc(anz[0], sizeof(matrix_TYP *));
-
-   for (i = 0; i < anz[0]; i++){
-
-      /* paranoia test */
-      if (debugflag){
-         std = copy_mat(OMAT[i]);
-         long_col_hnf(std);
-         for (j = 0; j < P->gen_no; j++){
-            tmp = mat_mul(P->gen[j], OMAT[i]);
-            long_col_hnf(tmp);
-            if (cmp_mat(std, tmp)){
-               fprintf(stderr, "Not G-invariant!!!\n");
-               exit(2);
-            }
-            free_mat(tmp);
-         }
-         free_mat(std);
-      }
-
-      lattices[i] = copy_mat(OMAT[i]);
-      free_mat(OMAT[i]);
+   /* Generators */
+   if(B->gen_no != 0)
+   {
+     G->gen_no = B->gen_no;
+     if( (G->gen = (matrix_TYP **)malloc(B->gen_no *sizeof(matrix_TYP *))) == NULL)
+     {
+        printf("malloc of 'G->gen' in 'konj_bravais' failed\n");
+        exit(2);
+     }
+     for(i=0;i<B->gen_no;i++)
+     {
+        waste = mat_mul(T, B->gen[i]);
+        G->gen[i] = mat_mul(waste, Ti);
+        free_mat(waste);
+     }
    }
-   free(OMAT);
-   memcpy(P->divisors, X, 100 * sizeof(int));
 
-   return(lattices);
+   /* Normalizer, weiter wird der Formenraum von G angelegt */
+   BG = bravais_group(G, FALSE);
+
+   /* let's see whether we already got the formspace */
+   if (BG->form == NULL){
+      BG->form = formspace(BG->gen, BG->gen_no, 1, &BG->form_no);
+   }
+   BGtr = tr_bravais(BG, 1, FALSE);
+
+   /* firstly calculate an positive definite BG-invariant form */
+   tmp2 = init_mat(BG->dim,BG->dim,"1");
+   tmp = rform(BG->gen,BG->gen_no,tmp2,101);
+   free_mat(tmp2);
+
+   /* now calculate the trace bifo */
+   tmp2 = trace_bifo(BG->form,BGtr->form,BG->form_no);
+   A = first_perfect(tmp, BG, BGtr->form, tmp2, &Vanz);
+   free_mat(tmp2);
+   free_mat(tmp);
+
+   V = normalizer(A, BG, BGtr, 1949, &Vanz);
+
+   /* now we got BG and it's normalizer, so see what we can do with G */
+   G->normal = normalizer_in_N(G, BG, &G->normal_no, FALSE);
+
+   /* clean */
+   for(i = 0; i < Vanz; i++){
+      clear_voronoi(V[i]);
+      free(V[i]);
+   }
+   free(V);
+   free_mat(A);
+   free_bravais(BG);
+   free_bravais(BGtr);
+
+   return(G);
 }
+
+
 
 
 
@@ -117,9 +116,9 @@ static matrix_TYP **max_sublattices(bravais_TYP *P,
 /* relatoranz: number of rows in the presentation                        */
 /* see .../Zassen/zass.c                                                 */
 /* --------------------------------------------------------------------- */
-static matrix_TYP **calculate_H1(bravais_TYP *G,
-                                 word *relator,
-                                 int relatoranz)
+matrix_TYP **calculate_H1(bravais_TYP *G,
+                          word *relator,
+                          int relatoranz)
 {
    matrix_TYP **X,
               **matinv;
@@ -148,36 +147,9 @@ static matrix_TYP **calculate_H1(bravais_TYP *G,
 
 
 /* --------------------------------------------------------------------- */
-/* some informations about a cocycle                                     */
-/* --------------------------------------------------------------------- */
-typedef struct
-{
-   matrix_TYP *coz;		/* cocycle in Q^n */
-   matrix_TYP *std_coz;		/* standard form for this cocycle */
-   matrix_TYP *diff;		/* coz - std_coz */
-   MP_INT name;			/* name for this cocycle (number of element with lowest
-                                   number in the orbit) */
-   MP_INT number;		/* number for this cocycle */
-   int **WORDS;			/* Words for stabilizer of cocycle */
-   int WORDS_no;		/* number of words for stabilizer of cocycle */
-   matrix_TYP **Stab;		/* Stablizer of the cocycle */
-   int Stab_no;			/* number of elements in the stabilizer */
-   matrix_TYP *darst;		/* cocycle represented in C_a x C_b x ... */
-   matrix_TYP **aff_transl;	/* return value of transl_aff_normal */
-   int aff_transl_no;		/* # of elements in transl_aff_normal */
-   matrix_TYP **N_darst;	/* representation of G->normal on H^1(G,Q^n/Z^n) */
-   matrix_TYP **N_inv;		/* inverses of G->normal */
-   int N_darst_no;		/* G->normal_no */
-   matrix_TYP **X;		/* return value of cohomology for H^1(G,Q^n/Z^n) */
-   matrix_TYP *GLS;		/* inverse of X[2] */
-} coz_TYP;
-
-
-
-/* --------------------------------------------------------------------- */
 /* free the structure coz_TYP                                            */
 /* --------------------------------------------------------------------- */
-static void free_coz_TYP(coz_TYP coz_info)
+void free_coz_TYP(coz_TYP coz_info)
 {
    int i;
 
@@ -189,9 +161,11 @@ static void free_coz_TYP(coz_TYP coz_info)
       free(coz_info.WORDS[i]);
    if (coz_info.WORDS != NULL)
       free(coz_info.WORDS);
-   for (i = 0; i < coz_info.Stab_no; i++)
-      free_mat(coz_info.Stab[i]);
-   free(coz_info.Stab);
+   if (coz_info.Stab){
+      for (i = 0; i < coz_info.Stab_no; i++)
+         free_mat(coz_info.Stab[i]);
+      free(coz_info.Stab);
+   }
    if (coz_info.darst != NULL)
       free_mat(coz_info.darst);
    for (i = 0; coz_info.aff_transl != NULL && i < coz_info.aff_transl_no; i++)
@@ -217,13 +191,17 @@ static void free_coz_TYP(coz_TYP coz_info)
 
 
 /* --------------------------------------------------------------------- */
-/* Calculate informations about a cocycle, i. e. fill the structure      */
+/* Calculate information about a cocycle, i. e. fill the structure       */
 /* coz_TYP for a coz given in coz, G is the corresponding point-group    */
 /* X contains the return value of cohomology for G                       */
+/* G->normal has to generate together with G->gen N_Gl_n(Z) (G).         */
+/* G->zentr isn't considered!!!                                          */
 /* --------------------------------------------------------------------- */
-static coz_TYP identify_coz(bravais_TYP *G,
-                            matrix_TYP *coz,
-                            matrix_TYP **X)
+/* coz_info.Stab = Stabilisator des Cozykels / G !!!                     */
+/* --------------------------------------------------------------------- */
+coz_TYP identify_coz(bravais_TYP *G,
+                     matrix_TYP *coz,
+                     matrix_TYP **X)
 {
    matrix_TYP **TR, **N_inv;
 
@@ -233,9 +211,11 @@ static coz_TYP identify_coz(bravais_TYP *G,
 
    MP_INT null;
 
-   int i;
+   int i, zen_no;
 
 
+   zen_no = G->zentr_no;
+   G->zentr_no = 0;
    coz_info.GLS = mat_inv(X[2]);
 
    if (X[0]->cols >= 1){
@@ -265,6 +245,8 @@ static coz_TYP identify_coz(bravais_TYP *G,
       /* represenation of G->normal on H^1(G,Q^n/Z^n) */
       coz_info.N_darst_no = G->normal_no;
       coz_info.N_darst = (matrix_TYP **)calloc(G->normal_no, sizeof(matrix_TYP *));
+
+      /* eigentlich UEBERFLUESSIG:wird schon in identify berechnet */ 
       for (i = 0; i < G->normal_no; i++){
          coz_info.N_darst[i] = normalop(X[0], X[1], X[2], G, G->normal[i], 1);
       }
@@ -294,6 +276,7 @@ static coz_TYP identify_coz(bravais_TYP *G,
       coz_info.N_darst = NULL;
       coz_info.N_darst_no = 0;
    }
+   G->zentr_no = zen_no;
    coz_info.aff_transl = NULL;
    coz_info.aff_transl_no = 0;
    coz_info.coz = copy_mat(coz);
@@ -874,18 +857,28 @@ static matrix_TYP **calculate_all_preimages(matrix_TYP *preimage,
 /* calculate the maximal klassengleich subgroups for R(G,coz) with       */
 /* translation lattice L                                                 */
 /* --------------------------------------------------------------------- */
+/* G: Pointgroup, G->normal and G->gen have to generate N_{Gl_n(Z)}(G)   */
+/* GL: G mit Gitter L konjugiert                                         */
+/* aflag: calculate subgroups up to conjugation of the affine normalizer */
+/*        of R                                                           */
+/* anz: Speichere die Anzahl der Raumgruppen hier                        */
+/* length: wenn aflag, dann speichere die Laengen der Bahnen hier        */
+/* --------------------------------------------------------------------- */
 static bravais_TYP **subgroups_for_L(coz_TYP *coz_info,
                                      matrix_TYP *L,
                                      bravais_TYP *G,
+				     bravais_TYP *GL,
                                      matrix_TYP **H_G_Z,
                                      matrix_TYP **H_GL_Z,
-                                     int *anz)
+                                     int *anz,
+				     int **length,
+				     boolean aflag)
 {
    boolean is_in_image;
 
    int i, b1_kernel_no;
 
-   matrix_TYP *diag, *GLS, *tmp,
+   matrix_TYP *diag, *GLS, *tmp, *tmp2, **reps,
               *phi, *kernel_mat, **kernel_gen, **image,
               *koord, *preimage, **all_preimages,
               **k, *nullcoz, **b1_kernel;
@@ -907,66 +900,106 @@ static bravais_TYP **subgroups_for_L(coz_TYP *coz_info,
                  &kernel_mat, &image, &image_gen_no, &H1_mod_ker);
 
 
-   /* is cocycle in the image */
+   /* is cocycle in the image (phi koord = coz->darst) */
    koord = cocycle_in_image(coz_info->coz, coz_info->darst, phi, image, image_gen_no, GLS,
                             H_G_Z[1], H1_mod_ker.flag, H1_mod_ker.erz_no, &is_in_image);
 
+
    if (is_in_image){
-      /* calculate preimage of cocycle (in C^1)*/
-      if (koord == NULL){
-         preimage = init_mat(coz_info->coz->rows, 1, "");
-      }
-      else{
-         tmp = darst_to_C1(H_GL_Z, koord);
-         preimage = mat_mul(diag, tmp);
-         free_mat(tmp);
-         korrektes_urbild(&preimage, coz_info, G, L, FALSE);
-      }
 
-      /* calculate generators for Ker(phi on H^1(G,Q^n/L)) such that
-         phi(gen) = 0 in C^1 */
-      nullcoz = init_mat(coz_info->coz->rows, 1, "");
-      kernel_gen = (matrix_TYP **)calloc(kernel_mat->cols, sizeof(matrix_TYP *));
-      k = col_to_list(kernel_mat);
-      for (i = 0; i < kernel_mat->cols; i++){
-         tmp = darst_to_C1(H_GL_Z, k[i]);
-         kernel_gen[i] = mat_mul(diag, tmp);
-         free_mat(tmp);
-         korrektes_urbild_ID(kernel_gen[i], nullcoz, G);
-      }
-      free_mat(nullcoz);
-
-      /* calculate Ker(phi restricted to B^1(G,Q^n/L)) */
+      /* calculate information about Ker phi | B^1 */
       if (coz_info->aff_transl == NULL){ /* we calculate it only once */
          coz_info->aff_transl = transl_aff_normal(G->gen, G->gen_no, &coz_info->aff_transl_no);
       }
       b1_kernel = kernel_factor_fct(coz_info->aff_transl, coz_info->aff_transl_no, G->gen_no, L,
-                                    &b1_kernel_no);
+                                       &b1_kernel_no);
 
-      /* calculate all preimages */
-      all_preimages = calculate_all_preimages(preimage, kernel_gen, k, kernel_mat->cols,
-                                              H_GL_Z[1], b1_kernel, b1_kernel_no, anz);
+      if (!aflag){
+         /* Berechne alle Untergruppen */
+	 /* ========================== */
 
-      /* calculate the groups */
-      SG = (bravais_TYP **)calloc(anz[0], sizeof(bravais_TYP *));
-      for (i = 0; i < anz[0]; i++){
-         SG[i] = extract_r(G, all_preimages[i]);
-         free_mat(all_preimages[i]);
+         /* calculate preimage of cocycle (in C^1)*/
+         if (koord == NULL){
+            preimage = init_mat(coz_info->coz->rows, 1, "");
+         }
+         else{
+            tmp = darst_to_C1(H_GL_Z, koord);
+            preimage = mat_mul(diag, tmp);
+            free_mat(tmp);
+         }
+         korrektes_urbild(&preimage, coz_info, G, L, FALSE);
+
+         /* calculate generators for Ker(phi on H^1(G,Q^n/L)) such that
+            phi(gen) = 0 in C^1 */
+         nullcoz = init_mat(coz_info->coz->rows, 1, "");
+         kernel_gen = (matrix_TYP **)calloc(kernel_mat->cols, sizeof(matrix_TYP *));
+         k = col_to_list(kernel_mat);
+         for (i = 0; i < kernel_mat->cols; i++){
+            tmp = darst_to_C1(H_GL_Z, k[i]);
+            kernel_gen[i] = mat_mul(diag, tmp);
+            free_mat(tmp);
+            korrektes_urbild_ID(kernel_gen[i], nullcoz, G);
+         }
+         free_mat(nullcoz);
+
+	 /*
+         if (coz_info->aff_transl == NULL){
+            coz_info->aff_transl = transl_aff_normal(G->gen, G->gen_no, &coz_info->aff_transl_no);
+         }
+         b1_kernel = kernel_factor_fct(coz_info->aff_transl, coz_info->aff_transl_no, G->gen_no, L,
+                                       &b1_kernel_no);
+         */
+
+         /* calculate all preimages */
+         all_preimages = calculate_all_preimages(preimage, kernel_gen, k, kernel_mat->cols,
+                                                 H_GL_Z[1], b1_kernel, b1_kernel_no, anz);
+         /* calculate the groups */
+         SG = (bravais_TYP **)calloc(anz[0], sizeof(bravais_TYP *));
+         for (i = 0; i < anz[0]; i++){
+            SG[i] = extract_r(G, all_preimages[i]);
+            free_mat(all_preimages[i]);
+         }
+
+         /* clean */
+         free(all_preimages);
+         free_mat(preimage);
+	 /*
+         for (i = 0; i < b1_kernel_no; i++){
+            free_mat(b1_kernel[i]);
+         }
+         if (b1_kernel)
+            free(b1_kernel);
+	 */
+         for (i = 0; i < kernel_mat->cols; i++){
+            free_mat(kernel_gen[i]);
+            free_mat(k[i]);
+         }
+         free(k);
+         free(kernel_gen);
       }
-
-      /* clean */
-      free(all_preimages);
-      free_mat(preimage);
+      else{
+         /* Berechne nur Vertreter unter dem affinen Normalisator */
+	 /* ===================================================== */
+	 reps = calculate_representatives(G, GL, H_G_Z, H_GL_Z, L, phi,
+                                          H1_mod_ker, koord, kernel_mat, anz, length);
+         SG = (bravais_TYP **)calloc(anz[0], sizeof(bravais_TYP *));
+         for (i = 0; i < anz[0]; i++){
+            tmp = darst_to_C1(H_GL_Z, reps[i]);
+	    free_mat(reps[i]);
+            tmp2 = mat_mul(diag, tmp);
+            free_mat(tmp);
+            korrektes_urbild(&tmp2, coz_info, G, L, FALSE);
+	    SG[i] = extract_r(G, tmp2);
+	    free_mat(tmp2);
+	    length[0][i] *= b1_kernel_no;
+	 }
+	 free(reps);
+      }
       for (i = 0; i < b1_kernel_no; i++){
          free_mat(b1_kernel[i]);
       }
-      free(b1_kernel);
-      for (i = 0; i < kernel_mat->cols; i++){
-         free_mat(kernel_gen[i]);
-         free_mat(k[i]);
-      }
-      free(k);
-      free(kernel_gen);
+      if (b1_kernel)
+         free(b1_kernel);
    }
    else{
       SG = NULL;
@@ -993,21 +1026,29 @@ static bravais_TYP **subgroups_for_L(coz_TYP *coz_info,
 
 
 
+
 /* --------------------------------------------------------------------- */
 /* Returns the maximal klassengleich subgroups of R with p_i-power-index */
 /* where p_i is a prime given in G->divisors                             */
-/* R has to be in standard affine form an G has to be the point group of */
+/* R has to be in standard affine form without translations              */
+/* an G has to be the point group of R                                   */
 /* with correct normalizer                                               */
 /* Returns the number of these subgroups via anz.                        */
 
 /* G->normal and G->gen have to generate the normalizer of G!!!!!        */
 
+/* aflag: FALSE => calculate all max. k-subgroups                        */
+/*        TRUE  => calculate max. k-subgroups up to conjugation of       */
+/*                 the affine normalizer of R                            */
+/* orbitlength: speichere die Laengen der Bahnen (nur wenn aflag)        */
 /* --------------------------------------------------------------------- */
 bravais_TYP **max_k_sub(bravais_TYP *G,
                         bravais_TYP *R,
                         matrix_TYP *pres,
                         int *anz,
-                        boolean debugflag)
+			boolean aflag,
+                        boolean debugflag,
+			int **orbitlength)
 {
    sublattice_TYP SL;
 
@@ -1021,7 +1062,7 @@ bravais_TYP **max_k_sub(bravais_TYP *G,
    word *relator;
 
    int i, j, k, sg_L_no, b1_kernel_no,
-       size = MYSIZE, counter, cen;
+       size = MYSIZE, counter, *length = NULL;
 
    coz_TYP coz_info;
 
@@ -1030,8 +1071,7 @@ bravais_TYP **max_k_sub(bravais_TYP *G,
 
 
    /* prepare */
-   cen = G->cen_no;
-   G->cen_no = 0;
+   cen_to_norm(G);
    relator = (word *) calloc(pres->rows, sizeof(word));
    for (i = 0; i < pres->rows; i++){
       matrix_2_word(pres, relator + i, i);
@@ -1039,7 +1079,9 @@ bravais_TYP **max_k_sub(bravais_TYP *G,
    coz = extract_c(R);
    eins.z = eins.n = 1;
    anz[0] = 0;
-   S = (bravais_TYP **)calloc(size, sizeof(bravais_TYP *));
+   S = (bravais_TYP **)calloc(0, sizeof(bravais_TYP *));
+   if (aflag)
+      orbitlength[0] = (int *)calloc(0, sizeof(int));
 
    /* calculate the sublattices */
    SL.lattices = max_sublattices(G, &SL.no, &SL.trivialflag, debugflag);
@@ -1062,49 +1104,62 @@ bravais_TYP **max_k_sub(bravais_TYP *G,
       /* calculate the maximal klassengleich subgroups for a representative of each orbit */
       L = SL.lattices[SL.smallest[i]];
 
-      if (   TRUE   ){                        /* see below */
+      if (   TRUE   ){
 /*
       if (!SL.trivialflag[SL.smallest[i]]){
-          lattice != p_i * Z^n */
-
+*/
+         /* lattice != p_i * Z^n */
          Linv = mat_inv(L);
-         GL = konj_bravais(G, Linv);
+         GL = my_konj_bravais(G, Linv, L);
 
          /* calculate H^1(GL, Q^n/Z^n) */
          H_GL_Z = calculate_H1(GL, relator, pres->rows);
 
          /* subgroups */
-         SG_L = subgroups_for_L(&coz_info, L, G, H_G_Z, H_GL_Z, &sg_L_no);
+         SG_L = subgroups_for_L(&coz_info, L, G, GL, H_G_Z, H_GL_Z, &sg_L_no, &length, aflag);
 
          if (sg_L_no > 0){
-            if (size < (anz[0] + sg_L_no * SL.orbitlength[i])){
+            if (aflag){
+               S = (bravais_TYP **)realloc(S, (anz[0] + sg_L_no)
+                                            * sizeof(bravais_TYP *));
+               orbitlength[0] = (int *)realloc(orbitlength[0], (anz[0] + sg_L_no)
+                                            * sizeof(int));
+            }
+	    else{
                S = (bravais_TYP **)realloc(S, (anz[0] + sg_L_no * SL.orbitlength[i])
                                             * sizeof(bravais_TYP *));
-               size = anz[0] + sg_L_no * SL.orbitlength[i];
             }
             for (j = 0; j < sg_L_no; j++){
                plus_translationen(SG_L[j], L);
                S[anz[0] + j] = SG_L[j];
+	       if (aflag){
+		  orbitlength[0][anz[0] + j] = length[j] * SL.orbitlength[i];
+	       }
             }
 
             /* corresponding subgroups for the other lattices in this orbit */
-            counter = 1;
-            for (j = SL.smallest[i] + 1; j < SL.no; j++){
-               if (SL.orbitlist[j] == i){
-                  conj = to_aff_normal_element(SL.conj[j], coz, 0, G, R);
-                  for (k = 0; k < sg_L_no; k++){
-                     S[anz[0] + counter * sg_L_no + k] =
-                        konj_bravais(S[anz[0] + k], conj);
+	    if (!aflag){
+               counter = 1;
+               for (j = SL.smallest[i] + 1; j < SL.no; j++){
+                  if (SL.orbitlist[j] == i){
+                     conj = to_aff_normal_element(SL.conj[j], coz, 0, G, R);
+                     for (k = 0; k < sg_L_no; k++){
+                        S[anz[0] + counter * sg_L_no + k] =
+                           konj_bravais(S[anz[0] + k], conj);
+                     }
+                     free_mat(conj);
+                     counter++;
                   }
-                  free_mat(conj);
-                  counter++;
                }
-            }
-            if (counter != SL.orbitlength[i]){ /* paranoiatest */
-               fprintf(stderr, "ERROR in max_k_sub!\n");
-               exit(8);
-            }
-            anz[0] += (sg_L_no * SL.orbitlength[i]);
+               if (counter != SL.orbitlength[i]){ /* paranoiatest */
+                  fprintf(stderr, "ERROR in max_k_sub!\n");
+                  exit(8);
+               }
+               anz[0] += (sg_L_no * SL.orbitlength[i]);
+	    }
+	    else{
+	       anz[0] += sg_L_no;
+	    }
          }
 
          /* clean */
@@ -1115,13 +1170,19 @@ bravais_TYP **max_k_sub(bravais_TYP *G,
          free_mat(Linv);
          if (SG_L != NULL)
             free(SG_L);
+         if (length)
+	    free(length);
+         length = NULL;
       }
       else{
          /* lattice == p_i * Z^n (there is only one lattice in this orbit) */
          /* calculate Ker(phi restricted to B^1(G,Q^n/L)) (here: phi = Id)*/
 
-         /* this isn't correct!!! there has to be an additional condition 
+         /* this isn't correct!!! there has to be an additional condition
             example: min.56.1.1.1 min.56.1.1 2 3 */
+
+	 /* Das ist nicht korrekt, weil | phi^{-1} (0 + B^1) |
+	    nicht zwangslaeufig 1 ist. Dann wuerde es funktionieren! */
 
          if (coz_info.aff_transl == NULL){ /* we calculate it only once */
             coz_info.aff_transl = transl_aff_normal(G->gen, G->gen_no,
@@ -1181,7 +1242,6 @@ bravais_TYP **max_k_sub(bravais_TYP *G,
    free(H_G_Z);
    free_coz_TYP(coz_info);
    free_mat(coz);
-   G->cen_no = cen;
 
    return(S);
 }

@@ -70,8 +70,9 @@ int *aff_classes_in_image(MP_INT *names,
                           matrix_TYP *D,
                           int *anz)
 {
-   int i, j, k, pos, m,
+   int i, j, k, pos, /* m, */
        first, last, diff,
+       insg, flag = 0,
       *list, *aff_list;
 
    matrix_TYP *tmp;
@@ -90,11 +91,11 @@ int *aff_classes_in_image(MP_INT *names,
    diff = last - first;
    if (orbit[0] == NULL)
       orbit[0] = init_mat(diff, 1, "");
+   /* m = coho_size; */
 
    /* orbit algorithm */
    for (i = 0; i < coho_size && anz[0] < aff_no; i++){
       if (list[i] == -1){
-         m = coho_size;
          for (j = 0; j < gen_no; j++){
             tmp = add_mod_D(orbit[i], image_gen[j], D, first, diff);
             valuation(tmp, D, &val);
@@ -117,12 +118,22 @@ int *aff_classes_in_image(MP_INT *names,
             }
             if (tmp != NULL)
                free_mat(tmp);
+	    /*
             if (list[pos] == -1){
                m = min(pos, m);
             }
+	    */
          }
          list[i] = 1;
-         i = m - 1;
+	 /*
+	 if (m == i){
+	    m = coho_size;
+	 }
+	 else{
+            i = m - 1;
+	 }
+	 */
+	 i = -1;
       }
    }
 
@@ -157,7 +168,7 @@ int *aufspannen(int coho_size,
                 matrix_TYP *D,
                 int *anz)
 {
-   int i, j, pos, m,
+   int i, j, pos, /* m, */
        first, last, diff,
        *list;
 
@@ -175,11 +186,11 @@ int *aufspannen(int coho_size,
    diff = last - first;
    if (elements[0] == NULL)
       elements[0] = init_mat(diff, 1, "");
+   /* m = coho_size; */
 
    /* orbit algorithm */
    for (i = 0; i < coho_size && anz[0] < coho_size; i++){
       if (list[i] == -1){
-         m = coho_size;
          for (j = 0; j < gen_no; j++){
             tmp = add_mod_D(elements[i], M[j], D, first, diff);
             valuation(tmp, D, &val);
@@ -195,12 +206,22 @@ int *aufspannen(int coho_size,
             }
             if (tmp != NULL)
                free_mat(tmp);
+	    /*
             if (list[pos] == -1){
                m = min(pos, m);
             }
+	    */
          }
-         list[i] = 1;
-         i = m - 1;
+	 list[i] = 1;
+	 /*
+	 if (m == i){
+	    m = coho_size;
+	 }
+	 else{
+	    i = m - 1;
+	 }
+	 */
+	 i = -1;
       }
    }
 
@@ -253,127 +274,6 @@ static int search_next(int *list,
 
 
 /* ----------------------------------------------------------------------------- */
-/* orbitalgorithm on a subgroup of H^1                                           */
-/* ker_elements: list of elements in the subgroup                                */
-/* H^1 is given by D, the second return value of cohomology                      */
-/* coho_size: size of H^1                                                        */
-/* N: operating group                                                            */
-/* no: number of elements in N                                                   */
-/* ker_list: list, which element of the cohomology group is in the subgroup      */
-/* ker_order: order of the subgroup                                              */
-/* anz: save the number of orbits here                                           */
-/* length: save the length of an orbit here                                      */
-/* ----------------------------------------------------------------------------- */
-/* in orbit 0 is only the 0-element 						 */
-/* ----------------------------------------------------------------------------- */
-matrix_TYP **orbit_ker(matrix_TYP **ker_elements,
-                       int ker_order,
-                       matrix_TYP *D,
-                       matrix_TYP **N,
-                       int no,
-                       int coho_size,
-                       int *ker_list,
-                       int *anz,
-                       int **length)
-{
-   int i, j, k, m, pos,
-       first, last, diff, counter,
-       ttt = 0,
-      *list, *smallest;
-
-   matrix_TYP **orbit_rep,
-               *tmp;
-
-   MP_INT val;
-
-
-   for (first = 0; first < D->cols && D->array.SZ[first][first] == 1; first++);
-   for (last = first; last < D->cols && D->array.SZ[last][last] != 0; last++);
-   diff = last - first;
-   length[0] = (int *)calloc(coho_size, sizeof(int));
-   anz[0] = counter = length[0][0] = 1;
-   for (i = 1; i < coho_size; i++){
-      if (ker_list[i] == 1)
-         break;
-   }
-
-   /* only 0-element in the subgroup */
-   if (i == coho_size){
-      orbit_rep = (matrix_TYP **)calloc(1, sizeof(matrix_TYP *));
-      orbit_rep[0] = init_mat(diff, 1, "");
-      return(orbit_rep);
-   }
-
-   mpz_init(&val);
-   list = (int *)calloc(coho_size, sizeof(int));
-   smallest = (int *)calloc(coho_size, sizeof(int));
-
-   /* orbit algorithm */
-   while (i != -1){
-      list[i] = -anz[0];
-      smallest[anz[0]] = i;
-      length[0][anz[0]] = 1;
-      for (; i < coho_size && counter < ker_order; i++){
-         if (list[i] == -anz[0]){
-            m = coho_size;
-            for (j = 0; j < no; j++){
-               tmp = mat_mul(N[j], ker_elements[i]);
-               for (k = first; k < last; k++)
-                  mod(tmp->array.SZ[k-first], D->array.SZ[k][k]);
-               valuation(tmp, D, &val);
-               pos = mpz_get_ui(&val);
-
-               /* paranoia test */
-               if (ker_list[pos] != 1 || (list[pos] != 0 && abs(list[pos]) != anz[0])){
-                  fprintf(stderr, "ERROR in orbit_ker!\n");
-                  exit(7);
-               }
-
-               if (list[pos] == 0){
-                  /* new element in the orbit */
-                  list[pos] = -anz[0];
-                  counter++;
-                  length[0][anz[0]]++;
-               }
-               free_mat(tmp);
-               if (list[pos] == -anz[0]){
-                  m = min(pos, m);
-               }
-            }
-            list[i] = anz[0];
-            i = m - 1;
-         }
-      }
-      i = search_next(list, ker_list, coho_size);
-      anz[0]++;
-   }
-
-   /* save representatives */
-   orbit_rep = (matrix_TYP **)calloc(anz[0], sizeof(matrix_TYP *));
-   for (i = 0; i < anz[0]; i++){
-      orbit_rep[i] = copy_mat(ker_elements[smallest[i]]);
-      if (GRAPH_DEBUG)
-         ttt += length[0][i];
-   }
-
-   if (GRAPH_DEBUG){
-      if (ttt != ker_order){
-         fprintf(stderr, "NEIN!!!!!!!!!!!!\n");
-         exit(5);
-      }
-   }
-
-   /* clean */
-   mpz_clear(&val);
-   free(smallest);
-   free(list);
-
-   return(orbit_rep);
-}
-
-
-
-/* ----------------------------------------------------------------------------- */
 /* calculate the representation of S on H^1(...)/Ker(phi)                        */
 /* ----------------------------------------------------------------------------- */
 matrix_TYP **new_representation(matrix_TYP **S,
@@ -381,7 +281,7 @@ matrix_TYP **new_representation(matrix_TYP **S,
                                 H1_mod_ker_TYP H1_mod_ker,
                                 matrix_TYP *A)
 {
-   int i, j, k, 
+   int i, j, k, d, s,
        erz_no, A_first;
 
    matrix_TYP **rep,
@@ -395,12 +295,16 @@ matrix_TYP **new_representation(matrix_TYP **S,
    for (i = 0; i < S_no; i++){
       rep[i] = init_mat(erz_no, erz_no, "");
       for (j = 0; j < erz_no; j++){
+
+         /* bilde Basiselement ab mit Erzeuger von S1 */
          tmp = mat_mul(S[i], H1_mod_ker.M[j]);
          for (k = 0; k < tmp->rows; k++){
             tmp->array.SZ[k][0] %= A->array.SZ[k + A_first][k + A_first];
             if (tmp->array.SZ[k][0] < 0)
                tmp->array.SZ[k][0] += A->array.SZ[k + A_first][k + A_first];
          }
+
+	 /* Berechne Standardform als Element von H^1/Ker */
          temp = mat_mul(H1_mod_ker.i, tmp);
          free_mat(tmp);
          for (k = 0; k < temp->rows; k++){
@@ -408,6 +312,8 @@ matrix_TYP **new_representation(matrix_TYP **S,
             if (temp->array.SZ[k][0] < 0)
                temp->array.SZ[k][0] += H1_mod_ker.D->array.SZ[k][k];
          }
+
+	 /* trage in Matrix ein */
          for (k = 0; k < erz_no; k++){
             rep[i]->array.SZ[k][j] = temp->array.SZ[k + H1_mod_ker.D_first][0];
          }
@@ -456,6 +362,8 @@ static matrix_TYP *back_to_H1(matrix_TYP *elem,
 /* in orbit 0 is only the 0 element                                              */
 /* save WORDS for the stabilizers of ksi + Ker(phi) for a representative in      */
 /* each orbit                                                                    */
+/* start = NULL: berechne alle Orbits                                            */
+/* start != NULL: berechne nur den Orbit von start                               */
 /* ----------------------------------------------------------------------------- */
 matrix_TYP ***H1_mod_ker_orbit_alg(H1_mod_ker_TYP H1_mod_ker,
                                    matrix_TYP **S,
@@ -463,15 +371,16 @@ matrix_TYP ***H1_mod_ker_orbit_alg(H1_mod_ker_TYP H1_mod_ker,
                                    int *anz,
                                    int **length,
                                    int ****WORDS,
-                                   int **WORDS_no)
+                                   int **WORDS_no,
+				   matrix_TYP *start)
 {
    matrix_TYP *D,
               *tmp,
              **elem,
             ***rep;
 
-   int i, j, k, m,
-       pos, number,
+   int i, j, k, /* m, */ i__,
+       pos, number, addmem,
        *list, *smallest, **words,
        coho_size, erz_no, counter = 0;
 
@@ -488,21 +397,31 @@ matrix_TYP ***H1_mod_ker_orbit_alg(H1_mod_ker_TYP H1_mod_ker,
    coho_size = mpz_get_ui(&cohom_size);
    elem = (matrix_TYP **)calloc(coho_size, sizeof(matrix_TYP *));
    list = (int *)calloc(coho_size, sizeof(int));
-   length[0] = (int *)calloc(coho_size, sizeof(int));
-   smallest = (int *)calloc(coho_size, sizeof(int));
-   WORDS[0] = (int ***)calloc(coho_size, sizeof(int **));
-   WORDS_no[0] = (int *)calloc(coho_size, sizeof(int));
-   if (coho_size > 1)
-      i = 1;
-   else
-      i = -1;
-   anz[0] = 1;
-   counter = length[0][0] = 1;
-   smallest[0] = 0;
+   length[0] = (int *)calloc(coho_size + 1, sizeof(int));
+   smallest = (int *)calloc(coho_size + 1, sizeof(int));
+   WORDS[0] = (int ***)calloc(coho_size + 1, sizeof(int **));
+   WORDS_no[0] = (int *)calloc(coho_size + 1, sizeof(int));
+
+   if (start == NULL){
+      if (coho_size > 1)
+         i = 1;
+      else
+         i = -1;
+      anz[0] = 1;
+      counter = length[0][0] = 1;
+      smallest[0] = 0;
+   }
+   else{
+      anz[0] = 1;
+      for (k = 0; k < erz_no; k++)
+         mod(start->array.SZ[k], D->array.SZ[k][k]);
+      valuation(start, D, &val);
+      i = mpz_get_ui(&val);
+   }
 
 
    while (i != -1){
-      WORDS[0][anz[0]] = (int **)calloc(MIN_SPEICHER, sizeof(int *));
+      WORDS[0][anz[0]] = (int **)calloc(1024, sizeof(int *));
       words = (int **)calloc(coho_size, sizeof(int *));
       list[i] = -anz[0];
       smallest[anz[0]] = i;
@@ -510,9 +429,9 @@ matrix_TYP ***H1_mod_ker_orbit_alg(H1_mod_ker_TYP H1_mod_ker,
       mpz_init_set_si(&MP_i, i);
       elem[i] = reverse_valuation(&MP_i, D);
       mpz_clear(&MP_i);
+      /* m = coho_size; */
       for (; i < coho_size && counter < coho_size; i++){
          if (list[i] == -anz[0]){
-            m = coho_size;
             for (j = 0; j < S_no; j++){
                tmp = mat_mul(S[j], elem[i]);
                for (k = 0; k < erz_no; k++)
@@ -528,13 +447,18 @@ matrix_TYP ***H1_mod_ker_orbit_alg(H1_mod_ker_TYP H1_mod_ker,
 
                if (list[pos] == 0){
                   /* new element in the orbit */
-                  words[pos] = (int *)calloc(MIN_SPEICHER, sizeof(int));
+                  /*words[pos] = (int *)calloc(MIN_SPEICHER, sizeof(int));*/
                   if (i != smallest[anz[0]]){
-                     memcpy(words[pos], words[i], (words[i][0] + 1) * sizeof(int));
+                     words[pos] = (int *)calloc(words[i][0] + 2, sizeof(int)); /*N*/
+                     /*memcpy(words[pos], words[i], (words[i][0] + 1) * sizeof(int));*/
+		     for (i__ = 0; i__ < words[i][0] + 1; i__++){
+		        words[pos][i__] = words[i][i__];
+		     }
                      words[pos][words[i][0] + 1] = -(j+1);
                      words[pos][0]++;
                   }
                   else{
+		     words[pos] = (int *)calloc(2, sizeof(int)); /*N*/
                      words[pos][0] = 1;
                      words[pos][1] = -(j+1);
                   }
@@ -546,14 +470,29 @@ matrix_TYP ***H1_mod_ker_orbit_alg(H1_mod_ker_TYP H1_mod_ker,
                }
                else{
                   /* we got this element already */
-                  WORDS[0][anz[0]][WORDS_no[0][anz[0]]] = (int *)calloc(MIN_SPEICHER, sizeof(int));
+		  if (WORDS_no[0][anz[0]] % 1024 == 0){ /*N*/
+		     WORDS[0][anz[0]] = (int **)realloc(WORDS[0][anz[0]],
+		                        (1024 + WORDS_no[0][anz[0]]) * sizeof(int *));
+                  }
+
+                  /*WORDS[0][anz[0]][WORDS_no[0][anz[0]]] = (int *)calloc(MIN_SPEICHER, sizeof(int));*/
+		  if (pos != smallest[anz[0]]){ /*N*/
+		     addmem = words[pos][0];
+		  }
+		  else{
+		     addmem = 0;
+		  }
                   if (i != smallest[anz[0]]){
-                     memcpy(WORDS[0][anz[0]][WORDS_no[0][anz[0]]], words[i], (words[i][0] + 1) *
-                                                                                    sizeof(int));
+                     WORDS[0][anz[0]][WORDS_no[0][anz[0]]] = (int *)calloc(words[i][0] + 2 + addmem, sizeof(int));/*N*/
+                     /*memcpy(WORDS[0][anz[0]][WORDS_no[0][anz[0]]], words[i], (words[i][0] + 1) * sizeof(int)); */
+		     for (i__ = 0; i__ < words[i][0] + 1; i__++){
+                        WORDS[0][anz[0]][WORDS_no[0][anz[0]]][i__] = words[i][i__];
+		     }
                      WORDS[0][anz[0]][WORDS_no[0][anz[0]]][words[i][0] + 1] = -(j+1);
                      WORDS[0][anz[0]][WORDS_no[0][anz[0]]][0]++;
                   }
                   else{
+                     WORDS[0][anz[0]][WORDS_no[0][anz[0]]] = (int *)calloc(2 + addmem, sizeof(int));/*N*/
                      WORDS[0][anz[0]][WORDS_no[0][anz[0]]][0] = 1;
                      WORDS[0][anz[0]][WORDS_no[0][anz[0]]][1] = -(j+1);
                   }
@@ -565,17 +504,34 @@ matrix_TYP ***H1_mod_ker_orbit_alg(H1_mod_ker_TYP H1_mod_ker,
                      WORDS[0][anz[0]][WORDS_no[0][anz[0]]][0] = number;
                   }
                   WORDS_no[0][anz[0]]++;
+
+
                   free_mat(tmp);
                }
+	       /*
                if (list[pos] == -anz[0]){
                   m = min(pos, m);
                }
+	       */
             }
             list[i] = anz[0];
-            i = m - 1;
+	    /*
+	    if (m == i){
+	       m = coho_size;
+	    }
+	    else{
+               i = m - 1;
+	    }
+	    */
+	    i = -1;
          }
       }
-      i = search_next(list, NULL, coho_size);
+      if (start == NULL){
+         i = search_next(list, NULL, coho_size);
+      }
+      else{
+         i = -1;
+      }
       anz[0]++;
       for (j = 0; j < coho_size; j++)
          if (words[j] != NULL)
@@ -604,12 +560,144 @@ matrix_TYP ***H1_mod_ker_orbit_alg(H1_mod_ker_TYP H1_mod_ker,
    free(list);
    free(smallest);
    for (i = 1; i < coho_size; i++)
-      free_mat(elem[i]);
+      if (elem[i] != NULL)
+         free_mat(elem[i]);
    free(elem);
 
 
    return(rep);
 }
+
+
+/* ----------------------------------------------------------------------------- */
+/* orbitalgorithm on a subgroup of H^1                                           */
+/* ker_elements: list of elements in the subgroup                                */
+/* H^1 is given by D, the second return value of cohomology                      */
+/* coho_size: size of H^1                                                        */
+/* N: operating group                                                            */
+/* no: number of elements in N                                                   */
+/* ker_list: list, which element of the cohomology group is in the subgroup      */
+/* ker_order: order of the subgroup                                              */
+/* anz: save the number of orbits here                                           */
+/* length: save the length of an orbit here                                      */
+/* ----------------------------------------------------------------------------- */
+/* in orbit 0 is only the 0-element 						 */
+/* ----------------------------------------------------------------------------- */
+matrix_TYP **orbit_ker(matrix_TYP **ker_elements,
+                       int ker_order,
+                       matrix_TYP *D,
+                       matrix_TYP **N,
+                       int no,
+                       int coho_size,
+                       int *ker_list,
+                       int *anz,
+                       int **length)
+{
+   int i, j, k, /* m, */ pos,
+       first, last, diff, counter,
+       ttt = 0,
+      *list, *smallest;
+
+   matrix_TYP **orbit_rep,
+               *tmp;
+
+   MP_INT val;
+
+
+   for (first = 0; first < D->cols && D->array.SZ[first][first] == 1; first++);
+   for (last = first; last < D->cols && D->array.SZ[last][last] != 0; last++);
+   diff = last - first;
+   length[0] = (int *)calloc(coho_size, sizeof(int));
+   anz[0] = counter = length[0][0] = 1;
+   for (i = 1; i < coho_size; i++){
+      if (ker_list[i] == 1)
+         break;
+   }
+
+   /* only 0-element in the subgroup */
+   if (i == coho_size){
+      orbit_rep = (matrix_TYP **)calloc(1, sizeof(matrix_TYP *));
+      orbit_rep[0] = init_mat(diff, 1, "");
+      return(orbit_rep);
+   }
+
+   mpz_init(&val);
+   list = (int *)calloc(coho_size, sizeof(int));
+   smallest = (int *)calloc(coho_size, sizeof(int));
+
+   /* orbit algorithm */
+   while (i != -1){
+      list[i] = -anz[0];
+      smallest[anz[0]] = i;
+      length[0][anz[0]] = 1;
+      /* m = coho_size; */
+      for (; i < coho_size && counter < ker_order; i++){
+         if (list[i] == -anz[0]){
+            for (j = 0; j < no; j++){
+               tmp = mat_mul(N[j], ker_elements[i]);
+               for (k = first; k < last; k++)
+                  mod(tmp->array.SZ[k-first], D->array.SZ[k][k]);
+               valuation(tmp, D, &val);
+               pos = mpz_get_ui(&val);
+
+               /* paranoia test */
+               if (ker_list[pos] != 1 || (list[pos] != 0 && abs(list[pos]) != anz[0])){
+                  fprintf(stderr, "ERROR in orbit_ker!\n");
+                  exit(7);
+               }
+
+               if (list[pos] == 0){
+                  /* new element in the orbit */
+                  list[pos] = -anz[0];
+                  counter++;
+                  length[0][anz[0]]++;
+               }
+               free_mat(tmp);
+	       /*
+               if (list[pos] == -anz[0]){
+                  m = min(pos, m);
+               }
+	       */
+            }
+            list[i] = anz[0];
+	    /*
+	    if (m == i){
+	       m = coho_size;
+	    }
+	    else{
+               i = m - 1;
+	    }
+	    */
+	    i = -1;
+         }
+      }
+      i = search_next(list, ker_list, coho_size);
+      anz[0]++;
+   }
+
+   /* save representatives */
+   orbit_rep = (matrix_TYP **)calloc(anz[0], sizeof(matrix_TYP *));
+   for (i = 0; i < anz[0]; i++){
+      orbit_rep[i] = copy_mat(ker_elements[smallest[i]]);
+      if (GRAPH_DEBUG)
+         ttt += length[0][i];
+   }
+
+   if (GRAPH_DEBUG){
+      if (ttt != ker_order){
+         fprintf(stderr, "NEIN!!!!!!!!!!!!\n");
+         exit(5);
+      }
+   }
+
+   /* clean */
+   mpz_clear(&val);
+   free(smallest);
+   free(list);
+
+   return(orbit_rep);
+}
+
 
 
 
@@ -618,7 +706,7 @@ matrix_TYP ***H1_mod_ker_orbit_alg(H1_mod_ker_TYP H1_mod_ker,
 /* ker_elements: list of elements in the subgroup                                */
 /* H^1 is given by D, the second return value of cohomology                      */
 /* coho_size: size of H^1                                                        */
-/* N: operating group                                                            */
+/* N: operating group (IS CHANGED !!!)                                           */
 /* no: number of elements in N                                                   */
 /* ker_list: list, which element of the cohomology group is in the subgroup      */
 /* ker_order: order of the subgroup                                              */
@@ -638,7 +726,7 @@ matrix_TYP **orbit_ksi_plus_ker(matrix_TYP *ksi,
                                 int *anz,
                                 int **length)
 {
-   int i, j, k, m, rows, first, last, diff, pos,
+   int i, j, k, /* m, */ rows, first, last, diff, pos,
        ttt = 0,
        *list, *smallest, counter;
 
@@ -689,9 +777,9 @@ matrix_TYP **orbit_ksi_plus_ker(matrix_TYP *ksi,
          list[i] = -anz[0];
          smallest[anz[0] - 1] = i;
          length[0][anz[0] - 1] = 1;
+         /* m = coho_size; */
          for (; i < coho_size && counter < ker_order; i++){
             if (list[i] == -anz[0]){
-               m = coho_size;
                for (j = 0; j < no; j++){
                   tmp = mat_mul(N[j], ker_elements[i]);
                   for (k = first; k < last; k++)
@@ -712,12 +800,22 @@ matrix_TYP **orbit_ksi_plus_ker(matrix_TYP *ksi,
                      length[0][anz[0] - 1]++;
                   }
                   free_mat(tmp);
+		  /*
                   if (list[pos] == -anz[0]){
                      m = min(pos, m);
                   }
+		  */
                }
                list[i] = anz[0];
-               i = m - 1;
+	       /*
+	       if (m == i){
+	          m = coho_size;
+	       }
+	       else{
+                  i = m - 1;
+               }
+	       */
+	       i = -1;
             }
          }
          i = search_next(list, ker_list, coho_size);
@@ -789,6 +887,7 @@ static int search_pos(matrix_TYP *mat, matrix_TYP **menge, int anz)
 /* list: list, which lattice is in which orbit                          */
 /* length: list with the lengthes of the orbits                         */
 /* smallest: for each orbit, lowest number of the elements in it        */
+/* conj: if conj, save conjugating matrices here                        */
 /* -------------------------------------------------------------------- */
 int orbit_on_lattices(matrix_TYP **gitter,
                       int gitter_no,

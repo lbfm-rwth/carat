@@ -1,3 +1,8 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #ifndef _GETPUT_H_
 #define _GETPUT_H_
 
@@ -107,3 +112,10 @@ extern int optionnumber();
 
 #endif
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+
+

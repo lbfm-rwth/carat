@@ -35,14 +35,20 @@ static int is_id(matrix_TYP *mat)
 }
 
 
-/* -------------------------------------------------------------------------- */
-/* calculate the stabilizer of a cocycle with the informations of the         */
-/* calculation of the affine classes (see get_Q_data)                         */
-/* FOR A GENERATING SET YOU HAVE TO ADD THE GENERATORS OF THE GROUP           */
 
-/* only works correctly iff G->cen = NULL, i.e. G->cen_no = 0                 */
-
-/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------- */
+/* Setze Matrizen (gegeben in N) in Worte ein.                          */
+/* Streiche Identitaet und doppelte.                                    */
+/* -------------------------------------------------------------------- */
+/* words: Worte                                                         */
+/* no_of_words: Anzahl der Worte                                        */
+/* N: Matrizen, die eingesetzt werden sollen                            */
+/*    (muss zu words "passen")                                          */
+/* N_inv: Inversen von N (werden bei Bedarf berechnet)                  */
+/* anz: Anzahl von N                                                    */
+/* flag: wenn = 0, wird einfach N zurueckgegeben                        */
+/* stab_gen_no: hier wird die Anzahl der Elemente zurueckgegeben        */
+/* -------------------------------------------------------------------- */
 matrix_TYP **stab_coz(int **words,
                       int no_of_words,
                       matrix_TYP **N,
@@ -278,7 +284,7 @@ matrix_TYP **calculate_S1(matrix_TYP *lattice,
                           matrix_TYP **dataNinv,
                           matrix_TYP *dataX)
 {
-   int i, j, k, flag,
+   int i, j, k, flag, i__, addmem,
        counter = 1, number,
        **words, **WORDS;
 
@@ -291,27 +297,38 @@ matrix_TYP **calculate_S1(matrix_TYP *lattice,
       Ninv = (matrix_TYP **)calloc(anz, sizeof(matrix_TYP *));
    }
 
-   list = (matrix_TYP **)calloc(MIN_SPEICHER, sizeof(matrix_TYP *));
-   words = (int **)calloc(MIN_SPEICHER, sizeof(int *));
-   WORDS = (int **)calloc(MIN_SPEICHER, sizeof(int *));
+   list = (matrix_TYP **)calloc(1024, sizeof(matrix_TYP *));
+   words = (int **)calloc(1024, sizeof(int *));
+   WORDS = (int **)calloc(1024, sizeof(int *));
    list[0] = lattice;
    Baum = (struct tree *)calloc(1, sizeof(struct tree));
    Baum->no = i = no[0] = 0;
 
    while (i < counter){
       for (j = 0; j < anz; j++){
+         if (counter % 1024 == 0){
+	    list = (matrix_TYP **)realloc(list, (counter + 1024) * sizeof(int *));
+	 }
          list[counter] = mat_mul(N[j], list[i]);
          long_col_hnf(list[counter]);
          flag = search_in_tree(Baum, list, list[counter], counter);
          if (flag == -1){
             /* new lattice */
-            words[counter] = (int *)calloc(MIN_SPEICHER, sizeof(int));
+	    if (counter % 1024 == 0){
+	       words = (int **)realloc(words, (counter + 1024) * sizeof(int *));
+	    }
+            /* words[counter] = (int *)calloc(1024, sizeof(int)); */
             if (i != 0){
-               memcpy(words[counter], words[i], (words[i][0] + 1) * sizeof(int));
+	       words[counter] = (int *)calloc(words[i][0] + 2, sizeof(int));
+               /*memcpy(words[counter], words[i], (words[i][0] + 1) * sizeof(int));*/
+	       for (i__ = 0; i__ < words[i][0] + 1; i__++){
+	          words[counter][i__] = words[i][i__];
+	       }
                words[counter][words[i][0] + 1] = -(j+1);
                words[counter][0]++;
             }
             else{
+	       words[counter] = (int *)calloc(2, sizeof(int));
                words[counter][0] = 1;
                words[counter][1] = -(j+1);
             }
@@ -320,13 +337,27 @@ matrix_TYP **calculate_S1(matrix_TYP *lattice,
          else{
             /* we got this lattice already */
             free_mat(list[counter]);
-            WORDS[no[0]] = (int *)calloc(MIN_SPEICHER, sizeof(int));
+	    if (no[0] % 1024){
+	       WORDS = (int **)realloc(WORDS, (no[0] + 1024) * sizeof(int *));
+	    }
+            /*WORDS[no[0]] = (int *)calloc(1024, sizeof(int));*/
+	    if (flag != 0){
+	       addmem = words[flag][0];
+	    }
+	    else{
+	       addmem = 0;
+	    }
             if (i != 0){
-               memcpy(WORDS[no[0]], words[i], (words[i][0] + 1) * sizeof(int));
+               WORDS[no[0]] = (int *)calloc(words[i][0] + 2 + addmem, sizeof(int));
+               /*memcpy(WORDS[no[0]], words[i], (words[i][0] + 1) * sizeof(int));*/
+	       for (i__ = 0; i__ < words[i][0] + 1; i__++){
+	          WORDS[no[0]][i__] = words[i][i__];
+	       }
                WORDS[no[0]][words[i][0] + 1] = -(j+1);
                WORDS[no[0]][0]++;
             }
             else{
+	       WORDS[no[0]] = (int *)calloc(2 + addmem, sizeof(int));
                WORDS[no[0]][0] = 1;
                WORDS[no[0]][1] = -(j+1);
             }

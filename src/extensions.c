@@ -7,6 +7,7 @@
 #include <longtools.h>
 #include <presentation.h>
 #include <base.h>
+#include <graph.h>
 
 #define DEBUG FALSE
 
@@ -26,7 +27,8 @@ static int is_trivial(bravais_TYP *G){
   return i == G->gen_no;
 
 }
-void main(int argc,char **argv){
+
+int main(int argc,char **argv){
 
   matrix_TYP **X,
               *N,
@@ -38,7 +40,7 @@ void main(int argc,char **argv){
 
   word *relator;
 
-  bravais_TYP *G;
+  bravais_TYP *G, *R;
 
   int i,
       anz,
@@ -53,6 +55,7 @@ void main(int argc,char **argv){
         *names;
 
   char comment[1000],
+       file[1000],
       *NAME,
       *FN;
 
@@ -60,7 +63,7 @@ void main(int argc,char **argv){
 
   if ((is_option('h') && optionnumber('h')==0) || (FILEANZ < 1)
       || (is_option('i') && FILEANZ<2)){
-      printf("Usage: %s ['file1'] 'file2' ['file3'] [-n] [-i] [-t=n] [-v]\n",argv[0]);
+      printf("Usage: %s ['file1'] 'file2' ['file3'] [-n] [-i] [-t=n] [-v] [-C] [-H] [-F] [-S]\n",argv[0]);
       printf("\n");
       printf("file1:  matrix_TYP containing a presentation of the group (cf. Presentation,\n");
       printf("        Roundcor)\n");
@@ -97,6 +100,7 @@ void main(int argc,char **argv){
       printf(" -F:      Only construct those extensions which gie rise to\n");
       printf("          torsion free space groups. Does not work in conjunction\n");
       printf("          with -n.\n");
+      printf(" -S:      write corresponding space groups in files\n");
       printf("\n");
       printf(" CAUTION: THE PROGRAM RELIES HEAVILY ON THE FOLLOWING TWO FACTS:\n");
       printf("           - THE PRESENTATION GIVEN IN file1 IS INDEED A\n");
@@ -221,7 +225,15 @@ void main(int argc,char **argv){
            printf("#%d\n",1);
            sprintf(comment,"%% the %d-th cozycle to the group of %s",
                    1,FN);
-           put_cocycle(X[0],G->dim,G->gen_no,NULL,comment);
+           if (is_option('S')){
+              sprintf(file, "%s.%s", FN, "0");
+              R = extract_r(G, X[0]);
+	      put_bravais(R, file, comment);
+	      free_bravais(R);
+	   }
+	   else{
+              put_cocycle(X[0],G->dim,G->gen_no,NULL,comment);
+	   }
            free_mat(X[0]);
         }
         else{
@@ -235,7 +247,15 @@ void main(int argc,char **argv){
         printf("#%d\n",1);
         sprintf(comment,"%% the %d-th cozycle to the group of %s",
                 1,FN);
-        put_cocycle(X[0],G->dim,G->gen_no,NULL,comment);
+        if (is_option('S')){
+           sprintf(file, "%s.%s", FN, "0");
+           R = extract_r(G, X[0]);
+	   put_bravais(R, file, comment);
+	   free_bravais(R);
+	}
+	else{
+           put_cocycle(X[0],G->dim,G->gen_no,NULL,comment);
+	}
      }
      exit(0);
   }
@@ -307,7 +327,15 @@ void main(int argc,char **argv){
         NAME = mpz_get_str(NULL,10,names+i);
         sprintf(comment,
              "%% the %d-th cozycle, length of orbit %d,name: %s",i+1,len[i],NAME);
-        put_cocycle(Y[i],G->dim,G->gen_no,NULL,comment);
+        if (is_option('S')){
+           sprintf(file, "%s.%s", FN, NAME);
+           R = extract_r(G, Y[i]);
+	   put_bravais(R, file, comment);
+	   free_bravais(R);
+	}
+	else{
+           put_cocycle(Y[i],G->dim,G->gen_no,NULL,comment);
+	}
         free_mat(Y[i]);
         mpz_clear(names+i);
         free(NAME);

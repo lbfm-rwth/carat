@@ -1,3 +1,7 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifndef _NAME_H_
 #define _NAME_H_
 
@@ -152,6 +156,33 @@ matrix_TYP *z_class_inf(bravais_TYP *G,
                         bravais_TYP *DATABASEGROUP,
                         bravais_TYP **RES,
                         int *name);
+			
+/*************************************************************************
+|  FILE: reverse_name_fct.c
+**************************************************************************/
+
+bravais_TYP *get_qclass_by_name(char *name,
+                                matrix_TYP **PRES,
+                                int dim);
+
+bravais_TYP *get_zclass_by_name(bravais_TYP *G,
+                                int *first,
+                                int *second,
+                                int ignore);
+
+bravais_TYP *split_extension(bravais_TYP *G);
+
+bravais_TYP *get_affine_class_by_name(bravais_TYP *G,
+                                     matrix_TYP *PRES,
+                                     MP_INT *aff_name,
+                                     int check);
+
+bravais_TYP *reverse_name(char *qname,
+                          int zname[2],
+			  MP_INT aff_name,
+			  int i,
+			  boolean iflag,
+			  char **affstring);
 
 #else
 
@@ -210,6 +241,24 @@ matrix_TYP *q_class_inf ();
 
 matrix_TYP *z_class_inf();
 
+/*************************************************************************
+|  FILE: reverse_name_fct.c
+**************************************************************************/
+
+bravais_TYP *get_qclass_by_name();
+
+bravais_TYP *get_zclass_by_name();
+
+bravais_TYP *split_extension();
+
+bravais_TYP *get_affine_class_by_name();
+
+bravais_TYP *reverse_name();
+
 #endif
 
+#endif
+
+#ifdef __cplusplus
+}
 #endif

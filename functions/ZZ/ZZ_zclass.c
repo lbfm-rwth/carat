@@ -349,7 +349,8 @@ int orbit_under_normalizer(data,tree,father,new,ii,jj,inzidenz,nr,nnn)
 	   for (i__=0;i__<p->N_no_orbits && p->level==father->level && !flag;i__++){
 	      flag = (mat_search(tmp,p->N_orbits[i__], p->N_lengths[i__],mat_comp) != -1);
 	   }
-	   if (flag) break;
+	   if (flag) 
+	      break;
 	   p = p->next;
 	}
 
@@ -361,7 +362,7 @@ int orbit_under_normalizer(data,tree,father,new,ii,jj,inzidenz,nr,nnn)
 	} */
 	free_mat(tmp);
 	
-	/* next 14 lines: oliver 10.8.00: graph for QtoZ */	
+	/* next 14 lines: oliver 10.8.00: graph for QtoZ */
 	if (flag && GRAPH){
 	   laeufer = p->child;
 	   for (i = 0; i < p->N_no_orbits - i__; i++){
@@ -378,8 +379,10 @@ int orbit_under_normalizer(data,tree,father,new,ii,jj,inzidenz,nr,nnn)
 	      exit(3);
 	   }
 	}
-	else {
-	        p = father;
+	/* else { */
+	p = father;
+	if (!flag){
+	        /* p = father; */
 		tmp = tr_pose(new->U);
 		if (p->N_no_orbits == 0){
 			p->N_orbits = (matrix_TYP ***) malloc(1 *

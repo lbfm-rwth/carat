@@ -144,6 +144,8 @@ matrix_TYP **all_cocycles(matrix_TYP *relator_input,
 
   long dim;
 
+  char comment[1000];
+
   MP_INT cohom_size;
 
 
@@ -325,7 +327,7 @@ matrix_TYP **col_to_list(matrix_TYP *M)
 /* -------------------------------------------------------------------- */
 void free_H1_mod_ker_TYP(H1_mod_ker_TYP H1_mod_ker)
 {
-   int i;
+   int i, j;
 
    if (H1_mod_ker.flag == 0){
       for (i = 0; i < H1_mod_ker.erz_no; i++){
@@ -351,10 +353,21 @@ static void mod(int *a, int b)
 /* -------------------------------------------------------------------- */
 /* return the number of the affine class for the cocylce coz            */
 /* -------------------------------------------------------------------- */
+/* data: Informationen ueber die Q-Klasse                               */
+/* coz: Cozykel als Element von H^1                                     */
+/* i: Nummer der Z-Klasse                                               */
+/* flag: true => gebe -(Nummer der aff. Klasse) zurueck, falls nicht    */
+/*       Standardvertreter der affinen Klasse                           */
+/* wortflag: speichere ein Wort fuer Normalisatorelement, welches       */
+/*           coz zu Standardverterter konjugiert                        */
+/* wort: speicher Wort hier                                             */
+/* -------------------------------------------------------------------- */
 int number_of_affine_class(Q_data_TYP *data,
                            matrix_TYP *coz,
                            int i,
-                           int flag)
+                           int flag,
+			   boolean wortflag,
+			   int **wort)
 {
    matrix_TYP *rep;
 
@@ -373,10 +386,11 @@ int number_of_affine_class(Q_data_TYP *data,
       mod(coz->array.SZ[n - first], data->X[i][1]->array.SZ[n][n]);
    }
 
-   if (data->l_option == TRUE){
+
+   if (data->l_option == TRUE || wortflag){
       B = (char *)calloc(data->coho_size[i], sizeof(char));
       rep = orbit_rep(coz, data->N[i], data->Z[i]->normal_no, data->X[i][1], 0,
-                      B, &nummer, &anz, NULL, 0, NULL, NULL);
+                      B, &nummer, &anz, wort, wortflag, NULL, NULL);
 
       pos = mpz_get_ui(&nummer);
       for (n = 0; n < data->aff_no[i]; n++){
@@ -420,7 +434,7 @@ int number_of_affine_class(Q_data_TYP *data,
          return(-n);
   }
 
-   return(n);
+  return(n);
 }
 
 
@@ -446,7 +460,25 @@ void kernel_elements_2_affine(matrix_TYP **elem,
 
 
 
+/* -------------------------------------------------------------------- */
+/* append G->cen to G->normal and set G->cen = NULL                     */
+/* -------------------------------------------------------------------- */
+void cen_to_norm(bravais_TYP *G)
+{
+   int i;
 
+   if (G->cen_no > 0){
+      G->normal = (matrix_TYP **)realloc(G->normal, 
+                  (G->cen_no + G->normal_no) * sizeof(matrix_TYP));
+      for (i = 0; i < G->cen_no; i++){
+         G->normal[G->normal_no + i] = G->cen[i];
+      }
+      free(G->cen);
+      G->cen = NULL;
+      G->normal_no += G->cen_no;
+      G->cen_no = 0;
+   }
+}
 
 
 

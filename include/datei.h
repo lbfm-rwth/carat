@@ -1,3 +1,8 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #ifndef _DATEI_H_
 #define _DATEI_H_
 
@@ -144,3 +149,9 @@ lattice_element **lattice(char *symb,int dim,int almost,int zclass,int *no,
 
 #endif
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+

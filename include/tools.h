@@ -1,3 +1,8 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #ifndef _TOOLS_H_
 #define _TOOLS_H_
 
@@ -151,3 +156,10 @@ extern int signum();
 
 #endif
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+
+

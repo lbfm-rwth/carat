@@ -27,7 +27,8 @@ matrix_TYP *is_z_equivalent_datei(bravais_TYP *G,bravais_TYP *G_tr,
        anz_gneighbours,
        max;          /* will hold the maximal diagonal entry of a form */
 
-
+	bravais_TYP *GB;          /* the bravais group of G for temporary purposes */
+	
    matrix_TYP  *gtrbifo,     /* the tracebifo of G,G_tr */
                *htrbifo,     /* the tracebifo of H,H_tr */
                *tmp,
@@ -160,8 +161,13 @@ matrix_TYP *is_z_equivalent_datei(bravais_TYP *G,bravais_TYP *G_tr,
 
          /* and calculate all G-perfect forms which represent the orbit
             of the normalizer on them, i.e. the quotient graph */
-         if (gp[0]== NULL && anz_gperfect[0]==0)
-            gp[0] = normalizer(gperfect,G,G_tr,prime,anz_gperfect);
+         if (gp[0]== NULL && anz_gperfect[0]==0){
+				 GB = bravais_group(G,TRUE);
+				 gp[0] = normalizer(gperfect,GB,G_tr,prime,anz_gperfect);
+				 G->normal = GB->normal; G->normal_no = GB->normal_no;
+				 GB->normal = NULL; GB->normal_no = 0;
+				 free_bravais(GB);
+			}
 
          if (INFO_LEVEL & 4){
             fprintf(stderr,"Calculated the normalizer of G.\n");

@@ -699,7 +699,7 @@ matrix_TYP **identify(matrix_TYP *cozycle,
         TR[i] = init_mat(G->dim,G->dim,"1");
         for (j=1;j<=word[0];j++){
           if (word[j] < G->cen_no){
-             mat_muleq(TR[i],G->normal[word[j]]);
+             mat_muleq(TR[i],G->cen[word[j]]);
           }
           else{
              mat_muleq(TR[i],G->normal[word[j]-G->cen_no]);

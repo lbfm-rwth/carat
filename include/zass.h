@@ -1,3 +1,8 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #ifndef _ZASSEN_H_
 #define _ZASSEN_H_
 
@@ -238,3 +243,9 @@ extern matrix_TYP *calc_B();
 
 #endif
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+

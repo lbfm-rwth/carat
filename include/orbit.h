@@ -1,3 +1,10 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+
+
 #ifndef _ORBIT_H_
 #define _ORBIT_H_
 
@@ -78,3 +85,9 @@ matrix_TYP *translation_lattice();
 
 #endif
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+

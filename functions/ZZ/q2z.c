@@ -241,7 +241,8 @@ static void get_normalizer(bravais_TYP *H)
               **forms,
                *trbifo;
 
-    bravais_TYP *Htr;
+    bravais_TYP *Htr,
+		  *HB;
 
     int i,
         j,
@@ -256,7 +257,11 @@ static void get_normalizer(bravais_TYP *H)
     PF = first_perfect(F,H,Htr->form,trbifo,&i);
 
     /* calculate the normalizer of the bravais group */
-    V = normalizer(PF,H,Htr,1949,&vno);
+	 HB = bravais_group(H,TRUE);
+    V = normalizer(PF,HB,Htr,1949,&vno);
+	 H->normal = HB->normal ; H->normal_no = HB->normal_no;
+	 HB->normal = NULL; HB->normal_no = 0;
+	 free_bravais(HB);
 
     /* calculate the bravais group itself */
     free_bravais(Htr);
@@ -550,7 +555,7 @@ bravais_TYP **q2z(bravais_TYP *G,
                *new_base,
                *id,
                *X,
-               *test,
+/*               *test, */
               **conj_idem,
               **real_idem,
                *zoo_kon,
@@ -769,6 +774,13 @@ bravais_TYP **q2z(bravais_TYP *G,
    else{
       for (i = 0; i < ad_no; i++){
          ZZ(ADGROUPS[i],F,NULL,NULL,zzoptions,NULL,i,0);
+
+	 /* apply a base reduction algorithm to the found new basises */
+         trash = get_better_base(ADGROUPS[i],NULL,1,ADGROUPS[i]->gen);
+         for (j = 1; j < ADGROUPS[i]->zentr_no; j++){
+            free_mat(trash[j]);
+         }
+         free(trash);
       }
    }
 
@@ -1013,6 +1025,7 @@ bravais_TYP **q2z(bravais_TYP *G,
       }
 
       /* print the matrix of incidences for the Z-classes */
+      /*
       test = init_mat(INZ->anz, INZ->anz, "");
       for (i = 0; i < INZ->anz; i++){
          for (j = 0; j < INZ->anz; j++){
@@ -1021,6 +1034,7 @@ bravais_TYP **q2z(bravais_TYP *G,
       }
       put_mat(test,0,"graph for the arithmetic classes",0);
       free_mat(test);
+      */
 
       /* calculate standard form for the lattices */
       for (i = 0; i < INZ->anz; i++){

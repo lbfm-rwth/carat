@@ -1,3 +1,9 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+
 #ifndef _TIETZETRANS_H_
 
 #define _TIETZETRANS_H_
@@ -74,3 +80,9 @@ matrix_TYP *trans;
 }Stab_word_TYP;
 
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+

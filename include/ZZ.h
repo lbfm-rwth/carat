@@ -11,6 +11,10 @@
 #undef ZZ_PRIVATE
 
 #ifdef __STDC__
+#include "../functions/ZZ/ZZ_P.h"
+
+
+
 
 
 extern bravais_TYP **q2z(bravais_TYP *G,
@@ -35,7 +39,6 @@ extern bravais_TYP **get_groups(bravais_TYP **ADGROUPS,
                          int ad_no,
                          int *number);
 
-extern void ZZ_transpose_array (int **array, int size);
 
 #else
 extern ZZ_data_t ZZ ();
@@ -45,8 +48,6 @@ extern bravais_TYP **q2z();
 extern bravais_TYP **get_groups();
 
 extern void free_QtoZ();
-
-extern void ZZ_transpose_array ();
 
 #endif
 

@@ -1,3 +1,8 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #ifndef _AUTGRP_H_
 #define _AUTGRP_H_
 
@@ -95,3 +100,9 @@ extern bravais_TYP *pr_aut();
 extern matrix_TYP *pr_isom();
 #endif
 #endif
+
+#ifdef __cplusplus
+}
+#endif
+
+

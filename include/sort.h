@@ -1,3 +1,8 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #ifndef _SORT_H_
 #define _SORT_H_
 
@@ -61,3 +66,10 @@ extern int pointer_mat_search();
 
 #endif
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+
+

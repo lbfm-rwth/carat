@@ -1,8 +1,11 @@
 #include <typedef.h>
 #include <getput.h>
 #include <matrix.h>
+#include <sort.h>
+#include <bravais.h>
 #include <base.h>
 #include <longtools.h>
+#include <datei.h>
 #include <presentation.h>
 
 
@@ -147,7 +150,6 @@ void simplify_presentation(int **w,
                            int *l){
   int i,
       j,
-      min,
       good = 1;
 
   while (good){
@@ -197,29 +199,6 @@ void simplify_presentation(int **w,
 
 } /* simplify_presentation(...) */
 
-
-
-static int *relator(int *w1,
-                    int k,
-                    int *w2){
-
-  int i,
-      j,
-     *res;
-
-
-  res = (int *) calloc( w1[0] + w2[0] + 2, sizeof(int));
-  res[0] = w1[0] + w2[0] + 1;
-
-  memcpy(res+1,w1+1,w1[0] * sizeof(int));
-  res[w1[0]+1] = k+1;
-
-  for (i=1,j=res[0];i<=w2[0];j--,i++)
-    res[j] = -w2[i];
-
-  return res;
-
-} /* relator (....) */
 
 static int *relator3(int k,
                      int *w1,
@@ -561,6 +540,11 @@ static void con_relations(bravais_TYP *G,
           free_mat(y);
        }
 
+       if ( *l == *speicher){
+         *speicher += 256;
+         *w = (int **) realloc(*w,*speicher * sizeof(int *));
+       }
+
 
        k = 0;
        w[0][*l] = relator2(&k,w3,w2);
@@ -586,11 +570,6 @@ static void con_relations(bravais_TYP *G,
          (*l)++;
        }
 
-       if ( *l == *speicher){
-         *speicher += 256;
-         *w = (int **) realloc(*w,*speicher * sizeof(int *));
-       }
-
        free(w3);
        free(w2); w2 = NULL;
        free_mat(x);
@@ -612,6 +591,131 @@ static void con_relations(bravais_TYP *G,
    return;
 
 }
+
+
+
+matrix_TYP *pres_on_many_generators(bravais_TYP *G,
+				    int *OPT){
+
+
+    bravais_TYP *H;
+    bahn **s;
+    matrix_TYP **basis;
+    int i,j;
+    int k,l;
+    int zeile;
+    matrix_TYP *RES;
+    int MAX = G->gen_no + 2;
+    int *w;
+
+    s = NULL;
+    H = copy_bravais(G);
+
+    basis = get_base(H);
+
+
+    if (H->gen_no > H->dim){
+	H->order = red_gen(H,basis,&s,0);
+	for (i=0;i<H->dim;i++){
+	    free_bahn(s[i]);
+	    free(s[i]);
+	}
+	free(s);
+    }
+
+    s = strong_generators(basis,H,TRUE);
+
+    /* the situation is: H = G as a group, and the generators of H form a subset of the generators of G */
+
+    /* calculate a presentation for H on the generators of H */
+    RES = pres(s,H,OPT);
+
+    zeile = RES->rows;
+    real_mat(RES,RES->rows + G->gen_no  , RES->cols);
+
+    /* add relations of the form g_i = word(h_j) for those g_i which are not in the generators of H, */
+    /* but represent the g_i by i+MAX */
+    /* mathemetically this is an tietze tranformation of the third (?) kind, add a generator */
+    /* <h_i|rs> \cong <h_i,g| rs,g=w(h_i) > */
+    for (i=0;i<G->gen_no;i++){
+
+	/* is_element calculates a word such that g_i = w(h_j) */
+	w = NULL;
+	if(!is_element(G->gen[i],H,s,&w)){
+	    fprintf(stderr,"error in pres_on_many_generators(...)\n");
+	    exit(3);
+	}
+
+	if (RES->cols <= w[0]){
+	    real_mat(RES,RES->rows,w[0]+1);
+	}
+
+	/* the relation is now g_i^(-1) * w(h_J) = 1 */
+	memcpy(RES->array.SZ[zeile],w,(w[0]+1) * sizeof(int));
+	RES->array.SZ[zeile][0] = -i - 1 - MAX;
+
+	/* for sanitary reasons remove those relations which look like g_i * g_i^(-1) */
+	if (w[0] == 1 && w[1] == i+1){
+	    RES->array.SZ[zeile][0] = 0;
+	    RES->array.SZ[zeile][1] = 0;
+	}
+	else{
+	    zeile++;
+	}
+
+	free(w);
+    }
+
+    if (zeile < RES->rows)
+	real_mat(RES,zeile,RES->cols);
+
+
+    /* translate this presentation in the generators of G */
+    /* on strange thing : to be able to do this in one go, we represent the j-th generator of G */
+    /* by the number j+MAX temporaly */
+    for (i=0; i< H->gen_no ; i++){
+
+	/* search for a j with H->gen[i] == G->gen[j] */
+	for (j=0; j< G->gen_no && mat_comp(H->gen[i],G->gen[j]) ; j++);
+
+	/* replace every occurence of i+1 or -(i+1) in RES with (j+1)+MAX or -(j+1)-MAX respectively */
+	for (k=0;k<RES->rows;k++){
+	    for (l=0;l<RES->cols;l++){
+		if (RES->array.SZ[k][l] == i+1)
+		    RES->array.SZ[k][l] = j + 1 + MAX;
+		else if (RES->array.SZ[k][l] == -i-1)
+		    RES->array.SZ[k][l] = -j - 1 - MAX;
+	    }
+	}
+    }
+
+    /* now RES contains relations for G with the strange thing that the number j generator has been
+       replaced with the generator j+MAX temporaly if it is also a generator of H */
+    for (k=0;k<RES->rows;k++){
+	for (l=0;l<RES->cols;l++){
+	    if (RES->array.SZ[k][l] > MAX)
+		RES->array.SZ[k][l] -= MAX;
+	    else if (RES->array.SZ[k][l] < -MAX)
+		RES->array.SZ[k][l] += MAX;
+	}
+    }
+
+
+
+    /* clean up */
+    for (i=0;i<H->dim;i++){
+	free_mat(basis[i]);
+	free_bahn(s[i]);
+	free(s[i]);
+    }
+    free(basis);
+    free(s);
+    free_bravais(H);
+
+    return RES;
+
+
+} /* pres_on_many_generators(...) */
 
 
 /************************************************************************
@@ -639,21 +743,29 @@ matrix_TYP *pres(bahn **s,
             **GENUINV,
             **GENINV = NULL;
 
+  static int has_been_called_recursively;
+
   int i,
       ii,
       j,
-      jj,
       k,
-      kk,
       l = 0,
       GENU_NO = 0,
     **GENUW,
     **GW,
       speicher = 256 - 8,
      *w2 = NULL,
-     *w3,
-     *w4,
     **w;
+
+  if ((!has_been_called_recursively && G->gen_no > G->dim) || s == NULL){
+      /* many gerators, treat it differently */
+      /* and prevent using users the form pres_on_many_generators just because they are too lazy to calculate */
+      /* s, and calculate it for them */
+      has_been_called_recursively = TRUE;
+      return pres_on_many_generators(G,OPT);
+  }
+
+  has_been_called_recursively = FALSE;
 
   GENU = (matrix_TYP **) malloc(sizeof(matrix_TYP *));
   GENUINV = (matrix_TYP **) malloc(sizeof(matrix_TYP *));

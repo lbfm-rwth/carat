@@ -9,7 +9,6 @@
 #include <graph.h>
 #include <zass.h>
 #include <datei.h>
-#include <tools.h>
 #include <longtools.h>
 
 
@@ -242,7 +241,8 @@ void calculate_phi(matrix_TYP *diag,
                    H1_mod_ker_TYP *H1_mod_ker)
 {
    matrix_TYP *H1_L,
-              *tmp;
+              *tmp,
+*test;
 
    int i, j,
        dim_i, dim_j, first;

@@ -60,7 +60,7 @@ int main (int argc, char *argv[])
   
   if ((is_option('h') && INFO_LEVEL != 8) || FILEANZ == 0)
     {
-      printf("Usage: %s file [-T] [-Z] [-o] [-M]\n",argv[0]);
+      printf("Usage: %s file [-T] [-Z] [-o] [-M] [-c]\n",argv[0]);
       printf("\n");
       printf("file: bravais_TYP containing the space group R or the finite unimodular\n");
       printf("      group G.\n");
@@ -86,7 +86,9 @@ int main (int argc, char *argv[])
       printf("        see above.\n");
       printf("-M    : give short Hermann-Mauguin symbols to describe a group\n");
       printf("        isomorphic to the given only (has an effect only if the\n");
-      printf("        degree of R is three\n");
+      printf("        degree of R is two or three)\n");
+      printf("-c    : gives the CARAT name as\n");	// Oliver: 10.04.2002
+      printf("        \"Q-class-name\"-\"Z-class-name\"(-\"name for the affine class\")\n");
       printf("\n");
       printf("Cf.: Q_catalog, QtoZ, Extensions, Symbol, Standard_affine_form.\n");
 
@@ -95,7 +97,7 @@ int main (int argc, char *argv[])
       else
          exit(31);
     }
-  
+
   R = get_bravais(FILENAMES[0]);
 
   if (is_option('Z')) {
@@ -115,8 +117,13 @@ int main (int argc, char *argv[])
 
   if (is_option('Z')){
      /* we are finished here */
-     printf("qname: %s ",qname);
-     printf("zname: %d %d\n",zname[0],zname[1]);
+     if (is_option('c')){	// Oliver: 10.04.2002
+        printf("%s-%d.%d\n",qname,zname[0],zname[1]);
+     }
+     else{
+        printf("qname: %s ",qname);
+        printf("zname: %d %d\n",zname[0],zname[1]);
+     }
 
      if (is_option('T')){
         sprintf(comment,"transformation matrix for %s",FILENAMES[0]);
@@ -177,11 +184,18 @@ int main (int argc, char *argv[])
      free_bravais(RC);
   }
 
-  printf("qname: %s ",qname);
-  printf("zname: %d %d ",zname[0],zname[1]);
-  printf("aff_name: "); mpz_out_str(stdout,10,&aff_name); printf("\n");
+  if (is_option('c')){	// Oliver: 10.04.2002
+     printf("%s-%d.%d-", qname, zname[0], zname[1]);
+     mpz_out_str(stdout, 10, &aff_name);
+     printf("\n");
+  }
+  else{
+     printf("qname: %s ",qname);
+     printf("zname: %d %d ",zname[0],zname[1]);
+     printf("aff_name: "); mpz_out_str(stdout,10,&aff_name); printf("\n");
+  }
 
-  if (is_option('M') && R->dim == 4){
+  if (is_option('M') && (R->dim == 4 || R->dim == 3)){
      display_HM_symbol(qname,zname[0],zname[1],&aff_name);
   }
 
@@ -197,6 +211,6 @@ int main (int argc, char *argv[])
   cleanup_prime();
 
   if (INFO_LEVEL == 8) pointer_statistics(0,0);
-  
+
   exit(0);
 }

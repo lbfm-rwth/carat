@@ -18,7 +18,8 @@ OBJS = HM_symbol.o\
        compute_q_matrix.o\
        point_group.o\
        q_class_inf.o\
-       z_class_inf.o
+       z_class_inf.o\
+	reverse_name_fct.o
 
 .c.o:
 	$(COMP) $< -o $@

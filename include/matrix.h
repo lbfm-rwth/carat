@@ -1,3 +1,11 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+
+
+
 #ifndef _MATRIX_H_
 #define _MATRIX_H_
 
@@ -402,3 +410,9 @@ extern matrix_TYP *einheitsmatrix();
 
 #endif
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+

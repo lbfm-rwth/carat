@@ -1,10 +1,19 @@
-/* last change: 29.09.2000 by Oliver Heidbuechel */
+/* last change: 23.04.2002 by Oliver Heidbuechel */
+
+#ifdef __cplusplus
+   extern "C" {
+#endif
+
 
 #ifndef _CARAT_GRAPH_H_
 #define _CARAT_GRAPH_H_
 
 #ifndef _CARAT_TYPEDEF_H_
 #include"typedef.h"
+#endif
+
+#ifndef _ZASSEN_H_
+#include"zass.h"
 #endif
 
 #define TWOTO21 2097152
@@ -69,6 +78,33 @@ typedef struct {
 } t_sub_TYP;				
 
 
+/* --------------------------------------------------------------------- */
+/* some information about a cocycle                                      */
+/* --------------------------------------------------------------------- */
+typedef struct
+{
+   matrix_TYP *coz;		/* cocycle in Q^n */
+   matrix_TYP *std_coz;		/* standard form for this cocycle */
+   matrix_TYP *diff;		/* coz - std_coz */
+   MP_INT name;			/* name for this cocycle (number of element with lowest
+                                   number in the orbit) */
+   MP_INT number;		/* number for this cocycle */
+   int **WORDS;			/* Words for stabilizer of cocycle */
+   int WORDS_no;		/* number of words for stabilizer of cocycle */
+   matrix_TYP **Stab;		/* Stablizer of the cocycle / Pointgroup !!! */
+   int Stab_no;			/* number of elements in the stabilizer */
+   matrix_TYP *darst;		/* cocycle represented in C_a x C_b x ... */
+   matrix_TYP **aff_transl;	/* return value of transl_aff_normal */
+   int aff_transl_no;		/* # of elements in transl_aff_normal */
+   matrix_TYP **N_darst;	/* representation of G->normal on H^1(G,Q^n/Z^n) */
+   matrix_TYP **N_inv;		/* inverses of G->normal */
+   int N_darst_no;		/* G->normal_no */
+   matrix_TYP **X;		/* return value of cohomology for H^1(G,Q^n/Z^n) */
+   matrix_TYP *GLS;		/* inverse of X[2] */
+} coz_TYP;
+
+
+
 
 /* functions */
 #ifdef __STDC__
@@ -98,7 +134,8 @@ matrix_TYP **all_cocycles(matrix_TYP *relator_input,
                           int **list_of_names,
                           boolean l_option);
 
-matrix_TYP *subgroupgraph(Q_data_TYP *data);
+matrix_TYP *subgroupgraph(Q_data_TYP *data,
+                          boolean oflag);
 
 matrix_TYP **stab_coz(int **words,
                       int no_of_words,
@@ -214,7 +251,8 @@ matrix_TYP ***H1_mod_ker_orbit_alg(H1_mod_ker_TYP H1_mod_ker,
                                    int *anz,
                                    int **length,
                                    int ****WORDS,
-                                   int **WORDS_no);
+                                   int **WORDS_no,
+				   matrix_TYP *start);
 
 void kernel_elements_2_affine(matrix_TYP **elem,
                               int anz);
@@ -242,7 +280,9 @@ int orbit_on_lattices(matrix_TYP **gitter,
 int number_of_affine_class(Q_data_TYP *data,
                            matrix_TYP *coz,
                            int i,
-                           int flag);
+                           int flag,
+			   boolean wortflag,
+			   int **wort);
 
 matrix_TYP **transl_aff_normal(matrix_TYP **erzeuger,
                                int erzanz,
@@ -258,14 +298,19 @@ bravais_TYP *p_group(bravais_TYP *G);
 
 bravais_TYP **min_k_super(bravais_TYP *P,
                           bravais_TYP *R,
+			  matrix_TYP *pres,
                           int *anz,
-                          boolean debugflag);
+			  boolean bahnflag,
+                          boolean debugflag,
+			  int **orbitlength);
 
 bravais_TYP **max_k_sub(bravais_TYP *P,
                         bravais_TYP *R,
                         matrix_TYP *pres,
                         int *anz,
-                        boolean debugflag);
+			boolean aflag,
+                        boolean debugflag,
+			int **orbitlength);
 
 void plus_translationen(bravais_TYP *G,
                         matrix_TYP *mat);
@@ -307,6 +352,42 @@ bravais_TYP ****t_subgroups(bravais_TYP *G,
                             int ***aff_cons_no,
                             bravais_TYP ***R,
                             int flag);
+			    
+coz_TYP identify_coz(bravais_TYP *G,
+                     matrix_TYP *coz,
+                     matrix_TYP **X);
+
+void free_coz_TYP(coz_TYP coz_info);
+
+matrix_TYP **calculate_H1(bravais_TYP *G,
+                          word *relator,
+                          int relatoranz);
+
+void cen_to_norm(bravais_TYP *G);
+
+matrix_TYP **max_sublattices(bravais_TYP *P,
+                             int *anz,
+                             int **trivialflag,
+                             boolean debugflag);
+
+matrix_TYP **calculate_representatives(bravais_TYP *G,
+                                       bravais_TYP *GL,
+				       matrix_TYP **H_G_Z,
+				       matrix_TYP **H_GL_Z,
+				       matrix_TYP *lattice,
+                                       matrix_TYP *phi,
+                                       H1_mod_ker_TYP H1_mod_ker,
+				       matrix_TYP *preimage,
+				       matrix_TYP *kernel_mat,
+				       int *orbit_no,
+				       int **orbit_length);
+
+int obergruppenzahl(matrix_TYP *L,
+                    matrix_TYP **Norm,
+		    matrix_TYP **NormInv,
+                    matrix_TYP **StabStdCoz,
+		    int Stab_anz,
+		    int *wort);
 
 #else
 
@@ -398,12 +479,29 @@ void my_translation();
 
 bravais_TYP ****t_subgroups();
 
+coz_TYP identify_coz();
+
+void free_coz_TYP();
+
+matrix_TYP **calculate_H1();
+
+void cen_to_norm();
+
+matrix_TYP **max_sublattices();
+
+matrix_TYP **calculate_representatives();
+
+int obergruppenzahl();
+
 #endif
 
 #endif /* _CARAT_GRAPH_H_ */
 
 
 
+#ifdef __cplusplus
+   }
+#endif
 
 
 

@@ -91,7 +91,7 @@ void main(int argc,char **argv){
 
   Classes = q2z(G,&no,is_option('a'), NULL, is_option('q'));
 
-  printf("####### There are %d classes of groups\n",no);
+  fprintf(stderr, "####### There are %d classes of groups\n", no);
   for (i=0;i<no;i++){
      if (is_option('a') || Classes[i + no]){
         adnumber++;

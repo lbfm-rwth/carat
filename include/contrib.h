@@ -1,3 +1,9 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+
 #ifndef _CONTRIB_H_
 #define _CONTRIB_H_
 
@@ -37,3 +43,9 @@ matrix_TYP *suche_kand ();
 
 #endif
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+

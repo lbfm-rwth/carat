@@ -22,7 +22,8 @@ OBJS = bravais_tools.o\
        p_formspace.o\
        rform.o\
        tr_bravais.o\
-       trace_bifo.o
+       trace_bifo.o\
+       normalisator.o
 
 .c.o:
 	$(COMP) $< -o $@

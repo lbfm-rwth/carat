@@ -1,3 +1,8 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #ifndef _LINUX_LIST_H
 #define _LINUX_LIST_H
 
@@ -96,3 +101,9 @@ static __inline__ void list_splice(struct list_head *list, struct list_head *hea
 
 #endif
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+

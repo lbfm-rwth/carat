@@ -1,3 +1,9 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+
 #include"gmp.h"
 
 #ifndef _BASE_H_
@@ -80,3 +86,9 @@ int strong_generators_2();
 
 #endif
 #endif
+
+#ifdef __cplusplus
+}
+#endif
+
+

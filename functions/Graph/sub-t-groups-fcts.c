@@ -2,7 +2,6 @@
 
 
 #include <typedef.h>
-#include <datei.h>
 #include <matrix.h>
 #include <bravais.h>
 #include <base.h>
@@ -83,6 +82,9 @@ static t_sub_TYP *t_sub_info(matrix_TYP **mats,
 
       /* calculate strong generating set */
       base = get_base(G);
+/*
+???????????????????????????????????????????????????????????????????????
+*/
       sub->strong[i] = strong_generators(base, sub->groups[i], TRUE);
       for (j = 0; j < G->dim; j++){
          free_mat(base[j]);
@@ -523,9 +525,12 @@ bravais_TYP ****t_subgroups(bravais_TYP *G,
    free(X);
    for (i = 0; i < aff_no[0]; i++){
       free_mat(coz[i]);
-      for (j = 0; j < NUMBER_OF_WORDS[i]; j++)
-         free(WORDS[i][j]);
-      if (WORDS[i] != NULL) free(WORDS[i]);
+      if (WORDS[i] != NULL){
+         for (j = 0; j < NUMBER_OF_WORDS[i]; j++)
+            if (WORDS[i][j] != NULL)
+               free(WORDS[i][j]);
+         free(WORDS[i]);
+      }
       mpz_clear(names + i);
    }
    free(coz);

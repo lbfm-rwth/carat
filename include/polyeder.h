@@ -1,3 +1,8 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #ifndef _POLYEDER_H_
 #define _POLYEDER_H_
 
@@ -79,3 +84,8 @@ extern int refine_polyeder();
 
 #endif
 #endif
+
+#ifdef __cplusplus
+}
+#endif
+

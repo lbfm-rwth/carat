@@ -1,3 +1,8 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #ifndef _SYMM_H_
 #define _SYMM_H_
 
@@ -53,3 +58,8 @@ extern matrix_TYP *shortest();
 
 #endif
 #endif
+
+#ifdef __cplusplus
+}
+#endif
+

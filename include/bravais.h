@@ -1,3 +1,8 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #ifndef _BRAVAIS_H_
 #define _BRAVAIS_H_
 
@@ -71,6 +76,17 @@ extern matrix_TYP *trace_bifo(matrix_TYP **F1, matrix_TYP **F2, int anz);
 \*-------------------------------------------------------------*/
 extern bravais_TYP *tr_bravais(bravais_TYP *B, int calcforms, int invert);
 
+/*-------------------------------------------------------------*\
+| FILE: normalisator.c
+\*-------------------------------------------------------------*/
+void normalisator(bravais_TYP *H,
+                  bravais_TYP *Gtr,
+                  matrix_TYP *A,
+                  int prime,
+                  boolean b_option,
+                  boolean o_option);
+
+
 #else
 
 /*-------------------------------------------------------------*\
@@ -132,5 +148,18 @@ extern matrix_TYP *trace_bifo();
 \*-------------------------------------------------------------*/
 extern bravais_TYP *tr_bravais();
 
+/*-------------------------------------------------------------*\
+| FILE: normalisator.c
+\*-------------------------------------------------------------*/
+void normalisator();
+
+
 #endif
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+
+

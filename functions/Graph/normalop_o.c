@@ -12,7 +12,6 @@
 #include <getput.h>
 #include <matrix.h>
 #include <base.h>
-#include <datei.h>
 #include <gmp.h>
 #include <zass.h>
 #include <longtools.h>
@@ -388,7 +387,7 @@ static int gives_rise_to_torsionfree_space_group(
 @
 @ -------------------------------------------------------------------------
 @
-@ matrix_TYP **extensions_o(matrix_TYP *cozycle,
+@ matrix_TYP **extensions(matrix_TYP *cozycle,
 @                         matrix_TYP *D,
 @                         matrix_TYP *R,
 @                         bravais_TYP *G,

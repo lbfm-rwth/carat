@@ -1,3 +1,8 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #ifndef _VORONOI_H_
 #define _VORONOI_H_
 
@@ -190,3 +195,9 @@ extern void red_normal(bravais_TYP *G);
 
 #endif
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+

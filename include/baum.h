@@ -1,3 +1,9 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+
 #ifndef _BAUM_H
 #define _BAUM_H
 
@@ -42,3 +48,9 @@ void delete_tree_node(struct tree_node *old);
 void insert_tree_node(struct tree_node *parent, struct tree_node *new);
 
 #endif
+
+
+#ifdef __cplusplus
+}
+#endif
+

@@ -5,8 +5,6 @@ extern int INFO_LEVEL;
 extern int SFLAG;
 extern int IDEM_NO;
 boolean GRAPH = FALSE;
-boolean GRAPH_DEBUG = FALSE;
-
 
 extern char *optarg;
 extern int optind;

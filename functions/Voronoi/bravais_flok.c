@@ -66,7 +66,11 @@ int fdim,int offset)
      tmp = isometry(hforms,gforms,offset+1,HSV,GSV,NULL,0,NULL);
 
      if (tmp!=NULL){
-        if ((offset<(fdim-1)) && (offset < (anz_hneighbours - 2))){
+       /* changed 16.10.01 tilman: the first condition is wrong, because
+	  it uses properties of the direction (i.e. to be a base of the
+	  space of invariant form) which they do not fullfill */
+       /* if ((offset<(fdim-1)) && (offset < (anz_hneighbours - 2))){*/
+       if (offset < (anz_hneighbours - 2)){
            /* do the recursion */
            free_mat(tmp);
            erg = extends_to_isometry(hforms,HSV,anz_hneighbours,
@@ -332,6 +336,8 @@ matrix_TYP *is_z_equivalent(bravais_TYP *G,bravais_TYP *G_tr,
    voronoi_TYP **gp;       /* normalizer returns a list of all
                               perfect forms via a voronoi_TYP */
 
+	bravais_TYP *GB;          /* the bravais group of G, for temporary purposes */
+
    matrix_TYP  *gtrbifo,     /* the tracebifo of G,G_tr */
                *htrbifo,     /* the tracebifo of H,H_tr */
                *tmp,
@@ -457,9 +463,13 @@ matrix_TYP *is_z_equivalent(bravais_TYP *G,bravais_TYP *G_tr,
             fprintf(stderr,"Calculated the neighbours of hperfect.\n");
          }
 
+			GB = bravais_group(G,TRUE);
          /* and calculate all G-perfect forms which represent the orbit
             of the normalizer on them, i.e. the quotient graph */
-         gp = normalizer(gperfect,G,G_tr,prime,&anz_gperfect);
+         gp = normalizer(gperfect,GB,G_tr,prime,&anz_gperfect);
+			G->normal = GB->normal; G->normal_no = GB->normal_no;
+			GB->normal = NULL; GB->normal_no = 0;
+			free_bravais(GB);
 
          if (INFO_LEVEL & 4){
             fprintf(stderr,"Calculated the normalizer of G.\n");

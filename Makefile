@@ -69,6 +69,7 @@ ALL: Makefile\
      Sort\
      Symm\
      Tools\
+     TSubgroups\
      Voronoi\
      Zassen\
      ZZ\
@@ -144,6 +145,9 @@ Symm: Makefile functions/Symm/Makefile
 Tools: Makefile functions/Tools/Makefile
 	cd functions/Tools; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
+TSubgroups: Makefile functions/TSubgroups/Makefile
+	cd functions/TSubgroups; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
 Voronoi: Makefile functions/Voronoi/Makefile
 	cd functions/Voronoi; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
@@ -185,6 +189,7 @@ clean:
 	cd functions/Sort; make clean
 	cd functions/Symm; make clean
 	cd functions/Tools; make clean
+	cd functions/TSubgroups; make clean
 	cd functions/Voronoi; make clean
 	cd functions/Zassen; make clean
 	cd functions/ZZ; make clean
@@ -193,4 +198,8 @@ clean:
 	rm -f lib/libm_alloc.a
 	rm -f lib/libpresentation.a
 	rm -f lib/functions.a
-	rm -f lib/libgraph.a
+
+
+
+
+
