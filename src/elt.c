@@ -53,7 +53,7 @@ main (int argc, char *argv[])
       Trf = init_mat(M[i]->rows, M[i]->rows, "1");
     else
       Trf = NULL;
-    E = long_elt_mat(M[i], Trf);
+    E = long_elt_mat(Trf, M[i], NULL);
     put_mat(E, NULL, "ELT of matrix", 0);
     free_mat(E);
     if(is_option('t'))

@@ -63,6 +63,7 @@ main (int argc, char *argv[])
           printf("         the stabilizer is calculated. If given as\n");
           printf("         -S=n at most n matrices of the stabilizer\n");
           printf("         are calculated.\n");
+          printf("         S=-1 means ONLY the stabilizer is calculated.\n");
           printf("-p     : Operate on pairs of the form {M,-M}.\n");
           printf("-u     : Operate on the set of rows of the matrix given\n");
           printf("         in file1.\n");
@@ -134,11 +135,13 @@ main (int argc, char *argv[])
             }
         }
 
-        printf("#%d\n", length);
-        for(i=0;i<length;i++)
-           put_mat(erg[i], NULL, "", 2);
+        if (!is_option('S') || optionnumber('S') >= 0){
+            printf("#%d\n", length);
+            for(i=0;i<length;i++)
+               put_mat(erg[i], NULL, "", 2);
+        }
         if(is_option('S') == TRUE)
-           put_bravais(Stab, NULL, "");
+           put_bravais(Stab, NULL, "Stabilizer of the operation");
 
         if (is_option('R')){
             printf("===== Number of orbits: \n#%d\n",no_of_orbits);

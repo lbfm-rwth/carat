@@ -17,12 +17,13 @@ main (int argc, char *argv[])
 
   if((FILEANZ != 1) || (is_option('h')))
   {
-    printf("usage: Tr file \n");
-    printf(" where file contains a matrix_TYP.\n");
+    printf("Usage: %s 'file' \n",argv[0]);
+    printf("\n");
+    printf("file: matrix_TYP.\n");
     printf("\n");
     printf(" Transposes the given matrices.\n");
     printf("\n");
-    printf("\n");
+    printf("cf. Tr_Bravais.\n");
     
     if (is_option('h')){
        exit(0);

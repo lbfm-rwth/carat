@@ -28,7 +28,7 @@ CC = gcc
 # have a general control whats going on. THIS IS VERY SLOW.
 # For the normal user we recommend neither to use -DDIAG1 nor -DDIAG2!
 
-CFLAGS = -g -fPIC -fwritable-strings -DDIAG1 # for a HP-UX-machine using gcc (momo)
+CFLAGS = -g -Wall -DDIAG1 -fwritable-strings # for a HP-UX-machine using gcc (momo)
                                        # the flag -fwritable-strings is
                                        # required for the use with gcc
 
@@ -50,17 +50,20 @@ ALL: Makefile\
      Autgrp\
      Base\
      Bravais\
+     Contrib\
      Datei\
      Getput\
      Hyperbolic\
      Idem\
      Links\
      Longtools\
+     Name\
      Matrix\
      M_alloc\
      Orbit\
      Polyeder\
      Presentation\
+     Qcatalog\
      Reduction\
      Sort\
      Symm\
@@ -79,6 +82,9 @@ Base: Makefile functions/Base/Makefile
 
 Bravais: Makefile functions/Bravais/Makefile
 	cd functions/Bravais;make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Contrib: Makefile functions/Contrib/Makefile
+	cd functions/Contrib;make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
 Datei: Makefile functions/Datei/Makefile
 	cd functions/Datei;make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
@@ -101,6 +107,9 @@ Links:
 Longtools: Makefile functions/Longtools/Makefile
 	cd functions/Longtools; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
+Name: Makefile functions/Name/Makefile
+	cd functions/Name;make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
 Matrix: Makefile functions/Matrix/Makefile
 	cd functions/Matrix;make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
@@ -115,6 +124,9 @@ Polyeder: Makefile functions/Polyeder/Makefile
 
 Presentation: Makefile functions/Presentation/Makefile
 	cd functions/Presentation; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Qcatalog: Makefile tables/qcatalog.tar.gz
+	cd tables; if [ !  -d qcatalog ] ; then tar xvzf qcatalog.tar.gz ; fi
 
 Reduction: Makefile functions/Reduction/Makefile
 	cd functions/Reduction; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
@@ -151,11 +163,13 @@ clean:
 	cd functions/Autgrp; make clean
 	cd functions/Base; make clean
 	cd functions/Bravais; make clean
+	cd functions/Contrib; make clean
 	cd functions/Datei; make clean
 	cd functions/Getput; make clean
 	cd functions/Hyperbolic; make clean
 	cd functions/Idem; make clean
 	cd functions/Longtools; make clean
+	cd functions/Name; make clean
 	cd functions/Matrix; make clean
 	cd functions/M_alloc; make clean
 	cd functions/Orbit; make clean

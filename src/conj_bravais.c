@@ -38,6 +38,7 @@ main (int argc, char *argv[])
    }
    G = get_bravais(FILENAMES[0]);
    T = mget_mat (FILENAMES[1], &anz);
+   rat2kgv(T[0]);
 
    if (is_option('i')){
       X = mat_inv(T[0]);

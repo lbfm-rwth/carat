@@ -19,7 +19,13 @@ extern int *make_orbit_options();
 extern matrix_TYP **orbit_alg(matrix_TYP *M, bravais_TYP *G, bravais_TYP *S,
      int *option, int *length);
 extern void free_baum(struct baum *p);
-
+struct baum *hash_addbaum(matrix_TYP *mat,
+                          matrix_TYP **L,
+                          int anz,
+                          struct baum *verz,
+                          int *schonda,
+                          int hashnumber,
+                          int *hashverz);
 /*-------------------------------------------------------------*\
 | FILE: orbit_subdivision.c 
 \*-------------------------------------------------------------*/
@@ -51,6 +57,7 @@ extern matrix_TYP *orbit_representatives();
 extern int *make_orbit_options();
 extern matrix_TYP **orbit_alg();
 extern void free_baum();
+struct baum *hash_addbaum();
 
 /*-------------------------------------------------------------*\
 | FILE: orbit_subdivision.c 

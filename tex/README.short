@@ -31,7 +31,7 @@ Program/Synonyms		Short description
 ================		=================
 Aut_grp				Calculates the automorphism group of
 				one or more quadratic forms.
-Bravais_catalog/Datei		Provides a list of all Bravais group up
+Bravais_catalog/Datei		Provides a list of all Bravais groups up
 				to degree 6.
 Bravais_grp			Calculates the Bravais group of a finite
 				unimodular group
@@ -45,21 +45,32 @@ Bravais_type/Symbol		Calculates the family symbol of a finite
 Extensions/Vector_systems	Calculates all non-isomorphic extensions of
 				a finite unimodular group with a given lattice.
 Form_space			Calculates the space of invariant forms of
-				an unimodular group.
+				a unimodular group.
 Is_finite			Decides finiteness of a given subgroup of
 				GL_n(Z). Calculates the order in case the group
 				is finite.
+Name                            Give a space group a name, ie. calculate
+                                a string which describes the isomorphism
+                                type uniquely, cf. Reverse_name.
 Normalizer			Calculates the Normalizer in GL_n(Z) of a given
 				finite unimodular group.
-Orbit				Fairly general implementation of the orbit
-				algorithm.
+Orbit				Fairly general implementation of the
+                                orbit/stabilizer algorithm.
 Order				Calculates the order of a given finite subgroup
 				of GL_n(Q).
 Presentation			Calculates a presentation of a finite soluble
 				subgroup of GL_n(Z)
+Q_catalog                       Provides a list of all Q_classes up
+				to degree 6.
+QtoZ				Splits a Q-class into Z-classes.
+Reverse_name                    Constructs a space group with given name,
+                                and check whether the name is valid, cf.
+                                Name.
 Same_generators			Transforms the generators of a space group
 				to a prescribed linear part.
-QtoZ				Splits a Q-class into Z-classes
+Torsionfree                     Decides whether a given space group is
+                                torsion free. WARNING: The program assumes
+                                the translation subgroup to be Z^n.
 Z_equiv				Decides whether two given finite unimodular
 				groups are conjugated in GL_n(Z).
 
@@ -75,15 +86,15 @@ Bravais_equiv			Decides whether the Bravais groups of two
 				given finite unimodular groups are conjugated
 Conj_bravais			Conjugates a Bravais group with a given matrix
 Extract Standard_affine_form	Tools to get from space groups to point groups
-				and vice versa. Note that Standart_affine_form
+				and vice versa. Note that Standard_affine_form
 				is just Extract -t
 Idem				Calculates (rational) central primitive
 				idempotents of the enveloping algebra of a
 				given matrix group.
 Invar_space			See Form_space. Is much faster than this,
 				but uses some random methods.
-Isometry			Calculates an isometry of one or more
-				bilinear forms.
+Isometry			Calculates an isometry of  with respect to
+                                tuples of bilinear forms.
 Long_solve			Solves linear systems of equations using
 				multiple precision integers.
 Mink_red			The Minkowski reduction of bilinear forms.
@@ -169,7 +180,9 @@ Vor_vertices
 ========================
 
 In principle CARAT does know two different file formats in which the
-in/output takes place. The first and most basic one is the:
+in/output takes place. The first and most basic one is matrix_TYP, cf.
+1.2.1 below and the second and most frequent one is bravais_TYP, cf.
+1.2.2 below.
 
 1.2.1 matrix_TYP
 ================
@@ -278,19 +291,20 @@ by an integer:
 This is a slight abuse of notation, but nevertheless a matrix_TYP in
 CARAT can discribe a finitely presented group.
 
-A single line of this matrix will present a relation fullfilled by
-the group, and the biggest entry in modulus will be the number of generators.
-Words in the free group translate in the obivious way to a line
+A single line of this matrix will present a relation fullfilled by the
+generators of the group, and the biggest entry in modulus will be the
+number of generators.
+Words in the free group translate in the obvious way to a line
 of a matrix, therefore we just give a couple of ways of presenting
-the group V_4 = C_2 X C_2.
+the group V_4 = C_2 X C_2. To make the matrix rectangular, fill
+the shorter rows with zeroes.
 
 3x4       % we will need 3 relations, the longest of which will have 4 entries
 1 1  0  0
 2 2  0  0
 1 2 -1 -2
 
-The first to lines prescribe the order of the generator x_1 and x_2 to be
-two, and the third one is the commutator x_1 * x_2 * x_1^(-1) *x_2^(-1).
+The three lines read: x_1*x_1 = 1, x_2*x_2 = 1, x_1*x_2*x_1^(-1)*x_2^(-1) = 1.
 
 Of course there are various ways to put it, like
 

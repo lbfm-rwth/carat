@@ -166,7 +166,7 @@ int *schonda;
 }
 
 
-static struct baum *hash_addbaum(mat, L, anz, verz, schonda, hashnumber, hashverz)
+struct baum *hash_addbaum(mat, L, anz, verz, schonda, hashnumber, hashverz)
 matrix_TYP *mat;
 matrix_TYP **L;
 int anz;
@@ -239,6 +239,7 @@ int *make_orbit_options()
    option[2] = optionnumber('L');
    option[3] = is_option('S');
    option[4] = optionnumber('S');
+   if (option[4] == -1) option[4] = 0;
    option[5] = is_option('i');
  return(option);
 }

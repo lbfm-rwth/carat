@@ -169,7 +169,18 @@ matrix_TYP *Mat;
               }
               else
               {
-                 mpz_gcdext(&g, &a1, &a2, &M[step][step], &M[step][i]);
+                 /* changed 11/06/99 (tilman) from
+                 mpz_gcdext(&g, &a1, &a2, &M[step][step], &M[step][i]); to */
+                 mpz_abs( &g,&M[step][i]);
+                 if (mpz_cmp(&M[step][step],&g) == 0){
+                    mpz_set_si(&a1,1);
+                    mpz_set_si(&a2,0);
+                 }
+                 else{
+                    mpz_gcdext(&g, &a1, &a2, &M[step][step], &M[step][i]);
+                 }
+
+
                  mpz_div(&x1, &M[step][i], &g);
                  mpz_div(&x2, &M[step][step], &g);
                  mpz_neg(&x2, &x2);
@@ -249,10 +260,17 @@ matrix_TYP *Mat;
               }
               else
               {
-                 /* changed 8/1/97 tilman from
+                 /* changed on 8/1/97 tilman from
                  mpz_gcdext(&g, &a1, &a2, &M[step][step], &M[i][step]);
                  to : */
-                 mpz_gcdext(&g, &a1, &a2, &M[step][step], &M[i][step]);
+                 mpz_abs( &g,&M[i][step]);
+                 if (mpz_cmp(&M[step][step],&g) == 0){
+                    mpz_set_si(&a1,1);
+                    mpz_set_si(&a2,0);
+                 }
+                 else{
+                    mpz_gcdext(&g, &a1, &a2, &M[step][step], &M[i][step]);
+                 }
 
                  mpz_div(&x1, &M[i][step], &g);
                  mpz_div(&x2, &M[step][step], &g);

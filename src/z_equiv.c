@@ -9,11 +9,12 @@
 #include"matrix.h"
 #include"voronoi.h"
 #include"polyeder.h"
+#include "datei.h"
 
 int INFO_LEVEL;
 extern int SFLAG;
 
-main (int argc, char *argv[])
+void main (int argc, char *argv[])
 {
 
   bravais_TYP *G,

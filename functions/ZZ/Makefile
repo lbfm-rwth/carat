@@ -18,6 +18,7 @@ OBJS = ZZ.o\
        ZZ_irr_const.o\
        ZZ_lll.o\
        ZZ_zclass.o\
+       get_groups.o\
        q2z.o
 
 .c.o:

@@ -12,7 +12,9 @@ main(int argc,char **argv){
              **Classes;
 
   int i,
-      no;
+      no,
+      adnumber,
+      second_number;
 
   char comment[1000],
        file[1000];
@@ -23,18 +25,22 @@ main(int argc,char **argv){
   if ((is_option('h') && optionnumber('h')==0) || (FILEANZ < 1)){
      printf("Usage: %s 'file' [-D] [-a] [-f]\n",argv[0]);
      printf("\n");
-     printf("file: bravais_TYP containing a group. Just must specify it's order.\n");
+     printf("file: bravais_TYP containing a group. The order of the group\n");
+     printf("      must be specified.\n");
      printf("\n");
-     printf("Calculates representatives of the Z-classes of groups in\n");
-     printf("the same Q-class as the group in file.\n");
+     printf("Splits the Q-class of the group in 'file' into Z-classes and\n");
+     printf("gives a representative for each Z-class.\n");
      printf("\n");
      printf("Options:\n");
-     printf("-a    : just calculate the homogeneously decomposable groups and\n");
-     printf("        centerings, which which rise to the Z-classes.\n");
+     printf("-a    : Only calculates representatives of the homogeneously \n");
+     printf("        decomposable Z-classes and basis transformations \n");
+     printf("        to the remaining Z-classes (as centerings).\n");
      printf("        This option is faster.\n");
-     printf("-D    : (meant for debugging) write the output on different\n");
-     printf("        files GROUP.1, GROUP.2, ... for each group.\n");
+     printf("-D    : (For debugging:) Output is  split into  different\n");
+     printf("        files 'file'.1, 'file'.2, ... matching the\n");
+     printf("        representative groups.\n");
      printf("-f    : recalculate the formspace even if it is given.\n");
+     printf("-q    : quiet mode.\n");
      printf("\n");
      printf("WARNING: This program might be very time consuming, especially\n");
      printf("         if the group has many Z-classes. \n");
@@ -62,13 +68,20 @@ main(int argc,char **argv){
      G->form = formspace(G->gen,G->gen_no,1,&G->form_no);
   }
 
-  Classes = q2z(G,&no,is_option('a'));
+  Classes = q2z(G,&no,is_option('a'),is_option('q'));
 
   printf("####### There are %d classes of groups\n",no);
   for (i=0;i<no;i++){
-     sprintf(comment,"%d-th zclass",i+1);
+     if (is_option('a') || Classes[i + no]){
+        adnumber++;
+        second_number = 0;
+     }
+     second_number++;
+         
+     sprintf(comment,"%d-th homogenously dec. group, %d zclass",
+                       adnumber,second_number);
      if (is_option('D')){
-        sprintf(file,"GROUP.%d",i+1);
+        sprintf(file,"%s.%d.%d",FILENAMES[0],adnumber,second_number);
         put_bravais(Classes[i],file,comment);
      }
      else{

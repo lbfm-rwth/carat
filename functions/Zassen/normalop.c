@@ -17,6 +17,8 @@
 #include <longtools.h>
 #include <orbit.h>
 #include <sort.h>
+#include <bravais.h>
+#include <contrib.h>
 
 #define TWOTO21 2097152
 
@@ -57,49 +59,6 @@ static void valuation(matrix_TYP *x,matrix_TYP *D,MP_INT *val)
 
    return;
 } /* valuation(.....) */
-
-/****************************************************************************
-@
-@----------------------------------------------------------------------------
-@
-@ static matrix_TYP *reverse_valuation(MP_INT *val,matrix_TYP *D)
-@
-@ The value of val will not be changed !
-@----------------------------------------------------------------------------
-@
-*****************************************************************************/
-static matrix_TYP *reverse_valuation(MP_INT *val,matrix_TYP *D)
-{
-   int i,
-       first,
-       last;
-
-   matrix_TYP *erg;
-
-   MP_INT tmp,
-          copy;
-
-   mpz_init(&tmp);
-   mpz_init_set(&copy,val);
-
-   /* set first and last */
-   for (first = 0;first<D->cols && D->array.SZ[first][first] == 1;first++);
-   for (last = 0;last<D->cols && D->array.SZ[last][last] != 0;last++);
-
-   erg = init_mat(last-first,1,"");
-
-   for (i=first;i<last;i++){
-      mpz_mod_ui(&tmp,&copy,(unsigned long) D->array.SZ[i][i]);
-      erg->array.SZ[i-first][0] = mpz_get_si(&tmp);
-      mpz_sub_ui(&copy,&copy,(unsigned long) erg->array.SZ[i-first][0]);
-      mpz_div_ui(&copy,&copy,(unsigned long) D->array.SZ[i][i]);
-   }
-
-   mpz_clear(&tmp);
-   mpz_clear(&copy);
-
-   return erg;
-}
 
 static int hash(struct tree *p,MP_INT *valuations,MP_INT *new_val,int pos)
 {
@@ -162,9 +121,18 @@ static int smallest(struct tree *p)
 @
 @ -------------------------------------------------------------------------
 @
-@ matrix_TYP *orbit_rep(matrix_TYP *x,matrix_TYP **N,int nanz,matrix_TYP *D,
-@                       int option,char *B,MP_INT *l,int *anz,
-@                       int **word,int word_flag)
+@ matrix_TYP *orbit_rep(matrix_TYP *x,
+@                       matrix_TYP **N,
+@                       int nanz,
+@                       matrix_TYP *D,
+@                       int option,
+@                       char *B,
+@                       MP_INT *l,
+@                       int *anz,
+@                       int **word,
+@                       int word_flag,
+@                       int ***WORDS,
+@                       int *NUMBER_OF_WORDS)
 @
 @
 @ option:       an integer controling the behaviours of the function.
@@ -186,15 +154,26 @@ static int smallest(struct tree *p)
 @ int word_flag: drives the behaviour of the function:
 @                for word_flag == TRUE it calculates such a word described
 @                above, otherwise it will not change word[0] (hopefully).
+@ int ***WORDS:
+@ int *NUMBER_OF_WORDS:
 @
 @ Neither the matrices given nor any global variable is changed.
 @
 @ -------------------------------------------------------------------------
 @
 ***************************************************************************/
-static matrix_TYP *orbit_rep(matrix_TYP *x,matrix_TYP **N,int nanz,
-                   matrix_TYP *D,int option,char *B,MP_INT *l,int *anz,
-                   int **word,int word_flag)
+static matrix_TYP *orbit_rep(matrix_TYP *x,
+                             matrix_TYP **N,
+                             int nanz,
+                             matrix_TYP *D,
+                             int option,
+                             char *B,
+                             MP_INT *l,
+                             int *anz,
+                             int **word,
+                             int word_flag,
+                             int ***WORDS,
+                             int *NUMBER_OF_WORDS)
 {
    int first,
        last,
@@ -252,6 +231,31 @@ static matrix_TYP *orbit_rep(matrix_TYP *x,matrix_TYP **N,int nanz,
          if (h != (-1)){
             /* the element is not new */
             free_mat(tmp);
+
+            /* inserted this case to handle the stabilizer of a cozycle
+               as well: tilman 15.03. */
+            if (WORDS){
+
+               /* we got a new generator of the stabilizer of the cozycle */
+               WORDS[0][NUMBER_OF_WORDS[0]] = (int *) malloc(
+                             (orb_words[h][0]+orb_words[i][0]+1)* sizeof(int));
+               WORDS[0][NUMBER_OF_WORDS[0]][0] =
+                              orb_words[h][0]+orb_words[i][0]+1;
+               for (k=1;k<=orb_words[h][0];k++){
+                  WORDS[0][NUMBER_OF_WORDS[0]][k] =
+                           -orb_words[h][orb_words[h][0] - k + 1] - 1;
+               }
+               WORDS[0][NUMBER_OF_WORDS[0]][orb_words[h][0]+1] = j+1;
+               for (k=1;k<=orb_words[i][0];k++){
+                  WORDS[0][NUMBER_OF_WORDS[0]][orb_words[h][0]+1+k] =
+                           orb_words[i][k] + 1;
+               }
+
+               NUMBER_OF_WORDS[0]++;
+               if (NUMBER_OF_WORDS[0] % MIN_SPEICHER)
+                  WORDS[0] = (int **) realloc( WORDS[0] ,
+                               (NUMBER_OF_WORDS[0]+MIN_SPEICHER) * sizeof(int));
+            }
          }
          else{
             /* the element is new */
@@ -276,7 +280,7 @@ static matrix_TYP *orbit_rep(matrix_TYP *x,matrix_TYP **N,int nanz,
             if (word_flag){
                orb_words[anz[0]-1] = (int *) malloc( (orb_words[i][0] + 2)
                                                     * sizeof(int));
-               memcpy(orb_words[anz[0]-1]+1,orb_words[i],(orb_words[i][0]+1)
+               memcpy(orb_words[anz[0]-1]+2,orb_words[i]+1,(orb_words[i][0])
                                                        * sizeof(int));
                orb_words[anz[0]-1][0] = orb_words[i][0] + 1;
                orb_words[anz[0]-1][1] = j;
@@ -324,44 +328,7 @@ static matrix_TYP *orbit_rep(matrix_TYP *x,matrix_TYP **N,int nanz,
    return erg;
 }
 
-/**************************************************************************
-@
-@ -------------------------------------------------------------------------
-@
-***************************************************************************/
-static matrix_TYP *convert_to_cozycle(matrix_TYP *x,matrix_TYP *cozycle,
-                                                     matrix_TYP *D)
-{
 
-   int i,
-       j,
-       first,
-       last,
-       factor;
-
-   matrix_TYP *erg;
-
-   erg = init_mat(cozycle->rows,1,"");
-
-   /* set first and last */
-   for (first = 0;first<D->cols && D->array.SZ[first][first] == 1;first++);
-   for (last = 0;last<D->cols && D->array.SZ[last][last] != 0;last++);
-
-   for (i=first;i<last;i++){
-      factor = x->array.SZ[i-first][0] *
-               D->array.SZ[last-1][last-1] / D->array.SZ[i][i];
-      for (j=0;j<erg->rows;j++){
-         erg->array.SZ[j][0] += (cozycle->array.SZ[j][i-first] * factor);
-      }
-   }
-
-   erg->kgv = D->array.SZ[last-1][last-1];
-   erg->flags.Integral = FALSE;
-
-   Check_mat(erg);
-
-   return erg;
-}
 
 /**************************************************************************
 @
@@ -382,14 +349,19 @@ static matrix_TYP *convert_to_cozycle(matrix_TYP *x,matrix_TYP *cozycle,
 @ matrix_TYP *R:       the third return value of cohomology for G.
 @ bravais_TYP *G:      the group. only the field generator is realy needed.
 @ matrix_TYP  *N:      the matrix in question.
+@ int opt:
 @
 @ No global variables nor the arguments are changed (hopefully).
 @
 @ -------------------------------------------------------------------------
 @
 ***************************************************************************/
-matrix_TYP *normalop(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
-                     bravais_TYP *G,matrix_TYP *N)
+matrix_TYP *normalop(matrix_TYP *cozycle,
+                     matrix_TYP *D,
+                     matrix_TYP *R,
+                     bravais_TYP *G,
+                     matrix_TYP *N,
+                     int opt)
 
 {
   int i,
@@ -404,12 +376,13 @@ matrix_TYP *normalop(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
 
    matrix_TYP *tmp,
               *tmp2,
-              *GLS,
               *sols,
               *new_coz, /* the mapped cozycle */
               *Ninv,    /* hold's the inverse of N */
              **map,     /* hold's the map of a pair generator/cozycle under N */
               *erg;     /* describes the result */
+
+   static matrix_TYP *GLS;
 
    Ninv = mat_inv(N);
    erg = init_mat(cozycle->cols,cozycle->cols,"");
@@ -425,7 +398,9 @@ matrix_TYP *normalop(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
    for (first = 0;first<D->cols && D->array.SZ[first][first] == 1;first++);
    for (last = 0;last<D->cols && D->array.SZ[last][last] != 0;last++);
 
-   GLS = long_mat_inv(R);
+   if (GLS == NULL){
+      GLS = long_mat_inv(R);
+   }
 
    if (INFO_LEVEL & 4){
       fprintf(stderr,"entered normalop\n");
@@ -505,7 +480,6 @@ matrix_TYP *normalop(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
    }
 
    /* cleaning up */
-   free_mat(GLS);
    free_mat(Ninv);
    for (i=0;i<G->gen_no;i++){
       free_mat(map[i]);
@@ -514,16 +488,93 @@ matrix_TYP *normalop(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
    free(map);
    free(words);
 
+   if (opt){
+      free_mat(GLS);
+      GLS = NULL;
+   }
+
    return erg;
+}
+
+
+static void translation(matrix_TYP *TR,
+                        matrix_TYP *rep,
+                        matrix_TYP *ext,
+                        matrix_TYP *cocycle,
+                        matrix_TYP *D,
+                        bravais_TYP *G)
+{
+
+   int i,
+       j,
+       k,
+       first,
+     **WORDS;
+
+   matrix_TYP *tmp,
+              *tmp2,
+             **MAP;
+
+   /* set first */
+   for (first = 0;first<D->cols && D->array.SZ[first][first] == 1;first++);
+
+   WORDS = (int **) calloc(G->gen_no , sizeof(int*));
+
+   tmp2 = long_mat_inv(TR);
+   MAP = (matrix_TYP **) malloc(G->gen_no * sizeof(matrix_TYP *));
+   for (j=0;j<G->gen_no;j++){
+      MAP[j] = copy_mat(G->gen[j]);
+      real_mat(MAP[j],MAP[j]->rows+1,MAP[j]->cols);
+      real_mat(MAP[j],MAP[j]->rows,MAP[j]->cols+1);
+      MAP[j]->array.SZ[G->dim][G->dim] = 1;
+      for (k=0;k<G->dim;k++){
+         MAP[j]->array.SZ[k][G->dim]=ext->array.SZ[j*G->dim+k][0];
+      }
+      tmp = mat_kon(TR,MAP[j],tmp2);
+      free_mat(MAP[j]);
+      MAP[j] = tmp;
+   }
+   tmp = reget_gen(MAP,G->gen_no,G,WORDS,TRUE);
+   tmp->kgv = ext->kgv;
+
+   for (i=0;i<G->gen_no;i++){
+      free_mat(MAP[i]);
+      free(WORDS[i]);
+   }
+   free(MAP);
+   free(WORDS);
+
+   for (i=0;i<rep->rows;i++){
+      k = rep->array.SZ[i][0] * tmp->kgv / D->array.SZ[first+i][first+i];
+      if (k != 0){
+         for (j=0;j<tmp->rows;j++){
+            tmp->array.SZ[j][0] -= k * cocycle->array.SZ[j][i];
+         }
+      }
+   }
+
+   coboundary(G,tmp,TR);
+   free_mat(tmp2);
+   free_mat(tmp);
+
+   return;
+
 }
 
 /**************************************************************************
 @
 @--------------------------------------------------------------------------
 @
-@ matrix_TYP **identify(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
-@                       bravais_TYP *G,matrix_TYP **extension,MP_INT *a,
-@                       int number,int transform_flag)
+@ matrix_TYP **identify(matrix_TYP *cozycle,
+@                       matrix_TYP *D,
+@                       matrix_TYP *R,
+@                       bravais_TYP *G,
+@                       matrix_TYP **extension,
+@                       MP_INT *a,
+@                       int number,
+@                       int transform_flag,
+@                       int ***WORDS,
+@                       int *NUMBER_OF_WORDS)
 @
 @ Identifies the space groups described by the cozycles in extension,
 @ i.e. gives them different number iff they are not isomorphic.
@@ -555,12 +606,25 @@ matrix_TYP *normalop(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
 @                          a pointer containing "number" matrices which
 @                          transform each extension into it's least
 @                          representative. Otherwise it will return NULL.
+@  int ***WORDS:           words in the generators of the normalizer
+@                          which generate the stabilizer og this cozykle
+@                          as a subgroup. If == NULL, this is not calculated.
+@                          Otherwise it is an address of a dynamic pointer
+@                          to at least MIN_SPEICHER entries of type *int.
+@  int *NUMBER_OF_WORDS:   number of words WORDS.
 @--------------------------------------------------------------------------
 @
 ***************************************************************************/
-matrix_TYP **identify(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
-                      bravais_TYP *G,matrix_TYP **extension,MP_INT *a,
-                      int number,int transform_flag)
+matrix_TYP **identify(matrix_TYP *cozycle,
+                      matrix_TYP *D,
+                      matrix_TYP *R,
+                      bravais_TYP *G,
+                      matrix_TYP **extension,
+                      MP_INT *a,
+                      int number,
+                      int transform_flag,
+                      int ***WORDS,
+                      int *NUMBER_OF_WORDS)
 {
 
   int i,
@@ -593,10 +657,10 @@ matrix_TYP **identify(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
   N = (matrix_TYP **) malloc(Nanz * sizeof(matrix_TYP*));
   for (i=0;i<Nanz;i++){
      if (i<G->cen_no){
-        N[i] = normalop(cozycle,D,R,G,G->cen[i]);
+        N[i] = normalop(cozycle,D,R,G,G->cen[i],i == (Nanz-1));
      }
      else{
-        N[i] = normalop(cozycle,D,R,G,G->normal[i-G->cen_no]);
+        N[i] = normalop(cozycle,D,R,G,G->normal[i-G->cen_no],i == (Nanz-1));
      }
      if (INFO_LEVEL & 16){
         put_mat(N[i],NULL,"N[i]",2);
@@ -629,7 +693,8 @@ matrix_TYP **identify(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
         }
      }
 
-     rep = orbit_rep(coz,N,Nanz,D,0,NULL,a+i,&j,&word,transform_flag);
+     rep = orbit_rep(coz,N,Nanz,D,0,NULL,a+i,&j,&word,
+                       transform_flag,WORDS,NUMBER_OF_WORDS);
 
      if (transform_flag){
         TR[i] = init_mat(G->dim,G->dim,"1");
@@ -644,8 +709,13 @@ matrix_TYP **identify(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
         free(word);
 
         /* now calculate the coboundary to get it physically nailed */
-        real_mat(TR[i],TR[i]->rows+1,TR[i]->cols+1);
+        real_mat(TR[i],TR[i]->rows,TR[i]->cols+1);
+        real_mat(TR[i],TR[i]->rows+1,TR[i]->cols);
         TR[i]->array.SZ[G->dim][G->dim] = 1;
+
+        if (transform_flag == 3){
+           translation(TR[i],rep,extension[i],cozycle,D,G);
+        }
      }
 
      /* we are done, so clean up */
@@ -663,12 +733,68 @@ matrix_TYP **identify(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
   return TR;
 }
 
+
+static int gives_rise_to_torsionfree_space_group(
+         bravais_TYP *G,
+         matrix_TYP *D,
+         matrix_TYP *cocycle,
+         matrix_TYP *x)
+{
+
+    bravais_TYP *R;      /* holds the space group */
+
+    int i,
+        j,
+        k,
+        *res;
+
+    matrix_TYP *C;
+
+
+    R = init_bravais(G->dim+1);
+    C = convert_to_cozycle(x,cocycle,D);
+
+    R->gen = (matrix_TYP **) malloc(G->gen_no * sizeof(matrix_TYP *));
+    R->gen_no = G->gen_no;
+    for (i=0;i<G->gen_no;i++){
+       R->gen[i] = copy_mat(G->gen[i]);
+       real_mat(R->gen[i],G->dim+1,G->dim+1);
+       R->gen[i]->array.SZ[G->dim][G->dim] = 1;
+       iscal_mul(R->gen[i],C->kgv);
+       R->gen[i]->kgv = C->kgv;
+    }
+
+    /* stick the cocycle in the last column of the matrices generating R */
+    k = 0;
+    for (i=0;i<R->gen_no;i++){
+       for (j=0;j<G->dim;j++){
+          R->gen[i]->array.SZ[j][G->dim] = C->array.SZ[k][0];
+          k++;
+       }
+       Check_mat(R->gen[i]);
+    }
+
+    res = torsionfree(R,&i,&j);
+    i = res[0] ; free(res);
+
+    free_bravais(R);
+    free_mat(C);
+
+    return i;
+}
+
 /**************************************************************************
 @
 @ -------------------------------------------------------------------------
 @
-@ matrix_TYP **extensions(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
-@             bravais_TYP *G,int **lengths,MP_INT **names,int *number_of_orbits)
+@ matrix_TYP **extensions(matrix_TYP *cozycle,
+@                         matrix_TYP *D,
+@                         matrix_TYP *R,
+@                         bravais_TYP *G,
+@                         int **lengths,
+@                         MP_INT **names,
+@                         int *number_of_orbits,
+@                         int option)
 @
 @ Returns the cozycles which generate the isomorphims classes of
 @ extensions of G by the natural ZG-module. The split extension is
@@ -686,11 +812,19 @@ matrix_TYP **identify(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
 @                          of identify(.....).
 @   int *number_of_orbits: the number of orbits the normalizer induces
 @                          on the cohomology group.
+@    int option          : controls the behaviour of the function:
+@                          option & 1: construct only torsion free extensions
 @ -------------------------------------------------------------------------
 @
 ***************************************************************************/
-matrix_TYP **extensions(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
-              bravais_TYP *G,int **lengths,MP_INT **names,int *number_of_orbits)
+matrix_TYP **extensions(matrix_TYP *cozycle,
+                        matrix_TYP *D,
+                        matrix_TYP *R,
+                        bravais_TYP *G,
+                        int **lengths,
+                        MP_INT **names,
+                        int *number_of_orbits,
+                        int option )
 {
   int i,
       Nanz = G->normal_no + G->cen_no,
@@ -737,10 +871,10 @@ matrix_TYP **extensions(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
 
   for (i=0;i<Nanz;i++){
      if (i<G->cen_no){
-        N[i] = normalop(cozycle,D,R,G,G->cen[i]);
+        N[i] = normalop(cozycle,D,R,G,G->cen[i],i == (Nanz-1));
      }
      else{
-        N[i] = normalop(cozycle,D,R,G,G->normal[i-G->cen_no]);
+        N[i] = normalop(cozycle,D,R,G,G->normal[i-G->cen_no],i == (Nanz-1));
      }
      if (INFO_LEVEL & 16){
         put_mat(N[i],NULL,"N[i]",2);
@@ -764,7 +898,8 @@ matrix_TYP **extensions(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
         if (tested != NULL) tested[mpz_get_ui(&act_val)] = TRUE;
 
         x = reverse_valuation(&act_val,D);
-        y = orbit_rep(x,N,Nanz,D,1,tested,&new_val,&orbit_length,NULL,FALSE);
+        y = orbit_rep(x,N,Nanz,D,1,tested,&new_val,&orbit_length,
+                             NULL,FALSE,NULL,NULL);
 
         if (INFO_LEVEL & 4){
            printf("act_val %d\n",(int ) mpz_get_ui(&act_val));
@@ -772,7 +907,9 @@ matrix_TYP **extensions(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
            put_mat(y,NULL,"y",2);
         }
 
-        if (mpz_cmp(&new_val,&act_val) == 0){
+        if (mpz_cmp(&new_val,&act_val) == 0 &&
+           (!(option & 1) ||
+              gives_rise_to_torsionfree_space_group( G, D, cozycle, x))){
           if (number_of_orbits[0] % MIN_SPEICHER == 0){
              erg = (matrix_TYP **) realloc(erg,
                      (number_of_orbits[0] + MIN_SPEICHER)*sizeof(matrix_TYP*));
@@ -897,12 +1034,57 @@ static void no_of_fixpoints(MP_INT *res,matrix_TYP *A,matrix_TYP *D)
      A->array.SZ[i][i+A->rows] = D->array.SZ[i+first][i+first];
   }
 
-  tmp = long_elt_mat(A,NULL);
+  tmp = long_elt_mat(NULL,A,NULL);
 
   mpz_set_ui(res,1);
   for (i=0;i<tmp->rows;i++) mpz_mul_ui(res,res,tmp->array.SZ[i][i]);
 
   free_mat(tmp);
+}
+
+static int deal_with_small_cohomology_group(matrix_TYP *cozycle,
+                                            matrix_TYP *D,
+                                            matrix_TYP *R,
+                                            bravais_TYP *G,
+                                            MP_INT *erg)
+{
+
+  int i,
+      anz,
+      order_of_H=1,
+     *len;
+
+  MP_INT *names;
+
+  matrix_TYP **Y;
+
+  if (G->dim < 5){
+     return FALSE;
+  }
+
+  /* if the cohomology is small, it might be better to calculate all
+     extensions then to calculate all elements of the acting group
+     example: H^1 = C_6^3, G_acting = GL_3(Z/6Z) */
+  for (i=0;i < D->cols &&
+           i < D->rows &&
+           order_of_H < 10000 &&
+           D->array.SZ[i][i] != 0;i++,order_of_H *= D->array.SZ[i][i]);
+  if (order_of_H < 10000){
+     Y = extensions(cozycle,D,R,G,&len,&names,&anz,0);
+
+     for (i=0;i<anz;i++){
+        free_mat(Y[i]);
+        mpz_clear(names+i);
+     }
+     free(names);
+     free(Y);
+     free(len);
+     mpz_set_si(erg,anz);
+     return TRUE;
+  }
+
+  return FALSE;
+
 }
 
 /************************************************************************
@@ -935,6 +1117,10 @@ void no_of_extensions(matrix_TYP *cozycle,matrix_TYP *D,
              **elements,
               *id;
 
+  if (deal_with_small_cohomology_group(cozycle, D, R, G, erg)){
+     return;
+  }
+
   mpz_init(&sum);
   mpz_set_si(&sum,0);
   mpz_init(&tmp2);
@@ -945,10 +1131,10 @@ void no_of_extensions(matrix_TYP *cozycle,matrix_TYP *D,
   N = (matrix_TYP **) malloc(Nanz * sizeof(matrix_TYP *));
   for (i=0;i<Nanz;i++){
      if (i<G->cen_no){
-        N[i] = normalop(cozycle,D,R,G,G->cen[i]);
+        N[i] = normalop(cozycle,D,R,G,G->cen[i],i == (Nanz-1));
      }
      else{
-        N[i] = normalop(cozycle,D,R,G,G->normal[i-G->cen_no]);
+        N[i] = normalop(cozycle,D,R,G,G->normal[i-G->cen_no],i == (Nanz-1));
      }
      if (INFO_LEVEL & 16){
         put_mat(N[i],NULL,"N[i]",2);

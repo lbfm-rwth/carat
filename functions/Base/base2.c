@@ -65,7 +65,7 @@ int einordnen_2(bahn** erg,matrix_TYP *h, matrix_TYP *new_vec,int l,
    int tmp = erg[0]->representatives[0]->cols,
        tmp2,
        i,
-       finite_flag;
+       finite_flag = TRUE;
 
    matrix_TYP  *hinv,
                *nv,

@@ -4,7 +4,9 @@
 #include "zass.h"
 #include "getput.h"
 
+
 extern int INFO_LEVEL;
+
 
 static int and(int *a,int n)
 {
@@ -16,8 +18,7 @@ static int and(int *a,int n)
 }
 
 
-
-static int is_equal_red(matrix_TYP *x,matrix_TYP *y)
+static int cmp_red(matrix_TYP *x,matrix_TYP *y)
 {
   int i,
       j,
@@ -35,22 +36,68 @@ static int is_equal_red(matrix_TYP *x,matrix_TYP *y)
      rows = y->rows;
 
   for (i=0;i<cols;i++)
-     for (j=0;j<rows;j++)
-        if (x->array.SZ[i][j] != y->array.SZ[i][j]) return FALSE;
+     for (j=0;j<rows;j++){
+        if (x->array.SZ[i][j] < y->array.SZ[i][j]) return -1;
+        if (x->array.SZ[i][j] > y->array.SZ[i][j]) return 1;
+     }
 
-  return TRUE;
+  return 0;
 }
 
 
-static int red_pos(matrix_TYP *x,matrix_TYP **A,int n)
+static int red_pos(matrix_TYP *x,
+                   matrix_TYP **A,
+                   struct tree *knoten,
+                   int n,
+                   int flag)
 {
-  int i;
+  int erg;
 
-  for (i=0;i<n;i++)
-    if (is_equal_red(x,A[i])) return i;
+  erg = cmp_red(x,A[knoten->no]);
 
-  return -1;
-
+  if (erg == 1){
+     if (knoten->right == NULL){
+         if (flag == 1){
+            knoten->right = (struct tree *) calloc(1,sizeof(struct tree));
+            knoten->right->no = n;
+            return(n); 
+         }
+         if (flag == 0){
+            knoten->right = (struct tree *) calloc(1,sizeof(struct tree));
+            knoten->right->no = n;
+            return(-1); 
+         }
+         if (flag == (-1)){
+            return(-1);
+         }
+     }
+     else{
+        return(red_pos(x,A,knoten->right,n,flag));
+     }
+  }
+  if (erg == (-1)){
+     if (knoten->left == NULL){
+         if (flag == 1){
+            knoten->left = (struct tree *) calloc(1,sizeof(struct tree));
+            knoten->left->no = n;
+            return(n); 
+         }
+         if (flag == 0){
+            knoten->left = (struct tree *) calloc(1,sizeof(struct tree));
+            knoten->left->no = n;
+            return(-1); 
+         }
+         if (flag == (-1)){
+            return(-1);
+         }
+     }
+     else{
+        return(red_pos(x,A,knoten->left,n,flag));
+     }
+  }
+  if (erg == 0){
+     return(knoten->no);
+  }
 }
 
 /**********************************************************************
@@ -68,7 +115,7 @@ matrix_TYP *reget_gen(matrix_TYP **map,int number,bravais_TYP *G,
 {
    int *found,              /* gives a flag for each generator of G, TRUE iff
                                we already found this element */
-        length = G->gen_no, /* the number of elements found so far */
+        length = number, /* the number of elements found so far */
         speicher = MIN_SPEICHER,
         k,
         i,
@@ -82,9 +129,19 @@ matrix_TYP *reget_gen(matrix_TYP **map,int number,bravais_TYP *G,
    matrix_TYP *erg,
              **ele,
               *tmp;
+             
+   struct tree *baum,
+               *baum2;
+   
+   
+   baum = (struct tree *) calloc(1,sizeof(struct tree));
+   baum2 = (struct tree *) calloc(1,sizeof(struct tree));
 
    erg = init_mat(G->gen_no * G->dim,1,"");
-   for (i=0;i<G->gen_no;i++)
+
+   /* changed tilman 15/07/99 from
+   for (i=0;i<G->gen_no;i++) to: */
+   for (i=0;i<number;i++)
       Check_mat(map[i]);
 
    /* there are to cases: the function is called the first time
@@ -97,20 +154,31 @@ matrix_TYP *reget_gen(matrix_TYP **map,int number,bravais_TYP *G,
       ele_words = (int **) malloc(MIN_SPEICHER * sizeof(int*));
 
       for (i=0;i<G->gen_no;i++){
-         ele[i] = map[i];
-         found[red_pos(ele[i],G->gen,G->gen_no)] = TRUE;
+         red_pos(G->gen[i],G->gen,baum,i,1);
+      }
+      for (i=0;i<G->gen_no;i++)
          Check_mat(G->gen[i]);
+
+      /* changed tilman 15/07/99 from
+      for (i=0;i<G->gen_no;i++){ to */
+      for (i=0;i<number;i++){
+         ele[i] = map[i];
+         k = red_pos(ele[i],G->gen,baum,i,-1); 
+         found[k] = TRUE;
+         ele[i]->cols--; ele[i]->rows--;
+         red_pos(ele[i],ele,baum2,i,1);
+         ele[i]->cols++; ele[i]->rows++;
          ele_words[i] = (int *) malloc(2 * sizeof(int));
          ele_words[i][0] = 1;
          ele_words[i][1] = i;
       }
 
-      for (i=0;i<length && !and(found,G->gen_no);i++){
 
+      for (i=0;i<length && !and(found,G->gen_no);i++){
          for (j=0;j<number;j++){
             tmp = mat_mul(ele[i],map[j]);
             tmp->cols--;tmp->rows--;  /* for red_pos */
-            if (red_pos(tmp,ele,length) == (-1)){
+            if (red_pos(tmp,ele,baum2,length,0) == (-1)){
                tmp->cols++;tmp->rows++;
 
                if (length >= speicher){
@@ -133,7 +201,7 @@ matrix_TYP *reget_gen(matrix_TYP **map,int number,bravais_TYP *G,
                length++;
 
                /* it might be one of the generators we are looking for */
-               found[red_pos(tmp,G->gen,G->gen_no)] = TRUE;
+               found[red_pos(tmp,G->gen,baum,G->gen_no,-1)] = TRUE;
             }
             else{
                tmp->cols++;tmp->rows++;
@@ -149,13 +217,13 @@ matrix_TYP *reget_gen(matrix_TYP **map,int number,bravais_TYP *G,
 
       /* now calculate the resulting cozycle alltogether */
       for (i=0;i<G->gen_no;i++){
-         k = red_pos(G->gen[i],ele,length);
+         k = red_pos(G->gen[i],ele,baum2,length,-1);
          tmp = ele[k];
          words[i] = ele_words[k];
          ele_words[k] = NULL;
          if (INFO_LEVEL & 16){
             printf("length %d \n",length);
-            printf("red_pos %d \n",red_pos(G->gen[i],ele,length));
+            printf("red_pos %d \n",k);
             Check_mat(tmp);
             put_mat(tmp,NULL,"tmp",2);
             put_mat(G->gen[i],NULL,"G->gen[i]",2);
@@ -172,7 +240,9 @@ matrix_TYP *reget_gen(matrix_TYP **map,int number,bravais_TYP *G,
       /* cleaning up memory */
       found--;
       free(found);
-      for (i=G->gen_no;i<length;i++) free_mat(ele[i]);
+      /* changed on 16/07/99 from:
+      for (i=G->gen_no;i<length;i++) free_mat(ele[i]); to */
+      for (i=number;i<length;i++) free_mat(ele[i]);
       free(ele);
       for (i=0;i<length;i++) if (ele_words[i] != NULL) free(ele_words[i]);
       free(ele_words);
@@ -199,7 +269,10 @@ matrix_TYP *reget_gen(matrix_TYP **map,int number,bravais_TYP *G,
          free_mat(tmp);
       }
    }
-
+   free_tree(baum);
+   free_tree(baum2);
+   
    return erg;
 } /* reget_gen(....) */
+
 

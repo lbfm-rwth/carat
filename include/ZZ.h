@@ -14,10 +14,23 @@
 extern void ZZ (bravais_TYP * group, matrix_TYP * gram, int *divisors, 
 	       char *options, FILE* outputfile);
 
-extern bravais_TYP **q2z(bravais_TYP *G,int *number,int ADFLAG);
+extern bravais_TYP **q2z(bravais_TYP *G,
+                         int *number,
+                         int ADFLAG,
+                         int quiet);
+
+extern bravais_TYP **get_groups(bravais_TYP **ADGROUPS,
+                         int ad_no,
+                         int *number);
+
+
 #else
 extern void ZZ ();
+
 extern bravais_TYP **q2z();
+
+extern bravais_TYP **get_groups();
+
 #endif
 
 extern int NUMBER;		/* Abbruch nach NUMBER Zentrierungen */

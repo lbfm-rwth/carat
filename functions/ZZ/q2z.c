@@ -127,71 +127,7 @@ static bravais_TYP **almost(bravais_TYP *H)
    return RES;
 }
 
-static bravais_TYP **get_groups(bravais_TYP **ADGROUPS,int ad_no,int *number)
-{
-   int i,
-       j,
-       k,
-       normal_no,
-       centr_no;
 
-   bravais_TYP **GROUPS,
-                *G1,
-                *G2;
-
-   matrix_TYP  *tmp,
-              **centerings,
-              **normal;
-
-   G1 = init_bravais(ADGROUPS[0]->dim);
-
-   /* look for all the centerings and so on */
-   number[0] = 0;
-   for (i=0;i<ad_no;i++){
-     number[0] += ADGROUPS[i]->zentr_no;
-   }
-   GROUPS = (bravais_TYP **) malloc(number[0] * sizeof(bravais_TYP *));
-
-   k=0;
-   for (i=0;i<ad_no;i++){
-      centerings = ADGROUPS[i]->zentr;
-      centr_no = ADGROUPS[i]->zentr_no;
-      ADGROUPS[i]->zentr = NULL;
-      ADGROUPS[i]->zentr_no = 0;
-      normal = ADGROUPS[i]->normal;
-      ADGROUPS[i]->normal = NULL;
-      normal_no = ADGROUPS[i]->normal_no;
-      ADGROUPS[i]->normal_no = 0;
-      G1->gen = normal;
-      G1->gen_no = normal_no;
-      for (j=0;j<centr_no;j++){
-         tmp = mat_inv(centerings[j]);
-         if (j==0){
-            GROUPS[k] = konj_bravais(ADGROUPS[i],tmp);
-            GROUPS[k]->normal = normal;
-            GROUPS[k]->normal_no = normal_no;
-         }
-         else{
-            G2 = gittstab(G1,centerings[j]);
-            ADGROUPS[i]->normal = G2->gen;
-            ADGROUPS[i]->normal_no = G2->gen_no;
-            GROUPS[k] = konj_bravais(ADGROUPS[i],tmp);
-            long_rein_formspace(GROUPS[k]->form,GROUPS[k]->form_no,1);
-            ADGROUPS[i]->normal = NULL;
-            ADGROUPS[i]->normal_no = 0;
-            free_bravais(G2);
-         }
-         free_mat(tmp);
-         free_mat(centerings[j]);
-         k++;
-      }
-      free(centerings);
-   }
-
-   free(G1);
-
-   return GROUPS;
-}
 
 /* this function was for test purposes only
 static matrix_TYP *better_base2(matrix_TYP *B,
@@ -348,7 +284,10 @@ static matrix_TYP *good_initial_basis(matrix_TYP *B,
    return NEW;
 }
 
-bravais_TYP **q2z(bravais_TYP *G,int *number,int ADFLAG)
+bravais_TYP **q2z(bravais_TYP *G,
+                  int *number,
+                  int ADFLAG,
+                  int quiet)
 {
    bravais_TYP **GROUPS,
                **ADGROUPS,
@@ -372,6 +311,26 @@ bravais_TYP **q2z(bravais_TYP *G,int *number,int ADFLAG)
        col,
        dimc,
        dimcc;
+
+   /* handle the case of the groups G=<I> and G=<-I> differently,
+      because the first one couldn't be handled by this anyway,
+      and the second one is is but computationaly hard in dim 5 & 6 */
+   k = TRUE;
+   for (i=0;i<G->gen_no && k;i++){
+      Check_mat(G->gen[i]);
+      k = k && G->gen[i]->flags.Scalar;
+   }
+   if (k){
+      GROUPS = (bravais_TYP **) malloc(1 * sizeof(bravais_TYP *));
+      GROUPS[0] = copy_bravais(G);
+      *number = 1;
+      if (ADFLAG){
+          GROUPS[0]->zentr = (matrix_TYP **) malloc(1 * sizeof(matrix_TYP));
+          GROUPS[0]->zentr[0] = init_mat(G->dim,G->dim,"1");
+          GROUPS[0]->zentr_no = 1;
+      }
+      return GROUPS;
+   }
 
    /* avoid silly mistakes */
    if (G->form == NULL ||
@@ -421,7 +380,10 @@ bravais_TYP **q2z(bravais_TYP *G,int *number,int ADFLAG)
    free_mat(tmp);
 
    /* make the ZZ options for the first call of ZZ */
-   sprintf(zzoptions,"tugZ");
+   if (quiet)
+      sprintf(zzoptions,"qtugZ");
+   else
+      sprintf(zzoptions,"tugZ");
 
    if (INFO_LEVEL & 4){
       put_mat(new_base,NULL,"new_base",2);
@@ -446,11 +408,14 @@ bravais_TYP **q2z(bravais_TYP *G,int *number,int ADFLAG)
    ADGROUPS = almost(H);
 
    if (INFO_LEVEL & 4){
-   }
       fprintf(stderr,"=== Number of almost decomposable groups %d\n",ad_no);
+   }
 
    /* make the ZZ options for the second call of ZZ */
-   sprintf(zzoptions,"tuzgp%d",IDEM_NO);
+   if (quiet)
+      sprintf(zzoptions,"tuqzgp%d",IDEM_NO);
+   else
+      sprintf(zzoptions,"tuzgp%d",IDEM_NO);
    for (i=0;i<IDEM_NO;i++){
       sprintf(string,"%s/%d",zzoptions,IDEM_SPACES[i]->rows);
       sprintf(zzoptions,"%s",string);

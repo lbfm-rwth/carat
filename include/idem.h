@@ -9,6 +9,12 @@
 #ifdef __STDC__
 
 /*************************************************************************
+*  FILE : almost_decomposable_lattice.c
+**************************************************************************/
+
+matrix_TYP *almost_decomposable_lattice(bravais_TYP *G);
+
+/*************************************************************************
 *  FILE : centr.c
 **************************************************************************/
 
@@ -56,8 +62,21 @@ bravais_TYP *catalog_number(bravais_TYP *G,char *symb,matrix_TYP **TR,
 bravais_TYP *catalog_number_v4(bravais_TYP *G,char *symb,matrix_TYP **TR,
                                int *almost,int *zclass);
 
+/*************************************************************************
+*  FILE: z_equivalent.c
+**************************************************************************/
+
+matrix_TYP *z_equivalent(bravais_TYP *G,
+                         bravais_TYP **G_tr,
+                         bravais_TYP *H);
 
 #else
+
+/*************************************************************************
+*  FILE : almost_decomposable_lattice.c
+**************************************************************************/
+
+matrix_TYP *almost_decomposable_lattice();
 
 /*************************************************************************
 *  FILE : centr.c
@@ -102,6 +121,14 @@ bravais_TYP *catalog_number();
 **************************************************************************/
 
 bravais_TYP *catalog_number_v4();
+
+/*************************************************************************
+*  FILE: z_equivalent.c
+**************************************************************************/
+
+matrix_TYP *z_equivalent(bravais_TYP *G,
+                         bravais_TYP **G_tr,
+                         bravais_TYP *H);
 
 #endif
 

@@ -52,7 +52,7 @@ matrix_TYP *Mat;
   /* transpose the array */
   for (i=0;i<Mat->cols;i++)
      for (j=0;j<Mat->rows;j++)
-        Mat->array.SZ[i][j] = Mattr->array.SZ[j][i];
+        Mat->array.SZ[j][i] = Mattr->array.SZ[i][j];
 
   Check_mat(Mat);
   free_mat(Mattr);

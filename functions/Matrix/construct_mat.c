@@ -410,7 +410,10 @@ int **Z;
         else
          for ( i=0; i < mat->rows && g != 1;i++) g= GGT( g, mat->array.SZ[i][i] );
       }
+      /* timan 11/05/99: changed from
       else
+      to : (to handle this rare case of a matrix without entries) */
+      else if (mat->rows > 0 && mat->cols > 0)
         g = GGT(g, mat->array.SZ[0][0]);
       mat->kgv /= g;
       if(g != 1)

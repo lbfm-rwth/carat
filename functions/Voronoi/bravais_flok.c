@@ -229,10 +229,14 @@ int neighbours(matrix_TYP ***perf,bravais_TYP *G,matrix_TYP **Ftr,
 /*********************************
   put_polyeder(pol);
 ***********************************/
+
+  /* changed 14.04.99 to save this variable from being freed, it
+     causes trouble on some machines */
+  i = pol->vert_no;
   free_polyeder(pol);
 
   /* return the number of neighbours */
-  return pol->vert_no;
+  return i;
 
 }
 
@@ -393,8 +397,8 @@ matrix_TYP *is_z_equivalent(bravais_TYP *G,bravais_TYP *G_tr,
       put_mat(htrbifo,NULL,"htrbifo",2); */
 
       /* the two trace bifos should have the same elementary devisors */
-      tmp = long_elt_mat(gtrbifo,NULL);
-      tmp2 = long_elt_mat(htrbifo,NULL);
+      tmp = long_elt_mat(NULL,gtrbifo,NULL);
+      tmp2 = long_elt_mat(NULL,htrbifo,NULL);
 
       if (mat_comp(tmp,tmp2) == 0){
          free_mat(tmp);
