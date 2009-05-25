@@ -1,0 +1,67 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / Bravais_equiv</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Z_equiv.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Conj_bravais.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program Bravais_equiv</h2>
+
+<h3>Usage</h3>
+
+<pre>
+Bravais_equiv file1 file2
+</pre>
+
+file1: bravais_TYP containing G.<br>
+file2: bravais_TYP containing H.
+
+<h3>Description</h3>
+Tests whether the BRAVAIS GROUPS of the groups
+G and H respectively are conjugated in GL<sub>n</sub>(Z).
+If so, it returns a conjugating matrix X which conjugates
+the BRAVAIS GROUPS, ie. X<sup>-1</sup> B(G) X = B(H).
+
+
+<h3>Remarks</h3>
+WARNING: The procedure may involve calculating the normalizer
+of the groups. This may be very time comsuming,
+especially when both groups are &lt;-I<sub>n</sub>&gt;, where n &gt; 5.
+
+
+<h3>Examples</h3>
+<ol>
+<li>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Z_equiv.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Conj_bravais.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

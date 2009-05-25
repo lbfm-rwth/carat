@@ -1,0 +1,64 @@
+4	% Change of basis:
+ 1  0  0  0
+ 0 -1  0  0
+ 0  0 -1  0
+ 1  1  1 -2
+4	/2		% Inverse of it  :
+ 2  0  0  0
+ 0 -2  0  0
+ 0  0 -2  0
+ 1 -1 -1 -1
+4	% Change of basis:
+  1 0  0  0
+ -1 2  0  0
+  0 0 -1  0
+  0 0  1 -2
+4	/2		% Inverse of it  :
+ 2 0  0  0
+ 1 1  0  0
+ 0 0 -2  0
+ 0 0 -1 -1
+4	% Change of basis:
+  1 0 0  0
+ -1 2 0  0
+ -1 0 2  0
+  1 0 0 -2
+4	/2		% Inverse of it  :
+ 2 0 0  0
+ 1 1 0  0
+ 1 0 1  0
+ 1 0 0 -1
+
+==========================================================================
+
+	      L  1:       Lattice	Constituent
+     parents  :
+                        L4  	(p=2,Nr.=1)
+     children :
+                        L2  	(p=2,Nr.=1)
+
+======= 1 Lattices on level 1 ====================================
+
+	      L  2:       Lattice	Constituent
+     parents  :
+                        L1  	(p=2,Nr.=1)
+     children :
+                        L3  	(p=2,Nr.=1)
+
+======= 1 Lattices on level 2 ====================================
+
+	      L  3:       Lattice	Constituent
+     parents  :
+                        L2  	(p=2,Nr.=1)
+     children :
+                        L4  	(p=2,Nr.=1)
+
+======= 1 Lattices on level 3 ====================================
+
+	      L  4:       Lattice	Constituent
+     parents  :
+                        L3  	(p=2,Nr.=1)
+     children :
+                        L1  	(p=2,Nr.=1)
+
+======= 1 Lattices on level 4 ====================================

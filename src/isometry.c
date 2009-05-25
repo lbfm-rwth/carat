@@ -1,12 +1,12 @@
-#include"typedef.h"
-
+#include "typedef.h"
+#include "matrix.h"
 
 
 
 main (int argc, char *argv[])
 {
 
-	matrix_TYP **F1, **F2, **Erz, *SV1, *SV2, *Iso;
+	matrix_TYP **F1, **F2, **Erz, *SV1, *SV2, *Iso, *tmp;
         int i, Fanz, F2anz, Erzanz, options[6];
         FILE *infile;
         int Fmax;
@@ -173,8 +173,11 @@ main (int argc, char *argv[])
 
 
  Iso = isometry(F1, F2, Fanz, SV1, SV2, Erz, Erzanz, options);
- if(Iso != NULL)
-   put_mat(Iso, NULL, "isometry", 0);
+ if(Iso != NULL) {
+   tmp = tr_pose(Iso);
+   put_mat(tmp, NULL, "isometry", 0);
+   free_mat(tmp);
+ }
  else
    printf("The forms are not isometric\n");
 

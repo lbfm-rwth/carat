@@ -1,0 +1,85 @@
+<html>
+
+<head>
+   <title>CARAT Introduction / Programs / KSubgroups</title>
+</head>
+
+<body>
+
+<center>
+   <table border=0 cellpadding=5>
+      <tr align=center>
+         <td><a href="./Is_finite.html">Previous Program</a></td>
+         <td><a href="../introduction.html">Introduction</a></td>
+         <td><a href="./K_Supergroups.html">Next Program</a></td>
+      </tr>
+   </table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program KSubgroups</h2>
+
+<h3>Usage</h3>
+
+<pre>
+KSubgroups 'file1' [-h] [-a [-n]] [-f] [-t] [-p 'file2'] 'p_1' ... 'p_n'
+</pre>
+
+file1: Spacegroup R in standard affine form (without translations)<br>
+file2: (optional) Pointgroup G of R (with correct normalizer)<br>
+p<sub>i</sub>  : primes<br>
+
+<h3>Description</h3>
+
+Calculates the maximal klassengleich subgroups of R
+with p<sub>i</sub>-power index.
+
+<h3>Options</h3>
+<pre>
+-h   : Give a short help.
+-a   : Calculate subgroups up to conjugation under
+       the affine normalizer of R.
+-n   : Print the lengthes of the orbits
+       (this only works together with the option a).
+-f   : Print the subgroups in files 'file1_j'.
+-t   : Omit the last dim R generators.
+-d   : Only for debugging!
+</pre>
+
+<h3>Remarks</h3>
+See also for
+<a href="./Graph.html">Graph</a>,
+<a href="./K_Supergroups.html">KSupergroups</a> and
+<a href="./Standard_affine_form.html">Standard_affine_form</a>.
+
+
+<h3>Examples</h3>
+<ol>
+<li>
+<a href="../examples/Ex14.html">Calculate minimal/maximal
+klassengleich/translationengleich super-/sub-groups of a given
+space group up to conjugation under the affine normalizer of this
+group.</a>
+</li>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+   <table border=0 cellpadding=5>
+   <tr align=center>
+      <td><a href="./Is_finite.html">Previous Program</a></td>
+      <td><a href="../introduction.html">Introduction</a></td>
+      <td><a href="./K_Supergroups.html">Next Program</a></td>
+   </tr>
+   </table>
+</center>
+
+</body>
+
+</html>
+

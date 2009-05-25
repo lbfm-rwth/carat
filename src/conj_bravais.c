@@ -3,7 +3,7 @@
 #include"matrix.h"
 #include"bravais.h"
 
-
+int INFO_LEVEL;
 
 main (int argc, char *argv[])
 {

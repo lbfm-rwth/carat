@@ -4,7 +4,9 @@
 #include"bravais.h"
 #include"matrix.h"
 
-main (int argc, char *argv[])
+int INFO_LEVEL;
+
+int main (int argc, char *argv[])
 {
   int anz,
       i;

@@ -13,12 +13,27 @@
 # If you need additional include pathes, please add them
 # to the compiler, ie CC= gcc -I/YOUR_INCUDE_PATH
 #
+# If GMP is already installed on your system, then compilation time
+# can be shortened by removing "Gmp" from the target "ALL".
+#
 # If you encounter any problems, please contact
 #    carat@momo.math.rwth-aachen.de
 ############################################################################
 
 
-TOPDIR=/usb/carat
+#
+# put the top level directory of the Installation here
+# ( try "pwd" if in doubt)
+#
+TOPDIR=/home/carat
+
+#
+# normal installations on Linux should work with
+# CC = gcc
+#
+# For Mac OS X 10.4, please try
+# CC = gcc -I/sw/include
+#¤
 CC = gcc
 
 # There are some special preprocessor flags which set some
@@ -28,13 +43,13 @@ CC = gcc
 # have a general control whats going on. THIS IS VERY SLOW.
 # For the normal user we recommend neither to use -DDIAG1 nor -DDIAG2!
 
-CFLAGS = -g -Wall -DDIAG1 -fwritable-strings # for a HP-UX-machine using gcc (momo)
+CFLAGS = -g -Wall -DDIAG1
                                        # the flag -fwritable-strings is
                                        # required for the use with gcc
 
 # CFLAGS = -g -Aa                        # for a HP-UX-machine using cc
 
-# CFLAGS = -m486
+# CFLAGS = -mcpu=pentiumpro
 
 
 # The part below doesn't (better: shouldn't) need any editing
@@ -108,7 +123,7 @@ Links:
 	cd lib ; rm -f libfunctions.a ; ln -f -s functions.a libfunctions.a
 	rm -f $(TOPDIR)/functions/Gmp/m_alloc.h
 	ln -f -s $(TOPDIR)/functions/Gmp/longlong.h $(TOPDIR)/include/longlong.h
-	ln -f -s $(TOPDIR)/functions/gmp-4.1.2 $(TOPDIR)/functions/Gmp
+	ln -f -s $(TOPDIR)/functions/gmp-4.2.1 $(TOPDIR)/functions/Gmp
 
 Longtools: Makefile functions/Longtools/Makefile
 	cd functions/Longtools; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
@@ -159,7 +174,7 @@ ZZ: Makefile functions/ZZ/Makefile
 	cd functions/ZZ; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
 Gmp:
-	cd functions ; tar xvzf gmp-4.1.2.tar.gz
+	cd functions ; tar xvzf gmp-4.2.1.tar.gz
 	cd functions/Gmp ; ./configure --prefix="$(TOPDIR)" ;\
          make CFLAGS="$(CFLAGS)" CC="$(CC)" install 
 
@@ -170,7 +185,7 @@ Executables: bin/Makefile
 	cd bin; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
 clean:
-#	cd bin; make clean
+	cd bin; make clean
 	cd functions/Autgrp; make clean
 	cd functions/Base; make clean
 	cd functions/Bravais; make clean
@@ -195,7 +210,7 @@ clean:
 	cd functions/Voronoi; make clean
 	cd functions/Zassen; make clean
 	cd functions/ZZ; make clean
-	rm -rf functions/gmp-4.1.2
+	rm -rf functions/gmp-4.2.1
 	rm -rf functions/Gmp
 	rm -f lib/libgmp.a
 	rm -f lib/*gmp*

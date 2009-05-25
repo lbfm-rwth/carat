@@ -1,0 +1,14 @@
+#g2 % point group to the space group of C
+5	/2		% generator
+ -1  1 0  0 -1
+ -3  1 2  0 -1
+  3  1 0  0  1
+  3 -1 2  0  1
+  0  0 2 -2  2
+5	/2		% generator
+ -2  0 0 0 -1
+ -4  0 2 0 -1
+  2 -2 0 2 -1
+  2 -2 2 0  1
+  2  0 2 0  0
+% order of the group unknown

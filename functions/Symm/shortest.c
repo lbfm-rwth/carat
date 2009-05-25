@@ -76,7 +76,7 @@ int	a, e;
 	}
 }
 
-static int round(r)
+static int iround(r)
 double	r;
 {
 	int	i;
@@ -97,7 +97,7 @@ int	k, l;
 	r = mo[k][l];
 	if (2*r > 1.0  ||  2*r < -1.0)
 	{
-		ir = round(r);
+		ir = iround(r);
 		mok = mo[k];
 		bak = ba[k];
 		grnk = grn[k];
@@ -161,7 +161,7 @@ double	d;
         int l;
         int *v;
 
-        l = round(d);
+        l = iround(d);
         if(l<max)
         {
          max = l;
@@ -218,7 +218,7 @@ double	damage;
 		x = 0.0;
 		for (j = c+1; j < n; ++j)
 			x += vec[j] * mo[j][c];
-		i = -round(x);	
+		i = -iround(x);	
 		gec = ge[c];
 		if (gec*(x+i)*(x+i) + damage < max + EPS)
 		{

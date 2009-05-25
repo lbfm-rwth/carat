@@ -15,7 +15,7 @@ extern int SFLAG;
 
 matrix_TYP *translation_lattice(matrix_TYP **G,int number,matrix_TYP *P);
 
-void main(int argc,char **argv){
+int main(int argc,char **argv){
 
   bravais_TYP *G,
               *H;

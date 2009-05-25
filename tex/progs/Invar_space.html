@@ -1,0 +1,79 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / Invar_space</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Idem.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Isometry.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program Invar_space</h2>
+
+<h3>Usage</h3>
+
+<pre>
+Invar_space 'file' [-a] [-s] [-e=n] [-d=n]
+</pre>
+
+file: bravais_TYP containing a finite unimodular group G.
+
+
+<h3>Description</h3>
+
+Calculates a Z-basis for the space of matrices with g<sup>tr</sup>Ag = A for all
+g in G by a quick seminumerical algorithm with some random features. By
+default all symmetric invariant matrices are calculated.
+
+
+<h3>Options</h3>
+<pre>
+-a:      All invariant matrices are calculated.
+-s:      All skew-symmetric invariant matrices are calculated.
+-e=n:    Changes the default value of control parameter from 100 to n>100.
+-d=n:    The program will calculate n+1 elements F_0,..., F_n of the
+         invariant space, then it calculates a Z-basis of the Q-span of
+         F_0, ..., F_n intersected with Z^nxn.
+         This option is only usefull if one knows the dimension of the
+         space of invariant forms. By default this number is calculated
+         by modular arithmetic.
+</pre>
+
+
+<h3>Remarks</h3>
+See also for <a href="./Form_space.html">Form_space</a>.
+
+
+<h3>Examples</h3>
+<ol>
+<li>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Idem.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Isometry.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

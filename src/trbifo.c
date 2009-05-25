@@ -2,7 +2,10 @@
 #include"getput.h"
 #include"bravais.h"
 
-main (int argc, char *argv[])
+
+int INFO_LEVEL;
+
+int main (int argc, char *argv[])
 {
    bravais_TYP *G, *Gtr;
    matrix_TYP *A, *P, *S;

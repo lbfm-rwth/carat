@@ -3,8 +3,9 @@
 #include"bravais.h"
 #include"matrix.h"
 
+int INFO_LEVEL;
 
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
   int i,j,anz, prime;
   int sym_opt;

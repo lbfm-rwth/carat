@@ -158,7 +158,7 @@ double	**mu, *B;
 	r = mu[*m][*l];
 	if (r > 0.5  ||  r < -0.5)
 	{
-		ir = round(r);
+		ir = iround(r);
 		Tm = T[*m];
 		Tl = T[*l];
 		gramm = gram[*m];
@@ -281,7 +281,7 @@ double	**mu, *B;
 /**********************************************************************\
 |	rounds x to an integer	
 \**********************************************************************/
-static int round(x)
+static int iround(x)
 double	x;
 {
 	if (x >= 0)

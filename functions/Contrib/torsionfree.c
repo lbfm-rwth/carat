@@ -206,7 +206,7 @@ matrix_TYP **ele,
             *ed1,
             *ed2;
 
-RES = (int *) c_alloc(2 , sizeof(int));
+RES = (int *) calloc(2 , sizeof(int));
 
 num_gen = R->gen_no;
 gen = R->gen;

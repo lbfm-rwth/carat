@@ -34,13 +34,17 @@ main (int argc, char *argv[])
            printf("      generalised Bravais group (relevant for Bravais groups in families\n");
            printf("      like 2-1',2-1' etc.).\n");
            printf("\n");
+           printf("NOTE: CARAT was developed for crystallographic groups in dimensions\n");
+           printf("      up to 6. Most algorithms also work in higher dimensions.\n");
+           printf("      However, integer overflow is not trapped in general.\n");
+           printf("\n");
            printf("Options:\n");
            printf("-d=n    : Depth up to which scalar products are calculated. The value\n");
            printf("          should be small. Usefull if the automorphism group is expected\n");
            printf("          to be small.\n");
            printf("-s=n    : The n-point stabilizer with respect to different basis will be\n");
            printf("          calculated.\n");
-           printf("-b=n    : Use Bacher polynomials up to deepth n.\n");
+           printf("-b=n    : Use Bacher polynomials up to depth n.\n");
            printf("-B=n    : Use Bacher polynomials with vectors having scalar product n\n");
            printf("-v,-g   : Read additional data from 'file'. If -v is given the program\n");
            printf("          assumes that the short vectors of the first form in 'file'\n");
@@ -109,7 +113,7 @@ main (int argc, char *argv[])
 | options[2]:	If options[2] = 1, additional output is written to the
 |               file AUTO.tmp
 | options[3]:   If options[3] = 1, Bacher polynomials are used. 
-|		If options[3] = 2, Bacher polynomial are used up to a deepth
+|		If options[3] = 2, Bacher polynomial are used up to a depth
 |		                   specified in options[4].
 |		If options[3] = 3, Bacher polynomials are used, using 
 |		                   combinations of vectors having the scalar

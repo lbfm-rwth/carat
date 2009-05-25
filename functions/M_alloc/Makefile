@@ -1,4 +1,4 @@
-TOPDIR =/usb/carat
+#TOPDIR =/usb/carat
 CFLAGS = -g -fwritable-strings -DDIAG1
 CC = gcc
 

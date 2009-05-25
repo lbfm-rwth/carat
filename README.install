@@ -1,7 +1,7 @@
 Dear user,
 
 CARAT is a package for solving certain problems in mathematical
-cristalography.
+crystallography.
 
 It is distributed via
      Lehrstuhl B fuer Mathematik
@@ -12,17 +12,21 @@ It is distributed via
      Germany
      email: carat@momo.math.rwth-aachen.de
 
-INSTALATION:
+NOTE: CARAT was developed for crystallographic groups in dimensions up to 6.
+      Most algorithms also work in higher dimensions. However, integer overflow
+      is not trapped in general.
+
+INSTALLATION:
 
 Just edit the Makefile in the directory you installed CARAT in, and
 change the variables
      CFLAGS
      TOPDIR
-according to your needs. Some additional explaination/examples are given
+according to your needs. Some additional explanations/examples are given
 there.
 Afterwards just do
    % make
-or to be sure everything is made from the scratch:
+or to be sure everything is made from scratch:
    % make clean ; make 
 
 If you have any problems installing CARAT, please feel free to contact

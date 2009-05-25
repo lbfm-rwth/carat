@@ -1,0 +1,89 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / Extract</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Conj_bravais.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Idem.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program Extract</h2>
+
+<h3>Usage</h3>
+<pre>
+Extract 'file1' ['file2'] [-c] [-p] [-f] [-r [-D]] [-t=n]
+</pre>
+file1: bravais_TYP containing a space or (in case of option -r) a point group.<br>
+file2: matrix_TYP only used with options -r and -t.
+
+
+<h3>Description</h3>
+Extracts the linear part of the affine (space) group in file1.
+Note this is the point group of the space group in case the space
+group is given in standard form.
+
+
+<h3>Options</h3>
+<pre>
+-p    : extracts the linear part (default).
+-c    : extracts the translational part as a vector system (1-cozycle).
+-f    : do not calculate the formspace of the point group.
+-r    : reverses the process: Reads in the generators of the point group
+        of file1 and multiple vector systems for these generators from file2
+        and outputs the resulting space groups. Overwrites any other option.
+-D    : this option only works together with '-r'. The spacegroups are written
+        to 'file.i' with i = 1, ...
+-t=n  : transform the space group with generators in  file1 into standard
+        form, ie. the translation lattice is transformed to Z^n. If a
+        parameter n>0 is specified, the transforming matrix will be
+        given as well.  NOTE: For the -t-option file2 must contain a
+        presentation for the point group.  If the translation lattice
+        is of smaller rank, it will give the rank. Synonymous command:
+        Standard_affine_form
+-T    : RESERVED
+</pre>
+
+<h3>Remarks</h3>
+See also for <a href="./Extensions.html">Extensions</a> and <a
+href="./Vector_systems.html">Vector_systems</a>.
+A synonym for Extract -t is <a href="./Standard_affine_form.html">Standard_affine_form</a>.
+
+<h3>Examples</h3>
+<ol>
+<li> <a href="../examples/Ex4.html">Find all space groups with a given point group and decide for
+which superlattices each extension splits.</a>
+<li> <a href="../examples/Ex5.html">Do given matrices generate a space group? If so, find its name
+and normal representation. </a>
+<li> <a href="../examples/Ex12.html">Find all Z-classes, affine classes and torsion free space
+groups in a given Q-class.</a>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Conj_bravais.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Idem.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

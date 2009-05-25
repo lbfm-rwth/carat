@@ -1,8 +1,9 @@
 #include"typedef.h"
 
+int INFO_LEVEL;
 
 
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
    bravais_TYP *G, *Gtr;
    matrix_TYP *A, *P, *M, *S;

@@ -323,8 +323,10 @@ int main(int argc,char **argv){
      Y = extensions(X[0],X[1],X[2],G,&len,&names,&anz,is_option('F'));
 
      printf("#%d\n",anz);
+     
      for (i=0;i<anz;i++){
-        NAME = mpz_get_str(NULL,10,names+i);
+        NAME = (char * ) malloc( mpz_sizeinbase( names + i , 10 ) + 2 );
+        mpz_get_str( NAME ,10,names+i);
         sprintf(comment,
              "%% the %d-th cozycle, length of orbit %d,name: %s",i+1,len[i],NAME);
         if (is_option('S')){

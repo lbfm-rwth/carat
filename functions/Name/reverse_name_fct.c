@@ -308,8 +308,8 @@ bravais_TYP *reverse_name(char qname[1024],
   DATAZ = get_zclass_by_name(DATAQ, zname, zname+1, iflag);
   R = get_affine_class_by_name(DATAZ, PRES, &aff_name, i);
 
-
-  affstring[0] = mpz_get_str (NULL, 10, &aff_name);
+  affstring[0] = (char * ) malloc( mpz_sizeinbase( &aff_name , 10) + 2 );
+  mpz_get_str (affstring[0] , 10, &aff_name);
 
 
   free_mat(PRES);

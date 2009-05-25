@@ -14,7 +14,7 @@
         extern int FILEANZ;
 	
 int SFLAG;
-void main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
   int			i,j;
   int			a;

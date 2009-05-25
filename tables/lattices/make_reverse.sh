@@ -1,6 +1,6 @@
-#!/usr/local/bin/bash
-REV_HELP="/usb2/tilman/c/carat/reverse_help/reverse_help"
-REV_HELP2="/usb2/tilman/c/carat/reverse_help/reverse_help2"
+#!/bin/bash
+REV_HELP="/home/tilman/c/carat/reverse_help/reverse_help"
+REV_HELP2="/home/tilman/c/carat/reverse_help/reverse_help2"
 
 ls | grep lattice > tt
 

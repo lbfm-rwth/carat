@@ -1,0 +1,92 @@
+<html>
+
+<head>
+   <title>CARAT Introduction / Programs / TSubgroups</title>
+</head>
+
+<body>
+
+<center>
+   <table border=0 cellpadding=5>
+      <tr align=center>
+         <td><a href="./Torsionfree.html">Previous Program</a></td>
+         <td><a href="../introduction.html">Introduction</a></td>
+         <td><a href="./TSupergroups.html">Next Program</a></td>
+      </tr>
+   </table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program TSubgroups</h2>
+
+<h3>Usage</h3>
+
+<pre>
+1) TSubgroups 'file1' [-h] [-a] [-f] [-t]
+2) TSubgroups -g [-c] 'file1' 'file2' 'file3' ['file4']
+</pre>
+
+file1: Spacegroup R in standard affine form (without translations)<br>
+file2: Pointgroup P of R (with correct normalizer)<br>
+file3: GAP information about the conjugation classes of
+       maximal subgroups of the point group P of R.<br>
+file4: (optional) Presentation of P<br>
+
+
+
+<h3>Description</h3>
+
+Calculate the maximal translationengleich subgroups of a given
+space group up to conjugation in this space group!
+
+
+<h3>Options</h3>
+<pre>
+-h : Give a short help.
+-a : Calculate subgroups up to conjugation under
+     the affine normalizer of R.
+-f : Write representatives in files 'file1'_i.
+-t : Omit the last dim R generators.
+-g : Do not use the database, use your own GAP-words.
+     (Only for experts!)
+-c : Output for constructing the database. Do not use!
+</pre>
+
+
+<h3>Remarks</h3>
+See also for
+<a href="./TSupergroups.html">TSupergroups</a> and
+<a href="./Standard_affine_form.html">Standard_affine_form</a>.
+
+
+<h3>Examples</h3>
+<ol>
+<li>
+<a href="../examples/Ex14.html">Calculate minimal/maximal
+klassengleich/translationengleich super-/sub-groups of a given
+space group up to conjugation under the affine normalizer of this
+group.</a>
+</li>
+
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+   <table border=0 cellpadding=5>
+   <tr align=center>
+      <td><a href="./Torsionfree.html">Previous Program</a></td>
+      <td><a href="../introduction.html">Introduction</a></td>
+      <td><a href="./TSupergroups.html">Next Program</a></td>
+   </tr>
+   </table>
+</center>
+
+</body>
+
+</html>
+

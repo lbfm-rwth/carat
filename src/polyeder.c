@@ -1,10 +1,10 @@
 #include"typedef.h"
 
+int INFO_LEVEL;
 
 
 
-
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
 
 	matrix_TYP *Mat;

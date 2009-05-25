@@ -24,7 +24,9 @@ FILE *ZZ_temp, *ZZ_list;
 int MAT_ALLOC = 0;
 int constituents = 0;
 int verbose = 0;
-extern ZZ_super_TYP **SUPER_info, *SUPER_INFO;
+//changed 09-03-2008: these varaibles are not extern
+//extern ZZ_super_TYP **SUPER_info, *SUPER_INFO;
+ZZ_super_TYP **SUPER_info, *SUPER_INFO;
 
 
 /*------------------------------------------------------------------------------- */

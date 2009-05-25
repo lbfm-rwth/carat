@@ -1,9 +1,9 @@
 #include "ZZ.h"
 #include "bravais.h"
 
-extern int INFO_LEVEL;
+int INFO_LEVEL;
 extern int SFLAG;
-extern int IDEM_NO;
+int IDEM_NO;
 boolean GRAPH = FALSE;
 
 extern char *optarg;

@@ -1,0 +1,90 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / Name</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./K_Supergroups.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Normalizer.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program Name</h2>
+
+<h3>Usage</h3>
+
+<pre>
+Name file [-T] [-Z] [-o] [-M] [-c]
+</pre>
+
+file: bravais_TYP containing the space group R or the finite unimodular
+      group G.
+
+<h3>Description</h3>
+The program is used to give crystallographic groups a name, i.e.
+compute a string which is depends only on the crystallographic
+class of the group R/G, and determines it uniquely.<br>
+CAUTION: the program assumes the translation lattice to be Z^n.
+If called with -Z, the program assumes file to contain a finite unimodular
+group G, and will output a name for the arithmetic class of G.
+Otherwise, it will assume file to contain generators for the space group
+R, and will output a name for the affine class of R.<br>
+Note that the first part of the name for a space group R is exactly the
+name for the arithmetic class of the point group G of R.
+
+
+
+<h3>Options</h3>
+<pre>
+-h    : gives this help.
+-T    : output a matrix transforming the given group R/G into CARAT's
+        representative.
+-o    : output CARAT's representative for this affine/arithmetic class.
+-Z    : assume file to contain a finite unimodular group, more details
+        see above.
+-M    : give short Hermann-Mauguin symbols to describe a group
+        isomorphic to the given only (has an effect only if the
+        degree of R is two or three)
+-c    : gives the CARAT name as
+        "Q-class-name"-"Z-class-name"(-"name for the affine class")
+</pre>
+
+<h3>Remarks</h3>
+See also for <a href="./Bravais_type.html">Bravais_type</a>/<a
+href="./Symbol.html">Symbol</a>, <a href="./Extensions.html">Extensions</a>/<a
+href="./Vector_system.html">Vector_system</a>, <a href="./Q_catalog.html">Q_catalog</a>, <a
+href="./QtoZ.html">QtoZ</a>.
+
+<h3>Examples</h3>
+<ol>
+<li> <a href="../examples/Ex5.html">Do given matrices generate a space group? If so, find its name and normal
+representation.</a>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./K_Supergroups.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Normalizer.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

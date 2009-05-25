@@ -1,0 +1,150 @@
+<html>
+
+<head>
+
+<title>CARAT Introduction / Examples / Find the dual pairs of Bravais groups in family 1;1;1;1</title>
+<META NAME="author" CONTENT="Oliver Heidb&uuml;chel">
+<META NAME="publisher" CONTENT="Lehrstuhl B f&uuml;r Mathematik, RWTH Aachen, Germany">
+<META NAME="copyright" CONTENT="Lehrstuhl B f&uuml;r Mathematik, RWTH Aachen, Germany">
+<META NAME="keywords" CONTENT="CARAT, crystallography, bravaisgroup, bravaisgroups, bravais groups,
+bravais group, mathematics, algorithms, tables, algorithm, table, examples,
+example, Bravais_catalog, Datei, Bravais_inclusions, Bravais_type, Symbol, Tr_bravais,
+dual, dual pair, family">
+
+<META NAME="description" CONTENT="CARAT Introduction: Example 6 - Find the dual pairs of Bravais
+groups in family 1;1;1;1">
+<META NAME="robots" CONTENT="follow">
+
+
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Ex5.html">Previous Example</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Ex7.html">Next Example</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h3>Example 6</h3>
+
+Find the dual pairs of Bravais groups in family 1;1;1;1
+
+
+<h3>Used Programs</h3>
+
+<a href="../progs/Bravais_catalog.html">Bravais_catalog</a>/<a
+href="../progs/Datei.html">Datei</a>, <a
+href="../progs/Bravais_inclusions.html">Bravais_inclusions</a>, <a
+href="../progs/Bravais_type.html">Bravais_type</a>/ <a
+href="../progs/Symbol.html">Symobl</a> -i,
+<a href="../progs/Tr_bravais.html">Tr_bravais</a>
+
+<h3>Solution</h3>
+
+
+<ol>
+   <li>
+      Call
+      <pre>
+         Bravais_catalog
+      </pre>
+      and input 1;1;1;1 as family symbol.<br>
+      It turns out that there are
+      nine Z-classes of Bravais groups in the family only one of which
+      is homogeneously decomposable. Though we might not need all of
+      these groups explicitly, we write all of them in the file '<a href="./Ex6_b">b</a>'.
+      Split 'b' up into nine files '<a href="./Ex6_b1">b1</a>', '<a href="./Ex6_b2">b2</a>', '<a
+      href="./Ex6_b3">b3</a>', '<a href="./Ex6_b4">b4</a>', '<a href="./Ex6_b5">b5</a>', '<a
+      href="./Ex6_b6">b6</a>', '<a href="./Ex6_b7">b7</a>', '<a href="./Ex6_b8">b8</a>' and '<a
+      href="./Ex6_b9">b9</a>', so that 'bi' contains 1;1;1;1_1_i .
+   </li>
+
+   <li>
+      Call
+      <pre>
+         Bravais_catalog
+      </pre>
+      and input 4-1 as family symbol. Write all Bravais groups in this
+      family to a file '<a href="./Ex6_B">B</a>'. There are two groups in file 'B' now. We
+      want the Bravais group of the form represented by the unit
+      matrix, which is the first group. The idea is that any of the
+      subgroups of this group is Z-equivalent (actually equal) to its
+      transposed.
+   </li>
+
+   <li>
+      Call
+      <pre>
+         Bravais_inclusions B > Bin
+         grep 1\;1\;1\;1 Bin
+      </pre>
+      We get the file '<a href="./Ex6_Bin">Bin</a>' and the output
+      <pre>
+         Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 2
+         Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 1
+         Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 5
+         Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 9
+      </pre>
+      We find that the groups 1;1;1;1_1_i with i = 1, 2, 5, or 9 contain
+      the unit matrix in their form space (at least up to
+      Z-equivalence).<br>
+      Hence these groups are Z-equivalent to their
+      transposed groups. Note that an odd number of groups still have
+      to be paired. Hence one group must be Z-equivalent to itself,
+      without fixing a form Z-equivalent to the identity form.
+   </li>
+
+   <li>
+      Call
+      <pre>
+         Tr_bravais b3 > b3t
+         Bravais_type b3t > b3type
+      </pre>
+      to find that 1;1;1;1_1_3 and 1;1;1;1_1_6 are paired. Similarly
+      one finds that 1;1;1;1_1_4 and 1;1;1;1_1_8 are paired and that
+      1;1;1;1_1_7 is paired to itself (without fixing I_4).<br>
+      Doing this we get the files <a href="./Ex6_b3t">b3t</a>, <a href="./Ex6_b3type">b3type</a>,
+      <a href="./Ex6_b4t">b4t</a>, and <a href="./Ex6_b4type">b4type</a>.
+   </li>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Ex5.html">Previous Example</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Ex7.html">Next Example</a></td>
+</tr>
+</table>
+<font size=1>last change: 11.09.2000</font>
+</center>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

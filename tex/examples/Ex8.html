@@ -1,0 +1,114 @@
+<html>
+
+<head>
+<META NAME="author" CONTENT="Oliver Heidb&uuml;chel">
+<META NAME="publisher" CONTENT="Lehrstuhl B f&uuml;r Mathematik, RWTH Aachen, Germany">
+<META NAME="copyright" CONTENT="Lehrstuhl B f&uuml;r Mathematik, RWTH Aachen, Germany">
+<META NAME="keywords" CONTENT="CARAT, crystallography, bravaisgroup, bravaisgroups, bravais groups,
+bravais group, mathematics, algorithms, tables, algorithm, table, examples,
+example, Aut_grp, Bravais_inclusions, permutation matrices, permutation matrix, matrix,
+permutation, permutations">
+
+<META NAME="description" CONTENT="CARAT Introduction: Example 8 - Find all Bravaisgroups of degree 6
+consisting of permutation matrices and their negatives only.">
+<META NAME="robots" CONTENT="follow">
+
+
+<title>CARAT Introduction / Examples / Find all Bravaisgroups of degree 6 consisting of permutation
+matrices and their negatives only.</title>
+
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Ex7.html">Previous Example</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Ex9.html">Next Example</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h3>Example 8</h3>
+Find all Bravaisgroups of degree 6 consisting of permutation matrices and their negatives only.
+
+
+<h3>Used Programs</h3>
+<a href="../progs/Aut_grp.html">Aut_grp</a>,
+<a href="../progs/Bravais_inclusions.html">Bravais_inclusions</a>
+
+
+
+<h3>Solution</h3>
+
+<ol>
+   <li>
+      Prepare the following file '<a href="./Ex8_f">f</a>' containing a basis of the space
+      of invariant forms of the Bravais group B of all permutation matrices and their negatives.
+      <pre>
+      #2
+      6 d0
+      1
+      6x0
+      1
+      1 1
+      1 1 1
+      1 1 1 1
+      1 1 1 1 1
+      1 1 1 1 1 1
+      </pre>
+   </li>
+
+   <li>
+      Call
+      <pre>
+         Aut_grp f > gf
+      </pre>
+      to get all the relevant data of the Bravais group B on file '<a href="./Ex8_gf">gf</a>'.
+   </li>
+
+   <li>
+      Call
+      <pre>
+         Bravais_inclusions gf > gfi
+      </pre>
+      to get all the Bravais subgroups of B on the file '<a href="./Ex8_gfi">gfi</a>', more
+      precisely a list of the representatives of their conjugacy
+      classes under the normalizer of B in GL<sub>n</sub>(Z), which is B itself.<br>
+      (Note, the above command only lists names. If one wants the actual groups, one has to call
+      "Bravais_inclusions" with the option -G . This takes much longer.)
+   </li>
+
+   <li>
+      Call
+      <pre>
+         grep Symbol gfi | wc
+      </pre>
+      to count 27 subgroups.
+   </li>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Ex7.html">Previous Example</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Ex9.html">Next Example</a></td>
+</tr>
+</table>
+<font size=1>last change: 11.09.2000</font>
+</center>
+
+
+</body>
+
+</html>

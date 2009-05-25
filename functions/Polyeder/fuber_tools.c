@@ -35,8 +35,8 @@ int dim;
   erg->gl = (int *)malloc(dim *sizeof(int));
   erg->norm = 0;
   erg->dim = dim;
-  erg->product = 0;
-  erg->nproduct = NULL;
+  erg->product = NULL;
+  erg->nproduct = 0;
   erg->mat = NULL;
   return(erg);
 }

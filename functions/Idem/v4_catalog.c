@@ -413,13 +413,13 @@ bravais_TYP *catalog_number_v4(bravais_TYP *G,char *symb,
          for (i=0;i<H->cen_no;i++) free_mat(H->cen[i]);
          free(H->cen);
          H->cen = NULL;
-         H->cen_no = NULL;
+         H->cen_no = 0;
       }
       if (H->normal_no >0){
          for (i=0;i<H->normal_no;i++) free_mat(H->normal[i]);
          free(H->normal);
          H->normal = NULL;
-         H->normal_no = NULL;
+         H->normal_no = 0;
       }
 
       /* normalize g */

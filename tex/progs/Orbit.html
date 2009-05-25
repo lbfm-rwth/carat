@@ -1,0 +1,93 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / Orbit</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Normalizer.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Order.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program Orbit</h2>
+
+<h3>Usage</h3>
+
+<pre>
+Orbit 'file1' 'file2' [-i] [-r] [-l] [-k] [-t] [-L=n] [-S=n] [-p] [-u] [-g] [-R]
+</pre>
+
+file1:  matrix_TYP, contains a matrix X whose orbit is to be calculated<br>
+file2:  bravais_TYP, contains generators of a group G
+
+<h3>Description</h3>
+Calulates the orbit of the matrix X in file1 under the group G in file2,
+where the action is specified by the options. Default option is action by
+left multiplication.
+
+
+<h3>Options</h3>
+<pre>
+-i     : Use the generators given in file2 and their
+         inverses to calculate the orbit.
+-r     : Operate from the right.
+-l     : Operate from the left (default).
+-k     : Operate via conjugation, ie.  x -> g x g^-1
+-L=n   : Calculate at most n elements of the orbit.
+         0 means infinity.
+-S=n   : If given as -S or -S=0 a generating set for
+         the stabilizer is calculated. If given as
+         -S=n at most n matrices of the stabilizer
+         are calculated.
+         S=-1 means ONLY the stabilizer is calculated.
+-p     : Operate on pairs of the form {M,-M}.
+-u     : Operate on the set of rows of the matrix given
+         in file1.
+-f     : Operates on quadratic forms via x -> g^-tr x g^-1
+-g     : Operate on sublattices of Z^n spanned by the columns
+         (rows) of the matrices gX (Xg) with g in G. Brakets
+         apply if given with the -r option.
+-R     : Give representatives of the G-orbits at the end of
+         the output.
+</pre>
+
+<h3>Remarks</h3>
+<p>
+WARNING: If the orbit is infinite use option -L!
+</p><p>
+See also for <a href="./Is_finite.html">Is_finite</a> and <a href="./Order.html">Order</a>.
+</p>
+
+<h3>Examples</h3>
+<ol>
+   <li> <a href="../examples/Ex10.html">Find the stabilizer of a sublattice in the Bravais
+   group of the unit form F=I<sub>6</sub>.</a>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Normalizer.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Order.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / Bravais_catalog</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Aut_grp.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Bravais_grp.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program Bravais_catalog</h2>
+
+<h3>Usage</h3>
+
+<pre>
+Bravais_catalog [file]
+</pre>
+
+file: (OPTIONAL) contains a set of commands for Bravais_catalog, which are otherwise
+      asked from stdin.
+
+
+<h3>Description</h3>
+
+<p>
+Accesses the catalog of bravais groups up to dimension 6.
+<p>
+The first input for the catalog is the family symbol, whose grammar is
+described in detail in the CARAT manual. It is build up from atomic symbols
+which are seperated by `,' or `;' to indicate diagonals and direct products.
+We just state the two important rules here:
+<pre>
+ LIST OF 'ATOMS':
+ dim1: 1
+ dim2: 2-1  2-1'  2-2  2-2'
+ dim3: 3
+ dim4: 4-1  4-1'  4-2  4-2'  4-3  4-3'
+ dim5: 5-1  5-2
+ dim6: 6-1  6-2  6-2'  6-3  6-3'  6-4  6-4'
+
+Meaning of `,':                        (X 0 0)
+ A,A,A stands for groups of the form   (0 X 0) with X in A
+                                       (0 0 X)
+Meaning of `;':
+ A;B stands for groups of the form (X 0)
+                                   (0 Y) with X in A and Y in B.
+NOTE: The primed atoms 2-1' and 2-2' only occur in multiples, seperated by `,'.
+Examples: 2-1,2-1;2-1     (degree 6)
+          1;1;1           (degree 3)
+          3,3             (degree 6)
+          4-1;1           (degree 5)
+</pre>
+
+<h3>Remarks</h3>
+<p>
+See also for <a href="./Bravais_type.html">Bravais_type</a> and <a href="./Symbol.html">Symbol</a>.
+<p>
+Bravais_catalog is a synonym for <a href="./Datei.html">Datei</a>!
+
+<h3>Examples</h3>
+<ol>
+<li><a href="../examples/Ex1.html">List all names of Bravais groups of degree 4.</a>
+<li> <a href="../examples/Ex2.html">How do the Z-classes in the Q-class of a given group distribute
+into their Bravais flocks?</a>
+<li> <a href="../examples/Ex3.html">Determine the maximal finite subgroups of GL<sub>5</sub>(Z).</a>
+<li> <a href="../examples/Ex6.html">Find the dual pairs of Bravais groups in family 1;1;1;1.</a>
+<li> <a href="../examples/Ex10.html">Find the stabilizer of a sublattice in the Bravais
+group of the unit form F=I<sub>6</sub>.</a>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Aut_grp.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Bravais_grp.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

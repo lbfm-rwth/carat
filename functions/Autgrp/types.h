@@ -113,7 +113,7 @@ static	int	red();
 static	void	check();
 static	void	decrease();
 static	void	interchange();
-static	int	round();
+static	int	iround();
 
 /* functions in mattools.c */
 static	void	vecmatmul();

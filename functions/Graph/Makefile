@@ -1,5 +1,5 @@
 CC = gcc
-TOPDIR = /usb/carat/
+#TOPDIR = /usb/carat/
 CFLAGS = -fwritable-strings -DDIAG1 -g
 
 INCL = $(TOPDIR)/include

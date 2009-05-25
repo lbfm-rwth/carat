@@ -1,0 +1,48 @@
+#g2 f1 n8 
+4	% generator
+ -1 0 0 0
+  0 1 0 0
+  0 0 1 0
+  0 0 0 1
+4	% generator
+ 0 0 0 1
+ 0 0 1 0
+ 1 0 0 0
+ 0 1 0 0
+4d0	% invariant form
+1
+4x0	% generator of normalizer
+ 0
+ 0 0
+ 0 1 0
+ 1 0 0 0
+4x0	% generator of normalizer
+ 1
+ 0 1
+ 0 0 0
+ 0 0 1 0
+4d0	% generator of normalizer
+1
+4x0	% generator of normalizer
+  0
+  0 0
+ -1 0 0
+  0 1 0 0
+4	% generator of normalizer
+ 0 0 -1 0
+ 0 0  0 1
+ 0 1  0 0
+ 1 0  0 0
+4x0	% generator of normalizer
+  0
+ -1 0
+  0 0  0
+  0 0 -1 0
+4d1	% generator of normalizer
+-1 -1 1 -1 
+4	% generator of normalizer
+  0 0 0 1
+  0 0 1 0
+ -1 0 0 0
+  0 1 0 0
+2^6   = 64 % order of the group

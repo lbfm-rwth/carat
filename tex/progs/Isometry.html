@@ -1,0 +1,85 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / Isometry</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Invar_space.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Long_solve.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program Isometry</h2>
+
+<h3>Usage</h3>
+
+<pre>
+Isometry 'file1' 'file2 [-d=n] [-s=n] [-b] [-b=n] [-B=n] [-g] [-v] [-p]
+</pre>
+
+file1: matrix_TYP containing a set of m NxN-matrices, the first of which,
+       must be symmetric and positive definite.<br>
+file2: matrix_TYP containing a set of m NxN-matrices, the first of which,
+       must be symmetric and positive definite.
+
+
+<h3>Description</h3>
+
+Computes a single g in GL<sub>n</sub>(Z) with the property g<sup>Tr</sup> *
+F<sub>i<sub>1</sub></sub> * g = F<sub>i<sub>2</sub></sub> for all F<sub>i<sub>1</sub></sub> in
+'file1' and F<sub>i<sub>2</sub></sub> in 'file2'.
+
+<h3>Options</h3>
+<pre>
+-d=n    : Depth up to which scalar products are calculated. The value
+          should be small.
+-s=n    : The n-point stabilizer with respect to different basis will be
+          calculated.
+-b=n    : Use Bacher polynomials up to deepth n.
+-B=n    : Use Bacher polynomials with vectors having scalar product n
+-v,-g   : Read additional data from 'file'. If -v is given the program
+          assumes that the short vectors of the first form in 'file'
+          are given below the forms.
+          If -g is given, the program assumes known generators for
+          the automorphism group to be given below any other information in
+          'file'.
+-p      : Write additional output to the file ISOM.tmp
+</pre>
+
+
+<h3>Remarks</h3>
+See also for <a href="./Aut_grp.html">Aut_grp</a>, <a href="./Short.html">Short</a> and <a
+href="./Shortest.html">Shortest</a>.
+
+<h3>Examples</h3>
+<ol>
+<li>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="./Invar_space.html">Previous Program</a></td>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Long_solve.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

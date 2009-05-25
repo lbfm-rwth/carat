@@ -9,7 +9,7 @@ extern int IDEM_NO;
 boolean GRAPH = FALSE;
 boolean GRAPH_DEBUG = FALSE;
 
-void main(int argc,char **argv){
+int main(int argc,char **argv){
 
   bravais_TYP *G,
              **Classes;

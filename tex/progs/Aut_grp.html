@@ -1,0 +1,86 @@
+<html>
+
+<head>
+<title>CARAT Introduction / Programs / Aut_grp</title>
+</head>
+
+<body>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Bravais_catalog.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+<hr width=80%>
+
+
+<h2>Program Aut_grp</h2>
+
+<h3>Usage</h3>
+
+<pre>
+Aut_grp 'file' [-d=n] [-s=n] [-b] [-b=n] [-B=n] [-v] [-g] [-p]
+</pre>
+
+file: matrix_TYP containing a set of integral NxN-matrices, the first
+      of which is symmetric and positive definite.
+
+<h3>Description</h3>
+<p>
+Computes a generating set for the (finite) group of all g in GL_N(Z) with
+g<sup>Tr</sup> * F * g = F for all F in file.
+<p>
+NOTE: if all F are symmetric, this is a Bravais group, otherwise a
+      generalised Bravais group (relevant for Bravais groups in families
+      like 2-1',2-1' etc.).
+
+<h3>Options</h3>
+<pre>
+-d=n    : Depth up to which scalar products are calculated. The value
+          should be small. Usefull if the automorphism group is expected
+          to be small.
+-s=n    : The n-point stabilizer with respect to different basis will be
+          calculated.
+-b=n    : Use Bacher polynomials up to deepth n.
+-B=n    : Use Bacher polynomials with vectors having scalar product n
+-v,-g   : Read additional data from 'file'. If -v is given the program
+          assumes that the short vectors of the first form in 'file'
+          are given below the forms.
+          If -g is given, the program assumes known generators for
+          the automorphism group to be given below any other information in
+          'file'.
+-p      : Write additional output to the file AUTO.tmp
+</pre>
+
+<h3>Remarks</h3>
+See also for <a href="./Short.html">Short</a> and <a href="./Shortest.html">Shortest</a>.
+
+
+<h3>Examples</h3>
+<ol>
+<li> <a href="../examples/Ex8.html">Find all Bravaisgroups of degree 6 consisting of permutation
+matrices and their negatives only.</a>
+<li> <a href="../examples/Ex10.html">Find the stabilizer of a sublattice in the Bravais
+group of the unit form F=I<sub>6</sub>.</a>
+</ol>
+
+
+
+<hr width=80%>
+
+<center>
+<table border=0 cellpadding=5>
+<tr align=center>
+<td><a href="../introduction.html">Introduction</a></td>
+<td><a href="./Bravais_catalog.html">Next Program</a></td>
+</tr>
+</table>
+</center>
+
+</body>
+
+</html>

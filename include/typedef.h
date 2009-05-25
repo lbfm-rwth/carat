@@ -8,6 +8,7 @@ extern "C" {
 
 /* enthaelt die globalen Variablen - und Typendeklarationen */
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <malloc.h>
 #include <memory.h>
