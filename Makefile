@@ -13,8 +13,7 @@
 # If you need additional include pathes, please add them
 # to the compiler, ie CC= gcc -I/YOUR_INCUDE_PATH
 #
-# If GMP is already installed on your system, then compilation time
-# can be shortened by removing "Gmp" from the target "ALL".
+# We assume that you have a GMP library installed on your machine.
 #
 # If you encounter any problems, please contact
 #    carat@momo.math.rwth-aachen.de
@@ -25,7 +24,7 @@
 # put the top level directory of the Installation here
 # ( try "pwd" if in doubt)
 #
-TOPDIR=/home/carat
+TOPDIR=
 
 #
 # normal installations on Linux should work with
@@ -88,7 +87,6 @@ ALL: Makefile\
      Voronoi\
      Zassen\
      ZZ\
-     Gmp\
      Executables
 
 Autgrp: Makefile functions/Autgrp/Makefile
@@ -121,9 +119,6 @@ Idem: Makefile functions/Idem/Makefile
 Links:
 	cd tables/symbol; make
 	cd lib ; rm -f libfunctions.a ; ln -f -s functions.a libfunctions.a
-	rm -f $(TOPDIR)/functions/Gmp/m_alloc.h
-	ln -f -s $(TOPDIR)/functions/Gmp/longlong.h $(TOPDIR)/include/longlong.h
-	ln -f -s $(TOPDIR)/functions/gmp-4.2.1 $(TOPDIR)/functions/Gmp
 
 Longtools: Makefile functions/Longtools/Makefile
 	cd functions/Longtools; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
@@ -173,11 +168,6 @@ Zassen: Makefile functions/Zassen/Makefile
 ZZ: Makefile functions/ZZ/Makefile
 	cd functions/ZZ; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
-Gmp:
-	cd functions ; tar xvzf gmp-4.2.1.tar.gz
-	cd functions/Gmp ; ./configure --prefix="$(TOPDIR)" ;\
-         make CFLAGS="$(CFLAGS)" CC="$(CC)" install 
-
 Executables: bin/Makefile
 	if $(RANLIB_TEST) ; then $(RANLIB) lib/functions.a; else true; fi
 	if $(RANLIB_TEST) ; then $(RANLIB) lib/libpresentation.a; else true; fi
@@ -211,7 +201,6 @@ clean:
 	cd functions/Zassen; make clean
 	cd functions/ZZ; make clean
 	rm -rf functions/gmp-4.2.1
-	rm -rf functions/Gmp
 	rm -f lib/libgmp.a
 	rm -f lib/*gmp*
 	rm -f lib/libm_alloc.a
