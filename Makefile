@@ -142,7 +142,7 @@ Presentation: Makefile functions/Presentation/Makefile
 	cd functions/Presentation; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
 Qcatalog: Makefile tables/qcatalog.tar.gz
-	cd tables; if [ !  -d qcatalog ] ; then gunzip -c qcatalog.tar.gz | tar xvf - ; fi
+	cd tables; if [ !  -d qcatalog ] ; then gunzip -c qcatalog.tar.gz | tar xf - ; fi
 
 Reduction: Makefile functions/Reduction/Makefile
 	cd functions/Reduction; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
