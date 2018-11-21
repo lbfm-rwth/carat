@@ -24,7 +24,7 @@
 # put the top level directory of the Installation here
 # ( try "pwd" if in doubt)
 #
-TOPDIR=
+TOPCARATDIR=
 
 #
 # normal installations on Linux should work with
