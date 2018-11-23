@@ -24,7 +24,7 @@
 # put the top level directory of the Installation here
 # ( try "pwd" if in doubt)
 #
-TOPCARATDIR=
+TOPDIR=/path/to/the/directory/containing/this/makefile
 
 #
 # normal installations on Linux should work with

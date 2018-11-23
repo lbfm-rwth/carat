@@ -2,12 +2,11 @@
 dist: xenial
 language: c
 
-# temporary measure until we will have a proper configure script
-
 compiler:
   - clang
   - gcc
 
+# temporary hack with sed until we will have a proper configure script
 script:
-  - sed -i 's|TOPCARATDIR=|TOPDIR=/home/travis/build/lbfm-rwth/carat|g' Makefile
+  - sed -i 's|TOPDIR=/path/to/the/directory/containing/this/makefile|TOPDIR=/home/travis/build/lbfm-rwth/carat|g' Makefile
   - make
