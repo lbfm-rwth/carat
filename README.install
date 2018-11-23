@@ -20,9 +20,8 @@ INSTALLATION:
 
 Just edit the Makefile in the directory you installed CARAT in, and
 change the variables 
-    TOPCARATDIR (which is the output of pwd when in the directory this makefile is stored in)
+     TOPDIR (which is the output of pwd when in the directory this makefile is stored in)
      CFLAGS
-     TOPDIR
 according to your needs. Some additional explanations/examples are given
 there.
 For Mac users only: You need to delete the line "#include <malloc.h>" from include/typedef.h. This will be fixed once there is 
