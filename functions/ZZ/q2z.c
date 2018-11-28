@@ -1052,7 +1052,7 @@ bravais_TYP **q2z(bravais_TYP *G,
    }
 
    if (!ADFLAG){
-      GROUPS = get_groups(ADGROUPS,ad_no,number);
+      GROUPS = get_groups(ADGROUPS,ad_no,&number);
    }
 
    /* clean up */
