@@ -19,7 +19,7 @@ int main(int argc,char **argv){
   int i,
       no,
       adnumber = 0,
-      second_number;
+      second_number = 0;
 
   char comment[1000],
        file[1000];
