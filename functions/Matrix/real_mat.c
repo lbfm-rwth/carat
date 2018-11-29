@@ -67,6 +67,9 @@ int **Z, **N;
     }
   
   }
+  mat->rows = rows;
+  mat->array.SZ = Z;
+  mat->array.N = N;
   if (mat->cols > cols ) {
     if( Z ) {
       for (i = 0; i < rows;i++) {
