@@ -11,7 +11,7 @@
 #include "ZZ_zclass_P.h"
 #include "ZZ_cen_fun_P.h"
 #include "graph.h"
-
+#include "datei.h"
 
 int IDEM_NO;
 extern int INFO_LEVEL;
@@ -615,8 +615,9 @@ bravais_TYP **q2z(bravais_TYP *G,
       for (i = 0;i<100 ; l = l && G->divisors[i] == 0, i++);
    if ((k && G->dim > 4) ||
       (k && l )){
-      GROUPS = (bravais_TYP **) malloc(1 * sizeof(bravais_TYP *));
+      GROUPS = (bravais_TYP **) malloc(2 * sizeof(bravais_TYP *));
       GROUPS[0] = copy_bravais(G);
+      GROUPS[1] = (bravais_TYP * ) 1;
       if (GROUPS[0]->normal && GROUPS[0]->normal_no > 0){
          for (k=0;k<GROUPS[0]->normal_no;k++) free_mat(GROUPS[0]->normal[i]);
          free(GROUPS[0]->normal);

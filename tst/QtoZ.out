@@ -1,0 +1,23 @@
+####### There are 1 classes of groups
+#g1 f3 n4 % 1-th homogenously dec. group, 1 zclass
+2	% generator
+ 1 0
+ 0 1
+2d1	% invariant form
+1 0 
+2x0	% invariant form
+ 0
+ 1 0
+2d1	% invariant form
+0 1 
+2d1	% generator of normalizer
+-1 1 
+2	% generator of normalizer
+ 1 1
+ 0 1
+2x0	% generator of normalizer
+ 0
+ 1 0
+2x0	% generator of normalizer
+ 0
+ 1 0
