@@ -3,7 +3,7 @@
 #include"bravais.h"
 #include"matrix.h"
 
-main (argc,argv)
+int main (argc,argv)
 int argc;
 char *argv[];
 {
@@ -108,5 +108,5 @@ char *argv[];
        free_mat(tmp);
      }
   }
-
+  return 0;
 }

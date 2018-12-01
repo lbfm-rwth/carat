@@ -1,18 +1,18 @@
-#include"typedef.h"
-#include"longtools.h"
-#include"getput.h"
-#include"bravais.h"
-#include"symm.h"
-#include"autgrp.h"
-#include"matrix.h"
-#include"voronoi.h"
-#include"polyeder.h"
-
+#include "typedef.h"
+#include "longtools.h"
+#include "getput.h"
+#include "bravais.h"
+#include "symm.h"
+#include "autgrp.h"
+#include "matrix.h"
+#include "voronoi.h"
+#include "polyeder.h"
+#include "datei.h"
 
 int INFO_LEVEL;
 extern int SFLAG;
 
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
 
   bravais_TYP *G,

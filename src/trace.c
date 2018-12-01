@@ -1,9 +1,11 @@
-#include"typedef.h"
-#include"getput.h"
-#include"bravais.h"
-#include"matrix.h"
+#include "typedef.h"
+#include "getput.h"
+#include "bravais.h"
+#include "matrix.h"
+#include "datei.h"
+#include "tools.h"
 
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
   int anz,
       i,

@@ -21,7 +21,7 @@ extern int SFLAG;
 boolean GRAPH_DEBUG;
 
 
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
    matrix_TYP **presentation,
                *erg,

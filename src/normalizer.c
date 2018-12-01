@@ -1,14 +1,14 @@
-#include"typedef.h"
-#include"bravais.h"
-#include"base.h"
-#include"matrix.h"
-#include"getput.h"
-
+#include "typedef.h"
+#include "bravais.h"
+#include "base.h"
+#include "matrix.h"
+#include "getput.h"
+#include "datei.h"
 
 int INFO_LEVEL;
 extern int SFLAG;
 
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
    bravais_TYP *Gtr,
                *H;

@@ -2,7 +2,7 @@
 #include "matrix.h"
 #include "getput.h"
 #include "contrib.h"
-
+#include "datei.h"
 
 int INFO_LEVEL;
 extern int SFLAG;
