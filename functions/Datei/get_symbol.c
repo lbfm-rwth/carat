@@ -3,7 +3,9 @@
 #include "tools.h"
 #include "matrix.h"
 #include "getput.h"
-/**************************************************************************\
+#include "longtools.h"
+
+/************************************************************************** \
 @---------------------------------------------------------------------------
 @---------------------------------------------------------------------------
 @ FILE: get_symbol.c
@@ -155,7 +157,7 @@ if( (strlen(strin)) != 0 && strin != NULL)
     while(strin[0] == ' ')
        strin++;
     sscanf(strin, "%d", &j);
-    itoa(j, merk);
+    itoasc(j, merk);
     k = strlen(merk);
     strin = strin+k;
     while(strin[0] == ' ')
@@ -169,7 +171,7 @@ if( (strlen(strin)) != 0 && strin != NULL)
          strin++;
         sscanf(strin, "%d", &k);
         sy->grp->divisors[j] = k;
-        itoa(k, merk);
+        itoasc(k, merk);
         k = strlen(merk);
         strin = strin+k;
     }
