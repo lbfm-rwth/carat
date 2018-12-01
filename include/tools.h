@@ -27,9 +27,9 @@ extern int chin_remainder(int x1, int x2, int p1, int p2);
 extern int intpow(int a,int b);
 
 /*-------------------------------------------------------------*\
-| FILE: itoa.c 
+| FILE: itoasc.c 
 \*-------------------------------------------------------------*/
-extern void itoa(int n, char s[]);
+extern void itoasc(int n, char s[]);
 
 /*-------------------------------------------------------------*\
 | FILE: malloc2dim.c 
@@ -99,9 +99,9 @@ extern int chin_remainder();
 extern int intpow();
 
 /*-------------------------------------------------------------*\
-| FILE: itoa.c 
+| FILE: itoasc.c 
 \*-------------------------------------------------------------*/
-extern void itoa();
+extern void itoasc();
 
 /*-------------------------------------------------------------*\
 | FILE: malloc2dim.c 

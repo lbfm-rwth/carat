@@ -1,6 +1,7 @@
 #include "typedef.h"
 #include "getput.h"
 #include "matrix.h"
+#include "tools.h"
 
 /**************************************************************************\
 @---------------------------------------------------------------------------
@@ -172,7 +173,7 @@ if( strin != NULL && (strlen(strin)) != 1 )
     while(strin[0] == ' ')
        strin++;
     sscanf(strin, "%d", &j);
-    itoa(j, merk);
+    itoasc(j, merk);
     k = strlen(merk);
     strin = strin+k;
     while(strin[0] == ' ')
@@ -186,7 +187,7 @@ if( strin != NULL && (strlen(strin)) != 1 )
          strin++;
         sscanf(strin, "%d", &k);
         grp->divisors[j] = k;
-        itoa(k, merk);
+        itoasc(k, merk);
         k = strlen(merk);
         strin = strin+k;
     }

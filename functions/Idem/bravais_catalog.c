@@ -73,7 +73,7 @@ while( len > 0 )
        exit(3);
     }
     zerleg[konstit][0] = konst_dim;
-    itoa(konst_dim, konst[konstit]);
+    itoasc(konst_dim, konst[konstit]);
     k = strcspn(str, ";");
     if(k == i)
       zerleg[konstit][3] = 1;
@@ -86,7 +86,7 @@ while( len > 0 )
        len = len-j-1;
        sscanf(str, "%d", &index);
        zerleg[konstit][1] = index;
-       itoa(index, merk);
+       itoasc(index, merk);
        strcat(konst[konstit], merk);
        memset(merk,'\0',strlen(merk));
        if(l<i)
@@ -167,11 +167,11 @@ for(i=0; i<MAXDIM; i++)
 {
   if(zerleg[i][4] != 0)
   {
-    itoa(zerleg[i][0], konst[konstit]);
+    itoasc(zerleg[i][0], konst[konstit]);
     if(zerleg[i][1] != 0)
     {
        strcat(konst[konstit], "-");
-       itoa(zerleg[i][1], merk);
+       itoasc(zerleg[i][1], merk);
        strcat(konst[konstit], merk);
        memset(merk,'\0',strlen(merk));
        if(zerleg[i][2] != 0)
@@ -193,12 +193,12 @@ f = (char **) malloc(konstit *sizeof(char *));
 for(i=0; i<konstit; i++)
 {
    strcpy(f, dat);
-   itoa(zerleg[i][0], merk);
+   itoasc(zerleg[i][0], merk);
    strcat(f, merk);
    if(zerleg[i][1] != 0)
    {
      strcat(f, "-");
-     itoa(zerleg[i][1], merk);
+     itoasc(zerleg[i][1], merk);
      strcat(f, merk);
      memset(merk,'\0',strlen(merk));
    }
@@ -472,16 +472,16 @@ strcpy(fn, TABLEDIM);
 /*********************************
 strcpy(fn, TOPDIR "/lib/dim");
 *********************************/
-itoa(erg->grp->dim, merk);
+itoasc(erg->grp->dim, merk);
 strcat(fn, merk);
 strcat(fn, "/");
 for(i=0; i<konstit; i++)
 {
-  itoa(zerleg[i][0], merk);
+  itoasc(zerleg[i][0], merk);
   if(zerleg[i][1] != 0)
   {
     strcat(merk, "-");
-    itoa(zerleg[i][1], merk1);
+    itoasc(zerleg[i][1], merk1);
     strcat(merk, merk1);
   }
   if(zerleg[i][2] != 0)
