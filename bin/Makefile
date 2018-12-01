@@ -22,7 +22,7 @@ ALL: DIR
 
 PROGRAMS: Add Aut_grp Bravais_equiv\
           Bravais_grp Bravais_inclusions\
-          Con Conjugated Conj_bravais\
+          Conj Conjugated Conj_bravais\
           Conv Datei\
           Elt Extract Extensions\
           First_perfect Form_space Form_elt\
@@ -74,9 +74,9 @@ Bravais_inclusions:  $(SRC)/bravais_inclusions.c
 	$(COMP) -o Bravais_inclusions \
         $(SRC)/bravais_inclusions.c  $(LIB)
 
-Con:  $(SRC)/con.c
-	$(COMP) -o Con \
-        $(SRC)/con.c  $(LIB)
+Conj:  $(SRC)/conj.c
+	$(COMP) -o Conj \
+        $(SRC)/conj.c  $(LIB)
 
 Conjugated:  $(SRC)/conjugated.c
 	$(COMP) -o Conjugated \
