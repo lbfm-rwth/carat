@@ -11,7 +11,7 @@
 int INFO_LEVEL;
 extern int SFLAG;
 
-main(int argc,char **argv){
+int main(int argc,char **argv){
 
   bravais_TYP *G,
               *H;

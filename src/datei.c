@@ -4,7 +4,7 @@
 #include "getput.h"
 #include "matrix.h"
 
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 
 {
   char *filename;
@@ -16,7 +16,7 @@ main (int argc, char *argv[])
   matrix_TYP *X;
   int ad_no = 0;   /* number of homogenously decomposable groups in this family */
   FILE *outfile;
-  int i,j;
+  int i,j,c;
   
   extern bravais_TYP *Z_class();
   extern symbol_out *read_symbol();
@@ -112,12 +112,12 @@ main (int argc, char *argv[])
   
   printf("Do you want to calculate bravais-groups? (y or n): ");
   fn = (char *) malloc(80 *sizeof(char));
-  scanf( "%[ \t\n]", fn);
-  scanf( "%[^\n]", fn);
+  c=scanf( "%[ \t\n]", fn);
+  c=scanf( "%[^\n]", fn);
   while(strncmp(fn, "y", 1) != 0 && strncmp(fn, "n", 1) != 0)
   {
-    scanf( "%[ \t\n]", fn);
-    scanf( "%[^\n]", fn);
+    c=scanf( "%[ \t\n]", fn);
+    c=scanf( "%[^\n]", fn);
   }
   if(strncmp(fn, "n", 1) == 0)
     exit(3);
@@ -126,8 +126,8 @@ main (int argc, char *argv[])
     | read and open output-file                             |
     \*-----------------------------------------------------*/
   printf("Please input a filename (stdout = standard output): ");
-  scanf( "%[ \t\n]", fn);
-  scanf( "%[^\n]", fn);
+  c=scanf( "%[ \t\n]", fn);
+  c=scanf( "%[^\n]", fn);
   if(strncmp(fn, "stdout", 6) == 0)
   fn = NULL;
   if(fn == NULL)
@@ -136,12 +136,12 @@ main (int argc, char *argv[])
     outfile = fopen( fn, "w");
 
   printf("Which bravais-groups should be printed? (a(ll) or s(election): ");
-  scanf( "%[ \t\n]", string);
-  scanf( "%[^\n]", string);
+  c=scanf( "%[ \t\n]", string);
+  c=scanf( "%[^\n]", string);
   while(strncmp(string, "a", 1) != 0 && strncmp(string, "s", 1) != 0)
   {
-    scanf( "%[ \t\n]", string);
-    scanf( "%[^\n]", string);
+    c=scanf( "%[ \t\n]", string);
+    c=scanf( "%[^\n]", string);
   }
 
   if(strncmp(string, "a", 1) == 0)
@@ -166,7 +166,7 @@ main (int argc, char *argv[])
   while(strncmp(string, "y", 1) == 0)
   {
      printf("Please enter index i of homogeneously decomposable bravais-group, 1<= i<= %d: ", ad_no);
-     scanf("%d", &i);
+     c=scanf("%d", &i);
      i--;
      if(i<0 || i>= ad_no)
         printf("There is no homogenously decomposable bravais-group of this index\n");
@@ -174,7 +174,7 @@ main (int argc, char *argv[])
      {
        printf("Please enter index j of bravais-group belonging to this homogenously decomposable\n");
        printf("1 <= j =< %d: ", (B[i]->grp->zentr_no+1));
-       scanf("%d", &j);
+       c=scanf("%d", &j);
        j--;
        if(j== 0)
         fput_bravais(outfile, B[i]->grp, "homogeneously decomposable bravais-group");
@@ -193,20 +193,20 @@ main (int argc, char *argv[])
        }
      }
      printf("Do you want further bravais-groups? (y or n): ");
-     scanf( "%[ \t\n]", string);
-     scanf( "%[^\n]", string);
+     c=scanf( "%[ \t\n]", string);
+     c=scanf( "%[^\n]", string);
      while(strncmp(string, "y", 1) != 0 && strncmp(string, "n", 1) != 0)
      {
-       scanf( "%[ \t\n]", string);
-       scanf( "%[^\n]", string);
+       c=scanf( "%[ \t\n]", string);
+       c=scanf( "%[^\n]", string);
      }
 
      /* inserted to enable multiple output files, tilman 05/06/97 */
      if (strncmp(string,"y",1) == 0){
         printf("If you want a different file, insert it: (no/filename)");
 	if (fn == NULL) fn = (char *) malloc(1024*sizeof(char));
-        scanf( "%[ \t\n]", fn);
-        scanf( "%[^\n]", fn);
+        c=scanf( "%[ \t\n]", fn);
+        c=scanf( "%[^\n]", fn);
         if (strcmp(fn,"no") != 0){
 	   fclose (outfile);
            outfile = fopen( fn, "w");

@@ -1,8 +1,9 @@
-#include"typedef.h"
-#include"tools.h"
-#include"matrix.h"
+#include "typedef.h"
+#include "tools.h"
+#include "matrix.h"
+#include "getput.h"
 
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
   matrix_TYP **A, **B, **X;
   int i, prime, anz;

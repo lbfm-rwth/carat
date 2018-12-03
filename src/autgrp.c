@@ -1,12 +1,14 @@
-#include"typedef.h"
-#include"autgrp.h"
-#include"getput.h"
-#include"symm.h"
+#include "typedef.h"
+#include "autgrp.h"
+#include "getput.h"
+#include "symm.h"
+#include "datei.h"
+#include "matrix.h"
 
 int SFLAG;
 int INFO_LEVEL;
 
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
 
 	matrix_TYP **F, **Erz, *SV;
@@ -166,4 +168,5 @@ main (int argc, char *argv[])
  if (is_option('h') && optionnumber('h')==12){
     pointer_statistics(0,0);
  } 
+ return 0;
 }

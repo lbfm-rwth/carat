@@ -2,7 +2,7 @@
 #include <getput.h>
 #include <matrix.h>
 #include <base.h>
-
+#include <datei.h>
 #include <longtools.h>
 #include <bravais.h>
 #include <idem.h>
@@ -11,7 +11,7 @@ int INFO_LEVEL;
 extern int SFLAG;
 
 
-main(int argc,char **argv){
+int main(int argc,char **argv){
 
   bravais_TYP *G;
 

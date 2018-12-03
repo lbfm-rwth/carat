@@ -1,13 +1,14 @@
-#include<typedef.h>
-#include<getput.h>
-#include<matrix.h>
-#include<longtools.h>
-#include<tools.h>
-#include<zass.h>
+#include <typedef.h>
+#include <getput.h>
+#include <matrix.h>
+#include <longtools.h>
+#include <tools.h>
+#include <zass.h>
+#include <datei.h>
 
 int SFLAG;
 
-main(int argc,char *argv[]){
+int main(int argc,char *argv[]){
 
   matrix_TYP **matinv,
               *relator_input,
@@ -87,7 +88,7 @@ main(int argc,char *argv[]){
 
   out = cohomology(&dim,G->gen,matinv,relator,anz_erzeuger,relator_input->rows);
 
-  if (dim>0) printf("DIM = %d\n", dim);
+  if (dim>0) printf("DIM = %ld\n", dim);
 
   if (is_option('t') ||
       is_option('d')){

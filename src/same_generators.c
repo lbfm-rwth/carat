@@ -3,11 +3,14 @@
 #include <gmp.h>
 #include <zass.h>
 #include <matrix.h>
+#include <tools.h>
+#include <bravais.h>
+#include <datei.h>
 
 int INFO_LEVEL;
 extern int SFLAG;
 
-main(int argc,char **argv){
+int main(int argc,char **argv){
 
 
   int i,
