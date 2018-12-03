@@ -1,14 +1,14 @@
-#include"typedef.h"
-#include"matrix.h"
-#include"bravais.h"
-#include"orbit.h"
-#include"getput.h"
-#include"sort.h"
-
+#include "typedef.h"
+#include "matrix.h"
+#include "bravais.h"
+#include "orbit.h"
+#include "getput.h"
+#include "sort.h"
+#include "datei.h"
 int SFLAG;
 int INFO_LEVEL;
 
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
 
 	matrix_TYP **M,

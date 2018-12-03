@@ -1,9 +1,9 @@
 #include "typedef.h"
 #include "matrix.h"
+#include "getput.h"
 
 
-
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
 
 	matrix_TYP **F1, **F2, **Erz, *SV1, *SV2, *Iso, *tmp;

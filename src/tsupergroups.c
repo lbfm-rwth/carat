@@ -7,7 +7,7 @@
 #include <base.h>
 #include <graph.h>
 #include <bravais.h>
-
+#include <datei.h>
 
 int INFO_LEVEL;
 extern int SFLAG;
@@ -16,7 +16,7 @@ boolean GRAPH_DEBUG;
 
 
 
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
    bravais_TYP *R;
 

@@ -7,7 +7,7 @@
 
 
 
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
   matrix_TYP **M, *Trf, *E;
   int Manz, i;

@@ -1,7 +1,8 @@
-#include"typedef.h"
+#include "typedef.h"
+#include "getput.h"
+#include "bravais.h"
 
-
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
 
 	matrix_TYP **Mat;

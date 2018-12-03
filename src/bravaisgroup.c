@@ -1,13 +1,13 @@
-#include"typedef.h"
-#include"getput.h"
-#include"bravais.h"
-#include"symm.h"
-
+#include "typedef.h"
+#include "getput.h"
+#include "bravais.h"
+#include "symm.h"
+#include "datei.h"
 
 int INFO_LEVEL;
 extern int SFLAG;
 
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
 
   bravais_TYP *G,

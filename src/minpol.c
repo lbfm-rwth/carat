@@ -10,7 +10,7 @@
 int INFO_LEVEL;
 extern int SFLAG;
 
-main(int argc,char **argv){
+int main(int argc,char **argv){
 
   matrix_TYP **x,
               *y,

@@ -2,7 +2,7 @@
 #include <getput.h>
 #include <matrix.h>
 #include <base.h>
-
+#include <datei.h>
 
 int INFO_LEVEL;
 extern int SFLAG;
@@ -11,7 +11,7 @@ matrix_TYP *conjugated(bravais_TYP *G,bravais_TYP *H,
                        matrix_TYP **N,int Nanz,bahn **strong);
 
 
-main(int argc,char **argv){
+int main(int argc,char **argv){
 
   bravais_TYP *G,
               *H,

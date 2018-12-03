@@ -1,13 +1,13 @@
-#include"typedef.h"
-#include"getput.h"
-#include"longtools.h"
-
+#include "typedef.h"
+#include "getput.h"
+#include "longtools.h"
+#include "matrix.h"
 
 int INFO_LEVEL;
 int SFLAG;
 
 
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
 
 	matrix_TYP **A, **B, **X;

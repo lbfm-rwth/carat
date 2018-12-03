@@ -1,4 +1,7 @@
-#include"typedef.h"
+#include "typedef.h"
+#include "matrix.h"
+#include "datei.h"
+#include "getput.h"
 
 int INFO_LEVEL;
 
