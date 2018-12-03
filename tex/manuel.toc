@@ -1,9 +1,0 @@
-\contentsline {section}{\numberline {\uppercase {i}}Introduction to CARAT}{2}
-\contentsline {section}{\numberline {\uppercase {ii}}The structure of relevant files}{3}
-\contentsline {subsection}{\numberline {\uppercase {ii}.1}Format of a single matrix in CARAT}{3}
-\contentsline {subsection}{\numberline {\uppercase {ii}.2}\rm matrix\_TYP}{4}
-\contentsline {subsection}{\numberline {\uppercase {ii}.3}\rm bravais\_TYP}{4}
-\contentsline {subsection}{\numberline {\uppercase {ii}.4}A format for finitely presented Groups}{5}
-\contentsline {section}{\numberline {\uppercase {iii}}CARAT programmers guide}{6}
-\contentsline {section}{\numberline {\uppercase {iv}}Standalones}{7}
-\contentsline {subsection}{\numberline {\uppercase {iv}.1}Bravais\_inclusions}{7}
