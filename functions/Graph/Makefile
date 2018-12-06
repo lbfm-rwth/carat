@@ -4,7 +4,7 @@ CFLAGS = -fwritable-strings -DDIAG1 -g
 
 INCL = $(TOPDIR)/include
 
-AR = ar rvuc $(TOPDIR)/lib/functions.a
+AR = ar rDc $(TOPDIR)/lib/functions.a
 
 COMP = $(CC) $(CFLAGS) -c -I$(INCL)
 
