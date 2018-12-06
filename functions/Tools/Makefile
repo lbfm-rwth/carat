@@ -2,7 +2,7 @@
 OBJFLAGS = -c
 INCL = $(TOPDIR)/include
 
-AR = ar rvuc $(TOPDIR)/lib/functions.a
+AR = ar rDc $(TOPDIR)/lib/functions.a
 
 COMP = $(CC) $(CFLAGS) $(OBJFLAGS) -I$(INCL)
 

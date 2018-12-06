@@ -4,7 +4,7 @@ CC = gcc
 
 INCL = $(TOPDIR)/include
 
-AR = ar rvuc $(TOPDIR)/lib/functions.a
+AR = ar rDc $(TOPDIR)/lib/functions.a
 
 COMP = $(CC) $(CFLAGS) -c -I$(INCL)
 

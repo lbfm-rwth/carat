@@ -5,7 +5,7 @@ CC = gcc
 OBJFLAGS = -c
 INCL = $(TOPDIR)/include
 
-AR = ar rvuc $(TOPDIR)/lib/libm_alloc.a
+AR = ar rDc $(TOPDIR)/lib/libm_alloc.a
 
 COMP = $(CC) $(CFLAGS) $(OBJFLAGS) -I$(INCL)
 
