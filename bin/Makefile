@@ -8,9 +8,7 @@ SRC = $(TOPDIR)/src
 INCL = $(TOPDIR)/include
 OBJ = $(TOPDIR)/obj
 
-GLOBAL = -DTOPDIR=\"$(TOPDIR)\" -DTABLES=\"$(TOPDIR)/tables/\" \
-         -DATOMS=\"$(TOPDIR)/tables/atoms/\" \
-         -DTABLEDIM=\"$(TOPDIR)/tables/dim\"
+GLOBAL = -DTOPDIR=\"$(TOPDIR)\"
 
 COMP = $(CC) $(CFLAGS) $(GLOBAL) -I$(INCL)
 

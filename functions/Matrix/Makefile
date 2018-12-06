@@ -7,11 +7,7 @@ INCL = $(TOPDIR)/include
 
 AR = ar rvuc $(TOPDIR)/lib/functions.a
 
-GLOBAL = -DTOPDIR=\"$(TOPDIR)\" -DTABLES=\"$(TOPDIR)/tables/\" \
-         -DATOMS=\"$(TOPDIR)/tables/atoms/\" \
-         -DTABLEDIM=\"$(TOPDIR)/tables/dim\"
-
-COMP = $(CC) $(CFLAGS) $(OBJFLAGS) $(GLOBAL) -I$(INCL)
+COMP = $(CC) $(CFLAGS) $(OBJFLAGS) -I$(INCL)
 
 OBJS = add_mat.o\
        col_row_ops_mat.o\
