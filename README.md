@@ -23,7 +23,7 @@ NOTE: CARAT was developed for crystallographic groups in dimensions up to 6.
 
 INSTALLATION:
 
-Just edit the Makefile in the directory you installed CARAT in, and
+Edit the Makefile in the directory you installed CARAT in, and
 change the variables
  
      TOPDIR (which is the output of pwd when in the directory this makefile is stored in)
@@ -39,7 +39,7 @@ For Mac users only: You need to delete the line
 from `include/typedef.h`. This will be fixed once there is 
 a `configure` script.
 
-Afterwards just do
+Afterwards do
 
     make
 
