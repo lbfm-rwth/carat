@@ -120,7 +120,7 @@ int main (int argc, char *argv[])
     c=scanf( "%[^\n]", fn);
   }
   if(strncmp(fn, "n", 1) == 0)
-    exit(3);
+    exit(0);
 
     /*-----------------------------------------------------*\
     | read and open output-file                             |
@@ -159,7 +159,7 @@ int main (int argc, char *argv[])
         free_bravais(S);
      }
   }
-  exit(3);
+  exit(0);
   }
 
   strncpy(string, "y", 1);
