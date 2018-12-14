@@ -92,7 +92,8 @@ int main (int argc, char *argv[])
         option = make_orbit_options();
         Stab = (bravais_TYP *)malloc(sizeof(bravais_TYP));
         Stab->gen_no = Stab->form_no = Stab->zentr_no = 0;
-        Stab->normal_no = Stab->cen_no = 0;
+        Stab->order = Stab->normal_no = Stab->cen_no = 0;
+        Stab->divisors[0]=1;
         UNITY = init_bravais(G->dim);
         UNITY->gen = (matrix_TYP **) malloc(1 * sizeof(matrix_TYP *));
 	UNITY->gen[0] = init_mat(G->dim,G->dim,"1");
