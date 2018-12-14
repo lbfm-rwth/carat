@@ -1,0 +1,991 @@
+Please input the symbol for the crystal-family: 1;1;1;1
+The crystal-family 1;1;1;1 contains 1 homogeneously decomposable bravais-groups with
+ 9
+ Z-classes of Bravais groups.
+Do you want to calculate bravais-groups? (y or n): Please input a filename (stdout = standard output): Which bravais-groups should be printed? (a(ll) or s(election): #g4 f4 z8 n3 c4% homogenously decomposable bravais-group
+4	% generator
+ -1 0 0 0
+  0 1 0 0
+  0 0 1 0
+  0 0 0 1
+4	% generator
+ 1  0 0 0
+ 0 -1 0 0
+ 0  0 1 0
+ 0  0 0 1
+4	% generator
+ 1 0  0 0
+ 0 1  0 0
+ 0 0 -1 0
+ 0 0  0 1
+4	% generator
+ 1 0 0  0
+ 0 1 0  0
+ 0 0 1  0
+ 0 0 0 -1
+4d1	% invariant form
+1 0 0 0 
+4d1	% invariant form
+0 1 0 0 
+4d1	% invariant form
+0 0 1 0 
+4d1	% invariant form
+0 0 0 1 
+4	% zentr
+ 1  1 0 0
+ 1 -1 0 0
+ 0  0 1 0
+ 0  0 0 1
+4	% zentr
+ 1  1 0 0
+ 1 -1 1 0
+ 0  0 1 0
+ 0  0 0 1
+4	% zentr
+ 1  1 0 0
+ 1 -1 1 0
+ 0  0 1 1
+ 0  0 0 1
+4	% zentr
+ 1  1 0  0
+ 1 -1 0  0
+ 0  0 1  1
+ 0  0 1 -1
+4	% zentr
+ 1  1  1 0
+ 1  1 -1 0
+ 1 -1 -1 0
+ 0  0  0 1
+4	% zentr
+ 1  1 0  0
+ 1 -1 0  0
+ 1 -1 1  1
+ 0  0 1 -1
+4	% zentr
+ 1 0 0 0
+ 1 2 0 0
+ 1 0 2 0
+ 1 0 0 2
+4	% zentr
+ 1  1  1  1
+ 1 -1 -1  1
+ 1 -1  1 -1
+ 1  1 -1 -1
+4x0	% generator of normalizer
+ 0
+ 1 0
+ 0 0 1
+ 0 0 0 1
+4x0	% generator of normalizer
+ 1
+ 0 0
+ 0 1 0
+ 0 0 0 1
+4x0	% generator of normalizer
+ 1
+ 0 1
+ 0 0 0
+ 0 0 1 0
+4d1	% generator of centralizer
+-1 1 1 1 
+4d1	% generator of centralizer
+1 -1 1 1 
+4d1	% generator of centralizer
+1 1 -1 1 
+4d1	% generator of centralizer
+1 1 1 -1 
+2^4   = 16 % order of the group
+#g4 f4 n2 c4% not homogenously decomposable bravais-group
+4	% generator
+  0 -1 0 0
+ -1  0 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+ 0 1 0 0
+ 1 0 0 0
+ 0 0 1 0
+ 0 0 0 1
+4	% generator
+ 1 0  0 0
+ 0 1  0 0
+ 0 0 -1 0
+ 0 0  0 1
+4	% generator
+ 1 0 0  0
+ 0 1 0  0
+ 0 0 1  0
+ 0 0 0 -1
+4x0	% invariant form
+  0
+ -1 0
+  0 0 0
+  0 0 0 0
+4d1	% invariant form
+0 0 1 0 
+4d1	% invariant form
+0 0 0 1 
+4d1	% invariant form
+1 1 0 0 
+4d1	% generator of normalizer
+1 -1 1 1 
+4x0	% generator of normalizer
+ 1
+ 0 1
+ 0 0 0
+ 0 0 1 0
+4x0	% generator of centralizer
+  0
+ -1 0
+  0 0 1
+  0 0 0 1
+4x0	% generator of centralizer
+ 0
+ 1 0
+ 0 0 1
+ 0 0 0 1
+4d1	% generator of centralizer
+1 1 -1 1 
+4d1	% generator of centralizer
+1 1 1 -1 
+2^4   = 16 % order of the group
+#g4 f4 n2 c4% not homogenously decomposable bravais-group
+4	% generator
+  0 -1 0 0
+ -1  0 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+ 0 1 -1 0
+ 1 0  1 0
+ 0 0  1 0
+ 0 0  0 1
+4	% generator
+ 1 0  1 0
+ 0 1 -1 0
+ 0 0 -1 0
+ 0 0  0 1
+4	% generator
+ 1 0 0  0
+ 0 1 0  0
+ 0 0 1  0
+ 0 0 0 -1
+4d1	% invariant form
+0 0 1 0 
+4d1	% invariant form
+0 0 0 1 
+4x0	% invariant form
+ 1
+ 1 1
+ 0 0 0
+ 0 0 0 0
+4x0	% invariant form
+  1
+ -1  1
+  1 -1 0
+  0  0 0 0
+4	% generator of normalizer
+ 1  0 0 0
+ 0 -1 1 0
+ 0  0 1 0
+ 0  0 0 1
+4	% generator of normalizer
+ 0  1 0 0
+ 1  0 0 0
+ 1 -1 1 0
+ 0  0 0 1
+4x0	% generator of centralizer
+  0
+ -1 0
+  0 0 1
+  0 0 0 1
+4	% generator of centralizer
+ 0 1 -1 0
+ 1 0  1 0
+ 0 0  1 0
+ 0 0  0 1
+4	% generator of centralizer
+ 1 0  1 0
+ 0 1 -1 0
+ 0 0 -1 0
+ 0 0  0 1
+4d1	% generator of centralizer
+1 1 1 -1 
+2^4   = 16 % order of the group
+#g4 f4 n3 c4% not homogenously decomposable bravais-group
+4	% generator
+  0 -1 0 0
+ -1  0 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+ 0 1 -1 0
+ 1 0  1 0
+ 0 0  1 0
+ 0 0  0 1
+4	% generator
+ 1 0  1  1
+ 0 1 -1 -1
+ 0 0 -1 -2
+ 0 0  0  1
+4	% generator
+ 1 0 0 -1
+ 0 1 0  1
+ 0 0 1  2
+ 0 0 0 -1
+4d1	% invariant form
+0 0 0 1 
+4x0	% invariant form
+ 0
+ 0 0
+ 0 0 1
+ 0 0 1 0
+4x0	% invariant form
+ 1
+ 1 1
+ 0 0 0
+ 0 0 0 0
+4x0	% invariant form
+  1
+ -1  1
+  1 -1 1
+  0  0 0 0
+4	% generator of normalizer
+ 1  0 0 0
+ 0 -1 1 0
+ 0  0 1 0
+ 0  0 0 1
+4	% generator of normalizer
+ 0  1 0  1
+ 1  0 0 -1
+ 1 -1 1 -1
+ 0  0 0  1
+4	% generator of normalizer
+ 1 0  1 0
+ 0 1 -1 0
+ 0 0 -1 0
+ 0 0  1 1
+4x0	% generator of centralizer
+  0
+ -1 0
+  0 0 1
+  0 0 0 1
+4	% generator of centralizer
+ 0 1 -1 0
+ 1 0  1 0
+ 0 0  1 0
+ 0 0  0 1
+4	% generator of centralizer
+ 1 0  1  1
+ 0 1 -1 -1
+ 0 0 -1 -2
+ 0 0  0  1
+4	% generator of centralizer
+ 1 0 0 -1
+ 0 1 0  1
+ 0 0 1  2
+ 0 0 0 -1
+2^4   = 16 % order of the group
+#g4 f4 n3 c4% not homogenously decomposable bravais-group
+4	% generator
+  0 -1 0 0
+ -1  0 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+ 0 1 0 0
+ 1 0 0 0
+ 0 0 1 0
+ 0 0 0 1
+4	% generator
+ 1 0  0  0
+ 0 1  0  0
+ 0 0  0 -1
+ 0 0 -1  0
+4	% generator
+ 1 0 0 0
+ 0 1 0 0
+ 0 0 0 1
+ 0 0 1 0
+4x0	% invariant form
+  0
+ -1 0
+  0 0 0
+  0 0 0 0
+4x0	% invariant form
+ 0
+ 0 0
+ 0 0  0
+ 0 0 -1 0
+4d1	% invariant form
+0 0 1 1 
+4d1	% invariant form
+1 1 0 0 
+4x0	% generator of normalizer
+ 0
+ 0 0
+ 1 0 0
+ 0 1 0 0
+4d1	% generator of normalizer
+1 -1 1 1 
+4d1	% generator of normalizer
+1 1 1 -1 
+4x0	% generator of centralizer
+  0
+ -1 0
+  0 0 1
+  0 0 0 1
+4x0	% generator of centralizer
+ 0
+ 1 0
+ 0 0 1
+ 0 0 0 1
+4x0	% generator of centralizer
+ 1
+ 0 1
+ 0 0  0
+ 0 0 -1 0
+4x0	% generator of centralizer
+ 1
+ 0 1
+ 0 0 0
+ 0 0 1 0
+2^4   = 16 % order of the group
+#g4 f4 n2 c4% not homogenously decomposable bravais-group
+4	% generator
+  0 -1 -1 0
+  0  1  0 0
+ -1 -1  0 0
+  0  0  0 1
+4	% generator
+  1 0 0 0
+ -1 0 1 0
+  1 1 0 0
+  0 0 0 1
+4	% generator
+ 0 1  1 0
+ 1 0 -1 0
+ 0 0  1 0
+ 0 0  0 1
+4	% generator
+ 1 0 0  0
+ 0 1 0  0
+ 0 0 1  0
+ 0 0 0 -1
+4d1	% invariant form
+0 0 0 1 
+4x0	% invariant form
+  0
+  0  0
+ -1 -1 0
+  0  0 0 0
+4x0	% invariant form
+  0
+ -1 0
+ -1 0 0
+  0 0 0 0
+4x0	% invariant form
+ 1
+ 1 1
+ 0 0 1
+ 0 0 0 0
+4	% generator of normalizer
+ 1 0 -1 0
+ 0 1  1 0
+ 0 0 -1 0
+ 0 0  0 1
+4	% generator of normalizer
+ 1  1 0 0
+ 0 -1 0 0
+ 0  1 1 0
+ 0  0 0 1
+4	% generator of centralizer
+  0 -1 -1 0
+  0  1  0 0
+ -1 -1  0 0
+  0  0  0 1
+4	% generator of centralizer
+  1 0 0 0
+ -1 0 1 0
+  1 1 0 0
+  0 0 0 1
+4	% generator of centralizer
+ 0 1  1 0
+ 1 0 -1 0
+ 0 0  1 0
+ 0 0  0 1
+4d1	% generator of centralizer
+1 1 1 -1 
+2^4   = 16 % order of the group
+#g4 f4 n2 c4% not homogenously decomposable bravais-group
+4	% generator
+  0 -1 0 0
+ -1  0 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+ 0  1 0 0
+ 1  0 0 0
+ 1 -1 1 0
+ 1 -1 0 1
+4	% generator
+  1 0  0  0
+  0 1  0  0
+ -1 1  0 -1
+ -1 1 -1  0
+4	% generator
+ 1 0 0 0
+ 0 1 0 0
+ 0 0 0 1
+ 0 0 1 0
+4x0	% invariant form
+  0
+ -1 0
+  0 0 0
+  0 0 0 0
+4d1	% invariant form
+1 1 0 0 
+4x0	% invariant form
+ 0
+ 0 0
+ 0 0  1
+ 0 0 -1 1
+4x0	% invariant form
+ 0
+ 0  0
+ 1 -1 1
+ 1 -1 1 1
+4	% generator of normalizer
+ 1  0 0 0
+ 0 -1 0 0
+ 0 -1 1 0
+ 0 -1 0 1
+4	% generator of normalizer
+  1 0 0  0
+  0 1 0  0
+  0 0 1  0
+ -1 1 0 -1
+4x0	% generator of centralizer
+  0
+ -1 0
+  0 0 1
+  0 0 0 1
+4	% generator of centralizer
+ 0  1 0 0
+ 1  0 0 0
+ 1 -1 1 0
+ 1 -1 0 1
+4	% generator of centralizer
+  1 0  0  0
+  0 1  0  0
+ -1 1  0 -1
+ -1 1 -1  0
+4x0	% generator of centralizer
+ 1
+ 0 1
+ 0 0 0
+ 0 0 1 0
+2^4   = 16 % order of the group
+#g4 f4 n3 c4% not homogenously decomposable bravais-group
+4	% generator
+ -1 0 0 0
+  1 1 0 0
+  1 0 1 0
+  1 0 0 1
+4	% generator
+  1  0 0 0
+ -1 -1 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+  1 0  0 0
+  0 1  0 0
+ -1 0 -1 0
+  0 0  0 1
+4	% generator
+  1 0 0  0
+  0 1 0  0
+  0 0 1  0
+ -1 0 0 -1
+4d1	% invariant form
+1 0 0 0 
+4x0	% invariant form
+ 0
+ 1 2
+ 0 0 0
+ 0 0 0 0
+4x0	% invariant form
+ 0
+ 0 0
+ 1 0 2
+ 0 0 0 0
+4x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 1 0 0 2
+4	% generator of normalizer
+ 1  2 0 0
+ 0 -1 0 0
+ 0 -1 1 0
+ 0 -1 0 1
+4x0	% generator of normalizer
+ 1
+ 0 0
+ 0 1 0
+ 0 0 0 1
+4x0	% generator of normalizer
+ 1
+ 0 1
+ 0 0 0
+ 0 0 1 0
+4	% generator of centralizer
+ -1 0 0 0
+  1 1 0 0
+  1 0 1 0
+  1 0 0 1
+4	% generator of centralizer
+  1  0 0 0
+ -1 -1 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator of centralizer
+  1 0  0 0
+  0 1  0 0
+ -1 0 -1 0
+  0 0  0 1
+4	% generator of centralizer
+  1 0 0  0
+  0 1 0  0
+  0 0 1  0
+ -1 0 0 -1
+2^4   = 16 % order of the group
+#g3 f4 n3 c3% not homogenously decomposable bravais-group
+4	% generator
+  0  0  0 -1
+  0  0 -1  0
+  0 -1  0  0
+ -1  0  0  0
+4	% generator
+  0  0 -1  0
+  0  0  0 -1
+ -1  0  0  0
+  0 -1  0  0
+4	% generator
+  0 -1  0  0
+ -1  0  0  0
+  0  0  0 -1
+  0  0 -1  0
+4x0	% invariant form
+ 0
+ 1 0
+ 0 0 0
+ 0 0 1 0
+4x0	% invariant form
+  0
+  0  0
+ -1  0 0
+  0 -1 0 0
+4x0	% invariant form
+  0
+  0  0
+  0 -1 0
+ -1  0 0 0
+4d0	% invariant form
+1
+4x0	% generator of normalizer
+  0
+  0 1
+  0 0 1
+ -1 0 0 0
+4x0	% generator of normalizer
+ 1
+ 0 1
+ 0 0 0
+ 0 0 1 0
+4x0	% generator of normalizer
+ 1
+ 0 0
+ 0 1 0
+ 0 0 0 1
+4x0	% generator of centralizer
+  0
+  0  0
+  0 -1 0
+ -1  0 0 0
+4x0	% generator of centralizer
+  0
+  0  0
+ -1  0 0
+  0 -1 0 0
+4x0	% generator of centralizer
+  0
+ -1 0
+  0 0  0
+  0 0 -1 0
+2^3   = 8 % order of the group
+Please input the symbol for the crystal-family: 4-1
+The crystal-family 4-1 contains 2 homogeneously decomposable bravais-groups with
+ 1 resp.  1
+ Z-classes of Bravais groups.
+Do you want to calculate bravais-groups? (y or n): Please input a filename (stdout = standard output): Which bravais-groups should be printed? (a(ll) or s(election): #g3 f1 n1 c1% homogenously decomposable bravais-group
+4	% generator
+ -1 0 0 0
+  0 1 0 0
+  0 0 1 0
+  0 0 0 1
+4	% generator
+ 0 1 0 0
+ 1 0 0 0
+ 0 0 1 0
+ 0 0 0 1
+4	% generator
+ 1 0 0 0
+ 0 0 0 1
+ 0 1 0 0
+ 0 0 1 0
+4d0	% invariant form
+1
+4d0	% generator of normalizer
+1
+4d0	% generator of centralizer
+-1
+2^7  * 3^1   = 384 % order of the group
+#g3 f1 % homogenously decomposable bravais-group
+4	% generator
+  1  0  0  0
+ -1 -1 -1 -1
+  1  1  0  1
+  1  1  1  0
+4	% generator
+ 1  1  1 0
+ 0 -1 -2 0
+ 0  1  1 0
+ 0  1  1 1
+4	% generator
+ 1  1 0  1
+ 0 -1 0 -2
+ 0  1 1  1
+ 0  1 0  1
+4x0	% invariant form
+ 2
+ 1 2
+ 0 1 2
+ 0 1 0 2
+2^7  * 3^2   = 1152 % order of the group
+Bravais subgroups of the groups G in Ex6_B
+Symbol: 4-1  homogeneously d.: 1 zclass: 1
+Number of occurences in the group: 1
+Number of orbits under the normalizer: 1
+Symbol: 1,1,1,1  homogeneously d.: 1 zclass: 1
+Number of occurences in the group: 1
+Number of orbits under the normalizer: 1
+Symbol: 1,1,1;1  homogeneously d.: 1 zclass: 1
+Number of occurences in the group: 4
+Number of orbits under the normalizer: 1
+Symbol: 1,1,1;1  homogeneously d.: 1 zclass: 2
+Number of occurences in the group: 12
+Number of orbits under the normalizer: 1
+Symbol: 2-1;1;1  homogeneously d.: 1 zclass: 6
+Number of occurences in the group: 12
+Number of orbits under the normalizer: 1
+Symbol: 1,1;1,1  homogeneously d.: 1 zclass: 1
+Number of occurences in the group: 3
+Number of orbits under the normalizer: 1
+Symbol: 2-1;1,1  homogeneously d.: 1 zclass: 1
+Number of occurences in the group: 6
+Number of orbits under the normalizer: 1
+Symbol: 1,1;1,1  homogeneously d.: 1 zclass: 2
+Number of occurences in the group: 12
+Number of orbits under the normalizer: 1
+Symbol: 1,1;1,1  homogeneously d.: 1 zclass: 3
+Number of occurences in the group: 6
+Number of orbits under the normalizer: 1
+Symbol: 2-1;1;1  homogeneously d.: 1 zclass: 1
+Number of occurences in the group: 6
+Number of orbits under the normalizer: 1
+Symbol: 2-1;1;1  homogeneously d.: 1 zclass: 3
+Number of occurences in the group: 6
+Number of orbits under the normalizer: 1
+Symbol: 2-1',2-1'  homogeneously d.: 1 zclass: 1
+Number of occurences in the group: 6
+Number of orbits under the normalizer: 1
+Symbol: 2-2;1,1  homogeneously d.: 1 zclass: 2
+Number of occurences in the group: 16
+Number of orbits under the normalizer: 1
+Symbol: 1,1;1;1  homogeneously d.: 1 zclass: 1
+Number of occurences in the group: 6
+Number of orbits under the normalizer: 1
+Symbol: 2-2;1;1  homogeneously d.: 1 zclass: 3
+Number of occurences in the group: 16
+Number of orbits under the normalizer: 1
+Symbol: 1,1;1;1  homogeneously d.: 1 zclass: 2
+Number of occurences in the group: 24
+Number of orbits under the normalizer: 1
+Symbol: 1,1;1;1  homogeneously d.: 1 zclass: 5
+Number of occurences in the group: 12
+Number of orbits under the normalizer: 1
+Symbol: 1,1;1;1  homogeneously d.: 1 zclass: 3
+Number of occurences in the group: 6
+Number of orbits under the normalizer: 1
+Symbol: 2-1;2-1  homogeneously d.: 1 zclass: 3
+Number of occurences in the group: 6
+Number of orbits under the normalizer: 1
+Symbol: 3;1  homogeneously d.: 1 zclass: 3
+Number of occurences in the group: 8
+Number of orbits under the normalizer: 1
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 2
+Number of occurences in the group: 6
+Number of orbits under the normalizer: 1
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 1
+Number of occurences in the group: 1
+Number of orbits under the normalizer: 1
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 5
+Number of occurences in the group: 3
+Number of orbits under the normalizer: 1
+Symbol: 2-1;2-1  homogeneously d.: 1 zclass: 1
+Number of occurences in the group: 3
+Number of orbits under the normalizer: 1
+Symbol: 2-1,2-1  homogeneously d.: 1 zclass: 1
+Number of occurences in the group: 12
+Number of orbits under the normalizer: 1
+Symbol: 2-1,2-1  homogeneously d.: 2 zclass: 1
+Number of occurences in the group: 12
+Number of orbits under the normalizer: 1
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 9
+Number of occurences in the group: 2
+Number of orbits under the normalizer: 1
+Symbol: 2-1,2-1  homogeneously d.: 3 zclass: 1
+Number of occurences in the group: 6
+Number of orbits under the normalizer: 1
+Symbol: 3;1  homogeneously d.: 2 zclass: 1
+Number of occurences in the group: 4
+Number of orbits under the normalizer: 1
+Symbol: 4-1'  homogeneously d.: 1 zclass: 1
+Number of occurences in the group: 12
+Number of orbits under the normalizer: 1
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 2
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 1
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 5
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 9
+#g4 f4 n2 c4 
+4	% generator
+  0 -1 0 0
+ -1  0 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+  0 1 0 0
+  1 0 0 0
+ -1 1 1 0
+  0 0 0 1
+4	% generator
+ 1  0  0 0
+ 0  1  0 0
+ 1 -1 -1 0
+ 0  0  0 1
+4	% generator
+ 1 0 0  0
+ 0 1 0  0
+ 0 0 1  0
+ 0 0 0 -1
+4d1	% invariant form
+1 1 0 0 
+4x0	% invariant form
+ 0
+ 1 0
+ 0 0 0
+ 0 0 0 0
+4x0	% invariant form
+  0
+  0 0
+ -1 1 2
+  0 0 0 0
+4d1	% invariant form
+0 0 0 1 
+4	% generator of normalizer
+ 1  0 0 0
+ 0 -1 0 0
+ 0  1 1 0
+ 0  0 0 1
+4	% generator of normalizer
+ 0 1  1 0
+ 1 0 -1 0
+ 0 0  1 0
+ 0 0  0 1
+4x0	% generator of centralizer
+  0
+ -1 0
+  0 0 1
+  0 0 0 1
+4	% generator of centralizer
+  0 1 0 0
+  1 0 0 0
+ -1 1 1 0
+  0 0 0 1
+4	% generator of centralizer
+ 1  0  0 0
+ 0  1  0 0
+ 1 -1 -1 0
+ 0  0  0 1
+4d1	% generator of centralizer
+1 1 1 -1 
+2^4   = 16 % order of the group
+Symbol of the group: 1;1;1;1
+Position in the catalog:
+1-th homogenously decomposable bravais group, 6-th Z-class
+#g4 f4 
+4	% generator
+  0 -1 -1 0
+  0  1  0 0
+ -1 -1  0 0
+  0  0  0 1
+4	% generator
+  1 0 0 0
+ -1 0 1 0
+  1 1 0 0
+  0 0 0 1
+4	% generator
+ 0 1  1 0
+ 1 0 -1 0
+ 0 0  1 0
+ 0 0  0 1
+4	% generator
+ 1 0 0  0
+ 0 1 0  0
+ 0 0 1  0
+ 0 0 0 -1
+4d1	% invariant form
+0 0 0 1 
+4x0	% invariant form
+  0
+  0  0
+ -1 -1 0
+  0  0 0 0
+4x0	% invariant form
+  0
+ -1 0
+ -1 0 0
+  0 0 0 0
+4x0	% invariant form
+ 1
+ 1 1
+ 0 0 1
+ 0 0 0 0
+2^4   = 16 % order of the group
+#g4 f4 n3 c4 
+4	% generator
+  0 -1 0 0
+ -1  0 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+  0 1 0 0
+  1 0 0 0
+ -1 1 1 0
+  0 0 0 1
+4	% generator
+ 1  0  0 0
+ 0  1  0 0
+ 1 -1 -1 0
+ 1 -1 -2 1
+4	% generator
+  1 0 0  0
+  0 1 0  0
+  0 0 1  0
+ -1 1 2 -1
+4d1	% invariant form
+1 1 0 0 
+4x0	% invariant form
+ 0
+ 1 0
+ 0 0 0
+ 0 0 0 0
+4x0	% invariant form
+  0
+  0 0
+ -1 1 2
+  0 0 0 0
+4x0	% invariant form
+ 0
+ 0  0
+ 0  0  0
+ 1 -1 -2 2
+4	% generator of normalizer
+ 1  0 0 0
+ 0 -1 0 0
+ 0  1 1 0
+ 0  0 0 1
+4	% generator of normalizer
+ 0  1  1 0
+ 1  0 -1 0
+ 0  0  1 0
+ 1 -1 -1 1
+4	% generator of normalizer
+ 1  0  0 0
+ 0  1  0 0
+ 1 -1 -1 1
+ 0  0  0 1
+4x0	% generator of centralizer
+  0
+ -1 0
+  0 0 1
+  0 0 0 1
+4	% generator of centralizer
+  0 1 0 0
+  1 0 0 0
+ -1 1 1 0
+  0 0 0 1
+4	% generator of centralizer
+ 1  0  0 0
+ 0  1  0 0
+ 1 -1 -1 0
+ 1 -1 -2 1
+4	% generator of centralizer
+  1 0 0  0
+  0 1 0  0
+  0 0 1  0
+ -1 1 2 -1
+2^4   = 16 % order of the group
+Symbol of the group: 1;1;1;1
+Position in the catalog:
+1-th homogenously decomposable bravais group, 8-th Z-class
+#g4 f4 
+4	% generator
+ -1 0 0 0
+  1 1 0 0
+  1 0 1 0
+  1 0 0 1
+4	% generator
+  1  0 0 0
+ -1 -1 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+  1 0  0 0
+  0 1  0 0
+ -1 0 -1 0
+  0 0  0 1
+4	% generator
+  1 0 0  0
+  0 1 0  0
+  0 0 1  0
+ -1 0 0 -1
+4d1	% invariant form
+1 0 0 0 
+4x0	% invariant form
+ 0
+ 0 0
+ 1 0 2
+ 0 0 0 0
+4x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 1 0 0 2
+4x0	% invariant form
+ 0
+ 1 2
+ 0 0 0
+ 0 0 0 0
+2^4   = 16 % order of the group

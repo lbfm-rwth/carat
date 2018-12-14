@@ -1,0 +1,96 @@
+L1 with (0,0) yields L2
+
+Lengthes of the orbits:
+1 2 1 
+
+#g4 % 1-th maximal klassengleich subgroup of Ex14_R
+3	% generator
+ 0 1 0
+ 1 0 0
+ 0 0 1
+3	% generator
+ -1  0 0
+  0 -1 0
+  0  0 1
+3	% generator
+ 1 0 1
+ 0 1 1
+ 0 0 1
+3	% generator
+ 1 0 0
+ 0 1 2
+ 0 0 1
+% order of the group unknown
+#g4 % 2-th maximal klassengleich subgroup of Ex14_R
+3	% generator
+ 0 1 1
+ 1 0 0
+ 0 0 1
+3	% generator
+ -1  0 1
+  0 -1 0
+  0  0 1
+3	% generator
+ 1 0 1
+ 0 1 1
+ 0 0 1
+3	% generator
+ 1 0 0
+ 0 1 2
+ 0 0 1
+% order of the group unknown
+#g4 % 3-th maximal klassengleich subgroup of Ex14_R
+3	% generator
+ 0 1 1
+ 1 0 0
+ 0 0 1
+3	% generator
+ -1  0 2
+  0 -1 0
+  0  0 1
+3	% generator
+ 1 0 1
+ 0 1 1
+ 0 0 1
+3	% generator
+ 1 0 0
+ 0 1 2
+ 0 0 1
+% order of the group unknown
+L1 with (0,0) yields L2
+
+Lengthes of the orbits:
+1 
+
+#g4 
+3	% generator
+ 0 1 0
+ 1 0 0
+ 0 0 1
+3	% generator
+ -1  0 0
+  0 -1 0
+  0  0 1
+3	/2		% generator
+ 2 0 1
+ 0 2 1
+ 0 0 2
+3	% generator
+ 1 0 0
+ 0 1 1
+ 0 0 1
+% order of the group unknown
+father: level 1 number of orbits 1 lengths 1
+father: level 1 number of orbits 1 lengths 1
+#g1 % orbitlength: 2, pointgroup order: 2
+3	% generator
+ 0 1 0
+ 1 0 0
+ 0 0 1
+% order of the group unknown
+#g1 % orbitlength: 1, pointgroup order: 2
+3	% generator
+ -1  0 0
+  0 -1 0
+  0  0 1
+% order of the group unknown

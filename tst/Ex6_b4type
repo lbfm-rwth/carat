@@ -1,0 +1,42 @@
+Symbol of the group: 1;1;1;1
+Position in the catalog:
+1-th homogenously decomposable bravais group, 8-th Z-class
+#g4 f4 
+4	% generator
+ -1 0 0 0
+  1 1 0 0
+  1 0 1 0
+  1 0 0 1
+4	% generator
+  1  0 0 0
+ -1 -1 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+  1 0  0 0
+  0 1  0 0
+ -1 0 -1 0
+  0 0  0 1
+4	% generator
+  1 0 0  0
+  0 1 0  0
+  0 0 1  0
+ -1 0 0 -1
+4d1	% invariant form
+1 0 0 0 
+4x0	% invariant form
+ 0
+ 0 0
+ 1 0 2
+ 0 0 0 0
+4x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 1 0 0 2
+4x0	% invariant form
+ 0
+ 1 2
+ 0 0 0
+ 0 0 0 0
+2^4   = 16 % order of the group

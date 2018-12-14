@@ -1,0 +1,20 @@
+#g2 f1 % homogenously decomposable bravais-group
+5	% generator
+ -1  0 0  0  0
+  2  1 0  0  0
+ -2 -1 0  1 -1
+  1  1 1  0  1
+  1  1 0 -1  0
+5	% generator
+ 0 0  1  1  1
+ 1 0 -1 -1 -1
+ 0 1  1  1  1
+ 0 0  0  0 -1
+ 0 0  0 -1  0
+5x0	% invariant form
+ 2
+ 1 2
+ 0 1 2
+ 0 0 1 2
+ 0 0 1 0 2
+2^8  * 3^1  * 5^1   = 3840 % order of the group
