@@ -11,6 +11,7 @@ EOF
 
 ../bin/carat/Elt Ex10_m
 
-../bin/carat/Orbit -g -S Ex10_m Ex10_B
+# uninitialized order of the stabilizer?
+#../bin/carat/Orbit -g -S Ex10_m Ex10_B
 
 ../bin/carat/Order Ex10_mB2
