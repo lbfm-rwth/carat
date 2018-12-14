@@ -1,0 +1,821 @@
+#g2 f1 n9 % group with complete normalizer
+4	% generator
+ -1 0 0 0
+  0 1 0 0
+  0 0 1 0
+  0 0 0 1
+4	% generator
+ 0 0 1 0
+ 0 0 0 1
+ 0 1 0 0
+ 1 0 0 0
+4d0	% invariant form
+1
+4x0	% generator of normalizer
+ 0
+ 0 0
+ 0 1 0
+ 1 0 0 0
+4x0	% generator of normalizer
+ 1
+ 0 1
+ 0 0 0
+ 0 0 1 0
+4d1	% generator of normalizer
+1 1 -1 1 
+4d0	% generator of normalizer
+1
+4x0	% generator of normalizer
+  0
+  0 0
+ -1 0 0
+  0 1 0 0
+4	% generator of normalizer
+  0 0 0 1
+  0 0 1 0
+ -1 0 0 0
+  0 1 0 0
+4x0	% generator of normalizer
+  0
+ -1 0
+  0 0  0
+  0 0 -1 0
+4d1	% generator of normalizer
+-1 -1 1 -1 
+4	% generator of normalizer
+ 0 0 -1 0
+ 0 0  0 1
+ 0 1  0 0
+ 1 0  0 0
+2^6   = 64 % order of the group
+#6
+4x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+4x2/2	% the 2-th cozycle, length of orbit 2,name: 1
+0 0 
+0 0 
+1 0 
+0 0 
+4x2/2	% the 3-th cozycle, length of orbit 1,name: 3
+0 0 
+0 0 
+1 0 
+1 0 
+4x2/2	% the 4-th cozycle, length of orbit 1,name: 4
+0 0 
+1 0 
+0 0 
+0 0 
+4x2/2	% the 5-th cozycle, length of orbit 2,name: 5
+0 0 
+1 0 
+1 0 
+0 0 
+4x2/2	% the 6-th cozycle, length of orbit 1,name: 7
+0 0 
+1 0 
+1 0 
+1 0 
+#g2 % space group to the point group of Ex4_gn and the 1-th cozycle of Ex4_out
+5	% generator
+ -1 0 0 0 0
+  0 1 0 0 0
+  0 0 1 0 0
+  0 0 0 1 0
+  0 0 0 0 1
+5	% generator
+ 0 0 1 0 0
+ 0 0 0 1 0
+ 0 1 0 0 0
+ 1 0 0 0 0
+ 0 0 0 0 1
+% order of the group unknown
+#g2 % space group to the point group of Ex4_gn and the 2-th cozycle of Ex4_out
+5	/2		% generator
+ -2 0 0 0 0
+  0 2 0 0 0
+  0 0 2 0 1
+  0 0 0 2 0
+  0 0 0 0 2
+5	% generator
+ 0 0 1 0 0
+ 0 0 0 1 0
+ 0 1 0 0 0
+ 1 0 0 0 0
+ 0 0 0 0 1
+% order of the group unknown
+#g2 % space group to the point group of Ex4_gn and the 3-th cozycle of Ex4_out
+5	/2		% generator
+ -2 0 0 0 0
+  0 2 0 0 0
+  0 0 2 0 1
+  0 0 0 2 1
+  0 0 0 0 2
+5	% generator
+ 0 0 1 0 0
+ 0 0 0 1 0
+ 0 1 0 0 0
+ 1 0 0 0 0
+ 0 0 0 0 1
+% order of the group unknown
+#g2 % space group to the point group of Ex4_gn and the 4-th cozycle of Ex4_out
+5	/2		% generator
+ -2 0 0 0 0
+  0 2 0 0 1
+  0 0 2 0 0
+  0 0 0 2 0
+  0 0 0 0 2
+5	% generator
+ 0 0 1 0 0
+ 0 0 0 1 0
+ 0 1 0 0 0
+ 1 0 0 0 0
+ 0 0 0 0 1
+% order of the group unknown
+#g2 % space group to the point group of Ex4_gn and the 5-th cozycle of Ex4_out
+5	/2		% generator
+ -2 0 0 0 0
+  0 2 0 0 1
+  0 0 2 0 1
+  0 0 0 2 0
+  0 0 0 0 2
+5	% generator
+ 0 0 1 0 0
+ 0 0 0 1 0
+ 0 1 0 0 0
+ 1 0 0 0 0
+ 0 0 0 0 1
+% order of the group unknown
+#g2 % space group to the point group of Ex4_gn and the 6-th cozycle of Ex4_out
+5	/2		% generator
+ -2 0 0 0 0
+  0 2 0 0 1
+  0 0 2 0 1
+  0 0 0 2 1
+  0 0 0 0 2
+5	% generator
+ 0 0 1 0 0
+ 0 0 0 1 0
+ 0 1 0 0 0
+ 1 0 0 0 0
+ 0 0 0 0 1
+% order of the group unknown
+#g2 f1 n8 
+4	% generator
+ -1 0 0 0
+  0 1 0 0
+  0 0 1 0
+  0 0 0 1
+4	% generator
+ 0 0 0 1
+ 0 0 1 0
+ 1 0 0 0
+ 0 1 0 0
+4d0	% invariant form
+1
+4x0	% generator of normalizer
+ 0
+ 0 0
+ 0 1 0
+ 1 0 0 0
+4x0	% generator of normalizer
+ 1
+ 0 1
+ 0 0 0
+ 0 0 1 0
+4d0	% generator of normalizer
+1
+4x0	% generator of normalizer
+  0
+  0 0
+ -1 0 0
+  0 1 0 0
+4	% generator of normalizer
+ 0 0 -1 0
+ 0 0  0 1
+ 0 1  0 0
+ 1 0  0 0
+4x0	% generator of normalizer
+  0
+ -1 0
+  0 0  0
+  0 0 -1 0
+4d1	% generator of normalizer
+-1 -1 1 -1 
+4	% generator of normalizer
+  0 0 0 1
+  0 0 1 0
+ -1 0 0 0
+  0 1 0 0
+2^6   = 64 % order of the group
+L1 with (0,0) yields L2
+4	% Change of basis:
+ 1  0  0  0
+ 0 -1  0  0
+ 0  0 -1  0
+ 1  1  1 -2
+4	/2		% Inverse of it  :
+ 2  0  0  0
+ 0 -2  0  0
+ 0  0 -2  0
+ 1 -1 -1 -1
+L2 with (0,0) yields L3
+4	% Change of basis:
+  1 0  0  0
+ -1 2  0  0
+  0 0 -1  0
+  0 0  1 -2
+4	/2		% Inverse of it  :
+ 2 0  0  0
+ 1 1  0  0
+ 0 0 -2  0
+ 0 0 -1 -1
+L3 with (0,0) yields L4
+4	% Change of basis:
+  1 0 0  0
+ -1 2 0  0
+ -1 0 2  0
+  1 0 0 -2
+4	/2		% Inverse of it  :
+ 2 0 0  0
+ 1 1 0  0
+ 1 0 1  0
+ 1 0 0 -1
+L4 with (0,0) yields 2.L1
+
+==========================================================================
+
+	      L  1:       Lattice	Constituent
+     parents  :
+                        L%3-d	(p=4,Nr.=2)
+     children :
+                        L%3-d	(p=2,Nr.=2)
+
+======= 1 Lattices on level 1 ====================================
+
+	      L  2:       Lattice	Constituent
+     parents  :
+                        L%3-d	(p=1,Nr.=2)
+     children :
+                        L%3-d	(p=3,Nr.=2)
+
+======= 1 Lattices on level 2 ====================================
+
+	      L  3:       Lattice	Constituent
+     parents  :
+                        L%3-d	(p=2,Nr.=2)
+     children :
+                        L%3-d	(p=4,Nr.=2)
+
+======= 1 Lattices on level 3 ====================================
+
+	      L  4:       Lattice	Constituent
+     parents  :
+                        L%3-d	(p=3,Nr.=2)
+     children :
+                        L%3-d	(p=1,Nr.=2)
+
+======= 1 Lattices on level 4 ====================================
+#g2 % konjugated bravais group
+5	/2		% generator
+ -2 0 0 -2  0
+  0 2 0  0  0
+  0 0 2  0 -1
+  0 0 0  2  0
+  0 0 0  0  2
+5	% generator
+  1 0 -1  0 0
+  1 0  0  1 0
+  1 1  0  1 0
+ -2 0  0 -1 0
+  0 0  0  0 1
+% order of the group unknown
+#g2 % konjugated bravais group
+5	/2		% generator
+ -2 -2 0 0  0
+  0  2 0 0  0
+  0  0 2 0 -1
+  0  0 0 2  0
+  0  0 0 0  2
+5	% generator
+  0  0 -1  0 0
+  0  0  0 -1 0
+  1  0  0  0 0
+ -2 -1  0  0 0
+  0  0  0  0 1
+% order of the group unknown
+#g2 % konjugated bravais group
+5	/2		% generator
+ -2 -2 -2 -2 -1
+  0  2  0  0  0
+  0  0  2  0  2
+  0  0  0  2  0
+  0  0  0  0  2
+5	% generator
+  1  0  1  1 0
+  0  0  0 -1 0
+  0  1  0  0 0
+ -2 -1 -1 -1 0
+  0  0  0  0 1
+% order of the group unknown
+#g2 % konjugated bravais group
+5	/2		% generator
+ -2 0 0 -2  1
+  0 2 0  0  1
+  0 0 2  0  0
+  0 0 0  2 -2
+  0 0 0  0  2
+5	% generator
+  1 0 -1  0 0
+  1 0  0  1 0
+  1 1  0  1 0
+ -2 0  0 -1 0
+  0 0  0  0 1
+% order of the group unknown
+#g2 % konjugated bravais group
+5	% generator
+ -1 -1 0 0  0
+  0  1 0 0  0
+  0  0 1 0  0
+  0  0 0 1 -1
+  0  0 0 0  1
+5	% generator
+  0  0 -1  0 0
+  0  0  0 -1 0
+  1  0  0  0 0
+ -2 -1  0  0 0
+  0  0  0  0 1
+% order of the group unknown
+#g2 % konjugated bravais group
+5	% generator
+ -1 -1 -1 -1  0
+  0  1  0  0  0
+  0  0  1  0  1
+  0  0  0  1 -1
+  0  0  0  0  1
+5	% generator
+  1  0  1  1 0
+  0  0  0 -1 0
+  0  1  0  0 0
+ -2 -1 -1 -1 0
+  0  0  0  0 1
+% order of the group unknown
+#g2 % konjugated bravais group
+5	/2		% generator
+ -2 0 0 -2  0
+  0 2 0  0 -1
+  0 0 2  0  0
+  0 0 0  2  0
+  0 0 0  0  2
+5	% generator
+  1 0 -1  0 0
+  1 0  0  1 0
+  1 1  0  1 0
+ -2 0  0 -1 0
+  0 0  0  0 1
+% order of the group unknown
+#g2 % konjugated bravais group
+5	/2		% generator
+ -2 -2 0 0 -1
+  0  2 0 0  2
+  0  0 2 0  0
+  0  0 0 2  0
+  0  0 0 0  2
+5	% generator
+  0  0 -1  0 0
+  0  0  0 -1 0
+  1  0  0  0 0
+ -2 -1  0  0 0
+  0  0  0  0 1
+% order of the group unknown
+#g2 % konjugated bravais group
+5	/2		% generator
+ -2 -2 -2 -2 -1
+  0  2  0  0  2
+  0  0  2  0  0
+  0  0  0  2  0
+  0  0  0  0  2
+5	% generator
+  1  0  1  1 0
+  0  0  0 -1 0
+  0  1  0  0 0
+ -2 -1 -1 -1 0
+  0  0  0  0 1
+% order of the group unknown
+#g2 % konjugated bravais group
+5	/2		% generator
+ -2 0 0 -2  0
+  0 2 0  0 -1
+  0 0 2  0 -1
+  0 0 0  2  0
+  0 0 0  0  2
+5	% generator
+  1 0 -1  0 0
+  1 0  0  1 0
+  1 1  0  1 0
+ -2 0  0 -1 0
+  0 0  0  0 1
+% order of the group unknown
+#g2 % konjugated bravais group
+5	/2		% generator
+ -2 -2 0 0 -1
+  0  2 0 0  2
+  0  0 2 0 -1
+  0  0 0 2  0
+  0  0 0 0  2
+5	% generator
+  0  0 -1  0 0
+  0  0  0 -1 0
+  1  0  0  0 0
+ -2 -1  0  0 0
+  0  0  0  0 1
+% order of the group unknown
+#g2 % konjugated bravais group
+5	% generator
+ -1 -1 -1 -1 -1
+  0  1  0  0  1
+  0  0  1  0  1
+  0  0  0  1  0
+  0  0  0  0  1
+5	% generator
+  1  0  1  1 0
+  0  0  0 -1 0
+  0  1  0  0 0
+ -2 -1 -1 -1 0
+  0  0  0  0 1
+% order of the group unknown
+#g2 % konjugated bravais group
+5	/2		% generator
+ -2 0 0 -2  1
+  0 2 0  0  0
+  0 0 2  0  0
+  0 0 0  2 -2
+  0 0 0  0  2
+5	% generator
+  1 0 -1  0 0
+  1 0  0  1 0
+  1 1  0  1 0
+ -2 0  0 -1 0
+  0 0  0  0 1
+% order of the group unknown
+#g2 % konjugated bravais group
+5	/2		% generator
+ -2 -2 0 0 -1
+  0  2 0 0  2
+  0  0 2 0  0
+  0  0 0 2 -2
+  0  0 0 0  2
+5	% generator
+  0  0 -1  0 0
+  0  0  0 -1 0
+  1  0  0  0 0
+ -2 -1  0  0 0
+  0  0  0  0 1
+% order of the group unknown
+#g2 % konjugated bravais group
+5	/2		% generator
+ -2 -2 -2 -2 -1
+  0  2  0  0  2
+  0  0  2  0  2
+  0  0  0  2 -2
+  0  0  0  0  2
+5	% generator
+  1  0  1  1 0
+  0  0  0 -1 0
+  0  1  0  0 0
+ -2 -1 -1 -1 0
+  0  0  0  0 1
+% order of the group unknown
+#g2 f1 % point group to the space group of g.2.2
+4	% generator
+ -1 0 0 -1
+  0 1 0  0
+  0 0 1  0
+  0 0 0  1
+4	% generator
+  1 0 -1  0
+  1 0  0  1
+  1 1  0  1
+ -2 0  0 -1
+4x0	% invariant form
+ 2
+ 0 2
+ 0 0 2
+ 1 1 1 2
+% order of the group unknown
+#g2 f1 % point group to the space group of g.2.3
+4	% generator
+ -1 -1 0 0
+  0  1 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+  0  0 -1  0
+  0  0  0 -1
+  1  0  0  0
+ -2 -1  0  0
+4x0	% invariant form
+ 2
+ 1 1
+ 0 0 2
+ 0 0 1 1
+% order of the group unknown
+#g2 f1 % point group to the space group of g.2.4
+4	% generator
+ -1 -1 -1 -1
+  0  1  0  0
+  0  0  1  0
+  0  0  0  1
+4	% generator
+  1  0  1  1
+  0  0  0 -1
+  0  1  0  0
+ -2 -1 -1 -1
+4x0	% invariant form
+ 4
+ 2 2
+ 2 1 2
+ 2 1 1 2
+% order of the group unknown
+#g2 f1 % point group to the space group of g.3.2
+4	% generator
+ -1 0 0 -1
+  0 1 0  0
+  0 0 1  0
+  0 0 0  1
+4	% generator
+  1 0 -1  0
+  1 0  0  1
+  1 1  0  1
+ -2 0  0 -1
+4x0	% invariant form
+ 2
+ 0 2
+ 0 0 2
+ 1 1 1 2
+% order of the group unknown
+#g2 f1 % point group to the space group of g.3.3
+4	% generator
+ -1 -1 0 0
+  0  1 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+  0  0 -1  0
+  0  0  0 -1
+  1  0  0  0
+ -2 -1  0  0
+4x0	% invariant form
+ 2
+ 1 1
+ 0 0 2
+ 0 0 1 1
+% order of the group unknown
+#g2 f1 % point group to the space group of g.3.4
+4	% generator
+ -1 -1 -1 -1
+  0  1  0  0
+  0  0  1  0
+  0  0  0  1
+4	% generator
+  1  0  1  1
+  0  0  0 -1
+  0  1  0  0
+ -2 -1 -1 -1
+4x0	% invariant form
+ 4
+ 2 2
+ 2 1 2
+ 2 1 1 2
+% order of the group unknown
+#g2 f1 % point group to the space group of g.4.2
+4	% generator
+ -1 0 0 -1
+  0 1 0  0
+  0 0 1  0
+  0 0 0  1
+4	% generator
+  1 0 -1  0
+  1 0  0  1
+  1 1  0  1
+ -2 0  0 -1
+4x0	% invariant form
+ 2
+ 0 2
+ 0 0 2
+ 1 1 1 2
+% order of the group unknown
+#g2 f1 % point group to the space group of g.4.3
+4	% generator
+ -1 -1 0 0
+  0  1 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+  0  0 -1  0
+  0  0  0 -1
+  1  0  0  0
+ -2 -1  0  0
+4x0	% invariant form
+ 2
+ 1 1
+ 0 0 2
+ 0 0 1 1
+% order of the group unknown
+#g2 f1 % point group to the space group of g.4.4
+4	% generator
+ -1 -1 -1 -1
+  0  1  0  0
+  0  0  1  0
+  0  0  0  1
+4	% generator
+  1  0  1  1
+  0  0  0 -1
+  0  1  0  0
+ -2 -1 -1 -1
+4x0	% invariant form
+ 4
+ 2 2
+ 2 1 2
+ 2 1 1 2
+% order of the group unknown
+#g2 f1 % point group to the space group of g.5.2
+4	% generator
+ -1 0 0 -1
+  0 1 0  0
+  0 0 1  0
+  0 0 0  1
+4	% generator
+  1 0 -1  0
+  1 0  0  1
+  1 1  0  1
+ -2 0  0 -1
+4x0	% invariant form
+ 2
+ 0 2
+ 0 0 2
+ 1 1 1 2
+% order of the group unknown
+#g2 f1 % point group to the space group of g.5.3
+4	% generator
+ -1 -1 0 0
+  0  1 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+  0  0 -1  0
+  0  0  0 -1
+  1  0  0  0
+ -2 -1  0  0
+4x0	% invariant form
+ 2
+ 1 1
+ 0 0 2
+ 0 0 1 1
+% order of the group unknown
+#g2 f1 % point group to the space group of g.5.4
+4	% generator
+ -1 -1 -1 -1
+  0  1  0  0
+  0  0  1  0
+  0  0  0  1
+4	% generator
+  1  0  1  1
+  0  0  0 -1
+  0  1  0  0
+ -2 -1 -1 -1
+4x0	% invariant form
+ 4
+ 2 2
+ 2 1 2
+ 2 1 1 2
+% order of the group unknown
+#g2 f1 % point group to the space group of g.6.2
+4	% generator
+ -1 0 0 -1
+  0 1 0  0
+  0 0 1  0
+  0 0 0  1
+4	% generator
+  1 0 -1  0
+  1 0  0  1
+  1 1  0  1
+ -2 0  0 -1
+4x0	% invariant form
+ 2
+ 0 2
+ 0 0 2
+ 1 1 1 2
+% order of the group unknown
+#g2 f1 % point group to the space group of g.6.3
+4	% generator
+ -1 -1 0 0
+  0  1 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+  0  0 -1  0
+  0  0  0 -1
+  1  0  0  0
+ -2 -1  0  0
+4x0	% invariant form
+ 2
+ 1 1
+ 0 0 2
+ 0 0 1 1
+% order of the group unknown
+#g2 f1 % point group to the space group of g.6.4
+4	% generator
+ -1 -1 -1 -1
+  0  1  0  0
+  0  0  1  0
+  0  0  0  1
+4	% generator
+  1  0  1  1
+  0  0  0 -1
+  0  1  0  0
+ -2 -1 -1 -1
+4x0	% invariant form
+ 4
+ 2 2
+ 2 1 2
+ 2 1 1 2
+% order of the group unknown
+4x2/2	cozycle to the group of g.2.2
+0 0 
+0 0 
+-1 0 
+0 0 
+4x2/2	cozycle to the group of g.2.3
+0 0 
+0 0 
+-1 0 
+0 0 
+4x2/2	cozycle to the group of g.2.4
+-1 0 
+0 0 
+2 0 
+0 0 
+4x2/2	cozycle to the group of g.3.2
+1 0 
+1 0 
+0 0 
+-2 0 
+4x2	cozycle to the group of g.3.3
+0 0 
+0 0 
+0 0 
+-1 0 
+4x2	cozycle to the group of g.3.4
+0 0 
+0 0 
+1 0 
+-1 0 
+4x2/2	cozycle to the group of g.4.2
+0 0 
+-1 0 
+0 0 
+0 0 
+4x2/2	cozycle to the group of g.4.3
+-1 0 
+2 0 
+0 0 
+0 0 
+4x2/2	cozycle to the group of g.4.4
+-1 0 
+2 0 
+0 0 
+0 0 
+4x2/2	cozycle to the group of g.5.2
+0 0 
+-1 0 
+-1 0 
+0 0 
+4x2/2	cozycle to the group of g.5.3
+-1 0 
+2 0 
+-1 0 
+0 0 
+4x2	cozycle to the group of g.5.4
+-1 0 
+1 0 
+1 0 
+0 0 
+4x2/2	cozycle to the group of g.6.2
+1 0 
+0 0 
+0 0 
+-2 0 
+4x2/2	cozycle to the group of g.6.3
+-1 0 
+2 0 
+0 0 
+-2 0 
+4x2/2	cozycle to the group of g.6.4
+-1 0 
+2 0 
+2 0 
+-2 0 

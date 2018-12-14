@@ -1,0 +1,133 @@
+Please input the symbol for the crystal-family: 1,1,1,1
+The crystal-family 1,1,1,1 contains 1 homogeneously decomposable bravais-groups with
+ 1
+ Z-classes of Bravais groups.
+Do you want to calculate bravais-groups? (y or n): Please input a filename (stdout = standard output): Which bravais-groups should be printed? (a(ll) or s(election): #g1 f10 n1 c4% homogenously decomposable bravais-group
+4	% generator
+ -1  0  0  0
+  0 -1  0  0
+  0  0 -1  0
+  0  0  0 -1
+4d1	% invariant form
+1 0 0 0 
+4x0	% invariant form
+ 0
+ 1 0
+ 0 0 0
+ 0 0 0 0
+4x0	% invariant form
+ 0
+ 0 0
+ 1 0 0
+ 0 0 0 0
+4x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 1 0 0 0
+4d1	% invariant form
+0 1 0 0 
+4x0	% invariant form
+ 0
+ 0 0
+ 0 1 0
+ 0 0 0 0
+4x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 1 0 0
+4d1	% invariant form
+0 0 1 0 
+4x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 1 0
+4d1	% invariant form
+0 0 0 1 
+4d0	% generator of normalizer
+1
+4d1	% generator of centralizer
+-1 1 1 1 
+4	% generator of centralizer
+ -1 0 0 0
+ -1 1 0 0
+  0 0 1 0
+  0 0 0 1
+4x0	% generator of centralizer
+ 0
+ 1 0
+ 0 0 1
+ 0 0 0 1
+4	% generator of centralizer
+ 0 0 0 1
+ 1 0 0 0
+ 0 1 0 0
+ 0 0 1 0
+2^1   = 2 % order of the group
+Bravais groups which contain a Z-equivalent subgroup
+Symbol: 1,1,1,1  homogeneously d.: 1 zclass: 1
+Symbol: 1,1,1;1  homogeneously d.: 1 zclass: 1
+Symbol: 1,1,1;1  homogeneously d.: 1 zclass: 2
+Symbol: 1,1;1,1  homogeneously d.: 1 zclass: 1
+Symbol: 1,1;1,1  homogeneously d.: 1 zclass: 2
+Symbol: 1,1;1,1  homogeneously d.: 1 zclass: 3
+Symbol: 1,1;1;1  homogeneously d.: 1 zclass: 1
+Symbol: 1,1;1;1  homogeneously d.: 1 zclass: 2
+Symbol: 1,1;1;1  homogeneously d.: 1 zclass: 3
+Symbol: 1,1;1;1  homogeneously d.: 1 zclass: 4
+Symbol: 1,1;1;1  homogeneously d.: 1 zclass: 5
+Symbol: 1,1;1;1  homogeneously d.: 1 zclass: 6
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 1
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 2
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 3
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 4
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 5
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 6
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 7
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 8
+Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 9
+Symbol: 2-1',2-1'  homogeneously d.: 1 zclass: 1
+Symbol: 2-1,2-1  homogeneously d.: 1 zclass: 1
+Symbol: 2-1,2-1  homogeneously d.: 2 zclass: 1
+Symbol: 2-1,2-1  homogeneously d.: 3 zclass: 1
+Symbol: 2-1;1,1  homogeneously d.: 1 zclass: 1
+Symbol: 2-1;1,1  homogeneously d.: 1 zclass: 2
+Symbol: 2-1;1;1  homogeneously d.: 1 zclass: 1
+Symbol: 2-1;1;1  homogeneously d.: 1 zclass: 2
+Symbol: 2-1;1;1  homogeneously d.: 1 zclass: 3
+Symbol: 2-1;1;1  homogeneously d.: 1 zclass: 4
+Symbol: 2-1;1;1  homogeneously d.: 1 zclass: 5
+Symbol: 2-1;1;1  homogeneously d.: 1 zclass: 6
+Symbol: 2-1;2-1  homogeneously d.: 1 zclass: 1
+Symbol: 2-1;2-1  homogeneously d.: 1 zclass: 2
+Symbol: 2-1;2-1  homogeneously d.: 1 zclass: 3
+Symbol: 2-2',2-2'  homogeneously d.: 1 zclass: 1
+Symbol: 2-2,2-2  homogeneously d.: 1 zclass: 1
+Symbol: 2-2,2-2  homogeneously d.: 2 zclass: 1
+Symbol: 2-2;1,1  homogeneously d.: 1 zclass: 1
+Symbol: 2-2;1,1  homogeneously d.: 1 zclass: 2
+Symbol: 2-2;1;1  homogeneously d.: 1 zclass: 1
+Symbol: 2-2;1;1  homogeneously d.: 1 zclass: 2
+Symbol: 2-2;1;1  homogeneously d.: 1 zclass: 3
+Symbol: 2-2;1;1  homogeneously d.: 1 zclass: 4
+Symbol: 2-2;2-1  homogeneously d.: 1 zclass: 1
+Symbol: 2-2;2-2  homogeneously d.: 1 zclass: 1
+Symbol: 2-2;2-2  homogeneously d.: 1 zclass: 2
+Symbol: 2-2;2-2  homogeneously d.: 1 zclass: 3
+Symbol: 3;1  homogeneously d.: 1 zclass: 1
+Symbol: 3;1  homogeneously d.: 1 zclass: 2
+Symbol: 3;1  homogeneously d.: 1 zclass: 3
+Symbol: 3;1  homogeneously d.: 2 zclass: 1
+Symbol: 3;1  homogeneously d.: 2 zclass: 2
+Symbol: 3;1  homogeneously d.: 3 zclass: 1
+Symbol: 4-1'  homogeneously d.: 1 zclass: 1
+Symbol: 4-1  homogeneously d.: 1 zclass: 1
+Symbol: 4-1  homogeneously d.: 2 zclass: 1
+Symbol: 4-2'  homogeneously d.: 1 zclass: 1
+Symbol: 4-2  homogeneously d.: 1 zclass: 1
+Symbol: 4-2  homogeneously d.: 2 zclass: 1
+Symbol: 4-3'  homogeneously d.: 1 zclass: 1
+Symbol: 4-3  homogeneously d.: 1 zclass: 1
+Symbol: 4-3  homogeneously d.: 2 zclass: 1

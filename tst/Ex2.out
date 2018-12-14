@@ -1,0 +1,1479 @@
+Symbol of the group: 3;2-2;1
+Please input the symbol for the crystal-family: 3;2-2;1
+The crystal-family 3;2-2;1 contains 3 homogeneously decomposable bravais-groups with
+ 6,  8,  4
+ Z-classes of Bravais groups.
+Do you want to calculate bravais-groups? (y or n): The order of the group is 12
+2^2  * 3^1   = 12 % order of the group
+L1 with (0,0) yields L2
+L1 with (0,1) yields L3
+father: level 1 number of orbits 1 lengths 3
+L1 with (0,0) yields L2
+father: level 1 number of orbits 2 lengths 1
+L1 with (0,1) yields L3
+father: level 1 number of orbits 3 lengths 2
+L1 with (1,1) yields L4
+father: level 2 number of orbits 1 lengths 3
+L2 with (0,1) yields L5
+father: level 2 number of orbits 2 lengths 6
+L2 with (1,1) yields L6
+L3 with (0,0) yields 1.L5
+father: level 2 number of orbits 1 lengths 2
+L3 with (1,1) yields L7
+L4 with (0,0) yields 1.L6
+L4 with (0,1) yields 1.L7
+father: level 3 number of orbits 1 lengths 6
+L5 with (1,1) yields L8
+father: level 1 number of orbits 1 lengths 1
+L1 with (0,1) yields L2
+father: level 1 number of orbits 2 lengths 2
+L1 with (1,1) yields L3
+father: level 2 number of orbits 1 lengths 2
+L2 with (0,1) yields L4
+father: level 2 number of orbits 2 lengths 2
+L2 with (1,1) yields L5
+L3 with (0,1) yields 1.L5
+father: level 3 number of orbits 1 lengths 4
+L4 with (1,1) yields L6
+L5 with (0,1) yields 1.L6
+father: level 1 number of orbits 1 lengths 3
+L1 with (0,1) yields L2
+father: level 1 number of orbits 2 lengths 2
+L1 with (1,1) yields L3
+father: level 2 number of orbits 1 lengths 6
+L2 with (1,1) yields L4
+L3 with (0,1) yields 1.L4
+####### There are 18 classes of groups
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+2-th homogenously decomposable bravais group, 1-th Z-class
+#g5 f3 z7 
+6	% generator
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+ 0 0 1 0 0 0
+ 0 0 0 1 0 0
+ 0 0 0 0 1 0
+ 0 0 0 0 0 1
+6	% generator
+ 0 0 -1 0 0 0
+ 1 0  0 0 0 0
+ 0 1  0 0 0 0
+ 0 0  0 1 0 0
+ 0 0  0 0 1 0
+ 0 0  0 0 0 1
+6	% generator
+ 1 0 0  0 0 0
+ 0 1 0  0 0 0
+ 0 0 1  0 0 0
+ 0 0 0  0 1 0
+ 0 0 0 -1 1 0
+ 0 0 0  0 0 1
+6	% generator
+ 1 0 0 0 0 0
+ 0 1 0 0 0 0
+ 0 0 1 0 0 0
+ 0 0 0 0 1 0
+ 0 0 0 1 0 0
+ 0 0 0 0 0 1
+6	% generator
+ 1 0 0 0 0  0
+ 0 1 0 0 0  0
+ 0 0 1 0 0  0
+ 0 0 0 1 0  0
+ 0 0 0 0 1  0
+ 0 0 0 0 0 -1
+6d1	% invariant form
+0 0 0 0 0 1 
+6d1	% invariant form
+1 1 1 0 0 0 
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0  2
+ 0 0 0 -1 2
+ 0 0 0  0 0 0
+6	% zentr
+ 0 0 -1  0 -1 -1
+ 0 0  1  0 -1  0
+ 0 1  0 -1  0  0
+ 0 0  0  0  0 -1
+ 0 1 -1  1 -1  0
+ 1 0  0  0  0  0
+6	% zentr
+ 0 0 -1 -1  0  0
+ 0 0  1 -1 -1 -1
+ 0 0  0  0 -1  0
+ 1 0  0  0  0  0
+ 0 1  0  0  0  0
+ 0 0  0  0  0  1
+6	% zentr
+ 1 0 0  0 0  0
+ 0 1 0  0 0  0
+ 0 0 1  0 0  0
+ 0 0 0  1 1 -1
+ 0 0 0 -1 0 -1
+ 0 0 0  0 1  1
+6	% zentr
+ 2 -1  1  0  0  1
+ 0 -1 -1 -1  1  1
+ 0  0  0  1 -1 -1
+ 0  0  0  1  1  0
+ 0 -1  1  0  0  0
+ 0  0  0  0  0  1
+6	% zentr
+ -1 -1 -1  0  1  0
+  1 -1 -1  1  0  1
+  1  1 -1  0  0  0
+  0  0  0  1 -1 -1
+  0  0  0 -1  0 -1
+  0  0  0  0  1 -1
+6	% zentr
+ -1 -1  0  0 0  0
+  1 -1 -1  0 1 -1
+  0  0 -1  0 0  0
+  0  0  0  1 1 -1
+  0  0  0 -1 0 -1
+  0  0  0  0 1  1
+6	% zentr
+ 2 -1  0  1  0  0
+ 0  0  0  0 -2 -1
+ 0  0 -1 -1  0  0
+ 0  1  0  1  0  1
+ 0  0  1 -1  0  1
+ 0  1  1  0  0 -1
+2^7  * 3^2   = 1152 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+2-th homogenously decomposable bravais group, 2-th Z-class
+#g8 f3 
+6	% generator
+ 1  0  0  0  0  0
+ 0  1 -1  0 -1 -1
+ 0  1 -1  0  0  0
+ 0  1  0  0  0  0
+ 0  1  0  0 -1  0
+ 0 -1  1 -1  1  0
+6	% generator
+ 1  0  0  0  0  0
+ 0  1 -1  0 -1 -1
+ 0  1  0  0 -1  0
+ 0  1  0  0  0  0
+ 0  1 -1  0  0  0
+ 0 -1  1 -1  1  0
+6	% generator
+ 1 0  0  0  0  0
+ 0 0  1 -1  0 -1
+ 0 0  0 -1  0 -1
+ 0 0  0 -1  1 -1
+ 0 0  1 -1  1  0
+ 0 1 -1  1 -1  1
+6	% generator
+ 1  0  0  0  0 0
+ 0  1 -2  1 -1 0
+ 0  0 -1  1  0 0
+ 0  1 -1  1  0 1
+ 0  1 -1  0  0 0
+ 0 -1  1 -1  1 0
+6	% generator
+ 1 0  0 0 0  0
+ 0 1 -1 0 0  1
+ 0 0 -1 0 0  0
+ 0 0 -1 1 0  1
+ 0 0  0 0 1  1
+ 0 0  0 0 0 -1
+6	% generator
+ 1  0  0  0 0  0
+ 0  0  0 -1 1 -1
+ 0  0 -1  0 0 -1
+ 0 -1  0  0 1 -1
+ 0  0  0  0 1  0
+ 0  0  0  0 0  1
+6	% generator
+ 1  0  0  0  0  0
+ 0  1  0  1 -1  1
+ 0  0  0  1  0  1
+ 0  1 -1  1  0  1
+ 0  1  0  0  0  1
+ 0 -1  1 -1  1 -1
+6	% generator
+ -1 0 0 0 0 0
+  0 1 0 0 0 0
+  0 0 1 0 0 0
+  0 0 0 1 0 0
+  0 0 0 0 1 0
+  0 0 0 0 0 1
+6d1	% invariant form
+1 0 0 0 0 0 
+6x0	% invariant form
+ 0
+ 0  1
+ 0  0 2
+ 0 -1 0 1
+ 0  0 0 0 2
+ 0  0 1 0 1 1
+6x0	% invariant form
+ 0
+ 0  1
+ 0 -2  0
+ 0  3 -2  1
+ 0 -2  2 -2  0
+ 0  1 -2  1 -2 1
+2^6  * 3^1   = 192 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+2-th homogenously decomposable bravais group, 3-th Z-class
+#g5 f3 
+6	% generator
+ 1 0  0 0  0  0
+ 0 1  0 0  0  0
+ 0 0 -1 0  0  1
+ 0 0  1 0 -1 -1
+ 0 0 -1 1  1  1
+ 0 0  0 0  0  1
+6	% generator
+ 1 0  0 0 0 0
+ 0 1  0 0 0 0
+ 0 0 -1 0 1 1
+ 0 0  0 1 0 0
+ 0 0  0 0 1 0
+ 0 0  0 0 0 1
+6	% generator
+  0 1 0 0 0 0
+ -1 1 0 0 0 0
+  0 0 1 0 0 0
+  0 0 0 1 0 0
+  0 0 0 0 1 0
+  0 0 0 0 0 1
+6	% generator
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+ 0 0 1 0 0 0
+ 0 0 0 1 0 0
+ 0 0 0 0 1 0
+ 0 0 0 0 0 1
+6	% generator
+ 1 0 0 0 0  0
+ 0 1 0 0 0  0
+ 0 0 1 0 0 -1
+ 0 0 0 1 0  1
+ 0 0 0 0 1  0
+ 0 0 0 0 0 -1
+6d1	% invariant form
+0 0 0 0 0 1 
+6x0	% invariant form
+  2
+ -1 2
+  0 0 0
+  0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0 0
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0  2
+ 0 0  0 2
+ 0 0 -1 1 2
+ 0 0 -1 1 1 0
+2^7  * 3^2   = 1152 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+2-th homogenously decomposable bravais group, 4-th Z-class
+#g6 f3 
+6	% generator
+ 0 0 -1 0 0 0
+ 1 0  0 0 0 0
+ 0 1  0 0 0 0
+ 0 0  0 1 0 0
+ 0 0  0 0 1 0
+ 0 0  0 0 0 1
+6	% generator
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+ 0 0 1 0 0 0
+ 0 0 0 1 0 0
+ 0 0 0 0 1 0
+ 0 0 0 0 0 1
+6	% generator
+ 1 0 0  0 0 0
+ 0 1 0  0 0 0
+ 0 0 1  0 0 0
+ 0 0 0  1 0 0
+ 0 0 0 -1 0 1
+ 0 0 0  1 1 0
+6	% generator
+ 1 0 0  0 0  0
+ 0 1 0  0 0  0
+ 0 0 1  0 0  0
+ 0 0 0  0 0 -1
+ 0 0 0 -1 0  1
+ 0 0 0  1 1  0
+6	% generator
+ 1 0 0  0  0  0
+ 0 1 0  0  0  0
+ 0 0 1  0  0  0
+ 0 0 0  1  1  0
+ 0 0 0 -1 -1 -1
+ 0 0 0  1  0  0
+6	% generator
+ 1 0 0  0  0 0
+ 0 1 0  0  0 0
+ 0 0 1  0  0 0
+ 0 0 0 -1 -1 0
+ 0 0 0  0  1 0
+ 0 0 0  0  0 1
+6d1	% invariant form
+1 1 1 0 0 0 
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 0
+ 0 0 0 0 1
+ 0 0 0 0 1 1
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 2
+ 0 0 0 1  0
+ 0 0 0 0 -1 0
+2^6  * 3^2   = 576 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+2-th homogenously decomposable bravais group, 5-th Z-class
+#g8 f3 
+6	% generator
+  0  0  0 -1 0  0
+ -1  0 -1 -1 0  0
+ -1  0 -1  0 1  0
+  1 -1  1  0 0  1
+ -1  0  0  0 0 -1
+  0  0  0  0 0  1
+6	% generator
+  0  0 0 -1  0  0
+ -1  1 0  0 -1 -1
+ -1  1 0  1  0 -1
+  1 -1 1  0  0  1
+ -1  0 0  0  0 -1
+  0  0 0  0  0  1
+6	% generator
+  0 0  0 -1  0  0
+ -1 1  0  0 -1 -1
+ -1 1  0  1  0 -1
+  0 0 -1  0  1  1
+  0 1  0  1  0 -1
+  0 0  0  0  0  1
+6	% generator
+  0  0 -1 0  1  0
+ -1  1 -1 1  0 -1
+ -1  0  0 0 -1 -1
+  1 -1  1 0  0  1
+ -1  0  0 0  0 -1
+  0  0  0 0  0  1
+6	% generator
+  0 0 -1  0  1 0
+ -1 1 -1  0  1 0
+ -1 0  0 -1  0 0
+  0 0  0  0 -1 0
+  0 0  0 -1  0 0
+  0 0  0  0  0 1
+6	% generator
+  0 -1  0 -1 0 0
+ -1  0  0 -1 0 0
+ -1  1 -1  0 1 0
+  0  0  0  1 0 0
+  0  0  0  0 1 0
+  0  0  0  0 0 1
+6	% generator
+ 1  0 0  0  0  0
+ 0  1 0  1 -1 -1
+ 0  0 1  1 -1 -1
+ 0 -1 0 -1  0  1
+ 0  0 1  0 -1 -1
+ 0  0 0  0  0  1
+6	% generator
+ 1 0 0 0 0  1
+ 0 1 0 0 0  0
+ 0 0 1 0 0  0
+ 0 0 0 1 0 -1
+ 0 0 0 0 1  1
+ 0 0 0 0 0 -1
+6d1	% invariant form
+0 0 0 0 0 1 
+6x0	% invariant form
+ -2
+  1  0
+ -1 -1  0
+  0  0 -1 0
+  0  1  0 2  0
+ -1  1  0 1 -1 0
+6x0	% invariant form
+ 0
+ 0  2
+ 0 -2  2
+ 0  1 -1 2
+ 0  1 -1 2 2
+ 0  0  0 0 0 0
+2^6  * 3^1   = 192 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+2-th homogenously decomposable bravais group, 6-th Z-class
+#g11 f3 
+6	% generator
+ 0 -1  0 0  0 1
+ 0  0 -1 1  0 0
+ 1  0  0 1 -1 1
+ 0  0  0 1 -1 0
+ 0  0  0 1 -1 1
+ 0  0  0 1  0 0
+6	% generator
+ 0  1  0  0 0 -1
+ 0 -1 -1  0 1  1
+ 1  1  0  0 0  0
+ 0  0  0 -1 1  0
+ 0  0  0  0 1  0
+ 0  0  0  0 0  1
+6	% generator
+ 1 0 -1  1 0 0
+ 0 1  1 -1 0 0
+ 0 0 -1  0 1 0
+ 0 0  0 -1 1 0
+ 0 0  0  0 1 0
+ 0 0  0  0 0 1
+6	% generator
+  1 0 -1  1 0 0
+ -1 0  0 -1 1 0
+  1 1  0  0 0 0
+  0 0  0 -1 1 0
+  0 0  0  0 1 0
+  0 0  0  0 0 1
+6	% generator
+ 0 0 -1 0  1  0
+ 1 0  0 1 -1  0
+ 0 1  0 0  0 -1
+ 0 0  0 0  0 -1
+ 0 0  0 1  0 -1
+ 0 0  0 1 -1  0
+6	% generator
+ 0 0 -1  0 0 0
+ 1 0  0  0 0 1
+ 0 1  0 -1 0 0
+ 0 0  0  0 0 1
+ 0 0  0 -1 0 1
+ 0 0  0 -1 1 0
+6	% generator
+ -1 0  1 -1  0 0
+  0 0 -1  1  0 0
+  0 1  1  0 -1 0
+  0 0  0  1 -1 0
+  0 0  0  1 -1 1
+  0 0  0  1  0 0
+6	% generator
+ -1 0 0 -1  1 -1
+  1 1 0  1 -1  0
+ -1 0 1  0  0 -1
+  0 0 0  1  0  0
+  0 0 0  1  0 -1
+  0 0 0  1 -1  0
+6	% generator
+ -1 0 0  0 0 0
+  1 1 0 -1 0 0
+ -1 0 1 -1 0 0
+  0 0 0 -1 0 0
+  0 0 0 -1 0 1
+  0 0 0 -1 1 0
+6	% generator
+ 0  1 1 -1 0 -1
+ 0 -1 0  1 0  1
+ 1  1 0  0 0  0
+ 0  0 0  1 0  0
+ 0  0 0  0 1  0
+ 0  0 0  0 0  1
+6	% generator
+ 0 0  1 0 -1 0
+ 1 0 -1 1  0 1
+ 0 1  1 0 -1 0
+ 0 0  0 0  0 1
+ 0 0  0 1 -1 1
+ 0 0  0 1  0 0
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 0
+ 0 0 0 0  1
+ 0 0 0 0 -1 1
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0  2
+ 0 0 0 -1 0
+ 0 0 0  0 1 0
+6x0	% invariant form
+  3
+  1  3
+ -1  1  3
+  1 -1 -1 -1
+ -1 -1 -1  1 0
+  1 -1 -1  1 0 0
+2^5  * 3^1   = 96 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+2-th homogenously decomposable bravais group, 7-th Z-class
+#g6 f3 
+6	% generator
+ -1 0  0 0 -1  1
+  1 0 -1 0  1 -1
+ -1 1  1 0 -1  1
+  0 0  0 1  0  0
+  0 0  0 0  1  0
+  0 0  0 0  0  1
+6	% generator
+ -1 0 1 0 -1 1
+  0 1 0 0  0 0
+  0 0 1 0  0 0
+  0 0 0 1  0 0
+  0 0 0 0  1 0
+  0 0 0 0  0 1
+6	% generator
+ 1 0 0  1  1 -1
+ 0 1 0 -1 -1  1
+ 0 0 1  0  0  0
+ 0 0 0  1  0  0
+ 0 0 0 -1  0  1
+ 0 0 0  1  1  0
+6	% generator
+ 1 0 0  1  1 -1
+ 0 1 0 -1 -1  1
+ 0 0 1  0  0  0
+ 0 0 0  0  0 -1
+ 0 0 0 -1  0  1
+ 0 0 0  1  1  0
+6	% generator
+ 1 0 0  1  1  0
+ 0 1 0 -1 -1  0
+ 0 0 1  0  0  0
+ 0 0 0  1  1  0
+ 0 0 0 -1 -1 -1
+ 0 0 0  1  0  0
+6	% generator
+ 1 0 0  0  0 0
+ 0 1 0  0  0 0
+ 0 0 1  0  0 0
+ 0 0 0 -1 -1 0
+ 0 0 0  0  1 0
+ 0 0 0  0  0 1
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 0
+ 0 0 0 0 1
+ 0 0 0 0 1 1
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 2
+ 0 0 0 1  0
+ 0 0 0 0 -1 0
+6x0	% invariant form
+  2
+  0  2
+ -1  1  2
+  0  0  0 0
+  1 -1 -1 0  1
+ -1  1  1 0 -1 1
+2^6  * 3^2   = 576 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+2-th homogenously decomposable bravais group, 8-th Z-class
+#g11 f3 
+6	% generator
+  1 -1  0  0 1 1
+  1 -1  0  0 0 1
+ -1  0  0 -1 0 0
+ -1  1  0  0 0 0
+  0  0 -1  0 0 0
+  0  0  1 -1 0 0
+6	% generator
+  1 0 1  1  0  0
+  1 0 1  0  0  0
+ -1 1 0  0  0  0
+ -1 0 0 -1  0  0
+  0 0 0  0 -1 -1
+  0 0 0  0  0  1
+6	% generator
+ -1  1 1  0 0 0
+ -1  1 1 -1 0 0
+  1  0 0  1 0 0
+  1 -1 0  0 0 0
+  0  0 0  0 1 0
+  0  0 0  0 0 1
+6	% generator
+  1 0 1  1 0 0
+  1 0 1  0 0 0
+ -1 1 0  0 0 0
+ -1 0 0 -1 0 0
+  0 0 0  0 1 0
+  0 0 0  0 0 1
+6	% generator
+  0  0 1  0 -1 -1
+  0  0 1 -1 -1 -1
+  0  0 0  0  1  0
+  0  0 0  0  1  1
+ -1  1 0  0  0  0
+  0 -1 0 -1  0  0
+6	% generator
+  0 0  0  1 -1 0
+  0 0 -1  1 -1 0
+  0 0  0  0  1 1
+  0 0  0  0  1 0
+ -1 0  0 -1  0 0
+  0 1  0  1  0 0
+6	% generator
+  1 -1  0  0 -1 0
+  1 -1  0  0  0 1
+ -1  0  0 -1  0 0
+ -1  1  0  0  0 0
+  0  0 -1  0  0 0
+  0  0  1 -1  0 0
+6	% generator
+  0  0 0 -1 -1 -1
+  0  0 0 -1  0 -1
+  0  0 1  0  0  0
+  0  0 0  1  0  0
+ -1  1 0  0  0  0
+  0 -1 0 -1  0  0
+6	% generator
+  0 0 -1  0 -1 0
+  0 0 -1  0  0 1
+  0 0  0  1  0 0
+  0 0  1  0  0 0
+ -1 0  0 -1  0 0
+  0 1  0  1  0 0
+6	% generator
+ 1 0  1  1  0  0
+ 0 1  1  1  0  0
+ 0 0  0 -1  0  0
+ 0 0 -1  0  0  0
+ 0 0  0  0 -1 -1
+ 0 0  0  0  0  1
+6	% generator
+ 1 -1  0  0 -1 0
+ 0 -1  0 -1 -1 0
+ 0  0  0  0  1 1
+ 0  0  0  0  1 0
+ 0  0 -1  0  0 0
+ 0  0  1 -1  0 0
+6x0	% invariant form
+ 0
+ 0  1
+ 0  1  1
+ 0  0  0 0
+ 0  0  0 0 0
+ 0 -1 -1 0 0 1
+6x0	% invariant form
+ 0
+ 0 1
+ 0 0  1
+ 0 1 -1 2
+ 0 0  0 0 0
+ 0 0  0 0 0 1
+6x0	% invariant form
+ -2
+  1 0
+  0 0  0
+ -1 1 -1 0
+  0 0  0 0 -2
+  0 0  0 0 -1 0
+2^5  * 3^1   = 96 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+1-th homogenously decomposable bravais group, 1-th Z-class
+#g5 f3 z5 
+6	% generator
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+ 0 0 1 0 0 0
+ 0 0 0 1 0 0
+ 0 0 0 0 1 0
+ 0 0 0 0 0 1
+6	% generator
+ -1  0 1 0 0 0
+  0  0 1 0 0 0
+  0 -1 1 0 0 0
+  0  0 0 1 0 0
+  0  0 0 0 1 0
+  0  0 0 0 0 1
+6	% generator
+ 1 0 0  0 0 0
+ 0 1 0  0 0 0
+ 0 0 1  0 0 0
+ 0 0 0  0 1 0
+ 0 0 0 -1 1 0
+ 0 0 0  0 0 1
+6	% generator
+ 1 0 0 0 0 0
+ 0 1 0 0 0 0
+ 0 0 1 0 0 0
+ 0 0 0 0 1 0
+ 0 0 0 1 0 0
+ 0 0 0 0 0 1
+6	% generator
+ 1 0 0 0 0  0
+ 0 1 0 0 0  0
+ 0 0 1 0 0  0
+ 0 0 0 1 0  0
+ 0 0 0 0 1  0
+ 0 0 0 0 0 -1
+6d1	% invariant form
+0 0 0 0 0 1 
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0  2
+ 0 0 0 -1 2
+ 0 0 0  0 0 0
+6x0	% invariant form
+  3
+ -1  3
+ -1 -1 3
+  0  0 0 0
+  0  0 0 0 0
+  0  0 0 0 0 0
+6	% zentr
+ 0 0 1 -1  0 1
+ 0 0 1  1 -1 0
+ 0 0 0  0  1 0
+ 1 0 0  0  0 0
+ 0 1 0  0  0 0
+ 0 0 0  0  0 1
+6	% zentr
+ 1 0 0  0  0 0
+ 0 1 0  0  0 0
+ 0 0 1  0  0 0
+ 0 0 0  1 -1 1
+ 0 0 0 -1  0 1
+ 0 0 0  0  1 1
+6	% zentr
+ 0 0 -1 -1 -1 -1
+ 0 0  0  1  0 -1
+ 0 0  1  0  0 -1
+ 1 0  0  0  0  0
+ 0 1  0  0  0  0
+ 0 0  0  0  1 -1
+6	% zentr
+ 1 -1 0  0 -1 1
+ 1  1 1  0  0 0
+ 0  0 1  0  0 0
+ 0  0 0  1 -1 1
+ 0  0 0 -1  0 1
+ 0  0 0  0  1 1
+6	% zentr
+ -1 -1  0 -1 -1  0
+  0  1  0  0 -1  0
+  1  0  0  0 -1 -1
+  0  0  1 -1  0  1
+  0  0 -1  0  1  1
+  0  0  0  1 -1  1
+2^7  * 3^2   = 1152 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+1-th homogenously decomposable bravais group, 2-th Z-class
+#g5 f3 
+6	% generator
+ 1 0  0  0 0  0
+ 0 1  0  0 0  0
+ 0 0 -1  0 2 -1
+ 0 0  0 -1 1  1
+ 0 0 -1 -1 2  0
+ 0 0  0  0 0  1
+6	% generator
+ 1 0 0  0 0 0
+ 0 1 0  0 0 0
+ 0 0 1  0 0 0
+ 0 0 0 -1 1 1
+ 0 0 0  0 1 0
+ 0 0 0  0 0 1
+6	% generator
+  0 1 0 0 0 0
+ -1 1 0 0 0 0
+  0 0 1 0 0 0
+  0 0 0 1 0 0
+  0 0 0 0 1 0
+  0 0 0 0 0 1
+6	% generator
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+ 0 0 1 0 0 0
+ 0 0 0 1 0 0
+ 0 0 0 0 1 0
+ 0 0 0 0 0 1
+6	% generator
+ 1 0 0 0 0  0
+ 0 1 0 0 0  0
+ 0 0 1 0 0  1
+ 0 0 0 1 0 -1
+ 0 0 0 0 1  0
+ 0 0 0 0 0 -1
+6d1	% invariant form
+0 0 0 0 0 1 
+6x0	% invariant form
+  2
+ -1 2
+  0 0 0
+  0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0 0
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0  2
+ 0 0  0  4
+ 0 0 -2 -2 4
+ 0 0  1 -2 0 0
+2^7  * 3^2   = 1152 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+1-th homogenously decomposable bravais group, 3-th Z-class
+#g6 f3 
+6	% generator
+ -1  0 1 0 0 0
+  0  0 1 0 0 0
+  0 -1 1 0 0 0
+  0  0 0 1 0 0
+  0  0 0 0 1 0
+  0  0 0 0 0 1
+6	% generator
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+ 0 0 1 0 0 0
+ 0 0 0 1 0 0
+ 0 0 0 0 1 0
+ 0 0 0 0 0 1
+6	% generator
+ 1 0 0  0 0 0
+ 0 1 0  0 0 0
+ 0 0 1  0 0 0
+ 0 0 0  1 0 0
+ 0 0 0  1 0 1
+ 0 0 0 -1 1 0
+6	% generator
+ 1 0 0  0 0 0
+ 0 1 0  0 0 0
+ 0 0 1  0 0 0
+ 0 0 0  0 0 1
+ 0 0 0  1 0 1
+ 0 0 0 -1 1 0
+6	% generator
+ 1 0 0  0  0  0
+ 0 1 0  0  0  0
+ 0 0 1  0  0  0
+ 0 0 0  1 -1  0
+ 0 0 0  1 -1 -1
+ 0 0 0 -1  0  0
+6	% generator
+ 1 0 0  0 0 0
+ 0 1 0  0 0 0
+ 0 0 1  0 0 0
+ 0 0 0 -1 1 0
+ 0 0 0  0 1 0
+ 0 0 0  0 0 1
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 0
+ 0 0 0 0 1
+ 0 0 0 0 1 1
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0  2
+ 0 0 0 -1  0
+ 0 0 0  0 -1 0
+6x0	% invariant form
+  3
+ -1  3
+ -1 -1 3
+  0  0 0 0
+  0  0 0 0 0
+  0  0 0 0 0 0
+2^6  * 3^2   = 576 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+1-th homogenously decomposable bravais group, 4-th Z-class
+#g6 f3 
+6	% generator
+ 1 0  0  0  0  0
+ 0 1  0  0  0  0
+ 0 0  1  0  0  0
+ 0 0  0  1  0  0
+ 0 0 -1 -1  0 -1
+ 0 0 -1 -1 -1  0
+6	% generator
+ 1 0  0  0  0  0
+ 0 1  0  0  0  0
+ 0 0  0 -1  0  0
+ 0 0  0  0  0 -1
+ 0 0 -1  0 -1  1
+ 0 0 -1  0  0  0
+6	% generator
+ 1 0  0  0  0 0
+ 0 1  0  0  0 0
+ 0 0  1  0  0 0
+ 0 0 -1 -1 -1 0
+ 0 0  0  0  1 0
+ 0 0  0  0  0 1
+6	% generator
+ 1 0 0 0 0  0
+ 0 1 0 0 0  0
+ 0 0 0 0 0  1
+ 0 0 1 0 0  0
+ 0 0 0 1 1 -1
+ 0 0 0 1 0  0
+6	% generator
+  0 1 0 0 0 0
+ -1 1 0 0 0 0
+  0 0 1 0 0 0
+  0 0 0 1 0 0
+  0 0 0 0 1 0
+  0 0 0 0 0 1
+6	% generator
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+ 0 0 1 0 0 0
+ 0 0 0 1 0 0
+ 0 0 0 0 1 0
+ 0 0 0 0 0 1
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 0
+ 0 0 0 0  1
+ 0 0 0 0 -1 1
+6x0	% invariant form
+  2
+ -1 2
+  0 0 0
+  0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0 0
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 2
+ 0 0 1 2
+ 0 0 1 1 0
+ 0 0 0 0 1 0
+2^6  * 3^2   = 576 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+1-th homogenously decomposable bravais group, 5-th Z-class
+#g6 f3 
+6	% generator
+  0  1 1 0  1 -1
+  1  0 0 0 -1  1
+ -1 -1 0 0  0  0
+  0  0 0 1  0  0
+  0  0 0 0  1  0
+  0  0 0 0  0  1
+6	% generator
+ 1  0  0 0  0 0
+ 0 -1 -1 0 -1 1
+ 0  0  1 0  0 0
+ 0  0  0 1  0 0
+ 0  0  0 0  1 0
+ 0  0  0 0  0 1
+6	% generator
+ 1 0 0  1 -1  1
+ 0 1 0 -1  1 -1
+ 0 0 1  0  0  0
+ 0 0 0  1  0  0
+ 0 0 0  1  0  1
+ 0 0 0 -1  1  0
+6	% generator
+ 1 0 0  1 -1  1
+ 0 1 0 -1  1 -1
+ 0 0 1  0  0  0
+ 0 0 0  0  0  1
+ 0 0 0  1  0  1
+ 0 0 0 -1  1  0
+6	% generator
+ 1 0 0  1 -1  0
+ 0 1 0 -1  1  0
+ 0 0 1  0  0  0
+ 0 0 0  1 -1  0
+ 0 0 0  1 -1 -1
+ 0 0 0 -1  0  0
+6	% generator
+ 1 0 0  0 0 0
+ 0 1 0  0 0 0
+ 0 0 1  0 0 0
+ 0 0 0 -1 1 0
+ 0 0 0  0 1 0
+ 0 0 0  0 0 1
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 0
+ 0 0 0 0 1
+ 0 0 0 0 1 1
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0  2
+ 0 0 0 -1  0
+ 0 0 0  0 -1 0
+6x0	% invariant form
+ -2
+  0 -4
+  0 -2 -2
+  0  0  0 0
+  1 -2 -1 0 -1
+ -1  2  1 0  2 -1
+2^6  * 3^2   = 576 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+1-th homogenously decomposable bravais group, 6-th Z-class
+#g8 f3 
+6	% generator
+  1  0 0  0  0 0
+  0  1 0  0  0 0
+ -1 -1 1 -1 -1 0
+ -1 -1 0  0 -1 0
+ -1 -1 0 -1  0 0
+  0  0 0  0  0 1
+6	% generator
+  0 -1 -1  0  1 0
+  0  0  0  0 -1 0
+ -1  0  1 -1  0 1
+ -1  0  1 -1  0 0
+ -1  0  0  0  0 1
+  0  0 -1  0  1 0
+6	% generator
+  0 -1  1 -1  0 0
+  0  0  0  0 -1 0
+ -1  0  0  0  0 0
+ -1  0 -1  0  1 0
+ -1  0  0  0  0 1
+  0  0  1 -1  0 0
+6	% generator
+  1  0 0  0 0 0
+ -1 -1 0 -1 0 0
+  0  0 1  0 0 0
+  0  0 0  1 0 0
+  0  0 0  0 1 0
+  0  0 0  0 0 1
+6	% generator
+ 0 0 0 0  1  1
+ 1 0 0 0  0 -1
+ 0 1 1 0 -1  0
+ 0 1 0 1 -1  0
+ 0 1 0 0  0  0
+ 0 0 0 0  0  1
+6	% generator
+ 1 0 -1 1 0 -1
+ 0 1  0 0 0  0
+ 0 0  1 0 0  0
+ 0 0  1 0 0  1
+ 0 0  0 0 1  0
+ 0 0 -1 1 0  0
+6	% generator
+ 1 0 -1 1 0 -1
+ 0 1  0 0 0  0
+ 0 0  0 0 1  1
+ 0 0  1 0 0  1
+ 0 0  0 0 1  0
+ 0 0 -1 1 0  0
+6	% generator
+ 1 0  0 0 0 0
+ 0 1  0 0 0 0
+ 0 0 -1 1 1 0
+ 0 0  0 1 0 0
+ 0 0  0 0 1 0
+ 0 0  0 0 0 1
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0  1
+ 0 0 0 -1  1
+ 0 0 0  1 -1 1
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0  2
+ 0 0 -1 1
+ 0 0 -1 0 1
+ 0 0  0 0 0 1
+6x0	% invariant form
+  2
+  1 2
+  0 0 0
+  1 1 0 1
+  0 0 0 0 1
+ -1 0 0 0 0 1
+2^5  * 3^2   = 288 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+3-th homogenously decomposable bravais group, 1-th Z-class
+#g5 f3 z3 
+6	% generator
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+ 0 0 1 0 0 0
+ 0 0 0 1 0 0
+ 0 0 0 0 1 0
+ 0 0 0 0 0 1
+6	% generator
+ -1  0 0 0 0 0
+  1  1 1 0 0 0
+  0 -1 0 0 0 0
+  0  0 0 1 0 0
+  0  0 0 0 1 0
+  0  0 0 0 0 1
+6	% generator
+ 1 0 0  0 0 0
+ 0 1 0  0 0 0
+ 0 0 1  0 0 0
+ 0 0 0  0 1 0
+ 0 0 0 -1 1 0
+ 0 0 0  0 0 1
+6	% generator
+ 1 0 0 0 0 0
+ 0 1 0 0 0 0
+ 0 0 1 0 0 0
+ 0 0 0 0 1 0
+ 0 0 0 1 0 0
+ 0 0 0 0 0 1
+6	% generator
+ 1 0 0 0 0  0
+ 0 1 0 0 0  0
+ 0 0 1 0 0  0
+ 0 0 0 1 0  0
+ 0 0 0 0 1  0
+ 0 0 0 0 0 -1
+6d1	% invariant form
+0 0 0 0 0 1 
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0  2
+ 0 0 0 -1 2
+ 0 0 0  0 0 0
+6x0	% invariant form
+ 2
+ 1 2
+ 1 1 2
+ 0 0 0 0
+ 0 0 0 0 0
+ 0 0 0 0 0 0
+6	% zentr
+ 0 0 -1  0 -1 1
+ 0 0  1  0 -1 0
+ 0 1  1  1  0 0
+ 0 1  0 -1  1 0
+ 0 0  0  0  0 1
+ 1 0  0  0  0 0
+6	% zentr
+ 1 0 0  0  0 0
+ 0 1 0  0  0 0
+ 0 0 1  0  0 0
+ 0 0 0  1 -1 1
+ 0 0 0 -1  0 1
+ 0 0 0  0  1 1
+6	% zentr
+ -1  1 -1  0  0  0
+  1 -1 -1  1  0 -1
+  1  1  1  0  1  0
+  0  0  0  1 -1  1
+  0  0  0 -1  0  1
+  0  0  0  0  1  1
+2^7  * 3^2   = 1152 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+3-th homogenously decomposable bravais group, 2-th Z-class
+#g10 f3 
+6	% generator
+ 1  0  0  0  0  0
+ 0  0  0 -1  1 -1
+ 0  0 -1  0  0  1
+ 0 -1  0  0 -1  0
+ 0  0  0  0 -1  1
+ 0  0  0  0  0  1
+6	% generator
+ 1  0  0 0  0 0
+ 0  1  1 0  0 0
+ 0 -1 -1 0 -1 1
+ 0  1  1 1 -1 0
+ 0  0  0 1 -1 1
+ 0 -1  0 1 -1 1
+6	% generator
+ 1 0 0  0  0 0
+ 0 0 0  1 -1 1
+ 0 0 0 -1  0 0
+ 0 1 1  1 -1 0
+ 0 1 1  0  0 0
+ 0 1 0 -1  1 0
+6	% generator
+ 1 0 0  0  0  0
+ 0 0 0  0 -1  1
+ 0 1 1  0  1 -1
+ 0 0 0  1 -2  1
+ 0 1 0  0  0  0
+ 0 1 0 -1  1 -1
+6	% generator
+ 1  0  0  0 0  0
+ 0 -1  0  0 0  0
+ 0  1  0  0 1  0
+ 0 -1 -1 -1 1 -1
+ 0  0 -1 -1 1  0
+ 0  1  0 -1 1  0
+6	% generator
+ 1 0  0 0  0  0
+ 0 0  1 1 -1  0
+ 0 0 -1 0  0  1
+ 0 1  1 0  1 -1
+ 0 0  0 0  1  0
+ 0 0  0 0  0  1
+6	% generator
+ 1  0  0  0  0  0
+ 0  0 -1 -1  1  0
+ 0  0  1  1  0  0
+ 0 -1 -1 -1  1 -1
+ 0 -1  0  0  0  0
+ 0 -1  0  1 -1  1
+6	% generator
+ -1 0 0 0 0 0
+  0 1 0 0 0 0
+  0 0 1 0 0 0
+  0 0 0 1 0 0
+  0 0 0 0 1 0
+  0 0 0 0 0 1
+6	% generator
+ 1  0  0 0  0  0
+ 0  1  1 0  0  0
+ 0 -1 -1 0  1  0
+ 0  0  1 0  0 -1
+ 0 -1  0 0  0  0
+ 0 -1  0 1 -1  1
+6	% generator
+ 1  0  0  0 0 0
+ 0  1  0  0 0 0
+ 0 -1 -1 -1 1 0
+ 0  0  0  1 0 0
+ 0  0  0  0 1 0
+ 0  0  0  0 0 1
+6d1	% invariant form
+1 0 0 0 0 0 
+6x0	% invariant form
+ 0
+ 0  0
+ 0  1  2
+ 0  2  1 0
+ 0 -2 -1 0  2
+ 0  1  0 0 -1 0
+6x0	% invariant form
+ 0
+ 0  2
+ 0  0 0
+ 0 -2 0  2
+ 0  2 0 -2  2
+ 0 -1 0  1 -1 2
+2^6  * 3^1   = 192 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+3-th homogenously decomposable bravais group, 3-th Z-class
+#g6 f3 
+6	% generator
+ -1  0 0 0 0 0
+  1  1 1 0 0 0
+  0 -1 0 0 0 0
+  0  0 0 1 0 0
+  0  0 0 0 1 0
+  0  0 0 0 0 1
+6	% generator
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+ 0 0 1 0 0 0
+ 0 0 0 1 0 0
+ 0 0 0 0 1 0
+ 0 0 0 0 0 1
+6	% generator
+ 1 0 0  0 0 0
+ 0 1 0  0 0 0
+ 0 0 1  0 0 0
+ 0 0 0  1 0 0
+ 0 0 0  1 0 1
+ 0 0 0 -1 1 0
+6	% generator
+ 1 0 0  0 0 0
+ 0 1 0  0 0 0
+ 0 0 1  0 0 0
+ 0 0 0  0 0 1
+ 0 0 0  1 0 1
+ 0 0 0 -1 1 0
+6	% generator
+ 1 0 0  0  0  0
+ 0 1 0  0  0  0
+ 0 0 1  0  0  0
+ 0 0 0  1 -1  0
+ 0 0 0  1 -1 -1
+ 0 0 0 -1  0  0
+6	% generator
+ 1 0 0  0 0 0
+ 0 1 0  0 0 0
+ 0 0 1  0 0 0
+ 0 0 0 -1 1 0
+ 0 0 0  0 1 0
+ 0 0 0  0 0 1
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 0
+ 0 0 0 0 1
+ 0 0 0 0 1 1
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0  2
+ 0 0 0 -1  0
+ 0 0 0  0 -1 0
+6x0	% invariant form
+ 2
+ 1 2
+ 1 1 2
+ 0 0 0 0
+ 0 0 0 0 0
+ 0 0 0 0 0 0
+2^6  * 3^2   = 576 % order of the group
+Symbol of the group: 3;2-2;1
+Position in the catalog:
+3-th homogenously decomposable bravais group, 4-th Z-class
+#g13 f3 
+6	% generator
+ -1  0  0 -1 -1  1
+  0 -1  0  0 -1  0
+  0  0 -1  1  0 -1
+  0  0  0  1  0  0
+  0  0  0  0  1  0
+  0  0  0  0  0  1
+6	% generator
+ 0 0 -1  2 -1 -1
+ 1 0  0  1  0 -1
+ 0 1  0 -1  1  0
+ 0 0  0 -1  1  0
+ 0 0  0 -1  1  1
+ 0 0  0  1  0  0
+6	% generator
+ 0 0 -1 -1  1  0
+ 1 0  0  0  1  0
+ 0 1  0  1  0  0
+ 0 0  0  1 -1  0
+ 0 0  0  1 -1 -1
+ 0 0  0 -1  0  0
+6	% generator
+ 0 0 -1  1 -1  0
+ 0 1  0  0  0  0
+ 1 0  0  0  1 -1
+ 0 0  0 -1  1  0
+ 0 0  0  0  1  0
+ 0 0  0  0  0  1
+6	% generator
+ 1  0 0  2  0  0
+ 0  0 1  0  0  1
+ 0 -1 0 -1  0  0
+ 0  0 0 -1  0  0
+ 0  0 0 -1  0 -1
+ 0  0 0  1 -1  0
+6	% generator
+ 0 1  0 -1 1 -1
+ 0 0 -1  0 0 -1
+ 1 0  0  1 0  0
+ 0 0  0  0 0  1
+ 0 0  0  1 0  1
+ 0 0  0 -1 1  0
+6	% generator
+  0  0 1  0 -1 1
+  0 -1 0  0 -1 0
+ -1  0 0 -1  0 0
+  0  0 0 -1  1 0
+  0  0 0  0  1 0
+  0  0 0  0  0 1
+6	% generator
+ 0 1 0 -1  1  1
+ 1 0 0  0  1  0
+ 0 0 1  0  0  0
+ 0 0 0  0  0 -1
+ 0 0 0  1 -1 -1
+ 0 0 0 -1  0  0
+6	% generator
+ 0 1 0  1 0 -1
+ 1 0 0  1 0 -1
+ 0 0 1 -1 0  1
+ 0 0 0  0 0  1
+ 0 0 0 -1 1  1
+ 0 0 0  1 0  0
+6	% generator
+ 0 -1  0 -1 0 -1
+ 0  0 -1  0 0 -1
+ 1  0  0  1 0  0
+ 0  0  0  0 0  1
+ 0  0  0  1 0  1
+ 0  0  0 -1 1  0
+6	% generator
+  0  0 1 -2  1  1
+ -1  0 0 -1  0  1
+  0 -1 0  1 -1  0
+  0  0 0  1 -1  0
+  0  0 0  1 -1 -1
+  0  0 0 -1  0  0
+6	% generator
+ 0  0 1 -2  1  1
+ 1  0 0  0  1  0
+ 0 -1 0  1 -1  0
+ 0  0 0  1 -1  0
+ 0  0 0  1 -1 -1
+ 0  0 0 -1  0  0
+6	% generator
+ -1 0 0 -1 -1 1
+  0 1 0  0  0 0
+  0 0 1  0  0 0
+  0 0 0  1  0 0
+  0 0 0  0  1 0
+  0 0 0  0  0 1
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 0
+ 0 0 0 0 1
+ 0 0 0 0 1 1
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0  2
+ 0 0 0 -1  0
+ 0 0 0  0 -1 0
+6x0	% invariant form
+  2
+  0 2
+  0 0  2
+  1 0 -1  0
+  1 1  0  1  0
+ -1 0  1 -1 -1 0
+2^5  * 3^1   = 96 % order of the group
