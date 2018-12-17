@@ -1,3 +1,4 @@
+### Test Ex10-1
 Please input the symbol for the crystal-family: 6-1
 The crystal-family 6-1 contains 6 homogeneously decomposable bravais-groups with
  1,  1,  1,  1,  1,  1
@@ -25,13 +26,17 @@ Do you want to calculate bravais-groups? (y or n): Please input a filename (stdo
 6d0	% generator of centralizer
 -1
 2^10  * 3^2  * 5^1   = 46080 % order of the group
-Do you want further bravais-groups? (y or n): 6	% ELT of matrix
+Do you want further bravais-groups? (y or n): ### Ex10-1 return code 0
+### Test Ex10-2
+6	% ELT of matrix
  1 0 0 0 0  0
  0 1 0 0 0  0
  0 0 1 0 0  0
  0 0 0 1 0  0
  0 0 0 0 8  0
  0 0 0 0 0 40
+### Ex10-2 return code 0
+### Test Ex10-3
 #1920
 6	% 
  1  0  0 0  0  0
@@ -13636,4 +13641,7 @@ Do you want further bravais-groups? (y or n): 6	% ELT of matrix
   0  0  0 -1  0  0
   0  0 -1  0  0  0
 % order of the group unknown
+### Ex10-3 return code 0
+### Test Ex10-4
 The order of the group is 24
+### Ex10-4 return code 0

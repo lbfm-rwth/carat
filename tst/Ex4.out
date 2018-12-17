@@ -1,3 +1,4 @@
+### Test Ex4-1
 #g2 f1 n9 % group with complete normalizer
 4	% generator
  -1 0 0 0
@@ -48,6 +49,8 @@
  0 1  0 0
  1 0  0 0
 2^6   = 64 % order of the group
+### Ex4-1 return code 0
+### Test Ex4-2
 #6
 4x2	% the 1-th cozycle, length of orbit 1,name: 0
 0 0 
@@ -79,6 +82,8 @@
 1 0 
 1 0 
 1 0 
+### Ex4-2 return code 0
+### Test Ex4-3
 #g2 % space group to the point group of Ex4_gn and the 1-th cozycle of Ex4_out
 5	% generator
  -1 0 0 0 0
@@ -163,6 +168,8 @@
  1 0 0 0 0
  0 0 0 0 1
 % order of the group unknown
+### Ex4-3 return code 0
+### Test Ex4-4
 #g2 f1 n8 
 4	% generator
  -1 0 0 0
@@ -211,6 +218,8 @@
  -1 0 0 0
   0 1 0 0
 2^6   = 64 % order of the group
+### Ex4-4 return code 0
+### Test Ex4-5
 L1 with (0,0) yields L2
 4	% Change of basis:
  1  0  0  0
@@ -250,35 +259,66 @@ L4 with (0,0) yields 2.L1
 
 	      L  1:       Lattice	Constituent
      parents  :
-                        L%3-d	(p=4,Nr.=2)
+                        L4  	(p=2,Nr.=1)
      children :
-                        L%3-d	(p=2,Nr.=2)
+                        L2  	(p=2,Nr.=1)
 
 ======= 1 Lattices on level 1 ====================================
 
 	      L  2:       Lattice	Constituent
      parents  :
-                        L%3-d	(p=1,Nr.=2)
+                        L1  	(p=2,Nr.=1)
      children :
-                        L%3-d	(p=3,Nr.=2)
+                        L3  	(p=2,Nr.=1)
 
 ======= 1 Lattices on level 2 ====================================
 
 	      L  3:       Lattice	Constituent
      parents  :
-                        L%3-d	(p=2,Nr.=2)
+                        L2  	(p=2,Nr.=1)
      children :
-                        L%3-d	(p=4,Nr.=2)
+                        L4  	(p=2,Nr.=1)
 
 ======= 1 Lattices on level 3 ====================================
 
 	      L  4:       Lattice	Constituent
      parents  :
-                        L%3-d	(p=3,Nr.=2)
+                        L3  	(p=2,Nr.=1)
      children :
-                        L%3-d	(p=1,Nr.=2)
+                        L1  	(p=2,Nr.=1)
 
 ======= 1 Lattices on level 4 ====================================
+### Ex4-5 return code 0
+### Test Ex4-6-g.2.2
+### Ex4-6-g.2.2 return code 0
+### Test Ex4-6-g.2.3
+### Ex4-6-g.2.3 return code 0
+### Test Ex4-6-g.2.4
+### Ex4-6-g.2.4 return code 0
+### Test Ex4-6-g.3.2
+### Ex4-6-g.3.2 return code 0
+### Test Ex4-6-g.3.3
+### Ex4-6-g.3.3 return code 0
+### Test Ex4-6-g.3.4
+### Ex4-6-g.3.4 return code 0
+### Test Ex4-6-g.4.2
+### Ex4-6-g.4.2 return code 0
+### Test Ex4-6-g.4.3
+### Ex4-6-g.4.3 return code 0
+### Test Ex4-6-g.4.4
+### Ex4-6-g.4.4 return code 0
+### Test Ex4-6-g.5.2
+### Ex4-6-g.5.2 return code 0
+### Test Ex4-6-g.5.3
+### Ex4-6-g.5.3 return code 0
+### Test Ex4-6-g.5.4
+### Ex4-6-g.5.4 return code 0
+### Test Ex4-6-g.6.2
+### Ex4-6-g.6.2 return code 0
+### Test Ex4-6-g.6.3
+### Ex4-6-g.6.3 return code 0
+### Test Ex4-6-g.6.4
+### Ex4-6-g.6.4 return code 0
 #g2 % konjugated bravais group
 5	/2		% generator
  -2 0 0 -2  0
@@ -489,6 +529,66 @@ L4 with (0,0) yields 2.L1
  -2 -1 -1 -1 0
   0  0  0  0 1
 % order of the group unknown
+### Test Ex4-7-pg.2.2
+### Ex4-7-pg.2.2 return code 0
+### Test Ex4-7-cg.2.2
+### Ex4-7-cg.2.2 return code 0
+### Test Ex4-7-pg.2.3
+### Ex4-7-pg.2.3 return code 0
+### Test Ex4-7-cg.2.3
+### Ex4-7-cg.2.3 return code 0
+### Test Ex4-7-pg.2.4
+### Ex4-7-pg.2.4 return code 0
+### Test Ex4-7-cg.2.4
+### Ex4-7-cg.2.4 return code 0
+### Test Ex4-7-pg.3.2
+### Ex4-7-pg.3.2 return code 0
+### Test Ex4-7-cg.3.2
+### Ex4-7-cg.3.2 return code 0
+### Test Ex4-7-pg.3.3
+### Ex4-7-pg.3.3 return code 0
+### Test Ex4-7-cg.3.3
+### Ex4-7-cg.3.3 return code 0
+### Test Ex4-7-pg.3.4
+### Ex4-7-pg.3.4 return code 0
+### Test Ex4-7-cg.3.4
+### Ex4-7-cg.3.4 return code 0
+### Test Ex4-7-pg.4.2
+### Ex4-7-pg.4.2 return code 0
+### Test Ex4-7-cg.4.2
+### Ex4-7-cg.4.2 return code 0
+### Test Ex4-7-pg.4.3
+### Ex4-7-pg.4.3 return code 0
+### Test Ex4-7-cg.4.3
+### Ex4-7-cg.4.3 return code 0
+### Test Ex4-7-pg.4.4
+### Ex4-7-pg.4.4 return code 0
+### Test Ex4-7-cg.4.4
+### Ex4-7-cg.4.4 return code 0
+### Test Ex4-7-pg.5.2
+### Ex4-7-pg.5.2 return code 0
+### Test Ex4-7-cg.5.2
+### Ex4-7-cg.5.2 return code 0
+### Test Ex4-7-pg.5.3
+### Ex4-7-pg.5.3 return code 0
+### Test Ex4-7-cg.5.3
+### Ex4-7-cg.5.3 return code 0
+### Test Ex4-7-pg.5.4
+### Ex4-7-pg.5.4 return code 0
+### Test Ex4-7-cg.5.4
+### Ex4-7-cg.5.4 return code 0
+### Test Ex4-7-pg.6.2
+### Ex4-7-pg.6.2 return code 0
+### Test Ex4-7-cg.6.2
+### Ex4-7-cg.6.2 return code 0
+### Test Ex4-7-pg.6.3
+### Ex4-7-pg.6.3 return code 0
+### Test Ex4-7-cg.6.3
+### Ex4-7-cg.6.3 return code 0
+### Test Ex4-7-pg.6.4
+### Ex4-7-pg.6.4 return code 0
+### Test Ex4-7-cg.6.4
+### Ex4-7-cg.6.4 return code 0
 #g2 f1 % point group to the space group of g.2.2
 4	% generator
  -1 0 0 -1

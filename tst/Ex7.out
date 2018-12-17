@@ -1,3 +1,4 @@
+### Test Ex7-1
 #g1 f3 n10 % group with complete normalizer
 6	% generator
  0 -1  0 0 0 0
@@ -78,5 +79,10 @@
  0 0  1  1  1  0
  0 0  0 -1 -1 -1
 2^3   = 8 % order of the group
+### Ex7-1 return code 0
+### Test Ex7-2
 The group infinite!
+### Ex7-2 return code 0
+### Test Ex7-3
 Symbol of the group: 4-1';2-1
+### Ex7-3 return code 0
