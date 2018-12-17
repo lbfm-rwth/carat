@@ -47,7 +47,7 @@ char *fn;
 char *dat;
 FILE *infile;
 int i, j, k, l, m, n, p, q, x, groesser;
-int no;
+int no, c;
 int breite;
 char merk[15];
 char merk1[10];
@@ -88,8 +88,8 @@ for(i=0; i<MAXDIM; i++)
   for(j=0; j<5;j++)
     zerleg[i][j] = 0;
 printf("Please input the symbol for the crystal-family: ");
-fscanf (infile, "%[ \t\n]", string);
-fscanf (infile, "%[^\n]",string);
+c=fscanf (infile, "%[ \t\n]", string);
+c=fscanf (infile, "%[^\n]",string);
 strtok (string, "%");
 
 right_order(string);

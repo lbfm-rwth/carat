@@ -37,7 +37,7 @@ char  st;
 char **piece;
 FILE *infile;
 int anz, teile;
-int i, j, k, l, m;
+ int i, j, k, l, m, c;
 int gen_no, form_no, zentr_no, normal_no, cen_no;
 
 	/*------------------------------------------------------------*\
@@ -59,7 +59,7 @@ else
   /*--------------------------------------------------*\
   |  read header line                                  |
   \*--------------------------------------------------*/
-fscanf (infile, "%*[ \t\n\r]");
+c=fscanf (infile, "%*[ \t\n\r]");
 st = getc(infile);
 if ( st != '#' ) {
 	gen_no = 1;
@@ -68,8 +68,8 @@ if ( st != '#' ) {
 else
 {
 
-fscanf (infile, "%[ \t\n]", string);
-if (fscanf (infile, "%[^\n]",string) == EOF) {
+c=fscanf (infile, "%[ \t\n]", string);
+if (c=fscanf (infile, "%[^\n]",string) == EOF) {
 	*string = '\0';
 }
 strtok (string, "%");
@@ -149,8 +149,8 @@ for ( k = 0; k < cen_no; k++)
 	/*------------------------------------------------------------*\
 	| read group order                                             |
 	\*------------------------------------------------------------*/
-fscanf (infile, "%[ \t\n]", string);
-if (fscanf (infile, "%[^\n]",string) == EOF) {
+c=fscanf (infile, "%[ \t\n]", string);
+if (c=fscanf (infile, "%[^\n]",string) == EOF) {
 	*string = '\0';
 }
 if ( *string == '%' )

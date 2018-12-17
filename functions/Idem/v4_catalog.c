@@ -1,10 +1,12 @@
 #include "typedef.h"
 #include "longtools.h"
-#include "longtools.h"
+#include "sort.h"
 #include "matrix.h"
 #include "orbit.h"
 #include "idem.h"
 #include "datei.h"
+#include "tools.h"
+#include "getput.h"
 
 extern int INFO_LEVEL;
 

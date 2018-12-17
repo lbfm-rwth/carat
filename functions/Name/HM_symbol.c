@@ -37,7 +37,7 @@ void display_HM_symbol(char *qname,
 {
 
    int number,
-       i,
+     i, c,
        z1in,
        z2in,
        found=0;
@@ -58,13 +58,13 @@ void display_HM_symbol(char *qname,
       exit(4);
    }
 
-   fscanf(F,"#%d\n",&number);
+   c=fscanf(F,"#%d\n",&number);
 
    fprintf(stdout,"possible Herman-Mauguin symbols describing a group\n");
    fprintf(stdout,"isomorphic to the given one: \n");
 
    for (i=0;i<number;i++){
-      fscanf(F,"qname: %s zname: %d %d aff_name: %s %s\n",
+      c=fscanf(F,"qname: %s zname: %d %d aff_name: %s %s\n",
                       qin,&z1in,&z2in,affin,HMSYMBOL);
 
       if (strcmp(qin,qname) == 0

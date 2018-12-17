@@ -1,6 +1,8 @@
-#include"typedef.h"
-#include"matrix.h"
+#include "typedef.h"
+#include "matrix.h"
 #include "bravais.h"
+#include "longtools.h"
+#include "tools.h"
 
 /**************************************************************************\
 @---------------------------------------------------------------------------
@@ -317,7 +319,7 @@ int *erg, Fanz;
   {
      printf("error in 'form_to_vec_modular':\n");
      printf("The matrix A is not in the Z-span of the matrices F[0],..,F[%d],\n", (Fanz-1));
-     printf("or F[0],...,F[%d] are not independent over the field with");
+     printf("or F[0],...,F[%d] are not independent over the field with", (Fanz-1));
      if(X1anz != 1)  printf("  %d  ", p1);
      if(X2anz != 1)  printf("  %d  ", p2);
      printf("elements\n");

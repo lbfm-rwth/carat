@@ -106,6 +106,11 @@ extern int long_rein_formspace(matrix_TYP **forms,int number,int option);
 \*-------------------------------------------------------------*/
 extern matrix_TYP **long_solve_mat(matrix_TYP *A, matrix_TYP *B);
 
+/*-------------------------------------------------------------*\
+| FILE: dump_MP_mat.c
+\*-------------------------------------------------------------*/
+extern void dump_MP_mat(MP_INT **Mat, int rows, int cols, char *comment);
+  
 #else
 /*-------------------------------------------------------------*\
 | FILE: MP_conv_mat.c
@@ -191,6 +196,11 @@ extern int long_rein_formspace();
 | FILE: long_solve_mat.c
 \*-------------------------------------------------------------*/
 extern matrix_TYP **long_solve_mat();
+
+/*-------------------------------------------------------------*\
+| FILE: dump_MP_mat.c
+\*-------------------------------------------------------------*/
+extern void dump_MP_mat();
 
 #endif
 #endif

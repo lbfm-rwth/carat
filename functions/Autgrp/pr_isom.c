@@ -8,8 +8,9 @@
 @
 \**************************************************************************/
 
-#include"typedef.h"
+#include "typedef.h"
 #include "types.h"
+#include "matrix.h"
 
 static int normal_option;
 static int perp_no;

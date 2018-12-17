@@ -100,13 +100,12 @@ static void load_abbreviation (const char *string, entry *element)
   
   element->abbreviation = (char *) xmalloc ( (strlen(string)+1) * sizeof(char),
 					     "load_abbreviation");
-  
-  if ( sprintf (element->abbreviation, string) < 0)
+
+  if ( sprintf (element->abbreviation, "%s", string) < 0)
     {
       perror ("load_abbreviation");
       exit (4);
     }
-
   
 }
 
@@ -132,7 +131,7 @@ static void load_symbol (const char *string, entry *element)
   element->symbol = (char *) xmalloc ( (strlen(string)+1) * sizeof(char),
 				       "load_symbol");
 
-  if( sprintf(element->symbol, string) < 0)
+  if( sprintf(element->symbol, "%s", string) < 0)
     {
       perror ("load_symbol");
       exit (4);
@@ -162,7 +161,7 @@ static void load_discriminant (const char *string, entry *element)
   element->discriminant = (char *) xmalloc ( (strlen(string)+1) * sizeof(char),
 					     "load_discriminant");
   
-  if( sprintf (element->discriminant, string) < 0)
+  if( sprintf (element->discriminant, "%s", string) < 0)
     {
       perror ("load_discriminant");
       exit (4);
@@ -361,7 +360,7 @@ static int cmp_no_idem (entry *entry1, entry *entry2)
 static void read_database_entry (FILE *file, entry *data)
 {
   int i;
-  const char string[200];
+  char string[200];
   
   for (i=0; i<NR_OF_ELEMENTS_IN_EACH_ENTRY; i++)
     {

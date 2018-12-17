@@ -8,9 +8,11 @@
 #include "longtools.h"
 #include "voronoi.h"
 #include "ZZ_P.h"
+#include "ZZ_zclass_P.h"
 #include "ZZ_irr_const_P.h"
 #include "ZZ_lll_P.h"
 #include "ZZ_cen_fun_P.h"
+#include "datei.h"
 
 extern int IDEM_NO;
 int *SUB_VEC;
@@ -620,7 +622,7 @@ void ZZ_fput_data (data, tree, ABBRUCH)
 				fprintf (ZZ_temp, "     parents  :\n");
 				do {
 					fprintf(ZZ_temp, 
-						"%25s%3-d\t(p=%d,Nr.=%d)\n",
+						"%25s%-3d\t(p=%d,Nr.=%d)\n",
 						"L", m->he->number,
 						data->p_consts.p[m->she.i],
 						m->she.j + 1);
@@ -630,7 +632,7 @@ void ZZ_fput_data (data, tree, ABBRUCH)
 				fprintf (ZZ_temp, "     children :\n");
 				do {
 					fprintf (ZZ_temp,
-						 "%25s%3-d\t(p=%d,Nr.=%d)\n",
+						 "%25s%-3d\t(p=%d,Nr.=%d)\n",
 						 "L",
 						 m->he->number,
 						 data->p_consts.p[m->she.i],

@@ -10,7 +10,7 @@ lattice_element **lattice(char *symb,int dim,int almost,int zclass,int *no,
 
    FILE *infile;
 
-   int i;
+   int i, c;
 
    /* saves space on the stack */
    static char filename[1000];
@@ -27,7 +27,7 @@ lattice_element **lattice(char *symb,int dim,int almost,int zclass,int *no,
      exit(4);
    }
 
-   fscanf(infile,"#%d\n",no);
+   c=fscanf(infile,"#%d\n",no);
 
    if (INFO_LEVEL & 1){
       fprintf(stderr,"%d\n",no[0]);

@@ -47,6 +47,13 @@ extern matrix_TYP **polyeder_to_vecs(polyeder_TYP *P);
 \*-------------------------------------------------------------*/
 extern int refine_polyeder(polyeder_TYP *F, wall_TYP *h);
 
+/*-------------------------------------------------------------*\
+| FILE: fuber_tools.c 
+\*-------------------------------------------------------------*/
+void free_vertex_fuber(vertex_TYP**);
+void free_wall_fuber(wall_TYP**);
+int wall_times_vertex_fuber(wall_TYP*, vertex_TYP*);
+
 #else
 /*-------------------------------------------------------------*\
 | FILE: first_polyeder.c 
@@ -81,6 +88,13 @@ extern matrix_TYP **polyeder_to_vecs();
 | FILE: refine_polyeder.c 
 \*-------------------------------------------------------------*/
 extern int refine_polyeder();
+
+/*-------------------------------------------------------------*\
+| FILE: fuber_tools.c 
+\*-------------------------------------------------------------*/
+void free_vertex_fuber();
+void free_wall_fuber();
+int wall_times_vertex_fuber();
 
 #endif
 #endif

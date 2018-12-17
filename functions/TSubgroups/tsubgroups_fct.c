@@ -4,6 +4,8 @@
 #include <matrix.h>
 #include <presentation.h>
 #include <tsubgroups.h>
+#include <datei.h>
+#include <graph.h>
 
 #define DATABASE_NAME TOPDIR "/tables/qcatalog/data"
 

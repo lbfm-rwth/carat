@@ -17,6 +17,7 @@
 #include "ZZ_lll_P.h"
 #include "ZZ_cen_fun_P.h"
 #include "ZZ_zclass_P.h"
+#include "datei.h"
 
 extern int INFO_LEVEL;
 

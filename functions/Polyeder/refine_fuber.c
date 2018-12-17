@@ -1,6 +1,7 @@
 #include "typedef.h"
 #include "tools.h"
 #include "matrix.h"
+#include "polyeder.h"
 
 void vertex_standard(v)
 vertex_TYP *v;

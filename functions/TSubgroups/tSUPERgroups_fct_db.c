@@ -6,6 +6,7 @@
 #include <presentation.h>
 #include <tsubgroups.h>
 #include <name.h>
+#include <datei.h>
 
 #define DATABASE_NAME TOPDIR "/tables/qcatalog/data"
 
@@ -31,7 +32,7 @@ static bravais_TYP **get_supergr(char *pfad,
 				 database *database,
 				 matrix_TYP *trafoinv)
 {
-   int i, k, j, z1ri, z2ri, number, anz, nr, laenge;
+  int i, k, j, z1ri, z2ri, number, anz, nr, laenge, c;
 
    bravais_TYP *Sstd, *Ri, **Si = NULL, *Sstdinv;
 
@@ -59,7 +60,7 @@ static bravais_TYP **get_supergr(char *pfad,
    }
 
    /* Hole Worte fuer alle Untergruppen */
-   fscanf (infile, "%[^\n]",string);
+   c=fscanf (infile, "%[^\n]",string);
    if ( string[0] != '#' ) {
       anz = 1;
       mat = (matrix_TYP **)malloc(sizeof(matrix_TYP *));

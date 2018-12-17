@@ -28,6 +28,8 @@ static int *perpvec;
 #include "preproc.c"
 #include "sorttools.c"
 #include "perfecttools.c"
+#include "matrix.h"
+#include "sort.h"
 
 /*
 @-------------------------------------------------------------------------

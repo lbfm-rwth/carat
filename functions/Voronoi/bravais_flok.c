@@ -11,6 +11,7 @@
 #include "tools.h"
 #include "sort.h"
 #include "longtools.h"
+#include "datei.h"
 
 extern int INFO_LEVEL;
 

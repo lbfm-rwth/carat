@@ -1,6 +1,7 @@
 #include "typedef.h"
 #include "datei.h"
 #include "getput.h"
+#include "matrix.h"
 
 /***************************************************************************
 @
@@ -75,11 +76,12 @@ void free_lattice_element(lattice_element *x)
 lattice_element *fget_lattice_element(FILE *F,int OPTION)
 {
    lattice_element *E;
+   int c;
 
    E = init_lattice_element();
-   fscanf(F,"%s %d %d\n",E->symbol,&E->almost,&E->zclass);
+   c=fscanf(F,"%s %d %d\n",E->symbol,&E->almost,&E->zclass);
 
-   fscanf(F,"%d\n",&E->alpha);
+   c=fscanf(F,"%d\n",&E->alpha);
 
    E->TR = fmget_mat(F,&E->N_orbits);
 

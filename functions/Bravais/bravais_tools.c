@@ -3,6 +3,7 @@
 #include"matrix.h"
 #include"symm.h"
 #include"autgrp.h"
+#include"voronoi.h"
 
 /*******************************************************************************
 @

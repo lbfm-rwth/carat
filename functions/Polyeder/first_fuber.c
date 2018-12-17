@@ -1,6 +1,6 @@
 #include "typedef.h"
 #include "matrix.h"
-
+#include "polyeder.h"
 
 fund_domain *first_fuber(mauern, anz)
 wall_TYP **mauern;

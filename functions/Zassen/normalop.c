@@ -19,6 +19,7 @@
 #include <sort.h>
 #include <bravais.h>
 #include <contrib.h>
+#include <datei.h>
 
 #define TWOTO21 2097152
 

@@ -3,6 +3,7 @@
 #include "longtools.h"
 #include "matrix.h"
 #include "bravais.h"
+#include "tools.h"
 
 /***************************************************************************
 @

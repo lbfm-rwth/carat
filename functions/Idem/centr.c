@@ -5,6 +5,8 @@
 #include"symm.h"
 #include"bravais.h"
 #include"longtools.h"
+#include "getput.h"
+#include "sort.h"
 
 extern int INFO_LEVEL;
 

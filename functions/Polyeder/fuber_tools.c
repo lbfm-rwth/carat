@@ -1,6 +1,7 @@
 #include "typedef.h"
 #include "tools.h"
 #include "matrix.h"
+#include "polyeder.h"
 
 vertex_TYP *init_vertex_fuber(dim, wall_no)
 int dim;
@@ -41,8 +42,6 @@ int dim;
   return(erg);
 }
 
-void free_vertex_fuber(vertex_TYP**);
-void free_wall_fuber(wall_TYP**);
 /* 
  Aenderung: 12.10.94 JK
  Speicherplatz wieder freigeben
@@ -89,7 +88,7 @@ fund_domain *get_fund_domain(file_name)
 char *file_name;
 {
 int vertno, wallno;
-int dim,wn,i,j;
+int dim,wn,i,j,c;
 fund_domain *F;
 FILE *infile;
 
@@ -107,25 +106,25 @@ else
   /*--------------------------------------------------*\
   |  read fundamental domain                                  |
   \*--------------------------------------------------*/
-fscanf (infile, "%d", &vertno);
-fscanf (infile, "%d", &wallno);
+c=fscanf (infile, "%d", &vertno);
+c=fscanf (infile, "%d", &wallno);
 F = init_fund_domain(vertno, wallno);
 for(i=0;i<vertno;i++)
 {
-  fscanf (infile, "%d", &dim);
-  fscanf (infile, "%d", &wn);
+  c=fscanf (infile, "%d", &dim);
+  c=fscanf (infile, "%d", &wn);
   F->vert[i] = init_vertex_fuber(dim, wn);
   for(j=0;j<dim;j++)
-    fscanf(infile, "%d", &F->vert[i]->v[j]); 
+    c=fscanf(infile, "%d", &F->vert[i]->v[j]); 
   for(j=0;j<wn;j++)
-     fscanf(infile, "%d", &F->vert[i]->wall[j]);
+     c=fscanf(infile, "%d", &F->vert[i]->wall[j]);
 }
 for(i=0;i<wallno;i++)
 {
-  fscanf(infile, "%d", &dim);
+  c=fscanf(infile, "%d", &dim);
   F->wall[i] = init_wall_fuber(dim);
   for(j=0;j<dim;j++)
-    fscanf(infile, "%d", &F->wall[i]->gl[j]); 
+    c=fscanf(infile, "%d", &F->wall[i]->gl[j]); 
 }
 
    
