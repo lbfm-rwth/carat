@@ -1,0 +1,474 @@
+Conditions:  
+Q_Classes: # 8329,   Z_Classes: # 92185,   Affine Classes: #29154954
+
+Possible Conditions:  abb(reviation)   deg(ree)   sym(bol)   ord(er)   dis(criminant)   zcl(asses)   aff(ine_classes)   tor(sionfree_space_groups)   con(_classes_number)   ide(mpotent_number)   
+
+
+s   set condition		     p     possible data
+d   delete condition		     l     list group
+w   write to file                    q     quit
+
+
+
+>'abbreviation' has been set to min.108  .
+
+Conditions:   abbreviation = min.108  
+Q_Classes: # 1,   Z_Classes: # 8,   Affine Classes: #24
+
+Possible Conditions:  abb(reviation)   deg(ree)   sym(bol)   ord(er)   dis(criminant)   zcl(asses)   aff(ine_classes)   tor(sionfree_space_groups)   con(_classes_number)   ide(mpotent_number)   
+
+
+s   set condition		     p     possible data
+d   delete condition		     l     list group
+w   write to file                    q     quit
+
+
+
+>Conditions:   abbreviation = min.108  
+Q_Classes: # 1,   Z_Classes: # 8,   Affine Classes: #24
+
+Possible Conditions:  abb(reviation)   deg(ree)   sym(bol)   ord(er)   dis(criminant)   zcl(asses)   aff(ine_classes)   tor(sionfree_space_groups)   con(_classes_number)   ide(mpotent_number)   
+
+
+s   set condition		     p     possible data
+d   delete condition		     l     list group
+w   write to file                    q     quit
+
+
+
+>Program aborted
+#g2
+5
+1 1 0 0 0 
+0 -1 0 0 0 
+0 0 -1 0 0 
+0 0 0 -1 0 
+0 0 0 0 1 
+5
+-1 -1 0 0 0 
+1 0 0 0 0 
+0 0 1 0 0 
+0 0 0 1 0 
+0 0 0 0 1 
+2^1  * 3^1   = 6 % order of the group
+L1 with (1,1) yields L2
+father: level 1 number of orbits 1 lengths 3
+L1 with (0,0) yields L2
+father: level 1 number of orbits 2 lengths 2
+L1 with (1,1) yields L3
+father: level 2 number of orbits 1 lengths 6
+L2 with (1,1) yields L4
+L3 with (0,0) yields 1.L4
+father: level 1 number of orbits 1 lengths 3
+L1 with (0,0) yields L2
+father: level 1 number of orbits 2 lengths 8
+L1 with (1,0) yields L3
+father: level 2 number of orbits 1 lengths 24
+L2 with (1,0) yields L4
+L3 with (0,0) yields 1.L4
+####### There are 8 classes of groups
+#4
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+0 0 
+0 0 
+0 0 
+0 0 
+0 1 
+5x2/6	% the 3-th cozycle, length of orbit 8,name: 3
+0 0 
+0 0 
+-3 0 
+0 -2 
+0 0 
+5x2/2	% the 4-th cozycle, length of orbit 1,name: 9
+0 0 
+0 0 
+-3 0 
+0 -2 
+0 0 
+#2
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+0 1 
+0 0 
+0 0 
+0 0 
+0 0 
+#4
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+0 1 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/6	% the 3-th cozycle, length of orbit 8,name: 3
+0 0 
+0 -2 
+3 0 
+3 0 
+-3 0 
+5x2/2	% the 4-th cozycle, length of orbit 1,name: 9
+0 0 
+0 -2 
+3 0 
+3 0 
+-3 0 
+#2
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+0 1 
+0 0 
+0 0 
+0 0 
+0 0 
+#4
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+0 0 
+0 0 
+0 0 
+0 0 
+0 1 
+5x2/6	% the 3-th cozycle, length of orbit 8,name: 3
+0 0 
+0 0 
+-3 0 
+0 -2 
+0 0 
+5x2/2	% the 4-th cozycle, length of orbit 1,name: 9
+0 0 
+0 0 
+-3 0 
+0 -2 
+0 0 
+#2
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+0 1 
+0 0 
+0 0 
+0 0 
+0 0 
+#4
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/6	% the 2-th cozycle, length of orbit 2,name: 1
+-3 0 
+0 -2 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 3-th cozycle, length of orbit 2,name: 2
+-3 0 
+0 -2 
+0 0 
+0 0 
+0 0 
+5x2/2	% the 4-th cozycle, length of orbit 1,name: 3
+-3 0 
+0 -2 
+0 0 
+0 0 
+0 0 
+#2
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 2-th cozycle, length of orbit 2,name: 1
+0 1 
+0 0 
+0 0 
+0 0 
+0 0 
+4x5	% presentation for group in Ex12_min.108
+ 1 1  0  0  0
+ 2 1  2 -1  0
+ 2 2 -1 -2 -1
+ 2 1 -2 -2 -1
+#4
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+0 0 
+0 0 
+0 0 
+0 0 
+0 1 
+5x2/6	% the 3-th cozycle, length of orbit 8,name: 3
+0 0 
+0 0 
+-3 0 
+0 -2 
+0 0 
+5x2/2	% the 4-th cozycle, length of orbit 1,name: 9
+0 0 
+0 0 
+-3 0 
+0 -2 
+0 0 
+#2
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+0 1 
+0 0 
+0 0 
+0 0 
+0 0 
+#4
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+0 1 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/6	% the 3-th cozycle, length of orbit 8,name: 3
+0 0 
+0 -2 
+3 0 
+3 0 
+-3 0 
+5x2/2	% the 4-th cozycle, length of orbit 1,name: 9
+0 0 
+0 -2 
+3 0 
+3 0 
+-3 0 
+#2
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+0 1 
+0 0 
+0 0 
+0 0 
+0 0 
+#4
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+0 0 
+0 0 
+0 0 
+0 0 
+0 1 
+5x2/6	% the 3-th cozycle, length of orbit 8,name: 3
+0 0 
+0 0 
+-3 0 
+0 -2 
+0 0 
+5x2/2	% the 4-th cozycle, length of orbit 1,name: 9
+0 0 
+0 0 
+-3 0 
+0 -2 
+0 0 
+#2
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+0 1 
+0 0 
+0 0 
+0 0 
+0 0 
+#4
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/6	% the 2-th cozycle, length of orbit 2,name: 1
+-3 0 
+0 -2 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 3-th cozycle, length of orbit 2,name: 2
+-3 0 
+0 -2 
+0 0 
+0 0 
+0 0 
+5x2/2	% the 4-th cozycle, length of orbit 1,name: 3
+-3 0 
+0 -2 
+0 0 
+0 0 
+0 0 
+#2
+5x2	% the 1-th cozycle, length of orbit 1,name: 0
+0 0 
+0 0 
+0 0 
+0 0 
+0 0 
+5x2/3	% the 2-th cozycle, length of orbit 2,name: 1
+0 1 
+0 0 
+0 0 
+0 0 
+0 0 
+Ex12_min.108.1.1.1
+The group in Ex12_min.108.1.1.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.1.1.2
+The group in Ex12_min.108.1.1.2 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.1.1.3
+The group in Ex12_min.108.1.1.3 is torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.1.1.4
+The group in Ex12_min.108.1.1.4 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.1.2.1
+The group in Ex12_min.108.1.2.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.1.2.2
+The group in Ex12_min.108.1.2.2 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.1.3.1
+The group in Ex12_min.108.1.3.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.1.3.2
+The group in Ex12_min.108.1.3.2 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.1.3.3
+The group in Ex12_min.108.1.3.3 is torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.1.3.4
+The group in Ex12_min.108.1.3.4 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.1.4.1
+The group in Ex12_min.108.1.4.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.1.4.2
+The group in Ex12_min.108.1.4.2 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.2.1.1
+The group in Ex12_min.108.2.1.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.2.1.2
+The group in Ex12_min.108.2.1.2 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.2.1.3
+The group in Ex12_min.108.2.1.3 is torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.2.1.4
+The group in Ex12_min.108.2.1.4 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.2.2.1
+The group in Ex12_min.108.2.2.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.2.2.2
+The group in Ex12_min.108.2.2.2 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.2.3.1
+The group in Ex12_min.108.2.3.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.2.3.2
+The group in Ex12_min.108.2.3.2 is torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.2.3.3
+The group in Ex12_min.108.2.3.3 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.2.3.4
+The group in Ex12_min.108.2.3.4 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.2.4.1
+The group in Ex12_min.108.2.4.1 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+
+Ex12_min.108.2.4.2
+The group in Ex12_min.108.2.4.2 is not torsion free
+The order of the point group is 6, and it has 3 conjugacy classes
+

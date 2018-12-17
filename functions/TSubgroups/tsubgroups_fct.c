@@ -73,7 +73,7 @@ TSubgroup_TYP *ite_gruppe(bravais_TYP *R,
    S->P = psg;
    S->orbitlength = mat->array.SZ[mat->rows - 1][0];
    S->pointgrouporder = mat->array.SZ[mat->rows - 1][1];
-   sg = NULL;
+   return S;
 }
 
 

@@ -1,0 +1,54 @@
+#g4 f4 n2 c4% not homogenously decomposable bravais-group
+4	% generator
+  0 -1 0 0
+ -1  0 0 0
+  0  0 1 0
+  0  0 0 1
+4	% generator
+ 0 1 0 0
+ 1 0 0 0
+ 0 0 1 0
+ 0 0 0 1
+4	% generator
+ 1 0  0 0
+ 0 1  0 0
+ 0 0 -1 0
+ 0 0  0 1
+4	% generator
+ 1 0 0  0
+ 0 1 0  0
+ 0 0 1  0
+ 0 0 0 -1
+4x0	% invariant form
+  0
+ -1 0
+  0 0 0
+  0 0 0 0
+4d1	% invariant form
+0 0 1 0 
+4d1	% invariant form
+0 0 0 1 
+4d1	% invariant form
+1 1 0 0 
+4d1	% generator of normalizer
+1 -1 1 1 
+4x0	% generator of normalizer
+ 1
+ 0 1
+ 0 0 0
+ 0 0 1 0
+4x0	% generator of centralizer
+  0
+ -1 0
+  0 0 1
+  0 0 0 1
+4x0	% generator of centralizer
+ 0
+ 1 0
+ 0 0 1
+ 0 0 0 1
+4d1	% generator of centralizer
+1 1 -1 1 
+4d1	% generator of centralizer
+1 1 1 -1 
+2^4   = 16 % order of the group

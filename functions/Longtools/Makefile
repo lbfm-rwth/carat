@@ -4,13 +4,9 @@ CFLAGS = -DDIAG1 -fwritable-strings -g
 
 INCL = $(TOPDIR)/include
 
-AR = ar rvuc $(TOPDIR)/lib/functions.a
+AR = ar rDc $(TOPDIR)/lib/functions.a
 
-GLOBAL = -DTOPDIR=\"$(TOPDIR)\" -DTABLES=\"$(TOPDIR)/tables/\" \
-         -DATOMS=\"$(TOPDIR)/tables/atoms/\" \
-         -DTABLEDIM=\"$(TOPDIR)/tables/dim\"
-
-COMP = $(CC) $(CFLAGS) -c $(GLOBAL) -I$(INCL)
+COMP = $(CC) $(CFLAGS) -c -I$(INCL)
 
 OBJS = MP_conv_mat.o\
        MP_gauss.o\

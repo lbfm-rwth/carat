@@ -185,7 +185,7 @@ int main(int argc,char **argv){
      /* echo the rank if needed */
      if (T->rows != T->cols){
         fprintf(stderr,"The rank of the translation lattice is %d\n",T->cols);
-        exit(3);
+        exit(0);
      }
 
      real_mat(T,T->rows+1,T->cols+1);

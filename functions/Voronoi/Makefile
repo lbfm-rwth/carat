@@ -4,13 +4,9 @@ CC = gcc
 
 INCL = $(TOPDIR)/include
 
-AR = ar rvuc $(TOPDIR)/lib/functions.a
+AR = ar rDc $(TOPDIR)/lib/functions.a
 
-GLOBAL = -DTOPDIR=\"$(TOPDIR)\" -DTABLES=\"$(TOPDIR)/tables/\" \
-         -DATOMS=\"$(TOPDIR)/tables/atoms/\" \
-         -DTABLEDIM=\"$(TOPDIR)/tables/dim\"
-
-COMP = $(CC) $(CFLAGS) -c $(GLOBAL) -I$(INCL)
+COMP = $(CC) $(CFLAGS) -c -I$(INCL)
 
 OBJS = all_vor_neighbours.o\
        bravais_flok.o\
@@ -23,7 +19,7 @@ OBJS = all_vor_neighbours.o\
        red_normal.o\
        vor_neighbour.o\
        vor_vertices.o
-      
+
 .c.o:
 	$(COMP) $< -o $@
 

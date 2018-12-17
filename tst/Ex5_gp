@@ -1,0 +1,32 @@
+#g2 f3 % point group to the space group of g
+6	% generator
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+ 0 0 0 1 0 0
+ 0 0 1 0 0 0
+ 0 0 0 0 1 0
+ 0 0 0 0 0 1
+6	% generator
+ 0 0 1 0 0 0
+ 0 0 0 1 0 0
+ 0 0 0 0 1 0
+ 0 0 0 0 0 1
+ 1 0 0 0 0 0
+ 0 1 0 0 0 0
+6d0	% invariant form
+1
+6x0	% invariant form
+ 0
+ 1 0
+ 0 0 0
+ 0 0 1 0
+ 0 0 0 0 0
+ 0 0 0 0 1 0
+6x0	% invariant form
+ 0
+ 0 0
+ 1 1 0
+ 1 1 0 0
+ 1 1 1 1 0
+ 1 1 1 1 0 0
+% order of the group unknown

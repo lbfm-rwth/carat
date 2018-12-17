@@ -1,0 +1,100 @@
+#g1 f15 n1 c4% homogenously decomposable bravais-group
+5	% generator
+ -1  0  0  0  0
+  0 -1  0  0  0
+  0  0 -1  0  0
+  0  0  0 -1  0
+  0  0  0  0 -1
+5d1	% invariant form
+1 0 0 0 0 
+5x0	% invariant form
+ 0
+ 1 0
+ 0 0 0
+ 0 0 0 0
+ 0 0 0 0 0
+5x0	% invariant form
+ 0
+ 0 0
+ 1 0 0
+ 0 0 0 0
+ 0 0 0 0 0
+5x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 1 0 0 0
+ 0 0 0 0 0
+5x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 0
+ 1 0 0 0 0
+5d1	% invariant form
+0 1 0 0 0 
+5x0	% invariant form
+ 0
+ 0 0
+ 0 1 0
+ 0 0 0 0
+ 0 0 0 0 0
+5x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 1 0 0
+ 0 0 0 0 0
+5x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 0
+ 0 1 0 0 0
+5d1	% invariant form
+0 0 1 0 0 
+5x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 1 0
+ 0 0 0 0 0
+5x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 0
+ 0 0 1 0 0
+5d1	% invariant form
+0 0 0 1 0 
+5x0	% invariant form
+ 0
+ 0 0
+ 0 0 0
+ 0 0 0 0
+ 0 0 0 1 0
+5d1	% invariant form
+0 0 0 0 1 
+5d0	% generator of normalizer
+1
+5d1	% generator of centralizer
+-1 1 1 1 1 
+5	% generator of centralizer
+ -1 0 0 0 0
+ -1 1 0 0 0
+  0 0 1 0 0
+  0 0 0 1 0
+  0 0 0 0 1
+5x0	% generator of centralizer
+ 0
+ 1 0
+ 0 0 1
+ 0 0 0 1
+ 0 0 0 0 1
+5	% generator of centralizer
+ 0 0 0 0 1
+ 1 0 0 0 0
+ 0 1 0 0 0
+ 0 0 1 0 0
+ 0 0 0 1 0
+2^1   = 2 % order of the group

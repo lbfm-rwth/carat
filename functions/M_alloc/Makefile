@@ -5,13 +5,9 @@ CC = gcc
 OBJFLAGS = -c
 INCL = $(TOPDIR)/include
 
-AR = ar rvuc $(TOPDIR)/lib/libm_alloc.a
+AR = ar rDc $(TOPDIR)/lib/libm_alloc.a
 
-GLOBAL = -DTOPDIR=\"$(TOPDIR)\" -DTABLES=\"$(TOPDIR)/tables/\" \
-         -DATOMS=\"$(TOPDIR)/tables/atoms/\" \
-         -DTABLEDIM=\"$(TOPDIR)/tables/dim\"
-
-COMP = $(CC) $(CFLAGS) $(OBJFLAGS) $(GLOBAL) -I$(INCL)
+COMP = $(CC) $(CFLAGS) $(OBJFLAGS) -I$(INCL)
 
 OBJS = m_alloc.o
 

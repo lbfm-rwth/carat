@@ -1,0 +1,97 @@
+#g2 f3 % bravais group to Ex9_g
+6	% generator
+ 0 0 0 0 0 1
+ 0 0 0 0 1 0
+ 0 0 0 1 0 0
+ 0 0 1 0 0 0
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+6	% generator
+ 1  0  0  0  0  0
+ 1 -1  0  0  0  0
+ 0  0  0  0  0 -1
+ 0  0  0  0 -1  0
+ 0  0  0 -1  0  0
+ 0  0 -1  0  0  0
+6x0	% invariant form
+  2
+ -1 2
+  0 0  2
+  0 0 -1 2
+  0 0  0 0  2
+  0 0  0 0 -1 2
+6x0	% invariant form
+  0
+  0 0
+  1 0  0
+ -1 1  0 0
+  0 1  1 0 0
+ -1 0 -1 1 0 0
+6x0	% invariant form
+  0
+  0 0
+  0 1  0
+ -1 0  0 0
+  1 0  0 1 0
+ -1 1 -1 0 0 0
+2^2  * 3^2   = 36 % order of the group
+#g5 f3 % bravais group to Ex9_h
+6	% generator
+ -1  0  0  0  0  0
+  0 -1  0  0  0  0
+  0  0 -1  0  0  0
+  0  0  0 -1  0  0
+  0  0  0  0 -1  0
+  0  0  0  0  0 -1
+6	% generator
+ 0 1 0 0 0 0
+ 1 0 0 0 0 0
+ 0 0 0 0 0 1
+ 0 0 0 0 1 0
+ 0 0 0 1 0 0
+ 0 0 1 0 0 0
+6	% generator
+ 1  0 0 0 0 0
+ 0 -1 0 0 0 0
+ 0  0 0 0 0 1
+ 0  0 0 0 1 0
+ 0  0 0 1 0 0
+ 0  0 1 0 0 0
+6	% generator
+ 1 0 0 0 0 0
+ 0 1 0 0 0 0
+ 0 0 0 0 0 1
+ 0 0 0 0 1 0
+ 0 0 0 1 0 0
+ 0 0 1 0 0 0
+6	% generator
+ 1 0  0 0 0 0
+ 0 1  0 0 0 0
+ 0 0 -1 0 0 0
+ 0 0  0 1 0 0
+ 0 0  0 0 0 1
+ 0 0  0 0 1 0
+6d1	% invariant form
+1 1 0 0 0 0 
+6d1	% invariant form
+0 0 1 1 1 1 
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0  0
+ 0 0  0 0
+ 0 0  1 1 0
+ 0 0 -1 1 0 0
+2^7   = 128 % order of the group
+The order of the group is: 9
+The order of the group is: 8
+Bravais groups which contain a Z-equivalent subgroup
+Symbol: 6-2'  homogeneously d.: 1 zclass: 1
+Symbol: 6-2  homogeneously d.: 1 zclass: 1
+Symbol: 6-2  homogeneously d.: 2 zclass: 1
+Symbol: 6-2  homogeneously d.: 3 zclass: 1
+Bravais groups which contain a Z-equivalent subgroup
+Symbol: 4-1';2-1  homogeneously d.: 1 zclass: 1
+Symbol: 4-1;2-1  homogeneously d.: 1 zclass: 1
+Symbol: 4-1;2-1  homogeneously d.: 2 zclass: 1
+Symbol: 6-1  homogeneously d.: 1 zclass: 1

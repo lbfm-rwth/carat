@@ -1,0 +1,82 @@
+#g1 f3 n10 % group with complete normalizer
+6	% generator
+ 0 -1  0 0 0 0
+ 1  0  0 0 0 0
+ 0  0  0 1 0 0
+ 0  0  0 0 1 0
+ 0  0  0 0 0 1
+ 0  0 -1 0 0 0
+6d1	% invariant form
+1 1 0 0 0 0 
+6d1	% invariant form
+0 0 1 1 1 1 
+6x0	% invariant form
+ 0
+ 0 0
+ 0 0  0
+ 0 0  1 0
+ 0 0  0 1 0
+ 0 0 -1 0 1 0
+6d0	% generator of normalizer
+-1
+6x0	% generator of normalizer
+ 0
+ 1 0
+ 0 0 0
+ 0 0 0 0
+ 0 0 0 1 0
+ 0 0 1 0 0 0
+6x0	% generator of normalizer
+ 1
+ 0 -1
+ 0  0 0
+ 0  0 0 0
+ 0  0 0 1 0
+ 0  0 1 0 0 0
+6	% generator of normalizer
+ 1 0 0 0 0  0
+ 0 1 0 0 0  0
+ 0 0 0 0 0 -1
+ 0 0 1 0 0  0
+ 0 0 0 1 0  0
+ 0 0 0 0 1  0
+6x0	% generator of normalizer
+ 0
+ 1 0
+ 0 0 -1
+ 0 0 -1 -1
+ 0 0 -1  0 1
+ 0 0  0  1 1 1
+6	% generator of normalizer
+ 1 0  0  0  0  0
+ 0 1  0  0  0  0
+ 0 0 -1 -1 -1  0
+ 0 0  0  1  1  1
+ 0 0  1  0 -1 -1
+ 0 0 -1 -1  0  1
+6d0	% generator of normalizer
+1
+6	% generator of normalizer
+ 1 0  0 0 0 0
+ 0 1  0 0 0 0
+ 0 0  0 1 0 0
+ 0 0  0 0 1 0
+ 0 0  0 0 0 1
+ 0 0 -1 0 0 0
+6x0	% generator of normalizer
+ 0
+ 1 0
+ 0 0 1
+ 0 0 1  1
+ 0 0 1  0 -1
+ 0 0 0 -1 -1 -1
+6	% generator of normalizer
+ 1 0  0  0  0  0
+ 0 1  0  0  0  0
+ 0 0  1  0 -1 -1
+ 0 0 -1 -1  0  1
+ 0 0  1  1  1  0
+ 0 0  0 -1 -1 -1
+2^3   = 8 % order of the group
+The group infinite!
+Symbol of the group: 4-1';2-1

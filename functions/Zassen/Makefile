@@ -5,13 +5,9 @@ CFLAGS = -fwritable-strings -DDIAG1 -g
 
 INCL = $(TOPDIR)/include
 
-AR = ar rvuc $(TOPDIR)/lib/functions.a
+AR = ar rDc $(TOPDIR)/lib/functions.a
 
-GLOBAL = -DTOPDIR=\"$(TOPDIR)\" -DTABLES=\"$(TOPDIR)/tables/\" \
-         -DATOMS=\"$(TOPDIR)/tables/atoms/\" \
-         -DTABLEDIM=\"$(TOPDIR)/tables/dim\"
-
-COMP = $(CC) $(CFLAGS) -c $(GLOBAL) -I$(INCL)
+COMP = $(CC) $(CFLAGS) -c -I$(INCL)
 
 OBJS = coboundary.o\
        cong_solve.o\
