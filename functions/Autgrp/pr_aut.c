@@ -13,6 +13,7 @@
 #include "symm.h"
 #include "autgrp.h"
 #include "types.h"
+#include "datei.h"
 
 static int normal_option;
 static int perp_no;

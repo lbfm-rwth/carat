@@ -1,7 +1,6 @@
 /* last change: 07.02.2001 by Oliver Heidbuechel */
 
 
-#include <ZZ.h>
 #include <typedef.h>
 #include <presentation.h>
 #include <matrix.h>
@@ -13,6 +12,9 @@
 #include <zass.h>
 #include <tools.h>
 #include <longtools.h>
+#include <voronoi.h>
+#include "../functions/ZZ/ZZ_P.h"
+#include <ZZ.h>
 
 
 extern int OANZ;

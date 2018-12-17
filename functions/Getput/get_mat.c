@@ -67,7 +67,7 @@ int **M;
 matrix_TYP *mat;
 flag_TYP flags;
 char  string[256], *str ;
-int i, j ;         
+ int i, j, c;         
 
 
 
@@ -79,8 +79,8 @@ int i, j ;
   /*------------------------------------------------------------*\
   | Read and scan header line                    |
   \*------------------------------------------------------------*/
-  fscanf (infile, "%[ \t\n]", string);
-  fscanf (infile, "%[^\n]",string);
+  c=fscanf (infile, "%[ \t\n]", string);
+  c=fscanf (infile, "%[^\n]",string);
   strtok (string, "%");
   sscanf (string, "%d", &rM);
   if ( (str = strpbrk (string, "xd")) != NULL ) {
@@ -123,7 +123,7 @@ int i, j ;
      *  Read the matrix                       
      */
     if ( flags.Scalar ) {
-      fscanf( infile, "%s", string );
+      c=fscanf( infile, "%s", string );
       if ( strchr( string, '/') == NULL ) {
         sscanf(string, "%d", &M[0][0]);
         for ( i = 1; i < rM; i++ )M[i][i]= M[0][0];
@@ -138,7 +138,7 @@ int i, j ;
     } else {
       if ( flags.Diagonal ) {
         for ( i = 0; i < cM; i++ ) {
-          fscanf( infile, "%s", string );
+          c=fscanf( infile, "%s", string );
           if ( strchr( string, '/') == NULL ) {
             sscanf(string, "%d", &M[i][i]);
           } else {                   
@@ -149,7 +149,7 @@ int i, j ;
       } else {
         for ( i = 0; i < rM; i++  ) {
           for ( j = 0; j < ( flags.Symmetric ? i+1 : cM ); j++ ) {
-            fscanf( infile, "%s", string );
+            c=fscanf( infile, "%s", string );
             if ( strchr( string, '/') == NULL ) {
               sscanf(string, "%d", &M[i][j]);
             } else {                   
@@ -291,12 +291,12 @@ int *anz;
 {  
 matrix_TYP **mat;
 char string[512];
-int k ;
+ int k, c;
 
   /*
    *   Open input file                       
    */
-  fscanf (infile, "%[^\n]",string);
+  c=fscanf (infile, "%[^\n]",string);
   if ( string[0] != '#' ) {
     *anz = 1;
     mat = (matrix_TYP **)malloc(sizeof(matrix_TYP *));

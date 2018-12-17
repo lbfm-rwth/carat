@@ -6,7 +6,7 @@
 #include "matrix.h"
 #include "getput.h"
 #include <string.h>
-
+#include "datei.h"
 
 
 /* -------------------------------------------------------- */
@@ -65,7 +65,7 @@ bravais_TYP *get_std_rep(char *pfad,
 {
    bravais_TYP *R;
 
-   char filename[1024];
+   char filename[2048];
 
    bravais_TYP *DATAZ, *DATAQ;
 
@@ -109,9 +109,9 @@ matrix_TYP **get_words(char *pfad,
 		       boolean aflag,
 		       int *anzahl)
 {
-   int anz, k, i, z1, z2, *woerter, nr, laenge;
+  int anz, k, i, z1, z2, *woerter, nr, laenge, c;
 
-   char filename[1024], string[512];
+   char filename[2048], string[512];
 
    matrix_TYP **mat, **tmp;
 
@@ -130,7 +130,7 @@ matrix_TYP **get_words(char *pfad,
    }
 
    /* Hole Worte fuer alle Untergruppen */
-   fscanf (infile, "%[^\n]",string);
+   c=fscanf (infile, "%[^\n]",string);
    if ( string[0] != '#' ) {
       anz = 1;
       mat = (matrix_TYP **)malloc(sizeof(matrix_TYP *));

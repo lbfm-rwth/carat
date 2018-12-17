@@ -164,6 +164,7 @@ int	*orb1, l1, *orb2, l2;
 |	length of fp.e[i] under <G->g[i],...,G->g[n-1]>
 \**********************************************************************/
 static void stab(I, G, fp, V)
+int I;
 group	*G;
 fpstruct fp;
 veclist	V;

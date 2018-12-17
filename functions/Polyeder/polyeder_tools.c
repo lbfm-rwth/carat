@@ -1,7 +1,9 @@
 #include"typedef.h"
 #include"polyeder.h"
 #include"matrix.h"
-/**************************************************************************\
+#include"tools.h"
+
+/************************************************************************** \
 @---------------------------------------------------------------------------
 @---------------------------------------------------------------------------
 @ FILE: polyeder_tools.c
@@ -209,7 +211,7 @@ polyeder_TYP *get_polyeder(file_name)
 char *file_name;
 {  
 int vertno, wallno;
-int dim,wn,i,j;
+int dim,wn,i,j,c;
 polyeder_TYP *F;
 FILE *infile;
 
@@ -227,28 +229,28 @@ else
   /*--------------------------------------------------*\
   |  read fundamental domain                                  |
   \*--------------------------------------------------*/
-fscanf (infile, "%d", &vertno);
-fscanf (infile, "%d", &wallno);
+c=fscanf (infile, "%d", &vertno);
+c=fscanf (infile, "%d", &wallno);
 F = init_polyeder(vertno, wallno);
 for(i=0;i<vertno;i++)
 {
-  fscanf (infile, "%d", &dim);
-  fscanf (infile, "%d", &wn);
+  c=fscanf (infile, "%d", &dim);
+  c=fscanf (infile, "%d", &wn);
   F->vert[i] = init_vertex(dim, wn);
   for(j=0;j<dim;j++)
-    fscanf(infile, "%d", &F->vert[i]->v[j]); 
+    c=fscanf(infile, "%d", &F->vert[i]->v[j]); 
   for(j=0;j<wn;j++)
-     fscanf(infile, "%d", &F->vert[i]->wall[j]);
+     c=fscanf(infile, "%d", &F->vert[i]->wall[j]);
 }
 for(i=0;i<wallno;i++)
 {
-  fscanf(infile, "%d", &dim);
+  c=fscanf(infile, "%d", &dim);
   F->wall[i] = init_wall(dim);
   for(j=0;j<dim;j++)
-    fscanf(infile, "%d", &F->wall[i]->gl[j]); 
+    c=fscanf(infile, "%d", &F->wall[i]->gl[j]); 
 }
-  fscanf(infile, "%d", &F->is_closed);
-  fscanf(infile, "%d", &F->is_degenerate);
+  c=fscanf(infile, "%d", &F->is_closed);
+  c=fscanf(infile, "%d", &F->is_degenerate);
 
    
 	/*------------------------------------------------------------*\

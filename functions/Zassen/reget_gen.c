@@ -3,7 +3,7 @@
 #include "gmp.h"
 #include "zass.h"
 #include "getput.h"
-
+#include "base.h"
 
 extern int INFO_LEVEL;
 

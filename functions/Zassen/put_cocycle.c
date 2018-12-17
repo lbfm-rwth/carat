@@ -2,6 +2,8 @@
 #include "gmp.h"
 #include "getput.h"
 #include "zass.h"
+#include "matrix.h"
+#include "tools.h"
 
 void put_cocycle(matrix_TYP *COZ,
                  int dim,

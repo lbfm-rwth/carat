@@ -5,6 +5,7 @@
 #include <presentation.h>
 #include <tsubgroups.h>
 #include <name.h>
+#include <datei.h>
 
 #define DATABASE_NAME TOPDIR "/tables/qcatalog/data"
 

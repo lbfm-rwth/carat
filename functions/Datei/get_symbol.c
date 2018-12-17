@@ -43,7 +43,7 @@ char  st;
 char **piece;
 FILE *infile;
 int anz, teile;
-int i, j, k, l, m;
+ int i, j, k, l, m, c;
 int gen_no, form_no, zentr_no, normal_no, cen_no;
 
 	/*------------------------------------------------------------*\
@@ -65,7 +65,7 @@ else
   /*--------------------------------------------------*\
   |  read header line                                  |
   \*--------------------------------------------------*/
-fscanf (infile, "%*[ \t\n\r]");
+c=fscanf (infile, "%*[ \t\n\r]");
 st = getc(infile);
 if ( st != '#' ) {
 	gen_no = 1;
@@ -74,12 +74,12 @@ if ( st != '#' ) {
 else
 {
 
-fscanf (infile, "%[ \t\n]", string);
-fscanf (infile, "%[^\n]",string);
+c=fscanf (infile, "%[ \t\n]", string);
+c=fscanf (infile, "%[^\n]",string);
 strtok (string, "%");
 
   if ( (str = strpbrk (string, "gfznc")) == NULL )
-        sscanf(string, "%d", &gen_no);
+        c=sscanf(string, "%d", &gen_no);
   else
   {
      while((str = strpbrk(str, "gfznc")) != NULL)
@@ -91,15 +91,15 @@ strtok (string, "%");
         m = strcspn(str, "c");
 
         if(i< j && i<k &&i<l && i<m)
-	   sscanf ( ++str, "%d", &gen_no);
+	   c=sscanf ( ++str, "%d", &gen_no);
         if(j<i && j<k && j<l && j<m)
-	   sscanf ( ++str, "%d", &form_no);
+	   c=sscanf ( ++str, "%d", &form_no);
         if(k<i && k<j && k<l && k<m)
-	   sscanf ( ++str, "%d", &zentr_no);
+	   c=sscanf ( ++str, "%d", &zentr_no);
         if(l<i && l<j && l<k && l<m)
-	   sscanf ( ++str, "%d", &normal_no);
+	   c=sscanf ( ++str, "%d", &normal_no);
         if(m<i && m<j && m<k && m<l)
-	   sscanf ( ++str, "%d", &cen_no);
+	   c=sscanf ( ++str, "%d", &cen_no);
      }
   }
 }
@@ -137,8 +137,8 @@ for ( k = 0; k < cen_no; k++)
 	/*------------------------------------------------------------*\
 	| read group order                                             |
 	\*------------------------------------------------------------*/
-fscanf (infile, "%[ \t\n]", string);
-fscanf (infile, "%[^\n]",string);
+c=fscanf (infile, "%[ \t\n]", string);
+c=fscanf (infile, "%[^\n]",string);
 if ( *string == '%' )
   strin= NULL;
 else
@@ -156,7 +156,7 @@ if( (strlen(strin)) != 0 && strin != NULL)
        strin++;
     while(strin[0] == ' ')
        strin++;
-    sscanf(strin, "%d", &j);
+    c=sscanf(strin, "%d", &j);
     itoasc(j, merk);
     k = strlen(merk);
     strin = strin+k;
@@ -169,7 +169,7 @@ if( (strlen(strin)) != 0 && strin != NULL)
       strin++;
       while(strin[0] == ' ')
          strin++;
-        sscanf(strin, "%d", &k);
+        c=sscanf(strin, "%d", &k);
         sy->grp->divisors[j] = k;
         itoasc(k, merk);
         k = strlen(merk);
@@ -180,7 +180,7 @@ if( (strlen(strin)) != 0 && strin != NULL)
     i = strcspn(strin, "=");
    }
    if ( (str = strpbrk (strin, "=")) != NULL )
-	sscanf ( ++str, "%d", &sy->grp->order);
+	c=sscanf ( ++str, "%d", &sy->grp->order);
    else
      sy->grp->order = 0;
 }
@@ -195,8 +195,8 @@ else
 	\*------------------------------------------------------------*/
 sy->fn = (char *) malloc(80 *sizeof(char));
 fn = (char *) malloc(80 *sizeof(char));
-fscanf (infile, "%[ \t\n]", fn);
-fscanf (infile, "%[^\n]", fn);
+c=fscanf (infile, "%[ \t\n]", fn);
+c=fscanf (infile, "%[^\n]", fn);
 while(fn != NULL && fn[0] == ' ')
   fn++;
 if(fn[0] == '\n' ||
