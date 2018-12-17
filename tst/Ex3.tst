@@ -1,37 +1,38 @@
 
+echo "### Test Ex3-1"
 ../bin/carat/Bravais_catalog << EOF
 1,1,1,1,1
 y
 stdout
 a
 EOF
+echo "### Ex3-1 return code $?"
 
-../bin/carat/Bravais_inclusions Ex3_11111 -S > all
+echo "### Test Ex3-2"
+../bin/carat/Bravais_inclusions Ex3_11111 -S
+echo "### Ex3-2 return code $?"
 
+echo "### Test Ex3-3"
 ../bin/carat/Bravais_catalog << EOF
 5-1
 y
 stdout
 a
 EOF
+echo "### Ex3-3 return code $?"
 
+echo "### Test Ex3-4"
 ../bin/carat/Bravais_catalog << EOF
 5-2
 y
 stdout
 a
 EOF
+echo "### Ex3-4 return code $?"
 
-../bin/carat/Bravais_inclusions Ex3_51a  > notmax
-../bin/carat/Bravais_inclusions Ex3_51b >> notmax
-../bin/carat/Bravais_inclusions Ex3_51c >> notmax
-../bin/carat/Bravais_inclusions Ex3_52a >> notmax
-../bin/carat/Bravais_inclusions Ex3_52b >> notmax
-../bin/carat/Bravais_inclusions Ex3_52c >> notmax
-../bin/carat/Bravais_inclusions Ex3_52d >> notmax
-grep Symbol notmax | sort -u
+for f in Ex3_51? ; do
+  echo "### Test Ex3-4-$f"
+  ../bin/carat/Bravais_inclusions $f
+  echo "### Ex3-4-$f return code $?"
+done
 
-sort all > allsort
-diff allsort Ex3_MAX | grep Symbol
-
-rm -f all allsort notmax

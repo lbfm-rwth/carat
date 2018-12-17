@@ -1,6 +1,9 @@
+### Test Bravais-1
 #1
 3d0	% invariant matrix
 1
+### Bravais-1 return code 0
+### Test Bravais-2
 #g3 f1 % bravais group to grp1.dat
 3	% generator
   0 0 1
@@ -17,3 +20,4 @@
 3d0	% invariant form
 1
 2^4  * 3^1   = 48 % order of the group
+### Bravais-2 return code 0

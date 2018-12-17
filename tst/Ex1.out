@@ -1,3 +1,4 @@
+### Test Ex1-1
 Please input the symbol for the crystal-family: 1,1,1,1
 The crystal-family 1,1,1,1 contains 1 homogeneously decomposable bravais-groups with
  1
@@ -66,6 +67,8 @@ Do you want to calculate bravais-groups? (y or n): Please input a filename (stdo
  0 1 0 0
  0 0 1 0
 2^1   = 2 % order of the group
+### Ex1-1 return code 0
+### Test Ex1-2
 Bravais groups which contain a Z-equivalent subgroup
 Symbol: 1,1,1,1  homogeneously d.: 1 zclass: 1
 Symbol: 1,1,1;1  homogeneously d.: 1 zclass: 1
@@ -131,3 +134,4 @@ Symbol: 4-2  homogeneously d.: 2 zclass: 1
 Symbol: 4-3'  homogeneously d.: 1 zclass: 1
 Symbol: 4-3  homogeneously d.: 1 zclass: 1
 Symbol: 4-3  homogeneously d.: 2 zclass: 1
+### Ex1-2 return code 0

@@ -1,10 +1,17 @@
+### Test Ex2-1
 Symbol of the group: 3;2-2;1
+### Ex2-1 return code 0
+### Test Ex2-2
 Please input the symbol for the crystal-family: 3;2-2;1
 The crystal-family 3;2-2;1 contains 3 homogeneously decomposable bravais-groups with
  6,  8,  4
  Z-classes of Bravais groups.
-Do you want to calculate bravais-groups? (y or n): The order of the group is 12
+Do you want to calculate bravais-groups? (y or n): ### Ex2-2 return code 0
+### Test Ex2-3
+The order of the group is 12
 2^2  * 3^1   = 12 % order of the group
+### Ex2-3 return code 0
+### Test Ex2-4
 L1 with (0,0) yields L2
 L1 with (0,1) yields L3
 father: level 1 number of orbits 1 lengths 3
@@ -44,6 +51,8 @@ father: level 2 number of orbits 1 lengths 6
 L2 with (1,1) yields L4
 L3 with (0,1) yields 1.L4
 ####### There are 18 classes of groups
+### Ex2-4 return code 0
+### Test Ex2-5-Ex2_Go.1.1
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 2-th homogenously decomposable bravais group, 1-th Z-class
@@ -144,6 +153,8 @@ Position in the catalog:
  0  0  1 -1  0  1
  0  1  1  0  0 -1
 2^7  * 3^2   = 1152 % order of the group
+### Ex2-5-Ex2_Go.1.1 return code 0
+### Test Ex2-5-Ex2_Go.1.2
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 2-th homogenously decomposable bravais group, 2-th Z-class
@@ -221,6 +232,8 @@ Position in the catalog:
  0 -2  2 -2  0
  0  1 -2  1 -2 1
 2^6  * 3^1   = 192 % order of the group
+### Ex2-5-Ex2_Go.1.2 return code 0
+### Test Ex2-5-Ex2_Go.1.3
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 2-th homogenously decomposable bravais group, 3-th Z-class
@@ -277,6 +290,8 @@ Position in the catalog:
  0 0 -1 1 2
  0 0 -1 1 1 0
 2^7  * 3^2   = 1152 % order of the group
+### Ex2-5-Ex2_Go.1.3 return code 0
+### Test Ex2-5-Ex2_Go.1.4
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 2-th homogenously decomposable bravais group, 4-th Z-class
@@ -340,6 +355,8 @@ Position in the catalog:
  0 0 0 1  0
  0 0 0 0 -1 0
 2^6  * 3^2   = 576 % order of the group
+### Ex2-5-Ex2_Go.1.4 return code 0
+### Test Ex2-5-Ex2_Go.1.5
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 2-th homogenously decomposable bravais group, 5-th Z-class
@@ -417,6 +434,8 @@ Position in the catalog:
  0  1 -1 2 2
  0  0  0 0 0 0
 2^6  * 3^1   = 192 % order of the group
+### Ex2-5-Ex2_Go.1.5 return code 0
+### Test Ex2-5-Ex2_Go.1.6
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 2-th homogenously decomposable bravais group, 6-th Z-class
@@ -520,6 +539,8 @@ Position in the catalog:
  -1 -1 -1  1 0
   1 -1 -1  1 0 0
 2^5  * 3^1   = 96 % order of the group
+### Ex2-5-Ex2_Go.1.6 return code 0
+### Test Ex2-5-Ex2_Go.1.7
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 2-th homogenously decomposable bravais group, 7-th Z-class
@@ -588,6 +609,8 @@ Position in the catalog:
   1 -1 -1 0  1
  -1  1  1 0 -1 1
 2^6  * 3^2   = 576 % order of the group
+### Ex2-5-Ex2_Go.1.7 return code 0
+### Test Ex2-5-Ex2_Go.1.8
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 2-th homogenously decomposable bravais group, 8-th Z-class
@@ -691,6 +714,8 @@ Position in the catalog:
   0 0  0 0 -2
   0 0  0 0 -1 0
 2^5  * 3^1   = 96 % order of the group
+### Ex2-5-Ex2_Go.1.8 return code 0
+### Test Ex2-5-Ex2_Go.2.1
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 1-th homogenously decomposable bravais group, 1-th Z-class
@@ -782,6 +807,8 @@ Position in the catalog:
   0  0 -1  0  1  1
   0  0  0  1 -1  1
 2^7  * 3^2   = 1152 % order of the group
+### Ex2-5-Ex2_Go.2.1 return code 0
+### Test Ex2-5-Ex2_Go.2.2
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 1-th homogenously decomposable bravais group, 2-th Z-class
@@ -838,6 +865,8 @@ Position in the catalog:
  0 0 -2 -2 4
  0 0  1 -2 0 0
 2^7  * 3^2   = 1152 % order of the group
+### Ex2-5-Ex2_Go.2.2 return code 0
+### Test Ex2-5-Ex2_Go.2.3
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 1-th homogenously decomposable bravais group, 3-th Z-class
@@ -906,6 +935,8 @@ Position in the catalog:
   0  0 0 0 0
   0  0 0 0 0 0
 2^6  * 3^2   = 576 % order of the group
+### Ex2-5-Ex2_Go.2.3 return code 0
+### Test Ex2-5-Ex2_Go.2.4
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 1-th homogenously decomposable bravais group, 4-th Z-class
@@ -974,6 +1005,8 @@ Position in the catalog:
  0 0 1 1 0
  0 0 0 0 1 0
 2^6  * 3^2   = 576 % order of the group
+### Ex2-5-Ex2_Go.2.4 return code 0
+### Test Ex2-5-Ex2_Go.2.5
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 1-th homogenously decomposable bravais group, 5-th Z-class
@@ -1042,6 +1075,8 @@ Position in the catalog:
   1 -2 -1 0 -1
  -1  2  1 0  2 -1
 2^6  * 3^2   = 576 % order of the group
+### Ex2-5-Ex2_Go.2.5 return code 0
+### Test Ex2-5-Ex2_Go.2.6
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 1-th homogenously decomposable bravais group, 6-th Z-class
@@ -1124,6 +1159,8 @@ Position in the catalog:
   0 0 0 0 1
  -1 0 0 0 0 1
 2^5  * 3^2   = 288 % order of the group
+### Ex2-5-Ex2_Go.2.6 return code 0
+### Test Ex2-5-Ex2_Go.3.1
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 3-th homogenously decomposable bravais group, 1-th Z-class
@@ -1201,6 +1238,8 @@ Position in the catalog:
   0  0  0 -1  0  1
   0  0  0  0  1  1
 2^7  * 3^2   = 1152 % order of the group
+### Ex2-5-Ex2_Go.3.1 return code 0
+### Test Ex2-5-Ex2_Go.3.2
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 3-th homogenously decomposable bravais group, 2-th Z-class
@@ -1292,6 +1331,8 @@ Position in the catalog:
  0  2 0 -2  2
  0 -1 0  1 -1 2
 2^6  * 3^1   = 192 % order of the group
+### Ex2-5-Ex2_Go.3.2 return code 0
+### Test Ex2-5-Ex2_Go.3.3
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 3-th homogenously decomposable bravais group, 3-th Z-class
@@ -1360,6 +1401,8 @@ Position in the catalog:
  0 0 0 0 0
  0 0 0 0 0 0
 2^6  * 3^2   = 576 % order of the group
+### Ex2-5-Ex2_Go.3.3 return code 0
+### Test Ex2-5-Ex2_Go.3.4
 Symbol of the group: 3;2-2;1
 Position in the catalog:
 3-th homogenously decomposable bravais group, 4-th Z-class
@@ -1477,3 +1520,4 @@ Position in the catalog:
   1 1  0  1  0
  -1 0  1 -1 -1 0
 2^5  * 3^1   = 96 % order of the group
+### Ex2-5-Ex2_Go.3.4 return code 0

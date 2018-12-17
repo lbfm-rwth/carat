@@ -1,3 +1,4 @@
+### Test Ex12-1
 Conditions:  
 Q_Classes: # 8329,   Z_Classes: # 92185,   Affine Classes: #29154954
 
@@ -37,6 +38,7 @@ w   write to file                    q     quit
 
 
 >Program aborted
+### Ex12-1 return code 0
 #g2
 5
 1 1 0 0 0 
@@ -51,6 +53,7 @@ w   write to file                    q     quit
 0 0 0 1 0 
 0 0 0 0 1 
 2^1  * 3^1   = 6 % order of the group
+### Test Ex12-2
 L1 with (1,1) yields L2
 father: level 1 number of orbits 1 lengths 3
 L1 with (0,0) yields L2
@@ -67,6 +70,23 @@ father: level 2 number of orbits 1 lengths 24
 L2 with (1,0) yields L4
 L3 with (0,0) yields 1.L4
 ####### There are 8 classes of groups
+### Ex12-2 return code 0
+### Test Ex12-3-Ex12_min.108.1.1
+### Ex12-3-Ex12_min.108.1.1 return code 0
+### Test Ex12-3-Ex12_min.108.1.2
+### Ex12-3-Ex12_min.108.1.2 return code 0
+### Test Ex12-3-Ex12_min.108.1.3
+### Ex12-3-Ex12_min.108.1.3 return code 0
+### Test Ex12-3-Ex12_min.108.1.4
+### Ex12-3-Ex12_min.108.1.4 return code 0
+### Test Ex12-3-Ex12_min.108.2.1
+### Ex12-3-Ex12_min.108.2.1 return code 0
+### Test Ex12-3-Ex12_min.108.2.2
+### Ex12-3-Ex12_min.108.2.2 return code 0
+### Test Ex12-3-Ex12_min.108.2.3
+### Ex12-3-Ex12_min.108.2.3 return code 0
+### Test Ex12-3-Ex12_min.108.2.4
+### Ex12-3-Ex12_min.108.2.4 return code 0
 #4
 5x2	% the 1-th cozycle, length of orbit 1,name: 0
 0 0 
@@ -219,11 +239,29 @@ L3 with (0,0) yields 1.L4
 0 0 
 0 0 
 0 0 
+### Test Ex12-4
+### Ex12-4 return code 0
 4x5	% presentation for group in Ex12_min.108
  1 1  0  0  0
  2 1  2 -1  0
  2 2 -1 -2 -1
  2 1 -2 -2 -1
+### Test Ex12-5-Ex12_min.108.1.1
+### Ex12-5-Ex12_min.108.1.1 return code 0
+### Test Ex12-5-Ex12_min.108.1.2
+### Ex12-5-Ex12_min.108.1.2 return code 0
+### Test Ex12-5-Ex12_min.108.1.3
+### Ex12-5-Ex12_min.108.1.3 return code 0
+### Test Ex12-5-Ex12_min.108.1.4
+### Ex12-5-Ex12_min.108.1.4 return code 0
+### Test Ex12-5-Ex12_min.108.2.1
+### Ex12-5-Ex12_min.108.2.1 return code 0
+### Test Ex12-5-Ex12_min.108.2.2
+### Ex12-5-Ex12_min.108.2.2 return code 0
+### Test Ex12-5-Ex12_min.108.2.3
+### Ex12-5-Ex12_min.108.2.3 return code 0
+### Test Ex12-5-Ex12_min.108.2.4
+### Ex12-5-Ex12_min.108.2.4 return code 0
 #4
 5x2	% the 1-th cozycle, length of orbit 1,name: 0
 0 0 
@@ -376,99 +414,123 @@ L3 with (0,0) yields 1.L4
 0 0 
 0 0 
 0 0 
-Ex12_min.108.1.1.1
+### Test Ex12-6-Ex12_min.108.1.1.1
 The group in Ex12_min.108.1.1.1 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.1.1.1 return code 0
 
-Ex12_min.108.1.1.2
+### Test Ex12-6-Ex12_min.108.1.1.2
 The group in Ex12_min.108.1.1.2 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.1.1.2 return code 0
 
-Ex12_min.108.1.1.3
+### Test Ex12-6-Ex12_min.108.1.1.3
 The group in Ex12_min.108.1.1.3 is torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.1.1.3 return code 0
 
-Ex12_min.108.1.1.4
+### Test Ex12-6-Ex12_min.108.1.1.4
 The group in Ex12_min.108.1.1.4 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.1.1.4 return code 0
 
-Ex12_min.108.1.2.1
+### Test Ex12-6-Ex12_min.108.1.2.1
 The group in Ex12_min.108.1.2.1 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.1.2.1 return code 0
 
-Ex12_min.108.1.2.2
+### Test Ex12-6-Ex12_min.108.1.2.2
 The group in Ex12_min.108.1.2.2 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.1.2.2 return code 0
 
-Ex12_min.108.1.3.1
+### Test Ex12-6-Ex12_min.108.1.3.1
 The group in Ex12_min.108.1.3.1 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.1.3.1 return code 0
 
-Ex12_min.108.1.3.2
+### Test Ex12-6-Ex12_min.108.1.3.2
 The group in Ex12_min.108.1.3.2 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.1.3.2 return code 0
 
-Ex12_min.108.1.3.3
+### Test Ex12-6-Ex12_min.108.1.3.3
 The group in Ex12_min.108.1.3.3 is torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.1.3.3 return code 0
 
-Ex12_min.108.1.3.4
+### Test Ex12-6-Ex12_min.108.1.3.4
 The group in Ex12_min.108.1.3.4 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.1.3.4 return code 0
 
-Ex12_min.108.1.4.1
+### Test Ex12-6-Ex12_min.108.1.4.1
 The group in Ex12_min.108.1.4.1 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.1.4.1 return code 0
 
-Ex12_min.108.1.4.2
+### Test Ex12-6-Ex12_min.108.1.4.2
 The group in Ex12_min.108.1.4.2 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.1.4.2 return code 0
 
-Ex12_min.108.2.1.1
+### Test Ex12-6-Ex12_min.108.2.1.1
 The group in Ex12_min.108.2.1.1 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.2.1.1 return code 0
 
-Ex12_min.108.2.1.2
+### Test Ex12-6-Ex12_min.108.2.1.2
 The group in Ex12_min.108.2.1.2 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.2.1.2 return code 0
 
-Ex12_min.108.2.1.3
+### Test Ex12-6-Ex12_min.108.2.1.3
 The group in Ex12_min.108.2.1.3 is torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.2.1.3 return code 0
 
-Ex12_min.108.2.1.4
+### Test Ex12-6-Ex12_min.108.2.1.4
 The group in Ex12_min.108.2.1.4 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.2.1.4 return code 0
 
-Ex12_min.108.2.2.1
+### Test Ex12-6-Ex12_min.108.2.2.1
 The group in Ex12_min.108.2.2.1 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.2.2.1 return code 0
 
-Ex12_min.108.2.2.2
+### Test Ex12-6-Ex12_min.108.2.2.2
 The group in Ex12_min.108.2.2.2 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.2.2.2 return code 0
 
-Ex12_min.108.2.3.1
+### Test Ex12-6-Ex12_min.108.2.3.1
 The group in Ex12_min.108.2.3.1 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.2.3.1 return code 0
 
-Ex12_min.108.2.3.2
+### Test Ex12-6-Ex12_min.108.2.3.2
 The group in Ex12_min.108.2.3.2 is torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.2.3.2 return code 0
 
-Ex12_min.108.2.3.3
+### Test Ex12-6-Ex12_min.108.2.3.3
 The group in Ex12_min.108.2.3.3 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.2.3.3 return code 0
 
-Ex12_min.108.2.3.4
+### Test Ex12-6-Ex12_min.108.2.3.4
 The group in Ex12_min.108.2.3.4 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.2.3.4 return code 0
 
-Ex12_min.108.2.4.1
+### Test Ex12-6-Ex12_min.108.2.4.1
 The group in Ex12_min.108.2.4.1 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.2.4.1 return code 0
 
-Ex12_min.108.2.4.2
+### Test Ex12-6-Ex12_min.108.2.4.2
 The group in Ex12_min.108.2.4.2 is not torsion free
 The order of the point group is 6, and it has 3 conjugacy classes
+### Ex12-6-Ex12_min.108.2.4.2 return code 0
 

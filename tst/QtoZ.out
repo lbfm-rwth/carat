@@ -1,3 +1,4 @@
+### Test QtoZ
 ####### There are 1 classes of groups
 #g1 f3 n4 % 1-th homogenously dec. group, 1 zclass
 2	% generator
@@ -21,3 +22,4 @@
 2x0	% generator of normalizer
  0
  1 0
+### QtoZ return code 0

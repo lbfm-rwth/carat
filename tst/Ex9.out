@@ -1,3 +1,4 @@
+### Test Ex9-1
 #g2 f3 % bravais group to Ex9_g
 6	% generator
  0 0 0 0 0 1
@@ -35,6 +36,8 @@
   1 0  0 1 0
  -1 1 -1 0 0 0
 2^2  * 3^2   = 36 % order of the group
+### Ex9-1 return code 0
+### Test Ex9-2
 #g5 f3 % bravais group to Ex9_h
 6	% generator
  -1  0  0  0  0  0
@@ -83,15 +86,24 @@
  0 0  1 1 0
  0 0 -1 1 0 0
 2^7   = 128 % order of the group
+### Ex9-2 return code 0
+### Test Ex9-3
 The order of the group is: 9
+### Ex9-3 return code 0
+### Test Ex9-4
 The order of the group is: 8
+### Ex9-4 return code 0
+### Test Ex9-5
 Bravais groups which contain a Z-equivalent subgroup
 Symbol: 6-2'  homogeneously d.: 1 zclass: 1
 Symbol: 6-2  homogeneously d.: 1 zclass: 1
 Symbol: 6-2  homogeneously d.: 2 zclass: 1
 Symbol: 6-2  homogeneously d.: 3 zclass: 1
+### Ex9-5 return code 0
+### Test Ex9-6
 Bravais groups which contain a Z-equivalent subgroup
 Symbol: 4-1';2-1  homogeneously d.: 1 zclass: 1
 Symbol: 4-1;2-1  homogeneously d.: 1 zclass: 1
 Symbol: 4-1;2-1  homogeneously d.: 2 zclass: 1
 Symbol: 6-1  homogeneously d.: 1 zclass: 1
+### Ex9-6 return code 0

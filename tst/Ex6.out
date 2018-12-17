@@ -1,3 +1,4 @@
+### Test Ex6-1
 Please input the symbol for the crystal-family: 1;1;1;1
 The crystal-family 1;1;1;1 contains 1 homogeneously decomposable bravais-groups with
  9
@@ -624,6 +625,8 @@ Do you want to calculate bravais-groups? (y or n): Please input a filename (stdo
   0 0  0
   0 0 -1 0
 2^3   = 8 % order of the group
+### Ex6-1 return code 0
+### Test Ex6-2
 Please input the symbol for the crystal-family: 4-1
 The crystal-family 4-1 contains 2 homogeneously decomposable bravais-groups with
  1 resp.  1
@@ -673,6 +676,8 @@ Do you want to calculate bravais-groups? (y or n): Please input a filename (stdo
  0 1 2
  0 1 0 2
 2^7  * 3^2   = 1152 % order of the group
+### Ex6-2 return code 0
+### Test Ex6-3
 Bravais subgroups of the groups G in Ex6_B
 Symbol: 4-1  homogeneously d.: 1 zclass: 1
 Number of occurences in the group: 1
@@ -764,10 +769,8 @@ Number of orbits under the normalizer: 1
 Symbol: 4-1'  homogeneously d.: 1 zclass: 1
 Number of occurences in the group: 12
 Number of orbits under the normalizer: 1
-Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 2
-Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 1
-Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 5
-Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 9
+### Ex6-3 return code 0
+### Test Ex6-4
 #g4 f4 n2 c4 
 4	% generator
   0 -1 0 0
@@ -831,6 +834,8 @@ Symbol: 1;1;1;1  homogeneously d.: 1 zclass: 9
 4d1	% generator of centralizer
 1 1 1 -1 
 2^4   = 16 % order of the group
+### Ex6-4 return code 0
+### Test Ex6-5
 Symbol of the group: 1;1;1;1
 Position in the catalog:
 1-th homogenously decomposable bravais group, 6-th Z-class
@@ -873,6 +878,8 @@ Position in the catalog:
  0 0 1
  0 0 0 0
 2^4   = 16 % order of the group
+### Ex6-5 return code 0
+### Test Ex6-6
 #g4 f4 n3 c4 
 4	% generator
   0 -1 0 0
@@ -947,6 +954,8 @@ Position in the catalog:
   0 0 1  0
  -1 1 2 -1
 2^4   = 16 % order of the group
+### Ex6-6 return code 0
+### Test Ex6-7
 Symbol of the group: 1;1;1;1
 Position in the catalog:
 1-th homogenously decomposable bravais group, 8-th Z-class
@@ -989,3 +998,4 @@ Position in the catalog:
  0 0 0
  0 0 0 0
 2^4   = 16 % order of the group
+### Ex6-7 return code 0
