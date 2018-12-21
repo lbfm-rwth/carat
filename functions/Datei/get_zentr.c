@@ -73,7 +73,7 @@ for ( k = 0; k < anz; k++) {
 	/*------------------------------------------------------------*\
 	| read  file with other almost decomposable bravais-group      |
 	\*------------------------------------------------------------*/
-old_fn = fn = (char *) malloc(80 *sizeof(char));
+old_fn = fn = (char *) malloc(1024 *sizeof(char));
 c=fscanf (infile, "%[ \t\n]", fn);
 c=fscanf (infile, "%[^\n]", fn);
 while(fn != NULL && fn[0] == ' ')
@@ -96,11 +96,8 @@ if(fn != NULL)
   strtok (fn, "%");
 if(fn != NULL)
 {                               
-  B->fn = calloc( 80 , sizeof(char) );
-  strcat( B->fn, TABLES);
-/***********************
-  strcat( B->fn, TOPDIR "/lib/");
-***********************/
+  B->fn = calloc( 1024, sizeof(char) );
+  get_data_dir(B->fn, "tables/");
   strcat(B->fn, fn);
   free ( fn );
 }

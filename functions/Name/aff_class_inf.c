@@ -13,7 +13,6 @@
 #include "zass.h"
 #include "longtools.h"
 
-#define DATABASE_NAME TOPDIR "/tables/qcatalog/data"
 
 
 void extend(matrix_TYP *T)

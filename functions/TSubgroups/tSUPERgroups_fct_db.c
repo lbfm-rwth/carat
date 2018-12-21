@@ -8,9 +8,6 @@
 #include <name.h>
 #include <datei.h>
 
-#define DATABASE_NAME TOPDIR "/tables/qcatalog/data"
-
-
 
 /* ---------------------------------------------------------------------- */
 /* Berechne diejenigen t-Obergruppen einer Raumgruppe, die in einer       */
@@ -202,7 +199,7 @@ bravais_TYP **tsupergroups(bravais_TYP *R,
 
    database *database;
 
-   char pfad[1024];
+   char pfad[1024], dbname[1024], format[1024];
 
    int i, j, no, dim;
 
@@ -213,17 +210,19 @@ bravais_TYP **tsupergroups(bravais_TYP *R,
 
    /* lade Datenbank */
    dim = R->dim - 1;
-   database = load_database(DATABASE_NAME, dim);
+   get_data_dir(dbname, "/tables/qcatalog/data");
+   database = load_database(dbname, dim);
 
    /* berechne den Namen */
    Name = name_fct(R, database);
    inv = mat_inv(Name.trafo);
 
+   get_data_dir(format, "tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/");
    for (i = 0; i < database->nr; i++){
       if (database->entry[i].order > Name.order &&
           database->entry[i].order % Name.order == 0){
-         sprintf(pfad,"%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/",
-                 TOPDIR, dim, database->entry[i].symbol,
+	  sprintf(pfad, format,
+                 dim, database->entry[i].symbol,
                  database->entry[i].order, database->entry[i].discriminant);
 
          tmp = get_supergr(pfad, database->entry[i].abbreviation, Name,

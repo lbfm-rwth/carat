@@ -41,10 +41,9 @@ char *file_name;
 {
 char  string[80],
       slash, *str ;
-char f[80];
+char f[1024], dat[1024];
 /* changed from "static char fn[80]" to switch away from static variables */
 char *fn;
-char *dat;
 FILE *infile;
 int i, j, k, l, m, n, p, q, x, groesser;
 int no, c;
@@ -67,7 +66,7 @@ matrix_TYP *In;
 for (i=0;i<80;i++) string[i] = 0;
 
 /* inserted to switch away from static variables */
-fn = (char *) calloc(80,sizeof(char));
+fn = (char *) calloc(1024,sizeof(char));
 
 /*------------------------------------------------------------*\
 | Open input file               	         	       |
@@ -226,11 +225,7 @@ for(i=0; i<MAXDIM; i++)
 |  read the atoms                                                      |
 \*--------------------------------------------------------------------*/
 grps = (bravais_TYP **) malloc(konstit *sizeof(bravais_TYP *));
-dat = ATOMS;
-/**************
-dat = TOPDIR "/lib/atoms/";
-f = (char **) malloc(konstit *sizeof(char *));
-***************/
+get_data_dir(dat, "tables/atoms/");
 for(i=0; i<konstit; i++)
 {
    strcpy(f, dat);
@@ -503,10 +498,7 @@ for(i=0; i<konstit; i++)
 /*--------------------------------------------------------------------*\
 | find file where erg->grp->zentr are stored                           |
 \*--------------------------------------------------------------------*/
-strcpy(fn, TABLEDIM);
-/*********************************
-strcpy(fn, TOPDIR "/lib/dim");
-*********************************/
+get_data_dir(fn, "tables/dim");
 itoasc(erg->grp->dim, merk);
 strcat(fn, merk);
 strcat(fn, "/");

@@ -150,7 +150,7 @@ static char *identify_hom(bravais_TYP *G,int clear)
    char *result,
          tmp[20],
         *pp,
-         bravais_file[1000];
+         bravais_file[1024], format[1024];
 
    static symbol_out *Atoms;
 
@@ -164,11 +164,12 @@ static char *identify_hom(bravais_TYP *G,int clear)
 
    if (atom_no == 0){
        /* read the file with all atoms */
-       sprintf(bravais_file,"%s%s",TOPDIR,"/tables/symbol/atom_list");
+       get_data_dir(bravais_file, "tables/symbol/atom_list");
        atom_file = fopen(bravais_file,"r");
 
        if (atom_file == NULL){
-          fprintf(stderr,"I didn't find my library file. exiting.\n");
+	 fprintf(stderr, "I didn't find my library file %s. Exiting.\n",
+		 bravais_file);
           exit(4);
        }
 
@@ -183,8 +184,9 @@ static char *identify_hom(bravais_TYP *G,int clear)
        fclose(atom_file);
 
        /* and their respective groups */
+       get_data_dir(format, "tables/symbol/%s");
        for (i=0;i<atom_no;i++){
-          sprintf(bravais_file,"%s/tables/symbol/%s",TOPDIR,Atoms[i].fn);
+          sprintf(bravais_file, format, Atoms[i].fn);
           Atoms[i].grp = get_bravais(bravais_file);
           long_rein_formspace(G->form,G->form_no,1);
        }

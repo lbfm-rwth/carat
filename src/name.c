@@ -14,8 +14,6 @@
 #include "gmp.h"
 #include "longtools.h"
 
-#define DATABASE_NAME TOPDIR "/tables/qcatalog/data"
-
 boolean GRAPH = FALSE;
 int SFLAG;
 int INFO_LEVEL;
@@ -47,7 +45,7 @@ int main (int argc, char *argv[])
 
   int zname[2];
 
-  char comment[1024];
+  char comment[1024], dbname[1024];
 
   read_header (argc, argv);
 
@@ -107,7 +105,8 @@ int main (int argc, char *argv[])
      P = point_group(R,2);
   }
 
-  database = load_database (DATABASE_NAME,P->dim);
+  get_data_dir(dbname, "tables/qcatalog/data");
+  database = load_database (dbname, P->dim);
 
   T = q_class_inf (P,database,qname,symb,&DATAQ,&PRES,FALSE);
 

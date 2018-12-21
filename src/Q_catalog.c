@@ -7,13 +7,12 @@
 #include "matrix.h"
 #include "datei.h"
 
-#define DATABASE_NAME TOPDIR "/tables/qcatalog/data"
 int SFLAG;
 int INFO_LEVEL;
 
 static void write_groups_to_file (int *write_list, database *database, char *string)
 {
-  char argument [80], inputfilename [300];
+  char argument [80], inputfilename [1024], format[1024];
   FILE *outputfile, *inputfile;
   int i, data_char;
   
@@ -39,12 +38,12 @@ static void write_groups_to_file (int *write_list, database *database, char *str
       fprintf (stdout, "Write to file: w <filename>\nWrite to stdout: w -s\n\n\n");
       return;
     }
-  
+
+  get_data_dir(format, "tables/qcatalog/dim%i/dir.%s/ordnung.%i/%s/%s");
   for (i=0; i<database->nr; i++)
     if (write_list[i] == ALL_MATCH)
       {
-	sprintf (inputfilename,
-		 TOPDIR "/tables/qcatalog/dim%i/dir.%s/ordnung.%i/%s/%s",
+	sprintf (inputfilename, format, 
 		 (database->entry [i]).degree,
 		 (database->entry [i]).symbol,
 		 (database->entry [i]).order,
@@ -364,8 +363,7 @@ int main (int argc, char *argv[])
 
   matrix_TYP *T;
 
-  char name[1024],
-       symb[1024];
+  char name[1024], symb[1024], dbname[1024];
 
   extern int FILEANZ;
   extern char **FILENAMES;
@@ -404,10 +402,11 @@ int main (int argc, char *argv[])
       exit (EXIT_SUCCESS);
     }
   
+  get_data_dir(dbname, "tables/qcatalog/data");
   if (FILEANZ == 1){
     G = get_bravais(FILENAMES[0]);
 
-    database = load_database (DATABASE_NAME,G->dim);
+    database = load_database (dbname, G->dim);
   
     display_list = (int *) malloc (database->nr * sizeof (int));
 
@@ -437,7 +436,7 @@ int main (int argc, char *argv[])
 
   }
   else if (FILEANZ == 0){
-    database = load_database (DATABASE_NAME,0);
+    database = load_database (dbname, 0);
     
     display_list = (int *) malloc (database->nr * sizeof (int));
     

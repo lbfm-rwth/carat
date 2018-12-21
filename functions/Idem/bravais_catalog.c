@@ -24,9 +24,8 @@ char *symb;
 {
 char  string[80],
       slash, *str ;
-char f[80];
+char f[1024], dat[1024];
 char *fn;
-char *dat;
 int     i, j, k, l, m, n, p, q, x, groesser;
 int len;
 int no;
@@ -43,9 +42,8 @@ int zerleg[MAXDIM][5];
 bravais_TYP **grps;
 symbol_out *erg;
 matrix_TYP *In;
-
+ 
 fn = (char *) malloc(1024 * sizeof(char));
-
 for (i=0;i<80;i++) string[i] = 0;
 
 for( i=0; i<MAXDIM; i++)
@@ -185,11 +183,7 @@ for(i=0; i<MAXDIM; i++)
 |  read the atoms                                                      |
 \*--------------------------------------------------------------------*/
 grps = (bravais_TYP **) malloc(konstit *sizeof(bravais_TYP *));
-dat = ATOMS;
-/**************
-dat = TOPDIR "/lib/atoms/";
-f = (char **) malloc(konstit *sizeof(char *));
-***************/
+get_data_dir(dat, "tables/atoms/");
 for(i=0; i<konstit; i++)
 {
    strcpy(f, dat);
@@ -468,10 +462,7 @@ for(i=0; i<konstit; i++)
 /*--------------------------------------------------------------------*\
 | find file where erg->grp->zentr are stored                           |
 \*--------------------------------------------------------------------*/
-strcpy(fn, TABLEDIM);
-/*********************************
-strcpy(fn, TOPDIR "/lib/dim");
-*********************************/
+get_data_dir(fn, "tables/dim");
 itoasc(erg->grp->dim, merk);
 strcat(fn, merk);
 strcat(fn, "/");

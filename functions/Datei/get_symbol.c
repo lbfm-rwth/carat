@@ -4,6 +4,7 @@
 #include "matrix.h"
 #include "getput.h"
 #include "longtools.h"
+#include "datei.h"
 
 /************************************************************************** \
 @---------------------------------------------------------------------------
@@ -193,8 +194,8 @@ else
 	/*------------------------------------------------------------*\
 	| read file-reference                                             |
 	\*------------------------------------------------------------*/
-sy->fn = (char *) malloc(80 *sizeof(char));
-fn = (char *) malloc(80 *sizeof(char));
+sy->fn = (char *) malloc(1024 *sizeof(char));
+fn = (char *) malloc(1024 *sizeof(char));
 c=fscanf (infile, "%[ \t\n]", fn);
 c=fscanf (infile, "%[^\n]", fn);
 while(fn != NULL && fn[0] == ' ')
@@ -216,10 +217,7 @@ if(fn != NULL)
   strtok (fn, "%");
 if(fn != NULL)
 {
-  strcpy(sy->fn, TABLES);
-/************
-  strcpy(sy->fn, TOPDIR "/lib/");
-***********/
+  get_data_dir(sy->fn, "tables/");
   strcat(sy->fn, fn);
 }
 else{

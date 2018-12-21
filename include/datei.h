@@ -87,6 +87,12 @@ lattice_element **lattice(char *symb,int dim,int almost,int zclass,int *no,
 lattice_element **super_lattice(char *symb,int dim,int almost,int zclass,
 		int *no, int OPTION);
 
+/*------------------------------------------------------------*\
+| FILE: get_data_dir.c
+\*------------------------------------------------------------*/
+
+void get_data_dir(char *result, const char *str);
+
 #else
 
 /*-------------------------------------------------------------*\
@@ -146,6 +152,12 @@ void fput_lattice_element();
 
 lattice_element **lattice(char *symb,int dim,int almost,int zclass,int *no,
                           int OPTION);
+
+/*------------------------------------------------------------*\
+| FILE: get_data_dir.c
+\*------------------------------------------------------------*/
+
+void get_data_dir();
 
 #endif
 #endif

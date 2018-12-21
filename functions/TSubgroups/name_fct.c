@@ -17,10 +17,6 @@
 #include "longtools.h"
 #include "tsubgroups.h"
 
-#define DATABASE_NAME TOPDIR "/tables/qcatalog/data"
-
-
-
 
 /* ------------------------------------------------------------------- */
 /* Berechne den Namen einer Raumgruppe R in CARAT-Notation und gebe    */

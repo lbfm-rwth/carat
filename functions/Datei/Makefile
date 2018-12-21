@@ -7,11 +7,7 @@ INCL = $(TOPDIR)/include
 
 AR = ar rDc $(TOPDIR)/lib/functions.a
 
-GLOBAL = -DTOPDIR=\"$(TOPDIR)\" -DTABLES=\"$(TOPDIR)/tables/\" \
-         -DATOMS=\"$(TOPDIR)/tables/atoms/\" \
-         -DTABLEDIM=\"$(TOPDIR)/tables/dim\"
-
-COMP = $(CC) $(CFLAGS) $(OBJFLAGS) $(GLOBAL) -I$(INCL)
+COMP = $(CC) $(CFLAGS) $(OBJFLAGS) -I$(INCL)
 
 OBJS = brav_from_datei.o\
        free_bravais.o\
@@ -23,13 +19,17 @@ OBJS = brav_from_datei.o\
        lattice_tools.o\
        read_symbol.o\
        right_order.o\
-       super_lattice.o
-
-.c.o:
-	$(COMP) $< -o $@
+       super_lattice.o\
+       get_data_dir.o
 
 ALL:  $(OBJS)
 	$(AR) *.o
+
+get_data_dir.o:  get_data_dir.c
+	$(COMP) -DTOPDIR=\"$(TOPDIR)\" $<
+
+%.o: %.c
+	$(COMP) $< -o $@
 
 clean:
 	rm -f *.o
