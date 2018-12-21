@@ -23,29 +23,26 @@ NOTE: CARAT was developed for crystallographic groups in dimensions up to 6.
 
 INSTALLATION:
 
-Edit the Makefile in the directory you installed CARAT in, and
-change the variables
- 
-     TOPDIR (which is the output of pwd when in the directory this makefile is stored in)
-     CFLAGS
+The easiest way to compile CARAT is to go to the CARAT base directory
+(the one containing this REAMDME), and issue the make command with some
+variables set on the command line, to order override their defaults in
+the Makefile:
 
-according to your needs. Some additional explanations/examples are given
-there.
+     make TOPDIR=`pwd` CFLAGS="-O -g" CC="gcc"
 
-For Mac users only: You need to delete the line 
+You may of course choose your own compiler and compiler flags. The value
+of TOPDIR must be the CARAT base directory.
 
-    #include <malloc.h>
-    
-from `include/typedef.h`. This will be fixed once there is 
-a `configure` script.
+CARAT relies on the GMP library (along with its header files) being
+installed at a standard location, so that the compiler and linker will
+find it. Otherwise, you will have to indicate their location with
+appropriate compiler/linker flags.
 
-Afterwards do
+In order to clean up from a previous installation, you may want to to a
 
-    make
+     make clean
 
-or to be sure everything is made from scratch:
-
-    make clean ; make 
+before building CARAT again.
 
 If you have any problems installing CARAT, please feel free to contact
 me at carat@momo.math.rwth-aachen.de
