@@ -28,7 +28,7 @@ build_script:
   - SET "PATH=%CYG_ROOT%\bin;%PATH%"
   # temporary hacks with sed until we will have a proper configure script
   - bash -lc "cd $APPVEYOR_BUILD_FOLDER && sed -i 's|TOPDIR=/path/to/the/directory/containing/this/makefile|TOPDIR=/cygdrive/c/projects/carat|g' Makefile"
-  - bash -lc "cd $APPVEYOR_BUILD_FOLDER && sed -i 's|CFLAGS = -g -Wall -DDIAG1|CFLAGS = --coverage -g -Wall -DDIAG1|g' Makefile"
+  - bash -lc "cd $APPVEYOR_BUILD_FOLDER && sed -i 's|CFLAGS = -g -Wall -DDIAG1|CFLAGS = --coverage -g -Wall|g' Makefile"
   - bash -lc "cd $APPVEYOR_BUILD_FOLDER && make"
   - bash -lc "cd $APPVEYOR_BUILD_FOLDER && cd bin; ln -s `ls -d */` carat"
 
