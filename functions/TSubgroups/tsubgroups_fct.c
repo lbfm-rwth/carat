@@ -7,10 +7,6 @@
 #include <datei.h>
 #include <graph.h>
 
-#define DATABASE_NAME TOPDIR "/tables/qcatalog/data"
-
-
-
 
 /* -------------------------------------------------------------------- */
 /* transform the i-th row of a matrix to a list of integers             */
@@ -123,13 +119,14 @@ TSubgroup_TYP **tsubgroup(bravais_TYP *R,
 
    database *database;
 
-
+   char dbname[1024];
 
    if (cflag)
       aflag = TRUE;
       
    /* lade Datenbank */
-   database = load_database(DATABASE_NAME, P->dim);
+   get_data_dir(dbname, "/tables/qcatalog/data");
+   database = load_database(dbname, P->dim);
 
 
 

@@ -6,9 +6,7 @@ INCL = $(TOPDIR)/include
 
 AR = ar rDc $(TOPDIR)/lib/functions.a
 
-GLOBAL = -DTOPDIR=\"$(TOPDIR)\"
-
-COMP = $(CC) $(CFLAGS) -c $(GLOBAL) -I$(INCL)
+COMP = $(CC) $(CFLAGS) -c -I$(INCL)
 
 OBJS = HM_symbol.o\
        Q_catalog.o\

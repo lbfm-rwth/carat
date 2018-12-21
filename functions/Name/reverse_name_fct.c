@@ -13,9 +13,6 @@
 #include "gmp.h"
 #include "longtools.h"
 
-#define DATABASE_NAME TOPDIR "/tables/qcatalog/data"
-
-
 
 bravais_TYP *get_qclass_by_name(char *name,
                                 matrix_TYP **PRES,
@@ -27,12 +24,15 @@ bravais_TYP *get_qclass_by_name(char *name,
 
    database *database;
 
-   char filename[1024];
+   char filename[1024], dbname[1024], format1[1024], format2[1024];
 
    bravais_TYP *G;
 
+   get_data_dir(dbname,  "tables/qcatalog/data");
+   get_data_dir(format1, "tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/%s");
+   get_data_dir(format2, "tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/pres.%s");
    while (!found){
-      database = load_database (DATABASE_NAME,dim);
+      database = load_database (dbname, dim);
 
       i = 0;
       while (!found && i<database->nr ){
@@ -43,14 +43,14 @@ bravais_TYP *get_qclass_by_name(char *name,
       if (found){
          i--;
 
-         sprintf(filename,"%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/%s",
-                          TOPDIR,dim,database->entry[i].symbol,
+         sprintf(filename, format1,
+                          dim,database->entry[i].symbol,
                           database->entry[i].order,
                           database->entry[i].discriminant,name);
          G = get_bravais(filename);
 
-         sprintf(filename,"%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/pres.%s",
-                          TOPDIR,dim,database->entry[i].symbol,
+         sprintf(filename, format2,
+                          dim,database->entry[i].symbol,
                           database->entry[i].order,
                           database->entry[i].discriminant,name);
          *PRES = get_mat(filename);

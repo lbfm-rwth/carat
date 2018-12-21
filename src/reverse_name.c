@@ -13,8 +13,6 @@
 #include "gmp.h"
 #include "longtools.h"
 
-#define DATABASE_NAME TOPDIR "/tables/qcatalog/data"
-
 int SFLAG;
 int INFO_LEVEL;
 boolean GRAPH = FALSE;

@@ -7,10 +7,6 @@
 #include <name.h>
 #include <datei.h>
 
-#define DATABASE_NAME TOPDIR "/tables/qcatalog/data"
-
-
-
 
 /* ---------------------------------------------------------------------- */
 /* Berechne die maximalen t-Untergruppen einer Raumgruppe                 */
@@ -36,7 +32,7 @@ TSubgroup_TYP **tsubgroup_db(bravais_TYP *R,
 
    database *database;
 
-   char pfad[1024];
+   char pfad[1024], dbname[1024], format[1024];
 
    int i, k, dim, found = 0, j;
 
@@ -44,7 +40,8 @@ TSubgroup_TYP **tsubgroup_db(bravais_TYP *R,
 
    /* berechne den Namen */
    dim = R->dim - 1;
-   database = load_database(DATABASE_NAME, dim);
+   get_data_dir(dbname, "/tables/qcatalog/data");
+   database = load_database(dbname, dim);
    Name = name_fct(R, database);
 
 
@@ -56,10 +53,11 @@ TSubgroup_TYP **tsubgroup_db(bravais_TYP *R,
       i++;
    }
 
+   get_data_dir(format, "tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/");
    if (found){
       i--;
-      sprintf(pfad,"%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/",
-              TOPDIR, dim, database->entry[i].symbol,
+      sprintf(pfad, format,
+              dim, database->entry[i].symbol,
               database->entry[i].order, database->entry[i].discriminant);
 
       Rstd = get_std_rep(pfad, Name);

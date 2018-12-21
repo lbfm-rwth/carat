@@ -6,11 +6,7 @@ INCL = $(TOPDIR)/include
 
 AR = ar rDc $(TOPDIR)/lib/functions.a
 
-GLOBAL = -DTOPDIR=\"$(TOPDIR)\" -DTABLES=\"$(TOPDIR)/tables/\" \
-         -DATOMS=\"$(TOPDIR)/tables/atoms/\" \
-         -DTABLEDIM=\"$(TOPDIR)/tables/dim\"
-
-COMP = $(CC) $(CFLAGS) -c $(GLOBAL) -I$(INCL)
+COMP = $(CC) $(CFLAGS) -c -I$(INCL)
 
 OBJS = almost_decomposable_lattice.o\
        bravais_catalog.o\
