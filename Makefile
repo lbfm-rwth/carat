@@ -32,8 +32,8 @@ TOPDIR=/path/to/the/directory/containing/this/makefile
 #
 # For Mac OS X 10.4, please try
 # CC = gcc -I/sw/include
-#¤
-CC = gcc
+#
+# CC = gcc
 
 # There are some special preprocessor flags which set some
 # memory diagnostics:
