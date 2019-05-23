@@ -47,8 +47,3 @@ before building CARAT again.
 If you have any problems installing CARAT, please feel free to contact
 me at carat@momo.math.rwth-aachen.de
 
-Faithfully yours
-
-Dominik Bernhardt
-
-
