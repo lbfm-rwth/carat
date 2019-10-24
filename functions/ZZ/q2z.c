@@ -571,8 +571,8 @@ bravais_TYP **q2z(bravais_TYP *G,
                *ttt,
               **zentr_inv;
 
-   char zzoptions[128],
-        string[128];
+   char zzoptions[128];
+   size_t zzlen;
 
    int i,
        j,
@@ -745,13 +745,12 @@ bravais_TYP **q2z(bravais_TYP *G,
 
    /* make the ZZ options for the second call of ZZ */
    if (quiet)
-      sprintf(zzoptions,"tuqzgp%d",IDEM_NO);
+      zzlen = sprintf(zzoptions,"tuqzgp%d",IDEM_NO);
    else
-      sprintf(zzoptions,"tuzgp%d",IDEM_NO);
+      zzlen = sprintf(zzoptions,"tuzgp%d",IDEM_NO);
 
    for (i = 0; i < IDEM_NO; i++){
-      sprintf(string,"%s/%d",zzoptions,IDEM_SPACES[i]->rows);
-      sprintf(zzoptions,"%s",string);
+      zzlen += snprintf(&zzoptions[zzlen],128-zzlen,"/%d",IDEM_SPACES[i]->rows);
    }
 
    /* call the ZZ again to get all sublattices which fullfill the projection

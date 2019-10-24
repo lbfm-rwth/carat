@@ -50,7 +50,7 @@ static bravais_TYP **get_supergr(char *pfad,
 
    /* Vorbereitungen */
    anzahl[0] = 0;
-   sprintf(filename, "%s/words.%s", pfad, qnameS);
+   snprintf(filename, 1024, "%s/words.%s", pfad, qnameS);
    if ( (infile = fopen(filename, "r")) == NULL ) {
       fprintf(stderr, "get_supergr: Error: Could not open input-file!\n");
       exit (4);
