@@ -458,7 +458,7 @@ static void scan_options (char *options, int *projections, FILE *outputfile)
 	}
 }
 
-void *ZZ(group, gram, divisors, inzidenz, options, outputfile, super_nr, konst_flag)
+void ZZ(group, gram, divisors, inzidenz, options, outputfile, super_nr, konst_flag)
      bravais_TYP *group;
      matrix_TYP *gram;
      int *divisors;

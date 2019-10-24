@@ -136,7 +136,7 @@ extern void ZZ_intern _ZZ_P_PROTO_((matrix_TYP * Gram,
 				    ZZ_data_t * data,
 				    ZZ_tree_t * tree,
 				    QtoZ_TYP * inzidenz)) ;
-extern void *ZZ _ZZ_P_PROTO_((bravais_TYP * group,
+extern void ZZ _ZZ_P_PROTO_((bravais_TYP * group,
 			     matrix_TYP * gram, 
 			     int *divisors,
 			     QtoZ_TYP *inzidenz,
