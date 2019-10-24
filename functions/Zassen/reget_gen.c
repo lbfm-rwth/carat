@@ -98,6 +98,7 @@ static int red_pos(matrix_TYP *x,
   if (erg == 0){
      return(knoten->no);
   }
+  return(-1);
 }
 
 /**********************************************************************

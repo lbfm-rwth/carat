@@ -218,6 +218,7 @@ int Fanz, *denominator;
   extern vertex_TYP *init_vertex();
   v = init_vertex(Fanz, 0);
   form_to_vec(v->v, A, F, Fanz, denominator);
+  return v;
 }
 
 

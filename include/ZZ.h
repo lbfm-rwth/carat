@@ -26,7 +26,7 @@ extern bravais_TYP **q2z(bravais_TYP *G,
 extern void free_QtoZ(QtoZ_TYP *inz,
                       int flag);
 
-extern void *ZZ(bravais_TYP * group,
+extern void ZZ(bravais_TYP * group,
                      matrix_TYP * gram,
                      int *divisors,
 	             QtoZ_TYP *inzidenz,
