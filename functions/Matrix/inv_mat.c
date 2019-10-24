@@ -508,7 +508,7 @@ matrix_TYP *inv;
    * Invert M by paralell transformation of M and II s.t M is unit 
    */
   for ( i= 0; i< n; i ++ ) {
-    if ( M[j=i][j] == 0 ) {
+    if ( M[i][i] == 0 ) {
    /*
     * Swap a non-zero element into [i][i]-position 
     */
