@@ -46,7 +46,7 @@ int main(int argc,char **argv){
   }
 
   G = get_bravais(FILENAMES[0]);
-  memset(G->divisors,0,100);
+  memset(G->divisors,0,100*sizeof(int));
 
   base = get_base(G);
 
