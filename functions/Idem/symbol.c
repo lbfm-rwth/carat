@@ -143,6 +143,8 @@ static char *identify_hom(bravais_TYP *G,int clear)
        multiplicity,
       *list;
 
+   size_t resultlen;
+
    static int atom_no;
 
    FILE *atom_file;
@@ -254,9 +256,9 @@ static char *identify_hom(bravais_TYP *G,int clear)
        strncpy(result,Atoms[list[0]].fn,pp - Atoms[list[0]].fn);
        result[pp-Atoms[list[0]].fn] = 0;
    }
-   sprintf(tmp,"%s",result);
+   resultlen = sprintf(tmp,"%s",result);
    for (i=1;i<multiplicity;i++){
-      sprintf(result,"%s,%s",result,tmp);
+      resultlen += sprintf(&result[resultlen],",%s",tmp);
    }
 
    /* if we got the order, clean up the static allocated memory */
@@ -328,6 +330,8 @@ char *symbol(bravais_TYP *G,matrix_TYP *F)
   char *result,
       **symb;
 
+  size_t resultlen;
+
   /* firstly split the representation into homogenous parts */
   hom = homogenous(G,F,&hom_no);
 
@@ -351,9 +355,9 @@ char *symbol(bravais_TYP *G,matrix_TYP *F)
   bubblesort(symb,hom_no);
 
   result = (char *) calloc((len + hom_no + 10),sizeof(char));
-  sprintf(result,"%s",symb[0]);
+  resultlen = sprintf(result,"%s",symb[0]);
   for (i=1;i<hom_no;i++){
-     sprintf(result,"%s;%s",result,symb[i]);
+     resultlen += sprintf(&result[resultlen],";%s",symb[i]);
   }
 
   for (i=0;i<hom_no;i++){
