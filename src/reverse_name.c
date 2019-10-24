@@ -112,7 +112,7 @@ int main (int argc, char *argv[])
   }
 
   R = reverse_name(qname, zname, aff_name, i, is_option('i'), &affstring);
-  sprintf(comment,"standard group with name %s %d %d %s",
+  snprintf(comment,1024,"standard group with name %s %d %d %s",
                    qname,zname[0],zname[1],affstring);
   put_bravais(R,NULL,comment);
 
