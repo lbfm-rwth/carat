@@ -3,12 +3,12 @@
 #include <string.h>
 
 typedef struct {
-	unsigned pt;
-	int noc;
+	unsigned long pt;
+	long noc;
 	} STAT_LIST_TYPE;
 int SCOUNT = 0, SFLAG = 0;
 int SHELP = 0;
-int SMEMORY = 0x10009b50;
+long SMEMORY = 0x10009b50L;
 int PERIOD = 1, PCOUNT = 0, P_ACT = 0;
 int LIST_SIZE = 0, LIST_USED = 0;
 unsigned **MALLOC_LIST = NULL;
@@ -46,7 +46,7 @@ int i,j;
 int flag;
 FILE *outfile;
 STAT_LIST_TYPE *HELP_MALLOC_LIST;
-unsigned p_cut;
+unsigned long p_cut;
 
 if(status == 0) { /* Gibt die Liste auf eine Datei aus */
 	outfile = (FILE *)fopen("Malloc_liste", "w");
@@ -62,7 +62,7 @@ if(status == 0) { /* Gibt die Liste auf eine Datei aus */
 		for(i = 1; i < STAT_LIST_USED[j]; i++) {
 			if(HELP_MALLOC_LIST[i].noc > 0) {
 				flag = 1;
-				fprintf(outfile, "%x: %d\n", HELP_MALLOC_LIST[i].pt,
+				fprintf(outfile, "%lx: %ld\n", HELP_MALLOC_LIST[i].pt,
 				   HELP_MALLOC_LIST[i].noc);
 				}
 			}
@@ -89,7 +89,7 @@ else if(status == 1) { /* Neuen Pointer einfuegen */
 			STAT_LIST_USED[i] = 1;
 			}
 		}
-	p_cut = ((unsigned) p) >> 14; /* Hoffentlich realistische Groesse */
+	p_cut = ((unsigned long) p) >> 14; /* Hoffentlich realistische Groesse */
 	i = 0;
 	while((i < STAT_LIST_USED[-1]) && 
 		  (p_cut != STAT_MALLOC_LIST[i][0].pt)) i++;
@@ -112,7 +112,7 @@ else if(status == 1) { /* Neuen Pointer einfuegen */
 				STAT_LIST_SIZE[i] += 100;
 				STAT_MALLOC_LIST[i] = HELP_MALLOC_LIST;
 				}
-			HELP_MALLOC_LIST[STAT_LIST_USED[i]  ].pt = (unsigned )p;
+			HELP_MALLOC_LIST[STAT_LIST_USED[i]  ].pt = (unsigned long)p;
 			HELP_MALLOC_LIST[STAT_LIST_USED[i]++].noc = 1;
 			}
 		}
@@ -138,14 +138,14 @@ else if(status == 1) { /* Neuen Pointer einfuegen */
 				}
 			}
 		STAT_MALLOC_LIST[i][0                  ].pt = p_cut;
-		STAT_MALLOC_LIST[i][STAT_LIST_USED[i]  ].pt = (unsigned)p;
+		STAT_MALLOC_LIST[i][STAT_LIST_USED[i]  ].pt = (unsigned long)p;
 		STAT_MALLOC_LIST[i][STAT_LIST_USED[i]++].noc = 1;
 		STAT_LIST_USED[-1]++;
 		}
 	}
 else if(status == 2) {
 	i = 0;
-	p_cut = ((unsigned)p)>> 14;
+	p_cut = ((unsigned long)p)>> 14;
 	while((i<STAT_LIST_USED[-1])&&(p_cut!=STAT_MALLOC_LIST[i][0].pt))
 		i++;
 	if(i < STAT_LIST_USED[-1]) { /*Pointerbereich schon mal allociert */
