@@ -23,9 +23,8 @@
 @-------------------------------------------------------------------------
 \************************************************************************/
 
-int MP_trf_gauss(M, Trf, rows, cols)
-MP_INT **M, **Trf;
-int rows, cols;
+int 
+MP_trf_gauss (MP_INT **M, MP_INT **Trf, int rows, int cols)
 {
   int i,j,k;
   int n;
@@ -152,9 +151,8 @@ int rows, cols;
 @
 \**************************************************************************/
 
-int MP_row_gauss(M, rows, cols)
-MP_INT **M;
-int rows, cols;
+int 
+MP_row_gauss (MP_INT **M, int rows, int cols)
 {
   int i,j,k;
   int n;
@@ -254,9 +252,8 @@ int rows, cols;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-int MP_row_gauss_simultaneous(M, rows, cols, B, Bcols)
-MP_INT **M, **B;
-int rows, cols, Bcols;
+int 
+MP_row_gauss_simultaneous (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols)
 {
   int i,j,k;
   int n;

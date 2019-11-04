@@ -21,8 +21,8 @@
 \**************************************************************************/
 
 
-bravais_TYP *init_bravais(dim)
-int dim;
+bravais_TYP *
+init_bravais (int dim)
 {
    int i;
    bravais_TYP *B;

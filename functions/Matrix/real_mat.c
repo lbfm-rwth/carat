@@ -25,9 +25,8 @@
 @
 @-------------------------------------------------------------------------
  */
-void real_mat(mat, rows, cols)
-matrix_TYP *mat;
-int rows, cols;
+void 
+real_mat (matrix_TYP *mat, int rows, int cols)
 {
 int i,j;
 int **Z, **N;

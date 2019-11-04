@@ -23,8 +23,8 @@
 @
 @-------------------------------------------------------------------------
  */
-int ovfl_mul( a, b)
-int a, b;
+int 
+ovfl_mul (int a, int b)
 { 
 register int result;
 

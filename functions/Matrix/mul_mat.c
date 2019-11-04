@@ -12,8 +12,8 @@
 \**************************************************************************/
 /*{{{}}}*/
 /*{{{  rmat_mul, done*/
-static matrix_TYP *rmat_mul (L_mat, R_mat)
-matrix_TYP *L_mat, *R_mat ;
+static matrix_TYP *
+rmat_mul (matrix_TYP *L_mat, matrix_TYP *R_mat)
 
 {
 matrix_TYP *P_mat;
@@ -80,8 +80,8 @@ int tmp_ggt, tmp_z, tmp_n, tmp_kgv;
 }
 /*}}}  */
 /*{{{  intmat_mul, done*/
-static matrix_TYP *intmat_mul (L_mat, R_mat)
-matrix_TYP *L_mat, *R_mat ;
+static matrix_TYP *
+intmat_mul (matrix_TYP *L_mat, matrix_TYP *R_mat)
 
 {
 matrix_TYP *P_mat;
@@ -141,8 +141,8 @@ int i, j, k ;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *pmat_mul (L_mat, R_mat)
-matrix_TYP *L_mat, *R_mat ;
+matrix_TYP *
+pmat_mul (matrix_TYP *L_mat, matrix_TYP *R_mat)
 {
 matrix_TYP *P_mat;
 
@@ -183,8 +183,8 @@ return ( P_mat );
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *mat_mul (L_mat, R_mat)
-matrix_TYP *L_mat, *R_mat ;
+matrix_TYP *
+mat_mul (matrix_TYP *L_mat, matrix_TYP *R_mat)
 
 {
 matrix_TYP *P_mat, *tmp_mat;
@@ -235,8 +235,8 @@ matrix_TYP *P_mat, *tmp_mat;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *mat_muleq(L_mat,R_mat)
-matrix_TYP *L_mat, *R_mat;
+matrix_TYP *
+mat_muleq (matrix_TYP *L_mat, matrix_TYP *R_mat)
 
 {
 matrix_TYP *H_mat;
@@ -268,8 +268,8 @@ matrix_TYP merk;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *mat_kon(L_mat,M_mat,R_mat)
-matrix_TYP *L_mat, *M_mat, *R_mat;
+matrix_TYP *
+mat_kon (matrix_TYP *L_mat, matrix_TYP *M_mat, matrix_TYP *R_mat)
 {
 matrix_TYP *P_mat, *T_mat;
 

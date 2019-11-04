@@ -26,8 +26,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-bravais_TYP *hyperbolic_stabilizer(x, S)
-matrix_TYP *x, *S;
+bravais_TYP *
+hyperbolic_stabilizer (matrix_TYP *x, matrix_TYP *S)
 {
   matrix_TYP *xS, *xS0, **Sred, *T, *Ti, *W, *W1;
   bravais_TYP *G1, *G;

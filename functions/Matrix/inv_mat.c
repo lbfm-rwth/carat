@@ -22,8 +22,8 @@
 *  matrix_TYP *result: Inverse zu mat, wird erzeugt
 *  matrix_TYP *mat:    wird nicht veraendert
  */
-static matrix_TYP *rmat_inv ( mat )
-matrix_TYP *mat;                           
+static matrix_TYP *
+rmat_inv (matrix_TYP *mat)                           
 {  
 rational **M, **II, *v, f ;
 int n, i, j, k ,l , flag;
@@ -198,8 +198,8 @@ matrix_TYP *inv;
 /*}}}  */
 #ifdef __OLD__
 /*{{{  imat_inv */
-static matrix_TYP *imat_inv (mat)
-matrix_TYP *mat;
+static matrix_TYP *
+imat_inv (matrix_TYP *mat)
 {  
 rational **M, **II, *v, f ;
 int n, i, j, k ,l , flag;
@@ -406,8 +406,8 @@ matrix_TYP *inv;
 /*}}}  */
 #else
 /*{{{  imat_inv*/
-static matrix_TYP *imat_inv (mat)
-matrix_TYP *mat;
+static matrix_TYP *
+imat_inv (matrix_TYP *mat)
 {  
 matrix_TYP *inv, *help;
 
@@ -449,8 +449,8 @@ matrix_TYP *inv, *help;
 #ifdef __OLD__
 
 /* replaced the above function to use mp integres., tilman 02/05/97 */
-static matrix_TYP *imat_inv (mat)
-matrix_TYP *mat;
+static matrix_TYP *
+imat_inv (matrix_TYP *mat)
 {
    matrix_TYP *ID,
              **X,
@@ -488,8 +488,8 @@ matrix_TYP *mat;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *pmat_inv (mat)
-matrix_TYP *mat;
+matrix_TYP *
+pmat_inv (matrix_TYP *mat)
 {
 int n, f, *v;
 int i, j, k, **M, **II;
@@ -571,8 +571,8 @@ matrix_TYP *inv;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *mat_inv(mat)
-matrix_TYP *mat;
+matrix_TYP *
+mat_inv (matrix_TYP *mat)
 {
 matrix_TYP *inv;
 

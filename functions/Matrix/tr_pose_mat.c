@@ -21,8 +21,8 @@
 
 /*{{{}}}*/
 /*{{{  tr_pose*/
-matrix_TYP *tr_pose(mat)
-matrix_TYP *mat;
+matrix_TYP *
+tr_pose (matrix_TYP *mat)
 {
 int i,j;
 matrix_TYP *cmat;

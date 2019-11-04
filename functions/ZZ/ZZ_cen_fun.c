@@ -41,10 +41,8 @@ int OFLAG = FALSE;
 
 static matrix_TYP **gen_sys (int *num, int l, matrix_TYP ** MAT);
 
-static matrix_TYP **gen_sys (num, l, MAT)
-     int *num;
-     int l;
-     matrix_TYP **MAT;
+static matrix_TYP **
+gen_sys (int *num, int l, matrix_TYP **MAT)
 {
 	int i, j, *s, n, anz, w;
 	int **Z, **Q1, **Q2;
@@ -108,9 +106,8 @@ static matrix_TYP **gen_sys (num, l, MAT)
 	return (ring);
 }
 
-void ZZ_free_node (data, n)
-     ZZ_data_t *data;
-     ZZ_node_t *n;
+void 
+ZZ_free_node (ZZ_data_t *data, ZZ_node_t *n)
 {
 	int i,j;
 	ZZ_couple_t *m, *tm;
@@ -190,8 +187,8 @@ void ZZ_free_node (data, n)
 | copied into data->Endo[i][j] by gen_sys, so there mustn`t be a    |
 | ZZ_free_mat at TMAT.                                                |
 \*----------------------------------------------------------------*/
-void ZZ_make_endo (data)
-     ZZ_data_t *data;
+void 
+ZZ_make_endo (ZZ_data_t *data)
 {
 	int i, j, l;
 	matrix_TYP **TMAT;
@@ -217,9 +214,8 @@ void ZZ_make_endo (data)
  *  
  */
 
-static int test_two_constituents(data, i, j, k)
-     ZZ_data_t *data;
-     int i, j, k;
+static int 
+test_two_constituents (ZZ_data_t *data, int i, int j, int k)
 {
 	int ll, l, s;
 	matrix_TYP **temp;
@@ -266,8 +262,8 @@ static int test_two_constituents(data, i, j, k)
 | Test if the set of constituents is redundant, i.e two of them    |
 | are isomorphic.                                                  |
 \*----------------------------------------------------------------*/
-void ZZ_test_konst (data)
-     ZZ_data_t *data;
+void 
+ZZ_test_konst (ZZ_data_t *data)
 {
 	int i, j, k;
 	
@@ -290,14 +286,8 @@ void ZZ_test_konst (data)
  *  q2z ruft diese Fufnktion ueber ZZ mehrmals auf; einige Daten brauchen nicht mehrmals
  *  ausgerechnet werden; das kann noch verbessert werden!
  */
-void ZZ_get_data (group, gram, divisors, data, tree, projections, konst_flag)
-     bravais_TYP *group;
-     matrix_TYP *gram;
-     int *divisors;
-     ZZ_data_t *data;
-     ZZ_tree_t *tree;
-     int *projections;
-     int konst_flag;
+void 
+ZZ_get_data (bravais_TYP *group, matrix_TYP *gram, int *divisors, ZZ_data_t *data, ZZ_tree_t *tree, int *projections, int konst_flag)
 {
 	int i, j, k;
 	matrix_TYP **help2;
@@ -548,10 +538,8 @@ void ZZ_get_data (group, gram, divisors, data, tree, projections, konst_flag)
 /*         of the computed Zentrierungen                                     */
 /*                                                                           */
 /*****************************************************************************/
-void ZZ_put_data (group, data, tree)
-     bravais_TYP *group;
-     ZZ_data_t *data;
-     ZZ_tree_t *tree;
+void 
+ZZ_put_data (bravais_TYP *group, ZZ_data_t *data, ZZ_tree_t *tree)
 {
 	ZZ_node_t *n, *t;
 	int i;
@@ -588,10 +576,8 @@ void ZZ_put_data (group, data, tree)
 	} while ((n = t) != NULL);
 }
 
-void ZZ_fput_data (data, tree, ABBRUCH)
-     ZZ_data_t *data;
-     ZZ_tree_t *tree;
-     int ABBRUCH;
+void 
+ZZ_fput_data (ZZ_data_t *data, ZZ_tree_t *tree, int ABBRUCH)
 {
 	ZZ_node_t *n, *t;
 	ZZ_couple_t *m;
@@ -659,8 +645,8 @@ void ZZ_fput_data (data, tree, ABBRUCH)
 	}
 }
 
-void ZZ_free_data (data)
-     ZZ_data_t *data;
+void 
+ZZ_free_data (ZZ_data_t *data)
 {
 	int i, j, k;
 	
@@ -723,9 +709,8 @@ void ZZ_free_data (data)
 /*------------------------------------------------------------*\
 | Variation of p_solve, it differs in the way of output        |
 \*------------------------------------------------------------*/
-matrix_TYP *ZZ_p_vsolve (anz, L_mat, R_mat)
-     int *anz;
-     matrix_TYP **L_mat, **R_mat;
+matrix_TYP *
+ZZ_p_vsolve (int *anz, matrix_TYP **L_mat, matrix_TYP **R_mat)
 
 {
 	int **M, **N, *v, f, help;
@@ -958,10 +943,8 @@ matrix_TYP *ZZ_p_vsolve (anz, L_mat, R_mat)
 | centering. Return the possibly new node for checking, wether it |
 | occured already earlier in the algorithm or not.          |
 \*---------------------------------------------------------------*/
-ZZ_node_t *ZZ_center (data, father, ii, jj)
-     ZZ_data_t *data;
-     ZZ_node_t *father;
-     int ii, jj;
+ZZ_node_t *
+ZZ_center (ZZ_data_t *data, ZZ_node_t *father, int ii, int jj)
 {
 	int flag, sg, i, j, d;
 	matrix_TYP *ker;
@@ -1076,9 +1059,8 @@ ZZ_node_t *ZZ_center (data, father, ii, jj)
 | Solve the matrix-equation DELTA_M * E = E * p_consts.Delta[ii][jj]     |
 | over F(p) and return a basis of the space of all solutions    |
 \*---------------------------------------------------------------*/
-int ZZ_epimorphs (data, ii, jj)
-     ZZ_data_t *data;
-     int ii, jj;
+int 
+ZZ_epimorphs (ZZ_data_t *data, int ii, int jj)
 {
 	int d, i, j, k, x, e;
 	int **X, **M;
@@ -1238,18 +1220,8 @@ static int suche_mat(matrix_TYP *mat,
 
 
 /*------------------------------------------------------------------------------- */
-int ZZ_ins_node (Gram, data, tree, father, new, ii, jj, inzidenz, nr, NEU, flagge, g, nnn)
-     matrix_TYP *Gram;
-     ZZ_data_t *data;
-     ZZ_tree_t *tree;
-     ZZ_node_t *father, *new;
-     int ii, jj;
-     QtoZ_TYP *inzidenz;
-     int *nr;
-     int *NEU;
-     int *flagge;
-     int *g;
-     ZZ_node_t **nnn;
+int 
+ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *father, ZZ_node_t *new, int ii, int jj, QtoZ_TYP *inzidenz, int *nr, int *NEU, int *flagge, int *g, ZZ_node_t **nnn)
 {
 	ZZ_node_t *n;
 	ZZ_couple_t *c;
@@ -1569,9 +1541,7 @@ int ZZ_ins_node (Gram, data, tree, father, new, ii, jj, inzidenz, nr, NEU, flagg
 /*}}}  */
 /*{{{  ZZ_pick_epi */
 void 
-ZZ_pick_epi (data, number, ii, jj)
-     ZZ_data_t *data;
-     int number, ii, jj;
+ZZ_pick_epi (ZZ_data_t *data, int number, int ii, int jj)
 {
   int **E, **hh;
   int q, i, j, k, f;

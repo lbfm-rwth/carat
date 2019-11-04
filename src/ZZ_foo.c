@@ -4,9 +4,8 @@
 #include"bravais.h"
 #include"ZZ.h"
 
-void scan_argv (argc, argv, filename)
-int argc;
-char *argv[], **filename;
+void 
+scan_argv (int argc, char *argv[], char **filename)
 {
 if ( argc != 2 )
 	*filename = NULL;
@@ -17,8 +16,8 @@ else
 int ABBRUCH;
 /*{{{}}}*/
 /*{{{  ZZ_usage*/
-void ZZ_usage(progname)
-char *progname;
+void 
+ZZ_usage (char *progname)
 {
   fprintf(stderr,"Usage: %s -bghl <#level> n <#number> pqrstu <file>\n\n",progname);
   fprintf(stderr,"-b  : Print only the matrices of change of base and their inverse.\n");
@@ -39,15 +38,14 @@ char *progname;
 /*}}}  */
 
 
-void foo()
+void 
+foo (void)
 {
 /* printf("Hello world!\n"); */
 }
 
-int main (argc, argv)
-
-int argc;
-char *argv[];
+int 
+main (int argc, char *argv[])
 {  
 matrix_TYP *Gram, **help2;
 ZZ_data_t data;

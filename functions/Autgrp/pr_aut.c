@@ -70,9 +70,8 @@ static int *perpvec;
 \*************************************************************************/
 
 
-bravais_TYP *pr_aut(Fo, Foanz, Erz, Erzanz, options)
-matrix_TYP **Fo, **Erz;
-int Foanz, Erzanz, *options;
+bravais_TYP *
+pr_aut (matrix_TYP **Fo, int Foanz, matrix_TYP **Erz, int Erzanz, int *options)
 {
    matrix_TYP **F, **E, *SV, *T, *Titr, *Ttr, *w;
    bravais_TYP *G, *G1;

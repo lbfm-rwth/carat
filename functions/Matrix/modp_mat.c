@@ -21,9 +21,8 @@
 @
 \**************************************************************************/
 
-void modp_mat(M, prime)
-matrix_TYP *M;
-int prime;
+void 
+modp_mat (matrix_TYP *M, int prime)
 {
   int i,j, phalbe, mphalbe;
 

@@ -109,8 +109,8 @@ register int c;
 | berechnet das kgv von a und b. Das Ergebnis ist immer >= 0!
 |
  */
-int KGV( a, b )
-int a, b;
+int 
+KGV (int a, int b)
 { 
 int kgv, ggt;
 
@@ -134,8 +134,8 @@ int kgv, ggt;
 /*{{{  Normal*/
 
 
-void Normal (a)
-rational *a;
+void 
+Normal (rational *a)
 {  
 register int g; 
 register int n= a->n;
@@ -165,8 +165,8 @@ register int z= a->z;
 
 /*}}}  */
 /*{{{  Normal2*/
-void Normal2 ( _z, _n )
-int *_z, *_n;
+void 
+Normal2 (int *_z, int *_n)
 {          
 register int z = *_z;
 register int n = *_n;
@@ -203,8 +203,8 @@ register int g;
 | rational a, rational b: addition of a and b, result is stored in a.
 |
  */
-void rat_add( az, an, bz, bn )
-int *az, *an, bz, bn;
+void 
+rat_add (int *az, int *an, int bz, int bn)
 {        
 register int temp_ggt;
 
@@ -225,9 +225,8 @@ register int temp_ggt;
 
 /*}}}  */
 /*{{{  factorize_new*/
-int *factorize_new( zahl, erg)
-int zahl;
-int *erg;
+int *
+factorize_new (int zahl, int *erg)
 {
 int i;
 
@@ -251,8 +250,8 @@ int i;
 
 /*}}}  */
 /*{{{  factorize*/
-int *factorize(zahl)
-int zahl;
+int *
+factorize (int zahl)
 {
 int i;
 int *erg;
@@ -267,9 +266,8 @@ int *erg;
 /*-----------------------------------------------------------------------*\
 | gibt darstellung des ggt: gcd = v1*a1 + v2*a2                           |
 \*-----------------------------------------------------------------------*/
-void gcd_darstell(a1, a2, v1, v2, gcd)
-int a1, a2;
-int *v1, *v2, *gcd;
+void 
+gcd_darstell (int a1, int a2, int *v1, int *v2, int *gcd)
 {
  int bn,bn1,bn2,rn,rn1,rn2,q, an, an1, an2;
   rn2=a2; rn1=a1; bn2=0; bn1=1;
@@ -316,8 +314,8 @@ int *v1, *v2, *gcd;
 /*-----------------------------------------------------------------------*\
 | calculates number i such that a * i is kongruent 1 modulo p (if exists)
 \*-----------------------------------------------------------------------*/
-int p_inv(a, p)
-int a,p;
+int 
+p_inv (int a, int p)
 {
    int an, an1, an2, rn, rn1, rn2, q;
    rn1 = a %p;
@@ -352,8 +350,8 @@ int a,p;
 }
 
 
-int signum(a)
-int a;
+int 
+signum (int a)
 {
   if(a>0)
   return(1);

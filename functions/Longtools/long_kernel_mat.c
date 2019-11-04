@@ -20,8 +20,8 @@
 @ the cols of X are a Z-basis of the solution space.
 @ The functions uses GNU MP
 \************************************************************************/
-matrix_TYP *long_kernel_mat(A)
-matrix_TYP *A;
+matrix_TYP *
+long_kernel_mat (matrix_TYP *A)
 {
    MP_INT ***E, **MA;
    MP_INT Ekgv;

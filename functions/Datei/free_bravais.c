@@ -21,8 +21,8 @@
 @
 \**************************************************************************/
 
-void free_bravais(grp)
-bravais_TYP *grp;
+void 
+free_bravais (bravais_TYP *grp)
 {
 int i;
 

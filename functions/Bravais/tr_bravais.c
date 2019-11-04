@@ -33,10 +33,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-bravais_TYP *tr_bravais(B, calcforms,invert)
-bravais_TYP *B;
-int calcforms;
-int invert;
+bravais_TYP *
+tr_bravais (bravais_TYP *B, int calcforms, int invert)
 {
    bravais_TYP *G;
    int i,j,k;

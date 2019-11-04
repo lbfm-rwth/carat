@@ -23,10 +23,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void fput_bravais(outfile, G, comment)
-FILE *outfile;
-bravais_TYP *G;
-char *comment;
+void 
+fput_bravais (FILE *outfile, bravais_TYP *G, char *comment)
 {
   int i, j;
   
@@ -112,10 +110,8 @@ char *comment;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void put_bravais(G, filename, comment)
-bravais_TYP *G;
-char *filename;
-char *comment;
+void 
+put_bravais (bravais_TYP *G, char *filename, char *comment)
 {
   int i, j;
   FILE *outfile;

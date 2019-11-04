@@ -49,10 +49,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void calc_voronoi_basics(V, G, Gtr, prime)
-voronoi_TYP *V;
-bravais_TYP *G, *Gtr;
-int prime;
+void 
+calc_voronoi_basics (voronoi_TYP *V, bravais_TYP *G, bravais_TYP *Gtr, int prime)
 {
   int i,k;
   int anz;
@@ -111,9 +109,8 @@ int prime;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void calc_voronoi_pol(V, bifo)
-voronoi_TYP *V;
-matrix_TYP *bifo;
+void 
+calc_voronoi_pol (voronoi_TYP *V, matrix_TYP *bifo)
 {
    int i,j,k;
    int dim, fdim;
@@ -168,9 +165,8 @@ matrix_TYP *bifo;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void calc_voronoi_good_inv(V, Gtr)
-voronoi_TYP *V;
-bravais_TYP *Gtr;
+void 
+calc_voronoi_good_inv (voronoi_TYP *V, bravais_TYP *Gtr)
 {
    int i,j,maxd;
    int dim, mr;
@@ -294,10 +290,8 @@ bravais_TYP *Gtr;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void calc_voronoi_stab(V, G, Gtr, bifo)
-voronoi_TYP *V;
-bravais_TYP *G, *Gtr;
-matrix_TYP *bifo;
+void 
+calc_voronoi_stab (voronoi_TYP *V, bravais_TYP *G, bravais_TYP *Gtr, matrix_TYP *bifo)
 {
 
    int i,j;
@@ -402,10 +396,8 @@ matrix_TYP *bifo;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *calc_voronoi_isometry(V1, V2, G, Gtr, bifo)
-voronoi_TYP *V1, *V2;
-bravais_TYP *G, *Gtr;
-matrix_TYP *bifo;
+matrix_TYP *
+calc_voronoi_isometry (voronoi_TYP *V1, voronoi_TYP *V2, bravais_TYP *G, bravais_TYP *Gtr, matrix_TYP *bifo)
 {
 
    int i,j;
@@ -579,10 +571,8 @@ matrix_TYP *bifo;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void calc_voronoi_dir_reps(V, G, Gtr, bifo)
-voronoi_TYP *V;
-bravais_TYP *G, *Gtr;
-matrix_TYP *bifo;
+void 
+calc_voronoi_dir_reps (voronoi_TYP *V, bravais_TYP *G, bravais_TYP *Gtr, matrix_TYP *bifo)
 {
    int i,j;
    matrix_TYP **M;
@@ -635,11 +625,8 @@ matrix_TYP *bifo;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void calc_voronoi_complete(V, G, Gtr, bifo, prime)
-voronoi_TYP *V;
-bravais_TYP *G, *Gtr;
-matrix_TYP *bifo;
-int prime;
+void 
+calc_voronoi_complete (voronoi_TYP *V, bravais_TYP *G, bravais_TYP *Gtr, matrix_TYP *bifo, int prime)
 {
    calc_voronoi_basics(V, G, Gtr, prime);
    calc_voronoi_pol(V, bifo);

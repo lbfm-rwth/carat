@@ -18,11 +18,8 @@
 @
 \**************************************************************************/
 
-static matrix_TYP *search_normal_isometry(Vneu, V, Vanz, G, Gtr, bifo, no)
-voronoi_TYP *Vneu, **V;
-bravais_TYP *G, *Gtr;
-matrix_TYP *bifo;
-int Vanz, *no;
+static matrix_TYP *
+search_normal_isometry (voronoi_TYP *Vneu, voronoi_TYP **V, int Vanz, bravais_TYP *G, bravais_TYP *Gtr, matrix_TYP *bifo, int *no)
 {
    int i;
    int found;
@@ -74,10 +71,8 @@ int Vanz, *no;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-voronoi_TYP **normalizer(P, G, Gtr, prime, V_no)
-matrix_TYP *P;
-bravais_TYP *G, *Gtr;
-int prime, *V_no;
+voronoi_TYP **
+normalizer (matrix_TYP *P, bravais_TYP *G, bravais_TYP *Gtr, int prime, int *V_no)
 {
    int i,j,k,l;
    int dim, fdim;

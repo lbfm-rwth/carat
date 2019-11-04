@@ -13,14 +13,8 @@
 |	returns their number 
 |	(should be fp.diag[I])
 \*****************************************************************/
-static int isocand(CI, I, x, V, F, FF, fp, comb, bach, flags)
-veclist	V;
-invar	F, FF;
-fpstruct fp;
-scpcomb	*comb;
-bachpol	*bach;
-flagstruct flags;
-int	*CI, I, *x;
+static int 
+isocand (int *CI, int I, int *x, veclist V, invar F, invar FF, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags)
 {
 	int	i, j, k, dim, okp, okm, sign, nr, fail, num;
 	int	*vec, *scpvec, **xvec, **xbase, **Fxbase, DEP, len, rank, n;
@@ -248,14 +242,8 @@ int	*CI, I, *x;
 /*****************************************************\
 |	search for an isometry
 \*****************************************************/
-static matrix_TYP *bs_isometry(V, F, FF, fp, G, nG, comb, bach, flags)
-veclist	V;
-invar	F, FF;
-fpstruct fp;
-int	***G, nG;
-scpcomb	*comb;
-bachpol	*bach;
-flagstruct flags;
+static matrix_TYP *
+bs_isometry (veclist V, invar F, invar FF, fpstruct fp, int ***G, int nG, scpcomb *comb, bachpol *bach, flagstruct flags)
 {
 	int	i,j, dim, *x, **C, **X, found;
 	matrix_TYP *erg;
@@ -313,14 +301,8 @@ flagstruct flags;
 /**********************************************************\
 |	the heart of the program: the recursion
 \**********************************************************/
-static int iso(step, x, C, V, F, FF, fp, G, nG, comb, bach, flags)
-veclist	V;
-invar	F, FF;
-fpstruct fp;
-scpcomb	*comb;
-bachpol	*bach;
-flagstruct flags;
-int	step, *x, **C, ***G, nG;
+static int 
+iso (int step, int *x, int **C, veclist V, invar F, invar FF, fpstruct fp, int ***G, int nG, scpcomb *comb, bachpol *bach, flagstruct flags)
 {
 	FILE	*outfile;
 	int	i, j, dim, ***H, nH, *orb, orblen, found, Maxfail;
@@ -421,9 +403,8 @@ int	step, *x, **C, ***G, nG;
 |	G[0],...,G[nG-1] and elements stabilizing V.v[pt], which are 
 |	stored in H, returns the number of generators in H
 \*********************************************************************/
-static int isostab(H, pt, G, nG, V, Maxfail)
-int	****H, pt, ***G, nG, Maxfail;
-veclist	V;
+static int 
+isostab (int ****H, int pt, int ***G, int nG, veclist V, int Maxfail)
 {
 	int	*orb, len, cnd, orblen, tmplen, rpt;
 	int	***w, *flag, **A, **B;

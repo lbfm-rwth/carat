@@ -23,8 +23,8 @@
 @-------------------------------------------------------------------
  */
 
-int tgauss(mat)
-matrix_TYP *mat;
+int 
+tgauss (matrix_TYP *mat)
 {
 int i,j,k,l;
 int *nzero;
@@ -161,8 +161,8 @@ $ return is the rank of the matrix.
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-int row_gauss(M)
-matrix_TYP *M;
+int 
+row_gauss (matrix_TYP *M)
 {
   int i,j;
   int step;
@@ -234,8 +234,8 @@ matrix_TYP *M;
 @ and the number of rows is shrinked to the rank of the matrix.
 @-------------------------------------------------------------------
  */
-matrix_TYP *ggauss(mat)
-matrix_TYP *mat;
+matrix_TYP *
+ggauss (matrix_TYP *mat)
 {
 matrix_TYP *elt;
 int rank;

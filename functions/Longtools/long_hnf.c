@@ -22,8 +22,8 @@
 @
 @---------------------------------------------------------------------------
 \**************************************************************************/
-int long_row_hnf(Mat)
-matrix_TYP *Mat;
+int 
+long_row_hnf (matrix_TYP *Mat)
 {
   int rang;
   MP_INT **M;
@@ -36,8 +36,8 @@ matrix_TYP *Mat;
   return(rang);
 }
 
-int long_col_hnf(Mat)
-matrix_TYP *Mat;
+int 
+long_col_hnf (matrix_TYP *Mat)
 {
   int i,
       j,
@@ -67,8 +67,8 @@ matrix_TYP *Mat;
 @
 @---------------------------------------------------------------------------
 \**************************************************************************/
-int long_row_trf_hnf(M, T)
-matrix_TYP *M, *T;
+int 
+long_row_trf_hnf (matrix_TYP *M, matrix_TYP *T)
 {
   int rang;
   MP_INT **N, **S;
@@ -93,8 +93,8 @@ matrix_TYP *M, *T;
 @
 @---------------------------------------------------------------------------
 \**************************************************************************/
-int long_row_hnf_simultaneous(A, B)
-matrix_TYP *A, *B;
+int 
+long_row_hnf_simultaneous (matrix_TYP *A, matrix_TYP *B)
 {
   int rang;
   MP_INT **MA, **MB;

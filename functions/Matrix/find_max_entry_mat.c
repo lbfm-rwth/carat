@@ -11,8 +11,8 @@
 @
 \**************************************************************************/
 
-static int max_abs( a, b )
-int a, b;
+static int 
+max_abs (int a, int b)
 { 
 int aa = abs(a), ab=abs(b);
 
@@ -34,8 +34,8 @@ int aa = abs(a), ab=abs(b);
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-int find_max_entry(mat)
-matrix_TYP *mat;
+int 
+find_max_entry (matrix_TYP *mat)
 {
 int i,j;
 int **Z, *S_i;

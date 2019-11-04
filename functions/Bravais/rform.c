@@ -24,8 +24,8 @@ static double	**sxt, **st, **st1, err, sdiff, sdiff1;
 
 
 
-static int ggt(a, b)
-int	a, b;
+static int 
+ggt (int a, int b)
 {
 	int	r;
 
@@ -42,9 +42,8 @@ int	a, b;
 
 
 
-static void rmatfac(A, m, B, n)
-double	**A, **B, m;
-int	n;
+static void 
+rmatfac (double **A, double m, double **B, int n)
 {
 	double	*a, *b;
 	int	i, j;
@@ -61,9 +60,8 @@ int	n;
 
 
 
-static int rmatone(A, n)
-double	**A;
-int	n;
+static int 
+rmatone (double **A, int n)
 {
 	int	i, j;
 
@@ -82,9 +80,8 @@ int	n;
 }
 
 
-static void rmatadd(A, B, C, n)
-double	**A, **B, **C;
-int	n;
+static void 
+rmatadd (double **A, double **B, double **C, int n)
 {
 	double	*a, *b, *c;
 	int	i, j;
@@ -102,9 +99,8 @@ int	n;
 
 
 
-static void rmatmul(A, B, C, n)
-double	**A, **B, **C;
-int	n;
+static void 
+rmatmul (double **A, double **B, double **C, int n)
 {
 	double	*a, c;
 	int	i, j, k;
@@ -127,9 +123,8 @@ int	n;
 }
 
 
-static void rmattrans(A, B, C, n)
-double	**A, **B, **C;
-int	n;
+static void 
+rmattrans (double **A, double **B, double **C, int n)
 {
 	double	**D, *d, c;
 	int	i, j, k;
@@ -166,8 +161,8 @@ int	n;
 
 
 
-static int gcd(f, dim)
-int	**f, dim;
+static int 
+gcd (int **f, int dim)
 {
 	int	n, i, j;
 
@@ -188,8 +183,8 @@ int	**f, dim;
 		return n;
 }
 
-static int rond(X)
-double	X;
+static int 
+rond (double X)
 {
 	if (X >= 0)
 		return (int)(2*fabs(X) + 1.0) / 2;
@@ -197,8 +192,8 @@ double	X;
 		return -((int)(2*fabs(X) + 1.0) / 2);
 }
 
-static int chain(X, e)
-double	X, e;
+static int 
+chain (double X, double e)
 {
 	double	*r, rest;
 	int	i, *a, step, temp, nm = 0, dn = 1;
@@ -247,9 +242,8 @@ double	X, e;
 
 
 
-static int dtoi(y, f, ep, dim)
-double	**y, ep;
-int	**f, dim;
+static int 
+dtoi (double **y, int **f, double ep, int dim)
 {
 	int	i, j, den, max;
 
@@ -284,9 +278,8 @@ int	**f, dim;
 
 
 
-static int iterate(step, x, g, num, dim)
-double	**x, ***g;
-int	step, num, dim;
+static int 
+iterate (int step, double **x, double ***g, int num, int dim)
 {
 	double	factor;
 	int	i, j, k;
@@ -366,9 +359,8 @@ int	step, num, dim;
 }
 
 
-static int symel(x, g, num, dim, eps, f)
-double	**x, ***g;
-int	num, dim, eps, **f;
+static int 
+symel (double **x, double ***g, int num, int dim, int eps, int **f)
 {
 	int	gc, i, j, k, den, maxden, step, neweps;
 
@@ -470,7 +462,8 @@ int	num, dim, eps, **f;
 
 
 
-static double try()
+static double 
+try (void)
 {
 	double	conv;
 	int	i, j, k;
@@ -572,11 +565,8 @@ static double try()
 @
 \**************************************************************************/
 
-matrix_TYP *rform(B, Banz, Fo, epsilon)
-matrix_TYP **B;
-int Banz;
-matrix_TYP *Fo;
-int epsilon;
+matrix_TYP *
+rform (matrix_TYP **B, int Banz, matrix_TYP *Fo, int epsilon)
 {
 	double	try();
 	double	**save, **pres, *fac, factor;

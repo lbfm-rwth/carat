@@ -22,10 +22,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void fput_order(outfile, divisors, ord)
-FILE *outfile;
-int *divisors;
-int ord;
+void 
+fput_order (FILE *outfile, int *divisors, int ord)
 {
   int tester, i, j;
   if(divisors == NULL)

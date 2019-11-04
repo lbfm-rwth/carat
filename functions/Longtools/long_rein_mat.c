@@ -23,8 +23,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *long_rein_mat(Mat)
-matrix_TYP *Mat;
+matrix_TYP *
+long_rein_mat (matrix_TYP *Mat)
 {
 
    int i,j,k, step, stepclear;

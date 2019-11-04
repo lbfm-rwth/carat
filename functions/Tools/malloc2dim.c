@@ -37,8 +37,8 @@
 | int size: Groesse eines Eintrags in bytes
 @
 */
-char **calloc2dim(r,c,size)
-int r,c,size;
+char **
+calloc2dim (int r, int c, int size)
 {
 char **new; 
 int i, j;
@@ -81,8 +81,8 @@ int i, j;
 @
 @-------------------------------------------------------------------------
 */
-char **malloc2dim(r,c,size)
-int r,c,size;
+char **
+malloc2dim (int r, int c, int size)
 { 
 char **new; 
 int i, j;
@@ -124,9 +124,8 @@ int i, j;
 @
 @-------------------------------------------------------------------------
 */
-void memcpy2dim(dest, src, r,c,size)
-char **dest, **src;
-int r,c,size;
+void 
+memcpy2dim (char **dest, char **src, int r, int c, int size)
 { 
 int i, j;
 
@@ -152,10 +151,8 @@ int i, j;
 @
 @-------------------------------------------------------------------------
 */
-void memset2dim(dest, r, c, size, value)
-char **dest;
-int r,c,size;            
-char *value;
+void 
+memset2dim (char **dest, int r, int c, int size, char *value)
 { 
 int i, j;
 
@@ -184,9 +181,8 @@ int i, j;
 @
 @-------------------------------------------------------------------------
 */
-void free2dim(old, rows)
-char **old;        
-int rows;
+void 
+free2dim (char **old, int rows)
 { 
 int i;
 

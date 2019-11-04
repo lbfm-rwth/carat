@@ -14,11 +14,8 @@
 \**************************************************************************/
 
 
-static void Gramtrans(G, T, U, Uinv, vec, step)
-matrix_TYP *G, *T;
-int **U, **Uinv;
-int *vec;
-int step;
+static void 
+Gramtrans (matrix_TYP *G, matrix_TYP *T, int **U, int **Uinv, int *vec, int step)
 {
   int i,j,k,n;
   int **u, **uinv;
@@ -108,10 +105,8 @@ int step;
 }
 
 
-static void kurvectrans(SV, U, no, step)
-matrix_TYP *SV;
-int **U;
-int no, step;
+static void 
+kurvectrans (matrix_TYP *SV, int **U, int no, int step)
 {
   int i,j, k;
   int n;
@@ -155,9 +150,8 @@ int no, step;
   free(vec);
 }
 
-static int **trafoinverse(vec, step, dim)
-int *vec;
-int step, dim;
+static int **
+trafoinverse (int *vec, int step, int dim)
 {
   int i,j, s, k, v, w, udet, merk;
   int **U;
@@ -201,9 +195,8 @@ int step, dim;
   return(U);
 }
 
-static int wechsel(vec, step, udim)
-int *vec;
-int step, udim;
+static int 
+wechsel (int *vec, int step, int udim)
 {
   int i, j;
   int a,b,c;
@@ -239,8 +232,8 @@ int step, udim;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *mink_red(G, Trf)
-matrix_TYP *G, *Trf;
+matrix_TYP *
+mink_red (matrix_TYP *G, matrix_TYP *Trf)
 {
   int i, j, k, l, step, anz;
   int n, bound, merk;

@@ -5,9 +5,8 @@
 /*****************************************************\
 |	gets the options from the command line
 \*****************************************************/
-static void getflags(fl, options)
-flagstruct	*fl;
-int	*options;
+static void 
+getflags (flagstruct *fl, int *options)
 {
  if(options == NULL)
  {
@@ -75,9 +74,8 @@ int	*options;
 |   saves the generators of the group, which are
 |   necessary for generating, in a bravais_TYP.
 \**************************************************************/
-static bravais_TYP *putgens(G, flags)
-group	G;
-flagstruct flags;
+static bravais_TYP *
+putgens (group G, flagstruct flags)
 {
 	int	i, j, k, l, dim, ngen, nr;
         bravais_TYP *B;
@@ -123,10 +121,8 @@ flagstruct flags;
 |   writes the prime power decomposition
 |   of G.ord[flags.STAB] *...* G.ord[G.dim-1] to B->divisors
 \*********************************************************************/
-static void putord(G, flags, B)
-group	G;
-flagstruct flags;
-bravais_TYP *B;
+static void 
+putord (group G, flagstruct flags, bravais_TYP *B)
 {
 	int	i, j, dim,  fac;
 
@@ -154,9 +150,8 @@ bravais_TYP *B;
 /*******************************************************\
 | prints an isometry onto a matrix
 \*******************************************************/
-static matrix_TYP *putiso(X, flags, dim)
-int	**X, dim;
-flagstruct flags;
+static matrix_TYP *
+putiso (int **X, flagstruct flags, int dim)
 {
 	int	i, j;
 	matrix_TYP *M;

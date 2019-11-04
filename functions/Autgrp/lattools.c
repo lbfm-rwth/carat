@@ -5,8 +5,8 @@
 /*********************************************************************\
 | changes v according to the transformation matrix T, i.e. v := T*v
 \*********************************************************************/
-static void change(v, nv, T, n)
-int	**v, nv, **T, n;
+static void 
+change (int **v, int nv, int **T, int n)
 {
 	int	i, j, k, **w, *wi, *Ti, *vi, *vj, fac;
 
@@ -49,8 +49,8 @@ int	**v, nv, **T, n;
 |	LLL-reduction of the positive semidefinite 
 |	Gram-matrix F with transformation matrix T
 \**********************************************************************/
-static int lll(F, T, dim)
-int	**F, **T, dim;
+static int 
+lll (int **F, int **T, int dim)
 {
 	int	**gram, i, j, m, l, rank, *ptmp, tmp;
 	double	**mu, *B;
@@ -122,9 +122,8 @@ int	**F, **T, dim;
 /**********************************************************************\
 |	initialization of the model
 \**********************************************************************/
-static void initialize(i, mu, B, gram)
-int	i, **gram;
-double	**mu, *B;
+static void 
+initialize (int i, double **mu, double *B, int **gram)
 {
 	int	j, k;
 	double	muh, *mui, *muj;
@@ -147,9 +146,8 @@ double	**mu, *B;
 |	pair-reduction with vectors m and l,
 |	changes Gram-matrix, transformation matrix and model appropriately
 \**********************************************************************/
-static int red(m, l, gram, T, mu, B, dim, rank)
-int	*m, *l, **gram, **T, dim, *rank;
-double	**mu, *B;
+static int 
+red (int *m, int *l, int **gram, int **T, double **mu, double *B, int dim, int *rank)
 {
 	double	r;
 	int	j, ir, *ptmp, jump, *Tm, *Tl, *gramm, *graml;
@@ -209,9 +207,8 @@ double	**mu, *B;
 /**********************************************************************\
 | check the LLL-condition
 \**********************************************************************/
-static void check(B, m, l, gram, T, mu, dim, rank)
-int	*m, *l, **gram, **T, dim, *rank;
-double	*B, **mu;
+static void 
+check (double *B, int *m, int *l, int **gram, int **T, double **mu, int dim, int *rank)
 {
 	if (B[*m] < (LLL_CONST - mu[*m][*m-1]*mu[*m][*m-1]) * B[*m-1])
 		interchange(m, l, gram, T, mu, B, dim);
@@ -225,9 +222,8 @@ double	*B, **mu;
 /**********************************************************************\
 |	go back in the recursion and change the model
 \**********************************************************************/
-static void decrease(m, l, gram, mu, B, rank)
-int	*m, *l, **gram, *rank;
-double	**mu, *B;
+static void 
+decrease (int *m, int *l, int **gram, double **mu, double *B, int *rank)
 {
 	*l -= 1;
 	if (*l < 0)
@@ -245,9 +241,8 @@ double	**mu, *B;
 |	interchange the vectors nr. m and m-1
 |	and change the model appropriately
 \**********************************************************************/
-static void interchange(m, l, gram, T, mu, B, dim)
-int	*m, *l, **gram, **T, dim;
-double	**mu, *B;
+static void 
+interchange (int *m, int *l, int **gram, int **T, double **mu, double *B, int dim)
 {
 	int	i, tmp, *ptmp;
 	/* these variables weren't used at all, delete 02/12/97
@@ -281,8 +276,8 @@ double	**mu, *B;
 /**********************************************************************\
 |	rounds x to an integer	
 \**********************************************************************/
-static int iround(x)
-double	x;
+static int 
+iround (double x)
 {
 	if (x >= 0)
 		return((int)(2.0*x + 1.0) / 2);

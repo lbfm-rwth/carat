@@ -36,10 +36,8 @@
 @---------------------------------------------------------------------
 @
 \*********************************************************************/
-matrix_TYP *first_perfect(A, G, Ftr, trbifo, min)
-matrix_TYP *A, **Ftr, *trbifo;
-bravais_TYP *G;
-int *min;
+matrix_TYP *
+first_perfect (matrix_TYP *A, bravais_TYP *G, matrix_TYP **Ftr, matrix_TYP *trbifo, int *min)
 {
   int i,j,k, n, lc, rc, g;
   matrix_TYP **V, *Vmat, *P, *M, *W, *W1, *M1;

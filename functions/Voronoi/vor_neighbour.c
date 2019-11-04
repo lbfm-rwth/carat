@@ -35,9 +35,8 @@
 @-----------------------------------------------------------------------
 @ 
 \****************************************************************************/
-matrix_TYP *voronoi_neighbour(A, X, Amin, lc, rc)
-matrix_TYP *A, *X;
-int Amin, *lc, *rc;
+matrix_TYP *
+voronoi_neighbour (matrix_TYP *A, matrix_TYP *X, int Amin, int *lc, int *rc)
 {
    int i,j,n;
    matrix_TYP *SV, *N;

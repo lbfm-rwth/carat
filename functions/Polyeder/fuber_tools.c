@@ -3,9 +3,8 @@
 #include "matrix.h"
 #include "polyeder.h"
 
-vertex_TYP *init_vertex_fuber(dim, wall_no)
-int dim;
-int wall_no;
+vertex_TYP *
+init_vertex_fuber (int dim, int wall_no)
 {
   int i,j;
   vertex_TYP *erg;
@@ -26,8 +25,8 @@ int wall_no;
   return(erg);
 }
 
-wall_TYP *init_wall_fuber(dim)
-int dim;
+wall_TYP *
+init_wall_fuber (int dim)
 {
   int i,j;
   wall_TYP *erg;
@@ -166,9 +165,8 @@ fund_domain *F;
 }
 
 
-int wall_times_vertex_fuber(w, v)
-wall_TYP *w;
-vertex_TYP *v;
+int 
+wall_times_vertex_fuber (wall_TYP *w, vertex_TYP *v)
 {
   int i;
   int e,wa;
@@ -178,8 +176,8 @@ vertex_TYP *v;
   return(e);
 }
 
-void free_vertex_fuber(v)
-vertex_TYP **v;
+void 
+free_vertex_fuber (vertex_TYP **v)
 {
  int i;
  if((*v)!= NULL)
@@ -192,8 +190,8 @@ vertex_TYP **v;
  }
 }
 
-void free_wall_fuber(v)
-wall_TYP **v;
+void 
+free_wall_fuber (wall_TYP **v)
 {
  int i;
  if((*v)!= NULL)
@@ -222,8 +220,8 @@ matrix_TYP *M;
 }
 */
 
-void wall_standard(v)
-wall_TYP *v;
+void 
+wall_standard (wall_TYP *v)
 {
   int i,j;
   int w1;

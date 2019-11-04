@@ -42,9 +42,8 @@
 @--------------------------------------------------------------------
 @
 \**********************************************************************/
-matrix_TYP *all_voronoi_neighbours(P, G, Ftr, tr_bifo)
-matrix_TYP *P, **Ftr, *tr_bifo;
-bravais_TYP *G;
+matrix_TYP *
+all_voronoi_neighbours (matrix_TYP *P, bravais_TYP *G, matrix_TYP **Ftr, matrix_TYP *tr_bifo)
 {
   int i,j,k,l, Fdim, Gdim;
   int Pmin, Vanz, Wanz;

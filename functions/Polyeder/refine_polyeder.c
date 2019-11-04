@@ -16,10 +16,8 @@
 
 static int g_option;
 
-static void re_sort(F,old_no, count, test, l)
-polyeder_TYP *F;
-int old_no, *test, l;
-int *count;
+static void 
+re_sort (polyeder_TYP *F, int old_no, int *count, int *test, int l)
 {
   int i;
   int d=0;
@@ -64,9 +62,8 @@ int *count;
 }
 
 
-static void renumerate(v,test)
-vertex_TYP *v;
-int *test;
+static void 
+renumerate (vertex_TYP *v, int *test)
 {
   int i,a;
   for(i=0;i<v->wall_no;i++)
@@ -77,9 +74,8 @@ int *test;
 }
 
 
-static void add_wall_to_vertex(i, v)
-int i;
-vertex_TYP *v;
+static void 
+add_wall_to_vertex (int i, vertex_TYP *v)
 {
   if(v->wall_SIZE == 0)
   {
@@ -96,9 +92,8 @@ vertex_TYP *v;
 }
 
 
-static void delete_walls_from_vertex(v, test)
-vertex_TYP *v;
-int *test;
+static void 
+delete_walls_from_vertex (vertex_TYP *v, int *test)
 {
  int i,d;
 
@@ -115,9 +110,8 @@ int *test;
   
 
 
-static void add_wall_to_polyeder(F, w)
-polyeder_TYP *F;
-wall_TYP *w;
+static void 
+add_wall_to_polyeder (polyeder_TYP *F, wall_TYP *w)
 {
   if(F->wall_SIZE == 0)
   {
@@ -135,9 +129,8 @@ wall_TYP *w;
 
 
 
-static void add_vertex_to_polyeder(F, w)
-polyeder_TYP *F;
-vertex_TYP *w;
+static void 
+add_vertex_to_polyeder (polyeder_TYP *F, vertex_TYP *w)
 {
   if(F->vert_SIZE == 0)
   {
@@ -154,9 +147,8 @@ vertex_TYP *w;
 }
 
 
-static vertex_TYP *gis_neighbour(i,j,F)
-int i,j;
-polyeder_TYP *F;
+static vertex_TYP *
+gis_neighbour (int i, int j, polyeder_TYP *F)
 {
   int k,l,m;
   int a, u, tester1;
@@ -196,10 +188,8 @@ polyeder_TYP *F;
 
 
 
-static vertex_TYP *is_neighbour(i,j,F, vertex_no)
-int i,j;
-polyeder_TYP *F;
-int vertex_no;
+static vertex_TYP *
+is_neighbour (int i, int j, polyeder_TYP *F, int vertex_no)
 {
   int k,l,m;
   int a, u, tester1;
@@ -272,9 +262,8 @@ int vertex_no;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-int refine_polyeder(F, h)
-polyeder_TYP *F;
-wall_TYP *h;
+int 
+refine_polyeder (polyeder_TYP *F, wall_TYP *h)
 {
  int i,j,k;
  int l;

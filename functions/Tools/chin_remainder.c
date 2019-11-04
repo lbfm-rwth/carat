@@ -17,8 +17,8 @@
 @ x kongruent x1 modulo p1 and x konguent x2 modulo p2
 @-------------------------------------------------------------------------
 \**************************************************************************/
-int chin_remainder(x1, x2, p1, p2)
-int x1, x2, p1, p2;
+int 
+chin_remainder (int x1, int x2, int p1, int p2)
 {
 
   int a1, a2;

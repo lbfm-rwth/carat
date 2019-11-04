@@ -9,9 +9,7 @@ static rational c;
 /*{{{}}} */
 /*{{{  lll_init, static */
 static void 
-lll_init (Mat, lll_bnd)
-     matrix_TYP *Mat;
-     int lll_bnd;
+lll_init (matrix_TYP *Mat, int lll_bnd)
 
 {
   int **Z, **N;
@@ -39,9 +37,7 @@ lll_init (Mat, lll_bnd)
 /*{{{  upd_mod, static */
 
 static void 
-upd_mod (Mat, pos)
-     matrix_TYP *Mat;
-     int pos;
+upd_mod (matrix_TYP *Mat, int pos)
 
 {
   int **Z, **N, **A;
@@ -159,11 +155,7 @@ reduce (Mat, k, l)
 /*{{{  swap, static */
 
 static void 
-swap (Mat, i)
-
-     matrix_TYP *Mat;
-
-     int i;
+swap (matrix_TYP *Mat, int i)
 
 {
   rational help;
@@ -241,9 +233,7 @@ condition (i)
 /*}}}  */
 /*{{{  lll, exported */
 matrix_TYP *
-ZZ_lll (Mat, lll_bnd)
-     matrix_TYP *Mat;
-     int lll_bnd;
+ZZ_lll (matrix_TYP *Mat, int lll_bnd)
 
 {
   int i = 1, j;

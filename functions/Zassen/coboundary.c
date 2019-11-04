@@ -16,9 +16,8 @@
 @
 ***********************************************************************/
 
-void coboundary(G,C,T)
-bravais_TYP *G;
-matrix_TYP *C,*T;
+void 
+coboundary (bravais_TYP *G, matrix_TYP *C, matrix_TYP *T)
 { 
 
   int i,

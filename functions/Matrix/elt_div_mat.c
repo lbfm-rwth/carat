@@ -33,8 +33,8 @@ typedef struct
 	||                                                            ||
 	\*============================================================*/
 
-elt_div_prod ZZ_mindivmod(azahl,bzahl)
-int azahl,bzahl;
+elt_div_prod 
+ZZ_mindivmod (int azahl, int bzahl)
 {
 elt_div_prod c;
 int q_signum, r_signum;
@@ -69,8 +69,11 @@ int q_signum, r_signum;
 *                                 \b/   \    0   /
 *
  */
-static elt_div_pair euclid(a,b)  /* frei nach gap */
-int a,b;
+static elt_div_pair 
+euclid (  /* frei nach gap */
+    int a,
+    int b
+)
 {
 elt_div_pair r;
 elt_div_prod temp;
@@ -118,8 +121,8 @@ int s1, t1, s, t, q, d, ha, hb;
 /*}}}  */
 
 /*{{{  elt_func, static*/
-static matrix_TYP *elt_func ( mat )
-matrix_TYP *mat;
+static matrix_TYP *
+elt_func (matrix_TYP *mat)
 {  
 int min_sum, sum,**E, h,*v, _min_;
 int min_col, min_row, rM, cM, i, j, k,l;
@@ -451,8 +454,8 @@ ende:
 @ divisors.
 @-----------------------------------------------------------------
 */
-matrix_TYP *elt_div(Mat)
-matrix_TYP *Mat;
+matrix_TYP *
+elt_div (matrix_TYP *Mat)
 {
 matrix_TYP *Elt, *tmp;
 

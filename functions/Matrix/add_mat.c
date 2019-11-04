@@ -23,9 +23,8 @@
 \**************************************************************************/
 /*{{{}}}*/
 /*{{{  imat_add, exported*/
-matrix_TYP *imat_add (L_mat, R_mat, Lc, Rc)
-matrix_TYP *L_mat, *R_mat ;
-int Lc, Rc;
+matrix_TYP *
+imat_add (matrix_TYP *L_mat, matrix_TYP *R_mat, int Lc, int Rc)
 {
 matrix_TYP *S_mat;
 int **L, **R, **S, rS, cS;
@@ -95,9 +94,8 @@ int i, j;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *imat_addeq (L_mat, R_mat, Lc, Rc)
-matrix_TYP *L_mat, *R_mat ;
-int Lc, Rc;
+matrix_TYP *
+imat_addeq (matrix_TYP *L_mat, matrix_TYP *R_mat, int Lc, int Rc)
 {
 
 int **L, **R, rS, cS;
@@ -164,9 +162,8 @@ int i, j;
 \**************************************************************************/
 /*}}}  */
 /*{{{  rmat_add, exported*/
-matrix_TYP *rmat_add (L_mat, R_mat, L_coeff, R_coeff)
-matrix_TYP *L_mat, *R_mat ;
-rational L_coeff, R_coeff;
+matrix_TYP *
+rmat_add (matrix_TYP *L_mat, matrix_TYP *R_mat, rational L_coeff, rational R_coeff)
 {
 matrix_TYP *S_mat;
 int **S, rS, cS , temp1, temp2;
@@ -241,9 +238,8 @@ rational Lc, Rc;
 \**************************************************************************/
 /*}}}  */
 /*{{{  rmat_addeq, exported*/
-matrix_TYP *rmat_addeq (L_mat, R_mat, L_coeff, R_coeff)
-matrix_TYP *L_mat, *R_mat ;
-rational L_coeff, R_coeff;
+matrix_TYP *
+rmat_addeq (matrix_TYP *L_mat, matrix_TYP *R_mat, rational L_coeff, rational R_coeff)
 {
 int **L, **R, rS, cS , temp1, Rk;
 int i, j;
@@ -315,9 +311,8 @@ rational Rc, Lc;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *pmat_add (L_mat, R_mat, L_coeff, R_coeff)
-matrix_TYP *L_mat, *R_mat ;
-int L_coeff, R_coeff;
+matrix_TYP *
+pmat_add (matrix_TYP *L_mat, matrix_TYP *R_mat, int L_coeff, int R_coeff)
 {
 matrix_TYP *S_mat;
 int **L, **R, **A, rS, cS ;
@@ -358,9 +353,8 @@ int i, j;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *pmat_addeq (L_mat, R_mat, L_coeff, R_coeff)
-matrix_TYP *L_mat, *R_mat ;
-int L_coeff, R_coeff;
+matrix_TYP *
+pmat_addeq (matrix_TYP *L_mat, matrix_TYP *R_mat, int L_coeff, int R_coeff)
 {
 int **L, **R, rS, cS ;
 int i, j;
@@ -398,9 +392,8 @@ int i, j;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *mat_add (L_mat, R_mat, L_coeff, R_coeff)
-matrix_TYP *L_mat, *R_mat ;
-rational L_coeff, R_coeff;
+matrix_TYP *
+mat_add (matrix_TYP *L_mat, matrix_TYP *R_mat, rational L_coeff, rational R_coeff)
 {
 int Lc, Rc;
 int lp, help;
@@ -454,9 +447,8 @@ int lp, help;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *mat_addeq (L_mat, R_mat, L_coeff, R_coeff)
-matrix_TYP *L_mat, *R_mat ;
-rational L_coeff, R_coeff;
+matrix_TYP *
+mat_addeq (matrix_TYP *L_mat, matrix_TYP *R_mat, rational L_coeff, rational R_coeff)
 {
 int Lc, Rc;
 int lp, help;

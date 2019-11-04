@@ -52,10 +52,8 @@
 @-------------------------------------------------------------------------
 @
  */
-void put_mat (mat, file_name, comment, options)
-matrix_TYP *mat;
-char file_name[], comment[] ;
-unsigned long options;
+void 
+put_mat (matrix_TYP *mat, char file_name[], char comment[], unsigned long options)
 {
 FILE *outfile;
 
@@ -92,11 +90,8 @@ FILE *outfile;
 | opened                                                               |
 \*--------------------------------------------------------------------*/
 
-void fput_mat (outfile, mat, comment, options)
-FILE *outfile;
-matrix_TYP *mat;
-char comment[] ;
-unsigned long options;
+void 
+fput_mat (FILE *outfile, matrix_TYP *mat, char comment[], unsigned long options)
 {  
 int *max_lenZ;
 flag_TYP flags;

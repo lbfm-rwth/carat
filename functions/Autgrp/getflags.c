@@ -5,9 +5,8 @@
 /*****************************************************\
 |	gets the options from the command line
 \*****************************************************/
-void getflags(fl, options)
-flagstruct	*fl;
-int	*options;
+void 
+getflags (flagstruct *fl, int *options)
 {
 	int	i;
 

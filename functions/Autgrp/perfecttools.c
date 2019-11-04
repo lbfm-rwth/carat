@@ -7,9 +7,8 @@
 \*******************************************************************/
 
 
-static int normal_aut_test(x, I, V)
-int *x, I;
-veclist V;
+static int 
+normal_aut_test (int *x, int I, veclist V)
 {
   int i,j,k,l;
   int o,u,m;
@@ -86,10 +85,8 @@ veclist V;
 
 
 
-static void mach_perp_matrices(fp, P, Pbase, n)
-fpstruct fp;
-matrix_TYP **P, **Pbase;
-int n;
+static void 
+mach_perp_matrices (fpstruct fp, matrix_TYP **P, matrix_TYP **Pbase, int n)
 {
         int i,j,k;
 
@@ -167,8 +164,8 @@ int n;
         }
 }
 
-static void free_perp_matrices(n)
-int n;
+static void 
+free_perp_matrices (int n)
 {
    int i,j;
    for(i=0;i<perp_no;i++)

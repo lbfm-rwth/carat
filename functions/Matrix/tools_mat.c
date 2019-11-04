@@ -132,9 +132,8 @@ int i,j;
 @
 @-------------------------------------------------------------------------
  */
-void iscal_mul(mat, v)
-matrix_TYP *mat;
-int v;
+void 
+iscal_mul (matrix_TYP *mat, int v)
 {
 int i,j;
 int **Z;
@@ -229,9 +228,8 @@ int t;
 @
 @-------------------------------------------------------------------------
  */
-void rscal_mul(mat,v)
-matrix_TYP *mat;
-rational v;
+void 
+rscal_mul (matrix_TYP *mat, rational v)
 {
 int vz, t;
 int pp;
@@ -1201,8 +1199,8 @@ int waste,t;
 @
 @-------------------------------------------------------------------------
  */
-void normal_rows(mat)
-matrix_TYP *mat;
+void 
+normal_rows (matrix_TYP *mat)
 {
 int i,j, g;
 int **Z, *S_I;
@@ -1238,8 +1236,8 @@ int **Z, *S_I;
 @
 @-------------------------------------------------------------------------
  */
-void normal_cols(mat)
-matrix_TYP *mat;
+void 
+normal_cols (matrix_TYP *mat)
 {
 int i,j, g;
 int **Z;
@@ -1286,9 +1284,8 @@ int **Z;
 @
 @-------------------------------------------------------------------------
  */
-matrix_TYP *mat_to_line(gen, num)
-matrix_TYP **gen;
-int num;
+matrix_TYP *
+mat_to_line (matrix_TYP **gen, int num)
 {
 matrix_TYP *mat;
 int i, j, k, row, col;
@@ -1325,9 +1322,8 @@ int **Z, **ZI;
 @
 @-------------------------------------------------------------------------
  */
-matrix_TYP **line_to_mat(mat,row,col)
-matrix_TYP *mat;
-int row, col;
+matrix_TYP **
+line_to_mat (matrix_TYP *mat, int row, int col)
 {
 matrix_TYP **gen;
 int i,k;
@@ -1363,8 +1359,8 @@ int **Z, **ZI;
 @
 @-------------------------------------------------------------------------
  */
-int normal_mat(mat)
-matrix_TYP *mat;
+int 
+normal_mat (matrix_TYP *mat)
 {
 int i,j, g;
 int  **Z, *S_I;

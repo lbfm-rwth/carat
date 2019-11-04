@@ -18,9 +18,8 @@
 @---------------------------------------------------------------------------
 @
 \*************************************************************************/
-matrix_TYP *trace_bifo(F1, F2, anz)
-matrix_TYP **F1, **F2;
-int anz;
+matrix_TYP *
+trace_bifo (matrix_TYP **F1, matrix_TYP **F2, int anz)
 {
    int i,j,k,l, Sij, n;
    matrix_TYP *S;

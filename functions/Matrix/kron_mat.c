@@ -19,8 +19,8 @@
 @
 \**************************************************************************/
 
-matrix_TYP *kron_mat(A,B)
-matrix_TYP *A, *B;
+matrix_TYP *
+kron_mat (matrix_TYP *A, matrix_TYP *B)
 {
 
   int i,j,k,l,r,c;

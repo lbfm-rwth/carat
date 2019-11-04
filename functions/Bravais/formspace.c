@@ -29,9 +29,8 @@
 @
 \**************************************************************************/
 
-matrix_TYP **formspace(B, Banz, sym_opt, fdim)
-matrix_TYP **B;
-int Banz, sym_opt, *fdim;
+matrix_TYP **
+formspace (matrix_TYP **B, int Banz, int sym_opt, int *fdim)
 {
   int i,j,k,l,m, no;
   int dim, dd, anz;

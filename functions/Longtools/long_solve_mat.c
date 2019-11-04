@@ -22,8 +22,8 @@
 @ the cols of X[1] are a Z-basis of the solution space.
 @-------------------------------------------------------------------------
 \************************************************************************/
-matrix_TYP **long_solve_mat(A, B)
-matrix_TYP *A, *B;
+matrix_TYP **
+long_solve_mat (matrix_TYP *A, matrix_TYP *B)
 {
    MP_INT ***E, **MA, **MB;
    MP_INT Ekgv;

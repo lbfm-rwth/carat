@@ -26,8 +26,8 @@ matrix_TYP *A, *B;
 @
 \**************************************************************************/
 
-int cmp_mat(A, B)
-matrix_TYP *A, *B;
+int 
+cmp_mat (matrix_TYP *A, matrix_TYP *B)
 {
 int i,j;
 matrix_TYP *tmpA = NULL, *tmpB = NULL;

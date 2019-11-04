@@ -30,9 +30,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-polyeder_TYP *first_polyeder(mauern, anz)
-wall_TYP **mauern;
-int anz;
+polyeder_TYP *
+first_polyeder (wall_TYP **mauern, int anz)
 {
   int i,j,k,n;
   int s, rrang, test, *take;

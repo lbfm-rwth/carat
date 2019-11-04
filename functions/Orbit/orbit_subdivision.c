@@ -19,8 +19,8 @@ typedef struct {
 static int *st_w;
 
 
-static void vecmatmul(x, A, y, dim)
-int	*x, **A, *y, dim;
+static void 
+vecmatmul (int *x, int **A, int *y, int dim)
 {
 	int	i, j, xi, *Ai;
 
@@ -37,8 +37,8 @@ int	*x, **A, *y, dim;
 	}
 }
 
-static int comp(x, y, n)
-int	*x, *y, n;
+static int 
+comp (int *x, int *y, int n)
 {
 	int	i;
   
@@ -51,9 +51,8 @@ int	*x, *y, n;
 		return(-1);
 }
 
-static int numberof(vec, V)
-veclist	V;
-int	*vec;
+static int 
+numberof (int *vec, veclist V)
 {
 	int	i, sign, dim, low, high, search, cmp;
 
@@ -84,8 +83,13 @@ int	*vec;
 
 
 
-static void quicksort(v, inf, sup, dim)	/*****	standard quicksort	*****/
-int	**v, inf, sup, dim;
+static void 
+quicksort (	/*****	standard quicksort	*****/
+    int **v,
+    int inf,
+    int sup,
+    int dim
+)
 {
 	int	*tmp, low, med, high;
 
@@ -131,8 +135,8 @@ int	**v, inf, sup, dim;
 	}
 }
 
-static void sortvecs(V)
-veclist	*V;
+static void 
+sortvecs (veclist *V)
 {
 	int	i, j;
 
@@ -159,9 +163,8 @@ veclist	*V;
 }
 
 
-static int operate(nr, A, V)
-veclist	V;
-int	nr, **A;
+static int 
+operate (int nr, int **A, veclist V)
 {
 	int	i, im;
 
@@ -213,10 +216,8 @@ int	nr, **A;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-int *orbit_subdivision(vecs, G, orbit_no)
-matrix_TYP *vecs;
-bravais_TYP *G;
-int *orbit_no;
+int *
+orbit_subdivision (matrix_TYP *vecs, bravais_TYP *G, int *orbit_no)
 {
 	veclist	V;
 	int	i, j, k, n, dim, nG, orblen, orbsum, orbnr, im, cnd;

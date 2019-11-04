@@ -5,8 +5,8 @@
 /********************************************************************\
 | multiplies 1xn-vector x with nxn-matrix A and puts result on y
 \********************************************************************/
-static void vecmatmul(x, A, n, y)
-int	*x, **A, n, *y;
+static void 
+vecmatmul (int *x, int **A, int n, int *y)
 {
 	int	i, j, xi, *Ai;
 
@@ -26,8 +26,8 @@ int	*x, **A, n, *y;
 /********************************************************************\
 |	multiplies nxn-matrices A and B and puts result	on C
 \********************************************************************/
-static void matmul(A, B, n, C)
-int	**A, **B, n, **C;
+static void 
+matmul (int **A, int **B, int n, int **C)
 {
 	int	i, j, k, *Ai, *Bk, *Ci, Aik;
 
@@ -53,8 +53,8 @@ int	**A, **B, n, **C;
 |	returns scalar product of 1xn-vectors x and y
 |	with respect to Gram-matrix F
 \********************************************************************/
-static int scp(x, F, y, n)
-int	*x, **F, *y, n;
+static int 
+scp (int *x, int **F, int *y, int n)
 {
 	int	i, j, sum, xi, *Fi;
 
@@ -74,8 +74,8 @@ int	*x, **F, *y, n;
 /********************************************************************\
 |  returns standard scalar product of 1xn-vectors x and y, heavily used
 \********************************************************************/
-static int sscp(x, y, n)
-int	*x, *y, n;
+static int 
+sscp (int *x, int *y, int n)
 {
 	int	i, sum;
 
@@ -90,8 +90,8 @@ int	*x, *y, n;
 |	computes X = B*A^-1 modulo the prime p, for nxn-matrices A and B,
 |	where A is invertible, A and B are modified !!!	
 \********************************************************************/
-static void psolve(X, A, B, n, p)
-int	**X, **A, **B, n, p;
+static void 
+psolve (int **X, int **A, int **B, int n, int p)
 {
 	int	i, j, k, tmp, sum, ainv, *Xi, *Bi;
 
@@ -150,8 +150,8 @@ int	**X, **A, **B, n, p;
 |	and that A[r][r] != 0 modulo p, 
 |	A and B	are changed !!!	
 \********************************************************************/
-static void pgauss(r, A, B, n, p)
-int	r, **A, **B, n, p;
+static void 
+pgauss (int r, int **A, int **B, int n, int p)
 {
 	int	i, j, f, ainv, *Ar;
 
@@ -175,8 +175,8 @@ int	r, **A, **B, n, p;
 /********************************************************************\
 |	checks, whether n is a prime
 \********************************************************************/
-static int isprime(n)
-int	n;
+static int 
+isprime (int n)
 {
 	int	i;
 
