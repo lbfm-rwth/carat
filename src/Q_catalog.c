@@ -220,6 +220,7 @@ int change_conditions (conditions *cond, char *string, char set_or_del)
       for (i=0; i<NR_OF_ELEMENTS_IN_EACH_ENTRY; i++)
 	if ( (strlen (part1) == 3   &&  strncmp (part1, name_element [i], 3) == 0)
 	     || strcmp (part1, name_element [i]) == 0)
+	  {
 	  if ((cond->exists) [i] == TRUE)
 	    {
 	      (delete_element [i]) ( &(cond->entry) );
@@ -229,7 +230,7 @@ int change_conditions (conditions *cond, char *string, char set_or_del)
 	    }
 	  else 
 	    return -1;
-      
+      }
     }
   else if (set_or_del == DISPLAY_POSSIBLE)
     {

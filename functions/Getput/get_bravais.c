@@ -66,7 +66,7 @@ else
 {
 
 c=fscanf (infile, "%[ \t\n]", string);
-if (c=fscanf (infile, "%[^\n]",string) == EOF) {
+if ((c=fscanf (infile, "%[^\n]",string)) == EOF) {
 	*string = '\0';
 }
 strtok (string, "%");
@@ -147,7 +147,7 @@ for ( k = 0; k < cen_no; k++)
 	| read group order                                             |
 	\*------------------------------------------------------------*/
 c=fscanf (infile, "%[ \t\n]", string);
-if (c=fscanf (infile, "%[^\n]",string) == EOF) {
+if ((c=fscanf (infile, "%[^\n]",string)) == EOF) {
 	*string = '\0';
 }
 if ( *string == '%' )

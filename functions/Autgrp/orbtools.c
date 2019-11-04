@@ -337,8 +337,8 @@ stab (int I, group *G, fpstruct fp, veclist V)
 /* the new stabilizer element S does not enlarge the orbit of e[j] */
 						++fail;
 				}
-				else if (j < dim  &&  fail < Maxfail  ||  
-					 j == dim  &&  fail >= Maxfail)
+				else if ((j < dim  &&  fail < Maxfail) ||  
+					 (j == dim  &&  fail >= Maxfail))
 					++fail;
 /* if S is the identity and fail < Maxfail, nothing is done */
 			}
