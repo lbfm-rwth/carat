@@ -4,7 +4,7 @@
 
 # CARAT 
 
-Carat is a package for solving certain problems in mathematical
+CARAT is a package for solving certain problems in mathematical
 crystallography.
 
 It is distributed via
@@ -18,10 +18,11 @@ It is distributed via
      email: carat@momo.math.rwth-aachen.de
 
 NOTE: CARAT was developed for crystallographic groups in dimensions up to 6.
-      Most algorithms also work in higher dimensions. However, integer overflow
-      is not trapped in general.
+Most algorithms also work in higher dimensions. However, integer overflow
+is not trapped in general.
 
-INSTALLATION:
+
+## Installation
 
 The easiest way to compile CARAT is to go to the CARAT base directory
 (the one containing this REAMDME), and issue the make command with some
@@ -44,6 +45,19 @@ In order to clean up from a previous installation, you may want to to a
 
 before building CARAT again.
 
-If you have any problems installing CARAT, please feel free to contact
-me at carat@momo.math.rwth-aachen.de
 
+## Bug reports and feature requests
+
+Please submit bug reports and support requests via our GitHub issue tracker:
+
+  <https://github.com/lbfm-rwth/carat/issues>
+
+
+## License
+
+CARAT is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+For details see the file LICENSE.
