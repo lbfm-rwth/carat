@@ -25,7 +25,7 @@
 int 
 min_div (int a, int b)
 {
-int vorzeichen;
+//int vorzeichen;
 int c = 0;
 
 if(a == 0) {

@@ -32,11 +32,8 @@ char string[1024];
 char *str, *strin;
 char merk[256];
 bravais_TYP *grp;
-boolean header = FALSE;
 char  st;
-char **piece;
 FILE *infile;
-int anz, teile;
  int i, j, k, l, m, c;
 int gen_no, form_no, zentr_no, normal_no, cen_no;
 

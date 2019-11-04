@@ -61,8 +61,6 @@ matrix_TYP *graph_mat_inv(matrix_TYP *A,
                           matrix_TYP *D,
                           int first)
 {
-   int i;
-
    matrix_TYP *B, *C;
 
    C = copy_mat(A);

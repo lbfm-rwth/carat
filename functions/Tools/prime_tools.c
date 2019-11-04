@@ -99,7 +99,6 @@ short_P (int i, int j)
 static int 
 short_S (int i, int j)
 {
-int k;
   return(P_ADD[i][j]);
 }
 
@@ -264,7 +263,7 @@ int i, j;
 void 
 init_prime (int prime)
 {
-int j, k, number;
+int j, number;
 
   number = 1;
   if (act_prime == -1) {

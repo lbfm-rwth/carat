@@ -59,7 +59,6 @@ void right_order(char *string)
 {
 
   int i,
-      j,
       ordered,
       hom_no;
 

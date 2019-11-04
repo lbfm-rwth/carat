@@ -220,7 +220,7 @@ int *
 orbit_subdivision (matrix_TYP *vecs, bravais_TYP *G, int *orbit_no)
 {
 	veclist	V;
-	int	i, j, k, n, dim, nG, orblen, orbsum, orbnr, im, cnd;
+	int	i, j, k, dim, nG, orblen, orbsum, orbnr, im, cnd;
 	int	*orb, *flag, ***grp;
         int *Vvi;
 

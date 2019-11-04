@@ -38,9 +38,9 @@ static bravais_TYP *my_konj_bravais(bravais_TYP *B,
                                     matrix_TYP *T,
 				    matrix_TYP *Ti)
 {
-   int i, dim, Vanz;
+   int i, Vanz;
    bravais_TYP *G, *BG, *BGtr;
-   matrix_TYP *Titr, *waste, *tmp, *tmp2, *A;
+   matrix_TYP *waste, *tmp, *tmp2, *A;
    voronoi_TYP **V;
 
    G = init_bravais(B->dim);

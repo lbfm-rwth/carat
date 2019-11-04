@@ -12,13 +12,6 @@
 #include "types.h"
 #include "matrix.h"
 
-static int normal_option;
-static int perp_no;
-static int ***perp;
-static int perpdim;
-static int ***perpbase;
-static int ***perpprod;
-static int *perpvec;
 /*
 @-------------------------------------------------------------------------
 @ matrix_TYP *pr_isom(F1, F2, Fanz, Erz, Erzanz, options)
@@ -79,7 +72,7 @@ matrix_TYP *
 pr_isom (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP **Erz, int Erzanz, int *options)
 {
   matrix_TYP *T, *X, *X1, **F, *SV1, *SV2;
-  int i,j,k;
+  int i;
   int n, anz, max;
 
   extern matrix_TYP *isometry();

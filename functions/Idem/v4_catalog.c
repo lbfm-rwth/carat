@@ -358,11 +358,8 @@ bravais_TYP *catalog_number_v4(bravais_TYP *G,char *symb,
               *g,
               *g2,
               *h,
-              *h2,
               *TG,
               *TG2;
-
-   char *file;
 
    int i,
        dim_g_F2;

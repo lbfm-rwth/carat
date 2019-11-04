@@ -12,7 +12,7 @@ int main (int argc, char *argv[])
 	matrix_TYP *Mat;
         polyeder_TYP *P;
         wall_TYP **w;
-        int i,j, anz;
+        int i,j;
 
         extern char **FILENAMES;
         extern int FILEANZ;

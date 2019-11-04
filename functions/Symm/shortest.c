@@ -156,7 +156,7 @@ reduzieren (int k)
 static void 
 vecschr (int m, double d)
 {
-	int	i, j, entry;
+	int	i, j;
         int l;
         int *v;
 
@@ -265,8 +265,7 @@ matrix_TYP *
 shortest (matrix_TYP *mat, int *min_norm)
 {
 	int	i, j, ak, bk;
-	double	de, cst = 0.75;
-	char	c;
+	double	cst = 0.75;
         matrix_TYP *erg;
 
    extern matrix_TYP *init_mat();

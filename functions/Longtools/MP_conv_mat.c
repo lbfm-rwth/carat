@@ -106,9 +106,6 @@ void
 write_MP_mat_to_matrix (matrix_TYP *Mat, MP_INT **mp)
 {
   int i,j;
-  matrix_TYP *erg;
-
-  extern matrix_TYP *init_mat();
 
   for(i=0;i<Mat->rows;i++)
    for(j=0;j<Mat->cols;j++)

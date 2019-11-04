@@ -11,8 +11,7 @@ int main (int argc, char *argv[])
       k,
       prime;
 
-  matrix_TYP **F,
-              *tmp;
+  matrix_TYP **F;
 
   read_header(argc, argv);
   if((FILEANZ != 1) || (!is_option('p')))

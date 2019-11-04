@@ -15,15 +15,6 @@
 #include "types.h"
 #include "datei.h"
 
-static int normal_option;
-static int perp_no;
-static int ***perp;
-static int perpdim;
-static int ***perpbase;
-static int ***perpprod;
-static int *perpvec;
-
-
 /*************************************************************************\
 | The functions 'pr_aut' calculates generators and the order of the group
 | G := {g in GL_n(Z) | g * Fo[i] * g^{tr} = Fo[i], 1<= i<= Foanz}

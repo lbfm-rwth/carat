@@ -23,11 +23,9 @@ int main(int argc,char **argv){
       anz,
       almost,
       zclass,
-      type,      /* TRUE iff the program is called via Bravais_type */
-      options[2];
+      type;      /* TRUE iff the program is called via Bravais_type */
 
-  char comment[1000],
-       *symb;
+  char *symb;
 
   read_header(argc,argv);
 

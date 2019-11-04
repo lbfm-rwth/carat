@@ -236,7 +236,7 @@ matrix_TYP *
 mink_red (matrix_TYP *G, matrix_TYP *Trf)
 {
   int i, j, k, l, step, anz;
-  int n, bound, merk;
+  int n, bound;
   int **U, **Uinv;
   int ergmax;
   matrix_TYP *erg;

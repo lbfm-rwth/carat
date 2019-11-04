@@ -617,9 +617,7 @@ matrix_TYP **idempotente(matrix_TYP **gen,int gen_no,matrix_TYP *form,
                                  centralizer */
               *tmp,
               *tmp2,
-              *test,
              **eigenspace,
-              *min,           /* the minpol of a result to be */
               *forminv,       /* inverse of form */
               *action,        /* describes the action of form on
                                  ccentralizer via (form * Z * form^(-1))^Tr */
@@ -628,10 +626,8 @@ matrix_TYP **idempotente(matrix_TYP **gen,int gen_no,matrix_TYP *form,
   int i,
       j,
      *l,       /* holds a temporaly vector for vec_to_form */
-      k,
       d,
-      den,
-      flag;
+      den;
 
   /* transform all generators to kgv format */
   for (i=0;i<gen_no;i++){

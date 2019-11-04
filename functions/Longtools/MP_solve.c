@@ -34,9 +34,8 @@ MP_solve_mat (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols, int *X1cols
    MP_INT **Mt, **Trf, ***erg, *Y, *Z;
    MP_INT kgv, altkgv, merk, merk1, g;
    MP_INT zaehler, nenner, b;
-   int i,j,k,l,rang, n;
+   int i,j,k,rang;
    int tester, dim;
-   int waste;
 
    extern matrix_TYP *copy_mat();
    extern matrix_TYP *tr_pose();

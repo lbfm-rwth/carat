@@ -13,7 +13,6 @@ int anz;
   matrix_TYP *M, *A, *v, *tmp_v;
   int *take;
   int test;
-  wall_TYP *vec;
 
   extern fund_domain *init_fund_domain();
   extern vertex_TYP *init_vertex_fuber();

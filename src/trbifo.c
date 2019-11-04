@@ -8,8 +8,7 @@ int INFO_LEVEL;
 int main (int argc, char *argv[])
 {
    bravais_TYP *G, *Gtr;
-   matrix_TYP *A, *P, *S;
-   int Pmin;
+   matrix_TYP *S;
 
         read_header(argc, argv);
         if(FILEANZ != 2)

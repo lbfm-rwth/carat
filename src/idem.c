@@ -21,7 +21,6 @@ int main(int argc,char **argv){
 
   int i,
       anz,
-      dim,
       dimc,
       dimcc,
       options[2];

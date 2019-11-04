@@ -104,7 +104,7 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 	fpstruct	fp;
 	int		dim, max, fail, *vec;
 	int		***G, nG, ngen, **sumveclist, **sumvecbase;
-	int		i, j, k, n, *Vvi, *Vvj, **Fvi, *Fvij, **FAi, nV1;
+	int		i, j, k, *Vvi, *Vvj, **Fvi, *Fvij, **FAi, nV1;
 	matrix_TYP	*erg, *erg1;
 
         extern matrix_TYP *mat_inv();
@@ -695,7 +695,7 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 	fpstruct	fp;
 	int		dim, max, fail, *vec;
 	int		***G, nG, ngen, **sumveclist, **sumvecbase;
-	int		i, j, k, n, *Vvi, *Vvj, **Fvi, *Fvij, **FAi, nV1;
+	int		i, j, k, *Vvi, *Vvj, **Fvi, *Fvij, **FAi, nV1;
 	matrix_TYP	*erg, *erg1;
 
         extern int pointer_lower_triangular_mat_comp();

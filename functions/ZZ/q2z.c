@@ -23,8 +23,6 @@ static matrix_TYP *good_initial_basis(matrix_TYP *B,
                                       matrix_TYP *F)
 {
 
-   int i;
-
    matrix_TYP *NEW,
               *C,
               *D;
@@ -67,8 +65,6 @@ static matrix_TYP *good_initial_basis(matrix_TYP *B,
 /* ------------------------------------------------------------------ */
 static void free_ZZ_super(ZZ_super_TYP *super)
 {
-   int i, j, k;
-	
    ZZ_node_t *n, *t;
 
 
@@ -237,7 +233,6 @@ static void get_normalizer(bravais_TYP *H)
     matrix_TYP *ID,
                *F,
                *PF,
-              **N,
               **forms,
                *trbifo;
 
@@ -245,7 +240,6 @@ static void get_normalizer(bravais_TYP *H)
 		  *HB;
 
     int i,
-        j,
         vno;
 
     voronoi_TYP **V;
@@ -470,8 +464,7 @@ static matrix_TYP **get_better_base(bravais_TYP *H,
    int i;
 
    matrix_TYP *id = NULL,
-              **better,
-               *tmp;
+              **better;
 
 
    if (F == NULL){
@@ -549,7 +542,6 @@ bravais_TYP **q2z(bravais_TYP *G,
 
    matrix_TYP **IDEM,
               **IDEM_SPACES,
-              **idem_spaces,
                *F,
                *tmp,
                *new_base,
@@ -564,7 +556,6 @@ bravais_TYP **q2z(bravais_TYP *G,
                *zoolattice_hnf,
                *zoolattice_inv,
                *zoo_inv,
-               *elementar,
               **better,
               **trash,
                *zwischen,

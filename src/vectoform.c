@@ -10,7 +10,7 @@ int main (int argc, char *argv[])
 	matrix_TYP **Mat;
         matrix_TYP **F, *V;
         bravais_TYP *G;
-        int i, d, Fanz, anz;
+        int i, Fanz, anz;
         char comment[1024];
 
         read_header(argc, argv);

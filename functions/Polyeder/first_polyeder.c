@@ -34,7 +34,7 @@ polyeder_TYP *
 first_polyeder (wall_TYP **mauern, int anz)
 {
   int i,j,k,n;
-  int s, rrang, test, *take;
+  int s, rrang, *take;
   matrix_TYP *M, *Mi;
   polyeder_TYP *erg;
 

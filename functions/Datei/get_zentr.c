@@ -31,7 +31,6 @@ symbol_out *B;
 {  
 
 char *file_name;
-boolean header = FALSE;
 char  st;
 char *fn,
      *old_fn;       /* the pointer fn is modified via fn++, old_fn

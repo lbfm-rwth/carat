@@ -242,8 +242,8 @@ short_reduce (matrix_TYP *A, matrix_TYP *SV, matrix_TYP *Trf)
 matrix_TYP *
 pr_short_red (matrix_TYP *A, matrix_TYP *Trf)
 {
-   matrix_TYP *Aneu, *Aneu1, *Aneu2, *SV;
-   int i,j,k, min, max, min1, dim;
+   matrix_TYP *Aneu, *Aneu1, *SV;
+   int i, min, max, min1, dim;
    int anz, len;
    int is_even;
 

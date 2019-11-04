@@ -272,8 +272,7 @@ bravais_TYP *representation_on_lattice(matrix_TYP *x,bravais_TYP *G,
                                        int option)
 {
 
-  int i,
-      j;
+  int i;
 
   bravais_TYP *H;
 

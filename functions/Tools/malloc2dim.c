@@ -127,7 +127,7 @@ int i, j;
 void 
 memcpy2dim (char **dest, char **src, int r, int c, int size)
 { 
-int i, j;
+int i;
 
   if( !( r == 0 || c == 0 || size == 0 || dest == NULL || src == NULL ) )
   { 

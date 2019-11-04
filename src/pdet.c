@@ -10,8 +10,7 @@ int main (int argc, char *argv[])
       prime = 1949,
       det;
 
-  matrix_TYP **F,
-              *tmp;
+  matrix_TYP **F;
 
   read_header(argc, argv);
   if(FILEANZ < 1 || is_option('h'))

@@ -20,8 +20,6 @@ int main(int argc,char **argv){
   MP_INT Order;
 
   int i,
-      j,
-      l,
       siz,
       anz,
       factors[100],

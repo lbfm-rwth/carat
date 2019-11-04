@@ -51,7 +51,7 @@ ZZ_intern (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, QtoZ_TYP *inziden
     ZZ_node_t *act, *new, *nnn;
     int g, i, j, k, l, m, n, d, di, end_num, act_anz, flag, nr, NEU, zahl, flagge;
     int ABBRUCH = FALSE;
-    matrix_TYP *gitter, *tmp, *X, *Li;
+    matrix_TYP *gitter, *X, *Li;
 
 
     act = tree->root;
@@ -461,9 +461,8 @@ ZZ (bravais_TYP *group, matrix_TYP *gram, int *divisors, QtoZ_TYP *inzidenz, cha
 	ZZ_data_t *data;
 	ZZ_tree_t *tree;
 	int i, result = 0;
-	matrix_TYP *sylv, *help;
+	matrix_TYP *sylv;
 	int projections[9];
-	QtoZ_konst_TYP *data_neu;
 	ZZ_node_t *n, *t;
 	ZZ_super_TYP *DATEN;
 
@@ -523,7 +522,7 @@ ZZ (bravais_TYP *group, matrix_TYP *gram, int *divisors, QtoZ_TYP *inzidenz, cha
 	for (i = 0; i < group->gen_no ; i++) {
 		int check;
 		
-		help = scal_pr(group->gen[i], gram, TRUE);
+		matrix_TYP * help = scal_pr(group->gen[i], gram, TRUE);
 		check = cmp_mat(help, gram);
 		free_mat(help);
 		if (check != 0) {

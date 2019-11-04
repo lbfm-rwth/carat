@@ -26,7 +26,7 @@
 int 
 MP_trf_gauss (MP_INT **M, MP_INT **Trf, int rows, int cols)
 {
-  int i,j,k;
+  int i,j;
   int n;
   int step;
   MP_INT a1,a2,gcd, *v, f;
@@ -154,7 +154,7 @@ MP_trf_gauss (MP_INT **M, MP_INT **Trf, int rows, int cols)
 int 
 MP_row_gauss (MP_INT **M, int rows, int cols)
 {
-  int i,j,k;
+  int i,j;
   int n;
   int step;
   MP_INT a1,a2,gcd, *v, f;
@@ -255,7 +255,7 @@ MP_row_gauss (MP_INT **M, int rows, int cols)
 int 
 MP_row_gauss_simultaneous (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols)
 {
-  int i,j,k;
+  int i,j;
   int n;
   int step;
   MP_INT a1,a2,gcd, *v, f;

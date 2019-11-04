@@ -138,7 +138,6 @@ Z_class (bravais_TYP *B, matrix_TYP *zen)
    matrix_TYP *A1, *A2;
    matrix_TYP *zinv,
               *ztr;
-   int *count;
    int anz;
    int *noetig = NULL;
 
@@ -242,9 +241,6 @@ Z_class (bravais_TYP *B, matrix_TYP *zen)
    S->normal_no = anz;
    S->normal = (matrix_TYP **) malloc(S->normal_no *sizeof(matrix_TYP));
 
-   /* we don't used count at all (as far as I see) : tilman 7/5/97
-   count = (int *) malloc(NS->gen_no *sizeof(int)); */
-
    anz = 0;
    for(i=0; i<NS->gen_no; i++)
    {
@@ -300,7 +296,7 @@ Z_class (bravais_TYP *B, matrix_TYP *zen)
 bravais_TYP *
 gittstab (bravais_TYP *grp, matrix_TYP *X)
 {
-   int i, j, k;
+   int i, j;
    matrix_TYP **list;
    matrix_TYP **list_inv;
    matrix_TYP **history;
@@ -309,9 +305,8 @@ gittstab (bravais_TYP *grp, matrix_TYP *X)
    matrix_TYP *G, *Hinv;
    bravais_TYP *stab;
    int *index;
-   int num, erz, schonda, norm = 0;
+   int num, erz, schonda;
    int neu, anz = 0;
-   int suchanfang;
 
    extern void store_mat();
    extern matrix_TYP *mat_mul();

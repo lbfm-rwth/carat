@@ -8,7 +8,7 @@ int main (int argc, char *argv[])
 {
 
 	matrix_TYP **Mat, *S;
-        int i,j,n, anz;
+        int i,n, anz;
         int test;
 
         extern char **FILENAMES;

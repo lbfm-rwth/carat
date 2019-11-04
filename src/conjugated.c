@@ -22,10 +22,7 @@ int main(int argc,char **argv){
 
   bahn **strong;
 
-  int i,
-      j,
-      l,
-      anz;
+  int i;
 
   char comment[1000];
 

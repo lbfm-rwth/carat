@@ -6,7 +6,7 @@
 vertex_TYP *
 init_vertex_fuber (int dim, int wall_no)
 {
-  int i,j;
+  int j;
   vertex_TYP *erg;
   erg = (vertex_TYP *)malloc(sizeof(vertex_TYP));
   if(dim!=0)
@@ -28,7 +28,6 @@ init_vertex_fuber (int dim, int wall_no)
 wall_TYP *
 init_wall_fuber (int dim)
 {
-  int i,j;
   wall_TYP *erg;
 
   erg = (wall_TYP *)malloc(sizeof(wall_TYP));
@@ -63,7 +62,7 @@ free( (int *)fudo);
 fund_domain *init_fund_domain(vert_no, wall_no)
 int vert_no, wall_no;
 {
-  int i,j;
+  int j;
   fund_domain *erg;
 
   erg = (fund_domain *)malloc(sizeof(fund_domain));
@@ -169,7 +168,7 @@ int
 wall_times_vertex_fuber (wall_TYP *w, vertex_TYP *v)
 {
   int i;
-  int e,wa;
+  int e;
   e=0;
   for(i=0;i<v->dim;i++)
      e += v->v[i] * w->gl[i];
@@ -179,7 +178,6 @@ wall_times_vertex_fuber (wall_TYP *w, vertex_TYP *v)
 void 
 free_vertex_fuber (vertex_TYP **v)
 {
- int i;
  if((*v)!= NULL)
  {
    free((int *)(*v)->v);
@@ -193,7 +191,6 @@ free_vertex_fuber (vertex_TYP **v)
 void 
 free_wall_fuber (wall_TYP **v)
 {
- int i;
  if((*v)!= NULL)
  {
    free((*v)->gl);

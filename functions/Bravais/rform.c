@@ -569,8 +569,8 @@ matrix_TYP *
 rform (matrix_TYP **B, int Banz, matrix_TYP *Fo, int epsilon)
 {
 	double	try();
-	double	**save, **pres, *fac, factor;
-	int	eps, best, d, i, j, k;
+	double	**save, **pres, *fac;
+	int	eps, d, i, j, k;
         matrix_TYP *erg;
         int test;
 
@@ -655,7 +655,7 @@ rform (matrix_TYP **B, int Banz, matrix_TYP *Fo, int epsilon)
 	}
 
         /*
-  	factor = try();
+  	int factor = try();
 	for (i = 0; i < num; ++i)
 	{
 		for (j = 0; j < num; ++j)
@@ -671,7 +671,7 @@ rform (matrix_TYP **B, int Banz, matrix_TYP *Fo, int epsilon)
 			}
 		}
 		fac[i] = factor;
-		best = i;
+		int best = i;
 		for (j = 0; j < num; ++j)
 		{
 			if (fac[j] > fac[best])

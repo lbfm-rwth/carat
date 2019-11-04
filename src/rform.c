@@ -10,7 +10,7 @@ int main (int argc, char *argv[])
 	matrix_TYP **Mat, *V;
         bravais_TYP *G;
         int epsilon, Mat_anz;
-        int i,j;
+        int i;
 
 
         read_header(argc, argv);
