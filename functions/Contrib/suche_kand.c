@@ -33,7 +33,8 @@ static int krit_kon_mat (matrix_TYP **A, matrix_TYP **B, int anz,
 			 matrix_TYP ***M, int *dim)
 {
   matrix_TYP **AA, **BA, **AB,**Prod, *mat;
-  int ab, aa, ba, pp,i,j;
+  int ab, aa = 0, ba, pp,i,j;
+  int result = 0;
   
   AB = solve_endo (A, B, anz, &ab);
   BA = solve_endo (B, A, anz, &ba);
@@ -58,73 +59,24 @@ static int krit_kon_mat (matrix_TYP **A, matrix_TYP **B, int anz,
 	  pp = tgauss (mat);		
 	  free_mat (mat);
 
-	  if (pp == aa)
-	    {
-	      if (ab != 0)
-		{
-		  for (i=0; i<ba; i++)
-		    free_mat (BA[i]);
-		  free (BA);
-		}
-	      if (aa != 0)
-		{
-		  for (i=0; i<aa; i++)
-		    free_mat (AA[i]);
-		  free (AA); 
-		}
-	      return 1;
-	    }
-	  else 
-	    {
-	      if (ab != 0)
-		{
-		  for (i=0; i<ba; i++)
-		    free_mat (BA[i]);
-		  free (BA);
-		}
-	      if (aa != 0)
-		{
-		  for(i=0; i<aa; i++)
-		    free_mat (AA[i]);
-		  free (AA); 
-		} 
-	      return 0;
-	    }
-	}
-      else 
-	{
-	  if (ab != 0)
-	    {
-	      for (i=0; i<ba; i++)
-		free_mat (BA[i]);
-	      free (BA);
-	    }
-	  if (aa != 0)
-	    { 
-	      for (i=0; i<aa; i++)
-		free_mat (AA[i]);
-	      free (AA); 
-	    }
-	  return 0;
+	  result = (pp == aa);
 	}
     }
-  else 
-    {
-      if (ab != 0)
-	{
-	  for (i=0; i<ba; i++)
-	    free_mat (BA[i]);
-	  free (BA);
-	}
-      if (aa != 0)
-	{
-	  for (i=0; i<aa; i++)
-	    free_mat (AA[i]);
-	  free (AA); 
-	}
-      return 0; 
-    }
+
+    if (ab != 0)
+      {
+        for (i=0; i<ba; i++)
+          free_mat (BA[i]);
+        free (BA);
+      }
+    if (aa != 0)
+      {
+        for (i=0; i<aa; i++)
+          free_mat (AA[i]);
+        free (AA); 
+      }
   
+  return result;
 }
 
 
