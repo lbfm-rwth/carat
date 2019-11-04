@@ -62,7 +62,8 @@ int gcd_mat(matrix_TYP *A)
      erg = A->array.SZ[0][0];
      i=0;
      while ((i<A->rows) && (erg != 1) && (erg != (-1))){
-        while ((j<A->rows) && (erg != 1) && (erg != (-1))){
+        j=0;
+        while ((j<A->cols) && (erg != 1) && (erg != (-1))){
            erg = GGT(erg,A->array.SZ[i][j]);
            j++;
         }
