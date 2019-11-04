@@ -27,7 +27,7 @@ static int is_id(matrix_TYP *mat)
       for (j = 0; j < mat->cols; j++){
          if (i == j && mat->array.SZ[i][i] != 1)
             return(0);
-         if (i != j && mat->array.SZ[i][j] != 0);
+         if (i != j && mat->array.SZ[i][j] != 0)
             return(0);
       }
    }
