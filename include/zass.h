@@ -2,13 +2,10 @@
 extern "C" {
 #endif
 
-
 #ifndef _ZASSEN_H_
 #define _ZASSEN_H_
 
-#ifndef _CARAT_TYPEDEF_H_
-#include"typedef.h"
-#endif
+#include "typedef.h"
 
 int INFO_LEVEL;
 
@@ -17,9 +14,6 @@ typedef struct {
        long speicher;
        long faktor;
        long *pointer;} word;
-
-
-#ifdef __STDC__
 
 
 /**********************************************************************\
@@ -159,93 +153,9 @@ extern matrix_TYP *scalar(long n,
 extern matrix_TYP *calc_B(matrix_TYP **mat,
                           long anz_erzeuger);
 
-#else
-
-
-/**********************************************************************\
-| FILE: cobundary.c
-\**********************************************************************/
-
-void coboundary();
-
-/**********************************************************************\
-| FILE: cong_solve.c
-\**********************************************************************/
-
-matrix_TYP **cong_solve();
-
-
-/**********************************************************************\
-| FILE: convert_cocycle_to_column.c
-\**********************************************************************/
-
-void convert_cocycle_to_column();
-
-/**********************************************************************\
-| FILE: convert_to_cozycle.c
-\**********************************************************************/
-
-extern matrix_TYP *convert_to_cozycle();
-
-
-/**********************************************************************\
-| FILE: put_cocycle.c
-\**********************************************************************/
-
-void put_cocycle();
-
-/*********************************************************************\
-| FILE: normalop.c
-\*********************************************************************/
-
-extern matrix_TYP *normalop();
-
-extern matrix_TYP **extensions();
-
-extern void no_of_extensions();
-
-extern matrix_TYP **identify();
-
-extern void translation();
-
-extern void valuation();
-
-extern matrix_TYP *orbit_rep();
-                   
-
-/**********************************************************************\
-| FILE: reverse_valuation.c
-\**********************************************************************/
-
-extern matrix_TYP *reverse_valuation();
-
-/**********************************************************************\
-| FILE: reget_gen.c
-\**********************************************************************/
-
-extern matrix_TYP *reget_gen();
-
-/**********************************************************************\
-| FILE: zass.c
-\**********************************************************************/
-
-extern matrix_TYP *matrizen_in_word();
-
-extern void matrix_2_word();
-
-extern matrix_TYP **cohomology();
-
-extern int wordfree();
-
-extern matrix_TYP *scalar();
-
-extern matrix_TYP *calc_B();
-
-#endif
 #endif
 
 
 #ifdef __cplusplus
 }
 #endif
-

@@ -1,20 +1,13 @@
-/* last change: 23.04.2002 by Oliver Heidbuechel */
-
 #ifdef __cplusplus
    extern "C" {
 #endif
 
-
 #ifndef _CARAT_GRAPH_H_
 #define _CARAT_GRAPH_H_
 
-#ifndef _CARAT_TYPEDEF_H_
-#include"typedef.h"
-#endif
+#include "typedef.h"
 
-#ifndef _ZASSEN_H_
-#include"zass.h"
-#endif
+#include "zass.h"
 
 #define TWOTO21 2097152
 
@@ -107,7 +100,6 @@ typedef struct
 
 
 /* functions */
-#ifdef __STDC__
 Q_data_TYP *get_Q_data(bravais_TYP *G,
                        matrix_TYP *pres,
                        boolean l_option);
@@ -389,119 +381,8 @@ int obergruppenzahl(matrix_TYP *L,
 		    int Stab_anz,
 		    int *wort);
 
-#else
-
-Q_data_TYP *get_Q_data();
-
-void free_Q_data();
-
-void put_Q_data();
-
-bravais_TYP *extract_r();
-
-matrix_TYP **all_cocycles();
-
-matrix_TYP *subgroupgraph();
-
-bravais_TYP *stab_coz();
-
-matrix_TYP *matrix_on_diagonal();
-
-matrix_TYP *standard_rep();
-
-MP_INT cohomology_size(matrix_TYP *D);
-
-int *aff_classes_in_image();
-
-int equal_zero();
-
-int yet_there();
-
-int **stab_lattice();
-
-void kernel_and_image();
-
-void calculate_phi();
-
-int **calculate_S1();
-
-int *aufspannen();
-
-matrix_TYP **col_to_list();
-
-matrix_TYP **orbit_ker();
-
-matrix_TYP **orbit_ksi_plus_ker();
-
-void free_H1_mod_ker_TYP();
-
-matrix_TYP **new_representation();
-
-matrix_TYP *graph_mapped_word();
-
-matrix_TYP ***H1_mod_ker_orbit_alg();
-
-void kernel_elements_2_affine();
-
-matrix_TYP *graph_mat_inv();
-
-int word_already_there();
-
-matrix_TYP *H1_of_standard_to_GL();
-
-int orbit_on_lattices();
-
-int number_of_affine_class();
-
-matrix_TYP **transl_aff_normal();
-
-int kernel_factor_fct();
-
-bravais_TYP *p_group();
-
-bravais_TYP **min_k_super();
-
-bravais_TYP **max_k_sub();
-
-void plus_translationen();
-
-matrix_TYP *extract_c();
-
-boolean is_k_subgroup();
-
-matrix_TYP *sg();
-
-matrix_TYP *add_mod_D();
-
-matrix_TYP *to_aff_normal_element();
-
-void my_translation();
-
-bravais_TYP ****t_subgroups();
-
-coz_TYP identify_coz();
-
-void free_coz_TYP();
-
-matrix_TYP **calculate_H1();
-
-void cen_to_norm();
-
-matrix_TYP **max_sublattices();
-
-matrix_TYP **calculate_representatives();
-
-int obergruppenzahl();
-
-#endif
-
 #endif /* _CARAT_GRAPH_H_ */
-
-
 
 #ifdef __cplusplus
    }
 #endif
-
-
-

@@ -3,9 +3,7 @@ extern "C" {
 #endif
 
 
-
 #ifndef _TIETZETRANS_H_
-
 #define _TIETZETRANS_H_
 
 typedef struct {
@@ -81,8 +79,6 @@ matrix_TYP *trans;
 
 #endif
 
-
 #ifdef __cplusplus
 }
 #endif
-

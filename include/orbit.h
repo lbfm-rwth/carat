@@ -2,17 +2,11 @@
 extern "C" {
 #endif
 
-
-
-
 #ifndef _ORBIT_H_
 #define _ORBIT_H_
 
-#ifndef _CARAT_TYPEDEF_H_
-#include"typedef.h"
-#endif
+#include "typedef.h"
 
-#ifdef __STDC__
 /*-------------------------------------------------------------*\
 | FILE: orb_division.c 
 \*-------------------------------------------------------------*/
@@ -52,42 +46,9 @@ extern bravais_TYP *representation_on_lattice(matrix_TYP *x,bravais_TYP *G,
                                        int option);
 matrix_TYP *translation_lattice(matrix_TYP **G,int number,matrix_TYP *P);
 
-#else
-/*-------------------------------------------------------------*\
-| FILE: orb_division.c 
-\*-------------------------------------------------------------*/
-extern matrix_TYP *orbit_representatives();
-
-/*-------------------------------------------------------------*\
-| FILE: orb_alg.c 
-\*-------------------------------------------------------------*/
-extern int *make_orbit_options();
-extern matrix_TYP **orbit_alg();
-extern void free_baum();
-struct baum *hash_addbaum();
-
-/*-------------------------------------------------------------*\
-| FILE: orbit_subdivision.c 
-\*-------------------------------------------------------------*/
-extern int *orbit_subdivision();
-
-/*-------------------------------------------------------------*\
-| FILE: vec_orbit_division.c 
-\*-------------------------------------------------------------*/
-extern int *vec_orbit_division();
-
-/*-------------------------------------------------------------*\
-| FILE: row_spin.c 
-\*-------------------------------------------------------------*/
-extern matrix_TYP *row_spin();
-extern bravais_TYP *representation_on_lattice();
-matrix_TYP *translation_lattice();
 
 #endif
-#endif
-
 
 #ifdef __cplusplus
 }
 #endif
-

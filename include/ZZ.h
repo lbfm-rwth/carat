@@ -10,12 +10,7 @@
 
 #undef ZZ_PRIVATE
 
-#ifdef __STDC__
 #include "../functions/ZZ/ZZ_P.h"
-
-
-
-
 
 extern bravais_TYP **q2z(bravais_TYP *G,
                          int *number,
@@ -38,18 +33,6 @@ extern void ZZ(bravais_TYP * group,
 extern bravais_TYP **get_groups(bravais_TYP **ADGROUPS,
                          int ad_no,
                          int *number);
-
-
-#else
-extern ZZ_data_t ZZ ();
-
-extern bravais_TYP **q2z();
-
-extern bravais_TYP **get_groups();
-
-extern void free_QtoZ();
-
-#endif
 
 extern int NUMBER;		/* Abbruch nach NUMBER Zentrierungen */
 extern int LEVEL;		/* Abbruch nach Iterationszahl LEVEL */

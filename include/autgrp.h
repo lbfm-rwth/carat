@@ -2,15 +2,11 @@
 extern "C" {
 #endif
 
-
 #ifndef _AUTGRP_H_
 #define _AUTGRP_H_
 
-#ifndef _CARAT_TYPEDEF_H_
-#include"typedef.h"
-#endif
+#include "typedef.h"
 
-#ifdef __STDC__
 /*-------------------------------------------------------------*\
 | FILE:  autgrp.c
 \*-------------------------------------------------------------*/
@@ -74,35 +70,8 @@ extern matrix_TYP *pr_isom(matrix_TYP **F1,
       int Erzanz,
       int *options);
 
-#else
-/*-------------------------------------------------------------*\
-| FILE:  autgrp.c
-\*-------------------------------------------------------------*/
-extern bravais_TYP *autgrp();
-
-extern bravais_TYP *perfect_normal_autgrp();
-
-/*-------------------------------------------------------------*\
-| FILE:  isometry.c
-\*-------------------------------------------------------------*/
-extern matrix_TYP *isometry();
-
-extern matrix_TYP *perfect_normal_isometry();
-
-/*-------------------------------------------------------------*\
-| FILE:  pr_aut.c
-\*-------------------------------------------------------------*/
-extern bravais_TYP *pr_aut();
-
-/*-------------------------------------------------------------*\
-| FILE:  pr_isom.c
-\*-------------------------------------------------------------*/
-extern matrix_TYP *pr_isom();
-#endif
 #endif
 
 #ifdef __cplusplus
 }
 #endif
-
-

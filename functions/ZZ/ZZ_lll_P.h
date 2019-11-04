@@ -3,7 +3,6 @@
 
 #include "ZZ_P.h"
 
-extern matrix_TYP *ZZ_lll _ZZ_P_PROTO_( (matrix_TYP * Mat, int lll_bnd)) ;
-
+extern matrix_TYP *ZZ_lll(matrix_TYP * Mat, int lll_bnd);
 
 #endif
