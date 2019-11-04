@@ -194,8 +194,8 @@ int i,j;
 fund_domain *F;
 int old_no;
 {
-  int k,l,m;
-  int a, u, tester1;
+  int k,l;
+  int a, u;
   int anz;
   vertex_TYP *erg;
   matrix_TYP *A;
@@ -300,7 +300,6 @@ wall_TYP *h;
  int *count;
  int waste;
  int tester, *test;
- int anz;
  int p,n;
  vertex_TYP *v;
 

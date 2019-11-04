@@ -12,14 +12,9 @@ int main(int argc,char **argv){
   bravais_TYP *G,
               *N;
 
-  matrix_TYP **normal,
-             **x;
-
-  bahn **strong;
+  matrix_TYP **normal;
 
   int i,
-      j,
-      l,
       anz,
       finite;
 

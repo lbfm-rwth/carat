@@ -31,7 +31,6 @@ static int is_trivial(bravais_TYP *G){
 int main(int argc,char **argv){
 
   matrix_TYP **X,
-              *N,
              **Y,
              **TR,
              **base,

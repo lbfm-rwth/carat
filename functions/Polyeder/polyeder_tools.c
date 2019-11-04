@@ -110,7 +110,6 @@ init_word (int dim)
 wall_TYP *
 init_wall (int dim)
 {
-  int i,j;
   wall_TYP *erg;
 
   erg = (wall_TYP *)malloc(sizeof(wall_TYP));
@@ -339,7 +338,6 @@ wall_times_vertex (wall_TYP *w, vertex_TYP *v)
 void 
 free_vertex (vertex_TYP **v)
 {
- int i;
  if((*v)!= NULL)
  {
    free((*v)->v);

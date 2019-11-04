@@ -53,7 +53,7 @@ pr_red (int **G, int **T, int n)
 {
    int i,j,k, a;
    int reduced, red2;
-   int merk, s, p1, p2;
+   int s, p1, p2;
 
    reduced = FALSE;
    reduction_sort(G,T,n);

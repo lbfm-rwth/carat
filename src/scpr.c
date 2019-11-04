@@ -14,8 +14,7 @@ int main (int argc, char *argv[])
 
    char comment[1024];
 
-   int truth,
-       i,
+   int i,
        j,
        mv,
        nf;

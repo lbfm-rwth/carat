@@ -150,8 +150,8 @@ add_vertex_to_polyeder (polyeder_TYP *F, vertex_TYP *w)
 static vertex_TYP *
 gis_neighbour (int i, int j, polyeder_TYP *F)
 {
-  int k,l,m;
-  int a, u, tester1;
+  int k,l;
+  int a, u;
   int anz;
   vertex_TYP *erg;
   matrix_TYP *A;
@@ -269,9 +269,7 @@ refine_polyeder (polyeder_TYP *F, wall_TYP *h)
  int l;
  int old_no;
  int *count;
- int waste;
  int tester, *test;
- int anz;
  int p,n, z;
  vertex_TYP *v;
  int *wall_test, *necessary;

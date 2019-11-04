@@ -26,7 +26,7 @@
 void 
 fput_bravais (FILE *outfile, bravais_TYP *G, char *comment)
 {
-  int i, j;
+  int i;
   
   extern void fput_mat();
 
@@ -113,7 +113,7 @@ fput_bravais (FILE *outfile, bravais_TYP *G, char *comment)
 void 
 put_bravais (bravais_TYP *G, char *filename, char *comment)
 {
-  int i, j;
+  int i;
   FILE *outfile;
   
   extern void put_mat();

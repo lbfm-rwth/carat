@@ -41,7 +41,7 @@ mat_to_double (matrix_TYP *M)
 static int 
 pivot (double **A, int step, int n)
 {
-  int i,j,k, found;
+  int i,j, found;
   double max;
   int ipos, jpos;
   double tmp;
@@ -126,13 +126,12 @@ static void
 col_clear (double **A, int step, int n)
 {
    int i,j;
-   double f;
    for(i=step+1; i<n; i++)
    {
      /* changed this to a numerically more stable version:
      if(fabs(A[i][step]) > eps)
      {
-        f = A[i][step]/A[step][step];
+        double f = A[i][step]/A[step][step];
         for(j=step+1;j<=i;j++)
            A[i][j] -= A[j][step] * f;
         for(j=i+1;j<n;j++)
@@ -226,7 +225,6 @@ dsylv (matrix_TYP *M)
 {
   int i,n,step, nonzero;
   double **D;
-  double eps_new;
   matrix_TYP *A;
   int pos, neg; 
 

@@ -39,7 +39,7 @@ matrix_TYP *
 long_elt_mat (matrix_TYP *left_trans, matrix_TYP *Mat, matrix_TYP *right_trans)
 {
 
-   int i,j,k,l, m, step, stepclear, flag;
+   int i, j, m, step, stepclear;
    int cols, rows, rang;
    MP_INT **trf, **M, **Mt, *merkpointer, **rtrf, *help, **hilf;
    matrix_TYP *erg;

@@ -241,8 +241,7 @@ void calculate_phi(matrix_TYP *diag,
                    H1_mod_ker_TYP *H1_mod_ker)
 {
    matrix_TYP *H1_L,
-              *tmp,
-*test;
+              *tmp;
 
    int i, j,
        dim_i, dim_j, first;

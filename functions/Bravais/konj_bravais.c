@@ -27,7 +27,7 @@
 bravais_TYP *
 konj_bravais (bravais_TYP *B, matrix_TYP *T)
 {
-   int i,dim;
+   int i;
    bravais_TYP *G;
    matrix_TYP *Ti, *Titr, *waste;
 

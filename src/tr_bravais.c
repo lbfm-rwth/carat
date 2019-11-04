@@ -9,13 +9,6 @@ int INFO_LEVEL;
 
 int main (int argc, char *argv[])
 {
-  int anz,
-      i;
-
-  rational *r;
-
-  matrix_TYP **F;
-
   bravais_TYP *G,
               *H;
 

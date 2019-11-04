@@ -7,7 +7,7 @@ int INFO_LEVEL;
 
 int main (int argc, char *argv[])
 {
-  int i,j,anz, prime;
+  int i,anz, prime;
   int sym_opt;
   bravais_TYP *B;
   matrix_TYP **F;

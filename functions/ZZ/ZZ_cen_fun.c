@@ -291,8 +291,6 @@ ZZ_get_data (bravais_TYP *group, matrix_TYP *gram, int *divisors, ZZ_data_t *dat
 {
 	int i, j, k;
 	matrix_TYP **help2;
-	QtoZ_konst_TYP *data_neu;
-
 	
 	if (konst_flag == -3 && GRAPH){
 	   for (i = 0; i < KONSTITUENTEN->k; i++){
@@ -1230,9 +1228,6 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 	int **U, **CC, sum, f;
 	int i, j, k, nl, flag, ff, gg;
 	int ABBRUCH;
-
-	/* inserted tilman 6/2/97 */
-	char filename[32];
 
 	sum =
 		f =

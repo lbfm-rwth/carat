@@ -13,8 +13,6 @@ int main (int argc, char *argv[])
       ggt,
       sum;
 
-  char comment[1000];
-
   matrix_TYP **F;
 
   read_header(argc, argv);

@@ -13,7 +13,6 @@ main (int argc, char *argv[])
       min,
       l,
       r,
-      z,
       n;
 
   matrix_TYP **A,

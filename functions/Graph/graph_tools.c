@@ -144,8 +144,6 @@ matrix_TYP **all_cocycles(matrix_TYP *relator_input,
 
   long dim;
 
-  char comment[1000];
-
   MP_INT cohom_size;
 
 
@@ -327,7 +325,7 @@ matrix_TYP **col_to_list(matrix_TYP *M)
 /* -------------------------------------------------------------------- */
 void free_H1_mod_ker_TYP(H1_mod_ker_TYP H1_mod_ker)
 {
-   int i, j;
+   int i;
 
    if (H1_mod_ker.flag == 0){
       for (i = 0; i < H1_mod_ker.erz_no; i++){

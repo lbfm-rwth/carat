@@ -32,7 +32,7 @@ hyperbolic_isometry (matrix_TYP *x1, matrix_TYP *x2, matrix_TYP *S)
 {
   matrix_TYP *x1S, *x2S, *x1SO, *x2SO, **S1red, **S2red, *T1,*T1i, *T2;
   matrix_TYP *Y1, *Y1i, *Y2, *Y;
-  int i,j,k, n;
+  int i,j,n;
 
   extern matrix_TYP *solve_mat();
   extern matrix_TYP *mat_mul();

@@ -22,7 +22,7 @@ extern int INFO_LEVEL;
 symbol_out *read_symbol_from_string(char *symb)
 {
 char  string[80],
-      slash, *str ;
+      *str;
 char f[1024], dat[1024];
 char *fn;
 int     i, j, k, l, m, n, p, q, x, groesser;
@@ -40,7 +40,6 @@ int dim = 0, konstit = 0;
 int zerleg[MAXDIM][5];
 bravais_TYP **grps;
 symbol_out *erg;
-matrix_TYP *In;
  
 fn = (char *) malloc(1024 * sizeof(char));
 for (i=0;i<80;i++) string[i] = 0;

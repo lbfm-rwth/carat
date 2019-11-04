@@ -16,8 +16,6 @@ int main(int argc,char **argv){
               *y,
               *z;
 
-  char comment[1000];
-
   int i,
       j,
       anz;

@@ -476,7 +476,7 @@ static int construct_Image_Gen_A (int next_gen, bravais_TYP *Gen_A,
   
   matrix_TYP *matrix, **Bild;
 
-  int i, j;
+  int i;
   
   bravais_TYP *centralizer;
 

@@ -245,7 +245,7 @@ isocand (int *CI, int I, int *x, veclist V, invar F, invar FF, fpstruct fp, scpc
 static matrix_TYP *
 bs_isometry (veclist V, invar F, invar FF, fpstruct fp, int ***G, int nG, scpcomb *comb, bachpol *bach, flagstruct flags)
 {
-	int	i,j, dim, *x, **C, **X, found;
+	int	i, dim, *x, **C, **X, found;
 	matrix_TYP *erg;
 
 	dim = F.dim;

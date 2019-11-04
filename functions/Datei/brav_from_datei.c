@@ -34,8 +34,6 @@ bravais_TYP *brav_from_datei(char *symb,int almost,int zclass)
 
    symbol_out *S;
 
-   matrix_TYP *X;
-
    char *file;
 
    int i=1;

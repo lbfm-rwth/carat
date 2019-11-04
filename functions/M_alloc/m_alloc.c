@@ -427,7 +427,6 @@ return(p);
 int *c_alloc_d2(int size_t, int size_n)
 {
 int *p;
-int newsize;
 if( (p = (int*)m_alloc_d2(size_t*size_n)) == NULL) {
 	fprintf(stderr,"Fehler in calloc \n");
 	exit(2);
@@ -470,8 +469,6 @@ return(p);
 void 
 fr_ee_d2 (int *p)
 {
-int oldsize;
-
 delete_pointer(p);
 if(p == (int *)SMEMORY) SHELP++;
 p -= 4;

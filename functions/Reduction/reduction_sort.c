@@ -24,7 +24,7 @@
 void 
 reduction_sort (int **G, int **T, int n)
 {
-  int i,j,k;
+  int i,j;
   int minpos, min;
   int *tmp;
   int merk;

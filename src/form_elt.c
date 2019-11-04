@@ -17,7 +17,6 @@ int main (int argc, char *argv[])
              *tmp2;
 
   int i,
-      j,
       prime=1949,
       eps=100;
 

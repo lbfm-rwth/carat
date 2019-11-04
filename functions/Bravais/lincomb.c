@@ -240,7 +240,7 @@ form_to_vec_modular (int *erg, matrix_TYP *A, matrix_TYP **F, int Fanz)
   matrix_TYP **X1, **X2;
   matrix_TYP *G1, *G2;
   int X1anz, X2anz;
-  int n, m;
+  int n;
   double q, res, q1, q2;
   double waste;
   int symmetric;

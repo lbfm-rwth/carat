@@ -17,12 +17,7 @@ int main(int argc,char **argv){
   bahn **strong;
 
   int i,
-      j,
-      l,
-      siz,
-      anz;
-
-  char comment[1000];
+      siz;
 
 
   read_header(argc,argv);

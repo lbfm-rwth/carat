@@ -28,7 +28,7 @@ CARATname_TYP name_fct(bravais_TYP *R,
 
   bravais_TYP *P,
               *Rnew,
-              *RC,
+              //*RC,
               *DATAQ = (bravais_TYP *) 1,
               *DATAZ;
 
@@ -37,7 +37,7 @@ CARATname_TYP name_fct(bravais_TYP *R,
              *TZ,
              *PRES;
 
-  MP_INT aff_name;
+  //MP_INT aff_name;
 
   char symb[1024];
 

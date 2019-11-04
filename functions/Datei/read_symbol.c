@@ -38,7 +38,7 @@ clear (char *merk)
 symbol_out *read_symbol(char *file_name)
 {
 char  string[80],
-      slash, *str ;
+      *str;
 char f[1024], dat[1024];
 /* changed from "static char fn[80]" to switch away from static variables */
 char *fn;
@@ -57,7 +57,6 @@ int dim = 0, konstit = 0;
 int zerleg[MAXDIM][5];
 bravais_TYP **grps;
 symbol_out *erg;
-matrix_TYP *In;
 
 /* it is assumed that string contains a 0-string, all not all
    compiler will asure that (inserted 24/4/97 tilman) */

@@ -253,7 +253,6 @@ int i;
 int *
 factorize (int zahl)
 {
-int i;
 int *erg;
 
   erg = (int *) malloc(100 *sizeof(int));

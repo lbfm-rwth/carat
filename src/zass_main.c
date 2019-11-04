@@ -20,7 +20,6 @@ int main(int argc,char *argv[]){
   word *relator;
 
   int anz_erzeuger,
-      anz_relatoren,
       i;
 
   long dim;

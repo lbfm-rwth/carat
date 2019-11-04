@@ -36,7 +36,6 @@ matrix_TYP *min_pol(matrix_TYP *A)
        j,
        k,
        flag,
-       cols,
        rank,
        grad;     /* actualy the degree +1 */
 

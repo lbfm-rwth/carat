@@ -149,12 +149,9 @@ deal_with_ZCLASS (ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *father, ZZ_node_t
 	int f,
 	    g;
 
-	bravais_TYP *H;
-
 	ZZ_node_t *n;
 	
 	matrix_TYP *X;
-	
 
 
 	/* now calculate the (integral) representation
@@ -314,8 +311,7 @@ orbit_under_normalizer (ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *father, ZZ_
 {
 
 	int i__,
-	    j__,
-	    i, pos, oflag = 0,
+	    i,
 	    father_flag = FALSE,
 	    flag = FALSE;
 

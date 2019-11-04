@@ -173,7 +173,7 @@ static int order(matrix_TYP *A)
 
 matrix_TYP *compute_q_matrix (bravais_TYP *G)
 {
-  matrix_TYP **Group, **Idem, **representant, **conjugacy_class, *REP;
+  matrix_TYP **Group, **Idem, **representant, *REP;
   matrix_TYP *I, *F, *output_mat;
   matrix_TYP *waste, *waste2;
   int orb_alg_options[6];

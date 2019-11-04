@@ -72,7 +72,6 @@ int *aff_classes_in_image(MP_INT *names,
 {
    int i, j, k, pos, /* m, */
        first, last, diff,
-       insg, flag = 0,
       *list, *aff_list;
 
    matrix_TYP *tmp;
@@ -281,7 +280,7 @@ matrix_TYP **new_representation(matrix_TYP **S,
                                 H1_mod_ker_TYP H1_mod_ker,
                                 matrix_TYP *A)
 {
-   int i, j, k, d, s,
+   int i, j, k,
        erz_no, A_first;
 
    matrix_TYP **rep,

@@ -26,7 +26,7 @@
 void 
 MP_reduction_sort (MP_INT **G, MP_INT **T, int n)
 {
-  int i,j,k;
+  int i,j;
   int minpos;
   MP_INT min, *tmp, merk;
 

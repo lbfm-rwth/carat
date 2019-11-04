@@ -112,9 +112,6 @@ static int hash_prime = 130003;
 static void 
 matrix_speichern (matrix_TYP *mat, matrix_TYP ***L, int *listsize, int *anz)
 {
- int i, j, k;
-
-extern matrix_TYP *init_mat();
    if((*anz) == 0)
       if ((*L=(matrix_TYP **)malloc((*listsize)*sizeof(matrix_TYP *)))==NULL)
       {
@@ -467,11 +464,10 @@ extern void free_baum(struct baum *p)
 matrix_TYP **
 orbit_alg (matrix_TYP *M, bravais_TYP *G, bravais_TYP *S, int *option, int *length)
 {
-  int i,j,k;
+  int i,j;
   matrix_TYP **erg;
   matrix_TYP **hist, **histinv;
   matrix_TYP *I, *A, *K1, *K2;
-  int *hashnumbers;
   int h, *hashverz;
   int ergsize, histsize, histinvsize, Ssize;
   int erganz, histanz, histinvanz;

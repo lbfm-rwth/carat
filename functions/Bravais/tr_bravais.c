@@ -37,7 +37,7 @@ bravais_TYP *
 tr_bravais (bravais_TYP *B, int calcforms, int invert)
 {
    bravais_TYP *G;
-   int i,j,k;
+   int i,j;
    matrix_TYP **XX,
                *tmp;
 

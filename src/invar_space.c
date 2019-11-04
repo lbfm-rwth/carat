@@ -6,7 +6,6 @@
 int main (int argc, char *argv[])
 {
   int i,
-      j,
       anz,
       epsilon,
       expected_dimension;
@@ -14,7 +13,6 @@ int main (int argc, char *argv[])
   int sym_opt;
   bravais_TYP *B;
   matrix_TYP **F;
-  char comment[80];
 
   read_header(argc, argv);
   if(FILEANZ != 1)
