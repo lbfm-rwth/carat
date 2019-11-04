@@ -18,13 +18,16 @@ static int cmp_mat_lex (matrix_TYP *A, matrix_TYP *B)
   int i, j;
 
   
-      for (i=0; i<A->rows; i++)
-	for (j=0; j<A->cols; j++)
-	  if (A->array.SZ[i][j] != B->array.SZ[i][j])
+      for (i=0; i<A->rows; i++) {
+	for (j=0; j<A->cols; j++) {
+	  if (A->array.SZ[i][j] != B->array.SZ[i][j]) {
 	    if (A->array.SZ[i][j] < B->array.SZ[i][j])
 	      return -1;
 	    else
 	      return  1;
+	  }
+	}
+      }
       
       return 0;
 }

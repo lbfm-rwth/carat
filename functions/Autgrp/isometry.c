@@ -458,7 +458,8 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 	}
 /* V.prime is a prime p, such that the entries of the short vectors remain 
    unchanged under reduction mod p in symmetric form, i.e. -p/2 < x <= p/2 */
-	for (V.prime = 2*max + 1; isprime(V.prime) == 0; ++V.prime);
+	for (V.prime = 2*max + 1; isprime(V.prime) == 0; ++V.prime)
+	    ;
         j = F.A[0][0][0];
         for(k=1;k<dim;k++)
         {

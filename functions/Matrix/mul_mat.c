@@ -109,15 +109,18 @@ int i, j, k ;
     for (j = 0; j < cL; j++) 
     {
       R_j = R[j];
-      if ( L_i[j])
+      if ( L_i[j]) {
         if ( R_mat->flags.Diagonal ) 
         {
           if (R_j[j]) P_i[j] = L_i[j] * R_j[j];
         }
         else
+        {
           for (k = 0; k < cR; k++)
             if (R_j[k])
                P_i[k] += L_i[j] * R_j[k];
+        }
+      }
     }
   } 
   P_mat->kgv = L_mat->kgv * R_mat->kgv;
