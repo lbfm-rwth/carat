@@ -195,6 +195,11 @@ typedef struct {
    matrix_TYP ***zoogitter;
 } QtoZ_TYP;
 
+// TODO: move the following to a more appropriate location
+extern int SFLAG;
+extern int INFO_LEVEL;
+
+
 #endif /* _CARAT_TYPEDEF_H_ */
 
 #ifdef __cplusplus

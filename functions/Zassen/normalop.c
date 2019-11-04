@@ -23,7 +23,6 @@
 
 #define TWOTO21 2097152
 
-extern int INFO_LEVEL;
 
 static void mod(int *a,int b)
 {

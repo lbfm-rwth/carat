@@ -2,7 +2,6 @@
 #include "getput.h"
 #include "polyeder.h"
 
-int INFO_LEVEL;
 
 
 

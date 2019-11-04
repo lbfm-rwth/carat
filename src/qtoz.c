@@ -3,11 +3,6 @@
 #include <bravais.h>
 #include <base.h>
 
-int INFO_LEVEL;
-extern int SFLAG;
-extern int IDEM_NO;
-boolean GRAPH = FALSE;
-boolean GRAPH_DEBUG = FALSE;
 
 int main(int argc,char **argv){
 

@@ -5,7 +5,6 @@
 #include "getput.h"
 #include "base.h"
 
-extern int INFO_LEVEL;
 
 
 static int and(int *a,int n)

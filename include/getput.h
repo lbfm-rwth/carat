@@ -49,9 +49,6 @@ extern void fput_order( FILE *outfile,  int *divisors,  int ord);
 \*-------------------------------------------------------------*/
 extern char **FILENAMES;
 extern int FILEANZ;
-extern char *OPTIONS;
-extern int *OPTIONNUMBERS;
-extern int OPTIONANZ;
 
 extern void read_header( int argc, char *argv[]);
 extern int is_option( char c);

@@ -13,7 +13,6 @@
 #include "longtools.h"
 #include "datei.h"
 
-extern int INFO_LEVEL;
 
 int max_diagonal_entry(matrix_TYP *A)
 /* returns the entry |A[i][i]| such that |A[i][i]| >= |A[j][j]| for all j */

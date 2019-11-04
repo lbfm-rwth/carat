@@ -5,19 +5,26 @@
 typedef struct {
 	unsigned long pt;
 	long noc;
-	} STAT_LIST_TYPE;
-int SCOUNT = 0, SFLAG = 0;
-int SHELP = 0;
-long SMEMORY = 0x10009b50L;
-int PERIOD = 1, PCOUNT = 0, P_ACT = 0;
-int LIST_SIZE = 0, LIST_USED = 0;
-unsigned **MALLOC_LIST = NULL;
+} STAT_LIST_TYPE;
+static int SCOUNT = 0;
+int SFLAG = 0;
+static int SHELP = 0;
+static long SMEMORY = 0x10009b50L;
+static int PERIOD = 1;
+static int PCOUNT = 0;
+static int P_ACT = 0;
+static int LIST_SIZE = 0, LIST_USED = 0;
+static unsigned **MALLOC_LIST = NULL;
 
-int *STAT_LIST_SIZE = NULL;
-int *STAT_LIST_USED = NULL;
-STAT_LIST_TYPE **STAT_MALLOC_LIST = NULL;
+static int *STAT_LIST_SIZE = NULL;
+static int *STAT_LIST_USED = NULL;
+static STAT_LIST_TYPE **STAT_MALLOC_LIST = NULL;
 
 #define M_ALLOC_MAGIC -4711
+
+// TOOD: INFO_LEVEL should really be in a separate file
+int INFO_LEVEL;
+
 
 	/*============================================================*\
 	||                                                            ||

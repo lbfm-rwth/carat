@@ -7,8 +7,6 @@
 #include <bravais.h>
 #include <idem.h>
 
-int INFO_LEVEL;
-extern int SFLAG;
 
 
 int main(int argc,char **argv){

@@ -20,13 +20,13 @@ extern matrix_TYP **PrI;
 int COUNTER = 0;
 int NUMBER = 1000, SUBDIRECT = FALSE, LEVEL = 500;	/*Default-Werte der maximalen Anzahl der berechneten
 							   Zentrierungen bzw. Anzahl der Level */
-FILE *ZZ_temp, *ZZ_list;
+FILE *ZZ_temp;
 int MAT_ALLOC = 0;
 int constituents = 0;
 int verbose = 0;
-//changed 09-03-2008: these varaibles are not extern
-//extern ZZ_super_TYP **SUPER_info, *SUPER_INFO;
 ZZ_super_TYP **SUPER_info, *SUPER_INFO;
+
+int IDEM_NO;
 
 
 /*------------------------------------------------------------------------------- */

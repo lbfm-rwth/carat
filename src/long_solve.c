@@ -3,8 +3,6 @@
 #include "longtools.h"
 #include "matrix.h"
 
-int INFO_LEVEL;
-int SFLAG;
 
 
 int main (int argc, char *argv[])

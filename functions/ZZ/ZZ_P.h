@@ -116,10 +116,10 @@ extern int ZCLASS;
 extern int SUBDIRECT;
 extern int LEVEL;
 extern FILE *ZZ_temp;
-extern FILE *ZZ_list;
 extern int MAT_ALLOC;
 extern int constituents;
 extern int verbose;
+extern ZZ_super_TYP **SUPER_info, *SUPER_INFO;
 
 extern int IDEM_NO;
 /*}}}  */

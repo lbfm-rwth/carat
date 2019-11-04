@@ -17,7 +17,6 @@
 #include <tools.h>
 #include <sort.h>
 
-extern int INFO_LEVEL;
 
 void free_tree(struct tree *p)
 {

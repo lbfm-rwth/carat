@@ -67,11 +67,9 @@
 
 char **FILENAMES;
 int FILEANZ;
-char *OPTIONS;
-int *OPTIONNUMBERS;
-int OPTIONANZ;
-
-
+static char *OPTIONS;
+static int *OPTIONNUMBERS;
+static int OPTIONANZ;
 
 void 
 read_header (int argc, char *argv[])

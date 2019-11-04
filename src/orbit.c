@@ -5,8 +5,6 @@
 #include "getput.h"
 #include "sort.h"
 #include "datei.h"
-int SFLAG;
-int INFO_LEVEL;
 
 int main (int argc, char *argv[])
 {

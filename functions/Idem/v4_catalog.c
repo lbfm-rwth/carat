@@ -8,7 +8,6 @@
 #include "tools.h"
 #include "getput.h"
 
-extern int INFO_LEVEL;
 
 /******************************************************************************
 @

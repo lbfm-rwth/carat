@@ -19,7 +19,6 @@
 #include "ZZ_zclass_P.h"
 #include "datei.h"
 
-extern int INFO_LEVEL;
 
 
 static int position(matrix_TYP **a,matrix_TYP *x,int n)
