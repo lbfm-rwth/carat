@@ -141,7 +141,6 @@ matrix_TYP *aff_class_inf(bravais_TYP *R,
    matrix_TYP *cozycle,
              **X,
              **Y,
-              *coz_mat,
              **matinv,
               *RES;
 
@@ -172,7 +171,7 @@ matrix_TYP *aff_class_inf(bravais_TYP *R,
 
       if (RC){
          /* construct our representative */
-         coz_mat = reverse_valuation(aff_name,X[1]);
+         matrix_TYP *coz_mat = reverse_valuation(aff_name,X[1]);
          *RC = space_group_from_matrix(DATAZ,coz_mat,X[0],X[1]);
          free_mat(coz_mat);
       }
@@ -192,7 +191,6 @@ matrix_TYP *aff_class_inf(bravais_TYP *R,
             RC[0]->gen[i] = copy_mat(DATAZ->gen[i]);
             extend(RC[0]->gen[i]);
          }
-         free_mat(coz_mat);
       }
    }
 
