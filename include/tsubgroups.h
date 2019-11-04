@@ -6,18 +6,11 @@ extern "C" {
 #ifndef _TSUBGROUPS_H_
 #define _TSUBGROUPS_H_
 
-#ifndef _CARAT_TYPEDEF_H_
-#include"typedef.h"
-#endif
+#include "typedef.h"
 
-#ifndef __GMP_H__
-#include"gmp.h"
-#endif
+#include <gmp.h>
 
-#ifndef _NAME_H_
-#include"name.h"
-#endif
-
+#include "name.h"
 
 typedef struct{
    bravais_TYP *R;	/* translationengleich maximal subgroup */
@@ -41,8 +34,6 @@ typedef struct{
 
 
 /* -------------------------------------------------------------- */
-#ifdef __STDC__
-
 TSubgroup_TYP **tsubgroup(bravais_TYP *R,
                            bravais_TYP *P,
                            matrix_TYP *pres,
@@ -85,36 +76,8 @@ matrix_TYP **get_words(char *pfad,
 
 bravais_TYP **tsupergroups(bravais_TYP *R,
                            int *anzahl);
-
-/* -------------------------------------------------------------- */
-#else
-
-TSubgroup_TYP **tsubgroup();
-
-TSubgroup_TYP *ite_gruppe();
-
-TSubgroup_TYP **tsubgroup_db();
-
-void free_TSubgroup_TYP();
-
-matrix_TYP **PoaN();
-
-void name_fct();
-
-void free_CARATname_TYP();
-
-bravais_TYP *get_std_rep();
-
-matrix_TYP **get_words();
-
-bravais_TYP **tsupergroups();
-
-
-/* -------------------------------------------------------------- */
-#endif
 #endif
 
 #ifdef __cplusplus
 }
 #endif
-

@@ -5,13 +5,9 @@ extern "C" {
 #ifndef _NAME_H_
 #define _NAME_H_
 
-#ifndef _CARAT_TYPEDEF_H
 #include "typedef.h"
-#endif
 
-#ifndef _GMP_H
 #include "gmp.h"
-#endif
 
 
 #define EXIT_SUCCESS 0
@@ -66,8 +62,6 @@ typedef struct
   entry entry;
   int *exists;
 } conditions;
-
-#ifdef __STDC__
 
 /*************************************************************************
 |  FILE : HM_symbol.c
@@ -183,79 +177,6 @@ bravais_TYP *reverse_name(char *qname,
 			  int i,
 			  boolean iflag,
 			  char **affstring);
-
-#else
-
-
-/*************************************************************************
-|  FILE : HM_symbol.c
-**************************************************************************/
-
-void display_HM_symbol();
-
-/*************************************************************************
-|  FILE : Q_catalog.c
-**************************************************************************/
-extern void ();
-
-void unapply_cond_to_display_list ();
-
-void display_data_list ();
-
-database *load_database ();
-
-void free_database ();
-
-
-/*************************************************************************
-|  FILE : aff_class_inf.c
-**************************************************************************/
-
-matrix_TYP *aff_class_inf();
-
-void extend();
-
-bravais_TYP *space_group_from_matrix();
-
-/*************************************************************************
-|  FILE: compute_q_matrix.c
-**************************************************************************/
-
-matrix_TYP *compute_q_matrix ();
-
-/*************************************************************************
-|  FILE: point_group.c
-**************************************************************************/
-
-bravais_TYP *point_group();
-
-/*************************************************************************
-|  FILE: q_class_inf.c
-**************************************************************************/
-
-matrix_TYP *q_class_inf ();
-
-/*************************************************************************
-|  FILE: z_class_inf.c
-**************************************************************************/
-
-matrix_TYP *z_class_inf();
-
-/*************************************************************************
-|  FILE: reverse_name_fct.c
-**************************************************************************/
-
-bravais_TYP *get_qclass_by_name();
-
-bravais_TYP *get_zclass_by_name();
-
-bravais_TYP *split_extension();
-
-bravais_TYP *get_affine_class_by_name();
-
-bravais_TYP *reverse_name();
-
-#endif
 
 #endif
 

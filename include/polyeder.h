@@ -2,15 +2,11 @@
 extern "C" {
 #endif
 
-
 #ifndef _POLYEDER_H_
 #define _POLYEDER_H_
 
-#ifndef _CARAT_TYPEDEF_H_
-#include"typedef.h"
-#endif
+#include "typedef.h"
 
-#ifdef __STDC__
 /*-------------------------------------------------------------*\
 | FILE: first_polyeder.c 
 \*-------------------------------------------------------------*/
@@ -54,52 +50,8 @@ void free_vertex_fuber(vertex_TYP**);
 void free_wall_fuber(wall_TYP**);
 int wall_times_vertex_fuber(wall_TYP*, vertex_TYP*);
 
-#else
-/*-------------------------------------------------------------*\
-| FILE: first_polyeder.c 
-\*-------------------------------------------------------------*/
-extern polyeder_TYP *first_polyeder();
-
-/*-------------------------------------------------------------*\
-| FILE: polyeder_tools.c 
-\*-------------------------------------------------------------*/
-extern vertex_TYP *init_vertex();
-extern wall_TYP *init_wall();
-extern polyeder_TYP *init_polyeder();
-extern polyeder_TYP *get_polyeder();
-extern void put_polyeder();
-extern int wall_times_vertex();
-extern void free_vertex();
-extern void free_word();
-extern void free_wall();
-extern wall_TYP *mat_to_wall();
-extern void normal_wall();
-extern void normal_vertex();
-extern int is_vertex_of_wallno();
-extern wall_TYP *copy_wall();
-extern void free_polyeder();
-
-/*-------------------------------------------------------------*\
-| FILE: polyeder_to_vecs.c 
-\*-------------------------------------------------------------*/
-extern matrix_TYP **polyeder_to_vecs();
-
-/*-------------------------------------------------------------*\
-| FILE: refine_polyeder.c 
-\*-------------------------------------------------------------*/
-extern int refine_polyeder();
-
-/*-------------------------------------------------------------*\
-| FILE: fuber_tools.c 
-\*-------------------------------------------------------------*/
-void free_vertex_fuber();
-void free_wall_fuber();
-int wall_times_vertex_fuber();
-
-#endif
 #endif
 
 #ifdef __cplusplus
 }
 #endif
-

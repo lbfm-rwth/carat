@@ -2,16 +2,10 @@
 extern "C" {
 #endif
 
-
 #ifndef _IDEM_H_
 #define _IDEM_H_
 
-#ifndef _CARAT_TYPEDEF_H
 #include "typedef.h"
-#endif
-
-
-#ifdef __STDC__
 
 /*************************************************************************
 *  FILE : almost_decomposable_lattice.c
@@ -75,73 +69,8 @@ matrix_TYP *z_equivalent(bravais_TYP *G,
                          bravais_TYP **G_tr,
                          bravais_TYP *H);
 
-#else
-
-/*************************************************************************
-*  FILE : almost_decomposable_lattice.c
-**************************************************************************/
-
-matrix_TYP *almost_decomposable_lattice();
-
-/*************************************************************************
-*  FILE : centr.c
-**************************************************************************/
-
-matrix_TYP **idempotente();
-
-matrix_TYP **solve_endo();
-
-matrix_TYP *zeros();
-
-/*************************************************************************
-* FILE: min_pol.c
-**************************************************************************/
-
-matrix_TYP *min_pol();
-
-/*************************************************************************
-*  FILE: symbol.c
-**************************************************************************/
-
-typedef struct { bravais_TYP *group;
-                 matrix_TYP **centralizer;
-                 int dimc;
-                 matrix_TYP **ccentralizer;
-                 int dimcc;
-                 matrix_TYP *lattice;
-               } constituent;
-
-char *symbol();
-
-/*************************************************************************
-*  FILE: bravais_catalog.c
-**************************************************************************/
-
-symbol_out *read_symbol_from_string(char *symb);
-
-bravais_TYP *catalog_number();
-
-/*************************************************************************
-*  FILE: v4_catalog.c
-**************************************************************************/
-
-bravais_TYP *catalog_number_v4();
-
-/*************************************************************************
-*  FILE: z_equivalent.c
-**************************************************************************/
-
-matrix_TYP *z_equivalent(bravais_TYP *G,
-                         bravais_TYP **G_tr,
-                         bravais_TYP *H);
-
 #endif
-
-#endif
-
 
 #ifdef __cplusplus
 }
 #endif
-
-

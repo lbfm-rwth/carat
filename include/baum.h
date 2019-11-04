@@ -2,8 +2,6 @@
 extern "C" {
 #endif
 
-
-
 #ifndef _BAUM_H
 #define _BAUM_H
 
@@ -35,22 +33,11 @@ struct tree_node{
 #define first_child(root, member) \
 	(root)->member.children.next
 
-#if 0
-struct tree_node {
-	struct tree_node *parent;
-	struct tree_node *prev, *next;
-	struct tree_node *head_prev, *head_next;
-	struct my_funny_data_struct data;
-}
-#endif
-
 void delete_tree_node(struct tree_node *old);
 void insert_tree_node(struct tree_node *parent, struct tree_node *new);
 
 #endif
 
-
 #ifdef __cplusplus
 }
 #endif
-

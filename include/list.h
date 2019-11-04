@@ -102,8 +102,6 @@ static __inline__ void list_splice(struct list_head *list, struct list_head *hea
 #endif
 #endif
 
-
 #ifdef __cplusplus
 }
 #endif
-

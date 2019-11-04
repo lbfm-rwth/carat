@@ -2,7 +2,6 @@
 extern "C" {
 #endif
 
-
 #ifndef _CARAT_TYPEDEF_H_
 #define _CARAT_TYPEDEF_H_
 
@@ -13,12 +12,8 @@ extern "C" {
 #include <memory.h>
 #include <string.h>
 #include <ctype.h>
-#include<signal.h>
-#ifdef __STDC__
+#include <signal.h>
 #include <stdarg.h>
-#else
-#include<varargs.h>
-#endif
 
 #include "m_alloc.h"
 
@@ -156,7 +151,7 @@ struct tree{
 /* the setting for programs which sit in ...../functions/Base */
 #define MIN_SPEICHER 256
 
-typedef struct{
+typedef struct {
         int length;
         int speicher;
         matrix_TYP **orbit;
@@ -166,14 +161,13 @@ typedef struct{
         int **words;
         int gen_no;
         struct tree *hash;
-        } bahn;
+} bahn;
 
 typedef struct {
   int dim;
   int *v;
   int kgv;
-}vector_TYP;
-
+} vector_TYP;
 
 /* for QtoZ */
 typedef struct {
@@ -203,8 +197,6 @@ typedef struct {
 
 #endif /* _CARAT_TYPEDEF_H_ */
 
-
 #ifdef __cplusplus
 }
 #endif
-

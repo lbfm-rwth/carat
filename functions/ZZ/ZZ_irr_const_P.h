@@ -4,8 +4,8 @@
 #include "matrix.h"
 #include "ZZ_P.h"
 
-extern matrix_TYP **ZZ_irr_const _ZZ_P_PROTO_( (matrix_TYP ** generators, 
+extern matrix_TYP **ZZ_irr_const(matrix_TYP ** generators, 
 						int num_gens,
-						int p, int *num_irr_const) );
+						int p, int *num_irr_const);
 
 #endif

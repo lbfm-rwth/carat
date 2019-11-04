@@ -6,11 +6,8 @@ extern "C" {
 #ifndef _SORT_H_
 #define _SORT_H_
 
-#ifndef _CARAT_TYPEDEF_H_
-#include"typedef.h"
-#endif
+#include "typedef.h"
 
-#ifdef __STDC__
 /*-------------------------------------------------------------*\
 | FILE: compare.c 
 \*-------------------------------------------------------------*/
@@ -39,37 +36,8 @@ extern int vec_search(matrix_TYP *M, matrix_TYP **List, int List_no,
 extern int pointer_mat_search(matrix_TYP **M, matrix_TYP ***List, int List_no,
      int rows, int cols, int (*comp)());
 
-#else
-/*-------------------------------------------------------------*\
-| FILE: compare.c 
-\*-------------------------------------------------------------*/
-extern int mat_comp();
-extern int mat_col_comp();
-extern int lower_triangular_mat_comp();
-extern int vec_comp();
-extern int pointer_mat_comp();
-extern int pointer_lower_triangular_mat_comp();
-
-/*-------------------------------------------------------------*\
-| FILE: quicksort.c 
-\*-------------------------------------------------------------*/
-extern void mat_quicksort();
-extern void vec_quicksort();
-extern void pointer_mat_quicksort();
-
-/*-------------------------------------------------------------*\
-| FILE: search.c 
-\*-------------------------------------------------------------*/
-extern int mat_search();
-extern int vec_search();
-extern int pointer_mat_search();
-
 #endif
-#endif
-
 
 #ifdef __cplusplus
 }
 #endif
-
-

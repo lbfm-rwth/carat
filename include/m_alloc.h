@@ -37,7 +37,6 @@ extern "C" {
 || Sie sind hier untergebracht, da sie vor dem einbinden von          ||
 || 'arith_const' bekannt sein muessen.                                ||
 \*====================================================================*/
-#ifdef __STDC__
 void *m_alloc_d1(int );
 void *c_alloc_d1(int , int );
 void *re_alloc_d1(void *, int );
@@ -49,19 +48,6 @@ void *re_alloc_d2(void *, int );
 void fr_ee_d2(void *);
 
 void pointer_statistics(unsigned *,int);
-#else
-void *m_alloc_d1();
-void *c_alloc_d1();
-void *re_alloc_d1();
-void fr_ee_d1();
-
-void *m_alloc_d2();
-void *c_alloc_d2();
-void *re_alloc_d2();
-void fr_ee_d2();
-
-void pointer_statistics();
-#endif
 
 /*====================================================================*\
 || Pointer auf die verschiedenen m_alloc-Funktionen, die bei der Suche||
@@ -83,8 +69,6 @@ extern void (*fr_ee   ) (void *    );
 
 #endif /* #ifndef _MALLOC_ */
 
-
 #ifdef __cplusplus
 }
 #endif
-

@@ -6,11 +6,8 @@ extern "C" {
 #ifndef _SYMM_H_
 #define _SYMM_H_
 
-#ifndef _CARAT_TYPEDEF_H_
-#include"typedef.h"
-#endif
+#include "typedef.h"
 
-#ifdef __STDC__
 /*-------------------------------------------------------------*\
 | FILE: dsylv.c 
 \*-------------------------------------------------------------*/
@@ -34,32 +31,8 @@ extern matrix_TYP *short_vectors(matrix_TYP *mat, int length,
 \*-------------------------------------------------------------*/
 extern matrix_TYP *shortest(matrix_TYP *mat, int *min_norm);
 
-#else
-/*-------------------------------------------------------------*\
-| FILE: dsylv.c 
-\*-------------------------------------------------------------*/
-extern matrix_TYP *dsylv();
-extern int definite_test();
-
-/*-------------------------------------------------------------*\
-| FILE: rest_short.c 
-\*-------------------------------------------------------------*/
-extern matrix_TYP *rest_short();
-
-/*-------------------------------------------------------------*\
-| FILE: short.c 
-\*-------------------------------------------------------------*/
-extern matrix_TYP *short_vectors();
-
-/*-------------------------------------------------------------*\
-| FILE: shortest.c 
-\*-------------------------------------------------------------*/
-extern matrix_TYP *shortest();
-
-#endif
 #endif
 
 #ifdef __cplusplus
 }
 #endif
-

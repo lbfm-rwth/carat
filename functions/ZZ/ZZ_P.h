@@ -124,30 +124,24 @@ extern int verbose;
 extern int IDEM_NO;
 /*}}}  */
 
-#if defined(__STDC__)
-#define _ZZ_P_PROTO_( args ) args
-#else
-#define _ZZ_P_PROTO_( args ) ()
-#endif
+extern void ZZ_transpose_array(int **array, int size);
 
-extern void ZZ_transpose_array _ZZ_P_PROTO_((int **array, int size));
-
-extern void ZZ_intern _ZZ_P_PROTO_((matrix_TYP * Gram,
+extern void ZZ_intern(matrix_TYP * Gram,
 				    ZZ_data_t * data,
 				    ZZ_tree_t * tree,
-				    QtoZ_TYP * inzidenz)) ;
-extern void ZZ _ZZ_P_PROTO_((bravais_TYP * group,
+				    QtoZ_TYP * inzidenz);
+extern void ZZ(bravais_TYP * group,
 			     matrix_TYP * gram, 
 			     int *divisors,
 			     QtoZ_TYP *inzidenz,
 			     char *options,
 			     FILE *putputfile,
 			     int super_nr,
-			     int konst_flag)) ;
+			     int konst_flag);
 			
-extern bravais_TYP **get_groups _ZZ_P_PROTO_((bravais_TYP **ADGROUPS,
+extern bravais_TYP **get_groups(bravais_TYP **ADGROUPS,
                          int ad_no,
-                         int *number)) ;
+                         int *number);
 
 #endif /* _ZZ_P_H */
 

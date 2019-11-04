@@ -6,9 +6,7 @@ extern "C" {
 #ifndef _VORONOI_H_
 #define _VORONOI_H_
 
-#ifndef _CARAT_TYPEDEF_H_
-#include"typedef.h"
-#endif
+#include "typedef.h"
 
 typedef struct {
    matrix_TYP *gram;
@@ -30,7 +28,6 @@ typedef struct {
 } voronoi_TYP;
 
 
-#ifdef __STDC__
 /*********************************************************************\
 | FILE:  all_vor_neighbours.c
 \*********************************************************************/
@@ -118,86 +115,8 @@ extern matrix_TYP *is_z_equivalent_datei(bravais_TYP *G,bravais_TYP *Gtr,
 \****************************************************************************/
 extern void red_normal(bravais_TYP *G);
 
-
-#else
-/*********************************************************************\
-| FILE:  all_vor_neighbours.c
-\*********************************************************************/
-extern matrix_TYP *all_voronoi_neighbours();
-
-/*********************************************************************\
-| FILE:  calc_vor_data.c
-\*********************************************************************/
-extern void calc_voronoi_basics();
-extern void calc_voronoi_pol();
-extern void calc_voronoi_good_inv();
-extern void calc_voronoi_stab();
-extern matrix_TYP *calc_voronoi_isometry();
-extern void calc_voronoi_dir_reps();
-extern void calc_voronoi_complete();
-
-/*********************************************************************\
-@  FILE: first_perfect.c
-\*********************************************************************/
-extern matrix_TYP *first_perfect();
-
-/*********************************************************************\
-@  FILE: init_voronoi.c
-\*********************************************************************/
-extern voronoi_TYP *init_voronoi();
-extern void clear_voronoi();
-extern void put_voronoi();
-
-/****************************************************************************\
-@  FILE: normalizer.c
-\****************************************************************************/
-extern voronoi_TYP **normalizer();
-
-/************************************************************************\
-|  FILE: pair_red_inv.c
-\************************************************************************/
-extern matrix_TYP *pair_red_inv();
-
-/****************************************************************************\
-@  FILE: vor_neighbour.c:
-\****************************************************************************/
-extern matrix_TYP *voronoi_neighbour();
-
-/****************************************************************************\
-@  FILE: vor_vertices.c
-\****************************************************************************/
-extern matrix_TYP **voronoi_vertices();
-
-/****************************************************************************\
-@  FILE: bravais_flok.c
-\****************************************************************************/
-extern matrix_TYP *is_z_equivalent();
-
-
-matrix_TYP *extends_to_isometry();
-
-void transform_pair();
-
-int max_diagonal_entry();
-
-int neighbours();
-
-/****************************************************************************\
-@  FILE: bravais_flok_datei.c
-\****************************************************************************/
-extern matrix_TYP *is_z_equivalent_datei();
-
-/****************************************************************************\
-@  FILE: red_normal.c
-\****************************************************************************/
-extern void red_normal(bravais_TYP *G);
-
-
 #endif
-#endif
-
 
 #ifdef __cplusplus
 }
 #endif
-
