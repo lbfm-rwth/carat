@@ -529,7 +529,7 @@ int Fanz, Erzanz, *options;
 		{
 			if (Erz[i]->cols != dim || Erz[i]->rows != dim)
 			{
-				fprintf(stderr, "Error: dimension %d should be %d\n", n, dim);
+				fprintf(stderr, "Error: dimension %d should be %d\n", i, dim);
 				exit (3);
 			}
                         if((G[nG] = (int **)malloc(dim *sizeof(int *))) == 0)
@@ -1093,7 +1093,7 @@ int Erzanz, *options, Panz, Pdim;
 		{
 			if (Erz[i]->cols != dim || Erz[i]->rows != dim)
 			{
-				fprintf(stderr, "Error: dimension %d should be %d\n", n, dim);
+				fprintf(stderr, "Error: dimension %d should be %d\n", i, dim);
 				exit (3);
 			}
                         if((G[nG] = (int **)malloc(dim *sizeof(int *))) == 0)
