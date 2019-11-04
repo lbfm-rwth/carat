@@ -7,8 +7,6 @@
 #include <idem.h>
 #include <longtools.h>
 
-int INFO_LEVEL;
-extern int SFLAG;
 
 int main(int argc,char **argv){
 

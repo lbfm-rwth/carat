@@ -3,7 +3,6 @@
 #include "datei.h"
 #include "getput.h"
 
-int INFO_LEVEL;
 
 
 int main(int argc, char *argv[])

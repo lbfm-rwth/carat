@@ -2,7 +2,6 @@
 #include "matrix.h"
 #include "longtools.h"
 
-extern int INFO_LEVEL;
 
 /***************************************************************************
 @

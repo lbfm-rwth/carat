@@ -10,7 +10,6 @@
 #include "tietzetrans.h"
 #include "datei.h"
 
-extern int SFLAG;
 
 int main (int argc, char *argv[])
 {

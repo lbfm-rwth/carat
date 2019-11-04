@@ -16,9 +16,6 @@
 
 
 
-int INFO_LEVEL;
-extern int SFLAG;
-boolean GRAPH_DEBUG;
 
 
 int main (int argc, char *argv[])

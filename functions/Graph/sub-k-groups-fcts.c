@@ -20,8 +20,6 @@
 
 #define MYSIZE 1024
 
-/* boolean GRAPH = FALSE; */
-
 
 /* --------------------------------------------------------------------- */
 /* Konjugiere bravais_TYP                                                */

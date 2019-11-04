@@ -13,9 +13,6 @@
 #include "gmp.h"
 #include "longtools.h"
 
-int SFLAG;
-int INFO_LEVEL;
-boolean GRAPH = FALSE;
 
 
 int main (int argc, char *argv[])

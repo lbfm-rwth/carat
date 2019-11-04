@@ -15,9 +15,6 @@
 #include <name.h>
 
 
-int INFO_LEVEL;
-extern int SFLAG;
-boolean GRAPH_DEBUG;
 
 
 

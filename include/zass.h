@@ -7,13 +7,12 @@ extern "C" {
 
 #include "typedef.h"
 
-int INFO_LEVEL;
-
 typedef struct {
        long last;
        long speicher;
        long faktor;
-       long *pointer;} word;
+       long *pointer;
+} word;
 
 
 /**********************************************************************\

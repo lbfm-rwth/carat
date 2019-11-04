@@ -9,9 +9,6 @@
 #include <presentation.h>
 
 
-extern int INFO_LEVEL;
-extern int SFLAG;
-
 #define DEBUG FALSE
 
 

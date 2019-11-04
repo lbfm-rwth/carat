@@ -14,13 +14,8 @@
 #include "gmp.h"
 #include "longtools.h"
 
-boolean GRAPH = FALSE;
-int SFLAG;
-int INFO_LEVEL;
+
 int main (int argc, char *argv[])
-
-
-
 {
   
   bravais_TYP *P,

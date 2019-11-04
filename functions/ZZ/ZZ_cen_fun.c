@@ -14,7 +14,6 @@
 #include "ZZ_cen_fun_P.h"
 #include "datei.h"
 
-extern int IDEM_NO;
 int *SUB_VEC;
 matrix_TYP **PrI;
 QtoZ_konst_TYP *KONSTITUENTEN = NULL;

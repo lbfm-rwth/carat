@@ -8,7 +8,6 @@
 #include "getput.h"
 #include "sort.h"
 
-extern int INFO_LEVEL;
 
 /**************************************************************************
 @

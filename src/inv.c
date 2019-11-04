@@ -4,7 +4,6 @@
 #include"matrix.h"
 
 
-int SFLAG;
 
 int main (int argc, char *argv[])
 {

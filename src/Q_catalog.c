@@ -7,8 +7,6 @@
 #include "matrix.h"
 #include "datei.h"
 
-int SFLAG;
-int INFO_LEVEL;
 
 static void write_groups_to_file (int *write_list, database *database, char *string)
 {

@@ -4,7 +4,6 @@
 #include"matrix.h"
 #include"reduction.h"
 
-int INFO_LEVEL;
 
 
 int main (int argc, char *argv[])

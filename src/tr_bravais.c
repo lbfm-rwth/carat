@@ -5,7 +5,6 @@
 #include "matrix.h"
 #include "datei.h"
 
-int INFO_LEVEL;
 
 int main (int argc, char *argv[])
 {

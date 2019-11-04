@@ -10,8 +10,6 @@
 #include <datei.h>
 #include <presentation.h>
 
-int INFO_LEVEL;
-extern int SFLAG;
 
 matrix_TYP *translation_lattice(matrix_TYP **G,int number,matrix_TYP *P);
 

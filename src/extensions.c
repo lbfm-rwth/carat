@@ -11,8 +11,6 @@
 
 #define DEBUG FALSE
 
-int INFO_LEVEL;
-extern int SFLAG;
 
 
 static int is_trivial(bravais_TYP *G){

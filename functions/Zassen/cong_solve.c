@@ -5,7 +5,6 @@
 #include "tools.h"
 #include "zass.h"
 
-extern int INFO_LEVEL;
 
 matrix_TYP **cong_solve(matrix_TYP *A)
 /* loest das system linearer congruenzen A x = 0 ( mod Z^n) fuer

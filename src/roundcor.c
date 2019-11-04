@@ -36,8 +36,6 @@
 #include "roundtype.h"
 
 extern int SCOUNT;
-extern int INFO_LEVEL;
-extern int SFLAG;
 
 extern void old_as_new( derivedsg_TYP*, derivedsg_TYP*, int);
 extern derivedsg_TYP* copy_derivedsg( derivedsg_TYP*);

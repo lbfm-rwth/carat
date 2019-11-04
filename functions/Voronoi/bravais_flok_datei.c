@@ -12,7 +12,6 @@
 #include "tools.h"
 #include "datei.h"
 
-extern int INFO_LEVEL;
  
 matrix_TYP *is_z_equivalent_datei(bravais_TYP *G,bravais_TYP *G_tr,
           bravais_TYP *H,bravais_TYP *H_tr,voronoi_TYP ***gp,int *anz_gperfect)

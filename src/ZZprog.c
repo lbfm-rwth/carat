@@ -1,14 +1,8 @@
 #include "ZZ.h"
 #include "bravais.h"
 
-int INFO_LEVEL;
-extern int SFLAG;
-int IDEM_NO;
-boolean GRAPH = FALSE;
 
-extern char *optarg;
-extern int optind;
-FILE *outputfile;
+static FILE *outputfile;
 
 void 
 ZZ_usage (char *progname)
@@ -151,7 +145,6 @@ main (int argc, char *argv[])
      *  ANSI standard, i.e. getopt() :-(
      */
     read_header(argc, argv);
-    IDEM_NO = 0;
 
     if (is_option('D') && optionnumber('D') == 8){
        SFLAG = 1;
@@ -168,7 +161,7 @@ main (int argc, char *argv[])
     {
 	    int i;
 
-	    for ( i = optind; i < argc; i++) {
+	    for ( i = 0; i < argc; i++) {
 		    printf("argv[%d] = %s\n", i, argv[i]);
 	    }
     }

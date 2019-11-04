@@ -6,7 +6,6 @@
 #include <zass.h>
 #include <datei.h>
 
-int SFLAG;
 
 int main(int argc,char *argv[]){
 

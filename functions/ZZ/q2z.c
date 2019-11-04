@@ -13,9 +13,6 @@
 #include "graph.h"
 #include "datei.h"
 
-int IDEM_NO;
-extern int INFO_LEVEL;
-ZZ_super_TYP **SUPER_info, *SUPER_INFO;
 
 
 /* -------------------------------------------------------------------- */

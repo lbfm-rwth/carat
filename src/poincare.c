@@ -13,7 +13,6 @@
         extern char **FILENAMES;
         extern int FILEANZ;
 	
-int SFLAG;
 int main (int argc, char *argv[])
 {
   int			i,j;

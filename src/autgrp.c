@@ -5,8 +5,6 @@
 #include "datei.h"
 #include "matrix.h"
 
-int SFLAG;
-int INFO_LEVEL;
 
 int main (int argc, char *argv[])
 {
