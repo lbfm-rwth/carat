@@ -19,7 +19,7 @@ extern vertex_TYP *init_vertex(int dim, int wall_no) ;
 extern word_TYP *init_word(int dim);
 extern wall_TYP *init_wall(int dim);
 extern polyeder_TYP *init_polyeder(int vert_no, int wall_no);
-extern polyeder_TYP *get_polyeder(char *file_name);
+extern polyeder_TYP *get_polyeder(const char *file_name);
 extern void put_polyeder(polyeder_TYP *F);
 extern int wall_times_vertex(wall_TYP *w, vertex_TYP *v);
 extern void free_vertex(vertex_TYP **v);

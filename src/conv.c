@@ -10,7 +10,7 @@
 /* ---------------------------------------- */
 static void conv_mat_to_maple(matrix_TYP *A, 
                               int i,
-                              char *name){
+                              const char *name){
     int j, k;
 
 
@@ -47,7 +47,7 @@ static void conv_mat_to_maple(matrix_TYP *A,
 /* ---------------------------------------- */
 static void conv_mat_to_gap(matrix_TYP *A,
                             int i,
-                            char *name){
+                            const char *name){
    int j, k;
 
 
@@ -124,7 +124,7 @@ int main (int argc, char *argv[])
 
   bravais_TYP *G;
 
-  char *name;
+  const char *name;
 
 
   read_header(argc, argv);

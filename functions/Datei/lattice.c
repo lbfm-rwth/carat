@@ -2,7 +2,7 @@
 #include "datei.h"
 
 
-lattice_element **lattice(char *symb,int dim,int almost,int zclass,int *no,
+lattice_element **lattice(const char *symb,int dim,int almost,int zclass,int *no,
                           int OPTION)
 {
    lattice_element **res;

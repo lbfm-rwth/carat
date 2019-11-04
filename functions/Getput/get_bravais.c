@@ -24,7 +24,7 @@
 @
 \**************************************************************************/
 bravais_TYP *
-get_bravais (char *file_name)
+get_bravais (const char *file_name)
 
 {  
 

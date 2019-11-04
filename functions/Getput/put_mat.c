@@ -53,7 +53,7 @@
 @
  */
 void 
-put_mat (matrix_TYP *mat, char file_name[], char comment[], unsigned long options)
+put_mat (matrix_TYP *mat, const char file_name[], const char comment[], unsigned long options)
 {
 FILE *outfile;
 
@@ -91,7 +91,7 @@ FILE *outfile;
 \*--------------------------------------------------------------------*/
 
 void 
-fput_mat (FILE *outfile, matrix_TYP *mat, char comment[], unsigned long options)
+fput_mat (FILE *outfile, matrix_TYP *mat, const char comment[], unsigned long options)
 {  
 int *max_lenZ;
 flag_TYP flags;

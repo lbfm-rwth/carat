@@ -49,16 +49,16 @@ char *symbol(bravais_TYP *G,matrix_TYP *F);
 *  FILE: bravais_catalog.c
 **************************************************************************/
 
-symbol_out *read_symbol_from_string(char *symb);
+symbol_out *read_symbol_from_string(const char *symb);
 
-bravais_TYP *catalog_number(bravais_TYP *G,char *symb,matrix_TYP **TR,
+bravais_TYP *catalog_number(bravais_TYP *G,const char *symb,matrix_TYP **TR,
                             int *almost,int *zclass);
 
 /*************************************************************************
 *  FILE: v4_catalog.c
 **************************************************************************/
 
-bravais_TYP *catalog_number_v4(bravais_TYP *G,char *symb,matrix_TYP **TR,
+bravais_TYP *catalog_number_v4(bravais_TYP *G,const char *symb,matrix_TYP **TR,
                                int *almost,int *zclass);
 
 /*************************************************************************

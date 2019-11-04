@@ -50,7 +50,7 @@ extern int divide_by_gcd(matrix_TYP *A);
 /*--------------------------------------------------------------*\
 | FILE construct_mat.c 
 \*--------------------------------------------------------------*/
-extern matrix_TYP *init_mat(int rows, int cols, char *option);
+extern matrix_TYP *init_mat(int rows, int cols, const char *option);
 extern matrix_TYP *copy_mat( matrix_TYP *old );
 extern void free_mat (matrix_TYP *mat);
 extern void Check_mat(matrix_TYP *mat);

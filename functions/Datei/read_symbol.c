@@ -35,7 +35,7 @@ clear (char *merk)
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-symbol_out *read_symbol(char *file_name)
+symbol_out *read_symbol(const char *file_name)
 {
 char  string[80],
       *str;

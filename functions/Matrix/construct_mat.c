@@ -97,7 +97,7 @@ extern int act_prime;
 /*}}}  */
 /*{{{  Source-Code*/
 matrix_TYP *
-init_mat (int rows, int cols, char *option)
+init_mat (int rows, int cols, const char *option)
 {
 int i;
 matrix_TYP *mat;
@@ -207,13 +207,13 @@ matrix_TYP *new= NULL;
       if ( new->array.SZ )
       { 
         new->array.SZ= (int **)malloc2dim( old->rows, old->cols, sizeof(int) );
-        memcpy2dim( (char **)new->array.SZ, (char **)old->array.SZ,
+        memcpy2dim( (char **)new->array.SZ, (const char **)old->array.SZ,
                     old->rows, old->cols, sizeof(int) );
       }
       if ( new->array.N )
       { 
         new->array.N= (int **)malloc2dim( old->rows, old->cols, sizeof(int) );
-        memcpy2dim( (char **)new->array.N,(char **)old->array.N,
+        memcpy2dim( (char **)new->array.N,(const char **)old->array.N,
                     old->rows, old->cols, sizeof(int) );
       }
     }

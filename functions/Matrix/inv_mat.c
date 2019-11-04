@@ -499,7 +499,7 @@ matrix_TYP *inv;
   init_prime(mat->prime);
 
   M = (int **)malloc2dim( n, n, sizeof(int) );
-  memcpy2dim( (char **)M, (char **)mat->array.SZ, n, n, sizeof(int) );
+  memcpy2dim( (char **)M, (const char **)mat->array.SZ, n, n, sizeof(int) );
   II = (int **)calloc2dim( n, n, sizeof(int) );
   for ( i= 0; i< n; i ++) {
     II[i][i] = 1;

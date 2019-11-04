@@ -335,11 +335,11 @@ void ZZ_transpose_array (int **array, int size)
 @
 ******************************************************************************/
 
-static void scan_options (char *options, int *projections, FILE *outputfile)
+static void scan_options (const char *options, int *projections, FILE *outputfile)
 {
 	char *optp, *help;
 	int num_proj;
-	char *temp_name = "ZZ.tmp";
+	const char *temp_name = "ZZ.tmp";
 
 	SHORTLIST = FALSE;
 	ZCLASS = 0;
@@ -456,7 +456,7 @@ static void scan_options (char *options, int *projections, FILE *outputfile)
 }
 
 void
-ZZ (bravais_TYP *group, matrix_TYP *gram, int *divisors, QtoZ_TYP *inzidenz, char *options, FILE *outputfile, int super_nr, int konst_flag)
+ZZ (bravais_TYP *group, matrix_TYP *gram, int *divisors, QtoZ_TYP *inzidenz, const char *options, FILE *outputfile, int super_nr, int konst_flag)
 {
 	ZZ_data_t *data;
 	ZZ_tree_t *tree;

@@ -27,7 +27,7 @@
 @---------------------------------------------------------------------------
 @
 ****************************************************************************/
-bravais_TYP *brav_from_datei(char *symb,int almost,int zclass)
+bravais_TYP *brav_from_datei(const char *symb,int almost,int zclass)
 {
 
    bravais_TYP *RES;

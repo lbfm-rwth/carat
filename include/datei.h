@@ -20,7 +20,7 @@ typedef struct{
 /*-------------------------------------------------------------*\
 | FILE: brav_from_datei.c
 \*-------------------------------------------------------------*/
-bravais_TYP *brav_from_datei(char *symb,int almost,int zclass);
+bravais_TYP *brav_from_datei(const char *symb,int almost,int zclass);
 
 /*-------------------------------------------------------------*\
 | FILE: free_bravais.c 
@@ -30,7 +30,7 @@ extern void free_bravais( bravais_TYP *grp);
 /*-------------------------------------------------------------*\
 | FILE: get_symbol.c 
 \*-------------------------------------------------------------*/
-extern symbol_out *get_symbol ( char *file_name);
+extern symbol_out *get_symbol ( const char *file_name);
 
 /*-------------------------------------------------------------*\
 | FILE: get_zentr.c 
@@ -52,7 +52,7 @@ extern bravais_TYP *gittstabneu( bravais_TYP *grp, matrix_TYP *X);
 /*-------------------------------------------------------------*\
 | FILE: read_symbol.c 
 \*-------------------------------------------------------------*/
-extern symbol_out *read_symbol(char *file_name);
+extern symbol_out *read_symbol(const char *file_name);
 
 /*-------------------------------------------------------------*\
 | FILE: right_order.c
@@ -72,14 +72,14 @@ void fput_lattice_element(lattice_element *E,FILE *F);
 | FILE: lattice.c
 \*-------------------------------------------------------------*/
 
-lattice_element **lattice(char *symb,int dim,int almost,int zclass,int *no,
+lattice_element **lattice(const char *symb,int dim,int almost,int zclass,int *no,
                           int OPTION);
 
 /*------------------------------------------------------------*\
 | FILE: super_lattice.c
 \*------------------------------------------------------------*/
 
-lattice_element **super_lattice(char *symb,int dim,int almost,int zclass,
+lattice_element **super_lattice(const char *symb,int dim,int almost,int zclass,
 		int *no, int OPTION);
 
 /*------------------------------------------------------------*\

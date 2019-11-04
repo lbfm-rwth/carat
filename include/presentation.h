@@ -31,7 +31,7 @@ void check_base(bahn **s,
 |  FILE: put_word.c
 ***********************************************************************/
 void put_word(int *w,
-              char *O);
+              const char *O);
 
 #endif
 

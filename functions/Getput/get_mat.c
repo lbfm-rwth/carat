@@ -196,8 +196,7 @@ char  string[256], *str ;
 @
 \**************************************************************************/
 matrix_TYP *
-get_mat (char *file_name)
-
+get_mat (const char *file_name)
 {  
 matrix_TYP *mat;
 FILE *infile;
@@ -238,7 +237,7 @@ return ( mat );
 @-------------------------------------------------------------------------
  */
 matrix_TYP **
-mget_mat (char *file_name, int *anz)
+mget_mat (const char *file_name, int *anz)
 {  
 matrix_TYP **mat;
 FILE *infile;

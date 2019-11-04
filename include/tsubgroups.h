@@ -65,10 +65,10 @@ CARATname_TYP name_fct(bravais_TYP *R,
 
 void free_CARATname_TYP(CARATname_TYP Name);
 
-bravais_TYP *get_std_rep(char *filename,
+bravais_TYP *get_std_rep(const char *filename,
                          CARATname_TYP Name);
 
-matrix_TYP **get_words(char *pfad,
+matrix_TYP **get_words(const char *pfad,
                        CARATname_TYP Name,
 		       int aff_class_no,
 		       boolean aflag,

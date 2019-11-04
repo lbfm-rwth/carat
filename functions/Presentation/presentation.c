@@ -260,7 +260,7 @@ static int *relator2(int *w1,
 void put_presentation(int **w,
                       int l,
                       bravais_TYP *G,
-                      char *O){
+                      const char *O){
 
   int i;
 
