@@ -206,7 +206,7 @@ init_polyeder (int vert_no, int wall_no)
 @
 \**************************************************************************/
 polyeder_TYP *
-get_polyeder (char *file_name)
+get_polyeder (const char *file_name)
 {  
 int vertno, wallno;
 int dim,wn,i,j,c;

@@ -344,7 +344,7 @@ static matrix_TYP *normalize(matrix_TYP *g,int *dim,int flag)
 @------------------------------------------------------------------------------
 @
 *******************************************************************************/
-bravais_TYP *catalog_number_v4(bravais_TYP *G,char *symb,
+bravais_TYP *catalog_number_v4(bravais_TYP *G,const char *symb,
                             matrix_TYP **TR,int *almost,int *zclass)
 {
 

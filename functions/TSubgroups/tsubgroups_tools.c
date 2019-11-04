@@ -59,7 +59,7 @@ void free_TSUB_TYP(TSUB_TYP TSUB)
 /* pfad: Pfad, wo Q-Klassen-Vertreter ist                   */
 /* Name: CARAT-Name                                         */
 /* -------------------------------------------------------- */
-bravais_TYP *get_std_rep(char *pfad,
+bravais_TYP *get_std_rep(const char *pfad,
                          CARATname_TYP Name)
 {
    bravais_TYP *R;
@@ -102,7 +102,7 @@ bravais_TYP *get_std_rep(char *pfad,
 /*        dem affinen Normalisator                          */
 /* anzahl: speichere die Anzahl der t-Untergr. hier         */
 /* -------------------------------------------------------- */
-matrix_TYP **get_words(char *pfad,
+matrix_TYP **get_words(const char *pfad,
                        CARATname_TYP Name,
 		       int aff_class_no,
 		       boolean aflag,
@@ -231,22 +231,3 @@ matrix_TYP **get_words(char *pfad,
 
    return(mat);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

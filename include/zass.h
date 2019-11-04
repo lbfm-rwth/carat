@@ -53,8 +53,8 @@ extern matrix_TYP *convert_to_cozycle(matrix_TYP *x,
 void put_cocycle(matrix_TYP *COZ,
                  int dim,
                  int number,
-                 char *file,
-                 char *comment);
+                 const char *file,
+                 const char *comment);
 
 /*********************************************************************\
 | FILE: normalop.c

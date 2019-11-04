@@ -1,7 +1,7 @@
 #include "typedef.h"
 #include "datei.h"
 
-static int smaller(char *s1,char *s2)
+static int smaller(const char *s1,const char *s2)
 {
 
    int i,

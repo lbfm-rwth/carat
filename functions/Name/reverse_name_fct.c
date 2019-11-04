@@ -14,7 +14,7 @@
 #include "longtools.h"
 
 
-bravais_TYP *get_qclass_by_name(char *name,
+bravais_TYP *get_qclass_by_name(const char *name,
                                 matrix_TYP **PRES,
                                 int dim)
 {
@@ -289,7 +289,7 @@ bravais_TYP *get_affine_class_by_name(bravais_TYP *G,
 }
 
 
-bravais_TYP *reverse_name(char qname[1024],
+bravais_TYP *reverse_name(const char qname[1024],
                           int zname[2],
 			  MP_INT aff_name,
 			  int i,

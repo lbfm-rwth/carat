@@ -67,7 +67,7 @@ typedef struct
 |  FILE : HM_symbol.c
 **************************************************************************/
 
-void display_HM_symbol(char *qname,
+void display_HM_symbol(const char *qname,
                        int zname1,
                        int zname2,
                        MP_INT *aff_name);
@@ -155,7 +155,7 @@ matrix_TYP *z_class_inf(bravais_TYP *G,
 |  FILE: reverse_name_fct.c
 **************************************************************************/
 
-bravais_TYP *get_qclass_by_name(char *name,
+bravais_TYP *get_qclass_by_name(const char *name,
                                 matrix_TYP **PRES,
                                 int dim);
 
@@ -171,7 +171,7 @@ bravais_TYP *get_affine_class_by_name(bravais_TYP *G,
                                      MP_INT *aff_name,
                                      int check);
 
-bravais_TYP *reverse_name(char *qname,
+bravais_TYP *reverse_name(const char *qname,
                           int zname[2],
 			  MP_INT aff_name,
 			  int i,

@@ -24,7 +24,7 @@
 @
 \**************************************************************************/
 void 
-fput_bravais (FILE *outfile, bravais_TYP *G, char *comment)
+fput_bravais (FILE *outfile, bravais_TYP *G, const char *comment)
 {
   int i;
   
@@ -108,7 +108,7 @@ fput_bravais (FILE *outfile, bravais_TYP *G, char *comment)
 @
 \**************************************************************************/
 void 
-put_bravais (bravais_TYP *G, char *filename, char *comment)
+put_bravais (bravais_TYP *G, const char *filename, const char *comment)
 {
   int i;
   FILE *outfile;

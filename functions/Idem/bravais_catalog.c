@@ -18,7 +18,7 @@
 @
 *****************************************************************************/
 
-symbol_out *read_symbol_from_string(char *symb)
+symbol_out *read_symbol_from_string(const char *symb)
 {
 char  string[80],
       *str;
@@ -523,7 +523,7 @@ if (INFO_LEVEL & 4) printf("%s\n", erg->fn);
 @------------------------------------------------------------------------------
 @
 *****************************************************************************/
-bravais_TYP *catalog_number(bravais_TYP *G,char *symb,
+bravais_TYP *catalog_number(bravais_TYP *G,const char *symb,
                             matrix_TYP **TR,int *almost,int *zclass)
 {
 

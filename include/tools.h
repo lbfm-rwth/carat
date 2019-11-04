@@ -11,7 +11,7 @@ extern "C" {
 /*-------------------------------------------------------------*\
 | FILE: carat_exit.c 
 \*-------------------------------------------------------------*/
-extern void carat_exit(char *fmt, ...);
+extern void carat_exit(const char *fmt, ...);
 
 /*-------------------------------------------------------------*\
 | FILE: chin_remainder.c 
@@ -33,8 +33,8 @@ extern void itoasc(int n, char s[]);
 \*-------------------------------------------------------------*/
 extern char **calloc2dim(int r,int c,int size);
 extern char **malloc2dim(int r,int c,int size);
-extern void memcpy2dim(char **dest, char **src, int r,int c,int size);
-extern void memset2dim(char **dest, int r, int c, int size, char *value);
+extern void memcpy2dim(char **dest, const char **src, int r,int c,int size);
+extern void memset2dim(char **dest, int r, int c, int size, const char *value);
 extern void free2dim(char **old, int rows);
 
 /*-------------------------------------------------------------*\

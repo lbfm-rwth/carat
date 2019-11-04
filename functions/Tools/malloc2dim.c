@@ -125,7 +125,7 @@ int i, j;
 @-------------------------------------------------------------------------
 */
 void 
-memcpy2dim (char **dest, char **src, int r, int c, int size)
+memcpy2dim (char **dest, const char **src, int r, int c, int size)
 { 
 int i;
 
@@ -152,7 +152,7 @@ int i;
 @-------------------------------------------------------------------------
 */
 void 
-memset2dim (char **dest, int r, int c, int size, char *value)
+memset2dim (char **dest, int r, int c, int size, const char *value)
 { 
 int i, j;
 

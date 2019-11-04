@@ -25,7 +25,7 @@ extern void ZZ(bravais_TYP * group,
                      matrix_TYP * gram,
                      int *divisors,
 	             QtoZ_TYP *inzidenz,
-                     char *options,
+                     const char *options,
                      FILE* outputfile,
                      int super_nr,
                      int konst_flag);

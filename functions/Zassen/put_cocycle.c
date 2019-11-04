@@ -8,8 +8,8 @@
 void put_cocycle(matrix_TYP *COZ,
                  int dim,
                  int number,
-                 char *file,
-                 char *comment)
+                 const char *file,
+                 const char *comment)
 {
    int i,
        j;

@@ -103,7 +103,7 @@ extern matrix_TYP **long_solve_mat(matrix_TYP *A, matrix_TYP *B);
 /*-------------------------------------------------------------*\
 | FILE: dump_MP_mat.c
 \*-------------------------------------------------------------*/
-extern void dump_MP_mat(MP_INT **Mat, int rows, int cols, char *comment);
+extern void dump_MP_mat(MP_INT **Mat, int rows, int cols, const char *comment);
 
 #endif
 

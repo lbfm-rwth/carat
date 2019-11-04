@@ -3,7 +3,7 @@
 #include "matrix.h"
 #include "getput.h"
 
-lattice_element **super_lattice(char *symb,int dim,int almost,int zclass,
+lattice_element **super_lattice(const char *symb,int dim,int almost,int zclass,
 		int *no, int OPTION)
 {
 
