@@ -24,8 +24,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *long_qbase(Mat)
-matrix_TYP *Mat;
+matrix_TYP *
+long_qbase (matrix_TYP *Mat)
 {
   int i,j, rang, neurang, n;
   MP_INT **M;

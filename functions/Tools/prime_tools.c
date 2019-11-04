@@ -77,8 +77,8 @@ int act_prime= -1;
 
 /*}}}  */
 /*{{{  dummy*/
-static int dummy( a, b)
-int a,b; 
+static int 
+dummy (int a, int b) 
 { 
   fprintf(stderr,"You tried to use GF(p)-Arithmetic without calling init_prime(act_prime).\n");
   fprintf(stderr,"Currently, act_prime is set to %d, which is apparently not prime.\n", act_prime);
@@ -88,18 +88,16 @@ int a,b;
 
 /*}}}  */
 /*{{{  short_P*/
-static 
-int short_P(i,j)
-int i,j;
+static int 
+short_P (int i, int j)
 {
   return(P_MUL[i][j]);
 }
 
 /*}}}  */
 /*{{{  short_S*/
-static
-int short_S(i,j)
-int i,j;
+static int 
+short_S (int i, int j)
 {
 int k;
   return(P_ADD[i][j]);
@@ -107,18 +105,16 @@ int k;
 
 /*}}}  */
 /*{{{  int_P*/
-static
-int int_P(i,j)
-int i,j;
+static int 
+int_P (int i, int j)
 {
   return((i*j ==0 ) ? 0 : P_EXP[(P_LOG[i] + P_LOG[j]) % (act_prime-1)]);
 }
 
 /*}}}  */
 /*{{{  int_S*/
-static
-int int_S(i,j)
-int i,j;
+static int 
+int_S (int i, int j)
 {
 /* die "5" ist nur ein Sicherheitsfaktor */
   return((i+j+5*act_prime)%act_prime);
@@ -126,8 +122,8 @@ int i,j;
 
 /*}}}  */
 /*{{{  init_short_prime*/
-static
-void init_short_prime()
+static void 
+init_short_prime (void)
 {
 int j,k;
 
@@ -159,8 +155,8 @@ int j,k;
 }
 /*}}}  */
 /*{{{  init_int_prime*/
-static
-void init_int_prime()
+static void 
+init_int_prime (void)
 {
 int i,j,k,gt;
 int  *p_tmp;
@@ -222,7 +218,8 @@ int flag;
 }
 /*}}}  */
 /*{{{  cleanup_prime*/
-void cleanup_prime()
+void 
+cleanup_prime (void)
 {                    
 int i, j;
 
@@ -264,8 +261,8 @@ int i, j;
 }
 /*}}}  */
 /*{{{  init_prime*/
-void init_prime (prime)
-int prime;
+void 
+init_prime (int prime)
 {
 int j, k, number;
 

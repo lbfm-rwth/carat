@@ -80,9 +80,8 @@ void 		free_derivedsgcomp (derivedsg_TYP*);
 void 		dumpproduct (int*, int);
 
 
-void dumpproduct (prod, nprod)
-int* prod;
-int nprod;
+void 
+dumpproduct (int *prod, int nprod)
 {
 int i;
 for (i=0;i<nprod;i++)
@@ -92,8 +91,8 @@ for (i=0;i<nprod;i++)
 printf("\n");
 }
 
-void free_presentation( presentation )
-presentation_TYP* presentation;
+void 
+free_presentation (presentation_TYP *presentation)
 {
 int i;
 free_derivedsgcomp (presentation->generators);
@@ -120,8 +119,8 @@ free(presentation);
    Funktion, die eine Waendeliste erzeugt. 
    Parameter: Dimension des Raumes
 --------------------------------------------------------------------------*/
-wall_list_TYP* init_wall_list(dim)
-int dim;
+wall_list_TYP *
+init_wall_list (int dim)
 {
 wall_list_TYP* hilf;
 hilf= (wall_list_TYP*) malloc (sizeof(wall_list_TYP));
@@ -138,10 +137,8 @@ return(hilf);
    Parameter: Die zwei Waende die verglichen werden sollen und die Dimension
    des Raumes.   
 --------------------------------------------------------------------------*/
-int is_same_wall(wall1,wall2, dim)
-wall_Typ* wall1;
-wall_Typ* wall2;
-int dim;
+int 
+is_same_wall (wall_Typ *wall1, wall_Typ *wall2, int dim)
 {
 int i;
 for (i=0;i<dim;i++)
@@ -167,9 +164,8 @@ for (i=0;i<dim;i++)
 return(0);
 }
 */
-int is_greater_wall(wall1, wall2)
-wall_Typ* wall1;
-wall_Typ* wall2;
+int 
+is_greater_wall (wall_Typ *wall1, wall_Typ *wall2)
 {
 int i;
 if (wall1->dist>wall2->dist) return(1);
@@ -198,10 +194,8 @@ return(0);
     Funktion, die ueberprueft, ob die Wand wall bereits in der Liste walls
     vorhanden ist.   
 --------------------------------------------------------------------------*/
-int is_in_wall_list(walls, wall, index)
-wall_list_TYP* walls;
-wall_Typ* wall;
-int* index;
+int 
+is_in_wall_list (wall_list_TYP *walls, wall_Typ *wall, int *index)
 {
 int lauf=0;
 while (lauf!=nichts)
@@ -221,9 +215,8 @@ return(0);
    finden). Vergleichsoperation ist der Abstand zum Generierungsvektor, dessen
    wert in ->norm gespeichert ist. 
 -----------------------------------------------------------------------------*/
-void insert_wall(walls, newwall)
-wall_list_TYP* walls;
-wall_Typ* newwall;
+void 
+insert_wall (wall_list_TYP *walls, wall_Typ *newwall)
 {
 int lauf=0, laufalt;
 /* Neuen Speicherplatz anfordern falls noetig */
@@ -307,8 +300,8 @@ auskommentiert, weil lineare Liste zu langsam*/
 /*-------------------------------------------------------------------------
     Freigeben des Speicherplatzes einer Wand 
 --------------------------------------------------------------------------*/
-void free_wall_l(wall)
-wall_Typ *wall;
+void 
+free_wall_l (wall_Typ *wall)
 {
 free(wall->hplane);
 if (wall->nproduct!=0){
@@ -322,8 +315,8 @@ free(wall);
 /*-------------------------------------------------------------------------
    Freigeben des Speicherplatzes einer Waendeliste. 
 --------------------------------------------------------------------------*/
-void free_wall_list(walls)
-wall_list_TYP* walls;
+void 
+free_wall_list (wall_list_TYP *walls)
 {
 int i;
 for (i=0;i<walls->firstfree;i++)
@@ -337,8 +330,8 @@ free(walls);
 /*-------------------------------------------------------------------------
     Vektor initialisieren. 
 --------------------------------------------------------------------------*/
-int* init_vector(dim)
-int dim;
+int *
+init_vector (int dim)
 {
 int* hilf;
 hilf= (int*)calloc (dim,sizeof(int));
@@ -348,8 +341,8 @@ return(hilf);
 /*-------------------------------------------------------------------------
    Speicherplatz eines Vektors freigeben. 
 --------------------------------------------------------------------------*/
-void free_vector(vec)
-int* vec;
+void 
+free_vector (int *vec)
 {
 free(vec);
 }
@@ -360,10 +353,8 @@ free(vec);
    gehofft, dass er diese Eigenschaft hat. Ist der Stab nicht Eins bricht
    das Programm ab und es muss ein anderer Vektor ausprobiert werden. 
 --------------------------------------------------------------------------*/
-void set_vector(vec,dim,tries)
-int* vec;
-int dim;
-int tries;
+void 
+set_vector (int *vec, int dim, int tries)
 {
 int i;
 
@@ -383,9 +374,8 @@ for (i=2;i<dim;i++)
 /*-------------------------------------------------------------------------
    Konvertieren von bravais_TYP -> derivedsg_TYP 
 --------------------------------------------------------------------------*/
-void convert_bravais(brav,gen)
-bravais_TYP* brav;
-derivedsg_TYP* gen;
+void 
+convert_bravais (bravais_TYP *brav, derivedsg_TYP *gen)
 {
 int i;
 derived_TYP* hilf;
@@ -401,9 +391,8 @@ for (i=0;i<brav->gen_no;i++)
 /*-------------------------------------------------------------------------
     Kopieren einer Integerliste 
 --------------------------------------------------------------------------*/
-int* copy_product_r(prod, nprod)
-int* prod;
-int nprod;
+int *
+copy_product_r (int *prod, int nprod)
 {
 int* hilf;
 int i;
@@ -417,9 +406,8 @@ return(hilf);
     Subtrahieren zweier Vektoren, die in unterschiedlichen Typen gespeichert
     sind. 
 --------------------------------------------------------------------------*/
-int* subtract_vec (vec, matvec)
-int* vec;
-matrix_TYP* matvec; 
+int *
+subtract_vec (int *vec, matrix_TYP *matvec) 
 {
 int* hilf;
 int i;
@@ -435,9 +423,8 @@ return(hilf);
     Multiplizieren einer Matrix mit einem Vektor (der nicht im matrix_TYP
     vorliegt). 
 --------------------------------------------------------------------------*/
-int* multiply(mat, vec)
-matrix_TYP* mat;
-int* vec;
+int *
+multiply (matrix_TYP *mat, int *vec)
 {
 int* hilf;
 int i, j, sum;
@@ -457,9 +444,8 @@ return(hilf);
 /*-------------------------------------------------------------------------
    Addieren zweier Vectoren. 
 --------------------------------------------------------------------------*/
-void add_vec( vec, matvec )
-int* vec;
-matrix_TYP* matvec;
+void 
+add_vec (int *vec, matrix_TYP *matvec)
 {
 int i;
 for (i=0;i<matvec->rows;i++)
@@ -472,12 +458,8 @@ for (i=0;i<matvec->rows;i++)
     Erzeugen eines neuen Bahnelements, indem auf eine bereits bestehenden
     Wand ein Generator angewandt wird. Das ergbenis wird zurueckgegeben.  
 --------------------------------------------------------------------------*/
-wall_Typ* wall_operation(groupele, groupele_ind, wall,const_vec, genvector)
-derived_TYP* groupele;
-int groupele_ind;
-wall_Typ* wall;
-matrix_TYP* const_vec;
-int* genvector;
+wall_Typ *
+wall_operation (derived_TYP *groupele, int groupele_ind, wall_Typ *wall, matrix_TYP *const_vec, int *genvector)
 {
 wall_Typ* newwall;
 int* hilf_vec;
@@ -498,9 +480,8 @@ return(newwall);
 /*-------------------------------------------------------------------------
    Multiplikation eines Vektors mit einer Matrix. 
 --------------------------------------------------------------------------*/
-matrix_TYP* mat_vec_mul( mat, vec)
-matrix_TYP* mat;
-int* vec;
+matrix_TYP *
+mat_vec_mul (matrix_TYP *mat, int *vec)
 {
 matrix_TYP* hilf;
 int i, j, sum;
@@ -521,10 +502,8 @@ return(hilf);
    Bestimmen des Skalarproduktes zweier Vektoren (Grammatrix wird hier nicht
    benutzt.
 ----------------------------------------------------------------------------*/
-int distance( wallvec, vector, dim)
-int* wallvec;
-int* vector;
-int dim;
+int 
+distance (int *wallvec, int *vector, int dim)
 {
 int sum=0;
 int i,j;
@@ -559,11 +538,8 @@ return(abs(sum));
                        Halbraeume.
               grammatrix -- Eine Grammatrix des Zugrundeliegenden Raums.
 -------------------------------------------------------------------------*/
-void calc_walls(groupgen, genvector, walls, grammatrix)
-derivedsg_TYP* groupgen;
-int* genvector;
-wall_list_TYP* walls;
-matrix_TYP* grammatrix;
+void 
+calc_walls (derivedsg_TYP *groupgen, int *genvector, wall_list_TYP *walls, matrix_TYP *grammatrix)
 {
 int start, ende;
 int i, j;
@@ -621,8 +597,8 @@ free_mat(const_vec);
 /*-------------------------------------------------------------------------
    Ausgeben der Wanddaten. 
 --------------------------------------------------------------------------*/
-void dump_walls ( walls )
-wall_list_TYP* walls;
+void 
+dump_walls (wall_list_TYP *walls)
 {
 int i, j;
 printf(" Hplanes: \n");
@@ -637,9 +613,8 @@ for (i=0; i<walls->firstfree; i++)
 /*-------------------------------------------------------------------------
    Einlesen der Grammatrix. 
 --------------------------------------------------------------------------*/
-matrix_TYP* get_grammatrix(filename, dim)
-char* filename;
-int dim;
+matrix_TYP *
+get_grammatrix (char *filename, int dim)
 {
 matrix_TYP* hilf;
 FILE* infile;
@@ -652,10 +627,8 @@ return(hilf);
 
 /*
 */
-void testrep( groupgen, generators, dim)
-derivedsg_TYP* groupgen;
-derivedsg_TYP* generators;
-int dim;
+void 
+testrep (derivedsg_TYP *groupgen, derivedsg_TYP *generators, int dim)
 {
 int i,j;
 matrix_TYP* hilfm;
@@ -682,9 +655,8 @@ free(hilf);
 
 /*
 */
-void testrep_rel( presentation, dim)
-presentation_TYP* presentation;
-int dim;
+void 
+testrep_rel (presentation_TYP *presentation, int dim)
 {
 int i,j;
 matrix_TYP* hilfm;
@@ -721,9 +693,8 @@ free(hilf);
     Invertieren der Fundamentalbereichs-Erzeuger, da sonst die Darstellung
     als Produkt der urspruenglichen Erzeuger nicht stimmt.
 --------------------------------------------------------------------------*/
-void inverse_gen (presentation, orders)
-presentation_TYP* presentation;
-int* orders;
+void 
+inverse_gen (presentation_TYP *presentation, int *orders)
 {
 int i;
 int j;
@@ -759,9 +730,8 @@ dumprelators(presentation->relators, presentation->norelators);
 /*-------------------------------------------------------------------------
    Hauptprogramm. 
 --------------------------------------------------------------------------*/
-main(argc, argv)
-int argc;
-char **argv;
+int 
+main (int argc, char **argv)
 {
 int *genvector,
     *old_genvector,

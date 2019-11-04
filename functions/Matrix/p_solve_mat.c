@@ -29,10 +29,8 @@
 
 /*{{{}}}*/
 /*{{{  p_solve*/
-matrix_TYP **p_solve (anz, L_mat, R_mat, option)
-int *anz;
-matrix_TYP **L_mat, **R_mat ;
-int option;
+matrix_TYP **
+p_solve (int *anz, matrix_TYP **L_mat, matrix_TYP **R_mat, int option)
 {
 /*{{{  variables*/
 int **M, **N, *v, f, help, flag ;

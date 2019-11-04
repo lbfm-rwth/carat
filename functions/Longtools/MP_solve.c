@@ -28,9 +28,8 @@ extern int INFO_LEVEL;
 @-------------------------------------------------------------------------
 @
 \************************************************************************/
-MP_INT ***MP_solve_mat(M, rows, cols, B, Bcols, X1cols, X0kgv)
-MP_INT **M, **B, *X0kgv;
-int rows, cols, Bcols, *X1cols;
+MP_INT ***
+MP_solve_mat (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols, int *X1cols, MP_INT *X0kgv)
 {
    MP_INT **Mt, **Trf, ***erg, *Y, *Z;
    MP_INT kgv, altkgv, merk, merk1, g;

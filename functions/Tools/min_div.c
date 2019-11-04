@@ -22,8 +22,8 @@
 @-------------------------------------------------------------------------
  */
 
-int min_div(a,b) 
-int a,b;
+int 
+min_div (int a, int b)
 {
 int vorzeichen;
 int c = 0;

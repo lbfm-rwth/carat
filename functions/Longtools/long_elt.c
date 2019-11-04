@@ -35,8 +35,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *long_elt_mat(left_trans, Mat, right_trans)
-matrix_TYP *left_trans, *Mat, *right_trans;
+matrix_TYP *
+long_elt_mat (matrix_TYP *left_trans, matrix_TYP *Mat, matrix_TYP *right_trans)
 {
 
    int i,j,k,l, m, step, stepclear, flag;

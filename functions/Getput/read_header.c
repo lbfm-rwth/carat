@@ -73,9 +73,8 @@ int OPTIONANZ;
 
 
 
-void read_header(argc,argv)
-int argc;
-char *argv[];
+void 
+read_header (int argc, char *argv[])
 {
   int i;
   char *w;
@@ -111,8 +110,8 @@ char *argv[];
 } 
 
 
-int is_option(c)
-char c;
+int 
+is_option (int c)
 {
   int i;
   for(i=0;i<OPTIONANZ;i++)
@@ -124,8 +123,8 @@ char c;
 }
 
 
-int optionnumber(c)
-char c;
+int 
+optionnumber (int c)
 {
   int i;
   for(i=0;i<OPTIONANZ;i++)
@@ -136,7 +135,8 @@ char c;
   return(0);
 }
 
-void unread_header()
+void 
+unread_header (void)
 {
    free(FILENAMES);
    free(OPTIONS);

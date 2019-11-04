@@ -75,9 +75,8 @@ static int *perpvec;
 @-------------------------------------------------------------------------
 */
 
-matrix_TYP *pr_isom(F1, F2, Fanz, Erz, Erzanz, options)
-matrix_TYP **F1, **F2, **Erz;
-int Fanz, Erzanz, *options;
+matrix_TYP *
+pr_isom (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP **Erz, int Erzanz, int *options)
 {
   matrix_TYP *T, *X, *X1, **F, *SV1, *SV2;
   int i,j,k;

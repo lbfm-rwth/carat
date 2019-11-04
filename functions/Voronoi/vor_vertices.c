@@ -35,10 +35,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP **voronoi_vertices(form, grp, anz, form_min, SV_no)
-matrix_TYP *form;
-bravais_TYP *grp;
-int *anz, *form_min, *SV_no;
+matrix_TYP **
+voronoi_vertices (matrix_TYP *form, bravais_TYP *grp, int *anz, int *form_min, int *SV_no)
 {
     int min_norm, orbit_anz;
     int *subdiv, *svi;

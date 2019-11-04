@@ -92,9 +92,8 @@ static int *perpvec;
 @-------------------------------------------------------------------------
 */
 
-matrix_TYP *isometry(F1, F2, Fanz, SV1, SV2, Erz, Erzanz, options)
-matrix_TYP **F1, **F2, *SV1, *SV2, **Erz;
-int Fanz, Erzanz, *options;
+matrix_TYP *
+isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TYP *SV2, matrix_TYP **Erz, int Erzanz, int *options)
 {
 	FILE		*outfile;
 	bachpol		*bach;
@@ -684,9 +683,8 @@ int Fanz, Erzanz, *options;
 */
 
 
-matrix_TYP *perfect_normal_isometry(F1, F2, SV1, SV2, Erz, Erzanz, options, P, Panz, Pbase, Pdim)
-matrix_TYP *F1, *F2, *SV1, *SV2, **Erz, **P, **Pbase;
-int Erzanz, *options, Panz, Pdim;
+matrix_TYP *
+perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix_TYP *SV2, matrix_TYP **Erz, int Erzanz, int *options, matrix_TYP **P, int Panz, matrix_TYP **Pbase, int Pdim)
 {
 	FILE		*outfile;
 	bachpol		*bach;

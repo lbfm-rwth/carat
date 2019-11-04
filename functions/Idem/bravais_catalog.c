@@ -19,8 +19,7 @@ extern int INFO_LEVEL;
 @
 *****************************************************************************/
 
-symbol_out *read_symbol_from_string(symb)
-char *symb;
+symbol_out *read_symbol_from_string(char *symb)
 {
 char  string[80],
       slash, *str ;

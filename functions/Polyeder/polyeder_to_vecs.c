@@ -23,8 +23,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP **polyeder_to_vecs(P)
-polyeder_TYP *P;
+matrix_TYP **
+polyeder_to_vecs (polyeder_TYP *P)
 {
   int i,j, dim;
   matrix_TYP **M;

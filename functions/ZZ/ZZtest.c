@@ -9,8 +9,7 @@
 /*{{{}}} */
 /*{{{  ZZ_usage */
 void 
-ZZ_usage (progname)
-     char *progname;
+ZZ_usage (char *progname)
 {
   fprintf (stderr, "Usage: %s -bghl <#level> n <#number> pqrstu <file>\n\n", progname);
   fprintf (stderr, "-b  : Print only the matrices of change of base and their inverse.\n");
@@ -32,7 +31,7 @@ ZZ_usage (progname)
 
 
 void 
-foo ()
+foo (void)
 {
 /* printf("Hello world!\n"); */
 }
@@ -40,9 +39,7 @@ foo ()
 #ifndef TEST_PRIVATE
 /*{{{  main */
 void 
-main (argc, argv)
-     int argc;
-     char *argv[];
+main (int argc, char *argv[])
 {
   bravais_TYP *group;
   matrix_TYP *gram;
@@ -157,10 +154,7 @@ main (argc, argv)
 #else
 /*{{{  main      */
 void 
-main (argc, argv)
-
-     int argc;
-     char *argv[];
+main (int argc, char *argv[])
 {
   matrix_TYP *Gram, **help2;
   ZZ_data_t data;

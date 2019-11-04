@@ -12,14 +12,8 @@
 |   x[0],...,x[I-1],vec are correct) on CI, 
 |   returns their number (should be fp[I])
 \***************************************************************/
-static int cand(CI, I, x, V, F, fp, comb, bach, flags)
-veclist	V;
-invar	F;
-fpstruct fp;
-scpcomb	*comb;
-bachpol	*bach;
-flagstruct flags;
-int	*CI, I, *x;
+static int 
+cand (int *CI, int I, int *x, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags)
 {
 	int	i, j, k, dim, okp, okm, sign, nr, fail, num;
 	int	*vec, *scpvec, **xvec, **xbase, **Fxbase, DEP, len, rank, n;
@@ -249,14 +243,8 @@ int	*CI, I, *x;
 |   levels representatives for all orbits
 |   have been tested
 \**************************************************/
-static void autom(G, V, F, fp, comb, bach, flags)
-group	*G;
-veclist	V;
-invar	F;
-fpstruct fp;
-scpcomb	*comb;
-bachpol	*bach;
-flagstruct flags;
+static void 
+autom (group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags)
 {
 	FILE	*outfile;
 	int	i, j, dim, step, im, **C, nC, ***H, nH, **Ggng, found, try;
@@ -470,15 +458,8 @@ flagstruct flags;
 /***************************************************************\
 |	the heart of the program: the recursion	
 \***************************************************************/
-static int aut(step, x, C, G, V, F, fp, comb, bach, flags)
-group	*G;
-veclist	V;
-invar	F;
-fpstruct fp;
-scpcomb	*comb;
-bachpol	*bach;
-flagstruct flags;
-int	step, *x, **C;
+static int 
+aut (int step, int *x, int **C, group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags)
 {
 	int	i, j, dim, orb[1], found;
 

@@ -24,9 +24,8 @@
 \**************************************************************************/
 
 
-bravais_TYP *konj_bravais(B, T)
-bravais_TYP *B;
-matrix_TYP *T;
+bravais_TYP *
+konj_bravais (bravais_TYP *B, matrix_TYP *T)
 {
    int i,dim;
    bravais_TYP *G;

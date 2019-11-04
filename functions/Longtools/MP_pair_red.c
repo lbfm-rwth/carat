@@ -13,9 +13,8 @@
 
 
 
-static void MP_two_reduce(G, T, i, j, n)
-MP_INT **G, **T;
-int i, j, n;
+static void 
+MP_two_reduce (MP_INT **G, MP_INT **T, int i, int j, int n)
 {
    int k;
    MP_INT f, f1, f2;
@@ -76,9 +75,8 @@ int i, j, n;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void MP_pair_red(G, T, n)
-MP_INT **G, **T;
-int   n;
+void 
+MP_pair_red (MP_INT **G, MP_INT **T, int n)
 {
    int i,j,k, p1, p2;
    int reduced, red2;

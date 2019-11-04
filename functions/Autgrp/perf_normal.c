@@ -68,9 +68,8 @@ static int *perpvec;
 \*************************************************************************/
 
 
-bravais_TYP *autgrp(Fo, Foanz, SV, Erz, Erzanz, options)
-matrix_TYP **Fo, **Erz, *SV;
-int Foanz, Erzanz, *options;
+bravais_TYP *
+autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz, int *options)
 {
 	FILE		*outfile;
 	bachpol		*bach;
@@ -554,9 +553,8 @@ int Foanz, Erzanz, *options;
 
 
 
-bravais_TYP *perfect_normalizer(Fo, SV, Erz, Erzanz, options, P, Panz, Pdim, Pbase)
-matrix_TYP *Fo, **Erz, *SV, **P, **Pbase;
-int Erzanz, *options, Panz, Pdim;
+bravais_TYP *
+perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz, int *options, matrix_TYP **P, int Panz, int Pdim, matrix_TYP **Pbase)
 {
 	FILE		*outfile;
 	bachpol		*bach;

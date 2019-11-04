@@ -6,8 +6,8 @@
 |	compares the 1xn-vectors x and y lexicographically
 |	returns 1 if x > y, 0 if x = y, -1 if x < y
 \**********************************************************************/
-static int comp(x, y, n)
-int	*x, *y, n;
+static int 
+comp (int *x, int *y, int n)
 {
 	int	i;
   
@@ -31,9 +31,8 @@ int	*x, *y, n;
 |	  -(V.n+i) if v[i-1] < -vec < v[i]
 |	if the return value is negative, vec is replaced by -vec
 \**********************************************************************/
-static int numberof(vec, V)
-veclist	V;
-int	*vec;
+static int 
+numberof (int *vec, veclist V)
 {
 	int	i, sign, dim, low, high, search, cmp;
 
@@ -70,8 +69,8 @@ int	*vec;
 |	sorts the V->n vectors v[1]...v[V->n] and 
 |	deletes doublets, V->v is changed !!!
 \**********************************************************************/
-static void sortvecs(V)
-veclist	*V;
+static void 
+sortvecs (veclist *V)
 {
 	int	i, j;
 
@@ -102,8 +101,8 @@ veclist	*V;
 /**********************************************************************\
 |	standard quicksort
 \**********************************************************************/
-static void quicksort(v, inf, sup, dim)
-int	**v, inf, sup, dim;
+static void 
+quicksort (int **v, int inf, int sup, int dim)
 {
 	int	*tmp, low, med, high;
 

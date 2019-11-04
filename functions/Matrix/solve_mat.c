@@ -9,8 +9,8 @@ static int n;
 | M' = Trf * M is Gauss-reduced, with Trf integral with determinante +-1.
 \************************************************************************/
 
-int Trf_gauss(M, Trf)
-matrix_TYP *M, *Trf;
+int 
+Trf_gauss (matrix_TYP *M, matrix_TYP *Trf)
 {
   int i,j;
   int step;
@@ -107,8 +107,8 @@ matrix_TYP *M, *Trf;
 | solve_mat(M) calculates an Matrix X with MX^{tr} = 0, such that
 | the rows of X are a Z-basis of the solution space.
 \************************************************************************/
-matrix_TYP *solve_mat(M)
-matrix_TYP *M;
+matrix_TYP *
+solve_mat (matrix_TYP *M)
 {
    matrix_TYP *M1, *M1t, *Trf, *X, *erg;
    int i,rang, n;

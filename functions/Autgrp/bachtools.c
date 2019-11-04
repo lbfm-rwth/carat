@@ -13,10 +13,8 @@
 |	then the Bacher-polynomial is the sum over the w in list
 |	of the monomials X^n_w	
 \******************************************************************/
-static void bacher(pol, I, S, V, Fv)
-bachpol	*pol;
-veclist	V;
-int	I, S, **Fv;
+static void 
+bacher (bachpol *pol, int I, int S, veclist V, int **Fv)
 {
 	int	*list, nlist, *listxy, nxy, *counts;
 	int	i, j, k, s, dim, sign1, sign2, *vI;
@@ -112,10 +110,8 @@ int	I, S, **Fv;
 /******************************************************************\
 |  checks, whether the vector v[I] has the Bacher-polynomial pol
 \******************************************************************/
-static int bachcomp(pol, I, S, V, Fv)
-bachpol	pol;
-veclist	V;
-int	I, S, **Fv;
+static int 
+bachcomp (bachpol pol, int I, int S, veclist V, int **Fv)
 {
 	int	*co, *list, nlist, *listxy, nxy, count;
 	int	i, j, k, s, dim, sign1, sign2, *vI;
@@ -214,9 +210,8 @@ int	I, S, **Fv;
 /*************************************************\
 |	prints a Bacher-polynomial
 \*************************************************/
-static void fputbach(outfile, pol)
-FILE	*outfile;
-bachpol	pol;
+static void 
+fputbach (FILE *outfile, bachpol pol)
 {
 	int	i;
 

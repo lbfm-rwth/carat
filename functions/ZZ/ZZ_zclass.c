@@ -39,8 +39,8 @@ static int position(matrix_TYP **a,matrix_TYP *x,int n)
 
 
 /*------------------------------------------------------------------------------- */
-static matrix_TYP *is_conjugated_ZZ(n,new)
-     ZZ_node_t *n, *new;
+static matrix_TYP *
+is_conjugated_ZZ (ZZ_node_t *n, ZZ_node_t *new)
 {
 	int i,
 	    Nanz;
@@ -142,10 +142,8 @@ static matrix_TYP *is_conjugated_ZZ(n,new)
 
 
 /*------------------------------------------------------------------------------- */
-int deal_with_ZCLASS(data, tree, father, new)
-     ZZ_data_t *data;
-     ZZ_tree_t *tree;
-     ZZ_node_t *father, *new;
+int 
+deal_with_ZCLASS (ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *father, ZZ_node_t *new)
 {
 
 	int f,
@@ -311,14 +309,8 @@ int in_bahn(matrix_TYP *lattice,
 
 
 /*------------------------------------------------------------------------------- */
-int orbit_under_normalizer(data,tree,father,new,ii,jj,inzidenz,nr,nnn)
-     ZZ_data_t *data;
-     ZZ_tree_t *tree;
-     ZZ_node_t *father, *new;
-     int ii, jj;
-     QtoZ_TYP *inzidenz;
-     int *nr;
-     ZZ_node_t **nnn;
+int 
+orbit_under_normalizer (ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *father, ZZ_node_t *new, int ii, int jj, QtoZ_TYP *inzidenz, int *nr, ZZ_node_t **nnn)
 {
 
 	int i__,

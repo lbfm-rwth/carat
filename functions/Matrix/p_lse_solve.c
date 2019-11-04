@@ -27,9 +27,8 @@
 @  the transposed homogenous equation X * A^{tr} = 0.
 @  
 \********************************************************************/
-matrix_TYP **p_lse_solve(A, B, anz, p)
-matrix_TYP *A, *B;
-int *anz, p;
+matrix_TYP **
+p_lse_solve (matrix_TYP *A, matrix_TYP *B, int *anz, int p)
 {
   matrix_TYP **X;
   int **C, **D;

@@ -34,11 +34,8 @@
 @  The options are the same as in 'orbit_alg'.
 ******************************************/
 
-matrix_TYP *orbit_representatives(M, Manz, G, option, orbit_no, is_sorted)
-matrix_TYP **M;
-bravais_TYP *G;
-int *option, Manz, *orbit_no;
-int is_sorted;
+matrix_TYP *
+orbit_representatives (matrix_TYP **M, int Manz, bravais_TYP *G, int *option, int *orbit_no, int is_sorted)
 {
    matrix_TYP *erg, **or;
    int i,j,k, no;

@@ -18,8 +18,8 @@
 @
 @ long_mat_inv(A) calculates the matrix A^{-1} using GNU MP
 \************************************************************************/
-matrix_TYP *long_mat_inv(A)
-matrix_TYP *A;
+matrix_TYP *
+long_mat_inv (matrix_TYP *A)
 {
    MP_INT ***E, **MA, **MB;
    MP_INT Ekgv;

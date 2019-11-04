@@ -41,9 +41,8 @@
 \**************************************************************************/
 
 
-matrix_TYP **invar_space(B, Banz, fodim, symm_opt, epsilon, anz)
-matrix_TYP **B;
-int Banz, fodim, symm_opt, epsilon, *anz;
+matrix_TYP **
+invar_space (matrix_TYP **B, int Banz, int fodim, int symm_opt, int epsilon, int *anz)
 {
    int i,j,k,l, dim, ff, dd;
    matrix_TYP *pm, *pm1, **erg, *startmat, *invar;

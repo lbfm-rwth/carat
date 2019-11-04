@@ -25,10 +25,8 @@
 @
 \**************************************************************************/
 
-matrix_TYP *vec_to_form(v, F, Fanz)
-int *v;
-matrix_TYP **F;
-int Fanz;
+matrix_TYP *
+vec_to_form (int *v, matrix_TYP **F, int Fanz)
 {
    int i,j,k, n,m;
    matrix_TYP *M;
@@ -99,10 +97,8 @@ int Fanz;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void form_to_vec(erg, A, F, Fanz, denominator)
-int *erg;
-matrix_TYP *A, **F;
-int Fanz, *denominator;
+void 
+form_to_vec (int *erg, matrix_TYP *A, matrix_TYP **F, int Fanz, int *denominator)
 {
   int i,j,k,l, n,m,r;
   matrix_TYP *X, *X1, *Trf;
@@ -210,9 +206,8 @@ int Fanz, *denominator;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-vertex_TYP *form_to_vertex(A, F, Fanz, denominator)
-matrix_TYP *A, **F;
-int Fanz, *denominator;
+vertex_TYP *
+form_to_vertex (matrix_TYP *A, matrix_TYP **F, int Fanz, int *denominator)
 {
   vertex_TYP *v;
   extern vertex_TYP *init_vertex();
@@ -236,9 +231,8 @@ int Fanz, *denominator;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void form_to_vec_modular(erg, A, F, Fanz)
-matrix_TYP *A, **F;
-int *erg, Fanz;
+void 
+form_to_vec_modular (int *erg, matrix_TYP *A, matrix_TYP **F, int Fanz)
 {
 
   int i,j,k,l;

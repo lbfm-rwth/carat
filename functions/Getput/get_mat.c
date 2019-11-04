@@ -21,10 +21,8 @@
 \*-----------------------------------------------------------*/
 
 /*{{{  static alloc_N_if_neccessary*/
-static void
-alloc_N_if_neccessary( mat, flags )
-matrix_TYP *mat;
-flag_TYP *flags;
+static void 
+alloc_N_if_neccessary (matrix_TYP *mat, flag_TYP *flags)
 {
 
   if ( mat->array.N == NULL ) {
@@ -58,8 +56,8 @@ flag_TYP *flags;
 @
 \**************************************************************************/
 
-matrix_TYP *fget_mat (infile)
-FILE *infile;
+matrix_TYP *
+fget_mat (FILE *infile)
 
 {  
 int rM, cM;
@@ -197,8 +195,8 @@ char  string[256], *str ;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *get_mat (file_name)
-char *file_name;
+matrix_TYP *
+get_mat (char *file_name)
 
 {  
 matrix_TYP *mat;
@@ -239,9 +237,8 @@ return ( mat );
 @
 @-------------------------------------------------------------------------
  */
-matrix_TYP **mget_mat (file_name, anz)
-char *file_name;
-int *anz;
+matrix_TYP **
+mget_mat (char *file_name, int *anz)
 {  
 matrix_TYP **mat;
 FILE *infile;
@@ -285,9 +282,8 @@ FILE *infile;
 @-------------------------------------------------------------------------
 @
  */
-matrix_TYP **fmget_mat (infile, anz)
-FILE *infile;
-int *anz;
+matrix_TYP **
+fmget_mat (FILE *infile, int *anz)
 {  
 matrix_TYP **mat;
 char string[512];

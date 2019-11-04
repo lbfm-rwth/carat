@@ -109,10 +109,8 @@ static matrix_TYP *hash_mat;
 static int hash_prime = 130003;
 
 
-static void matrix_speichern(mat, L, listsize, anz)
-matrix_TYP *mat;
-matrix_TYP ***L;
-int *listsize, *anz;
+static void 
+matrix_speichern (matrix_TYP *mat, matrix_TYP ***L, int *listsize, int *anz)
 {
  int i, j, k;
 
@@ -138,12 +136,8 @@ extern matrix_TYP *init_mat();
 
 
 
-static struct baum *addbaum(mat, L, anz, verz, schonda)
-matrix_TYP *mat;
-matrix_TYP **L;
-int anz;
-struct baum *verz;
-int *schonda;
+static struct baum *
+addbaum (matrix_TYP *mat, matrix_TYP **L, int anz, struct baum *verz, int *schonda)
 {
   int vergleich;
   *schonda = -1;
@@ -167,12 +161,8 @@ int *schonda;
 }
 
 
-struct baum *hash_addbaum(mat, L, anz, verz, schonda, hashnumber, hashverz)
-matrix_TYP *mat;
-matrix_TYP **L;
-int anz;
-struct baum *verz;
-int *schonda, hashnumber, *hashverz;
+struct baum *
+hash_addbaum (matrix_TYP *mat, matrix_TYP **L, int anz, struct baum *verz, int *schonda, int hashnumber, int *hashverz)
 {
   int vergleich;
   *schonda = -1;
@@ -208,7 +198,8 @@ int *schonda, hashnumber, *hashverz;
 
 
 
-int *make_orbit_options()
+int *
+make_orbit_options (void)
 {
    int *option;
 
@@ -245,9 +236,8 @@ int *make_orbit_options()
  return(option);
 }
 
-static void qswap (mat, k, l)
-matrix_TYP *mat;
-int k,l;
+static void 
+qswap (matrix_TYP *mat, int k, int l)
 {  int *temp;
 
    temp            = mat->array.SZ[k];
@@ -259,10 +249,8 @@ int k,l;
 
 
 
-static void orbit_qsort (mat, left, right, orbit_comp)
-matrix_TYP *mat;
-int left, right;
-int (*orbit_comp)();
+static void 
+orbit_qsort (matrix_TYP *mat, int left, int right, int (*orbit_comp)())
 {  
    int i, last;
    void qswap ();
@@ -281,9 +269,8 @@ int (*orbit_comp)();
    orbit_qsort (mat, last + 1, right, orbit_comp);
 }
 
-static int orbit_comp (mat, k, l)
-matrix_TYP *mat;
-int k,l;
+static int 
+orbit_comp (matrix_TYP *mat, int k, int l)
 {  int i;
    int **M;
    int cM;
@@ -303,8 +290,8 @@ int k,l;
 
 
 
-static void standartisieren(mat)
-matrix_TYP *mat;
+static void 
+standartisieren (matrix_TYP *mat)
 {
   int   i,
         j,
@@ -360,8 +347,8 @@ matrix_TYP *mat;
 }
 
 
-static matrix_TYP *tr_mul(A, B)
-matrix_TYP *A, *B;
+static matrix_TYP *
+tr_mul (matrix_TYP *A, matrix_TYP *B)
 {
   int i, j, k;
   matrix_TYP *erg;
@@ -381,8 +368,8 @@ matrix_TYP *A, *B;
   return(erg);
 }
 
-static matrix_TYP *grp_mul(A,B)
-matrix_TYP *A, *B;
+static matrix_TYP *
+grp_mul (matrix_TYP *A, matrix_TYP *B)
 {
   matrix_TYP *erg;
   extern matrix_TYP *mat_mul();
@@ -393,9 +380,8 @@ matrix_TYP *A, *B;
   return(erg);
 }
 
-static matrix_TYP *operation(M, i)
-matrix_TYP *M;
-int i;
+static matrix_TYP *
+operation (matrix_TYP *M, int i)
 {
    matrix_TYP *erg, *waste, *waste1;
  
@@ -434,8 +420,8 @@ int i;
    return(erg);
 }
 
-static void make_hash_mat(M)
-matrix_TYP *M;
+static void 
+make_hash_mat (matrix_TYP *M)
 {
    int i,j;
    extern matrix_TYP *init_mat();
@@ -450,8 +436,8 @@ matrix_TYP *M;
 }
 
 
-static int hash_number(M)
-matrix_TYP *M;
+static int 
+hash_number (matrix_TYP *M)
 {
     int i,j,h;
     h = 0;
@@ -478,10 +464,8 @@ extern void free_baum(struct baum *p)
    return;
 }
 
-matrix_TYP **orbit_alg(M, G, S, option, length)
-bravais_TYP *G, *S;
-matrix_TYP *M;
-int *option, *length;
+matrix_TYP **
+orbit_alg (matrix_TYP *M, bravais_TYP *G, bravais_TYP *S, int *option, int *length)
 {
   int i,j,k;
   matrix_TYP **erg;

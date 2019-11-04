@@ -29,9 +29,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-bravais_TYP *gittstabneu(grp, X)
-bravais_TYP *grp;
-matrix_TYP *X;
+bravais_TYP *
+gittstabneu (bravais_TYP *grp, matrix_TYP *X)
 {
    int i,
        j,

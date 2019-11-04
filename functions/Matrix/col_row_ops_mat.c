@@ -20,9 +20,8 @@
 @ swaps the i. and j. row by swapping the pointers of the 2-dim. array
 @---------------------------------------------------------------------
  */
-void row_per(M, i, j)
-matrix_TYP *M;
-int i, j;
+void 
+row_per (matrix_TYP *M, int i, int j)
 {
 int *merk;
 
@@ -47,9 +46,8 @@ int *merk;
 @ same as row_per() for columns.
 @------------------------------------------------------------------------
  */
-void col_per(M, i, j)
-matrix_TYP *M;
-int i, j;
+void 
+col_per (matrix_TYP *M, int i, int j)
 {
 int k;
 int merk;
@@ -86,9 +84,8 @@ int merk;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void row_add(M, i, j, fac)
-matrix_TYP *M;
-int i, j, fac;
+void 
+row_add (matrix_TYP *M, int i, int j, int fac)
 {
 int k;
 
@@ -119,9 +116,8 @@ int k;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void col_add(M, i, j, fac)
-matrix_TYP *M;
-int i, j, fac;
+void 
+col_add (matrix_TYP *M, int i, int j, int fac)
 {
 int k;
 
@@ -157,9 +153,8 @@ int k;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void row_mul(M, i, fac)
-matrix_TYP *M;
-int i, fac;
+void 
+row_mul (matrix_TYP *M, int i, int fac)
 {
 int k;
 
@@ -194,9 +189,8 @@ int k;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void col_mul(M, i, fac)
-matrix_TYP *M;
-int i, fac;
+void 
+col_mul (matrix_TYP *M, int i, int fac)
 {
 int k;
 

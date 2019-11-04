@@ -25,13 +25,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void dump_MP_mat(Mat,rows,cols,comment)
-MP_INT **Mat;
-
-int rows,
-    cols;
-
-char *comment;
+void 
+dump_MP_mat (MP_INT **Mat, int rows, int cols, char *comment)
 
 {
 

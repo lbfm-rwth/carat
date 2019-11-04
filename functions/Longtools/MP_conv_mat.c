@@ -24,8 +24,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-MP_INT **matrix_to_MP_mat(M)
-matrix_TYP *M;
+MP_INT **
+matrix_to_MP_mat (matrix_TYP *M)
 {
   int i,j,m,n;
   MP_INT **erg;
@@ -64,9 +64,8 @@ matrix_TYP *M;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *MP_mat_to_matrix(M, rows, cols)
-MP_INT **M;
-int rows, cols;
+matrix_TYP *
+MP_mat_to_matrix (MP_INT **M, int rows, int cols)
 {
   int i,j;
   matrix_TYP *erg;
@@ -103,9 +102,8 @@ int rows, cols;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void write_MP_mat_to_matrix(Mat, mp)
-matrix_TYP *Mat;
-MP_INT **mp;
+void 
+write_MP_mat_to_matrix (matrix_TYP *Mat, MP_INT **mp)
 {
   int i,j;
   matrix_TYP *erg;
@@ -135,8 +133,8 @@ MP_INT **mp;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-MP_INT **init_MP_mat(rows, cols)
-int rows, cols;
+MP_INT **
+init_MP_mat (int rows, int cols)
 {
    MP_INT **E;
    int i,j;
@@ -172,9 +170,8 @@ int rows, cols;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void free_MP_mat(M, rows, cols)
-MP_INT **M;
-int rows, cols;
+void 
+free_MP_mat (MP_INT **M, int rows, int cols)
 {
  int i,j;
  for(i=0;i<rows;i++)

@@ -29,9 +29,7 @@
 @
 \**************************************************************************/
 
-symbol_out *get_symbol (file_name)
-char *file_name;
-
+symbol_out *get_symbol(char *file_name)
 {  
 
 char string[80];

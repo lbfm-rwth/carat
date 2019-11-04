@@ -21,8 +21,8 @@ static int *rv;
 static double *rvd, rk, max;
 
 
-static double scapr(i, j)
-int	i, j;
+static double 
+scapr (int i, int j)
 {
 	double	r, *moi, *moj;
 	int	l;
@@ -41,8 +41,8 @@ int	i, j;
 	return r;
 }
 
-static double orth(i)
-int	i;
+static double 
+orth (int i)
 {
 	double	r, *moi;
 	int	l;
@@ -58,8 +58,8 @@ int	i;
 |   makes model of the lattice (with same scalarproducts)
 \*__________________________________________________________*/
 
-static void modellmachen(a, e)
-int	a, e;
+static void 
+modellmachen (int a, int e)
 {
 	int	i, j;
 
@@ -79,8 +79,8 @@ int	a, e;
 	}
 }
 
-static int iround(r)
-double	r;
+static int 
+iround (double r)
 {
 	int	i;
 
@@ -91,8 +91,8 @@ double	r;
 	return i;
 }
 	
-static void red(k, l)
-int	k, l;
+static void 
+red (int k, int l)
 {
 	double	r, *mok, *mol;
 	int	i, ir, *bak, *bal, *grnk, *grnl;
@@ -119,8 +119,8 @@ int	k, l;
 	}
 }
 
-static int interchange(k)
-int	k;
+static int 
+interchange (int k)
 {
 	int	i, z, *zp;
 
@@ -148,8 +148,8 @@ int	k;
 		return k;
 }
 
-static void reduzieren(k)
-int	k;
+static void 
+reduzieren (int k)
 {
 	int	l;
 
@@ -161,9 +161,8 @@ int	k;
 /* prints the vector corresponding to vec */
 /* in the model and its length            */
 
-static void vecschr(m, d)
-int m;
-double	d;
+static void 
+vecschr (int m, double d)
 {
 	int	i, j, entry;
         int l;
@@ -200,9 +199,8 @@ double	d;
 
  /* recursion for finding shortest vectors */
 
-static void shrt(c, damage)
-int	c;
-double	damage;
+static void 
+shrt (int c, double damage)
 {
 	double	x, gec;
 	int	i, j;
@@ -283,10 +281,8 @@ int length, lengthmin, find_opt, count_opt, *anz;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *rest_short(mat, restvec, rkgv, zaehler, nenner, find_opt, count_opt, anz)
-matrix_TYP *mat;
-int *restvec, rkgv;
-int zaehler, nenner, find_opt, count_opt, *anz;
+matrix_TYP *
+rest_short (matrix_TYP *mat, int *restvec, int rkgv, int zaehler, int nenner, int find_opt, int count_opt, int *anz)
 {
 	int	i, j, ak, bk;
 	double	de, cst = 0.75;

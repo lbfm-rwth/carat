@@ -10,8 +10,8 @@ extern char *optarg;
 extern int optind;
 FILE *outputfile;
 
-void ZZ_usage (progname)
-     char *progname;
+void 
+ZZ_usage (char *progname)
 {
      printf("Usage: %s 'file1'  ['file2'] [-b] [-g] [-h] [-l=<#level>] \n"
                                   ,progname);
@@ -138,9 +138,8 @@ int parse_options(int argc,
    return errflag == 0;
 }
 
-int main (argc, argv)
-     int argc;
-     char *argv[];
+int 
+main (int argc, char *argv[])
 {
     bravais_TYP *group;
     matrix_TYP *gram = NULL,

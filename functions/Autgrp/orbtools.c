@@ -7,9 +7,8 @@
 |	the list is returned, where a negative number 
 |	indicates the negative of a vector
 \**********************************************************************/
-static int operate(nr, A, V)
-veclist	V;
-int	nr, **A;
+static int 
+operate (int nr, int **A, veclist V)
 {
 	int	i, im, *w;
 
@@ -39,9 +38,8 @@ int	nr, **A;
 |	orb, returns the length of the orbit, 
 |	the points are the indices in the list V.v
 \**********************************************************************/
-static int orbit(pt, npt, G, nG, V, orb)
-veclist	V;
-int	*pt, npt, ***G, nG, **orb;
+static int 
+orbit (int *pt, int npt, int ***G, int nG, veclist V, int **orb)
 {
 	int	i, norb, cnd, im, *flag;
 
@@ -84,9 +82,8 @@ int	*pt, npt, ***G, nG, **orb;
 |	checks, whether the orbit of pt under 
 |	the nG matrices in G has at least length orblen
 \**********************************************************************/
-static int orbitlen(pt, orblen, G, nG, V)
-veclist	V;
-int	pt, orblen, ***G, nG;
+static int 
+orbitlen (int pt, int orblen, int ***G, int nG, veclist V)
 {
 	int	i, len, cnd, im, *orb, *flag;
 
@@ -127,8 +124,8 @@ int	pt, orblen, ***G, nG;
 |	deletes the elements in orb2 from orb1, 
 |	an entry 0 marks the end of the list, returns the length of orb1
 \**********************************************************************/
-static int delete(orb1, l1, orb2, l2)
-int	*orb1, l1, *orb2, l2;
+static int 
+delete (int *orb1, int l1, int *orb2, int l2)
 {
 	int	i, j, len, o2i;
 
@@ -163,11 +160,8 @@ int	*orb1, l1, *orb2, l2;
 |	<G->g[0],...,G->g[i-1]>, G->ord[i] is the orbit
 |	length of fp.e[i] under <G->g[i],...,G->g[n-1]>
 \**********************************************************************/
-static void stab(I, G, fp, V)
-int I;
-group	*G;
-fpstruct fp;
-veclist	V;
+static void 
+stab (int I, group *G, fpstruct fp, veclist V)
 {
 	int	*orb, len, cnd, tmplen;
 	int	**w, *flag, ***H, ***Hj, **S, **tmp, ***Ggj;
@@ -371,8 +365,8 @@ veclist	V;
 |	generates the matrix X which has as row
 |	per[i] the vector nr. x[i] from the list v
 \**********************************************************************/
-static void matgen(x, X, dim, per, v)
-int	*x, **X, dim, *per, **v;
+static void 
+matgen (int *x, int **X, int dim, int *per, int **v)
 {
 	int	i, j, xi, *Xperi;
 
@@ -397,9 +391,8 @@ int	*x, **X, dim, *per, **v;
 |	x2 to an element X2 mapping e on p2 and G is a generator mapping 
 |	p1 on p2, then S = X1*G*X2^-1 stabilizes e
 \**********************************************************************/
-static void stabil(S, x1, x2, per, G, V)
-veclist	V;
-int	**S, *x1, *x2, *per, **G;
+static void 
+stabil (int **S, int *x1, int *x2, int *per, int **G, veclist V)
 {
 	int	i, dim, *x, **XG, **X2;
 

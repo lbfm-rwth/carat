@@ -36,11 +36,13 @@ STAT_LIST_TYPE **STAT_MALLOC_LIST = NULL;
 	||                                                            ||
 	\*============================================================*/
 
-void pointer_statistics(p, status)
-unsigned *p;
-int status;  /* 1: pointer wurde neu allociert
+void 
+pointer_statistics (
+    unsigned *p,
+    int status  /* 1: pointer wurde neu allociert
 				2: pointer wurde freigegeben
 				0: Ausgabe der Liste           */
+)
 {
 int i,j;
 int flag;
@@ -272,8 +274,8 @@ p[sizestore] = p[sizestore+1] = p[sizestore+2] = p[sizestore+3] = M_ALLOC_MAGIC;
 return(p);
 }
 
-void fr_ee_d1(p)
-int *p;
+void 
+fr_ee_d1 (int *p)
 {
 int oldsize;
 
@@ -307,8 +309,8 @@ free(p);
 	||                                                            ||
 	\*============================================================*/
 
-void add_pointer(p)
-unsigned *p;
+void 
+add_pointer (unsigned *p)
 
 {
 int i, oldsize;
@@ -348,8 +350,8 @@ if(PCOUNT == PERIOD) {
 	}
 }
 
-void delete_pointer(p)
-unsigned *p;
+void 
+delete_pointer (unsigned *p)
 
 {
 int i, oldsize;
@@ -465,8 +467,8 @@ add_pointer(p);
 return(p);
 }
 
-void fr_ee_d2(p)
-int *p;
+void 
+fr_ee_d2 (int *p)
 {
 int oldsize;
 

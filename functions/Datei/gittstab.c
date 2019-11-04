@@ -12,9 +12,8 @@
 @
 \**************************************************************************/
 
-static int is_in(M, B)
-matrix_TYP *M;
-bravais_TYP *B;
+static int 
+is_in (matrix_TYP *M, bravais_TYP *B)
 {
   int i,j,k;
   matrix_TYP *mtr;
@@ -50,10 +49,8 @@ bravais_TYP *B;
 |  If Y is not contained in the list, the result is -1, else           |
 |  the result is the position where Y was found.                       |
 \*--------------------------------------------------------------------*/
-static int such(Y, linv, anz)
-matrix_TYP *Y;
-matrix_TYP **linv;
-int anz;
+static int 
+such (matrix_TYP *Y, matrix_TYP **linv, int anz)
 {
    int schonda, i;
    matrix_TYP *G;
@@ -74,9 +71,8 @@ int anz;
 | if A is not the identity-matrix and A is not contained in the        |
 | geneator-matrices of stab the result is TRUE, else FALSE             |
 \*--------------------------------------------------------------------*/
-static int mat_such(stab, A)
-bravais_TYP *stab;
-int **A;
+static int 
+mat_such (bravais_TYP *stab, int **A)
 {
    int i,j,k, neu;
          i=0; j=0; neu = 0;
@@ -129,9 +125,8 @@ int **A;
 @
 @ calculates the intersection of zen^(-1)*B*zen with GL_n(Z)           |
 \**************************************************************************/
-bravais_TYP *Z_class(B, zen)
-bravais_TYP *B;
-matrix_TYP *zen;
+bravais_TYP *
+Z_class (bravais_TYP *B, matrix_TYP *zen)
 {
    int i,
        j;
@@ -302,9 +297,8 @@ matrix_TYP *zen;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-bravais_TYP *gittstab(grp, X)
-bravais_TYP *grp;
-matrix_TYP *X;
+bravais_TYP *
+gittstab (bravais_TYP *grp, matrix_TYP *X)
 {
    int i, j, k;
    matrix_TYP **list;

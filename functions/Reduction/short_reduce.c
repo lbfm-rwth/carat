@@ -30,8 +30,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *short_reduce(A, SV, Trf)
-matrix_TYP *A, *SV, *Trf;
+matrix_TYP *
+short_reduce (matrix_TYP *A, matrix_TYP *SV, matrix_TYP *Trf)
 {
 
    int step, i,j,k,l, dim;
@@ -239,8 +239,8 @@ matrix_TYP *A, *SV, *Trf;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *pr_short_red(A, Trf)
-matrix_TYP *A, *Trf;
+matrix_TYP *
+pr_short_red (matrix_TYP *A, matrix_TYP *Trf)
 {
    matrix_TYP *Aneu, *Aneu1, *Aneu2, *SV;
    int i,j,k, min, max, min1, dim;

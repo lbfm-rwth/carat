@@ -3,8 +3,8 @@
 #include "matrix.h"
 #include "polyeder.h"
 
-void vertex_standard(v)
-vertex_TYP *v;
+void 
+vertex_standard (vertex_TYP *v)
 {
   int i,j;
   int w1;
@@ -80,9 +80,8 @@ int *count;
 }
 
 
-void renumerate(v,test,l)
-vertex_TYP *v;
-int *test,l;
+void 
+renumerate (vertex_TYP *v, int *test, int l)
 {
   int i,a;
   for(i=0;i<v->wall_no;i++)
@@ -93,9 +92,8 @@ int *test,l;
 }
 
 
-void wallAdd_vertex(i, v)
-int i;
-vertex_TYP *v;
+void 
+wallAdd_vertex (int i, vertex_TYP *v)
 {
   if(v->wall_SIZE == 0)
   {
@@ -112,9 +110,8 @@ vertex_TYP *v;
 }
 
 
-void streichen(v, test)
-vertex_TYP *v;
-int *test;
+void 
+streichen (vertex_TYP *v, int *test)
 {
  int i,d;
 
@@ -130,9 +127,8 @@ int *test;
 }
   
 
-static int is_element(v, w)
-vertex_TYP *v;
-int w;
+static int 
+is_element (vertex_TYP *v, int w)
 {
   int o,u,t;
   o=w;

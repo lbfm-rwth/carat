@@ -45,11 +45,8 @@ static int suche_mat(matrix_TYP *mat,
 
 
 /*------------------------------------------------------------------------------- */
-void ZZ_intern (Gram, data, tree, inzidenz)
-     matrix_TYP *Gram;
-     ZZ_data_t *data;
-     ZZ_tree_t *tree;
-     QtoZ_TYP *inzidenz;
+void 
+ZZ_intern (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, QtoZ_TYP *inzidenz)
 {
     ZZ_node_t *act, *new, *nnn;
     int g, i, j, k, l, m, n, d, di, end_num, act_anz, flag, nr, NEU, zahl, flagge;
@@ -458,15 +455,8 @@ static void scan_options (char *options, int *projections, FILE *outputfile)
 	}
 }
 
-void ZZ(group, gram, divisors, inzidenz, options, outputfile, super_nr, konst_flag)
-     bravais_TYP *group;
-     matrix_TYP *gram;
-     int *divisors;
-     QtoZ_TYP *inzidenz;
-     char *options;
-     FILE *outputfile;
-     int super_nr;
-     int konst_flag;
+void
+ZZ (bravais_TYP *group, matrix_TYP *gram, int *divisors, QtoZ_TYP *inzidenz, char *options, FILE *outputfile, int super_nr, int konst_flag)
 {
 	ZZ_data_t *data;
 	ZZ_tree_t *tree;

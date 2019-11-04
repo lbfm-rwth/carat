@@ -27,9 +27,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *normlin(Fo, N, fdim)
-matrix_TYP **Fo, *N;
-int fdim;
+matrix_TYP *
+normlin (matrix_TYP **Fo, matrix_TYP *N, int fdim)
 {
   int i,j,k, dim;
   matrix_TYP *A, *waste, *erg, *Ntr;

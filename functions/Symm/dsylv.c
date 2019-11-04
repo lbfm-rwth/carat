@@ -13,8 +13,8 @@
 static  double eps = 0.000001; */
 static  double eps = 0.00000000001;
 
-static double **mat_to_double(M)
-matrix_TYP *M;
+static double **
+mat_to_double (matrix_TYP *M)
 {
   int i,j;
   double **D;
@@ -38,9 +38,8 @@ matrix_TYP *M;
 }
 
 
-static int pivot(A, step, n)
-double **A;
-int step, n;
+static int 
+pivot (double **A, int step, int n)
 {
   int i,j,k, found;
   double max;
@@ -123,9 +122,8 @@ int step, n;
 }
 
 
-static void col_clear(A, step, n)
-double **A;
-int step, n;
+static void 
+col_clear (double **A, int step, int n)
 {
    int i,j;
    double f;
@@ -155,9 +153,8 @@ int step, n;
    }
 }
 
-static void double_symmat_put(D,n)
-double **D;
-int n;
+static void 
+double_symmat_put (double **D, int n)
 {
   int i,j;
   for(i=0;i<n;i++)
@@ -169,9 +166,8 @@ int n;
 }
 
 
-static int diag_definite_test(D, n)
-double **D;
-int n;
+static int 
+diag_definite_test (double **D, int n)
 {
   int i;
   int o,u,z;
@@ -225,8 +221,8 @@ int n;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *dsylv(M)
-matrix_TYP *M;
+matrix_TYP *
+dsylv (matrix_TYP *M)
 {
   int i,n,step, nonzero;
   double **D;
@@ -292,8 +288,8 @@ matrix_TYP *M;
 @
 \**************************************************************************/
 
-int definite_test(M)
-matrix_TYP *M;
+int 
+definite_test (matrix_TYP *M)
 {
   int i,n,step, nonzero;
   double **D;

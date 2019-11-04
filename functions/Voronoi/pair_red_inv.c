@@ -26,8 +26,8 @@
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *pair_red_inv(A, T)
-matrix_TYP *A, *T;
+matrix_TYP *
+pair_red_inv (matrix_TYP *A, matrix_TYP *T)
 {
    MP_INT ***E, **MA, **MB, **Trf;
    MP_INT Ekgv;

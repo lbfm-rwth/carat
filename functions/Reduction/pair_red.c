@@ -12,8 +12,8 @@
 \**************************************************************************/
 
 
-static void two_reduce(G, T, i, j, n)
-int **G, **T, i, j, n;
+static void 
+two_reduce (int **G, int **T, int i, int j, int n)
 {
    int k, f;
   
@@ -48,8 +48,8 @@ int **G, **T, i, j, n;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-void pr_red(G, T, n)
-int **G, **T, n;
+void 
+pr_red (int **G, int **T, int n)
 {
    int i,j,k, a;
    int reduced, red2;
@@ -157,8 +157,8 @@ int **G, **T, n;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *pair_red(Gram, Tr)
-matrix_TYP *Gram, *Tr;
+matrix_TYP *
+pair_red (matrix_TYP *Gram, matrix_TYP *Tr)
 {
   int i,j;
   int **G, **T;

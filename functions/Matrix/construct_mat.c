@@ -96,9 +96,8 @@ extern int act_prime;
 */
 /*}}}  */
 /*{{{  Source-Code*/
-matrix_TYP *init_mat(rows, cols, option)
-int cols, rows;
-char *option;
+matrix_TYP *
+init_mat (int rows, int cols, char *option)
 {
 int i;
 matrix_TYP *mat;
@@ -194,8 +193,8 @@ char *tempN;
  @-----------------------------------------------------------------
 */
 
-matrix_TYP *copy_mat( old )
-matrix_TYP *old;
+matrix_TYP *
+copy_mat (matrix_TYP *old)
 { 
 matrix_TYP *new= NULL;
 
@@ -234,8 +233,8 @@ matrix_TYP *new= NULL;
  @--------------------------------------------------------------
 */
 
-void free_mat (mat)
-matrix_TYP *mat;
+void 
+free_mat (matrix_TYP *mat)
 {  
 
   if ( mat->array.N )
@@ -262,8 +261,8 @@ matrix_TYP *mat;
  @--------------------------------------------------------------
 */
 
-void Check_mat(mat)
-matrix_TYP *mat;
+void 
+Check_mat (matrix_TYP *mat)
 {
 int i,j;
 int g;

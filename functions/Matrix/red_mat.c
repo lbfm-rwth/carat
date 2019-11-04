@@ -13,8 +13,8 @@
 #if 0
 /*{{{  */
 
-static void sdec_mat(mat, trf)
-matrix_TYP *mat, *trf;
+static void 
+sdec_mat (matrix_TYP *mat, matrix_TYP *trf)
 
 {
 int dim, i, j, flag;
@@ -62,8 +62,8 @@ free(m1);
 /*}}}  */
 #else
 /*{{{   from ldec_mat*/
-static void sdec_mat(mat, trf)
-matrix_TYP *mat, *trf;
+static void 
+sdec_mat (matrix_TYP *mat, matrix_TYP *trf)
 {
 int j,dim, i, flag;
 int **M;
@@ -185,8 +185,8 @@ boolean flag = 0;
 
 /*{{{}}}*/
 /*{{{  smat_red*/
-static matrix_TYP *smat_red (mat)
-matrix_TYP *mat;
+static matrix_TYP *
+smat_red (matrix_TYP *mat)
 {
 int  **M, *M_i, *M_j, **m1;
 rational *per, temp;
@@ -336,14 +336,14 @@ matrix_TYP *taM;
 @---------------------------------------------------------------------------
 @
 \**************************************************************************/
-matrix_TYP *mat_red(Mat)
-matrix_TYP *Mat;
+matrix_TYP *
+mat_red (matrix_TYP *Mat)
 {
   return smat_red(Mat);
 }
 
-void dec_mat(Mat,Trf)
-matrix_TYP *Mat, *Trf;
+void 
+dec_mat (matrix_TYP *Mat, matrix_TYP *Trf)
 {
   sdec_mat(Mat,Trf);
 }
