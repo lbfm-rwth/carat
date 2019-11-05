@@ -35,7 +35,7 @@ int main (int argc, char *argv[])
         G = get_bravais(FILENAMES[1]);
         for(i=0;i<Mat_anz;i++)
         {
-           V = voronoi_vertices(Mat[i], G, &V_anz, &j);
+           V = voronoi_vertices(Mat[i], G, &V_anz, &j, &j);
            printf("#%d\n", V_anz);
            for(j=0;j<V_anz;j++)
            {
