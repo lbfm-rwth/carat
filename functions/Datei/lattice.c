@@ -12,11 +12,10 @@ lattice_element **lattice(const char *symb,int dim,int almost,int zclass,int *no
    int i, c;
 
    /* saves space on the stack */
-   static char filename[1024], format[1024];
+   static char filename[1024];
 
    /* get the appropiate filename */
-   get_data_dir(format, "tables/lattices/dim%d/%s%s_%d_%d");
-   sprintf(filename, format, dim, "lattice_", symb, almost, zclass);
+   sprintf(filename, "%s/tables/lattices/dim%d/%s%s_%d_%d", get_data_dir(), dim, "lattice_", symb, almost, zclass);
 
    infile = fopen(filename,"r");
 

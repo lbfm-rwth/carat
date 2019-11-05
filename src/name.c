@@ -100,7 +100,7 @@ int main (int argc, char *argv[])
      P = point_group(R,2);
   }
 
-  get_data_dir(dbname, "tables/qcatalog/data");
+  sprintf(dbname, "%s/tables/qcatalog/data", get_data_dir());
   database = load_database (dbname, P->dim);
 
   T = q_class_inf (P,database,qname,symb,&DATAQ,&PRES,FALSE);

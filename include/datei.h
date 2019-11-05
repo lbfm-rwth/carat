@@ -86,7 +86,7 @@ lattice_element **super_lattice(const char *symb,int dim,int almost,int zclass,
 | FILE: get_data_dir.c
 \*------------------------------------------------------------*/
 
-void get_data_dir(char *result, const char *str);
+const char *get_data_dir(void);
 
 #endif
 
