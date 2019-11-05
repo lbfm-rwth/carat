@@ -30,8 +30,7 @@ void free_TSubgroup_TYP(TSubgroup_TYP *sbg)
 /* -------------------------------------------------------- */
 void free_CARATname_TYP(CARATname_TYP Name)
 {
-   if (&Name.aff_name)
-      mpz_clear(&Name.aff_name);
+   mpz_clear(&Name.aff_name);
    if (Name.trafo)
       free_mat(Name.trafo);
 }
