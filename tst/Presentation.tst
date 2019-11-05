@@ -1,3 +1,5 @@
+#!/bin/sh
+set -e
 
 echo "### Test Presentation"
 ../bin/carat/Presentation grp1.dat

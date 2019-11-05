@@ -1,3 +1,6 @@
+#!/bin/sh
+set -e
+
 echo "### Test Ex10-1"
 ../bin/carat/Bravais_catalog << EOF
 6-1

@@ -1,3 +1,5 @@
+#!/bin/sh
+set -e
 
 # Testing numbering of Z-classes
 echo "### Test QtoZ"

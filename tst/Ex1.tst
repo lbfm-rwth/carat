@@ -1,3 +1,5 @@
+#!/bin/sh
+set -e
 
 echo "### Test Ex1-1"
 ../bin/carat/Bravais_catalog << EOF

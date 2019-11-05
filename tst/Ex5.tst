@@ -1,3 +1,5 @@
+#!/bin/sh
+set -e
 
 echo "### Test Ex5-1"
 ../bin/carat/Extract Ex5_g

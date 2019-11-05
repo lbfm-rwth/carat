@@ -1,3 +1,5 @@
+#!/bin/sh
+set -e
 
 echo "### Test Ex12-1"
 ../bin/carat/Q_catalog << EOF

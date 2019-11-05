@@ -1,3 +1,6 @@
+#!/bin/sh
+set -e
+
 # This is a CARAT test file. It must have extension `.tst`. 
 # Comments and blank lines are ignored. For a test file named 
 # `testfile.tst`, the correct output of `bash testfile.tst`

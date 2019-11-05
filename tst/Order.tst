@@ -1,3 +1,5 @@
+#!/bin/sh
+set -e
 
 echo "### Test Order"
 ../bin/carat/Order grp1.dat

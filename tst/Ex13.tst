@@ -1,3 +1,5 @@
+#!/bin/sh
+set -e
 
 echo "### Test Ex13-1"
 ../bin/carat/Graph Ex13_G

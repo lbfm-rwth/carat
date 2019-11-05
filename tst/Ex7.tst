@@ -1,3 +1,5 @@
+#!/bin/sh
+set -e
 
 echo "### Test Ex7-1"
 ../bin/carat/Normalizer Ex7_g

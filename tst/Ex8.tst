@@ -1,3 +1,5 @@
+#!/bin/sh
+set -e
 
 echo "### Test Ex8-1"
 ../bin/carat/Aut_grp Ex8_f

@@ -1,3 +1,5 @@
+#!/bin/sh
+set -e
 
 # compared to Ex4_gn, the result has a different set of normalizer generators,
 # but the normalizer is the same
