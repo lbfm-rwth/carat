@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
    matrix_TYP *A, *P, *M, *S;
    int i,j;
    int *av, *pv;
-   int Gdim, Fdim;
+   int Fdim;
    int rc, lc, g;
 
         extern char **FILENAMES;
@@ -43,7 +43,6 @@ int main(int argc, char *argv[])
         G = get_bravais(FILENAMES[0]);
         Gtr = get_bravais(FILENAMES[1]);
         A = get_mat(FILENAMES[2]);
-        Gdim = G->form[0]->cols;
         Fdim = G->form_no;
         S = trace_bifo(G->form, Gtr->form, Fdim);
         M = all_voronoi_neighbours(A, G, Gtr->form, S);

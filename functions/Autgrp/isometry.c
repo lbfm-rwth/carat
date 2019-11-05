@@ -695,7 +695,7 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 	fpstruct	fp;
 	int		dim, max, fail, *vec;
 	int		***G, nG, ngen, **sumveclist, **sumvecbase;
-	int		i, j, k, *Vvi, *Vvj, **Fvi, *Fvij, **FAi, nV1;
+	int		i, j, k, *Vvi, *Vvj, **Fvi, *Fvij, **FAi;
 	matrix_TYP	*erg, *erg1;
 
         extern int pointer_lower_triangular_mat_comp();
@@ -947,7 +947,6 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 		}
 	}
 /* the vectors of the first lattice are no longer required, only their number */
-	nV1 = V.n;
         for(i=0;i<=V.n;i++)
           free(V.v[i]);
         free(V.v);

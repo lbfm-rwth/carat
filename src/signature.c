@@ -8,7 +8,7 @@ int main (int argc, char *argv[])
 {
 
 	matrix_TYP **Mat, *S;
-        int i,n, anz;
+        int i, anz;
         int test;
 
         extern char **FILENAMES;
@@ -43,7 +43,6 @@ int main (int argc, char *argv[])
           printf("#%d\n", anz);
         for(i=0;i<anz;i++)
         {
-            n = Mat[i]->cols;
             Check_mat(Mat[i]);
             if(Mat[i]->flags.Symmetric == FALSE)
               printf("matrix %d is not symmetric\n", i+1);
