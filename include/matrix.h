@@ -14,7 +14,7 @@ extern matrix_TYP *imat_add (matrix_TYP *L_mat, matrix_TYP *R_mat,
      int Lc, int Rc);
 extern matrix_TYP *imat_addeq (matrix_TYP *L_mat, matrix_TYP *R_mat,
      int Lc, int Rc);
-extern matrix_TYP *rmat_addeq (matrix_TYP *L_mat, matrix_TYP *R_mat,
+extern matrix_TYP *rmat_add (matrix_TYP *L_mat, matrix_TYP *R_mat,
      rational L_coeff, rational R_coeff);
 extern matrix_TYP *rmat_addeq (matrix_TYP *L_mat, matrix_TYP *R_mat,
      rational L_coeff, rational R_coeff);

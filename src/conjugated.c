@@ -5,10 +5,6 @@
 #include <datei.h>
 
 
-matrix_TYP *conjugated(bravais_TYP *G,bravais_TYP *H,
-                       matrix_TYP **N,int Nanz,bahn **strong);
-
-
 int main(int argc,char **argv){
 
   bravais_TYP *G,

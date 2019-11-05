@@ -29,8 +29,6 @@
  |
 */
 
-extern int act_prime;
-
 /*{{{}}}*/
 /*{{{  init_mat*/
 /*{{{  Documentation*/
