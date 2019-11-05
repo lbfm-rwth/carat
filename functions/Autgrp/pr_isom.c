@@ -11,6 +11,9 @@
 #include "typedef.h"
 #include "types.h"
 #include "matrix.h"
+#include "autgrp.h"
+#include "reduction.h"
+#include "symm.h"
 
 /*
 @-------------------------------------------------------------------------
@@ -74,13 +77,6 @@ pr_isom (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP **Erz, int Erzan
   matrix_TYP *T, *X, *X1, **F, *SV1, *SV2;
   int i;
   int n, anz, max;
-
-  extern matrix_TYP *isometry();
-  extern matrix_TYP *short_vectors();
-  extern matrix_TYP *mat_mul();
-  extern matrix_TYP *scal_pr();
-  extern matrix_TYP *pair_red();
-  extern matrix_TYP *init_mat();
 
   if((F = (matrix_TYP **) malloc(Fanz *sizeof(matrix_TYP *))) == NULL)
   {

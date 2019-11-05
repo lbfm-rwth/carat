@@ -619,9 +619,6 @@ perfect_normal_autgrp (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erz
 	int		i, j, k, l, n, *Vvi, *Vvj, **Fvi, *Fvij, **FAi;
         bravais_TYP *B;
 
-	extern matrix_TYP *init_mat();
-        extern int pointer_lower_triangular_mat_comp();
-
         normal_option = TRUE;
         perp_no = Panz;
         perpdim = Pdim;

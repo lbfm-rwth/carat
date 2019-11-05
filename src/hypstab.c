@@ -8,12 +8,6 @@ main (int argc, char *argv[])
         bravais_TYP *G;
         int anz;
 
-        extern char **FILENAMES;
-        extern int FILEANZ;
-
-        extern matrix_TYP **mget_mat();
-        extern bravais_TYP *hyperbolic_stabilizer();
-
         read_header(argc, argv);
         if(FILEANZ != 2)
         {

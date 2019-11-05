@@ -32,10 +32,6 @@ long_solve_mat (matrix_TYP *A, matrix_TYP *B)
    matrix_TYP *et;
    int Bcols;
 
-   extern MP_INT **matrix_to_MP_mat();
-   extern MP_INT ***MP_solve_mat();
-   extern matrix_TYP *MP_mat_to_matrix();
-
    MA = matrix_to_MP_mat(A);
    if(B != NULL)
    {

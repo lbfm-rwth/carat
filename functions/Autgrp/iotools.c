@@ -1,4 +1,5 @@
 #include "typedef.h"
+#include "matrix.h"
 /*****	This file contains some routines for input/output	*****/
 
 
@@ -79,7 +80,6 @@ putgens (group G, flagstruct flags)
 {
 	int	i, j, k, l, dim, ngen, nr;
         bravais_TYP *B;
-        extern matrix_TYP *init_mat();
 
         B = (bravais_TYP *)malloc(sizeof(bravais_TYP));
         B->gen_no = 0;
@@ -155,7 +155,6 @@ putiso (int **X, flagstruct flags, int dim)
 {
 	int	i, j;
 	matrix_TYP *M;
-	extern matrix_TYP *init_mat();
 
         M = init_mat(dim, dim, "");
 	for (i = 0; i < dim; ++i)

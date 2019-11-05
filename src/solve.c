@@ -9,13 +9,6 @@ main (int argc, char *argv[])
 	matrix_TYP **Mat, *X;
         int i, anz;
 
-        extern char **FILENAMES;
-        extern int FILEANZ;
-
-	extern matrix_TYP **mget_mat ();
-	extern matrix_TYP *solve_mat();
-	extern void put_mat ();
-
         read_header(argc, argv);
         if(FILEANZ != 1)
         {

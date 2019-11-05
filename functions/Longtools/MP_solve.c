@@ -36,11 +36,6 @@ MP_solve_mat (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols, int *X1cols
    int i,j,k,rang;
    int tester, dim;
 
-   extern matrix_TYP *copy_mat();
-   extern matrix_TYP *tr_pose();
-   extern matrix_TYP *init_mat();
-   extern matrix_TYP *mat_mul();
-
    mpz_init(&zaehler); mpz_init(&nenner); mpz_init(&b);
    if(B == NULL || Bcols == 0)
      rang = MP_row_gauss(M, rows, cols);

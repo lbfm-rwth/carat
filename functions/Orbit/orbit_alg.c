@@ -3,6 +3,7 @@
 #include "matrix.h"
 #include "sort.h"
 #include "getput.h"
+#include "orbit.h"
 
 /**************************************************************************\
 @---------------------------------------------------------------------------
@@ -158,7 +159,7 @@ addbaum (matrix_TYP *mat, matrix_TYP **L, int anz, struct baum *verz, int *schon
 }
 
 
-struct baum *
+static struct baum *
 hash_addbaum (matrix_TYP *mat, matrix_TYP **L, int anz, struct baum *verz, int *schonda, int hashnumber, int *hashverz)
 {
   int vergleich;
@@ -350,7 +351,6 @@ tr_mul (matrix_TYP *A, matrix_TYP *B)
   int i, j, k;
   matrix_TYP *erg;
 
-  extern matrix_TYP *init_mat();
   erg = init_mat(A->rows, B->rows, "");
   for(i=0; i<erg->rows; i++)
   {
@@ -369,7 +369,6 @@ static matrix_TYP *
 grp_mul (matrix_TYP *A, matrix_TYP *B)
 {
   matrix_TYP *erg;
-  extern matrix_TYP *mat_mul();
   if(orbit_opt[0] == 0 || orbit_opt[0] == 2 || orbit_opt[0] == 4)
     erg = mat_mul(B,A);
   if(orbit_opt[0] == 1 || orbit_opt[0] == 3 || orbit_opt[0] == 5)
@@ -382,9 +381,6 @@ operation (matrix_TYP *M, int i)
 {
    matrix_TYP *erg, *waste, *waste1;
  
-   extern matrix_TYP *mat_mul();
-   extern matrix_TYP *tr_mul();
-
    if(orbit_opt[0] == 0)
       erg = mat_mul(Erz[i], M);
    if(orbit_opt[0] == 1)
@@ -421,7 +417,6 @@ static void
 make_hash_mat (matrix_TYP *M)
 {
    int i,j;
-   extern matrix_TYP *init_mat();
   
    hash_mat = init_mat(M->rows, M->cols, "");
    for(i=0; i<M->rows;i++)
@@ -444,7 +439,7 @@ hash_number (matrix_TYP *M)
     return(h);
 }
 
-extern void free_baum(struct baum *p)
+static void free_baum(struct baum *p)
 {
 
    if (p!= NULL){
@@ -476,11 +471,6 @@ orbit_alg (matrix_TYP *M, bravais_TYP *G, bravais_TYP *S, int *option, int *leng
   int sopt;
   struct baum *Sverz;
   struct baum *ergverz;
-
-  extern matrix_TYP *init_mat();
-  extern matrix_TYP *mat_inv();
-  extern matrix_TYP *einheitsmatrix();
-  extern void matrix_speichern();
 
   ergsize = 0;
   histsize = 0;

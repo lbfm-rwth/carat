@@ -244,12 +244,6 @@ mink_red (matrix_TYP *G, matrix_TYP *Trf)
   matrix_TYP *UU, *UUi;
   matrix_TYP *T, *Ti;
 
-  extern int **trafoinverse();
-  extern int wechsel();
-  extern void Gramtrans();
-  extern void kurvectrans();
-  extern int matrixinverses();
-
   n = G->cols;
 
   /* ------------------------------------------------------------------- *\

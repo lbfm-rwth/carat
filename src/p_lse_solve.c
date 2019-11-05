@@ -9,12 +9,6 @@ int main (int argc, char *argv[])
   int i, prime, anz;
   int Aanz, Banz;
 
-  extern char **FILENAMES;
-  extern int FILEANZ;
-
-  extern matrix_TYP **p_lse_solve();
-  extern matrix_TYP **mget_mat();
-
   read_header(argc, argv);
   if(FILEANZ <= 0)
   {

@@ -7,12 +7,6 @@ main (int argc, char *argv[])
 	matrix_TYP **x1, **x2, **S, *X;
         int anz;
 
-        extern char **FILENAMES;
-        extern int FILEANZ;
-
-        extern matrix_TYP **mget_mat();
-        extern matrix_TYP *hyperbolic_isometry();
-
         read_header(argc, argv);
         if(FILEANZ != 3)
         {

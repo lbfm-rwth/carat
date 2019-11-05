@@ -1,6 +1,7 @@
 #include "typedef.h"
 #include "getput.h"
 #include "matrix.h"
+#include "voronoi.h"
 
 int main (int argc, char *argv[])
 {
@@ -9,14 +10,6 @@ int main (int argc, char *argv[])
         bravais_TYP *G;
         int V_anz, Mat_anz;
         int i,j;
-
-        extern char **FILENAMES;
-        extern int FILEANZ;
-
-	extern matrix_TYP **mget_mat();
-	extern bravais_TYP *get_bravais();
-        extern matrix_TYP **voronoi_vertices();
-	extern void put_mat ();
 
         read_header(argc, argv);
         if(FILEANZ != 2)

@@ -1,4 +1,5 @@
 #include "typedef.h"
+#include "autgrp.h"
 #include "matrix.h"
 #include "datei.h"
 
@@ -32,13 +33,6 @@ hyperbolic_stabilizer (matrix_TYP *x, matrix_TYP *S)
   matrix_TYP *xS, *xS0, **Sred, *T, *Ti, *W, *W1;
   bravais_TYP *G1, *G;
   int i,j,k, n;
-
-  extern matrix_TYP *mat_mul();
-  extern matrix_TYP *mat_inv();
-  extern bravais_TYP *pr_aut();
-  extern matrix_TYP *solve_mat();
-  extern matrix_TYP *init_mat();
-  extern matrix_TYP *scal_pr();
 
   n = x->cols;
   xS = mat_mul(x, S);

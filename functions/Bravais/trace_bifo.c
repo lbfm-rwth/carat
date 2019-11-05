@@ -1,5 +1,6 @@
 #include "typedef.h"
 #include "tools.h"
+#include "matrix.h"
 
 /************************************************************************** \
 @---------------------------------------------------------------------------
@@ -24,8 +25,6 @@ trace_bifo (matrix_TYP **F1, matrix_TYP **F2, int anz)
    int i,j,k,l, Sij, n;
    matrix_TYP *S;
    int g,x;
-
-   extern matrix_TYP *init_mat();
 
    /* changed tilman 7/1/97 form
    n = F1[1]->cols;

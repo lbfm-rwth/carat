@@ -1,5 +1,6 @@
 #include "typedef.h"
 #include "matrix.h"
+#include "orbit.h"
 #include "sort.h"
 
 /**************************************************************************\
@@ -40,10 +41,6 @@ orbit_representatives (matrix_TYP **M, int Manz, bravais_TYP *G, int *option, in
    matrix_TYP *erg, **or;
    int i,j,k, no;
    int *merk, found;
-
-   extern matrix_TYP *init_mat();
-   extern matrix_TYP **orbit_alg();
-   extern int mat_comp();
 
   erg = init_mat(2, Manz, "");
   if((merk = (int *)calloc(Manz , sizeof(int))) == NULL)

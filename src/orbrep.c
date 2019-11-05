@@ -11,15 +11,6 @@ main (int argc, char *argv[])
         int *c, *f;
         int i,j, anz;
 
-        extern char **FILENAMES;
-        extern int FILEANZ;
-
-	extern matrix_TYP **mget_mat();
-	extern bravais_TYP *get_bravais();
-	extern int *orbit_subdivision();
-        extern matrix_TYP *init_mat();
-	extern void put_mat ();
-
         read_header(argc, argv);
         if(FILEANZ != 2)
         {

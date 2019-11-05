@@ -107,8 +107,6 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 	int		i, j, k, *Vvi, *Vvj, **Fvi, *Fvij, **FAi, nV1;
 	matrix_TYP	*erg, *erg1;
 
-        extern matrix_TYP *mat_inv();
-
        normal_option = FALSE;
        if(SV1->rows != SV2->rows)
           return(NULL);
@@ -698,9 +696,6 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 	int		***G, nG, ngen, **sumveclist, **sumvecbase;
 	int		i, j, k, *Vvi, *Vvj, **Fvi, *Fvij, **FAi;
 	matrix_TYP	*erg, *erg1;
-
-        extern int pointer_lower_triangular_mat_comp();
-        extern matrix_TYP *mat_inv();
 
        if(SV1->rows != SV2->rows)
           return(NULL);

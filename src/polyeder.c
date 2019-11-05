@@ -13,13 +13,6 @@ int main (int argc, char *argv[])
         wall_TYP **w;
         int i,j;
 
-        extern char **FILENAMES;
-        extern int FILEANZ;
-
-	extern matrix_TYP *get_mat ();
-        extern polyeder_TYP *first_polyeder();
-        extern wall_TYP *init_wall();
-
         read_header(argc, argv);
         if(FILEANZ != 1)
         {

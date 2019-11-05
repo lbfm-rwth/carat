@@ -1,8 +1,10 @@
 #include "typedef.h"
 #include "matrix.h"
-#include"getput.h"
-#include"datei.h"
-#include"longtools.h"
+#include "getput.h"
+#include "datei.h"
+#include "longtools.h"
+#include "tools.h"
+
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @---------------------------------------------------------------------------
@@ -140,8 +142,6 @@ Z_class (bravais_TYP *B, matrix_TYP *zen)
               *ztr;
    int anz;
    int *noetig = NULL;
-
-   extern matrix_TYP *einheitsmatrix();
 
    S = gittstabneu(B, zen);
 
@@ -307,14 +307,6 @@ gittstab (bravais_TYP *grp, matrix_TYP *X)
    int *index;
    int num, erz, schonda;
    int neu, anz = 0;
-
-   extern void store_mat();
-   extern matrix_TYP *mat_mul();
-   extern matrix_TYP *mat_inv();
-   extern matrix_TYP *init_mat();
-   extern int such();
-   extern int *factorize();
-   extern void positivieren();
 
    if(grp->dim != X->rows)
    {

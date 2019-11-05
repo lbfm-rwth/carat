@@ -2,6 +2,8 @@
 #include "matrix.h"
 #include "datei.h"
 #include "getput.h"
+#include "bravais.h"
+#include "voronoi.h"
 
 
 
@@ -13,18 +15,6 @@ int main(int argc, char *argv[])
    int *av, *pv;
    int Fdim;
    int rc, lc, g;
-
-        extern char **FILENAMES;
-        extern int FILEANZ;
-
-	extern matrix_TYP *get_mat ();
-	extern void put_mat ();
-        extern bravais_TYP *get_bravais();
-        extern matrix_TYP *all_voronoi_neighbours();
-        extern matrix_TYP *trace_bifo();
-        extern void form_to_vec();
-        extern matrix_TYP *vec_to_form();
-        extern matrix_TYP *init_mat();
 
         read_header(argc, argv);
         if(FILEANZ != 3)

@@ -11,9 +11,6 @@ main (int argc, char *argv[])
         int i, Manz, length;
         int *option;
 
-        extern char **FILENAMES;
-        extern int FILEANZ;
-
         read_header(argc, argv);
         if(FILEANZ != 2)
         {

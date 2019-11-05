@@ -28,9 +28,6 @@ int main (int argc, char *argv[])
 
         int *option;
 
-        extern char **FILENAMES;
-        extern int FILEANZ;
-
         read_header(argc, argv);
 
 	if (is_option('h')){

@@ -1,6 +1,7 @@
-#include"typedef.h"
-#include"tools.h"
-#include"reduction.h"
+#include "typedef.h"
+#include "tools.h"
+#include "reduction.h"
+#include "matrix.h"
 
 /************************************************************************** \
 @---------------------------------------------------------------------------
@@ -163,8 +164,6 @@ pair_red (matrix_TYP *Gram, matrix_TYP *Tr)
   int i,j;
   int **G, **T;
   matrix_TYP *Gerg;
-
-  extern matrix_TYP *copy_mat();
 
   Gerg = copy_mat(Gram);
   G = Gerg->array.SZ;

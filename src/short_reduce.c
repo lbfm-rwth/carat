@@ -14,11 +14,6 @@ int main (int argc, char *argv[])
         int i, anz;
         int min;
 
-        extern char **FILENAMES;
-        extern int FILEANZ;
-
-	extern matrix_TYP *short_reduce();
-
         read_header(argc, argv);
         if(FILEANZ != 1)
         {

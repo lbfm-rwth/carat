@@ -569,8 +569,6 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 	int		i, j, k, l, n, *Vvi, *Vvj, **Fvi, *Fvij, **FAi;
         bravais_TYP *B;
 
-	extern matrix_TYP *init_mat();
-
         normal_option = TRUE;
         perp_no = Panz;
         if((perp = (int ***)malloc(perp_no *sizeof(int **))) == 0)

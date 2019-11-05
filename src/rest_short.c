@@ -1,6 +1,7 @@
 #include "typedef.h"
 #include "getput.h"
 #include "matrix.h"
+#include "symm.h"
 
 
 int main (int argc, char *argv[])
@@ -9,13 +10,6 @@ int main (int argc, char *argv[])
 	matrix_TYP *Mat, *R;
         matrix_TYP *SV;
         int denomin, length, anz, i;
-
-        extern char **FILENAMES;
-        extern int FILEANZ;
-
-	extern matrix_TYP *get_mat ();
-	extern matrix_TYP *rest_short();
-	extern void put_mat ();
 
         read_header(argc, argv);
         if(FILEANZ != 2)

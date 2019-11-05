@@ -1,4 +1,6 @@
-#include"typedef.h"
+#include "typedef.h"
+#include "matrix.h"
+
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @---------------------------------------------------------------------------
@@ -228,8 +230,6 @@ dsylv (matrix_TYP *M)
   matrix_TYP *A;
   int pos, neg; 
 
-  extern matrix_TYP *init_mat();
-  
   D = mat_to_double(M);
   n = M->cols;
   nonzero = pivot(D, 0, n);

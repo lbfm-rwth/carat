@@ -1,4 +1,5 @@
-#include"typedef.h"
+#include "typedef.h"
+#include "getput.h"
 
 /**************************************************************************\
 @---------------------------------------------------------------------------
@@ -77,12 +78,6 @@ read_header (int argc, char *argv[])
   int i;
   char *w;
 
-  extern char **FILENAMES;
-  extern int FILEANZ;
-  extern char *OPTIONS;
-  extern int *OPTIONNUMBERS;
-  extern int OPTIONANZ;
-
   FILENAMES = (char **)malloc(argc *sizeof(char *));
   FILEANZ = 0;
   OPTIONS = (char *)malloc(argc *sizeof(char));
@@ -109,7 +104,7 @@ read_header (int argc, char *argv[])
 
 
 int 
-is_option (int c)
+is_option (char c)
 {
   int i;
   for(i=0;i<OPTIONANZ;i++)
@@ -122,7 +117,7 @@ is_option (int c)
 
 
 int 
-optionnumber (int c)
+optionnumber (char c)
 {
   int i;
   for(i=0;i<OPTIONANZ;i++)

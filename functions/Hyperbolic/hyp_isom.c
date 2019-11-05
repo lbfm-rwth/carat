@@ -1,4 +1,5 @@
 #include "typedef.h"
+#include "autgrp.h"
 #include "matrix.h"
 
 /************************************************************************** \
@@ -33,13 +34,6 @@ hyperbolic_isometry (matrix_TYP *x1, matrix_TYP *x2, matrix_TYP *S)
   matrix_TYP *x1S, *x2S, *x1SO, *x2SO, **S1red, **S2red, *T1,*T1i, *T2;
   matrix_TYP *Y1, *Y1i, *Y2, *Y;
   int i,j,n;
-
-  extern matrix_TYP *solve_mat();
-  extern matrix_TYP *mat_mul();
-  extern matrix_TYP *mat_inv();
-  extern matrix_TYP *scal_pr();
-  extern matrix_TYP *pr_isom();
-  extern matrix_TYP *init_mat();
 
   n = x1->cols;
   if((S1red = (matrix_TYP **)malloc(1 *sizeof(matrix_TYP *))) == NULL)
