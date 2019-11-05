@@ -251,7 +251,6 @@ static void
 orbit_qsort (matrix_TYP *mat, int left, int right, int (*orbit_comp)())
 {  
    int i, last;
-   void qswap ();
 
    if ( left >= right )
       return;

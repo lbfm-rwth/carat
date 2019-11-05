@@ -11,8 +11,6 @@
 #include <presentation.h>
 
 
-matrix_TYP *translation_lattice(matrix_TYP **G,int number,matrix_TYP *P);
-
 int main(int argc,char **argv){
 
   bravais_TYP *G,

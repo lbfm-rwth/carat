@@ -33,8 +33,6 @@ extern int size(bahn **a);
 
 extern void extend_bahn(bahn **a);
 
-extern matrix_TYP **get_base(bravais_TYP *U);
-
 extern int red_gen(bravais_TYP *G,matrix_TYP **base,bahn ***strong,int i);
 
 matrix_TYP *conjugated(bravais_TYP *G,bravais_TYP *H,
