@@ -102,7 +102,7 @@ init_mat (int rows, int cols, char *option)
 int i;
 matrix_TYP *mat;
 int val;
-char *temp;
+char *temp = 0;
 char *tempN;
 
   mat = NULL;
