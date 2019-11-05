@@ -125,10 +125,8 @@ TSubgroup_TYP **tsubgroup(bravais_TYP *R,
       aflag = TRUE;
       
    /* lade Datenbank */
-   get_data_dir(dbname, "/tables/qcatalog/data");
+   sprintf(dbname, "%s/tables/qcatalog/data", get_data_dir());
    database = load_database(dbname, P->dim);
-
-
 
 
    /* Nur die triviale Raumgruppe ist maximale Untergruppe! */

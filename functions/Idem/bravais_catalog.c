@@ -180,7 +180,7 @@ for(i=0; i<MAXDIM; i++)
 |  read the atoms                                                      |
 \*--------------------------------------------------------------------*/
 grps = (bravais_TYP **) malloc(konstit *sizeof(bravais_TYP *));
-get_data_dir(dat, "tables/atoms/");
+sprintf(dat, "%s/tables/atoms/", get_data_dir());
 for(i=0; i<konstit; i++)
 {
    strcpy(f, dat);
@@ -459,10 +459,7 @@ for(i=0; i<konstit; i++)
 /*--------------------------------------------------------------------*\
 | find file where erg->grp->zentr are stored                           |
 \*--------------------------------------------------------------------*/
-get_data_dir(fn, "tables/dim");
-itoasc(erg->grp->dim, merk);
-strcat(fn, merk);
-strcat(fn, "/");
+sprintf(fn, "%s/tables/dim%d/", get_data_dir(), erg->grp->dim);
 for(i=0; i<konstit; i++)
 {
   itoasc(zerleg[i][0], merk);

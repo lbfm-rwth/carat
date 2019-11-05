@@ -36,7 +36,7 @@ matrix_TYP *q_class_inf (bravais_TYP *G,
               *MATG,
               *ERG = NULL;  
 
-  char filetmp[1024], format[1024];
+  char filetmp[1024];
 
   int i,
       orderG = 0,
@@ -51,14 +51,13 @@ matrix_TYP *q_class_inf (bravais_TYP *G,
   G->order = orderG;
   factorize_new(G->order,G->divisors);
 
-  get_data_dir(format, "tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/char.%s");
   for (i=0;i<database->nr;i++){
       if (orderG == database->entry[i].order &&
           G->dim == database->entry[i].degree && 
           MATG->rows == database->entry[i].no_idem + 9 &&
           MATG->cols == database->entry[i].no_conclass ){
 
-          sprintf(filetmp, format,
+          sprintf(filetmp, "%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/char.%s", get_data_dir(),
                           G->dim,database->entry[i].symbol,
                           orderG,database->entry[i].discriminant,
                           database->entry[i].abbreviation);
@@ -76,10 +75,9 @@ matrix_TYP *q_class_inf (bravais_TYP *G,
 
   /* there are 5 pairs of groups where the characteristic matrix does
      not decide the Q-equivalence. In these cases, get the hands dirty */
-  get_data_dir(format, "tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/%s");
   while (no_possible > 1) {
      i = possible[no_possible-1];
-     sprintf(filetmp, format,
+     sprintf(filetmp, "%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/%s", get_data_dir(),
                      G->dim,database->entry[i].symbol,
                      orderG,database->entry[i].discriminant,
                      database->entry[i].abbreviation);
@@ -114,10 +112,9 @@ matrix_TYP *q_class_inf (bravais_TYP *G,
     exit(4);
   }
 
-  get_data_dir(format, "tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/%s"); 
   if (OUT || (transformation && !ERG) ){
      i = possible[0];
-     sprintf(filetmp, format,
+     sprintf(filetmp, "%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/%s", get_data_dir(),
                      G->dim,database->entry[i].symbol,
                      orderG,database->entry[i].discriminant,
                      database->entry[i].abbreviation);
@@ -130,10 +127,9 @@ matrix_TYP *q_class_inf (bravais_TYP *G,
 
   }
 
-  get_data_dir(format, "tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/pres.%s"); 
   if (PRES){
     i = possible[0];
-     sprintf(filetmp, format,
+     sprintf(filetmp, "%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/pres.%s", get_data_dir(),
                      G->dim,database->entry[i].symbol,
                      orderG,database->entry[i].discriminant,
                      database->entry[i].abbreviation);

@@ -96,8 +96,7 @@ if(fn != NULL)
 if(fn != NULL)
 {                               
   B->fn = calloc( 1024, sizeof(char) );
-  get_data_dir(B->fn, "tables/");
-  strcat(B->fn, fn);
+  sprintf(B->fn, "%s/tables/%s", get_data_dir(), fn);
   free ( fn );
 }
 	/*------------------------------------------------------------*\
