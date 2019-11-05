@@ -1,3 +1,6 @@
+#!/bin/sh
+set -e
+
 echo "### Test Ex9-1"
 ../bin/carat/Bravais_grp Ex9_g
 echo "### Ex9-1 return code $?"

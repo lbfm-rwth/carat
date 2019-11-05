@@ -1,3 +1,5 @@
+#!/bin/sh
+set -e
 
 echo "### Test Ex14-1"
 ../bin/carat/KSubgroups -a -t -n Ex14_R 2

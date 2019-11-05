@@ -1,3 +1,5 @@
+#!/bin/sh
+set -e
 
 echo "### Test Ex2-1"
 ../bin/carat/Symbol Ex2_G
