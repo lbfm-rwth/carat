@@ -17,12 +17,6 @@
 #define	JUMP	5
 #define	EPS	0.000001
 
-static double	***g, **x, **xt, **t, **t1, diff, diff1;
-static int	dim, num;
-static double	**sxt, **st, **st1, err, sdiff, sdiff1;
-
-
-
 
 static int 
 ggt (int a, int b)
@@ -277,6 +271,8 @@ dtoi (double **y, int **f, double ep, int dim)
 }
 
 
+static double	**xt, **t, **t1;
+static double	**sxt, **st, **st1, err;
 
 static int 
 iterate (int step, double **x, double ***g, int num, int dim)
@@ -304,7 +300,7 @@ iterate (int step, double **x, double ***g, int num, int dim)
 		}
 	}
 
-	sdiff1 = 0;
+	double sdiff1 = 0;
 	for (i = 0; i < dim; ++i)
 	{
 		for (j = 0; j < dim; ++j)
@@ -333,7 +329,7 @@ iterate (int step, double **x, double ***g, int num, int dim)
 		}
 	}
 
-	sdiff = 0;
+	double sdiff = 0;
 	for (i = 0; i < dim; ++i)
 	{
 		for (j = 0; j < dim; ++j)
@@ -461,9 +457,9 @@ symel (double **x, double ***g, int num, int dim, int eps, int **f)
 }
 
 
-
+/*
 static double 
-try (void)
+try (double **x, double ***g, const int num, const int dim)
 {
 	double	conv;
 	int	i, j, k;
@@ -504,7 +500,7 @@ try (void)
 		}
 	}
 
-	diff1 = 0;
+	double diff1 = 0;
 	for (i = 0; i < dim; ++i)
 	{
 		for (j = 0; j < dim; ++j)
@@ -532,7 +528,7 @@ try (void)
 		}
 	}
 
-	diff = 0;
+	double diff = 0;
 	for (i = 0; i < dim; ++i)
 	{
 		for (j = 0; j < dim; ++j)
@@ -545,7 +541,7 @@ try (void)
 	conv = pow(diff/diff1, 1.0/3.0);
 	return (1/conv);
 }
-
+*/
 
 /**************************************************************************\
 @---------------------------------------------------------------------------
@@ -568,11 +564,12 @@ try (void)
 matrix_TYP *
 rform (matrix_TYP **B, int Banz, matrix_TYP *Fo, int epsilon)
 {
-	double	try();
 	double	**save, **pres, *fac;
+	double  ***g, **x;
 	int	eps, d, i, j, k;
         matrix_TYP *erg;
-        int test;
+    int num, dim;
+    int test;
 
 	eps = epsilon;
 	if (eps < DEFEPS)
@@ -655,7 +652,7 @@ rform (matrix_TYP **B, int Banz, matrix_TYP *Fo, int epsilon)
 	}
 
         /*
-  	int factor = try();
+  	int factor = try(x, g, num, dim);
 	for (i = 0; i < num; ++i)
 	{
 		for (j = 0; j < num; ++j)
@@ -665,7 +662,7 @@ rform (matrix_TYP **B, int Banz, matrix_TYP *Fo, int epsilon)
 				rmatfac(g[i], 1.0, pres, dim);
 				rmatmul(g[i], g[j], t1, dim);
 				rmatfac(t1, 1.0, g[i], dim);
-				fac[j] = try();
+				fac[j] = try(x, g, num, dim);
 				rmatfac(pres, 1.0, g[i], dim);
 				rmatfac(save, 1.0, x, dim);
 			}
