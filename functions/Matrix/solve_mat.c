@@ -113,11 +113,6 @@ solve_mat (matrix_TYP *M)
    matrix_TYP *M1, *M1t, *Trf, *X, *erg;
    int i,rang, n;
 
-   extern matrix_TYP *copy_mat();
-   extern matrix_TYP *tr_pose();
-   extern matrix_TYP *init_mat();
-   extern matrix_TYP *mat_mul();
-
    M1 = copy_mat(M);
    row_gauss(M1);
    M1t = tr_pose(M1);

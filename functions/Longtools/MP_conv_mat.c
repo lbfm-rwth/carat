@@ -1,5 +1,6 @@
 #include "typedef.h"
 #include "gmp.h"
+#include "matrix.h"
 /* #include "gmp-impl.h" */
 /**************************************************************************\
 @---------------------------------------------------------------------------
@@ -69,8 +70,6 @@ MP_mat_to_matrix (MP_INT **M, int rows, int cols)
 {
   int i,j;
   matrix_TYP *erg;
-
-  extern matrix_TYP *init_mat();
 
   erg = init_mat(rows, cols, "");
 

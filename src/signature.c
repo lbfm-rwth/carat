@@ -11,13 +11,6 @@ int main (int argc, char *argv[])
         int i, anz;
         int test;
 
-        extern char **FILENAMES;
-	extern int FILEANZ;
-
-	extern matrix_TYP **mget_mat ();
-        extern matrix_TYP *dsylv();
-	extern void put_mat ();
-
         read_header(argc, argv);
         if(FILEANZ != 1)
         {

@@ -3,6 +3,7 @@
 #include "bravais.h"
 #include "longtools.h"
 #include "tools.h"
+#include "polyeder.h"
 
 /**************************************************************************\
 @---------------------------------------------------------------------------
@@ -210,7 +211,6 @@ vertex_TYP *
 form_to_vertex (matrix_TYP *A, matrix_TYP **F, int Fanz, int *denominator)
 {
   vertex_TYP *v;
-  extern vertex_TYP *init_vertex();
   v = init_vertex(Fanz, 0);
   form_to_vec(v->v, A, F, Fanz, denominator);
   return v;

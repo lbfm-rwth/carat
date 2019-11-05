@@ -1,4 +1,5 @@
 #include "typedef.h"
+#include "matrix.h"
 #include "tools.h"
 
 /**************************************************************************\
@@ -44,8 +45,6 @@ p_lse_solve (matrix_TYP *A, matrix_TYP *B, int *anz, int p)
   int *tmp, *pos;
   int phalbe, mphalbe;
   
-  extern matrix_TYP *init_mat();
-
   phalbe = p/2;
   mphalbe = -phalbe;
   if(p == 2)

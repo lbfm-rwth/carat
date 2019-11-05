@@ -12,10 +12,6 @@ int main (int argc, char *argv[])
   matrix_TYP **M, *Trf, *E;
   int Manz, i;
 
-  extern char **FILENAMES;
-  extern int FILEANZ;
-
-
   read_header(argc, argv);
   if(FILEANZ != 1)
   {

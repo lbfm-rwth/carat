@@ -200,10 +200,6 @@ int old_no;
   vertex_TYP *erg;
   matrix_TYP *A;
 
-  extern vertex_TYP *init_vertex_fuber();
-  extern matrix_TYP *init_mat();
-  extern int row_gauss();
-
   k=F->vert[j]->wall_no;
   if(k>F->vert[i]->wall_no)
     k=F->vert[i]->wall_no;
@@ -244,8 +240,6 @@ int old_no;
   int a, u, tester1;
   int anz;
   vertex_TYP *erg;
-
-  extern vertex_TYP *init_vertex_fuber();
 
   k=F->vert[j]->wall_no;
   if(k>F->vert[i]->wall_no)
@@ -302,16 +296,6 @@ wall_TYP *h;
  int tester, *test;
  int p,n;
  vertex_TYP *v;
-
- extern void umsortieren();
- extern void renumerate();
- extern void streichen();
- extern int wall_times_vertex_fuber();
- extern int containes();
- extern void  wallAdd_fund_domain();
- extern void  vertexAdd_fund_domain();
- extern vertex_TYP *is_neighbour();
- 
 
  p=0;n=0;
  waste = 0;

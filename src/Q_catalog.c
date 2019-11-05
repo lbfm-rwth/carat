@@ -364,9 +364,6 @@ int main (int argc, char *argv[])
 
   char name[1024], symb[1024], dbname[1024];
 
-  extern int FILEANZ;
-  extern char **FILENAMES;
-
   read_header (argc, argv);
   
   if (is_option('h'))

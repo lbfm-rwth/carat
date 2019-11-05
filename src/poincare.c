@@ -10,9 +10,6 @@
 #include "tietzetrans.h"
 #include "datei.h"
 
-        extern char **FILENAMES;
-        extern int FILEANZ;
-	
 int main (int argc, char *argv[])
 {
   int			i,j;
@@ -34,11 +31,6 @@ int main (int argc, char *argv[])
   int			new_anz;
   int			**old_as_new;
   int			**new_as_old;
-
-        extern polyeder_TYP *fub();
-	extern anne_presentation_TYP *pres();
-	extern void tilman_tietze();
-  	extern int **back();
 
   read_header(argc, argv);
   if(FILEANZ != 3)

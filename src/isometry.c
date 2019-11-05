@@ -1,6 +1,8 @@
 #include "typedef.h"
 #include "matrix.h"
 #include "getput.h"
+#include "autgrp.h"
+#include "symm.h"
 
 
 int main (int argc, char *argv[])
@@ -10,14 +12,6 @@ int main (int argc, char *argv[])
         int i, Fanz, F2anz, Erzanz, options[6];
         FILE *infile;
         int Fmax;
-
-        extern char **FILENAMES;
-        extern int FILEANZ;
-
-	extern matrix_TYP *fget_mat ();
-	extern matrix_TYP **fmget_mat ();
-	extern matrix_TYP *short_vectors();
-	extern matrix_TYP *isometry();
 
         read_header(argc, argv);
         if(FILEANZ != 2)

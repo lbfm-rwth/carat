@@ -29,7 +29,6 @@
  |
 */
 
-extern int GGT (int, int);
 extern int act_prime;
 
 /*{{{}}}*/

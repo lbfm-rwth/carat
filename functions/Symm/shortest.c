@@ -1,4 +1,6 @@
-#include"typedef.h"
+#include "typedef.h"
+#include "matrix.h"
+
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @---------------------------------------------------------------------------
@@ -267,8 +269,6 @@ shortest (matrix_TYP *mat, int *min_norm)
 	int	i, j, ak, bk;
 	double	cst = 0.75;
         matrix_TYP *erg;
-
-   extern matrix_TYP *init_mat();
 
         anzahl = 0;
         con = 0;

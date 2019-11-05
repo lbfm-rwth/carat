@@ -14,13 +14,6 @@ int anz;
   int *take;
   int test;
 
-  extern fund_domain *init_fund_domain();
-  extern vertex_TYP *init_vertex_fuber();
-  extern wall_TYP *init_wall_fuber();
-  extern int row_gauss();
-  extern matrix_TYP *solve_mat();
-  extern matrix_TYP *init_mat();
-  
   test = 0;
   n = mauern[0]->dim;
   M = init_mat(n, n, "");

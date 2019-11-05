@@ -10,15 +10,6 @@ main (int argc, char *argv[])
         matrix_TYP *bifo;
         int Mat_anz;
 
-        extern char **FILENAMES;
-        extern int FILEANZ;
-
-	extern matrix_TYP **mget_mat();
-	extern bravais_TYP *get_bravais();
-        extern polyeder_TYP *vor_polyhedra();
-        extern matrix_TYP *trace_bifo();
-	extern void put_polyeder ();
-
         read_header(argc, argv);
         if(FILEANZ != 3)
 	{

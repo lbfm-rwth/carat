@@ -18,8 +18,6 @@ int main (int argc, char *argv[])
   matrix_TYP		*Form;
   polyeder_TYP		*Pol;
 
-  	extern polyeder_TYP *fub();
-
         read_header(argc, argv);
         if(FILEANZ != 3)
         {

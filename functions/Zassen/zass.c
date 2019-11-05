@@ -104,7 +104,7 @@ static void norm_word(word *g)
   return;
 }
 
-extern int wordfree(word *a)
+int wordfree(word *a)
 {
 
   free(a[0].pointer);

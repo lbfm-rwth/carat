@@ -18,12 +18,7 @@ int main (int argc, char *argv[])
          d,   /* the denominator */
          ggt;
 
-  extern char **FILENAMES;
-
   char comment[1000];
-
-  extern int FILEANZ;
-
 
   read_header(argc, argv);
   if((FILEANZ < 1) || (is_option('h'))){

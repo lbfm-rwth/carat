@@ -1,4 +1,6 @@
-#include"typedef.h"
+#include "typedef.h"
+#include "matrix.h"
+
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @---------------------------------------------------------------------------
@@ -287,8 +289,6 @@ rest_short (matrix_TYP *mat, int *restvec, int rkgv, int zaehler, int nenner, in
 	int	i, j, ak, bk;
 	double	cst = 0.75;
         matrix_TYP *erg;
-
-   extern matrix_TYP *init_mat();
 
         anzahl = 0;
         n = mat->rows;

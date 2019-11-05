@@ -1,6 +1,7 @@
 #include "typedef.h"
 #include "getput.h"
 #include "bravais.h"
+#include "matrix.h"
 
 int main (int argc, char *argv[])
 {
@@ -9,15 +10,6 @@ int main (int argc, char *argv[])
         matrix_TYP **F, *V;
         bravais_TYP *G;
         int i, d, Fanz, anz;
-
-        extern char **FILENAMES;
-        extern int FILEANZ;
-
-	extern matrix_TYP **mget_mat();
-	extern bravais_TYP *get_bravais();
-        extern matrix_TYP *init_mat();
-	extern void put_mat ();
-        extern void form_to_vec();
 
         read_header(argc, argv);
         if(FILEANZ != 2 || (is_option('h') && optionnumber('h') == 0))

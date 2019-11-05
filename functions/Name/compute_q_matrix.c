@@ -5,11 +5,8 @@
 #include "orbit.h"
 #include "sort.h"
 
-/*extern matrix_TYP ** orbit_alg();*/
-
 /*Wahrscheinlich verursacht das Rechnen mit Matrizen, die nicht Ganzzahlig sind
   Probleme. */
-extern void free_tree(struct tree *p);
 
 /* This function compares two matrices in lexicographic order.
    It is supposed that they behave well (cols etc equal). */

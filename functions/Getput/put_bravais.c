@@ -28,9 +28,6 @@ fput_bravais (FILE *outfile, bravais_TYP *G, char *comment)
 {
   int i;
   
-  extern void fput_mat();
-
-
 /*---------------------------------------------------------------*\
 | print header line, i.e. gen_no, form_no, zentr_no, normal_no    |
 | and cen_no                                                      |
@@ -116,8 +113,6 @@ put_bravais (bravais_TYP *G, char *filename, char *comment)
   int i;
   FILE *outfile;
   
-  extern void put_mat();
-
 /*------------------------------------------------------------*\
 | Open output file												|
 \*------------------------------------------------------------*/

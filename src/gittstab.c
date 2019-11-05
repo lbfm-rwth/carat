@@ -12,11 +12,6 @@ main (int argc, char *argv[])
   matrix_TYP *X;
   int i,j;
 
-  extern char **FILENAMES;
-  extern int FILEANZ;
-  
-  extern bravais_TYP *get_bravais();
-  extern bravais_TYP *Z_class();
   read_header(argc, argv);
   if(FILEANZ != 1)
   {

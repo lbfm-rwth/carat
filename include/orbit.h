@@ -16,17 +16,10 @@ extern matrix_TYP *orbit_representatives(matrix_TYP **M, int Manz,
 /*-------------------------------------------------------------*\
 | FILE: orb_alg.c 
 \*-------------------------------------------------------------*/
-extern int *make_orbit_options();
+extern int *make_orbit_options(void);
 extern matrix_TYP **orbit_alg(matrix_TYP *M, bravais_TYP *G, bravais_TYP *S,
      int *option, int *length);
-extern void free_baum(struct baum *p);
-struct baum *hash_addbaum(matrix_TYP *mat,
-                          matrix_TYP **L,
-                          int anz,
-                          struct baum *verz,
-                          int *schonda,
-                          int hashnumber,
-                          int *hashverz);
+
 /*-------------------------------------------------------------*\
 | FILE: orbit_subdivision.c 
 \*-------------------------------------------------------------*/

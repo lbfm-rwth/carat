@@ -1,4 +1,6 @@
-#include"typedef.h"
+#include "typedef.h"
+#include "matrix.h"
+
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @---------------------------------------------------------------------------
@@ -279,8 +281,6 @@ short_vectors (matrix_TYP *mat, int length, int lengthmin, int find_opt, int cou
 	int	i, j, ak, bk;
 	double	cst = 0.75;
         matrix_TYP *erg;
-
-   extern matrix_TYP *init_mat();
 
         anzahl = 0;
         con = 0;

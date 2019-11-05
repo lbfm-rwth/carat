@@ -18,10 +18,6 @@ int main (int argc, char *argv[])
   FILE *outfile;
   int i,j,c;
   
-  extern bravais_TYP *Z_class();
-  extern symbol_out *read_symbol();
-  extern symbol_out *get_symbol();
-
   /*  scan_argv (argc, argv, &filename);  */
   /* changed to conform with the rest of the carat package */
   read_header(argc,argv);
