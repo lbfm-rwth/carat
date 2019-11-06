@@ -76,6 +76,15 @@ cand (int *CI, int I, int *x, veclist V, invar F, fpstruct fp, scpcomb *comb, ba
 				exit (2);
 		}
 	}
+	else
+	{
+	    memset(&com, 0, sizeof(com));
+	    xvec = 0;
+	    xbase = 0;
+	    Fxbase = 0;
+	    rank = 0;
+	    n = 0;
+	}
 /* CI is the list for the candidates */
 	for (i = 0; i < fp.diag[I]; ++i)
 		CI[i] = 0;

@@ -96,9 +96,9 @@ matrix_TYP *
 isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TYP *SV2, matrix_TYP **Erz, int Erzanz, int *options)
 {
 	FILE		*outfile;
-	bachpol		*bach;
+	bachpol		*bach = 0;
 	flagstruct	flags;
-	scpcomb		*comb;
+	scpcomb		*comb = 0;
 	invar		F, FF;
 	veclist		V, norm;
 	fpstruct	fp;
@@ -685,9 +685,9 @@ matrix_TYP *
 perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix_TYP *SV2, matrix_TYP **Erz, int Erzanz, int *options, matrix_TYP **P, int Panz, matrix_TYP **Pbase, int Pdim)
 {
 	FILE		*outfile;
-	bachpol		*bach;
+	bachpol		*bach = 0;
 	flagstruct	flags;
-	scpcomb		*comb;
+	scpcomb		*comb = 0;
 	invar		F, FF;
 	veclist		V, norm;
 	fpstruct	fp;

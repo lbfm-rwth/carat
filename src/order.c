@@ -76,8 +76,9 @@ int main(int argc,char **argv){
   }
   fprintf(stderr,"The order of the group is %d\n",G->order);
 
+  int dim = G->dim;
   free_bravais(G);
-  for (i=0;i<G->dim;i++){
+  for (i=0;i<dim;i++){
      free_mat(base[i]);
      free_bahn(strong[i]);
      free(strong[i]);

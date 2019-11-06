@@ -100,12 +100,14 @@ matrix_TYP *inv;
        * Normalize i-th row s.t. [i][i]-element is 1
        */
       /*{{{  */
-      for (k = nuin_M[1], l = 1; l < nuin_M[0]; k=nuin_M[++l]) {
+      for (l = 1; l < nuin_M[0]; ++l) {
+        k = nuin_M[l];
         M[i][k].z *= f.n;
         M[i][k].n *= f.z;
         Normal (&M[i][k]);
       }
-      for (k = nuin_I[1], l = 1; l < nuin_I[0]; k=nuin_I[++l]) {
+      for (l = 1; l < nuin_I[0]; ++l) {
+        k = nuin_I[l];
         II[i][k].z *= f.n;
         II[i][k].n *= f.z;
         Normal (&II[i][k]);
@@ -120,7 +122,8 @@ matrix_TYP *inv;
       if ( M[j][i].z != 0 ) {
         f.z = M[j][i].z;
         f.n = M[j][i].n;
-        for (k = nuin_M[1], l = 1; l < nuin_M[0]; k = nuin_M[++l]) {
+        for (l = 1; l < nuin_M[0]; ++l) {
+          k = nuin_M[l];
           if(M[j][k].z != 0) {
             h= f.n * M[i][k].n;
             M[j][k].z *= h;
@@ -132,7 +135,8 @@ matrix_TYP *inv;
           }
           Normal (&M[j][k]);
         }
-        for (k = nuin_I[1], l = 1; l < nuin_I[0]; k = nuin_I[++l]) {
+        for (l = 1; l < nuin_I[0]; ++l) {
+          k = nuin_I[l];
           if(II[j][k].z != 0) {
             h= f.n * II[i][k].n;
             II[j][k].z *= h;
@@ -160,7 +164,8 @@ matrix_TYP *inv;
     }
     for ( j = i-1; j >= 0; j--) {
       if ( M[j][i].z != 0 ) {
-        for (k = nuin_I[1], l = 1; l < nuin_I[0]; k = nuin_I[++l]) {
+        for (l = 1; l < nuin_I[0]; ++l) {
+          k = nuin_I[l];
           h= M[j][i].n* II[i][k].n;
           II[j][k].z *= h;
           II[j][k].z -= M[j][i].z * II[j][k].n * II[i][k].z;

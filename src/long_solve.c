@@ -42,6 +42,7 @@ int main (int argc, char *argv[])
            B = mget_mat(FILENAMES[1], &Banz);
         }
         else{
+           B = 0;
            Banz = 0;
         }
         if(Aanz > 1)

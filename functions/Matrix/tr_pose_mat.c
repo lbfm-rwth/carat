@@ -34,6 +34,8 @@ int  **cZ, **cN, **Z, **N;
     cN = cmat->array.N;
   } else{
     cmat = init_mat(mat->cols,mat->rows,"");
+    N = 0;
+    cN = 0;
   }
   Z  =  mat->array.SZ;
   cZ = cmat->array.SZ;
@@ -48,7 +50,7 @@ int  **cZ, **cN, **Z, **N;
       cZ[i][j] = Z[j][i];
     }
   }
-  if( cmat->array.N != NULL) {
+  if( cN != NULL) {
     for(i = 0; i < cmat->rows; i++) {
       for(j = 0; j < cmat->cols; j++) {
         cN[i][j] = N[j][i];
