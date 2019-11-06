@@ -576,12 +576,10 @@ calc_voronoi_dir_reps (voronoi_TYP *V, bravais_TYP *G, bravais_TYP *Gtr, matrix_
    int i,j;
    matrix_TYP **M;
    int fdim;
-   int opt[5], orb_no;
+   int opt[6] = { 1, 0, 0, 0, 0, 0 };
+   int orb_no;
 
    fdim = G->form_no;
-   opt[0] = 1;
-   for(i=1;i<5;i++)
-     opt[i] = 0;
    if(V->prime == 0)
     calc_voronoi_basics(V, G, Gtr, 101);
    if(V->stab == NULL)

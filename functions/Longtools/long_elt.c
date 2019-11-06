@@ -41,7 +41,7 @@ long_elt_mat (matrix_TYP *left_trans, matrix_TYP *Mat, matrix_TYP *right_trans)
 
    int i, j, m, step, stepclear;
    int cols, rows, rang;
-   MP_INT **trf, **M, **Mt, *merkpointer, **rtrf, *help, **hilf;
+   MP_INT **trf = 0, **M, **Mt, *merkpointer, **rtrf = 0, *help, **hilf;
    matrix_TYP *erg;
    int t_option, r_t_option;
    MP_INT a1, a2, x1, x2, y1, y2, merk, g, f, o, pos1, pos2;

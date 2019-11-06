@@ -89,15 +89,15 @@ bravais_TYP *
 autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz, int *options)
 {
 	FILE		*outfile;
-	bachpol		*bach;
+	bachpol		*bach = 0;
 	flagstruct	flags;
-	scpcomb		*comb;
+	scpcomb		*comb = 0;
 	group		G;
 	invar		F;
 	veclist		V, norm;
 	fpstruct	fp;
 	int		dim, max, fail, *vec;
-	int		***H, nH, ngen, **sumveclist, **sumvecbase;
+	int		***H = 0, nH = 0, ngen, **sumveclist, **sumvecbase;
 	int		i, j, k, l, n, *Vvi, *Vvj, **Fvi, *Fvij, **FAi;
         bravais_TYP *B;
 
@@ -607,15 +607,15 @@ bravais_TYP *
 perfect_normal_autgrp (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz, int *options, matrix_TYP **P, int Panz, matrix_TYP **Pbase, int Pdim)
 {
 	FILE		*outfile;
-	bachpol		*bach;
+	bachpol		*bach = 0;
 	flagstruct	flags;
-	scpcomb		*comb;
+	scpcomb		*comb = 0;
 	group		G;
 	invar		F;
 	veclist		V, norm;
 	fpstruct	fp;
 	int		dim, max, fail, *vec;
-	int		***H, nH, ngen, **sumveclist, **sumvecbase;
+	int		***H = 0, nH = 0, ngen, **sumveclist, **sumvecbase;
 	int		i, j, k, l, n, *Vvi, *Vvj, **Fvi, *Fvij, **FAi;
         bravais_TYP *B;
 

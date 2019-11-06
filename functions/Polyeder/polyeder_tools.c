@@ -386,10 +386,10 @@ free_wall (wall_TYP **v)
         free((*v)->word->word);
    free((*v)->word);
    }
-   free((*v));
    if((*v)->product != NULL)
      free((*v)->product);
 
+   free((*v));
    (*v)=NULL;
  }
 }
@@ -463,8 +463,9 @@ normal_wall (wall_TYP *v)
     i=0;
     while(i<v->dim && v->gl[i] == 0)
        i++;
-    if(i<v->dim)
-      w1 = v->gl[i];
+    if(i>=v->dim)
+      return;
+    w1 = v->gl[i];
     for(j=i+1;j<v->dim && w1 != 1 && w1 != -1;j++)
     {
      if(v->gl[j] != 0)
@@ -507,8 +508,9 @@ normal_vertex (vertex_TYP *v)
     i=0;
     while(i<v->dim && v->v[i] == 0)
        i++;
-    if(i<v->dim)
-      w1 = v->v[i];
+    if(i>=v->dim)
+      return;
+    w1 = v->v[i];
     for(j=i+1;j<v->dim && w1 != 1 && w1 != -1;j++)
     {
      if(v->v[j] != 0)
