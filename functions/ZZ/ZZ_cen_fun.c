@@ -712,7 +712,7 @@ ZZ_p_vsolve (int *anz, matrix_TYP **L_mat, matrix_TYP **R_mat)
 {
 	int **M, **N, *v, f, help;
 	int *M_j, *M_act, numax;
-	matrix_TYP *E;
+	matrix_TYP *E = 0;
 	boolean L_null, R_null;
 	int *ss, *nuin, p, i, j, jj, k, kk, l, cR, cL, cM, rR, rL, rM, rN;
 	int rg = 0, act;

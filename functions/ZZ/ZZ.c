@@ -49,7 +49,7 @@ void
 ZZ_intern (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, QtoZ_TYP *inzidenz)
 {
     ZZ_node_t *act, *new, *nnn;
-    int g, i, j, k, l, m, n, d, di, end_num, act_anz, flag, nr, NEU, zahl, flagge;
+    int g, i, j, k, l, m, n, d, di, end_num, act_anz, flag = 0, nr, NEU, zahl, flagge;
     int ABBRUCH = FALSE;
     matrix_TYP *gitter, *X, *Li;
 
@@ -464,7 +464,7 @@ ZZ (bravais_TYP *group, matrix_TYP *gram, int *divisors, QtoZ_TYP *inzidenz, con
 	matrix_TYP *sylv;
 	int projections[9];
 	ZZ_node_t *n, *t;
-	ZZ_super_TYP *DATEN;
+	ZZ_super_TYP *DATEN = 0;
 
 	/* zuerst wird getestet, ob alle noetigen Daten vorhanden sind. */
 	if (group == NULL) {

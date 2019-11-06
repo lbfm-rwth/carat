@@ -82,6 +82,7 @@ static bravais_TYP **get_supergr(char *pfad,
    /* suche die affinen Klassen, die unsere affine Klasse als Untergruppe haben */
    for (k = 0; k < aff_class_no; k++){ /* durchlaufe alle affinen Klassen */
       Sstd = NULL;
+      Sstdinv = NULL;
       strcpy(NameSstd.qname, qnameS);
       if (fscanf(infile, "%s%i%i", string, &NameSstd.zname[0], &NameSstd.zname[1]) != 3){
          fprintf (stderr, "get_supergr: Error: Data has wrong structure.\n");

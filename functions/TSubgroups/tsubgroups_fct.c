@@ -104,7 +104,7 @@ TSubgroup_TYP **tsubgroup(bravais_TYP *R,
                           boolean aflag,
 			  boolean cflag)
 {
-   bravais_TYP *Rinv, *Pinv;
+   bravais_TYP *Rinv, *Pinv = 0;
 
    TSubgroup_TYP **sbg, **S;
 

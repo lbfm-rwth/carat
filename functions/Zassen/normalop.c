@@ -181,7 +181,7 @@ matrix_TYP *orbit_rep(matrix_TYP *x,
        j,
        k,
        h,
-     **orb_words,
+     **orb_words = 0,
        speicher;      /* the number of allocated memory for valuations
                           and orbit, and orb_words */
    MP_INT *valuations,
