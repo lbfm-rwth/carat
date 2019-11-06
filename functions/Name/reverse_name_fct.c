@@ -88,7 +88,7 @@ bravais_TYP *get_zclass_by_name(bravais_TYP *G,
    if (G->form_no == 0)
       G->form = formspace(G->gen,G->gen_no,1,&G->form_no);
 
-   QCLASS = q2z(G,&number,TRUE,NULL,TRUE);
+   QCLASS = q2z(G,&number,TRUE,NULL,TRUE,FALSE);
 
 
    if (number < *first){

@@ -75,7 +75,7 @@ matrix_TYP *z_class_inf(bravais_TYP *G,
                                    DATABASEGROUP->gen_no,
                                    1,
                                    &DATABASEGROUP->form_no);
-   QCLASS = q2z(DATABASEGROUP,&number,TRUE, NULL, TRUE);
+   QCLASS = q2z(DATABASEGROUP,&number,TRUE, NULL, TRUE, FALSE);
 
    /* calculate the almost decomposable lattice */
    ADLATTICE = almost_decomposable_lattice(G);

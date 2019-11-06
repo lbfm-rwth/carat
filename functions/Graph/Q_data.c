@@ -17,8 +17,6 @@
 #include"polyeder.h"
 #include <graph.h>
 
-boolean GRAPH = FALSE;
-
 
 /* ---------------------------------------------------------------------------- */
 /* Fill the structure Q_data_TYP for G, i.e. calculate various informations we  */
@@ -42,10 +40,8 @@ Q_data_TYP *get_Q_data(bravais_TYP *G,
 
    /* calculate the Z-classes */
    data->INZ = (QtoZ_TYP *)calloc(1, sizeof(QtoZ_TYP));
-   GRAPH = TRUE;
-   data->Z = q2z(G, &data->Z_no, 0, data->INZ, 1);
+   data->Z = q2z(G, &data->Z_no, 0, data->INZ, 1, TRUE);
    cleanup_prime();
-   GRAPH = FALSE;
 
    /* affine classes */
    data->all = 0;
