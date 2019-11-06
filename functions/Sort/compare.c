@@ -90,6 +90,7 @@ mat_col_comp (const matrix_TYP *m1, const matrix_TYP *m2)
     exit(3);
   }
   for(i=0;i<m1->cols;i++)
+  {
    for(j=0; j<m1->rows;j++)
    {
      if(m1->array.SZ[j][i] != m2->array.SZ[j][i])
@@ -99,6 +100,7 @@ mat_col_comp (const matrix_TYP *m1, const matrix_TYP *m2)
         return(-1);
      }
    }
+  }
    return(0);
 }
 
@@ -123,6 +125,7 @@ lower_triangular_mat_comp (const matrix_TYP *m1, const matrix_TYP *m2)
     exit(3);
   }
   for(i=0;i<m1->rows;i++)
+  {
    for(j=0; j<=i;j++)
    {
      if(m1->array.SZ[i][j] != m2->array.SZ[i][j])
@@ -132,6 +135,7 @@ lower_triangular_mat_comp (const matrix_TYP *m1, const matrix_TYP *m2)
         return(-1);
      }
    }
+  }
    return(0);
 }
 
@@ -179,6 +183,7 @@ pointer_mat_comp (const int **m1, const int **m2, int rows, int cols)
 {
   int i,j;
   for(i=0;i<rows;i++)
+  {
    for(j=0; j<cols;j++)
    {
      if(m1[i][j] != m2[i][j])
@@ -188,6 +193,7 @@ pointer_mat_comp (const int **m1, const int **m2, int rows, int cols)
         return(-1);
      }
    }
+  }
    return(0);
 }
 
@@ -207,6 +213,7 @@ pointer_lower_triangular_mat_comp (const int **m1, const int **m2, int n, int m)
 {
   int i,j;
   for(i=0;i<n;i++)
+  {
    for(j=0; j<=i;j++)
    {
      if(m1[i][j] != m2[i][j])
@@ -216,5 +223,6 @@ pointer_lower_triangular_mat_comp (const int **m1, const int **m2, int n, int m)
         return(-1);
      }
    }
+  }
    return(0);
 }
