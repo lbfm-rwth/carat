@@ -44,8 +44,7 @@ init_wall_fuber (int dim)
  Aenderung: 12.10.94 JK
  Speicherplatz wieder freigeben
 */
-void free_fund_domain( fudo )
-fund_domain* fudo;
+void free_fund_domain(fund_domain* fudo)
 {
 int i;
 for (i=0;i<fudo->wall_no;i++)
@@ -59,8 +58,7 @@ if (fudo->vert_no>0)
 free( (int *)fudo);
 }
 
-fund_domain *init_fund_domain(vert_no, wall_no)
-int vert_no, wall_no;
+fund_domain *init_fund_domain(int vert_no, int wall_no)
 {
   int j;
   fund_domain *erg;
@@ -82,8 +80,7 @@ int vert_no, wall_no;
 
 
 
-fund_domain *get_fund_domain(file_name)
-char *file_name;
+fund_domain *get_fund_domain(char *file_name)
 {
 int vertno, wallno;
 int dim,wn,i,j,c;
@@ -135,8 +132,7 @@ return ( F );
 }
 
 
-void put_fund_domain(F)
-fund_domain *F;
+void put_fund_domain(fund_domain *F)
 {
   int i,j;
   printf("%d  %d\n", F->vert_no, F->wall_no);
