@@ -12,7 +12,7 @@ static void
 lll_init (matrix_TYP *Mat, int lll_bnd)
 
 {
-  int **Z, **N;
+  int **Z;
   int i;
 
 
@@ -26,7 +26,6 @@ lll_init (matrix_TYP *Mat, int lll_bnd)
     {
       Mod = init_mat (Mat->rows, Mat->rows, "srl");
       Z = Mod->array.SZ;
-      N = Mod->array.N;
       for (i = 0; i < Mat->rows; i++)
 	{
 	  Z[i][i] = 1;

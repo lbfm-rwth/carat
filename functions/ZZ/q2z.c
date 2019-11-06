@@ -583,7 +583,8 @@ bravais_TYP **q2z(bravais_TYP *G,
        dimcc,
        zen_nr, cen_nr, normal_nr,
        zoo, bahnnummer,
-       samezoo, yeah,
+       //samezoo,
+       yeah,
       *liste;
 
    QtoZ_TYP **inzidenz;
@@ -836,7 +837,7 @@ bravais_TYP **q2z(bravais_TYP *G,
          ADGROUPS[i]->cen_no = 0;
          for (j = 0; j < inzidenz[i]->anz; j++){
             for (l = 0; l < inzidenz[i]->entry[j][0].anz; l++){
-               samezoo = 0;
+               //samezoo = 0;
 
                /* calculate group */
                zoo_inv = mat_inv(inzidenz[i]->zoogitter[j][l]);
@@ -878,11 +879,11 @@ bravais_TYP **q2z(bravais_TYP *G,
                if (ganzzahlig != 1){
                   if (zoo != i){
                      /* another zoo */
-                     samezoo = 0;
+                     //samezoo = 0;
                   }
                   else{
                      /* same zoo */
-                     samezoo = 1;
+                     //samezoo = 1;
                   }
                   Knoten = SUPER_INFO->tree->root;
                   for (f = 0; f < zoo; f++){

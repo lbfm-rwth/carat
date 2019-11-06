@@ -37,7 +37,7 @@ char *fn,
                        just makes it possible to free it */
 FILE *infile;
 int anz;
- int k, c;
+ int k;
 
 file_name = B->fn;
 B->fn = NULL;
@@ -51,14 +51,14 @@ else
 		fprintf (stderr, "get_zentr: Could not open input-file %s\n", file_name);
 		exit (4);
 		}
-c=fscanf (infile, "%*[ \t\n\r]");
+fscanf (infile, "%*[ \t\n\r]");
 st = getc(infile);
 if ( st != '#' ) {
 	anz = 1;
 	ungetc(st,infile);
 	}
 else
-	c=fscanf (infile, "%u", &anz);
+	fscanf (infile, "%u", &anz);
 /*--------------------------------------------------------------------*\
 |  read the matrices                                                   |
 \*--------------------------------------------------------------------*/
@@ -73,8 +73,8 @@ for ( k = 0; k < anz; k++) {
 	| read  file with other almost decomposable bravais-group      |
 	\*------------------------------------------------------------*/
 old_fn = fn = (char *) malloc(1024 *sizeof(char));
-c=fscanf (infile, "%[ \t\n]", fn);
-c=fscanf (infile, "%[^\n]", fn);
+fscanf (infile, "%[ \t\n]", fn);
+fscanf (infile, "%[^\n]", fn);
 while(fn != NULL && fn[0] == ' ')
   fn++;
 

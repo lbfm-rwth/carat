@@ -292,13 +292,11 @@ wall_TYP *h;
  int l;
  int old_no;
  int *count;
- int waste;
  int tester, *test;
  int p,n;
  vertex_TYP *v;
 
  p=0;n=0;
- waste = 0;
  old_no = F->vert_no;
  count = (int *)malloc(F->vert_no *sizeof(int *));
  for(i=0;i<F->vert_no;i++)

@@ -44,14 +44,13 @@ char f[1024], dat[1024];
 char *fn;
 FILE *infile;
 int i, j, k, l, m, n, p, q, x, groesser;
-int no, c;
+int no;
 int breite;
 char merk[15];
 char merk1[10];
 int index;
 char konst[MAXDIM][80];
 int konst_dim;
-int komp[MAXDIM];
 int artgleich[MAXDIM];
 int dim = 0, konstit = 0;
 int zerleg[MAXDIM][5];
@@ -78,14 +77,12 @@ else
 /*------------------------------------------------------------*\
 | Read and scan header line										|
 \*------------------------------------------------------------*/
-for( i=0; i<MAXDIM; i++)
-  komp[i] = 0;
 for(i=0; i<MAXDIM; i++)
   for(j=0; j<5;j++)
     zerleg[i][j] = 0;
 printf("Please input the symbol for the crystal-family: ");
-c=fscanf (infile, "%[ \t\n]", string);
-c=fscanf (infile, "%[^\n]",string);
+fscanf (infile, "%[ \t\n]", string);
+fscanf (infile, "%[^\n]",string);
 strtok (string, "%");
 
 right_order(string);

@@ -8,8 +8,7 @@ int main (int argc, char *argv[])
 {
   matrix_TYP **M,
               *Trf;
-  int erg,
-      anz,
+  int anz,
       i;
 
   read_header(argc, argv);
@@ -41,7 +40,7 @@ int main (int argc, char *argv[])
   M = mget_mat(FILENAMES[0],&anz);
   for (i=0;i<anz;i++){
      Trf = init_mat(M[i]->rows, M[i]->rows, "");
-     erg = Trf_gauss(M[i], Trf);
+     Trf_gauss(M[i], Trf);
      put_mat(M[i], NULL, "row-gauss of matrix", 0);
      if (is_option('t')) put_mat(Trf, NULL, "Transformtion matrix", 0);
      free_mat(Trf);

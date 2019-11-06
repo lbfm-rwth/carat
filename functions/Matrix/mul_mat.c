@@ -18,13 +18,12 @@ rmat_mul (matrix_TYP *L_mat, matrix_TYP *R_mat)
 {
 matrix_TYP *P_mat;
 int **L, **LN, **R, **RN, **P, **PN ;
-int  rL, cL, rR, cR, rP, cP ;
+int  rL, cL, cR, rP, cP ;
 int i, j, k ; 
 int tmp_ggt, tmp_z, tmp_n, tmp_kgv;
 
   cL =        L_mat->cols;
   rL = rP =   L_mat->rows;
-  rR =        R_mat->rows;
   cR = cP =   R_mat->cols;
   
   P_mat = init_mat(rP,cP,"r");
@@ -89,12 +88,11 @@ int **L, **R, **P ;
 int *L_i,
     *R_j,
     *P_i;
-int  rL, cL, rR, cR, rP, cP ;
+int  rL, cL, cR, rP, cP ;
 int i, j, k ;
 
   cL =        L_mat->cols;
   rL = rP =   L_mat->rows;
-  rR =        R_mat->rows;
   cR = cP =   R_mat->cols;
   
   P_mat = init_mat(rP,cP,"");

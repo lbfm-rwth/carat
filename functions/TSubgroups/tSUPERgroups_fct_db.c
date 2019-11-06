@@ -29,7 +29,7 @@ static bravais_TYP **get_supergr(char *pfad,
 				 database *database,
 				 matrix_TYP *trafoinv)
 {
-  int i, k, j, z1ri, z2ri, number, anz, nr, laenge, c;
+  int i, k, j, z1ri, z2ri, number, anz, nr, laenge;
 
    bravais_TYP *Sstd, *Ri, **Si = NULL, *Sstdinv;
 
@@ -57,7 +57,7 @@ static bravais_TYP **get_supergr(char *pfad,
    }
 
    /* Hole Worte fuer alle Untergruppen */
-   c=fscanf (infile, "%[^\n]",string);
+   fscanf (infile, "%[^\n]",string);
    if ( string[0] != '#' ) {
       anz = 1;
       mat = (matrix_TYP **)malloc(sizeof(matrix_TYP *));

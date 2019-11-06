@@ -75,14 +75,13 @@ voronoi_TYP **
 normalizer (matrix_TYP *P, bravais_TYP *G, bravais_TYP *Gtr, int prime, int *V_no)
 {
    int i,j,k,l;
-   int dim, fdim;
+   int fdim;
    voronoi_TYP **V;
    voronoi_TYP *Vneu;
    matrix_TYP *Dir, **N, *X, *bifo;
    int Vanz, Nanz, diranz, no;
    int lc, rc;
 
-   dim = G->dim;
    fdim = G->form_no;
    if( (V = (voronoi_TYP **)malloc(1 *sizeof(voronoi_TYP *))) == NULL)
    {

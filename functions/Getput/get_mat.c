@@ -65,7 +65,7 @@ int **M;
 matrix_TYP *mat;
 flag_TYP flags;
 char  string[256], *str ;
- int i, j, c;         
+ int i, j;
 
 
 
@@ -77,8 +77,8 @@ char  string[256], *str ;
   /*------------------------------------------------------------*\
   | Read and scan header line                    |
   \*------------------------------------------------------------*/
-  c=fscanf (infile, "%[ \t\n]", string);
-  c=fscanf (infile, "%[^\n]",string);
+  fscanf (infile, "%[ \t\n]", string);
+  fscanf (infile, "%[^\n]",string);
   strtok (string, "%");
   sscanf (string, "%d", &rM);
   if ( (str = strpbrk (string, "xd")) != NULL ) {
@@ -121,7 +121,7 @@ char  string[256], *str ;
      *  Read the matrix                       
      */
     if ( flags.Scalar ) {
-      c=fscanf( infile, "%s", string );
+      fscanf( infile, "%s", string );
       if ( strchr( string, '/') == NULL ) {
         sscanf(string, "%d", &M[0][0]);
         for ( i = 1; i < rM; i++ )M[i][i]= M[0][0];
@@ -136,7 +136,7 @@ char  string[256], *str ;
     } else {
       if ( flags.Diagonal ) {
         for ( i = 0; i < cM; i++ ) {
-          c=fscanf( infile, "%s", string );
+          fscanf( infile, "%s", string );
           if ( strchr( string, '/') == NULL ) {
             sscanf(string, "%d", &M[i][i]);
           } else {                   
@@ -147,7 +147,7 @@ char  string[256], *str ;
       } else {
         for ( i = 0; i < rM; i++  ) {
           for ( j = 0; j < ( flags.Symmetric ? i+1 : cM ); j++ ) {
-            c=fscanf( infile, "%s", string );
+            fscanf( infile, "%s", string );
             if ( strchr( string, '/') == NULL ) {
               sscanf(string, "%d", &M[i][j]);
             } else {                   
@@ -286,12 +286,12 @@ fmget_mat (FILE *infile, int *anz)
 {  
 matrix_TYP **mat;
 char string[512];
- int k, c;
+ int k;
 
   /*
    *   Open input file                       
    */
-  c=fscanf (infile, "%[^\n]",string);
+  fscanf (infile, "%[^\n]",string);
   if ( string[0] != '#' ) {
     *anz = 1;
     mat = (matrix_TYP **)malloc(sizeof(matrix_TYP *));

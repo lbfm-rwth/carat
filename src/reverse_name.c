@@ -24,7 +24,7 @@ int main (int argc, char *argv[])
 
 
   int zname[2],
-    i, c;
+    i;
 
   MP_INT aff_name;
 
@@ -81,10 +81,10 @@ int main (int argc, char *argv[])
 
 
   fprintf(stderr,"qname:\n");
-  c=scanf("%s",qname);
+  scanf("%s",qname);
 
   fprintf(stderr,"zname: \n");
-  c=scanf("%d %d",zname,zname+1);
+  scanf("%d %d",zname,zname+1);
 
   fprintf(stderr,"affname: \n");
   mpz_init(&aff_name);

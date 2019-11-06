@@ -113,10 +113,9 @@ void
 calc_voronoi_pol (voronoi_TYP *V, matrix_TYP *bifo)
 {
    int i,j,k;
-   int dim, fdim;
+   int fdim;
    wall_TYP **W;
 
-   dim = V->gram->cols;
    fdim = bifo->cols;
   
    if( (W = (wall_TYP **)malloc(V->vert_no *sizeof(wall_TYP *))) == NULL)
