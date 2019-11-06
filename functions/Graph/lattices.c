@@ -20,8 +20,6 @@
 extern int OANZ;
 extern matrix_TYP **OMAT;
 extern int OFLAG;
-/* boolean GRAPH = FALSE; */
-
 
 
 

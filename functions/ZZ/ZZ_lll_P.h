@@ -1,4 +1,4 @@
-#if !defined(_ZZ_H) && !defined(_ZZ_LLL_P_H)
+#ifndef _ZZ_LLL_P_H
 #define _ZZ_LLL_P_H
 
 #include "ZZ_P.h"

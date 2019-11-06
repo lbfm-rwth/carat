@@ -8,10 +8,6 @@
 #include "getput.h"
 #include "datei.h"
 
-#undef ZZ_PRIVATE
-
-#include "../functions/ZZ/ZZ_P.h"
-
 extern bravais_TYP **q2z(bravais_TYP *G,
                          int *number,
                          int ADFLAG,
