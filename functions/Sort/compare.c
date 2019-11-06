@@ -42,7 +42,7 @@
 @
 \**************************************************************************/
 int 
-mat_comp (matrix_TYP *m1, matrix_TYP *m2)
+mat_comp (const matrix_TYP *m1, const matrix_TYP *m2)
 {
   int i,
       j,
@@ -81,7 +81,7 @@ mat_comp (matrix_TYP *m1, matrix_TYP *m2)
 @
 \**************************************************************************/
 int 
-mat_col_comp (matrix_TYP *m1, matrix_TYP *m2)
+mat_col_comp (const matrix_TYP *m1, const matrix_TYP *m2)
 {
   int i,j;
   if(m1->cols != m2->cols || m1->rows != m2->rows)
@@ -114,7 +114,7 @@ mat_col_comp (matrix_TYP *m1, matrix_TYP *m2)
 @
 \**************************************************************************/
 int 
-lower_triangular_mat_comp (matrix_TYP *m1, matrix_TYP *m2)
+lower_triangular_mat_comp (const matrix_TYP *m1, const matrix_TYP *m2)
 {
   int i,j;
   if(m1->cols != m2->cols || m1->rows != m2->rows)
@@ -147,7 +147,7 @@ lower_triangular_mat_comp (matrix_TYP *m1, matrix_TYP *m2)
 @
 \**************************************************************************/
 int 
-vec_comp (int *v1, int *v2, int dim)
+vec_comp (const int *v1, const int *v2, int dim)
 {
   int i;
   for(i=0;i<dim;i++)
@@ -175,7 +175,7 @@ vec_comp (int *v1, int *v2, int dim)
 @
 \**************************************************************************/
 int 
-pointer_mat_comp (int **m1, int **m2, int rows, int cols)
+pointer_mat_comp (const int **m1, const int **m2, int rows, int cols)
 {
   int i,j;
   for(i=0;i<rows;i++)
@@ -203,7 +203,7 @@ pointer_mat_comp (int **m1, int **m2, int rows, int cols)
 @
 \**************************************************************************/
 int 
-pointer_lower_triangular_mat_comp (int **m1, int **m2, int n, int m)
+pointer_lower_triangular_mat_comp (const int **m1, const int **m2, int n, int m)
 {
   int i,j;
   for(i=0;i<n;i++)
