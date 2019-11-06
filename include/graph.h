@@ -112,6 +112,20 @@ void put_Q_data(Q_data_TYP *data,
 bravais_TYP *extract_r(bravais_TYP *G,
                        matrix_TYP *X);
 
+matrix_TYP **extensions_o(matrix_TYP *cozycle,
+                          matrix_TYP *D,
+                          matrix_TYP *R,
+                          bravais_TYP *G,
+                          int **lengths,
+                          MP_INT **names,
+                          int *number_of_orbits,
+                          int ****WORDS,
+                          int **NUMBER_OF_WORDS,
+                          matrix_TYP ***N,
+                          MP_INT coho_size,
+                          int option,
+                          int *list_of_names);
+
 matrix_TYP **all_cocycles(matrix_TYP *relator_input,
                           bravais_TYP *G,
                           int *anzahl,
