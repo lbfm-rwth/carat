@@ -36,46 +36,51 @@ p_formspace (matrix_TYP **B, int Banz, int prime, int sym_opt, int *fdim)
   dim = B[0]->cols;
   if(B[0]->rows != dim)
   {
-    printf("error in formspace: non-square matrix in group 'B'\n");
+    printf("error in p_formspace: non-square matrix in group 'B'\n");
     exit(3);
   }
   for(i=1;i<Banz;i++)
   {
      if(B[i]->rows != dim || B[i]->cols != dim)
      {
-       printf("error in formspace: different dimesion of group elements\n");
+       printf("error in p_formspace: different dimension of group elements\n");
        exit(3);
      }
   }
   if(sym_opt == 1)
     dd = (dim *(dim+1))/2;
-  if(sym_opt == -1)
+  else if(sym_opt == -1)
     dd = (dim *(dim-1))/2;
-  if(sym_opt == 0)
+  else if(sym_opt == 0)
     dd = dim * dim;
+  else
+  {
+     printf("error in p_formspace: invalid sym_opt value %d\n", sym_opt);
+     exit(2);
+  }
   if( (pos = (int **)malloc(dim *sizeof(int *))) == NULL)
   {
-     printf("malloc of 'pos' in 'formspace' failed\n");
+     printf("malloc of 'pos' in 'p_formspace' failed\n");
      exit(2);
   }
   for(i=0;i<dim;i++)
   {
     if( (pos[i] = (int *)malloc(dim *sizeof(int))) == NULL)
     {
-       printf("malloc of 'pos[%d]' in 'formspace' failed\n", i);
+       printf("malloc of 'pos[%d]' in 'p_formspace' failed\n", i);
        exit(2);
     }
   }
   if( (sign = (int **)malloc(dim *sizeof(int *))) == NULL)
   {
-     printf("malloc of 'sign' in 'formspace' failed\n");
+     printf("malloc of 'sign' in 'p_formspace' failed\n");
      exit(2);
   }
   for(i=0;i<dim;i++)
   {
     if( (sign[i] = (int *)malloc(dim *sizeof(int))) == NULL)
     {
-       printf("malloc of 'sign[%d]' in 'formspace' failed\n", i);
+       printf("malloc of 'sign[%d]' in 'p_formspace' failed\n", i);
        exit(2);
     }
   }
@@ -186,7 +191,7 @@ p_formspace (matrix_TYP **B, int Banz, int prime, int sym_opt, int *fdim)
   {
     if( (E = (matrix_TYP **)malloc(anz *sizeof(matrix_TYP *))) == NULL)
     {
-      printf("malloc of 'E' in 'formspace' failed\n");
+      printf("malloc of 'E' in 'p_formspace' failed\n");
       exit(2);
     }
   }

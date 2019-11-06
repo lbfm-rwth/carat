@@ -563,7 +563,7 @@ rform (matrix_TYP **B, int Banz, matrix_TYP *Fo, int epsilon)
         {
            if(B[i]->rows != dim || B[i]->cols != dim)
            {
-             printf("error in rform: different dimesion of group elements\n");
+             printf("error in rform: different dimension of group elements\n");
              exit(3);
            }
         }

@@ -212,8 +212,7 @@ matrix_TYP **calculate_representatives(bravais_TYP *G,
 				       int *orbit_no,
 				       int **orbit_length)
 {
-   matrix_TYP **S1,
-              **S1_inv,
+   matrix_TYP **S1 = 0,
               **lNli,
 	      **Ninv,
 	      **new_rep,
@@ -253,7 +252,6 @@ matrix_TYP **calculate_representatives(bravais_TYP *G,
       N_H_GL_Z = stelle_normalisator_dar(GL, H_GL_Z);
       S1 = calculate_S1(id, lNli, norm_no, &S1_word_no, N_H_GL_Z, Ninv, H_GL_Z[1]);
 
-      S1_inv = (matrix_TYP **)calloc(S1_word_no, sizeof(matrix_TYP *));
       for (l = 0; l < norm_no; l++){
          free_mat(lNli[l]);
 	 free_mat(N_H_GL_Z[l]);
@@ -340,11 +338,8 @@ matrix_TYP **calculate_representatives(bravais_TYP *G,
    if (phi->cols > 0){
       for (l = 0; l < S1_word_no; l++){
          free_mat(S1[l]);
-         if (S1_inv[l] != NULL)
-            free_mat(S1_inv[l]);
        }
        free(S1);
-       free(S1_inv);
    }
    for (l = 0; l < cohomSize; l++){
       if (kernel_elements[l] != NULL)

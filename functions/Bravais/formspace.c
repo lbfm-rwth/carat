@@ -49,16 +49,21 @@ formspace (matrix_TYP **B, int Banz, int sym_opt, int *fdim)
   {
      if(B[i]->rows != dim || B[i]->cols != dim)
      {
-       printf("error in formspace: different dimesion of group elements\n");
+       printf("error in formspace: different dimension of group elements\n");
        exit(3);
      }
   }
   if(sym_opt == 1)
     dd = (dim *(dim+1))/2;
-  if(sym_opt == -1)
+  else if(sym_opt == -1)
     dd = (dim *(dim-1))/2;
-  if(sym_opt == 0)
+  else if(sym_opt == 0)
     dd = dim * dim;
+  else
+  {
+     printf("error in formspace: invalid sym_opt value %d\n", sym_opt);
+     exit(2);
+  }
   if( (pos = (int **)malloc(dim *sizeof(int *))) == NULL)
   {
      printf("malloc of 'pos' in 'formspace' failed\n");

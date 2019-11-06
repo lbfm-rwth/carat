@@ -11,7 +11,7 @@ int main (int argc, char *argv[])
 	matrix_TYP **F1, **F2, **Erz, *SV1, *SV2, *Iso, *tmp;
         int i, Fanz, F2anz, Erzanz, options[6];
         FILE *infile;
-        int Fmax;
+        int Fmax = 0;
 
         read_header(argc, argv);
         if(FILEANZ != 2)

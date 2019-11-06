@@ -46,7 +46,7 @@ bravais_TYP **min_k_super(bravais_TYP *P,
 	      **N;
 
    int p, i, j, Nanz, anzalt,
-       *list, *smallest, *kopiert;
+       *list = 0, *smallest = 0, *kopiert;
 
 
    anz[0] = 0;

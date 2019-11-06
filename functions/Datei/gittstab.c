@@ -135,7 +135,7 @@ Z_class (bravais_TYP *B, matrix_TYP *zen)
    bravais_TYP *S;
    bravais_TYP *C;
    bravais_TYP *N;
-   bravais_TYP *CS;
+   bravais_TYP *CS = 0;
    bravais_TYP *NS;
    matrix_TYP *A1, *A2;
    matrix_TYP *zinv,

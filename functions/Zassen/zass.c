@@ -419,7 +419,7 @@ matrix_TYP** cohomology(long *dim,
     }
  
     if (erg == 0){
-       /* die Q-dimesionen der Coraender und Cozykel sind gleich, d.h.
+       /* die Q-dimensionen der Coraender und Cozykel sind gleich, d.h.
           es kommt nur torsion dazu */
        for (i=elementar->cols-1;0<=i;i--){
          if (elementar->array.SZ[i][i]==0){

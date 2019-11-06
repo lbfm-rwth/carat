@@ -16,13 +16,13 @@
 int main (int argc, char *argv[])
 {
    bravais_TYP *R,
-               *P;
+               *P = 0;
 
-   TSubgroup_TYP **subgroups;
+   TSubgroup_TYP **subgroups = 0;
 
-   matrix_TYP **presentation,
+   matrix_TYP **presentation = 0,
               **base,
-              **gapwords;
+              **gapwords = 0;
 
    char  comment[1000],
  	 file[1000];

@@ -66,7 +66,11 @@ p_lse_solve (matrix_TYP *A, matrix_TYP *B, int *anz, int p)
       C[i][j] = A->array.SZ[i][j];
   }
   if(B == NULL)
+  {
     inhomo = FALSE;
+    r = 0;
+    D = 0;
+  }
   else
   {
      inhomo = TRUE;
