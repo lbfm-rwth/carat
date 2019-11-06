@@ -49,6 +49,7 @@ static bravais_TYP **get_supergr(char *pfad,
 
 
    /* Vorbereitungen */
+   memset(&NameSstd, 0, sizeof(NameSstd));
    anzahl[0] = 0;
    snprintf(filename, 1024, "%s/words.%s", pfad, qnameS);
    if ( (infile = fopen(filename, "r")) == NULL ) {
