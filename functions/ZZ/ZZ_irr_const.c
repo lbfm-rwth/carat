@@ -203,7 +203,7 @@ matrix_TYP **ZZ_irr_const(matrix_TYP **generators,
 
 	init_prime(p);
 	irrconst = irr_help(generators, num_gens, num_irr_const, 0);
-#if DEBUG
+#ifdef DEBUG
 	fprintf(stderr, "Primzahl: %d\n",p );
 #endif
 	for (i = 0; i < *num_irr_const; i++) {

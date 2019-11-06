@@ -16,7 +16,7 @@
 
 int *SUB_VEC;
 matrix_TYP **PrI;
-QtoZ_konst_TYP *KONSTITUENTEN = NULL;
+static QtoZ_konst_TYP *KONSTITUENTEN = NULL;
 
 /* eingefuegt von Oliver am 5.2.99 */
 int OANZ = 0;
@@ -235,7 +235,7 @@ test_two_constituents (ZZ_data_t *data, int i, int j, int k)
 			s = data->r;
 			temp = p_solve(&s, P_CONST[i][j], P_CONST[i][k], 2);
 			if (s > 0) {
-#if DEBUG
+#ifdef DEBUG
 				printf("p: %d, Konst. %d/%d\n", i, j ,k);
 #endif
 				for (ll = 0; ll < s; ll++) {
