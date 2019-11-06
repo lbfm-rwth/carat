@@ -53,27 +53,6 @@ rmatfac (double **A, double m, double **B, int n)
 }
 
 
-
-static int 
-rmatone (double **A, int n)
-{
-	int	i, j;
-
-
-	for (i = 0; i < n; ++i)
-	{
-		if (fabs(A[i][i] - 1.0) > EPS)
-			return 0;
-		for (j = 0; j < n; ++j)
-		{
-			if (j != i  &&  fabs(A[i][j]) > EPS)
-				return 0;
-		}
-	}
-	return 1;
-}
-
-
 static void 
 rmatadd (double **A, double **B, double **C, int n)
 {

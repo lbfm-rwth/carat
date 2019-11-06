@@ -2,16 +2,9 @@
 extern "C" {
 #endif
 
-
 /* check that this routine is included only once */
 #ifndef _MALLOC_
-
 #define _MALLOC_
-
-#define m_alloc m_alloc_d1
-#define c_alloc c_alloc_d1
-#define re_alloc re_alloc_d1
-#define fr_ee fr_ee_d1
 
 /* decide which diagnostics we want */
 
@@ -48,24 +41,6 @@ void *re_alloc_d2(void *, int );
 void fr_ee_d2(void *);
 
 void pointer_statistics(unsigned *,int);
-
-/*====================================================================*\
-|| Pointer auf die verschiedenen m_alloc-Funktionen, die bei der Suche||
-|| nach Fehlern in der Speicherverwaltung helfen koennen.             ||
-\*====================================================================*/
-/*
-#ifdef __STDC__
-extern int *(*m_alloc ) (int       );
-extern int *(*c_alloc ) (int  , int);
-extern int *(*re_alloc) (void *, int);
-extern void (*fr_ee   ) (void *    );
-#else
-extern int *(*m_alloc ) (int       );
-extern int *(*c_alloc ) (int  , int);
-extern int *(*re_alloc) (void *, int);
-extern void (*fr_ee   ) (void *    );
-#endif
-*/
 
 #endif /* #ifndef _MALLOC_ */
 

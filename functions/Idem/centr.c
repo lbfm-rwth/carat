@@ -296,32 +296,6 @@ int pos(matrix_TYP **list,int no,matrix_TYP *x)
   return -1;
 } /* pos (....) */
 
-static matrix_TYP *matrix_in_pol(matrix_TYP *pol,matrix_TYP *x)
-{
-   int i;
-
-   matrix_TYP *erg,
-              *pot;
-
-   if (x->cols != x->rows && x->flags.Integral == FALSE){
-      fprintf(stderr,"exit in matrix_in_pol\n");
-      exit(3);
-   }
-
-   pot = init_mat(x->cols,x->cols,"1");
-   erg = init_mat(x->cols,x->cols,"");
-
-   for (i=0;i<pol->cols;i++){
-      imat_addeq(erg,pot,1,pol->array.SZ[0][i]);
-      mat_muleq(erg,x);
-   }
-
-   free_mat(pot);
-
-   return erg;
-
-} /* matrix_in_pol(...) */
-
 int min_trace(matrix_TYP **A,int no)
 {
 
