@@ -137,7 +137,7 @@ matrix_TYP *row_spin(matrix_TYP *x,matrix_TYP **G,int no,int option)
               denominator will not be changed. otherwise multiply
               denominator by this quotient and multiply the rest of
               A by it */
-           quot = abs(G[j]->kgv/mpz_get_si(&tmp));
+           quot = labs(G[j]->kgv/mpz_get_si(&tmp));
            if (quot != 1)
               for (k=0;k<rows;k++)
                  for (l=0;l<dim;l++)
@@ -233,7 +233,7 @@ matrix_TYP *row_spin(matrix_TYP *x,matrix_TYP **G,int no,int option)
   res = init_mat(rows,dim,"");
   write_MP_mat_to_matrix(res,A);
 
-  if (abs(denominator._mp_size>1)){
+  if (labs(denominator._mp_size>1)){
      fprintf(stderr,"denominator in row_spin to large!\n");
      fprintf(stderr,"(I thought this to be impossible)\n");
      exit(3);
@@ -378,7 +378,7 @@ matrix_TYP *translation_lattice(matrix_TYP **G,int number,matrix_TYP *P)
      X = init_mat(G[0]->cols,G[0]->cols,"1");
      for (j=0;j<P->cols;j++){
         if (P->array.SZ[i][j] != 0){
-           if (abs(P->array.SZ[i][j]) > number){
+           if (labs(P->array.SZ[i][j]) > number){
              fprintf(stderr,"translation_lattice: you asked for the %d-th"
                ,P->array.SZ[i][j]);
               fprintf(stderr," generator,\n but gave only %d\n",number);

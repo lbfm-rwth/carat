@@ -393,7 +393,7 @@ static void scan_options (const char *options, int *projections, FILE *outputfil
 			fprintf (stderr, "Maximal dimension is 8\n");
 			exit(3);
 		} else {
-#if DEBUG
+#ifdef DEBUG
 			printf ("%d\n", projections[0]);
 #endif
 			help = optp + 1;
@@ -491,7 +491,7 @@ ZZ (bravais_TYP *group, matrix_TYP *gram, int *divisors, QtoZ_TYP *inzidenz, con
 	result = 0;
 	for (i = 1; i < 100 && result == 0; i++) {
 		if (divisors[i] != 0) {
-#if DEBUG
+#ifdef DEBUG
 			printf("divisors[%d] = %d\n", i, divisors[i]);
 #endif
 			result = divisors[i];

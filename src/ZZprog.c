@@ -156,7 +156,7 @@ main (int argc, char *argv[])
 	    exit(31);
     }
 
-#if DEBUG
+#ifdef DEBUG
     printf("Options: %s\n", options);
     {
 	    int i;
@@ -183,13 +183,13 @@ main (int argc, char *argv[])
     }
 
 
-#if DEBUG
+#ifdef DEBUG
     fput_mat( stderr, gram, "Form", 0);
 #endif
 
     ZZ (group, gram, group->divisors, NULL, options, outputfile, 0, 0);
 
-#if DEBUG
+#ifdef DEBUG
     fprintf (stderr, "num_zentr: %d\n", group->zentr_no);
 #endif
     /*  the following is not exactly needed as we do an exit() anyways.
