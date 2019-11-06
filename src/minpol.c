@@ -40,10 +40,6 @@ int main(int argc,char **argv){
 
   INFO_LEVEL = optionnumber('h');
 
-  if (INFO_LEVEL & 12){
-     SFLAG = 1;
-  }
-
   x = mget_mat(FILENAMES[0],&anz);
 
   for (j=0;j<anz;j++){
@@ -86,10 +82,6 @@ int main(int argc,char **argv){
   }
 
   free(x);
-
-  if (INFO_LEVEL & 12){
-     pointer_statistics(0,0);
-  }
 
   exit(1);
 

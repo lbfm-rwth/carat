@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -fwritable-strings -DDIAG1 -g
+CFLAGS = -fwritable-strings -g
 #TOPDIR = /usb/carat
 
 OBJFLAGS = -c

@@ -43,9 +43,6 @@ int main(int argc,char **argv){
   }
 
   INFO_LEVEL = optionnumber('h');
-  if (INFO_LEVEL & 8){
-     SFLAG = 1;
-  }
   finite = FALSE;
   if (is_option('f')) finite = TRUE;
 
@@ -59,17 +56,12 @@ int main(int argc,char **argv){
      put_mat(normal[i],NULL,NULL,2);
   }
 
-  /* cleaning up memory for pointer_statistics */
   free_bravais(G);
   free_bravais(N);
   for (i=0;i<anz;i++) free_mat(normal[i]);
   free(normal);
 
   printf("end of Normalizer_in_N\n");
-
-  if (INFO_LEVEL & 8){
-     pointer_statistics(0,0);
-  }
 
   exit(0);
 } /* main */

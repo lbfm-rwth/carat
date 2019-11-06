@@ -33,7 +33,6 @@ int main (int argc, char *argv[])
 	if (is_option('h')){
 		INFO_LEVEL = optionnumber('h');
 	}
-	if (INFO_LEVEL == 8) SFLAG = 1;
 
         if(FILEANZ != 2)
         {
@@ -158,7 +157,6 @@ int main (int argc, char *argv[])
 	free(erg);
         free(representatives);
         if (option != NULL) free(option);
-	if (INFO_LEVEL == 8) pointer_statistics(0,0);
 
    exit(0);
 }

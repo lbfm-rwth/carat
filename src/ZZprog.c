@@ -147,7 +147,6 @@ main (int argc, char *argv[])
     read_header(argc, argv);
 
     if (is_option('D') && optionnumber('D') == 8){
-       SFLAG = 1;
        INFO_LEVEL = optionnumber('D');
     }
 
@@ -198,10 +197,6 @@ main (int argc, char *argv[])
     cleanup_prime();
     free_bravais(group);
     if (gram != NULL) free_mat(gram);
-
-    if (INFO_LEVEL == 8){
-       pointer_statistics(0,0);
-    }
 
     return 0;
 }

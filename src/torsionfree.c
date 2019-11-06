@@ -41,9 +41,6 @@ int main(int argc,
   }
 
   INFO_LEVEL = optionnumber('h');
-  if (INFO_LEVEL == 8){
-     SFLAG = 1;
-  }
 
   R = get_bravais(FILENAMES[0]);
   K = torsionfree(R,&order,&number);
@@ -79,9 +76,6 @@ int main(int argc,
 
   free_bravais (R);
   free(K);
-
-
-  if (INFO_LEVEL == 8) pointer_statistics(0,0);
 
   exit(0);
 }

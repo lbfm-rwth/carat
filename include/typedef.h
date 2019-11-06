@@ -15,8 +15,6 @@ extern "C" {
 #include <signal.h>
 #include <stdarg.h>
 
-#include "m_alloc.h"
-
 #define TRUE 1
 #define FALSE 0
 
@@ -196,7 +194,6 @@ typedef struct {
 } QtoZ_TYP;
 
 // TODO: move the following to a more appropriate location
-extern int SFLAG;
 extern int INFO_LEVEL;
 
 

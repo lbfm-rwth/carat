@@ -58,7 +58,6 @@ int main(int argc,char *argv[]){
   }
 
   if (is_option('h')) { INFO_LEVEL = optionnumber('h'); }
-  if (INFO_LEVEL & 8) { SFLAG = 1; }
 
   /* einlesen der matrizen */
   X = mget_mat(FILENAMES[0],&i);
@@ -153,11 +152,6 @@ int main(int argc,char *argv[]){
   free(relator);
 
   free_mat(relator_input);
-
-  /* making some diagnostics */
-  if (INFO_LEVEL & 8){
-     pointer_statistics(0,0);
-  }
 
   exit(0);
 } /* main */

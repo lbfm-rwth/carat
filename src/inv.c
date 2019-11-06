@@ -30,10 +30,6 @@ int main (int argc, char *argv[])
     }
   }
 
-  if (is_option('h') && optionnumber('h')==12){
-     SFLAG = 1;
-  }
-
   F = mget_mat(FILENAMES[0],&anz);
 
   printf("#%d\n",anz);
@@ -49,9 +45,6 @@ int main (int argc, char *argv[])
   }
 
   free(F);
-  if (is_option('h') && optionnumber('h')==12){
-     pointer_statistics(0,0);
-  }
 
   exit(0);
 }

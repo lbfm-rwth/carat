@@ -1,6 +1,6 @@
 CC = gcc
 #TOPDIR = /usb/carat
-CFLAGS = -g -fwritable-strings -DDIAG1
+CFLAGS = -g -fwritable-strings
 
 OBJFLAGS = -c
 INCL = $(TOPDIR)/include

@@ -119,11 +119,6 @@ int main(int argc,char **argv){
 
   INFO_LEVEL = optionnumber('h');
 
-  if (INFO_LEVEL & 12){
-     SFLAG = 1;
-  }
-
-
   if ((FILEANZ > 2)
       || (FILEANZ == 2 && ! is_option('i'))){
     /* reading the group */
@@ -353,11 +348,6 @@ int main(int argc,char **argv){
   free_mat(relator_input);
   free(X);
   free_bravais(G);
-
-  if (INFO_LEVEL & 12){
-     pointer_statistics(0,0);
-  }
-
 
   exit(0);
 } /* main */

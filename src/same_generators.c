@@ -119,15 +119,6 @@ int main(int argc,char **argv){
   free(R);
 
  
-  if (INFO_LEVEL & 12){
-     SFLAG = 1;
-  }
-
-  if (INFO_LEVEL & 12){
-     fprintf(stderr,"write pointer_statistics\n");
-     pointer_statistics(0,0);
-  }
-
   if (FALSE){
      put_bravais(P,NULL,NULL);
   }
