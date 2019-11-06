@@ -39,7 +39,7 @@ char *fn;
 symbol_out *sy;
 char  st;
 FILE *infile;
- int i, j, k, l, m, c;
+ int i, j, k, l, m;
 int gen_no, form_no, zentr_no, normal_no, cen_no;
 
 	/*------------------------------------------------------------*\
@@ -61,7 +61,7 @@ else
   /*--------------------------------------------------*\
   |  read header line                                  |
   \*--------------------------------------------------*/
-c=fscanf (infile, "%*[ \t\n\r]");
+fscanf (infile, "%*[ \t\n\r]");
 st = getc(infile);
 if ( st != '#' ) {
 	gen_no = 1;
@@ -70,12 +70,12 @@ if ( st != '#' ) {
 else
 {
 
-c=fscanf (infile, "%[ \t\n]", string);
-c=fscanf (infile, "%[^\n]",string);
+fscanf (infile, "%[ \t\n]", string);
+fscanf (infile, "%[^\n]",string);
 strtok (string, "%");
 
   if ( (str = strpbrk (string, "gfznc")) == NULL )
-        c=sscanf(string, "%d", &gen_no);
+        sscanf(string, "%d", &gen_no);
   else
   {
      while((str = strpbrk(str, "gfznc")) != NULL)
@@ -87,15 +87,15 @@ strtok (string, "%");
         m = strcspn(str, "c");
 
         if(i< j && i<k &&i<l && i<m)
-	   c=sscanf ( ++str, "%d", &gen_no);
+	   sscanf ( ++str, "%d", &gen_no);
         if(j<i && j<k && j<l && j<m)
-	   c=sscanf ( ++str, "%d", &form_no);
+	   sscanf ( ++str, "%d", &form_no);
         if(k<i && k<j && k<l && k<m)
-	   c=sscanf ( ++str, "%d", &zentr_no);
+	   sscanf ( ++str, "%d", &zentr_no);
         if(l<i && l<j && l<k && l<m)
-	   c=sscanf ( ++str, "%d", &normal_no);
+	   sscanf ( ++str, "%d", &normal_no);
         if(m<i && m<j && m<k && m<l)
-	   c=sscanf ( ++str, "%d", &cen_no);
+	   sscanf ( ++str, "%d", &cen_no);
      }
   }
 }
@@ -133,8 +133,8 @@ for ( k = 0; k < cen_no; k++)
 	/*------------------------------------------------------------*\
 	| read group order                                             |
 	\*------------------------------------------------------------*/
-c=fscanf (infile, "%[ \t\n]", string);
-c=fscanf (infile, "%[^\n]",string);
+fscanf (infile, "%[ \t\n]", string);
+fscanf (infile, "%[^\n]",string);
 if ( *string == '%' )
   strin= NULL;
 else
@@ -152,7 +152,7 @@ if( (strlen(strin)) != 0 && strin != NULL)
        strin++;
     while(strin[0] == ' ')
        strin++;
-    c=sscanf(strin, "%d", &j);
+    sscanf(strin, "%d", &j);
     itoasc(j, merk);
     k = strlen(merk);
     strin = strin+k;
@@ -165,7 +165,7 @@ if( (strlen(strin)) != 0 && strin != NULL)
       strin++;
       while(strin[0] == ' ')
          strin++;
-        c=sscanf(strin, "%d", &k);
+        sscanf(strin, "%d", &k);
         sy->grp->divisors[j] = k;
         itoasc(k, merk);
         k = strlen(merk);
@@ -176,7 +176,7 @@ if( (strlen(strin)) != 0 && strin != NULL)
     i = strcspn(strin, "=");
    }
    if ( (str = strpbrk (strin, "=")) != NULL )
-	c=sscanf ( ++str, "%d", &sy->grp->order);
+	sscanf ( ++str, "%d", &sy->grp->order);
    else
      sy->grp->order = 0;
 }
@@ -191,8 +191,8 @@ else
 	\*------------------------------------------------------------*/
 sy->fn = (char *) malloc(1024 *sizeof(char));
 fn = (char *) malloc(1024 *sizeof(char));
-c=fscanf (infile, "%[ \t\n]", fn);
-c=fscanf (infile, "%[^\n]", fn);
+fscanf (infile, "%[ \t\n]", fn);
+fscanf (infile, "%[^\n]", fn);
 while(fn != NULL && fn[0] == ' ')
   fn++;
 if(fn[0] == '\n' ||

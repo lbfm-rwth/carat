@@ -104,7 +104,7 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 	fpstruct	fp;
 	int		dim, max, fail, *vec;
 	int		***G, nG, ngen, **sumveclist, **sumvecbase;
-	int		i, j, k, *Vvi, *Vvj, **Fvi, *Fvij, **FAi, nV1;
+	int		i, j, k, *Vvi, *Vvj, **Fvi, *Fvij, **FAi;
 	matrix_TYP	*erg, *erg1;
 
        normal_option = FALSE;
@@ -360,7 +360,6 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 		}
 	}
 /* the vectors of the first lattice are no longer required, only their number */
-	nV1 = V.n;
         for(i=0;i<=V.n;i++)
           free(V.v[i]);
         free(V.v);

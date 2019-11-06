@@ -126,15 +126,13 @@ elt_func (matrix_TYP *mat)
 {  
 int min_sum, sum,**E, h,*v, _min_;
 int min_col, min_row, rM, cM, i, j, k,l;
-boolean rc_min, flag, Global_flag;
+boolean rc_min, flag;
 #ifdef DEBUG
 char *temp = "tempA";
 #endif
 matrix_TYP *elt;
 elt_div_pair paar;
 
-  Global_flag = FALSE;
-  
   if ( !(mat->flags.Integral & 1)) {
     fprintf (stderr, "Elementary divisors of a rational matrix ??\n");
     exit (3);
@@ -153,8 +151,8 @@ elt_div_pair paar;
   rc_min = TRUE;
   for ( i = 0; i < cM; i++) {
 #ifdef DEBUG
-    if (Global_flag)
-    put_mat(elt,temp,NULL,0);
+    if (FALSE)
+      put_mat(elt,temp,NULL,0);
     temp[4]++;
 #endif
     /*---------------------------------------------------------*\

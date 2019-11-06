@@ -7,7 +7,7 @@ lattice_element **super_lattice(const char *symb,int dim,int almost,int zclass,
 		int *no, int OPTION)
 {
 
-  int i, j, pos, found, c;
+  int i, j, pos, found;
 
    FILE *infile;
 
@@ -29,14 +29,14 @@ lattice_element **super_lattice(const char *symb,int dim,int almost,int zclass,
      exit(4);
    }
 
-   c=fscanf(infile,"%d\n",no);
+   fscanf(infile,"%d\n",no);
 
    RES = (lattice_element **) malloc(no[0] * sizeof(lattice_element *));
 
    for (i=0;i<no[0];i++){
       RES[i] = init_lattice_element();
 
-      c=fscanf(infile,"%s %d %d\n",
+      fscanf(infile,"%s %d %d\n",
       RES[i]->symbol,&RES[i]->almost,&RES[i]->zclass);
    }
 
@@ -51,7 +51,7 @@ lattice_element **super_lattice(const char *symb,int dim,int almost,int zclass,
            get_data_dir(), dim, RES[i]->symbol, RES[i]->almost, RES[i]->zclass);
 
          infile = fopen(filename,"r");
-         c=fscanf(infile,"#%d\n",&pos);
+         fscanf(infile,"#%d\n",&pos);
          j = 0;
          while (!found && j<pos){
             TMP = fget_lattice_element(infile,FALSE);

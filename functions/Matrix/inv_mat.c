@@ -26,14 +26,11 @@ static matrix_TYP *
 rmat_inv (matrix_TYP *mat)                           
 {  
 rational **M, **II, *v, f ;
-int n, i, j, k ,l , flag;
+int n, i, j, k , l;
 int *nuin_M, *nuin_I;
-int kgv, h;
+int h;
 matrix_TYP *inv;
 
-  flag  =
-  kgv   =
-  h     = 0;
   f = Zero;
   n = mat->cols;
   nuin_M = (int *)calloc((n+1),sizeof(int));
@@ -202,15 +199,11 @@ static matrix_TYP *
 imat_inv (matrix_TYP *mat)
 {  
 rational **M, **II, *v, f ;
-int n, i, j, k ,l , flag;
+int n, i, j, k , l;
 int *nuin_M, *nuin_I;
-int kgv, h, waste ;
+int kgv, h;
 matrix_TYP *inv;
 
-  flag  =
-  kgv   =
-  h     =
-  waste = 0;
   f = Zero;
   n = mat->cols;
   nuin_M = (int *)calloc((n+1),sizeof(int),"imat_inv:nuin_M");

@@ -33,7 +33,6 @@ char merk1[10];
 int index;
 char konst[MAXDIM][80];
 int konst_dim;
-int komp[MAXDIM];
 int artgleich[MAXDIM];
 int dim = 0, konstit = 0;
 int zerleg[MAXDIM][5];
@@ -43,8 +42,6 @@ symbol_out *erg;
 fn = (char *) malloc(1024 * sizeof(char));
 for (i=0;i<80;i++) string[i] = 0;
 
-for( i=0; i<MAXDIM; i++)
-  komp[i] = 0;
 for(i=0; i<MAXDIM; i++)
   for(j=0; j<5;j++)
     zerleg[i][j] = 0;

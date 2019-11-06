@@ -108,7 +108,7 @@ matrix_TYP **get_words(const char *pfad,
 		       boolean aflag,
 		       int *anzahl)
 {
-  int anz, k, i, z1, z2, *woerter, nr, laenge, c;
+  int anz, k, i, z1, z2, *woerter, nr, laenge;
 
    char filename[2048], string[512];
 
@@ -129,7 +129,7 @@ matrix_TYP **get_words(const char *pfad,
    }
 
    /* Hole Worte fuer alle Untergruppen */
-   c=fscanf (infile, "%[^\n]",string);
+   fscanf (infile, "%[^\n]",string);
    if ( string[0] != '#' ) {
       anz = 1;
       mat = (matrix_TYP **)malloc(sizeof(matrix_TYP *));

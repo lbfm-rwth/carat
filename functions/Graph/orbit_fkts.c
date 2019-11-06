@@ -725,7 +725,7 @@ matrix_TYP **orbit_ksi_plus_ker(matrix_TYP *ksi,
                                 int *anz,
                                 int **length)
 {
-   int i, j, k, /* m, */ rows, first, last, diff, pos,
+   int i, j, k, /* m, */ rows, first, last, pos,
        ttt = 0,
        *list, *smallest, counter;
 
@@ -744,7 +744,6 @@ matrix_TYP **orbit_ksi_plus_ker(matrix_TYP *ksi,
       minuseins.z = -1;
       for (first = 0; first < D->cols && D->array.SZ[first][first] == 1; first++);
       for (last = first; last < D->cols && D->array.SZ[last][last] != 0; last++);
-      diff = last - first;
 
       for (i = 0; i < no; i++){
          tmp = mat_mul(N[i], ksi);

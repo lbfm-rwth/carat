@@ -136,7 +136,7 @@ static constituent *homogenous(bravais_TYP *G,matrix_TYP *F,int *anz)
 *****************************************************************************/
 static char *identify_hom(bravais_TYP *G,int clear)
 {
-  int i, c,
+  int i,
        found=0,
        flag,
        multiplicity,
@@ -174,13 +174,13 @@ static char *identify_hom(bravais_TYP *G,int clear)
           exit(4);
        }
 
-       c=fscanf(atom_file,"%d\n",&atom_no);
+       fscanf(atom_file,"%d\n",&atom_no);
 
        /* now read the symbols */
        Atoms = (symbol_out *) malloc(atom_no * sizeof(symbol_out));
        for (i=0;i<atom_no;i++){
           Atoms[i].fn = (char *) calloc(20,sizeof(char));
-          c=fscanf(atom_file,"%s\n",Atoms[i].fn);
+          fscanf(atom_file,"%s\n",Atoms[i].fn);
        }
        fclose(atom_file);
 

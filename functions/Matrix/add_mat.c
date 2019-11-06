@@ -241,11 +241,10 @@ rational Lc, Rc;
 matrix_TYP *
 rmat_addeq (matrix_TYP *L_mat, matrix_TYP *R_mat, rational L_coeff, rational R_coeff)
 {
-int **L, **R, rS, cS , temp1, Rk;
+int **L, **R, rS, cS , temp1;
 int i, j;
 rational Rc, Lc;
 
-  Rk    =
   temp1 = 0;
   rS = L_mat->rows;
   cS = L_mat->cols;
@@ -396,9 +395,8 @@ matrix_TYP *
 mat_add (matrix_TYP *L_mat, matrix_TYP *R_mat, rational L_coeff, rational R_coeff)
 {
 int Lc, Rc;
-int lp, help;
+int lp;
 
-  help = 0;
   Lc = Rc = 1;
   if (( L_mat->cols != R_mat->cols) || (L_mat->rows != R_mat->rows )) {
     fprintf (stderr, "Can't add %dx%d with %dx%d\n",
@@ -451,9 +449,8 @@ matrix_TYP *
 mat_addeq (matrix_TYP *L_mat, matrix_TYP *R_mat, rational L_coeff, rational R_coeff)
 {
 int Lc, Rc;
-int lp, help;
+int lp;
 
-  help = 0;
   Lc = Rc = 1;
   if (( L_mat->cols != R_mat->cols) || (L_mat->rows != R_mat->rows )) {
     fprintf (stderr, "Can't add %dx%d with %dx%d\n",
