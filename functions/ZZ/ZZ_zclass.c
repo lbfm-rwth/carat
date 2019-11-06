@@ -21,22 +21,6 @@
 
 
 
-static int position(matrix_TYP **a,matrix_TYP *x,int n)
-/* returns the first index i<n such that a[i] == x, and
-   -1 if none exists */
-{
-  int i=0;
-
-  while (i<n){
-    if (mat_comp(a[i],x) == 0){
-       return i;
-    }
-    i++;
-  }
-  return -1;
-}
-
-
 /*------------------------------------------------------------------------------- */
 static matrix_TYP *
 is_conjugated_ZZ (ZZ_node_t *n, ZZ_node_t *new)
@@ -225,48 +209,6 @@ matrix_TYP *special_deal_with_zclass(ZZ_tree_t *tree,
    exit(4);
 }
 
-
-
-
-/*------------------------------------------------------------------------------- */
-static int is_contained(matrix_TYP *U,matrix_TYP *V)
-{
-
-	int i,
-	    j,
-	    k,
-	    sum;
-
-	for (i=0;i<U->cols;i++){
-		for (j=0;j<U->rows;j++){
-			sum = 0;
-			for (k=0;k<U->rows;k++){
-				sum += (V->array.SZ[i][k] * U->array.SZ[k][j]);
-			}
-			if ((sum % V->kgv) != 0)
-				return FALSE;
-		}
-	}
-
-	return TRUE;
-/*
-	matrix_TYP *tmp;
-
-	tmp = mat_mul(V,U);
-
-	Check_mat(tmp);
-
-	if (tmp->kgv == 1){
-		free_mat(tmp);
-		return TRUE;
-	}
-	else{
-		free_mat(tmp);
-		return FALSE;
-	}
-*/
-
-}
 
 
 

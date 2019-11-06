@@ -154,18 +154,6 @@ col_clear (double **A, int step, int n)
    }
 }
 
-static void 
-double_symmat_put (double **D, int n)
-{
-  int i,j;
-  for(i=0;i<n;i++)
-  {
-    for(j=0;j<=i;j++)
-      printf("%e  ", D[i][j]);
-    printf("\n");
-  }
-}
-
 
 static int 
 diag_definite_test (double **D, int n)

@@ -29,20 +29,6 @@ static int cmp_mat_lex (matrix_TYP *A, matrix_TYP *B)
       return 0;
 }
 
-static int hash_number(matrix_TYP *M)
-{
-   int i,j,h;
-   int  **SZ = M->array.SZ;
-   /*K: Wahrscheinlich weniger Arbeit fuer Rechner durch Einfueheren von
-    "Zwischenpointer"*/
-   h = 0;
-   for(i=0; i<M->rows; i++)
-     for(j=0; j<M->cols; j++)
-     h += SZ[i][j];
-   
-   return h;
-}
-
 static void sort_cols (matrix_TYP *N)
 {
   
