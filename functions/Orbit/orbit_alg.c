@@ -368,10 +368,10 @@ static matrix_TYP *
 grp_mul (matrix_TYP *A, matrix_TYP *B)
 {
   matrix_TYP *erg;
-  if(orbit_opt[0] == 0 || orbit_opt[0] == 2 || orbit_opt[0] == 4)
-    erg = mat_mul(B,A);
-  if(orbit_opt[0] == 1 || orbit_opt[0] == 3 || orbit_opt[0] == 5)
+  if(orbit_opt[0] & 1)
     erg = mat_mul(A,B);
+  else
+    erg = mat_mul(B,A);
   return(erg);
 }
 

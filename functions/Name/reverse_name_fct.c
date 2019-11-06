@@ -280,7 +280,8 @@ bravais_TYP *get_affine_class_by_name(bravais_TYP *G,
           free_mat(matinv[i]);
    }
    free(matinv);
-   for (i=0;i<3;i++) free_mat(COH[i]); free(COH);
+   for (i=0;i<3;i++) free_mat(COH[i]);
+   free(COH);
    for (i=0;i<PRES->rows;i++) wordfree(relator+i);
    free(relator);
 

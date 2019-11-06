@@ -80,8 +80,9 @@ short_reduce (matrix_TYP *A, matrix_TYP *SV, matrix_TYP *Trf)
         max = B[i][i];
    }
    if(max == min)
-   { for(i=0;i<dim;i++)
-       free(Titr[i]);
+   {
+       for(i=0;i<dim;i++)
+          free(Titr[i]);
        free(Titr);
        return(Aneu);
    }
