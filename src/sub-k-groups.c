@@ -60,9 +60,6 @@ int main (int argc, char *argv[])
       exit(11);
    }
    INFO_LEVEL = optionnumber('h');
-   if (INFO_LEVEL & 12){
-      SFLAG = 1;
-   }
 
    /* get data */
    R = get_bravais(FILENAMES[0]);
@@ -140,12 +137,6 @@ int main (int argc, char *argv[])
    free(S);
    free_mat(presentation[0]);
    free(presentation);
-
-   /* for debugging */
-   if (INFO_LEVEL & 12){
-      fprintf(stderr,"write pointer_statistics\n");
-      pointer_statistics(0,0);
-   }
 
    exit(0);
 }

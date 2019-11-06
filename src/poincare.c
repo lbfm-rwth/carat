@@ -67,11 +67,6 @@ int main (int argc, char *argv[])
    }
    }
 
-        /* setting SFALG according to optionnumber('h') */
-        if (is_option('h') && optionnumber('h') == 8){
-           SFLAG = 1;
-        }
-
         G = get_bravais(FILENAMES[0]);
 	x = get_mat (FILENAMES[1]);
 	Form = get_mat (FILENAMES[2]);
@@ -186,8 +181,5 @@ free_polyeder(Pol);
 free_mat(x); x = NULL;
 free_bravais(G);
 free_mat(Form); Form = NULL;
-        if (SFLAG == 1){
-           pointer_statistics(0,0);
-        }
    printf("\n");
 }

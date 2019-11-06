@@ -67,9 +67,6 @@ int main (int argc, char *argv[])
    }
 
    INFO_LEVEL = optionnumber('h');
-   if (INFO_LEVEL & 12){
-      SFLAG = 1;
-   }
 
    /* get data */
    /* ======== */
@@ -157,13 +154,6 @@ int main (int argc, char *argv[])
    }
    if (no > 0)
       free(subgroups);
-
-   /* Debugging */
-   /* ========= */
-   if (INFO_LEVEL & 12){
-      fprintf(stderr,"write pointer_statistics\n");
-      pointer_statistics(0,0);
-   }
 
    exit(0);
 }

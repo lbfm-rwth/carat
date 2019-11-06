@@ -1,13 +1,13 @@
 CC = gcc
-CFLAGS = -fwritable-strings -DDIAG1 -pg
+CFLAGS = -fwritable-string -pg
 # TOPDIR = /usb/carat
 
 # LIB = -L$(TOPDIR)/lib -lcarat -lm
-LIB = -L$(TOPDIR)/lib -lpresentation -lfunctions -lpresentation -lgmp -lm_alloc -lm
+LIB = -L$(TOPDIR)/lib -lpresentation -lfunctions -lpresentation -lgmp -lm
 SRC = $(TOPDIR)/src
 INCL = $(TOPDIR)/include
 OBJ = $(TOPDIR)/obj
-LIBS = $(TOPDIR)/lib/libpresentation.a $(TOPDIR)/lib/functions.a  $(TOPDIR)/lib/libm_alloc.a
+LIBS = $(TOPDIR)/lib/libpresentation.a $(TOPDIR)/lib/functions.a
 
 COMP = $(CC) $(CFLAGS) -I$(INCL)
 

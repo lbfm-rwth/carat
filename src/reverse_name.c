@@ -40,9 +40,6 @@ int main (int argc, char *argv[])
   if (is_option('h'))
     INFO_LEVEL = optionnumber('h');
 
-  if (INFO_LEVEL == 8)
-    SFLAG = 1;
-
   if ((is_option('h') && INFO_LEVEL != 8) || FILEANZ > 0)
     {
       printf("Usage: %s [-h] [-c] [-i]\n",argv[0]);
@@ -118,7 +115,6 @@ int main (int argc, char *argv[])
 
   free(affstring);
   free_bravais(R);
-  if (INFO_LEVEL == 8) pointer_statistics(0,0);
 
   exit(0);
 }

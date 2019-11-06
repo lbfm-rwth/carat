@@ -58,10 +58,6 @@ int main(int argc,char **argv){
 
   INFO_LEVEL = optionnumber('h');
 
-  if (INFO_LEVEL & 12){
-     SFLAG = 1;
-  }
-
   if (FILEANZ == 1){
      G = get_bravais(FILENAMES[0]);
 
@@ -192,11 +188,6 @@ int main(int argc,char **argv){
   if (G != NULL) free_bravais(G);
   if (T != NULL) free_mat(T);
   if (symb != NULL) free(symb);
-
-  if (INFO_LEVEL & 12){
-     fprintf(stderr,"write pointer_statistics\n");
-     pointer_statistics(0,0);
-  }
 
   exit(0);
 

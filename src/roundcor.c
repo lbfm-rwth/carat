@@ -760,10 +760,6 @@ found = 0;
 /* inserted to konform with the carat library */
 read_header(argc,argv);
 
-if (is_option('d')){
-   SFLAG = 1;
-}
-
 fprintf(stderr,"\n\n Program calculating a presentation of a group\n");
 fprintf(stderr," using properties of a fundamental domain.\n");
 fprintf(stderr,"\n (c) 1995 Lehrstuhl B Mathematik, RWTH Aachen\n\n");
@@ -1129,12 +1125,6 @@ free_vector(genvector);
 free_derivedsgcomp(groupgen);
 free_mat(grammatrix);
 */
-
-if (is_option('d')){
-   fprintf(stderr," SCOUNT: %d\n",SCOUNT);
-   pointer_statistics(0,0);
-}
-
 
 exit(0);
 }

@@ -35,14 +35,7 @@ TOPDIR=/path/to/the/directory/containing/this/makefile
 #¤
 CC = gcc
 
-# There are some special preprocessor flags which set some
-# memory diagnostics:
-# Use -DDIAG1 to check for not properly used memory only
-# when calling malloc(...) and free(..), and -DDIAG2 to
-# have a general control whats going on. THIS IS VERY SLOW.
-# For the normal user we recommend neither to use -DDIAG1 nor -DDIAG2!
-
-CFLAGS = -g -Wall -DDIAG1
+CFLAGS = -g -Wall
                                        # the flag -fwritable-strings is
                                        # required for the use with gcc
 
@@ -74,7 +67,6 @@ ALL: Makefile\
      Longtools\
      Name\
      Matrix\
-     M_alloc\
      Orbit\
      Polyeder\
      Presentation\
@@ -129,9 +121,6 @@ Name: Makefile functions/Name/Makefile
 Matrix: Makefile functions/Matrix/Makefile
 	cd functions/Matrix;make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
-M_alloc: Makefile functions/M_alloc/Makefile
-	cd functions/M_alloc;make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
-
 Orbit: Makefile functions/Orbit/Makefile
 	cd functions/Orbit; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
@@ -171,7 +160,6 @@ ZZ: Makefile functions/ZZ/Makefile
 Executables: bin/Makefile
 	if $(RANLIB_TEST) ; then $(RANLIB) lib/functions.a; else true; fi
 	if $(RANLIB_TEST) ; then $(RANLIB) lib/libpresentation.a; else true; fi
-	if $(RANLIB_TEST) ; then $(RANLIB) lib/libm_alloc.a; else true; fi
 	cd bin; make CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
 
 clean:
@@ -188,7 +176,6 @@ clean:
 	cd functions/Longtools; make clean
 	cd functions/Name; make clean
 	cd functions/Matrix; make clean
-	cd functions/M_alloc; make clean
 	cd functions/Orbit; make clean
 	cd functions/Polyeder; make clean
 	cd functions/Presentation; make clean
@@ -203,7 +190,6 @@ clean:
 	rm -rf functions/gmp-4.2.1
 	rm -f lib/libgmp.a
 	rm -f lib/*gmp*
-	rm -f lib/libm_alloc.a
 	rm -f lib/libpresentation.a
 	rm -f lib/functions.a
 	rm -f include/longlong.h

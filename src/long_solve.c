@@ -33,9 +33,6 @@ int main (int argc, char *argv[])
         }
 
         if (is_option('h')){ INFO_LEVEL = optionnumber('h');}
-        if (INFO_LEVEL & 8){
-           SFLAG = 1;
-        }
 
 	A = mget_mat (FILENAMES[0], &Aanz);
         if(FILEANZ == 2){
@@ -73,9 +70,6 @@ int main (int argc, char *argv[])
         for (i=0;i<Banz;i++) free_mat(B[i]);
         free(A);
         if (B!=NULL) free(B);
-        if (INFO_LEVEL & 8){
-           pointer_statistics(0,0);
-        }
 
    exit(0);
 }

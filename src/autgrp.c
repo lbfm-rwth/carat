@@ -17,10 +17,6 @@ int main (int argc, char *argv[])
 
         read_header(argc, argv);
 
-        if (is_option('h') && optionnumber('h')==12){
-           SFLAG = 1;
-        }
-
         if(FILEANZ != 1)
         {
            printf("Usage: %s 'file' [-d=n] [-s=n] [-b] [-b=n] [-B=n] [-v] [-g] [-p]\n",argv[0]);
@@ -163,8 +159,5 @@ int main (int argc, char *argv[])
  for (i=0;i<Erzanz;i++) free_mat(Erz[i]);
  if (Erzanz != 0) free(Erz);
 
- if (is_option('h') && optionnumber('h')==12){
-    pointer_statistics(0,0);
- } 
  return 0;
 }

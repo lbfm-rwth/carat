@@ -118,10 +118,6 @@ int main(int argc,char **argv){
 
   INFO_LEVEL = optionnumber('h');
 
-  if (INFO_LEVEL & 12){
-     SFLAG = 1;
-  }
-
   G = get_bravais(FILENAMES[0]);
 
   if (is_option('t') || type){

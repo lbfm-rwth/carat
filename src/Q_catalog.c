@@ -369,9 +369,6 @@ int main (int argc, char *argv[])
   if (is_option('h'))
     INFO_LEVEL = optionnumber('h');
   
-  if (INFO_LEVEL == 8)
-    SFLAG = 1; 
-  
   if (is_option('h') && INFO_LEVEL != 8)
     {
       printf("Usage: %s [file] [-T] [-h] [-i] [-s]\n",argv[0]);
@@ -450,7 +447,6 @@ int main (int argc, char *argv[])
 
   free(display_list);  
   free_database (database);
-  if (INFO_LEVEL == 8) pointer_statistics(0,0);
   
   return 0;
 }

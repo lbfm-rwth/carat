@@ -52,10 +52,6 @@ int main (int argc, char *argv[])
    }
 
    INFO_LEVEL = optionnumber('h');
-   if (INFO_LEVEL & 12){
-      SFLAG = 1;
-   }
-
 
    /* get data */
    H = get_bravais(FILENAMES[0]);
@@ -91,11 +87,6 @@ int main (int argc, char *argv[])
    free_bravais(H);
    if (Gtr != NULL)
       free_bravais(Gtr);
-
-   /* some diagnostic for memory leakage */
-   if (INFO_LEVEL & 12){
-      pointer_statistics(0,0);
-   }
 
    exit(0);
 }

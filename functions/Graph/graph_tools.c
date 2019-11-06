@@ -183,10 +183,6 @@ isn't a cohomology group at all */
   for (i=0;i<relator_input->rows;i++) wordfree(relator+i);
   free(relator);
 
-  if (INFO_LEVEL & 12){
-     pointer_statistics(0,0);
-  }
-
   return(Y);
 }
 
