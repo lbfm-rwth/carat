@@ -355,7 +355,7 @@ bravais_TYP ****t_subgroups(bravais_TYP *G,
    sub = t_sub_info(mats, no, G, G_geninv);
    WORDS = (int ***)calloc(MIN_SPEICHER, sizeof(int **));
    NUMBER_OF_WORDS = (int *)calloc(MIN_SPEICHER, sizeof(int));
-   coz = all_cocycles(pres, G, aff_no, G_geninv, &X, &names, WORDS, NUMBER_OF_WORDS,
+   coz = all_cocycles(pres, G, aff_no, G_geninv, &X, &names, &WORDS, &NUMBER_OF_WORDS,
                       &trash, &coho_size, &trashlist, 1);
    if (trash != NULL){
       for (i = 0; i < G->normal_no; i++)
