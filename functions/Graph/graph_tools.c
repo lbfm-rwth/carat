@@ -55,9 +55,6 @@ bravais_TYP *extract_r(bravais_TYP *G,
 
    int i, j;
 
-   char comment[1000];
-
-
    rat2kgv(X);
    Check_mat(X);
 
@@ -85,8 +82,6 @@ bravais_TYP *extract_r(bravais_TYP *G,
       H->gen[i]->array.SZ[H->dim-1][H->dim-1] = X->kgv;
       Check_mat(H->gen[i]);
    }
-   sprintf(comment,"space group to the point group of %s and cozycle %s",
-           FILENAMES[0],FILENAMES[1]);
   
    return(H);
 }
