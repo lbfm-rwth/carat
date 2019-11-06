@@ -29,7 +29,7 @@
 @-------------------------------------------------------------------------
 @ char **calloc2dim ( r, c, size )
 @ int r,c,size;
-|-- allokiert ein 2-dimesionales array
+|-- allokiert ein 2-dimensionales array
 @
 @ allocates a 2-dimensional array with 'r' rows and 'c' columns
 @ the size of the entries in bytes is given by the argument 'size'.
@@ -72,7 +72,7 @@ int i, j;
 @-------------------------------------------------------------------------
 @ char **malloc2dim ( r, c, size )
 @ int r,c,size;
-| -- allokiert ein 2-dimesionales array
+| -- allokiert ein 2-dimensionales array
 @
 | int r, int c: ZeilenxSpalten des Arrays
 | int size: Groesse eines Eintrags in bytes
@@ -115,7 +115,7 @@ int i, j;
 /*
 @-------------------------------------------------------------------------
 @ void memcpy2dim ( dest, src, r, c, size )
-@        copies a 2-dimesional array
+@        copies a 2-dimensional array
 @
 @ char **dest: destination
 @ char **src:  source
@@ -172,7 +172,7 @@ int i, j;
 /*
 @-------------------------------------------------------------------------
 @ void free2dim ( old, rows )
-| -- gibt ein 2-dimesionales array frei
+| -- gibt ein 2-dimensionales array frei
 @ frees a 2-dimensional array
 @
 @ char **old: pointer to the array

@@ -76,7 +76,7 @@
 @-------------------------------------------------------------------------
 @-------------------------------------------------------------------------
 @ void memcpy2dim ( dest, src, r, c, size )
-@        copies a 2-dimesional array
+@        copies a 2-dimensional array
 @
 @ char **dest: destination
 @ char **src:  source

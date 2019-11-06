@@ -108,6 +108,8 @@ int main (int argc, char *argv[])
 
    /* get more data */
    if (FILEANZ == 2){
+      base = 0;
+      strong = 0;
       presentation = mget_mat(FILENAMES[1],&panz);
       if (panz > 1){
          fprintf(stderr, "You should only give a single matrix as presention!\n");

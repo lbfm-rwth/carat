@@ -1222,8 +1222,8 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 {
 	ZZ_node_t *n;
 	ZZ_couple_t *c;
-	matrix_TYP *Tmp1, *Tmp2, *U_vor, *tmp;
-	matrix_TYP *Mat, *Trf, *el, *GMat;
+	matrix_TYP *Tmp1, *Tmp2, *U_vor = 0, *tmp;
+	matrix_TYP *Mat, *Trf, *el = 0, *GMat;
 	int **U, **CC, sum, f;
 	int i, j, k, nl, flag, ff, gg;
 	int ABBRUCH;

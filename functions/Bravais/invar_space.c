@@ -51,23 +51,28 @@ invar_space (matrix_TYP **B, int Banz, int fodim, int symm_opt, int epsilon, int
    dim = B[0]->cols;
    if(B[0]->rows != dim)
    {
-     printf("error in formspace: non-square matrix in group 'B'\n");
+     printf("error in invar_space: non-square matrix in group 'B'\n");
      exit(3);
    }
    for(i=1;i<Banz;i++)
    {
       if(B[i]->rows != dim || B[i]->cols != dim)
       {
-        printf("error in formspace: different dimesion of group elements\n");
+        printf("error in invar_space: different dimension of group elements\n");
         exit(3);
       }
    }
   if(symm_opt == 1)
     dd = (dim *(dim+1))/2;
-  if(symm_opt == -1)
+  else if(symm_opt == -1)
     dd = (dim *(dim-1))/2;
-  if(symm_opt == 0)
+  else if(symm_opt == 0)
     dd = dim * dim;
+  else
+  {
+     printf("error in invar_space: invalid symm_opt value %d\n", symm_opt);
+     exit(2);
+  }
 
    if(fodim <= 0)
    { *anz = 0; return(NULL);}

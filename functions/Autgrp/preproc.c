@@ -227,14 +227,11 @@ scpvecs (veclist *list, int ***vec, int I, int *b, int dep, veclist V, invar F)
 		scpvector(scpvec, Vvj, b, I, dep, F);
 		for (i = 0; i < len  &&  scpvec[i] == 0; ++i);
 		if (i == len)
-/* if scpvec is the 0-vector, nr is set to 0, since numberof never returns 0 */
-			nr = 0;
-		else
-		{
-			nr = numberof(scpvec, *list);
-			sign = nr > 0 ? 1 : -1;
-			nr = abs(nr);
-		}
+			continue;
+
+        nr = numberof(scpvec, *list);
+        sign = nr > 0 ? 1 : -1;
+        nr = abs(nr);
 /* scpvec is already in list */
 		if (nr <= list->n  &&  nr > 0)
 		{

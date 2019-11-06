@@ -670,7 +670,7 @@ extern matrix_TYP **normalizer_in_N(bravais_TYP *U,bravais_TYP *N,int *anz,
    bravais_TYP BN;
 
    bahn **strong,
-        **strong_N;
+        **strong_N = 0;
 
    int i,
        j,

@@ -7,7 +7,7 @@ int main (int argc, char *argv[])
 
 {  
    matrix_TYP **V,
-              **F,
+              **F = 0,
               **V_tr,
                *SCPR,
                *TT;

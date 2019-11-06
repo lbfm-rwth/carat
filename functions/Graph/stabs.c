@@ -295,7 +295,8 @@ matrix_TYP **calculate_S1(matrix_TYP *lattice,
 
    if (GRAPH_DEBUG){
       Ninv = (matrix_TYP **)calloc(anz, sizeof(matrix_TYP *));
-   }
+   } else
+      Ninv = 0;
 
    list = (matrix_TYP **)calloc(1024, sizeof(matrix_TYP *));
    words = (int **)calloc(1024, sizeof(int *));

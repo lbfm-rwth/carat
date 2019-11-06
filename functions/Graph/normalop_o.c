@@ -434,7 +434,7 @@ matrix_TYP **extensions_o(matrix_TYP *cozycle,
                           int option,
                           int *list_of_names)
 {
-  int i, j, k, anz, *wort, act_val_int, coho_size_int,
+  int i, j, k, anz, *wort = 0, act_val_int, coho_size_int = 0,
       Nanz = G->normal_no + G->cen_no,
       orbit_length, **WWW;
 

@@ -32,7 +32,7 @@ static void *xmalloc (int size, const char *string)
 static int krit_kon_mat (matrix_TYP **A, matrix_TYP **B, int anz,
 			 matrix_TYP ***M, int *dim)
 {
-  matrix_TYP **AA, **BA, **AB,**Prod, *mat;
+  matrix_TYP **AA = 0, **BA, **AB,**Prod, *mat;
   int ab, aa = 0, ba, pp,i,j;
   int result = 0;
   
