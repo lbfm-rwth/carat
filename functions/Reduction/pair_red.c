@@ -62,6 +62,7 @@ pr_red (int **G, int **T, int n)
    {
      reduced = TRUE;
      for(i=0;i<n;i++)
+     {
       for(j=0;j<i;j++)
       {
          red2 = FALSE;
@@ -93,8 +94,10 @@ pr_red (int **G, int **T, int n)
              return;
          }
       }
+     }
       reduction_sort(G, T, n);
       for(i=0;i<n;i++)
+      {
         for(j=i+1;j<n;j++)
         {
           if(G[i][i] <= G[j][j])
@@ -142,6 +145,7 @@ pr_red (int **G, int **T, int n)
           if(G[i][i] < 0 || G[j][j] < 0)
              return;
         }
+      }
    }
 }
 

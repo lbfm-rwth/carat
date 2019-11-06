@@ -41,7 +41,7 @@ trace_bifo (matrix_TYP **F1, matrix_TYP **F2, int anz)
       S->array.SZ[i][j] = Sij;
     }
    g = 0;
-   for(i=0; i<anz && g != 1; i++)
+   for(i=0; i<anz && g != 1; i++) {
      for(j=0; j<anz && g != 1; j++)
      {
        if(S->array.SZ[i][j] != 0)
@@ -61,6 +61,7 @@ trace_bifo (matrix_TYP **F1, matrix_TYP **F2, int anz)
          }
        }
      }
+   }
 
      if(g != 1 && g != 0)
      {

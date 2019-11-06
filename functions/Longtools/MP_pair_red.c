@@ -92,6 +92,7 @@ MP_pair_red (MP_INT **G, MP_INT **T, int n)
    {
      reduced = TRUE;
      for(i=0;i<n;i++)
+     {
       for(j=0;j<i;j++)
       {
          red2 = FALSE;
@@ -130,7 +131,8 @@ MP_pair_red (MP_INT **G, MP_INT **T, int n)
              return;
            }
          }
-      }
+       }
+     }
       MP_reduction_sort(G, T, n);
       for(i=0;i<n;i++)
         for(j=i+1;j<n;j++)

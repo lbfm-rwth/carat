@@ -45,18 +45,18 @@ int gen_no, form_no, zentr_no, normal_no, cen_no;
 	/*------------------------------------------------------------*\
 	| Open input file											 |
 	\*------------------------------------------------------------*/
-if ( file_name == NULL )
-	infile = stdin;
-else
-	if ( (infile = fopen (file_name, "r")) == NULL ) {
+    if ( file_name == NULL )
+        infile = stdin;
+    else if ( (infile = fopen (file_name, "r")) == NULL ) {
 		fprintf (stderr, "get_symbol: Could not open input-file %s\n", file_name);
 		exit (4);
-		}
-        gen_no = 0;
-        form_no = 0;
-        zentr_no = 0;
-        normal_no = 0;
-        cen_no = 0;
+    }
+
+    gen_no = 0;
+    form_no = 0;
+    zentr_no = 0;
+    normal_no = 0;
+    cen_no = 0;
 
   /*--------------------------------------------------*\
   |  read header line                                  |
