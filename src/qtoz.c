@@ -84,7 +84,7 @@ int main(int argc,char **argv){
     free(basis);
   }
 
-  Classes = q2z(G,&no,is_option('a'), NULL, is_option('q'));
+  Classes = q2z(G,&no,is_option('a'), NULL, is_option('q'), FALSE);
 
   fprintf(stderr, "####### There are %d classes of groups\n", no);
   for (i=0;i<no;i++){

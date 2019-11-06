@@ -12,7 +12,8 @@ extern bravais_TYP **q2z(bravais_TYP *G,
                          int *number,
                          int ADFLAG,
                          QtoZ_TYP *INZ,
-                         int quiet);
+                         int quiet,
+                         int graph);
 
 extern void free_QtoZ(QtoZ_TYP *inz,
                       int flag);

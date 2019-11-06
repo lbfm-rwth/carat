@@ -13,6 +13,8 @@
 #include "graph.h"
 #include "datei.h"
 
+boolean GRAPH = FALSE;
+
 
 
 /* -------------------------------------------------------------------- */
@@ -529,7 +531,8 @@ bravais_TYP **q2z(bravais_TYP *G,
                   int *number,
                   int ADFLAG,
                   QtoZ_TYP *INZ,
-                  int quiet)
+                  int quiet,
+                  int graph)
 {
    bravais_TYP **GROUPS,
                **ADGROUPS,
@@ -589,6 +592,7 @@ bravais_TYP **q2z(bravais_TYP *G,
 
    ZZ_couple_t *laeufer;
 
+   GRAPH = graph; // FIXME: get rid of global GRAPH
 
    /* handle the case of the groups G=<I> and G=<-I> differently,
       because the first one couldn't be handled by this anyway,
@@ -617,6 +621,7 @@ bravais_TYP **q2z(bravais_TYP *G,
           GROUPS[0]->zentr[0] = init_mat(G->dim,G->dim,"1");
           GROUPS[0]->zentr_no = 1;
       }
+      GRAPH = FALSE;
       return GROUPS;
    }
 
@@ -711,7 +716,7 @@ bravais_TYP **q2z(bravais_TYP *G,
 
    /* apply a base reduction algorithm to the found new basises
       BASISES ARE CHANGED !!!!!!!!!!!!!!!!!!!!!!!!!!! */
-   if (GRAPH){
+   if (graph){
       better = get_better_base(H,F,IDEM_NO,IDEM_SPACES);
       better[0] = init_mat(G->dim,G->dim,"1");
    }
@@ -746,7 +751,7 @@ bravais_TYP **q2z(bravais_TYP *G,
    idem_no = IDEM_NO;
    IDEM_NO = 0;
 
-   if (GRAPH){
+   if (graph){
       inzidenz = (QtoZ_TYP **)calloc(ad_no, sizeof(QtoZ_TYP *));
       SUPER_info = (ZZ_super_TYP **)calloc(ad_no, sizeof(ZZ_super_TYP *));
       for (i = 0; i < ad_no; i++){
@@ -783,7 +788,7 @@ bravais_TYP **q2z(bravais_TYP *G,
    }
 */
 
-   if (GRAPH){
+   if (graph){
       zentr_inv = (matrix_TYP **)calloc(ad_no, sizeof(matrix_TYP *));
       for (i = 0; i < ad_no; i++){
          zentr_inv[i] = mat_inv(H->zentr[i]);
@@ -1051,7 +1056,7 @@ bravais_TYP **q2z(bravais_TYP *G,
       free(ADGROUPS);
    }
 
-   if (GRAPH){
+   if (graph){
       /* free better, inzidenz, SUPER_info and SUPER_INFO (oliver: 9.8.00) */
       free_ZZ_super(SUPER_INFO);
       for (i = 0; i < ad_no; i++){
@@ -1082,6 +1087,7 @@ bravais_TYP **q2z(bravais_TYP *G,
    free(IDEM_SPACES);
    G->gen_no -= idem_no;
 
+   GRAPH = FALSE;
    if (ADFLAG){
       number[0] = ad_no;
       return ADGROUPS;
