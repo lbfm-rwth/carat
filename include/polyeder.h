@@ -7,6 +7,7 @@ extern "C" {
 
 #include "typedef.h"
 
+
 /*-------------------------------------------------------------*\
 | FILE: first_polyeder.c 
 \*-------------------------------------------------------------*/
@@ -46,9 +47,12 @@ extern int refine_polyeder(polyeder_TYP *F, wall_TYP *h);
 /*-------------------------------------------------------------*\
 | FILE: fuber_tools.c 
 \*-------------------------------------------------------------*/
-void free_vertex_fuber(vertex_TYP**);
-void free_wall_fuber(wall_TYP**);
-int wall_times_vertex_fuber(wall_TYP*, vertex_TYP*);
+extern vertex_TYP *init_vertex_fuber (int dim, int wall_no);
+extern wall_TYP *init_wall_fuber (int dim);
+extern fund_domain *init_fund_domain(int vert_no, int wall_no);
+extern void free_vertex_fuber(vertex_TYP**);
+extern void free_wall_fuber(wall_TYP**);
+extern int wall_times_vertex_fuber(wall_TYP*, vertex_TYP*);
 
 #endif
 
