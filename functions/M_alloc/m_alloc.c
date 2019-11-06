@@ -45,12 +45,13 @@ int INFO_LEVEL;
 
 void 
 pointer_statistics (
-    unsigned *p,
+    void *pv,
     int status  /* 1: pointer wurde neu allociert
 				2: pointer wurde freigegeben
 				0: Ausgabe der Liste           */
 )
 {
+unsigned *p = pv;
 int i,j;
 int flag;
 FILE *outfile;
@@ -317,9 +318,9 @@ free(p);
 	\*============================================================*/
 
 void 
-add_pointer (unsigned *p)
-
+add_pointer (void *pv)
 {
+unsigned *p = pv;
 int i, oldsize;
 
 if(MALLOC_LIST == NULL) {
@@ -358,9 +359,9 @@ if(PCOUNT == PERIOD) {
 }
 
 void 
-delete_pointer (unsigned *p)
-
+delete_pointer (void *pv)
 {
+unsigned *p = pv;
 int i, oldsize;
 
 i = 0;
