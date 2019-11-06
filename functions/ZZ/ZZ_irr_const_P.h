@@ -1,4 +1,4 @@
-#if !defined(_ZZ_H) && !defined(_ZZ_IRR_CONST_H)
+#ifndef _ZZ_IRR_CONST_H
 #define _ZZ_IRR_CONST_H
 
 #include "matrix.h"

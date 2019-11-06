@@ -13,7 +13,6 @@
 
 /* global variables */
 extern boolean GRAPH_DEBUG;
-extern boolean GRAPH;
 
 
 /* new structures */

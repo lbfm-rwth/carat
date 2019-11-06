@@ -1,8 +1,4 @@
-/*
- *  DON'T mangle private and public data, don't include this file if 
- *  _ZZ_H is defined, i.e. ZZ.h has already been included
- */
-#if !defined(_ZZ_P_H) && !defined(_ZZ_H)
+#ifndef _ZZ_P_H
 #define _ZZ_P_H
 
 #include <stdio.h>
@@ -14,7 +10,8 @@
 #include "symm.h"
 #include "getput.h"
 
-#define  ZZ_PRIVATE
+#include "ZZ.h"
+
 
 /*
  * this is for the actual implementation. Users won't get much more than
@@ -110,11 +107,9 @@ extern boolean G_option;
 extern boolean LLLREDUCED;
 extern boolean GRAPH;
 extern int COUNTER;
-extern int NUMBER;
 extern int ABBRUCH;
 extern int ZCLASS;
 extern int SUBDIRECT;
-extern int LEVEL;
 extern FILE *ZZ_temp;
 extern int MAT_ALLOC;
 extern int constituents;
@@ -130,18 +125,6 @@ extern void ZZ_intern(matrix_TYP * Gram,
 				    ZZ_data_t * data,
 				    ZZ_tree_t * tree,
 				    QtoZ_TYP * inzidenz);
-extern void ZZ(bravais_TYP * group,
-			     matrix_TYP * gram, 
-			     int *divisors,
-			     QtoZ_TYP *inzidenz,
-			     const char *options,
-			     FILE *putputfile,
-			     int super_nr,
-			     int konst_flag);
 			
-extern bravais_TYP **get_groups(bravais_TYP **ADGROUPS,
-                         int ad_no,
-                         int *number);
-
 #endif /* _ZZ_P_H */
 
