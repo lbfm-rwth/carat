@@ -14,21 +14,6 @@
 
 
 
-matrix_TYP **extensions_o(matrix_TYP *cozycle,
-                          matrix_TYP *D,
-                          matrix_TYP *R,
-                          bravais_TYP *G,
-                          int **lengths,
-                          MP_INT **names,
-                          int *number_of_orbits,
-                          int ****WORDS,
-                          int **NUMBER_OF_WORDS,
-                          matrix_TYP ***N,
-                          MP_INT coho_size,
-                          int option,
-                          int *list_of_names);
-
-
 /* -------------------------------------------------------------------- */
 /* matrix_on_diagonal:							*/
 /* Creates the matrix M = diag(mat, ... , mat)				*/
