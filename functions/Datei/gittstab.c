@@ -266,8 +266,9 @@ Z_class (bravais_TYP *B, matrix_TYP *zen)
 	     S->normal = (matrix_TYP **) malloc(S->normal_no *sizeof(matrix_TYP));
 	     S->normal[0] = einheitsmatrix(B->dim);
 	  }
-	  if(C->gen_no > 0)
+	  if(C->gen_no > 0) {
 	   free_bravais(CS);
+	  }
 	   free(C->gen);
 	   free(C);
 	   free_mat(zinv); free_mat(ztr);

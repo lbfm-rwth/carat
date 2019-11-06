@@ -195,7 +195,8 @@ matrix_TYP *aff_class_inf(bravais_TYP *R,
    }
 
    /* clean up and return */
-   for (i=0;i<3;i++) free_mat(X[i]); free(X);
+   for (i=0;i<3;i++) free_mat(X[i]);
+   free(X);
    free_mat(cozycle);
    for (i=0;i<PRES->rows;i++) wordfree(relator+i);
    free(relator);
