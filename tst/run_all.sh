@@ -17,7 +17,7 @@ for testfile in *.tst; do
     name="$(basename -s .tst ${testfile})"
     #bash -e "./${name}.tst" > "${name}.tmp" 2>&1
     bash "./${name}.tst" > "${name}.tmp" 2>&1
-    if ! diff -b "${name}.out" "${name}.tmp"; then
+    if ! diff -u -b "${name}.out" "${name}.tmp"; then
         echo "${testfile} failed, see observed/expected output above"
         retvalue=1
     else
