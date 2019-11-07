@@ -13,10 +13,9 @@ echo "### Test Ex14-3"
 ../bin/carat/TSubgroups -a -t Ex14_R
 echo "### Ex14-3 return code $?"
 
-# this one segfaults:
-# echo "### Test Ex14-4"
-# ../bin/carat/TSupergroups -t Ex14_R
-# echo "### Ex14-4 return code $?"
+echo "### Test Ex14-4"
+../bin/carat/TSupergroups -t Ex14_R
+echo "### Ex14-4 return code $?"
 
 # who creates this?
 rm -f ZZ.tmp
