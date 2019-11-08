@@ -87,7 +87,7 @@ extern matrix_TYP *long_mat_inv(matrix_TYP *A);
 /*-------------------------------------------------------------*\
 | FILE: long_qbase.c
 \*-------------------------------------------------------------*/
-extern matrix_TYP *long_qbase();
+extern matrix_TYP *long_qbase(matrix_TYP *Mat);
 
 /*-------------------------------------------------------------*\
 | FILE: long_rein_mat.c

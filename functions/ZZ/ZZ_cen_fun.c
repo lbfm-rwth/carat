@@ -1180,10 +1180,7 @@ ZZ_epimorphs (ZZ_data_t *data, int ii, int jj)
 	return (d);
 }
 
-boolean ZZ_successor (data, act)
-     ZZ_data_t *data;
-     ZZ_node_t **act;
-
+boolean ZZ_successor(ZZ_data_t *data, ZZ_node_t **act)
 {
 	int i;
 	

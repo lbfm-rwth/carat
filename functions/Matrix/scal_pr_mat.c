@@ -26,9 +26,7 @@
 @ truth is an option to simplify the scalar-products for lattices 
 @-------------------------------------------------------------------------
 \*---------------------------------------------------------------*/
-matrix_TYP *scal_pr ( vectors, form, truth )
-matrix_TYP *vectors, *form ;
-boolean truth;
+matrix_TYP *scal_pr (matrix_TYP *vectors, matrix_TYP *form, boolean truth )
 {  
 int  rV, cV, i, j, k;
 int **V, **F, **S, *z, kgv = 0;

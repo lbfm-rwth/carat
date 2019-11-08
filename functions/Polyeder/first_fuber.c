@@ -2,9 +2,7 @@
 #include "matrix.h"
 #include "polyeder.h"
 
-fund_domain *first_fuber(mauern, anz)
-wall_TYP **mauern;
-int anz;
+fund_domain *first_fuber(wall_TYP **mauern, int anz)
 {
   int i,j,k,p;
   int s, n;

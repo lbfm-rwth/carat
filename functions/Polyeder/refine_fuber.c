@@ -32,10 +32,7 @@ vertex_standard (vertex_TYP *v)
   }
 }
 
-void umsortieren(F,old_no, count, test, l)
-fund_domain *F;
-int old_no, *test, l;
-int *count;
+void umsortieren(fund_domain *F, int old_no, int *count, int *test, int l)
 {
   int i;
   int d=0;
@@ -150,9 +147,7 @@ is_element (vertex_TYP *v, int w)
 
 
 
-void wallAdd_fund_domain(F, w)
-fund_domain *F;
-wall_TYP *w;
+void wallAdd_fund_domain(fund_domain *F, wall_TYP *w)
 {
   if(F->wall_SIZE == 0)
   {
@@ -170,9 +165,7 @@ wall_TYP *w;
 
 
 
-void vertexAdd_fund_domain(F, w)
-fund_domain *F;
-vertex_TYP *w;
+void vertexAdd_fund_domain(fund_domain *F, vertex_TYP *w)
 {
   if(F->vert_SIZE == 0)
   {
@@ -189,10 +182,7 @@ vertex_TYP *w;
 }
 
 
-vertex_TYP *gis_neighbour(i,j,F,old_no)
-int i,j;
-fund_domain *F;
-int old_no;
+vertex_TYP *gis_neighbour(int i, int j, fund_domain *F, int old_no)
 {
   int k,l;
   int a, u;
@@ -231,10 +221,7 @@ int old_no;
 
 
 
-vertex_TYP *is_neighbour(i,j,F,old_no)
-int i,j;
-fund_domain *F;
-int old_no;
+vertex_TYP *is_neighbour(int i, int j, fund_domain *F, int old_no)
 {
   int k,l,m;
   int a, u, tester1;
@@ -284,9 +271,7 @@ int old_no;
 
 
 
-int refine_fund_domain(F, h)
-fund_domain *F;
-wall_TYP *h;
+int refine_fund_domain(fund_domain *F, wall_TYP *h)
 {
  int i,j,k;
  int l;
