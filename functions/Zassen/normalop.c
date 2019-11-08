@@ -430,10 +430,10 @@ matrix_TYP *normalop(matrix_TYP *cozycle,
             tmp->array.SZ[k][0] = cozycle->array.SZ[j*G->dim + k][i-first];
 
          tmp2 = mat_mul(N,tmp);
-         free_mat(tmp);
-
          for (k=0;k<tmp->rows;k++)
             map[j]->array.SZ[k][G->dim] = tmp2->array.SZ[k][0];
+
+         free_mat(tmp);
          free_mat(tmp2);
 
          if (INFO_LEVEL & 16){
