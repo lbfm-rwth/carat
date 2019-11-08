@@ -1,7 +1,6 @@
+#error THIS FILE IS NOT USED
+
 #include"typedef.h"
-
-
-
 
 main (int argc, char *argv[])
 {

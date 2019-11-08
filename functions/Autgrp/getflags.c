@@ -1,3 +1,5 @@
+#error THIS FILE IS NOT USED
+
 #include"typedef.h"
 /*****	This file contains some routines for input/output	*****/
 

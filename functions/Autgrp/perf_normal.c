@@ -1,3 +1,5 @@
+#error THIS FILE IS NOT USED
+
 /*****	Main program for the automorphism program AUTO	*****/
 
 #include "typedef.h"

@@ -1,3 +1,4 @@
+#error THIS FILE IS NOT USED
 /* last change: 01.03.01 by Oliver Heidbuechel */
 
 
