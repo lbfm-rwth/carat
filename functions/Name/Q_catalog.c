@@ -18,8 +18,6 @@ int (*(compare_element [NR_OF_ELEMENTS_IN_EACH_ENTRY])) (entry *data1, entry *da
 const char *name_element [NR_OF_ELEMENTS_IN_EACH_ENTRY];
 
 
-static int bitfield [32] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536}; 
-
 static void *xmalloc(int size, const char *string)
 {
   void *pointer;
@@ -256,7 +254,7 @@ static int cmp_abbreviation (entry *entry1, entry *entry2)
     if (strncmp (entry1->abbreviation, entry2->abbreviation, strlen (entry2->abbreviation)) == 0)
       return 0;
   
-  return bitfield [COND_ABBREVIATION];
+  return 1 << COND_ABBREVIATION;
 }
 
 static int cmp_degree (entry *entry1, entry *entry2)
@@ -264,7 +262,7 @@ static int cmp_degree (entry *entry1, entry *entry2)
   if (entry1->degree == entry2->degree)
     return 0;
   
-  return bitfield [COND_DEGREE];
+  return 1 << COND_DEGREE;
 }
 
 static int cmp_symbol (entry *entry1, entry *entry2)
@@ -272,7 +270,7 @@ static int cmp_symbol (entry *entry1, entry *entry2)
   if ( ! strcmp (entry1->symbol, entry2->symbol))
     return 0;
   
-  return bitfield [COND_SYMBOL];
+  return 1 << COND_SYMBOL;
 }
 
 static int cmp_order (entry *entry1, entry *entry2)
@@ -280,7 +278,7 @@ static int cmp_order (entry *entry1, entry *entry2)
   if (entry1->order == entry2->order)
     return 0;
   
-  return bitfield [COND_ORDER];
+  return 1 << COND_ORDER;
 }
 
 static int cmp_discriminant (entry *entry1, entry *entry2)
@@ -288,7 +286,7 @@ static int cmp_discriminant (entry *entry1, entry *entry2)
   if ( ! strcmp (entry1->discriminant, entry2->discriminant))
     return 0;
   
-  return bitfield [COND_DISCRIMINANT];
+  return 1 << COND_DISCRIMINANT;
 }
 
 static int cmp_zclasses (entry *entry1, entry *entry2)
@@ -296,7 +294,7 @@ static int cmp_zclasses (entry *entry1, entry *entry2)
   if (entry1->zclasses == entry2->zclasses)
     return 0;
   
-  return bitfield [COND_ZCLASSES];
+  return 1 << COND_ZCLASSES;
 }
 
 static int cmp_affine (entry *entry1, entry *entry2)
@@ -304,7 +302,7 @@ static int cmp_affine (entry *entry1, entry *entry2)
   if (entry1->affine == entry2->affine)
     return 0;
   
-  return bitfield [COND_AFFINE];
+  return 1 << COND_AFFINE;
 }
 
 static int cmp_torsionfree (entry *entry1, entry *entry2)
@@ -312,7 +310,7 @@ static int cmp_torsionfree (entry *entry1, entry *entry2)
   if (entry1->torsionfree == entry2->torsionfree)
     return 0;
   
-  return bitfield [COND_TORSIONFREE];
+  return 1 << COND_TORSIONFREE;
 }
 
 static int cmp_no_conclass (entry *entry1, entry *entry2)
@@ -320,7 +318,7 @@ static int cmp_no_conclass (entry *entry1, entry *entry2)
   if (entry1->no_conclass == entry2->no_conclass)
     return 0;
   
-  return bitfield [COND_NO_CONCLASS];
+  return 1 << COND_NO_CONCLASS;
 }
 
 static int cmp_no_idem (entry *entry1, entry *entry2)
@@ -328,7 +326,7 @@ static int cmp_no_idem (entry *entry1, entry *entry2)
   if (entry1->no_idem == entry2->no_idem)
     return 0;
   
-  return bitfield [COND_NO_IDEM];
+  return 1 << COND_NO_IDEM;
 }
 
 
@@ -356,7 +354,7 @@ void apply_cond_to_display_list (conditions *cond, database *database, int displ
   
   for (i=0; i<database->nr; i++)
     {
-      display_list [i] = display_list [i] | bitfield [new_condition];
+      display_list [i] = display_list [i] | (1 << new_condition);
       display_list [i] -= (compare_element [new_condition]) ( & ( (database->entry)[i]), & (cond->entry));
     }
   return;
@@ -366,7 +364,7 @@ void unapply_cond_to_display_list (database *database, int display_list[], int u
 {
   int i;
   for (i=0; i<database->nr; i++)
-    display_list [i] = display_list [i] | bitfield [unset_condition];
+    display_list [i] = display_list [i] | (1 << unset_condition);
 }
 
 database *load_database (const char *filename, int degree)
