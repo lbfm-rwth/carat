@@ -71,7 +71,6 @@ libfunctions_a_SOURCES = \
     functions/Graph/stabs.c \
     functions/Graph/sub-k-groups-fcts.c \
     functions/Graph/sub-super-tools.c \
-    functions/Graph/sub-t-groups-fcts.c \
     functions/Graph/subgroupgraph.c \
     functions/Graph/super-k-groups-fcts.c \
     functions/Hyperbolic/hyp_isom.c \
