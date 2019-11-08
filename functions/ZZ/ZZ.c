@@ -90,7 +90,8 @@ ZZ_intern (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, QtoZ_TYP *inziden
 			
 			    if (ZCLASS == 1 && GRAPH){
  			       gitter = tr_pose(new->U);
- 			    }
+ 			    } else
+ 			       gitter = NULL;
  			    flagge = 0;
 			    ABBRUCH = ZZ_ins_node (Gram, data, tree,
 						   act, new, i, j,
