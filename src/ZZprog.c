@@ -128,6 +128,7 @@ int parse_options(int argc,
          errflag = 1;
       }
    }
+   *option=0;
 
    return errflag == 0;
 }
