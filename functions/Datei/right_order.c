@@ -79,13 +79,11 @@ void right_order(char *string)
   hom_no = 0;
   while (tmp3 != NULL){
      tmp3 = strchr(tmp2,';');
-     if (tmp3 == NULL){
-        strcpy(irr_symbol[hom_no],tmp2);
-     }
-     else{
-        strncpy(irr_symbol[hom_no],tmp2,strlen(tmp2)-strlen(tmp3));
-        tmp2 = tmp3+1;
-     }
+     if (tmp3 != NULL)
+        *tmp3 = 0; // cut the string at the semicolon
+     strcpy(irr_symbol[hom_no],tmp2);
+     if (tmp3 != NULL)
+        tmp2 = tmp3+1; // if there was a semicolon, look at the text after it
      hom_no++;
   }
 

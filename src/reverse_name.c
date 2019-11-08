@@ -28,7 +28,7 @@ int main (int argc, char *argv[])
 
   MP_INT aff_name;
 
-  char comment[1024];
+  char comment[2048];
 
   char *affstring;
 
@@ -106,7 +106,7 @@ int main (int argc, char *argv[])
   }
 
   R = reverse_name(qname, zname, aff_name, i, is_option('i'), &affstring);
-  snprintf(comment,1024,"standard group with name %s %d %d %s",
+  snprintf(comment,sizeof(comment),"standard group with name %s %d %d %s",
                    qname,zname[0],zname[1],affstring);
   put_bravais(R,NULL,comment);
 
