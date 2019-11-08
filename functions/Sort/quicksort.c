@@ -28,7 +28,7 @@
 @
 \**************************************************************************/
 void 
-mat_quicksort (matrix_TYP **M, int inf, int sup, int (*comp)())
+mat_quicksort (matrix_TYP **M, int inf, int sup, int (*comp)(const matrix_TYP *, const matrix_TYP *))
 {
 	int	low, med, high;
         matrix_TYP *tmp;
@@ -86,7 +86,7 @@ mat_quicksort (matrix_TYP **M, int inf, int sup, int (*comp)())
 @
 \**************************************************************************/
 void 
-vec_quicksort (int **v, int inf, int sup, int dim, int (*comp)())
+vec_quicksort (int **v, int inf, int sup, int dim, int (*comp)(const int *, const int *, int))
 {
 	int	low, med, high;
         int *tmp;
@@ -146,7 +146,7 @@ vec_quicksort (int **v, int inf, int sup, int dim, int (*comp)())
 @ with respect to comp.
 \**************************************************************************/
 void 
-pointer_mat_quicksort (int ***v, int inf, int sup, int rows, int cols, int (*comp)())
+pointer_mat_quicksort (int ***v, int inf, int sup, int rows, int cols, int (*comp)(const int * const *, const int * const *, int, int))
 {
 	int	low, med, high;
         int **tmp;

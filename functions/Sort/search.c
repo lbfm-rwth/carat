@@ -29,7 +29,7 @@
 @
 \**************************************************************************/
 int 
-mat_search (matrix_TYP *M, matrix_TYP **List, int List_no, int (*comp)())
+mat_search (const matrix_TYP *M, const matrix_TYP **List, int List_no, int (*comp)(const matrix_TYP *, const matrix_TYP *))
 {
 	int	low, med, high;
         int found = FALSE
@@ -61,7 +61,7 @@ mat_search (matrix_TYP *M, matrix_TYP **List, int List_no, int (*comp)())
 @
 \**************************************************************************/
 int 
-vec_search (int *M, int **List, int List_no, int dim, int (*comp)())
+vec_search (const int *M, const int **List, int List_no, int dim, int (*comp)(const int *, const int *, int))
 {
 	int	low, med, high;
         int found = FALSE, test;
@@ -93,7 +93,7 @@ vec_search (int *M, int **List, int List_no, int dim, int (*comp)())
 @
 \**************************************************************************/
 int 
-pointer_mat_search (int **M, int ***List, int List_no, int rows, int cols, int (*comp)())
+pointer_mat_search (const int **M, const int ***List, int List_no, int rows, int cols, int (*comp)(const int **, const int **, int, int))
 {
 	int	low, med, high;
         int found = FALSE, test;

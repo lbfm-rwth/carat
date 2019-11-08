@@ -338,7 +338,7 @@ void ZZ_transpose_array (int **array, int size)
 
 static void scan_options (const char *options, int *projections, FILE *outputfile)
 {
-	char *optp, *help;
+	const char *optp, *help;
 	int num_proj;
 	const char *temp_name = "ZZ.tmp";
 

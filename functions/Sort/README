@@ -108,7 +108,7 @@
 @---------------------------------------------------------------------------
 @
 @	standard algorithms for searching vectors or matrices in
-@       sortet  lists (sorted with respect to a function comp
+@       sorted  lists (sorted with respect to a function comp
 @       that compares to elements in a list.
 @
 @       The functions return -1, if the element is not in the list
