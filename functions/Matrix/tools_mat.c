@@ -24,10 +24,7 @@
 @-------------------------------------------------------------------------
  */
 
-boolean iset_entry(mat, r, c, v)
-matrix_TYP *mat;
-int r,c;
-int v;
+boolean iset_entry(matrix_TYP *mat, int r, int c, int v)
 {
 int w;
 
@@ -71,10 +68,7 @@ int w;
 @
 @-------------------------------------------------------------------------
  */
-boolean rset_entry(mat, r, c, v)
-matrix_TYP *mat;
-int r, c;
-rational v;
+boolean rset_entry(matrix_TYP *mat, int r, int c, rational v)
 {
 int t, t1, t2;
 int **Z;
@@ -289,9 +283,7 @@ int pp;
 @
 @-------------------------------------------------------------------------
  */
-boolean kill_row(mat, row)
-matrix_TYP *mat;
-int row;
+boolean kill_row(matrix_TYP *mat, int row)
 {
 int i;
 int **Z;
@@ -336,9 +328,7 @@ int **Z;
 @
 @-------------------------------------------------------------------------
  */
-boolean kill_col(mat, col)
-matrix_TYP *mat;
-int col;
+boolean kill_col(matrix_TYP *mat, int col)
 {
 int i, j;
 int **Z;
@@ -386,9 +376,7 @@ int **Z;
 @
 @-------------------------------------------------------------------------
  */
-boolean ins_row(mat, row)
-matrix_TYP *mat;
-int row;
+boolean ins_row(matrix_TYP *mat, int row)
 {
 int i;
 int **Z;
@@ -433,9 +421,7 @@ int **Z;
 @-------------------------------------------------------------------------
  */
 
-boolean ins_col(mat, col)
-matrix_TYP *mat;
-int col;
+boolean ins_col(matrix_TYP *mat, int col)
 {
 int i, j;
 int **Z;
@@ -481,9 +467,7 @@ int **Z;
 @
 @-------------------------------------------------------------------------
  */
-boolean imul_row(mat, row, v)
-matrix_TYP *mat;
-int row, v;
+boolean imul_row(matrix_TYP *mat, int row, int v)
 {
 int j;
 int **Z;
@@ -550,10 +534,7 @@ int **Z;
 @
 @-------------------------------------------------------------------------
  */
-boolean rmul_row(mat, row, v)
-matrix_TYP *mat;
-int row;
-rational v;
+boolean rmul_row(matrix_TYP *mat, int row, rational v)
 {
 int i,j;
 int waste, t;
@@ -649,9 +630,7 @@ int **Z;
 @
 @-------------------------------------------------------------------------
  */
-boolean imul_col(mat, col, v)
-matrix_TYP *mat;
-int col, v;
+boolean imul_col(matrix_TYP *mat, int col, int v)
 {
 int j;
 int **Z;
@@ -718,10 +697,7 @@ int **Z;
 @
 @-------------------------------------------------------------------------
  */
-boolean rmul_col(mat, col, v)
-matrix_TYP *mat;
-int col;
-rational v;
+boolean rmul_col(matrix_TYP *mat, int col, rational v)
 {
 int i,j;
 int waste, t;
@@ -823,9 +799,7 @@ int **Z;
 @
 @-------------------------------------------------------------------------
  */
-boolean iadd_row(mat,t_row, d_row, v)
-matrix_TYP *mat;
-int t_row, d_row, v;
+boolean iadd_row(matrix_TYP *mat, int t_row, int d_row, int v)
 {
 int **Z, i,j,t;
 
@@ -900,10 +874,7 @@ int **Z, i,j,t;
 @
 @-------------------------------------------------------------------------
  */
-boolean radd_row(mat,t_row, d_row, v)
-matrix_TYP *mat;
-int t_row, d_row;
-rational v;
+boolean radd_row(matrix_TYP *mat, int t_row, int d_row, rational v)
 {
 int **Z, i, j;
 int waste,t;
@@ -1013,9 +984,7 @@ int waste,t;
 @
 @-------------------------------------------------------------------------
  */
-boolean iadd_col(mat,t_col, d_col, v)
-matrix_TYP *mat;
-int t_col, d_col, v;
+boolean iadd_col(matrix_TYP *mat, int t_col, int d_col, int v)
 {
 int **Z, i,j,t;
 
@@ -1090,10 +1059,7 @@ int **Z, i,j,t;
 @
 @-------------------------------------------------------------------------
  */
-boolean radd_col(mat,t_col, d_col, v)
-matrix_TYP *mat;
-int t_col, d_col;
-rational v;
+boolean radd_col(matrix_TYP *mat, int t_col, int d_col, rational v)
 {
 int **Z, i,j;
 int waste,t;

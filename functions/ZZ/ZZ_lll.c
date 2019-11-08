@@ -83,10 +83,7 @@ upd_mod (matrix_TYP *Mat, int pos)
 /*}}}  */
 /*{{{  reduce, static */
 static boolean 
-reduce (Mat, k, l)
-     matrix_TYP *Mat;
-     int k, l;
-
+reduce (matrix_TYP *Mat, int k, int l)
 {
   rational d;
   int **Z, **N, **A, **T, *T_help;
@@ -205,9 +202,7 @@ swap (matrix_TYP *Mat, int i)
 /*}}}  */
 /*{{{  condition, static */
 static boolean 
-condition (i)
-     int i;
-
+condition (int i)
 {
   rational help;
   int **Z, **N;
