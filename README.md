@@ -25,14 +25,10 @@ is not trapped in general.
 ## Installation
 
 The easiest way to compile CARAT is to go to the CARAT base directory
-(the one containing this REAMDME), and issue the make command with some
-variables set on the command line, to order override their defaults in
-the Makefile:
+(the one containing this REAMDME), and issue the following
 
-     make TOPDIR=`pwd` CFLAGS="-O -g" CC="gcc"
-
-You may of course choose your own compiler and compiler flags. The value
-of TOPDIR must be the CARAT base directory.
+    ./configure
+    make
 
 CARAT relies on the GMP library (along with its header files) being
 installed at a standard location, so that the compiler and linker will

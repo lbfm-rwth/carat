@@ -2,5 +2,5 @@
 set -e
 
 echo "### Test Order"
-../bin/carat/Order grp1.dat
+../bin/Order grp1.dat
 echo "### Order return code $?"

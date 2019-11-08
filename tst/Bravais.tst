@@ -8,11 +8,11 @@ set -e
 
 # Testing Form_space
 echo "### Test Bravais-1"
-../bin/carat/Form_space grp1.dat
+../bin/Form_space grp1.dat
 echo "### Bravais-1 return code $?"
 
 # Testing Bravais_grp
 echo "### Test Bravais-2"
-../bin/carat/Bravais_grp grp1.dat
+../bin/Bravais_grp grp1.dat
 echo "### Bravais-2 return code $?"
 

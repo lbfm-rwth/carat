@@ -2,18 +2,20 @@
 dist: xenial
 language: c
 
+env:
+  global:
+    - CFLAGS="--coverage -O2 -g"
+    - LDFLAGS="--coverage"
+
 compiler:
   - clang
   - gcc
 
 # temporary hack with sed until we will have a proper configure script
 script:
-  - set -e
-  - sed -i 's|TOPDIR=/path/to/the/directory/containing/this/makefile|TOPDIR=/home/travis/build/lbfm-rwth/carat|g' Makefile
-  - sed -i 's|CFLAGS = -g -Wall -DDIAG1|CFLAGS = --coverage -g -Wall -DDIAG1|g' Makefile
-  - make
-  - cd bin; ln -s `ls -d */` carat
-  - cd ../tst; ./run_all.sh
+  - ./autogen.sh && ./configure
+  - make -j2 V=1
+  - cd tst && ./run_all.sh
 
 after_script:
   - gcov functions/*/*.c
