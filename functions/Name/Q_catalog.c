@@ -91,17 +91,9 @@ static void display_no_idem (entry *element)
 
 static void load_abbreviation (const char *string, entry *element)
 {
-  /*  if ( (element->abbreviation = (char *) malloc ( (strlen (string) + 1) * sizeof (char))) == NULL     ||
-       sprintf (element->abbreviation, string) < 0)
-    {
-      perror ("load_abbreviation");
-      exit (EXIT_FAILURE);
-      }*/
-  
-  element->abbreviation = (char *) xmalloc ( (strlen(string)+1) * sizeof(char),
-					     "load_abbreviation");
+  element->abbreviation = strdup(string);
 
-  if ( sprintf (element->abbreviation, "%s", string) < 0)
+  if (!element->abbreviation)
     {
       perror ("load_abbreviation");
       exit (4);
@@ -121,17 +113,9 @@ static void load_degree (const char *string, entry *element)
 static void load_symbol (const char *string, entry *element)
 {
   
-  /*  if ( (element->symbol = (char *) malloc ( (strlen (string) + 1) * sizeof (char))) == NULL      ||
-       sprintf (element->symbol, string) < 0)
-    {
-      perror ("load_symbol");
-      exit (EXIT_FAILURE);
-      }*/
+  element->symbol = strdup(string);
 
-  element->symbol = (char *) xmalloc ( (strlen(string)+1) * sizeof(char),
-				       "load_symbol");
-
-  if( sprintf(element->symbol, "%s", string) < 0)
+  if(!element->symbol)
     {
       perror ("load_symbol");
       exit (4);
@@ -150,18 +134,10 @@ static void load_order (const char *string, entry *element)
 
 static void load_discriminant (const char *string, entry *element)
 {
-  
-/*   if ( (element->discriminant = (char *) malloc ( (strlen (string) + 1) * sizeof (char))) == NULL       || */
-/*        sprintf (element->discriminant, string) < 0) */
-/*     { */
-/*       perror ("load_discriminant"); */
-/*       exit (EXIT_FAILURE); */
-/*     } */
 
-  element->discriminant = (char *) xmalloc ( (strlen(string)+1) * sizeof(char),
-					     "load_discriminant");
+  element->discriminant = strdup(string);
   
-  if( sprintf (element->discriminant, "%s", string) < 0)
+  if(!element->discriminant)
     {
       perror ("load_discriminant");
       exit (4);
