@@ -534,7 +534,7 @@ bravais_TYP **q2z(bravais_TYP *G,
                   int quiet,
                   int graph)
 {
-   bravais_TYP **GROUPS,
+   bravais_TYP **GROUPS = 0,
                **ADGROUPS,
                 *H,
                 *group,
@@ -556,11 +556,11 @@ bravais_TYP **q2z(bravais_TYP *G,
                *zoolattice_hnf,
                *zoolattice_inv,
                *zoo_inv,
-              **better,
+              **better = 0,
               **trash,
                *zwischen,
                *ttt,
-              **zentr_inv;
+              **zentr_inv = 0;
 
    char zzoptions[128];
    size_t zzlen;
@@ -585,13 +585,13 @@ bravais_TYP **q2z(bravais_TYP *G,
        zoo, bahnnummer,
        //samezoo,
        yeah,
-      *liste;
+      *liste = 0;
 
-   QtoZ_TYP **inzidenz;
+   QtoZ_TYP **inzidenz = 0;
 
    ZZ_node_t *node, *Knoten;
 
-   ZZ_couple_t *laeufer;
+   ZZ_couple_t *laeufer = 0;
 
    GRAPH = graph; // FIXME: get rid of global GRAPH
 
