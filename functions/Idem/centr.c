@@ -575,13 +575,13 @@ void reduce_by_idem(matrix_TYP *id,matrix_TYP **cen,int no,int offset)
 @------------------------------------------------------------------------
 @
 @ matrix_TYP **idempotente(matrix_TYP **gen,int gen_no,matrix_TYP *form,
-@                          int *anz,int *dimc,int *dimcc,int *options)
+@                          int *anz,int *dimc,int *dimcc)
 @
 @------------------------------------------------------------------------
 @
 *************************************************************************/
 matrix_TYP **idempotente(matrix_TYP **gen,int gen_no,matrix_TYP *form,
-                         int *anz,int *dimc,int *dimcc,int *options)
+                         int *anz,int *dimc,int *dimcc)
 {
 
   matrix_TYP **centralizer,   /* holds a Q-basis for the centralizer of

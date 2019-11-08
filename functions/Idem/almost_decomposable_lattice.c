@@ -32,7 +32,7 @@ matrix_TYP *almost_decomposable_lattice(bravais_TYP *G)
 
 
    /* get the idempotents of the group */
-   IDEM = idempotente(G->gen,G->gen_no,F,&IDEM_NO,&dimc,&dimcc,NULL);
+   IDEM = idempotente(G->gen,G->gen_no,F,&IDEM_NO,&dimc,&dimcc);
    IDEM_SPACES = (matrix_TYP **) malloc(IDEM_NO * sizeof(matrix_TYP *));
    den = 1; for (i=0;i<IDEM_NO;i++) den = KGV(den,IDEM[i]->kgv);
    for (i=0;i<IDEM_NO;i++){

@@ -416,7 +416,7 @@ static bravais_TYP *get_centralizer(matrix_TYP **H, bravais_TYP *G,
 }
 
 
-static int traces_are_ok(matrix_TYP *new_element, bravais_TYP *Group_A, matrix_TYP **Group_B, int next_gen)
+static int traces_are_ok(matrix_TYP *new_element, matrix_TYP **Group_B, int next_gen)
 {
   matrix_TYP *waste;
 
@@ -504,7 +504,7 @@ static int construct_Image_Gen_A (int next_gen, bravais_TYP *Gen_A,
   for (i=0; i<number_of_con_classes; i++)
     if(trace_list_B[rep_con_class[i]] == trace_next_gen  &&
        order_list_B[rep_con_class[i]] == order_next_gen  &&
-       traces_are_ok(Group_B[rep_con_class[i]], Gen_A, Group_B, next_gen) == TRUE)
+       traces_are_ok(Group_B[rep_con_class[i]], Group_B, next_gen) == TRUE)
       {
 	Bild[next_gen] = Group_B[rep_con_class[i]];
 

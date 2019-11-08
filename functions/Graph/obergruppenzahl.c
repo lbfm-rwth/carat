@@ -17,7 +17,6 @@
 
 int obergruppenzahl(matrix_TYP *L,
                     matrix_TYP **Norm,
-		    matrix_TYP **NormInv,
                     matrix_TYP **StabStdCoz,
 		    int Stab_anz,
 		    int *wort)

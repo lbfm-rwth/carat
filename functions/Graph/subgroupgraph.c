@@ -357,7 +357,7 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data,
 		     zwischenerg[k].o[0][j__][0]++;
 		     zwischenerg[k].o[0][j__][ zwischenerg[k].o[0][j__][0] ] =
 		        obergruppenzahl(invlattice, data->Z[j]->normal,
-			                data->norm_inv[j], data->stab_coz[j][j__],
+			                data->stab_coz[j][j__],
 					data->stab_gen_no[j][j__], konj_wort);
                      free(konj_wort);
                   }
@@ -459,7 +459,7 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data,
                            zwischenerg[k].o[i__][j__][0]++;
                            zwischenerg[k].o[i__][j__][ zwischenerg[k].o[i__][j__][0] ] =
                               obergruppenzahl(invlattice, data->Z[j]->normal,
-			                      data->norm_inv[j], data->stab_coz[j][j__],
+			                      data->stab_coz[j][j__],
 					      data->stab_gen_no[j][j__], konj_wort);
 			   free(konj_wort);
 			}
@@ -509,7 +509,7 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data,
                            zwischenerg[k].o[0][j__][0]++;
                            zwischenerg[k].o[0][j__][ zwischenerg[k].o[0][j__][0] ] =
                               obergruppenzahl(invlattice, data->Z[j]->normal,
-			                      data->norm_inv[j], data->stab_coz[j][j__],
+			                      data->stab_coz[j][j__],
 					      data->stab_gen_no[j][j__], konj_wort);
 			   free(konj_wort);
 			}
@@ -531,7 +531,7 @@ matrix_TYP *subgroupgraph(Q_data_TYP *data,
                         zwischenerg[k].o[0][0][0] = 1;
                         zwischenerg[k].o[0][0][1] =
 			   obergruppenzahl(invlattice, data->Z[j]->normal,
-			                   data->norm_inv[j], data->stab_coz[j][0],
+			                   data->stab_coz[j][0],
 				   	   data->stab_gen_no[j][0], NULL);
 		     }
                      gitter_no[0][0]++;

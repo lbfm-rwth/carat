@@ -18,7 +18,7 @@ matrix_TYP *almost_decomposable_lattice(bravais_TYP *G);
 **************************************************************************/
 
 matrix_TYP **idempotente(matrix_TYP **gen,int gen_no,matrix_TYP *form,
-             int *anz,int *dimc,int *dimcc,int *options);
+             int *anz,int *dimc,int *dimcc);
 
 matrix_TYP **solve_endo(matrix_TYP **A,matrix_TYP **B,int anz,int *dim);
 

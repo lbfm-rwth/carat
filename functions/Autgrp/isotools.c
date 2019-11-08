@@ -294,7 +294,7 @@ bs_isometry (veclist V, invar F, invar FF, fpstruct fp, int ***G, int nG, scpcom
 		}
 		matgen(x, X, dim, fp.per, V.v);
 /* print the isometry */
-		erg = putiso(X, flags, dim);
+		erg = putiso(X, dim);
 		for (i = 0; i < dim; ++i)
 			free(X[i]);
 		free(X);

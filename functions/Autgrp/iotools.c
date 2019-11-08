@@ -152,7 +152,7 @@ putord (group G, flagstruct flags, bravais_TYP *B)
 | prints an isometry onto a matrix
 \*******************************************************/
 matrix_TYP *
-putiso (int **X, flagstruct flags, int dim)
+putiso (int **X, int dim)
 {
 	int	i, j;
 	matrix_TYP *M;

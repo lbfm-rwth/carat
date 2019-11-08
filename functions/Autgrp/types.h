@@ -108,7 +108,7 @@ void	fputbach(FILE *outfile, bachpol pol);
 void	getflags(flagstruct *fl, int *options);
 bravais_TYP 	*putgens(group G, flagstruct flags);
 void	putord(group G, flagstruct flags, bravais_TYP *B);
-matrix_TYP	*putiso(int **X, flagstruct flags, int dim);
+matrix_TYP	*putiso(int **X, int dim);
 
 /* functions in isotools.c */
 int	isocand(int *CI, int I, int *x, veclist V, invar F, invar FF, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags);
