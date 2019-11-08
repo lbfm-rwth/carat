@@ -172,7 +172,7 @@ matrix_TYP *compute_q_matrix (bravais_TYP *G)
 
   I = einheitsmatrix( G->dim );
   F = rform(G->gen, G->gen_no, I, 101);
-  Idem = idempotente(G->gen, G->gen_no, F, &idem_no, &i, &j, NULL);
+  Idem = idempotente(G->gen, G->gen_no, F, &idem_no, &i, &j);
   free_mat(F);
   for (h=0; h<i+j; h++)
     free_mat(Idem[idem_no+h]);

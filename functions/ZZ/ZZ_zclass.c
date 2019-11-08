@@ -125,8 +125,7 @@ is_conjugated_ZZ (ZZ_node_t *n, ZZ_node_t *new)
 
 
 /*------------------------------------------------------------------------------- */
-int 
-deal_with_ZCLASS (ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *father, ZZ_node_t *new)
+int deal_with_ZCLASS(ZZ_tree_t *tree, ZZ_node_t *new)
 {
 
 	int f,
@@ -247,8 +246,7 @@ int in_bahn(matrix_TYP *lattice,
 
 
 /*------------------------------------------------------------------------------- */
-int 
-orbit_under_normalizer (ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *father, ZZ_node_t *new, int ii, int jj, QtoZ_TYP *inzidenz, int *nr, ZZ_node_t **nnn)
+int orbit_under_normalizer(ZZ_tree_t *tree, ZZ_node_t *father, ZZ_node_t *new, QtoZ_TYP *inzidenz, int *nr, ZZ_node_t **nnn)
 {
 
 	int i__,

@@ -20,8 +20,7 @@ int main(int argc,char **argv){
   int i,
       anz,
       dimc,
-      dimcc,
-      options[2];
+      dimcc;
 
   char comment[1000];
 
@@ -66,7 +65,7 @@ int main(int argc,char **argv){
   id = init_mat(G->dim,G->dim,"1");
   form = rform(G->gen,G->gen_no,id,101);
 
-  idem = idempotente(G->gen,G->gen_no,form,&anz,&dimc,&dimcc,options);
+  idem = idempotente(G->gen,G->gen_no,form,&anz,&dimc,&dimcc);
 
   printf("#%d\n",anz);
   for (i=0;i<anz;i++){

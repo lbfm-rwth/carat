@@ -95,7 +95,7 @@
 @------------------------------------------------------------------------
 @
 @ matrix_TYP **idempotente(matrix_TYP **gen,int gen_no,matrix_TYP *form,
-@                          int *anz,int *dimc,int *dimcc,int *options)
+@                          int *anz,int *dimc,int *dimcc)
 @
 @------------------------------------------------------------------------
 @

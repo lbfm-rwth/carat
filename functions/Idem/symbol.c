@@ -42,7 +42,7 @@ static constituent *homogenous(bravais_TYP *G,matrix_TYP *F,int *anz)
    constituent *result;
 
    /* calculate the central primitive idempotents */
-   idem = idempotente(G->gen,G->gen_no,F,anz,&dimc,&dimcc,FALSE);
+   idem = idempotente(G->gen,G->gen_no,F,anz,&dimc,&dimcc);
 
    /* now we know allmost everything, just calculate a bit */
    result = (constituent *)malloc(anz[0] * sizeof(constituent));

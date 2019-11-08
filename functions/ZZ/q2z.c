@@ -640,7 +640,7 @@ bravais_TYP **q2z(bravais_TYP *G,
    F = rform(G->gen,G->gen_no,id,101);
 
    /* get the idempotents of the group */
-   IDEM = idempotente(G->gen,G->gen_no,F,&IDEM_NO,&dimc,&dimcc,NULL);
+   IDEM = idempotente(G->gen,G->gen_no,F,&IDEM_NO,&dimc,&dimcc);
    G->gen = (matrix_TYP **) realloc(G->gen,(G->gen_no+IDEM_NO)
                                     * sizeof(matrix_TYP*));
    IDEM_SPACES = (matrix_TYP **) malloc(IDEM_NO * sizeof(matrix_TYP *));

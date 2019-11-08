@@ -333,12 +333,9 @@ static void free_sublattice_TYP(sublattice_TYP SL)
 /* otherwise returns sol with phi(sol) = coz_darst                       */
 /* (C_a x C_b x ... - representation)                                    */
 /* --------------------------------------------------------------------- */
-static matrix_TYP *cocycle_in_image(matrix_TYP *coz,
-                                    matrix_TYP *coz_darst,
-                                    matrix_TYP *phi,
+static matrix_TYP *cocycle_in_image(matrix_TYP *coz_darst,
                                     matrix_TYP **image_gen,
                                     int image_gen_no,
-                                    matrix_TYP *GLS,
                                     matrix_TYP *D,
                                     int flag,
                                     int erz_no,
@@ -899,7 +896,7 @@ static bravais_TYP **subgroups_for_L(coz_TYP *coz_info,
 
 
    /* is cocycle in the image (phi koord = coz->darst) */
-   koord = cocycle_in_image(coz_info->coz, coz_info->darst, phi, image, image_gen_no, GLS,
+   koord = cocycle_in_image(coz_info->darst, image, image_gen_no,
                             H_G_Z[1], H1_mod_ker.flag, H1_mod_ker.erz_no, &is_in_image);
 
 

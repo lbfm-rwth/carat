@@ -1335,7 +1335,7 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 
 		if (ZCLASS == 1){
 		        /* second call of ZZ by q2z */
-			if (orbit_under_normalizer(data,tree,father,new,ii,jj,inzidenz,nr,nnn)){
+			if (orbit_under_normalizer(tree,father,new,inzidenz,nr,nnn)){
 				ZZ_free_node (data, new);
 				flagge[0] += 10;
 				return ABBRUCH;
@@ -1343,7 +1343,7 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
                 }
 		if (ZCLASS == 2){
 		        /* first call of ZZ by q2z */
-			if (deal_with_ZCLASS(data, tree, father, new)){
+			if (deal_with_ZCLASS(tree, new)){
 				ZZ_free_node (data, new);
 				return ABBRUCH;
 			}
