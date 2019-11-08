@@ -248,7 +248,7 @@ qswap (matrix_TYP *mat, int k, int l)
 
 
 static void 
-orbit_qsort (matrix_TYP *mat, int left, int right, int (*orbit_comp)())
+orbit_qsort (matrix_TYP *mat, int left, int right, int (*orbit_comp)(matrix_TYP *, int, int))
 {  
    int i, last;
 

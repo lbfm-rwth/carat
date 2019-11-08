@@ -99,8 +99,8 @@ init_mat (int rows, int cols, const char *option)
 int i;
 matrix_TYP *mat;
 int val;
-char *temp = 0;
-char *tempN;
+const char *temp = 0;
+const char *tempN;
 
   mat = NULL;
   mat = (matrix_TYP *)malloc(sizeof(matrix_TYP));
