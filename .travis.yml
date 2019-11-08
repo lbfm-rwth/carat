@@ -7,9 +7,16 @@ env:
     - CFLAGS="--coverage -O2 -g"
     - LDFLAGS="--coverage"
 
-compiler:
-  - clang
-  - gcc
+matrix:
+  include:
+    - compiler: gcc
+    - compiler: clang
+    - env: CFLAGS="--coverage -O2 -g -m32" LDFLAGS="--coverage -m32"
+      addons:
+        apt_packages:
+          - gcc-multilib
+          - g++-multilib
+          - libgmp-dev:i386
 
 # temporary hack with sed until we will have a proper configure script
 script:
