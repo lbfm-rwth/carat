@@ -107,7 +107,7 @@ static matrix_TYP **Erz;
 static matrix_TYP **Erz_inv;
 static int *orbit_opt;
 static matrix_TYP *hash_mat;
-static int hash_prime = 130003;
+static const int hash_prime = 130003;
 
 
 static void 
