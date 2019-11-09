@@ -2,8 +2,8 @@
 extern "C" {
 #endif
 
-#ifndef CARAT_TYPEDEF_H_
-#define CARAT_TYPEDEF_H_
+#ifndef CARAT_TYPEDEF_H
+#define CARAT_TYPEDEF_H
 
 /* enthaelt die globalen Variablen - und Typendeklarationen */
 #include <stdio.h>
@@ -197,7 +197,7 @@ typedef struct {
 extern int INFO_LEVEL;
 
 
-#endif /* _CARAT_TYPEDEF_H_ */
+#endif /* CARAT_TYPEDEF_H */
 
 #ifdef __cplusplus
 }

@@ -2,8 +2,8 @@
 extern "C" {
 #endif
 
-#ifndef CARAT_POLYEDER_H_
-#define CARAT_POLYEDER_H_
+#ifndef CARAT_POLYEDER_H
+#define CARAT_POLYEDER_H
 
 #include "typedef.h"
 

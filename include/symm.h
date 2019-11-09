@@ -3,8 +3,8 @@ extern "C" {
 #endif
 
 
-#ifndef CARAT_SYMM_H_
-#define CARAT_SYMM_H_
+#ifndef CARAT_SYMM_H
+#define CARAT_SYMM_H
 
 #include "typedef.h"
 
