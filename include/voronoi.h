@@ -3,8 +3,8 @@ extern "C" {
 #endif
 
 
-#ifndef _VORONOI_H_
-#define _VORONOI_H_
+#ifndef CARAT_VORONOI_H_
+#define CARAT_VORONOI_H_
 
 #include "typedef.h"
 

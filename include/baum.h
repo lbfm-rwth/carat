@@ -2,8 +2,8 @@
 extern "C" {
 #endif
 
-#ifndef _BAUM_H
-#define _BAUM_H
+#ifndef CARAT_BAUM_H
+#define CARAT_BAUM_H
 
 #include "list.h"
 

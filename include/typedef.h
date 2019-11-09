@@ -2,8 +2,8 @@
 extern "C" {
 #endif
 
-#ifndef _CARAT_TYPEDEF_H_
-#define _CARAT_TYPEDEF_H_
+#ifndef CARAT_TYPEDEF_H_
+#define CARAT_TYPEDEF_H_
 
 /* enthaelt die globalen Variablen - und Typendeklarationen */
 #include <stdio.h>

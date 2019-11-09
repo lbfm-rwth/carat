@@ -3,8 +3,8 @@ extern "C" {
 #endif
 
 
-#ifndef _TSUBGROUPS_H_
-#define _TSUBGROUPS_H_
+#ifndef CARAT__TSUBGROUPS_H_
+#define CARAT__TSUBGROUPS_H_
 
 #include "typedef.h"
 

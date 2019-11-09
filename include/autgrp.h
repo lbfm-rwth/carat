@@ -2,8 +2,8 @@
 extern "C" {
 #endif
 
-#ifndef _AUTGRP_H_
-#define _AUTGRP_H_
+#ifndef CARAT_AUTGRP_H_
+#define CARAT_AUTGRP_H_
 
 #include "typedef.h"
 

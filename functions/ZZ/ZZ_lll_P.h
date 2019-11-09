@@ -1,5 +1,5 @@
-#ifndef _ZZ_LLL_P_H
-#define _ZZ_LLL_P_H
+#ifndef CARAT_ZZ_LLL_P_H
+#define CARAT_ZZ_LLL_P_H
 
 #include "ZZ_P.h"
 

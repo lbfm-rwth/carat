@@ -3,8 +3,8 @@ extern "C" {
 #endif
 
 
-#ifndef _TIETZETRANS_H_
-#define _TIETZETRANS_H_
+#ifndef CARAT_TIETZETRANS_H_
+#define CARAT_TIETZETRANS_H_
 
 typedef struct {
         matrix_TYP* element;

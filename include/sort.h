@@ -3,8 +3,8 @@ extern "C" {
 #endif
 
 
-#ifndef _SORT_H_
-#define _SORT_H_
+#ifndef CARAT_SORT_H_
+#define CARAT_SORT_H_
 
 #include "typedef.h"
 
