@@ -59,7 +59,7 @@ long_rein_mat (matrix_TYP *Mat)
        mpz_init_set_si(&Mt[i][j], Mat->array.SZ[j][i]);
    }
 
-   rang = MP_hnf(Mt, cols, rows);
+   MP_hnf(Mt, cols, rows);
    /***************************************************************\
    | Set trf =  left_tans
    \***************************************************************/

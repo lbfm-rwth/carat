@@ -358,6 +358,7 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 		exit (2);
 	FF.n = F.n;
 	FF.dim = dim;
+	FF.v = 0;
 /* read the invariant forms of the second lattice */
         for(i=1;i<F.n;i++)
         {
@@ -692,6 +693,7 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
         else flags.GEN = 0;
 /* F.n is the number of invariant forms */
 	F.n = 1;
+	F.v = 0;
 	if ((F.A = (int***)malloc(F.n * sizeof(int**))) == 0)
 		exit (2);
 /* read the invariant forms of the first lattice */

@@ -60,7 +60,7 @@ int main (int argc, char *argv[])
   }
   else{
      /* calculating the dimension over a prime field */
-     F = p_formspace(B->gen,B->gen_no,1949,sym_opt,&expected_dimension);
+     p_formspace(B->gen,B->gen_no,1949,sym_opt,&expected_dimension);
   }
 
   if(optionnumber('e') == 0)

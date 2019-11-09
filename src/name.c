@@ -100,7 +100,7 @@ int main (int argc, char *argv[])
   sprintf(dbname, "%s/tables/qcatalog/data", get_data_dir());
   database = load_database (dbname, P->dim);
 
-  T = q_class_inf (P,database,qname,symb,&DATAQ,&PRES,FALSE);
+  q_class_inf(P,database,qname,symb,&DATAQ,&PRES,FALSE);
 
   TZ = z_class_inf(P,DATAQ,&DATAZ,zname);
   free_bravais(DATAQ);

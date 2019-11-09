@@ -88,10 +88,9 @@ reduce (matrix_TYP *Mat, int k, int l)
   rational d;
   int **Z, **N, **A, **T, *T_help;
   int i;
-  int f, waste;
+  int f;
 
   d = Zero;
-  f = waste = 0;
 
   Z = Mod->array.SZ;
   N = Mod->array.N;
@@ -160,7 +159,6 @@ swap (matrix_TYP *Mat, int i)
   int k;
 
   help = Zero;
-  k = 0;
 
   A = Mat->array.SZ;
   Z = Mod->array.SZ;
@@ -174,7 +172,6 @@ swap (matrix_TYP *Mat, int i)
       k = A[i + 1][j];
       A[i + 1][j] = A[i][j];
       A[i][j] = k;
-      k = 0;
       Z[i][j] = Z[i + 1][j];
       Z[i + 1][j] = 0;
       N[i][j] = N[i + 1][j];
@@ -183,13 +180,11 @@ swap (matrix_TYP *Mat, int i)
   k = A[i][i];
   A[i][i] = A[i + 1][i + 1];
   A[i + 1][i + 1] = k;
-  k = 0;
   for (j += 2; j < Mat->rows; j++)
     {
       k = A[j][i + 1];
       A[j][i + 1] = A[j][i];
       A[j][i] = k;
-      k = 0;
     }
   help.z = Z[i + 1][i] * Z[i + 1][i] * Z[i][i] * N[i + 1][i + 1];
   help.n = N[i + 1][i] * N[i + 1][i] * N[i][i];

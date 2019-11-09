@@ -255,7 +255,6 @@ int strong_generators_2(matrix_TYP **base,bravais_TYP *U,
        j,
        k,
        m,
-       old_anz,
        dim = U->dim,
        finite_flag,       /* indicates whether the kernel K stays finite */
        opt[6];            /* options for orbit_alg */
@@ -322,7 +321,7 @@ int strong_generators_2(matrix_TYP **base,bravais_TYP *U,
         new_vec = mat_mul(g,erg[0]->orbit[j]);
         modp_mat(new_vec,2);
 
-        old_anz = anz[0];
+        //int old_anz = anz[0];
         if (einordnen_2(erg,h,new_vec,0,FALSE,K,anz) == -1){
             finite_flag = FALSE;
         }
@@ -386,7 +385,7 @@ int strong_generators_2(matrix_TYP **base,bravais_TYP *U,
    for (i=0;i<dim;i++) opt[2] *= 2;
    if (finite_flag){
       /* make the normal closure */
-      old_anz = anz[0];
+      int old_anz = anz[0];
       for (i=0;i<old_anz && finite_flag;i++){
          con = orbit_alg(K[0][i],U,NULL,opt,&k);
          for (j=0;j<k;j++){

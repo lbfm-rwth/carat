@@ -481,7 +481,6 @@ orbit_alg (matrix_TYP *M, bravais_TYP *G, bravais_TYP *S, int *option, int *leng
   ergverz = NULL;
   Sverz = NULL;
   orbit_opt = option;
-  erzj = 0;
   if(orbit_opt[5] == 1)
     erz_anz = 2 * G->gen_no;
   else

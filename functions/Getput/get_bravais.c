@@ -34,7 +34,7 @@ char merk[256];
 bravais_TYP *grp;
 char  st;
 FILE *infile;
- int i, j, k, l, m, c;
+ int i, j, k, l, m;
 int gen_no, form_no, zentr_no, normal_no, cen_no;
 
 	/*------------------------------------------------------------*\
@@ -56,7 +56,7 @@ int gen_no, form_no, zentr_no, normal_no, cen_no;
   /*--------------------------------------------------*\
   |  read header line                                  |
   \*--------------------------------------------------*/
-c=fscanf (infile, "%*[ \t\n\r]");
+fscanf (infile, "%*[ \t\n\r]");
 st = getc(infile);
 if ( st != '#' ) {
 	gen_no = 1;
@@ -65,8 +65,8 @@ if ( st != '#' ) {
 else
 {
 
-c=fscanf (infile, "%[ \t\n]", string);
-if ((c=fscanf (infile, "%[^\n]",string)) == EOF) {
+fscanf (infile, "%[ \t\n]", string);
+if ((fscanf (infile, "%[^\n]",string)) == EOF) {
 	*string = '\0';
 }
 strtok (string, "%");
@@ -146,8 +146,8 @@ for ( k = 0; k < cen_no; k++)
 	/*------------------------------------------------------------*\
 	| read group order                                             |
 	\*------------------------------------------------------------*/
-c=fscanf (infile, "%[ \t\n]", string);
-if ((c=fscanf (infile, "%[^\n]",string)) == EOF) {
+fscanf (infile, "%[ \t\n]", string);
+if ((fscanf (infile, "%[^\n]",string)) == EOF) {
 	*string = '\0';
 }
 if ( *string == '%' )
