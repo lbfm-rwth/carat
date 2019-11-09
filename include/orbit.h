@@ -2,8 +2,8 @@
 extern "C" {
 #endif
 
-#ifndef CARAT_ORBIT_H_
-#define CARAT_ORBIT_H_
+#ifndef CARAT_ORBIT_H
+#define CARAT_ORBIT_H
 
 #include "typedef.h"
 

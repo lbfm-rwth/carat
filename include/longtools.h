@@ -2,8 +2,8 @@
 extern "C" {
 #endif
 
-#ifndef CARAT_LONGTOOLS_H_
-#define CARAT_LONGTOOLS_H_
+#ifndef CARAT_LONGTOOLS_H
+#define CARAT_LONGTOOLS_H
 
 #include "typedef.h"
 

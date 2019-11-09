@@ -2,8 +2,8 @@
    extern "C" {
 #endif
 
-#ifndef _CARAT_GRAPH_H_
-#define _CARAT_GRAPH_H_
+#ifndef CARAT_GRAPH_H
+#define CARAT_GRAPH_H
 
 #include "typedef.h"
 
@@ -393,7 +393,7 @@ int obergruppenzahl(matrix_TYP *L,
 		    int Stab_anz,
 		    int *wort);
 
-#endif /* _CARAT_GRAPH_H_ */
+#endif /* CARAT_GRAPH_H */
 
 #ifdef __cplusplus
    }

@@ -2,8 +2,8 @@
 extern "C" {
 #endif
 
-#ifndef CARAT_BASE_H_
-#define CARAT_BASE_H_
+#ifndef CARAT_BASE_H
+#define CARAT_BASE_H
 
 #include "typedef.h"
 
