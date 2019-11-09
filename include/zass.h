@@ -39,11 +39,11 @@ void convert_cocycle_to_column(matrix_TYP **Y,
                                int gen_no);
 
 /**********************************************************************\
-| FILE: convert_to_cozycle.c
+| FILE: convert_to_cocycle.c
 \**********************************************************************/
 
-extern matrix_TYP *convert_to_cozycle(matrix_TYP *x,
-                                      matrix_TYP *cozycle,
+extern matrix_TYP *convert_to_cocycle(matrix_TYP *x,
+                                      matrix_TYP *cocycle,
                                       matrix_TYP *D);
 
 /**********************************************************************\
@@ -60,14 +60,14 @@ void put_cocycle(matrix_TYP *COZ,
 | FILE: normalop.c
 \*********************************************************************/
 
-extern matrix_TYP *normalop(matrix_TYP *cozycle,
+extern matrix_TYP *normalop(matrix_TYP *cocycle,
                             matrix_TYP *D,
                             matrix_TYP *R,
                             bravais_TYP *G,
                             matrix_TYP *N,
                             int opt);
 
-extern matrix_TYP **extensions(matrix_TYP *cozycle,
+extern matrix_TYP **extensions(matrix_TYP *cocycle,
                                matrix_TYP *D,
                                matrix_TYP *R,
                                bravais_TYP *G,
@@ -76,10 +76,10 @@ extern matrix_TYP **extensions(matrix_TYP *cozycle,
                                int *number_of_orbits,
                                int option);
 
-extern void no_of_extensions(matrix_TYP *cozycle,matrix_TYP *D,
+extern void no_of_extensions(matrix_TYP *cocycle,matrix_TYP *D,
                         matrix_TYP *R,bravais_TYP *G,MP_INT *no);
 
-extern matrix_TYP **identify(matrix_TYP *cozycle,
+extern matrix_TYP **identify(matrix_TYP *cocycle,
                              matrix_TYP *D,
                              matrix_TYP *R,
                              bravais_TYP *G,

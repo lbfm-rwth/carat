@@ -233,7 +233,7 @@ coz_TYP identify_coz(bravais_TYP *G,
 
       coz_info.darst = standard_rep(coz, coz_info.GLS, X[1]);
       valuation(coz_info.darst, X[1], &coz_info.number);
-      coz_info.std_coz = convert_to_cozycle(coz_info.darst, X[0], X[1]);
+      coz_info.std_coz = convert_to_cocycle(coz_info.darst, X[0], X[1]);
       coz_info.diff = mat_add(coz, coz_info.std_coz, eins, minuseins);
 
       coz_info.Stab = stab_coz(coz_info.WORDS, coz_info.WORDS_no, G->normal,

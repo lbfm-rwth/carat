@@ -51,17 +51,17 @@
 @
 @ -------------------------------------------------------------------------
 @
-@ matrix_TYP *normalop(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
+@ matrix_TYP *normalop(matrix_TYP *cocycle,matrix_TYP *D,matrix_TYP *R,
 @                      bravais_TYP *G,matrix_TYP *N)
 @
 @ Calculates the action of the matrix N on the cohomology group H^1(G,*)
-@ described by the matrices cozycle, D, R, which are in turn output of
+@ described by the matrices cocycle, D, R, which are in turn output of
 @ cohomology.
 @
 @ CAUTION: The matrix returned describes the action on rows, and it is
 @          not checked whether N is realy an element of the normalizer of G!
 @
-@ matrix_TYP *cozycle: the first return value of cohomology for G.
+@ matrix_TYP *cocycle: the first return value of cohomology for G.
 @ matrix_TYP *D:       the second return value of cohomology for G.
 @ matrix_TYP *R:       the third return value of cohomology for G.
 @ bravais_TYP *G:      the group. only the field generator is realy needed.
@@ -74,11 +74,11 @@
 @
 @--------------------------------------------------------------------------
 @
-@ matrix_TYP **identify(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
+@ matrix_TYP **identify(matrix_TYP *cocycle,matrix_TYP *D,matrix_TYP *R,
 @                       bravais_TYP *G,matrix_TYP **extension,MP_INT *a,
 @                       int number,int transform_flag)
 @
-@ Identifies the space groups described by the cozycles in extension,
+@ Identifies the space groups described by the cocycles in extension,
 @ i.e. gives them different number iff they are not isomorphic.
 @ The return value depends on the value of transform_flag. If
 @ (transform_flag == TRUE) it will return a list of "number" matrices in
@@ -97,7 +97,7 @@
 @                          Important for the correctness of the result
 @                          is that the matrices in G->cen, G->normal
 @                          generate N_GL_n(Z) (G) /G.
-@  matrix_TYP **extension: matrices discribing a cozycles for the group G.
+@  matrix_TYP **extension: matrices discribing a cocycles for the group G.
 @                          So each matrix in the list discribes a spacegroup.
 @  MP_int *a:              The names for the groups will be returned
 @                          via this field. The space has to be allocated
@@ -113,10 +113,10 @@
 @
 @ -------------------------------------------------------------------------
 @
-@ matrix_TYP **extensions(matrix_TYP *cozycle,matrix_TYP *D,matrix_TYP *R,
+@ matrix_TYP **extensions(matrix_TYP *cocycle,matrix_TYP *D,matrix_TYP *R,
 @             bravais_TYP *G,int **lengths,MP_INT **names,int *number_of_orbits)
 @
-@ Returns the cozycles which generate the isomorphims classes of
+@ Returns the cocycles which generate the isomorphims classes of
 @ extensions of G by the natural ZG-module. The split extension is
 @ represented by an all zero matrix.
 @
@@ -128,7 +128,7 @@
 @   int **lengths:         length[0] returns a pointer to the lengths
 @                          of the orbits respectively
 @   MP_INT **names:        names[0] returns a pointer to the names of
-@                          the cozycles as they would appear in a call
+@                          the cocycles as they would appear in a call
 @                          of identify(.....).
 @   int *number_of_orbits: the number of orbits the normalizer induces
 @                          on the cohomology group.
@@ -146,7 +146,7 @@
 @
 @------------------------------------------------------------------------
 @
-@ void no_of_extensions(matrix_TYP *cozycle,matrix_TYP *D,
+@ void no_of_extensions(matrix_TYP *cocycle,matrix_TYP *D,
 @                        matrix_TYP *R,bravais_TYP *G,MP_INT *erg)
 @
 @------------------------------------------------------------------------

@@ -33,7 +33,7 @@ void put_cocycle(matrix_TYP *COZ,
    }
 
    if (COZ->cols != 1){
-      fprintf(stderr,"cozycle with more than 1 columns?\n");
+      fprintf(stderr,"cocycle with more than 1 columns?\n");
       exit(3);
    }
 

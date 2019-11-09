@@ -233,11 +233,11 @@ static matrix_TYP *static_orbit_rep(matrix_TYP *x,
             /* the element is not new */
             free_mat(tmp);
 
-            /* inserted this case to handle the stabilizer of a cozycle
+            /* inserted this case to handle the stabilizer of a cocycle
                as well: tilman 15.03. */
             if (WORDS){
 
-               /* we got a new generator of the stabilizer of the cozycle */
+               /* we got a new generator of the stabilizer of the cocycle */
                WORDS[0][NUMBER_OF_WORDS[0]] = (int *) calloc(
                              orb_words[h][0]+orb_words[i][0]+2, sizeof(int));
                WORDS[0][NUMBER_OF_WORDS[0]][0] =
@@ -349,7 +349,7 @@ static int gives_rise_to_torsionfree_space_group(
 
 
     R = init_bravais(G->dim+1);
-    C = convert_to_cozycle(x,cocycle,D);
+    C = convert_to_cocycle(x,cocycle,D);
 
     R->gen = (matrix_TYP **) malloc(G->gen_no * sizeof(matrix_TYP *));
     R->gen_no = G->gen_no;
@@ -387,7 +387,7 @@ static int gives_rise_to_torsionfree_space_group(
 @
 @ -------------------------------------------------------------------------
 @
-@ matrix_TYP **extensions(matrix_TYP *cozycle,
+@ matrix_TYP **extensions(matrix_TYP *cocycle,
 @                         matrix_TYP *D,
 @                         matrix_TYP *R,
 @                         bravais_TYP *G,
@@ -396,7 +396,7 @@ static int gives_rise_to_torsionfree_space_group(
 @                         int *number_of_orbits,
 @                         int option)
 @
-@ Returns the cozycles which generate the isomorphims classes of
+@ Returns the cocycles which generate the isomorphims classes of
 @ extensions of G by the natural ZG-module. The split extension is
 @ represented by an all zero matrix.
 @
@@ -408,7 +408,7 @@ static int gives_rise_to_torsionfree_space_group(
 @   int **lengths:         length[0] returns a pointer to the lengths
 @                          of the orbits respectively
 @   MP_INT **names:        names[0] returns a pointer to the names of
-@                          the cozycles as they would appear in a call
+@                          the cocycles as they would appear in a call
 @                          of identify(.....).
 @   int *number_of_orbits: the number of orbits the normalizer induces
 @                          on the cohomology group.
@@ -420,7 +420,7 @@ static int gives_rise_to_torsionfree_space_group(
 @ -------------------------------------------------------------------------
 @
 ***********************************************************************/
-matrix_TYP **extensions_o(matrix_TYP *cozycle,
+matrix_TYP **extensions_o(matrix_TYP *cocycle,
                           matrix_TYP *D,
                           matrix_TYP *R,
                           bravais_TYP *G,
@@ -484,10 +484,10 @@ matrix_TYP **extensions_o(matrix_TYP *cozycle,
 
   for (i=0;i<Nanz;i++){
      if (i<G->cen_no){
-        N[0][i] = normalop(cozycle,D,R,G,G->cen[i],i == (Nanz-1));
+        N[0][i] = normalop(cocycle,D,R,G,G->cen[i],i == (Nanz-1));
      }
      else{
-        N[0][i] = normalop(cozycle,D,R,G,G->normal[i-G->cen_no],i == (Nanz-1));
+        N[0][i] = normalop(cocycle,D,R,G,G->normal[i-G->cen_no],i == (Nanz-1));
      }
      if (INFO_LEVEL & 16){
         put_mat(N[0][i],NULL,"N[i]",2);
@@ -535,7 +535,7 @@ matrix_TYP **extensions_o(matrix_TYP *cozycle,
 
         if (mpz_cmp(&new_val,&act_val) == 0 &&
            (!(option & 1) ||
-              gives_rise_to_torsionfree_space_group( G, D, cozycle, x))){
+              gives_rise_to_torsionfree_space_group( G, D, cocycle, x))){
           if (number_of_orbits[0] % MIN_SPEICHER == 0){
              erg = (matrix_TYP **) realloc(erg,
                      (number_of_orbits[0] + MIN_SPEICHER)*sizeof(matrix_TYP*));
@@ -549,7 +549,7 @@ matrix_TYP **extensions_o(matrix_TYP *cozycle,
                      (number_of_orbits[0] + MIN_SPEICHER)*sizeof(int));
 
           }
-          erg[number_of_orbits[0]] = convert_to_cozycle(x,cozycle,D);
+          erg[number_of_orbits[0]] = convert_to_cocycle(x,cocycle,D);
           lengths[0][number_of_orbits[0]] = orbit_length;
           mpz_init_set(names[0]+number_of_orbits[0],&act_val);
           mpz_add_ui(&got_size,&got_size,(unsigned long) orbit_length);

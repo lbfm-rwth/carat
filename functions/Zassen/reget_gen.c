@@ -215,7 +215,7 @@ matrix_TYP *reget_gen(matrix_TYP **map,int number,bravais_TYP *G,
          exit(3);
       }
 
-      /* now calculate the resulting cozycle alltogether */
+      /* now calculate the resulting cocycle alltogether */
       for (i=0;i<G->gen_no;i++){
          k = red_pos(G->gen[i],ele,baum2,length,-1);
          tmp = ele[k];
@@ -255,7 +255,7 @@ matrix_TYP *reget_gen(matrix_TYP **map,int number,bravais_TYP *G,
          for (j=2;j<=words[i][0];j++)
             mat_muleq(tmp,map[words[i][j]]);
 
-         /* calculate the part of the cozycle belonging to the i-th
+         /* calculate the part of the cocycle belonging to the i-th
             generator */
          for (j=0;j<G->dim;j++)
             erg->array.SZ[i*G->dim +j][0] = tmp->array.SZ[j][G->dim];

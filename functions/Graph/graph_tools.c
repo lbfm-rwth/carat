@@ -58,9 +58,9 @@ bravais_TYP *extract_r(bravais_TYP *G,
    rat2kgv(X);
    Check_mat(X);
 
-   /* is it a valid cozycle? */
+   /* is it a valid cocycle? */
    if ((G->dim * G->gen_no != X->rows) || (X->cols != 1)){
-      fprintf(stderr,"The cozycle is not compatible to this point group\n");
+      fprintf(stderr,"The cocycle is not compatible to this point group\n");
       fprintf(stderr,"It should have %d * %d = %d rows\n",G->dim,G->gen_no,
                        G->dim*G->gen_no);
       exit(3);
@@ -221,7 +221,7 @@ matrix_TYP *standard_rep(matrix_TYP *coz,
    for (i = 0; i < diff; i++){
       j = tmp->array.SZ[i + first][0] * D->array.SZ[i + first][i + first];
       if ((j % denominator) != 0){
-         fprintf(stderr,"ERROR in standard_rep: are you sure this is a cozycle?\n");
+         fprintf(stderr,"ERROR in standard_rep: are you sure this is a cocycle?\n");
          fprintf(stderr,"If so, please report to the authors: carat@momo.math.rwth-aachen.de\n");
          exit(3);
       }

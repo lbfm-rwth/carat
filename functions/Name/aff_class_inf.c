@@ -56,7 +56,7 @@ static matrix_TYP *get_cocycle(bravais_TYP *R,
        denominator *= (R->gen[j]->kgv / GGT(R->gen[j]->kgv,denominator));
      }
 
-     /* stick the rigth INTEGRAL cozycle at the end of the RG[j] */
+     /* stick the rigth INTEGRAL cocycle at the end of the RG[j] */
      for (j=0;j<R->gen_no;j++){
         RG[j]->cols++;
         RG[j]->rows++;
@@ -67,7 +67,7 @@ static matrix_TYP *get_cocycle(bravais_TYP *R,
         Check_mat(RG[j]);
      }
 
-     /* get the cozycle on the right generators */
+     /* get the cocycle on the right generators */
      coz = reget_gen(RG,R->gen_no,P,words,TRUE);
 
      /* the cozykle has to become the right denominator */
@@ -103,7 +103,7 @@ bravais_TYP *space_group_from_matrix(bravais_TYP *G,
        k;
 
    R = init_bravais(G->dim+1);
-   C = convert_to_cozycle(x,cocycle,D);
+   C = convert_to_cocycle(x,cocycle,D);
 
    R->gen = (matrix_TYP **) malloc(G->gen_no * sizeof(matrix_TYP *));
    R->gen_no = G->gen_no;
@@ -138,7 +138,7 @@ matrix_TYP *aff_class_inf(bravais_TYP *R,
                           bravais_TYP **RC)
 {
 
-   matrix_TYP *cozycle,
+   matrix_TYP *cocycle,
              **X,
              **Y,
              **matinv,
@@ -152,7 +152,7 @@ matrix_TYP *aff_class_inf(bravais_TYP *R,
 
    /* first thing to do is to find the generators of DATAZ in the
       point group of R */
-   cozycle = get_cocycle(R,DATAZ);
+   cocycle = get_cocycle(R,DATAZ);
 
    /* do the cohomology calculations */
    relator = (word *) calloc(PRES->rows,sizeof(word));
@@ -166,7 +166,7 @@ matrix_TYP *aff_class_inf(bravais_TYP *R,
 
    if (X[0]->cols > 0){ 
       /* give the group a name */
-      Y = identify(X[0],X[1],X[2],DATAZ,&cozycle,aff_name,1,3,NULL,NULL);
+      Y = identify(X[0],X[1],X[2],DATAZ,&cocycle,aff_name,1,3,NULL,NULL);
       RES=Y[0]; free(Y);
 
       if (RC){
@@ -180,7 +180,7 @@ matrix_TYP *aff_class_inf(bravais_TYP *R,
    else{
       mpz_set_si(aff_name,0);
       RES = init_mat(DATAZ->dim+1,DATAZ->dim+1,"1");
-      coboundary(DATAZ,cozycle,RES);
+      coboundary(DATAZ,cocycle,RES);
 
       if (RC){
          /* construct the split extension */
@@ -197,7 +197,7 @@ matrix_TYP *aff_class_inf(bravais_TYP *R,
    /* clean up and return */
    for (i=0;i<3;i++) free_mat(X[i]);
    free(X);
-   free_mat(cozycle);
+   free_mat(cocycle);
    for (i=0;i<PRES->rows;i++) wordfree(relator+i);
    free(relator);
    for (i=0;i<DATAZ->gen_no;i++)
