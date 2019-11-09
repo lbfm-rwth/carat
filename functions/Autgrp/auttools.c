@@ -1,6 +1,7 @@
-#include"typedef.h"
 /*****	This file contains some routines to compute automorphisms of a lattice 
 	and to determine candidates for the image of a base vector	*****/
+#include "typedef.h"
+#include "types.h"
 
 
 /***************************************************************\
@@ -12,7 +13,7 @@
 |   x[0],...,x[I-1],vec are correct) on CI, 
 |   returns their number (should be fp[I])
 \***************************************************************/
-static int 
+int 
 cand (int *CI, int I, int *x, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags)
 {
 	int	i, j, k, dim, okp, okm, sign, nr, fail, num;
@@ -252,7 +253,7 @@ cand (int *CI, int I, int *x, veclist V, invar F, fpstruct fp, scpcomb *comb, ba
 |   levels representatives for all orbits
 |   have been tested
 \**************************************************/
-static void 
+void 
 autom (group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags)
 {
 	FILE	*outfile;
@@ -467,7 +468,7 @@ autom (group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, 
 /***************************************************************\
 |	the heart of the program: the recursion	
 \***************************************************************/
-static int 
+int 
 aut (int step, int *x, int **C, group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags)
 {
 	int	i, j, dim, orb[1], found;

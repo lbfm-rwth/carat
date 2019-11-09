@@ -8,9 +8,19 @@ noinst_LIBRARIES = libfunctions.a
 
 libfunctions_a_SOURCES = \
     functions/Autgrp/autgrp.c \
+    functions/Autgrp/auttools.c \
+    functions/Autgrp/bachtools.c \
+    functions/Autgrp/iotools.c \
     functions/Autgrp/isometry.c \
+    functions/Autgrp/isotools.c \
+    functions/Autgrp/lattools.c \
+    functions/Autgrp/mattools.c \
+    functions/Autgrp/orbtools.c \
+    functions/Autgrp/perfecttools.c \
     functions/Autgrp/pr_aut.c \
     functions/Autgrp/pr_isom.c \
+    functions/Autgrp/preproc.c \
+    functions/Autgrp/sorttools.c \
     functions/Base/base.c \
     functions/Base/base2.c \
     functions/Base/conjugate.c \

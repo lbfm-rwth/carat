@@ -1,5 +1,6 @@
 /*****	This file contains some routines for orbit calculations	*****/
-#include"typedef.h"
+#include "typedef.h"
+#include "types.h"
 
 /**********************************************************************\
 |	V.v is a sorted list of length V.n of vectors
@@ -7,7 +8,7 @@
 |	the list is returned, where a negative number 
 |	indicates the negative of a vector
 \**********************************************************************/
-static int 
+int 
 operate (int nr, int **A, veclist V)
 {
 	int	i, im, *w;
@@ -38,7 +39,7 @@ operate (int nr, int **A, veclist V)
 |	orb, returns the length of the orbit, 
 |	the points are the indices in the list V.v
 \**********************************************************************/
-static int 
+int 
 orbit (int *pt, int npt, int ***G, int nG, veclist V, int **orb)
 {
 	int	i, norb, cnd, im, *flag;
@@ -82,7 +83,7 @@ orbit (int *pt, int npt, int ***G, int nG, veclist V, int **orb)
 |	checks, whether the orbit of pt under 
 |	the nG matrices in G has at least length orblen
 \**********************************************************************/
-static int 
+int 
 orbitlen (int pt, int orblen, int ***G, int nG, veclist V)
 {
 	int	i, len, cnd, im, *orb, *flag;
@@ -124,7 +125,7 @@ orbitlen (int pt, int orblen, int ***G, int nG, veclist V)
 |	deletes the elements in orb2 from orb1, 
 |	an entry 0 marks the end of the list, returns the length of orb1
 \**********************************************************************/
-static int 
+int 
 delete (int *orb1, int l1, int *orb2, int l2)
 {
 	int	i, j, len, o2i;
@@ -160,7 +161,7 @@ delete (int *orb1, int l1, int *orb2, int l2)
 |	<G->g[0],...,G->g[i-1]>, G->ord[i] is the orbit
 |	length of fp.e[i] under <G->g[i],...,G->g[n-1]>
 \**********************************************************************/
-static void 
+void 
 stab (int I, group *G, fpstruct fp, veclist V)
 {
 	int	*orb, len, cnd, tmplen;
@@ -365,7 +366,7 @@ stab (int I, group *G, fpstruct fp, veclist V)
 |	generates the matrix X which has as row
 |	per[i] the vector nr. x[i] from the list v
 \**********************************************************************/
-static void 
+void 
 matgen (int *x, int **X, int dim, int *per, int **v)
 {
 	int	i, j, xi, *Xperi;
@@ -391,7 +392,7 @@ matgen (int *x, int **X, int dim, int *per, int **v)
 |	x2 to an element X2 mapping e on p2 and G is a generator mapping 
 |	p1 on p2, then S = X1*G*X2^-1 stabilizes e
 \**********************************************************************/
-static void 
+void 
 stabil (int **S, int *x1, int *x2, int *per, int **G, veclist V)
 {
 	int	i, dim, *x, **XG, **X2;

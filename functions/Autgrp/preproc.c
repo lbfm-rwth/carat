@@ -1,12 +1,13 @@
 /*****	This file includes some routines for 
 	the preprocessing of the algorithm	*****/
-#include"typedef.h"
+#include "typedef.h"
+#include "types.h"
 
 /************************************************************************\
 |	removes those vectors from V.v, which 
 |	have other norm combinations than the base-vectors
 \************************************************************************/
-static void 
+void 
 checkvecs (veclist *V, invar F, veclist norm)
 {
 	int	i, j, k, dim, *normvec, *Vvi;
@@ -40,7 +41,7 @@ checkvecs (veclist *V, invar F, veclist norm)
 /************************************************************************\
 |	checks, whether g fixes the invariant forms
 \************************************************************************/
-static int 
+int 
 checkgen (int **g, invar F)
 {
 	int	i, j, k, fix, **FAk;
@@ -69,7 +70,7 @@ checkgen (int **g, invar F)
 | basis-vectors per[0]...per[i-1] as the basis-vector j and the same length as 
 | this vector with respect to all  invariant forms
 \************************************************************************/
-static void 
+void 
 fingerprint (fpstruct *fp, invar F, veclist V)
 {
 	int	i, j, k, dim, min, tmp, **f, *Vvj;
@@ -134,7 +135,7 @@ fingerprint (fpstruct *fp, invar F, veclist V)
 |	basis-vector nr. J and the same length 
 |	as this vector with respect to all invariant forms	
 \************************************************************************/
-static int 
+int 
 possible (invar F, veclist V, int *per, int I, int J)
 {
 	int	i, j, k, dim, count, *Vvj;
@@ -166,7 +167,7 @@ possible (invar F, veclist V, int *per, int I, int J)
 |	vectors v[b[I]] down to v[b[I-dep+1]] with respect to
 |	all invariant forms and puts them on scpvec
 \************************************************************************/
-static void 
+void 
 scpvector (int *scpvec, int *w, int *b, int I, int dep, invar F)
 {
 	int	i, j, dim, bi;
@@ -192,7 +193,7 @@ scpvector (int *scpvec, int *w, int *b, int I, int dep, invar F)
 |	combinations of the vectors in V.v with
 |	the basis-vectors in b
 \************************************************************************/
-static void 
+void 
 scpvecs (veclist *list, int ***vec, int I, int *b, int dep, veclist V, invar F)
 {
 	int	i, j, dim, len, *scpvec, nr, sign, *tmp;
@@ -281,7 +282,7 @@ scpvecs (veclist *list, int ***vec, int I, int *b, int dep, veclist V, invar F)
 |	puts a transformation matrix on T, i.e. b = T*v,
 |	uses LLL-reduction with respect to F
 \************************************************************************/
-static void 
+void 
 base (scpcomb *com, int ***b, int **v, int **F, int dim)
 {
 	int	i, j, k, nv, rank, max, **Fv, **f, **tr, *perm, *norm, tmp;
@@ -494,7 +495,7 @@ base (scpcomb *com, int ***b, int **v, int **F, int dim)
 |	puts the transformation matrix on com->coef, i.e. v = com->coef * b,	
 |	uses LLL-reduction with respect to F to obtain the coefficients	
 \************************************************************************/
-static void 
+void 
 coef (scpcomb *com, int **b, int **v, int **F, int dim)
 {
 	int	i, j, **Fb, nb, **Fv, nv, **f, **tr, sign;
@@ -601,7 +602,7 @@ coef (scpcomb *com, int **b, int **v, int **F, int dim)
 /************************************************************************\
 |   com->F[i] is the Gram-matrix of the basis b with respect to F.A[i]
 \************************************************************************/
-static void 
+void 
 scpforms (scpcomb *com, int **b, invar F)
 {
 	int	i, j, k, dim, **Fbi, nb, **FAi, *comFij;

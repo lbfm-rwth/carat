@@ -1,5 +1,4 @@
 /*****	Main program for the automorphism program AUTO	*****/
-
 #include "typedef.h"
 #include "types.h"
 #include "sort.h"
@@ -13,23 +12,13 @@
 @
 \**************************************************************************/
 
-static int normal_option;
-static int perp_no;
-static int ***perp;
-static int perpdim;
-static int ***perpbase;
-static int ***perpprod;
-static int *perpvec;
-
-#include "auttools.c"
-#include "bachtools.c"
-#include "iotools.c"
-#include "lattools.c"
-#include "mattools.c"
-#include "orbtools.c"
-#include "preproc.c"
-#include "sorttools.c"
-#include "perfecttools.c"
+int normal_option = 0;
+int perp_no = 0;
+int ***perp = 0;
+int perpdim = 0;
+int ***perpbase = 0;
+int ***perpprod = 0;
+int *perpvec = 0;
 
 /*************************************************************************\
 @-------------------------------------------------------------------------

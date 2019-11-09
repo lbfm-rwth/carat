@@ -1,12 +1,13 @@
 /*****	This file includes some routines for 
 	sorting lists and searching in sorted lists	*****/
-#include"typedef.h"
+#include "typedef.h"
+#include "types.h"
 
 /**********************************************************************\
 |	compares the 1xn-vectors x and y lexicographically
 |	returns 1 if x > y, 0 if x = y, -1 if x < y
 \**********************************************************************/
-static int 
+int 
 comp (int *x, int *y, int n)
 {
 	int	i;
@@ -31,7 +32,7 @@ comp (int *x, int *y, int n)
 |	  -(V.n+i) if v[i-1] < -vec < v[i]
 |	if the return value is negative, vec is replaced by -vec
 \**********************************************************************/
-static int 
+int 
 numberof (int *vec, veclist V)
 {
 	int	i, sign, dim, low, high, search, cmp;
@@ -69,7 +70,7 @@ numberof (int *vec, veclist V)
 |	sorts the V->n vectors v[1]...v[V->n] and 
 |	deletes doublets, V->v is changed !!!
 \**********************************************************************/
-static void 
+void 
 sortvecs (veclist *V)
 {
 	int	i, j;
@@ -101,7 +102,7 @@ sortvecs (veclist *V)
 /**********************************************************************\
 |	standard quicksort
 \**********************************************************************/
-static void 
+void 
 quicksort (int **v, int inf, int sup, int dim)
 {
 	int	*tmp, low, med, high;
