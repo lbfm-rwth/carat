@@ -61,11 +61,8 @@ libfunctions_a_SOURCES = \
     functions/Graph/stabs.c \
     functions/Graph/sub-k-groups-fcts.c \
     functions/Graph/sub-super-tools.c \
-    functions/Graph/sub-t-groups-fcts.c \
     functions/Graph/subgroupgraph.c \
     functions/Graph/super-k-groups-fcts.c \
-    functions/Hyperbolic/hyp_isom.c \
-    functions/Hyperbolic/hyp_stabilizer.c \
     functions/Idem/almost_decomposable_lattice.c \
     functions/Idem/bravais_catalog.c \
     functions/Idem/centr.c \
