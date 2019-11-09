@@ -29,7 +29,7 @@ int main (int argc, char *argv[])
 
    bahn **strong;
 
-   int OPT[6], panz, no, i, no_neu;
+   int OPT[6], panz, no = 0, i, no_neu;
 
 
    /* Daten und Optionen einlesen */

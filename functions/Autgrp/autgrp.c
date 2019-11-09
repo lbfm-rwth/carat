@@ -99,6 +99,7 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
      flags.GEN = 0;
 /* F.n is the number of invariant forms */
 	F.n = Foanz;
+	F.v = 0;
 	if ((F.A = (int***)malloc(F.n * sizeof(int**))) == 0)
 		exit (2);
 /* read the invariant forms */
@@ -619,6 +620,7 @@ perfect_normal_autgrp (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erz
      flags.GEN = 0;
 /* F.n is the number of invariant forms */
 	F.n = 1;
+	F.v = 0;
 	if ((F.A = (int***)malloc(1 *sizeof(int**))) == 0)
 		exit (2);
 /* read the invariant forms */
