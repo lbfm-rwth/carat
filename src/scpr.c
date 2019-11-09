@@ -7,7 +7,6 @@ int main (int argc, char *argv[])
 
 {  
    matrix_TYP **V,
-              **F = 0,
               **V_tr,
                *SCPR,
                *TT;
@@ -16,8 +15,7 @@ int main (int argc, char *argv[])
 
    int i,
        j,
-       mv,
-       nf;
+       mv;
 
    read_header(argc, argv);
 
@@ -48,39 +46,41 @@ int main (int argc, char *argv[])
    }
 
    if (FILEANZ > 1){
-      F = mget_mat(FILENAMES[1],&nf);
-   }
-   else{
-      nf = 1;
-   }
+      int nf;
+      matrix_TYP **F = mget_mat(FILENAMES[1],&nf);
 
-   printf("#%d\n",mv*nf);
- 
-   for (i=0;i<nf;i++){
-      for (j=0;j<mv;j++){
-         if (FILEANZ>1){
+      printf("#%d\n",mv*nf);
+
+      for (i=0;i<nf;i++){
+         for (j=0;j<mv;j++){
             TT = mat_mul(F[i],V[j]);
             SCPR = mat_mul(V_tr[j],TT);
             free_mat(TT);
             sprintf(comment,"scalarproducts of %d-th matrix in %s w.r.t %s(cols)",
                               j+1,FILENAMES[0],FILENAMES[1]);
+            Check_mat(SCPR);
+            put_mat(SCPR,NULL,comment,2);
+            free_mat(SCPR);
          }
-         else{
-            SCPR = mat_mul(V_tr[j],V[j]);
-            sprintf(comment,"scalarproducts of %d-th matrix in %s(cols)",
-                              j+1,FILENAMES[0]);
-         }
+      }
+      for (i=0;i<nf;i++)
+         free_mat(F[i]);
+      free(F);
+   }
+   else{
+      printf("#%d\n",mv);
+
+      for (j=0;j<mv;j++){
+         SCPR = mat_mul(V_tr[j],V[j]);
+         sprintf(comment,"scalarproducts of %d-th matrix in %s(cols)",
+                           j+1,FILENAMES[0]);
          Check_mat(SCPR);
          put_mat(SCPR,NULL,comment,2);
          free_mat(SCPR);
       }
    }
 
-   /* clean up memomry */
-   if (FILEANZ > 1){
-      for (i=0;i<nf;i++) free_mat(F[i]);
-      free(F);
-   }
+   /* clean up memory */
    for (j=0;j<mv;j++){
       free_mat(V[j]);
       free_mat(V_tr[j]);
