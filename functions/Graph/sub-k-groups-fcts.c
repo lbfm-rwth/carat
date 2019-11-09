@@ -569,7 +569,7 @@ static void korrektes_urbild_ID(matrix_TYP *preimage,
 
    tmp = mat_mul(B, erg[0]);
 
-   preimage = mat_addeq(preimage, tmp, eins, eins);
+   mat_addeq(preimage, tmp, eins, eins);
 
    /* clean */
    if (erg[0] != NULL) free_mat(erg[0]);

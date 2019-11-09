@@ -272,7 +272,6 @@ bs_isometry (veclist V, invar F, invar FF, fpstruct fp, int ***G, int nG, scpcom
 		exit (2);
 /* compute the candidates for x[0] */
 	isocand(C[0], 0, x, V, F, FF, fp, comb, bach, flags);
-	found = 0;
 /* go into the recursion */
 	found = iso(0, x, C, V, F, FF, fp, G, nG, comb, bach, flags);
 /***********************************

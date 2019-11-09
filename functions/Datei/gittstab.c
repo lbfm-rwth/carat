@@ -77,7 +77,7 @@ static int
 mat_such (bravais_TYP *stab, int **A)
 {
    int i,j,k, neu;
-         i=0; j=0; neu = 0;
+         i=0; neu = 0;
          while(i<stab->dim && neu == 0)
          {
               j=0;

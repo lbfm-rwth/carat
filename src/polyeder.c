@@ -36,7 +36,7 @@ int main (int argc, char *argv[])
         P = first_polyeder(w, Mat->rows);
         for(i=0;i<Mat->rows;i++)
         {
-           j =  refine_polyeder(P, w[i]);
+           refine_polyeder(P, w[i]);
         }
         put_polyeder(P);
 

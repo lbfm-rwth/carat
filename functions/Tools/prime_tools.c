@@ -265,7 +265,6 @@ init_prime (int prime)
 {
 int j, number;
 
-  number = 1;
   if (act_prime == -1) {
     prime_table = (table *)malloc(sizeof(table));
     prime_table->s_number = 1;

@@ -358,7 +358,7 @@ int main (int argc, char *argv[])
   database *database;
   
   bravais_TYP *G,
-              *H;
+              *H = 0;
 
   matrix_TYP *T;
 

@@ -46,7 +46,7 @@ CARATname_TYP name_fct(bravais_TYP *R,
 
 
   P = point_group(R, 2);
-  T = q_class_inf (P,database,Name.qname,symb,&DATAQ,&PRES,FALSE);
+  q_class_inf(P,database,Name.qname,symb,&DATAQ,&PRES,FALSE);
   TZ = z_class_inf(P,DATAQ,&DATAZ,Name.zname);
   if (DATAQ->order == 0)
      Name.order = 1;

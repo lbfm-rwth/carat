@@ -10,9 +10,7 @@ fund_domain *first_fuber(wall_TYP **mauern, int anz)
   fund_domain *erg;
   matrix_TYP *M, *A, *v, *tmp_v;
   int *take;
-  int test;
 
-  test = 0;
   n = mauern[0]->dim;
   M = init_mat(n, n, "");
   take = (int *)malloc(anz *sizeof(int));
@@ -100,7 +98,7 @@ fund_domain *first_fuber(wall_TYP **mauern, int anz)
     for(j=0;j<n;j++)
       erg->vert[i]->v[j] = v->array.SZ[j][0];
     free_mat(v);
-    test = wall_times_vertex_fuber(erg->wall[i], erg->vert[i]);
+    int test = wall_times_vertex_fuber(erg->wall[i], erg->vert[i]);
     if(test < 0)
     {
       for(j=0;j<n;j++)

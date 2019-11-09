@@ -77,35 +77,26 @@ euclid (  /* frei nach gap */
 {
 elt_div_pair r;
 elt_div_prod temp;
-int s1, t1, s, t, q, d, ha, hb;
+int s, t, ha, hb;
 
-  temp.hi  =
-  temp.low = 
-  ha       = 
-  hb       = 
-  s1       = 
-  t        =  
-  q        = 
-  d        =
-  r.f1     = 
-  r.f2     = 
-  r.g1     = 
+  temp.hi  = 0;
+  temp.low = 0;
+  t        = 0;
+  r.f1     = 0;
+  r.f2     = 0;
+  r.g1     = 0;
   r.g2     = 0;
-  t1 = 
-  s  = 1;
-  if (a < 0) {
-    s = -1;
-  }
+  s  = (a >= 0) ? 1 : -1;
   hb= abs(b);
   ha= abs(a);
   while (hb != 0) {
     temp = ZZ_mindivmod(ha,hb);
-    q        = temp.hi;
+    int q        = temp.hi;
     temp.hi  = 0;
     ha       = hb;
     hb       = temp.low;
     temp.low = 0;
-    t1 = t;
+    int t1 = t;
     t  = -t*q + s;
     s  = t1;
   }
@@ -124,7 +115,7 @@ int s1, t1, s, t, q, d, ha, hb;
 static matrix_TYP *
 elt_func (matrix_TYP *mat)
 {  
-int min_sum, sum,**E, h,*v, _min_;
+int min_sum, **E, h,*v, _min_;
 int min_col, min_row, rM, cM, i, j, k,l;
 boolean rc_min, flag;
 #ifdef DEBUG
@@ -142,10 +133,7 @@ elt_div_pair paar;
   \*------------------------------------------------------------*/
   rM = mat->rows;
   cM = mat->cols;
-  h       = 
-  _min_     =
-  min_sum = 
-  sum     = 0;
+  min_sum = 0;
   elt = copy_mat(mat);
   E = elt->array.SZ;
   rc_min = TRUE;
@@ -262,7 +250,6 @@ elt_div_pair paar;
     | submatrix                           |
     \*---------------------------------------------------------*/
   
-    flag = TRUE;
     min_row = min_col = i;
     _min_ = 0;
     for ( j = i;  (j < rM); j++ ) {
@@ -299,7 +286,7 @@ elt_div_pair paar;
               min_row = j;
               min_col = k;
             } else if((rc_min) && (flag == 0) && (k!= min_col)) {
-              sum = 0;
+              int sum = 0;
               for(l = i; l < rM; l++) {
                 if (E[l][k] < 0) {
                   sum -= E[l][k];
@@ -339,7 +326,6 @@ elt_div_pair paar;
       E[j][i]       = E[j][min_col];
       E[j][min_col] = h;
     }
-    h = 0;
   
     /*------------------------------------------------------*\
     | try to decrease the min using linear combinations    |

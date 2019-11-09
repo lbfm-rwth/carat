@@ -166,11 +166,10 @@ matrix_TYP *
 rmat_add (matrix_TYP *L_mat, matrix_TYP *R_mat, rational L_coeff, rational R_coeff)
 {
 matrix_TYP *S_mat;
-int **S, rS, cS , temp1, temp2;
+int **S, rS, cS;
 int i, j;
 rational Lc, Rc;
 
-  temp1 = temp2 = 0;
   Lc.z = L_coeff.z;
   Lc.n = L_coeff.n;
   Rc.z = R_coeff.z;
@@ -187,8 +186,8 @@ rational Lc, Rc;
   S_mat->flags.Scalar   =(R_mat->flags.Scalar   && L_mat->flags.Scalar);
   S_mat->flags.Integral =(R_mat->flags.Integral && L_mat->flags.Integral);
   if(!(S_mat->flags.Integral)) {
-    temp1= GGT(Lc.z, L_mat->kgv);
-    temp2= GGT(Rc.z, R_mat->kgv);
+    int temp1= GGT(Lc.z, L_mat->kgv);
+    int temp2= GGT(Rc.z, R_mat->kgv);
     Lc.z = Lc.z / temp1 * R_mat->kgv / temp2 * Rc.n;
     Normal(&Lc);
     Rc.z = Rc.z / temp2 * L_mat->kgv / temp1 * Lc.n;
@@ -241,11 +240,10 @@ rational Lc, Rc;
 matrix_TYP *
 rmat_addeq (matrix_TYP *L_mat, matrix_TYP *R_mat, rational L_coeff, rational R_coeff)
 {
-int **L, **R, rS, cS , temp1;
+int **L, **R, rS, cS;
 int i, j;
 rational Rc, Lc;
 
-  temp1 = 0;
   rS = L_mat->rows;
   cS = L_mat->cols;
   Lc.z= L_coeff.z;
@@ -264,7 +262,7 @@ rational Rc, Lc;
     Normal(&Lc);
     Rc.n= R_coeff.n * R_mat->kgv; 
     Normal(&Rc);
-    temp1= GGT( Lc.n, Rc.n);
+    int temp1= GGT( Lc.n, Rc.n);
     Lc.z= Lc.z * Rc.n / temp1;
     Rc.z= Rc.z * Lc.n / temp1;
     L_mat->kgv= Lc.n *  Rc.n / temp1;
@@ -275,7 +273,7 @@ rational Rc, Lc;
     if((L_coeff.n == 1) && (R_coeff.n == 1)) {
       L_mat->kgv = 1;
     } else {
-      temp1= GGT(Lc.n,Rc.n);
+      int temp1= GGT(Lc.n,Rc.n);
       L_mat->kgv = Lc.n * Rc.n / temp1;
       L_mat->flags.Integral = FALSE;
       Lc.z = Lc.z * Rc.n / temp1;

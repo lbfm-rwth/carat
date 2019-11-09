@@ -703,7 +703,7 @@ perfect_normal_autgrp (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erz
         } to (next 5 lines): */
         for(i=1;i<= V.n;i++)
         {
-           V.v[i] = (int *) malloc((SV->rows+1) * sizeof(int));
+           V.v[i] = (int *) calloc((SV->rows+1), sizeof(int));
            for (j=0;j<SV->cols;j++){
               V.v[i][j] = SV->array.SZ[i-1][j];
            }

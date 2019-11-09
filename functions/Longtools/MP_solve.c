@@ -38,9 +38,9 @@ MP_solve_mat (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols, int *X1cols
 
    mpz_init(&zaehler); mpz_init(&nenner); mpz_init(&b);
    if(B == NULL || Bcols == 0)
-     rang = MP_row_gauss(M, rows, cols);
+     MP_row_gauss(M, rows, cols);
    else
-     rang = MP_row_gauss_simultaneous(M, rows, cols, B, Bcols);
+     MP_row_gauss_simultaneous(M, rows, cols, B, Bcols);
    if((Mt = (MP_INT **)malloc(cols *sizeof(MP_INT *))) == 0)
    {
      printf("malloc of 'Mt' in 'MP_solve_mat' failed\n");

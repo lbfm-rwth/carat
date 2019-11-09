@@ -1221,13 +1221,11 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 	ZZ_couple_t *c;
 	matrix_TYP *Tmp1, *Tmp2, *U_vor = 0, *tmp;
 	matrix_TYP *Mat, *Trf, *el = 0, *GMat;
-	int **U, **CC, sum, f;
+	int **U, **CC, f;
 	int i, j, k, nl, flag, ff, gg;
 	int ABBRUCH;
 
-	sum =
-		f =
-		g[0] = 0;
+	g[0] = 0;
 	U = newnode->U->array.SZ;
 	ABBRUCH = FALSE;
 
@@ -1270,7 +1268,7 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 				 */
 				for (i = 0; i < newnode->U->rows; i++) {
 					for (j = 0; j < newnode->U->cols; j++) {
-						sum = 0;
+						int sum = 0;
 						for (k = 0;
 						     k < n->U_inv->rows;
 						     k++) {

@@ -70,7 +70,7 @@ int w;
  */
 boolean rset_entry(matrix_TYP *mat, int r, int c, rational v)
 {
-int t, t1, t2;
+int t;
 int **Z;
 int w;
 int i,j;
@@ -79,7 +79,6 @@ int i,j;
     return(iset_entry(mat,r,c,v.z));
   }
 
-  t = t1 = t2 = 0;
   /* Check rows and columns */
   if((r >= mat->rows) || (c >= mat->cols)) {
     fprintf(stderr,"Error: Limits of coordinates violated \n");
@@ -92,10 +91,9 @@ int i,j;
   } else {
     t= GGT(mat->kgv,v.n);
     if(t == v.n) {
-      t1= v.z*mat->kgv/t;
-      mat->array.SZ[r][c] = t1;
+      mat->array.SZ[r][c] = v.z*mat->kgv/t;
     } else {
-      t1= v.n/t;
+      int t1= v.n/t;
       mat->kgv *= t1;
       Z = mat->array.SZ;
       for(i = 0; i < mat->rows; i++) {
@@ -237,7 +235,6 @@ int pp;
     Check_mat(mat);
     return;
   }
-  vz = 
   t  = 0;
   Normal(&v);
   if(v.n == 1) {
@@ -554,8 +551,6 @@ int **Z;
     return(TRUE);
   }
   
-  waste = t = 0;
-
   Z = mat->array.SZ;
   if(mat->flags.Diagonal) {
     if(Z[row][row] == 0) {
@@ -716,8 +711,6 @@ int **Z;
   if(v.n == 1) {
     return(TRUE);
   }
-  
-  waste = t = 0;
   
   Z = mat->array.SZ;
   if(mat->flags.Diagonal) {
@@ -883,7 +876,7 @@ int waste,t;
     fprintf(stderr,"Error in radd_row: not so many rows!\n");
     return(FALSE);
   }
-  waste = t = 0;
+  t = 0;
   
   if( mat->prime != 0) {
     waste= (v.z%v.n)%mat->prime;
@@ -931,9 +924,7 @@ int waste,t;
     for(i = 0; i < mat->cols; i++) {
       Z[d_row][i]=Z[d_row][i]*v.n+Z[t_row][i]*v.z;
       if((t != 1) && (Z[d_row][i] != 0)) {
-        waste= GGT(Z[d_row][i],t);
-        t = waste;
-        waste = 0;
+        t= GGT(Z[d_row][i],t);
       }
     }
     if(t == v.n) {/* the lucky case: row-entries divisible by v.n! */
@@ -1068,7 +1059,7 @@ int waste,t;
     fprintf(stderr,"Error in radd_col: not so many cols!\n");
     return(FALSE);
   }
-  waste = t = 0;
+  t = 0;
   
   if( mat->prime != 0) {
     return(iadd_col(mat,t_col, d_col, (v.z%v.n)%mat->prime));
@@ -1115,9 +1106,7 @@ int waste,t;
     for(i = 0; i < mat->rows; i++) {
       Z[i][d_col] = Z[i][d_col] * v.n + Z[i][t_col] * v.z;
       if((t != 1) && (Z[i][d_col] != 0)) {
-        waste= GGT(Z[i][d_col],t);
-        t = waste;
-        waste = 0;
+        t= GGT(Z[i][d_col],t);
       }
     }
     if( t == v.n ) {/* the lucky case: row-entries divisible by v.n! */
@@ -1175,7 +1164,6 @@ int **Z, *S_I;
     return;                                                          
   }
   Z = mat->array.SZ;
-  g = 0;
   for(i = 0; i < mat->rows; i++) {
     S_I = Z[i];
     g = 0;
@@ -1213,7 +1201,6 @@ int **Z;
   }
 
   Z = mat->array.SZ;
-  g = 0;
   for(i = 0; i < mat->cols; i++) {
     g = 0;
     for(j = 0; j < mat->rows; j++) {

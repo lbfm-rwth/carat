@@ -28,11 +28,10 @@ tgauss (matrix_TYP *mat)
 {
 int i,j,k,l;
 int *nzero;
-int **Z, *r, flag,ww, waste;
+int **Z, *r, flag,ww;
 int rg, rows, cols, tmp, actrow;
 
   /* put_mat(mat,NULL,NULL,0); */
-  flag = waste = 0;
   rows = mat->rows;
   cols = mat->cols;
   Z = mat->array.SZ;
@@ -75,7 +74,6 @@ int rg, rows, cols, tmp, actrow;
       r = Z[actrow]; Z[actrow] = Z[tmp]; Z[tmp] = r;
       }
     k = 0;
-    waste = 0;
     for(j = i; j < cols; j++) {
       if (Z[actrow][j] != 0) {
         nzero[k++] = j;
@@ -85,7 +83,7 @@ int rg, rows, cols, tmp, actrow;
     for(tmp = actrow+1; tmp < rows; tmp++)
       if(Z[tmp][i] != 0) {
         k = 0;
-        waste= min_div(Z[tmp][i], Z[actrow][i]);
+        int waste= min_div(Z[tmp][i], Z[actrow][i]);
   /* printf("mindiv: %d\n",waste); */
         while(nzero[k] >= 0) {
           Z[tmp][nzero[k]] -= waste * Z[actrow][nzero[k]];
@@ -133,7 +131,7 @@ int rg, rows, cols, tmp, actrow;
       }
     }
     for(j = i-1; j >= 0; j--) {
-      waste= min_div(Z[j][tmp],Z[i][tmp]);
+      int waste= min_div(Z[j][tmp],Z[i][tmp]);
       if (waste != 0) {
         for (l = 0; l <k; l++) {
           Z[j][nzero[l]] -= waste * Z[i][nzero[l]];

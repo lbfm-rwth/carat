@@ -312,7 +312,6 @@ autom (group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, 
 		free(orb);
 		while (nC > 0  &&  (im = C[step][0]) != 0)
 		{
-			found = 0;
 /* try vector V.v[im] as image of the step-th base-vector */
 			x[step] = im;
 			if (step < dim-1)
