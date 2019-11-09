@@ -603,10 +603,7 @@ orbit_alg (matrix_TYP *M, bravais_TYP *G, bravais_TYP *S, int *option, int *leng
     free_mat(I);
   }
 
-  /* changed tilman 11/3/97 from
-  if(orbit_opt[3] == TRUE || orbit_opt[0] == 3)
-  to : */
-  if(orbit_opt[3] == TRUE || orbit_opt[0] == 4)
+  if(orbit_opt[3] == TRUE || orbit_opt[0] == 4 || orbit_opt[0] == 5)
   {
     for(i=0;i<erz_anz;i++)
        free_mat(Erz_inv[i]);

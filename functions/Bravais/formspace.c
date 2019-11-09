@@ -124,7 +124,6 @@ formspace (matrix_TYP **B, int Banz, int sym_opt, int *fdim)
 
   X = init_mat(dd * Banz, dd, "");
   XX = X->array.SZ;
-  no = 0;
   if(sym_opt == 0)
   {
     no = 0;

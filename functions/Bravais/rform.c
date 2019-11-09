@@ -218,14 +218,13 @@ chain (double X, double e)
 static int 
 dtoi (double **y, int **f, double ep, int dim)
 {
-	int	i, j, den, max;
+	int	i, j, max;
 
 	max = 1;
 	for (i = 0; i < dim; ++i)
 	{
 		for (j = 0; j < dim; ++j)
 		{
-			den = 1;
 			/* changed 05/06/97 tilman from
 			f[i][j] = y[i][j]; to: */
 			f[i][j] = floor(y[i][j] + 0.5);
@@ -239,7 +238,7 @@ dtoi (double **y, int **f, double ep, int dim)
 					f[i][j] -= 1;
 				else
 				{
-					den = chain(y[i][j], ep);
+					int den = chain(y[i][j], ep);
 					if (den > max)
 						max = den;
 				}

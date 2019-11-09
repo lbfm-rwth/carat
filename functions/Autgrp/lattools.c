@@ -83,7 +83,10 @@ lll (int **F, int **T, int dim)
 /* the first basis-vector should not have norm 0 */
 	for (i = 0; i < dim  &&  gram[i][i] == 0; ++i);
 	if (i == dim)
-		return(0);
+	{
+	    rank = 0;
+	    goto finish;
+	}
 	else if (i > 0)
 	{
 		ptmp = gram[i];
@@ -109,6 +112,8 @@ lll (int **F, int **T, int dim)
 	l = 0;
 	while (m < rank)
 		m = red(&m, &l, gram, T, mu, B, dim, &rank);
+
+finish:
 	free(B);
 	for (i = 0; i < dim; ++i)
 	{
