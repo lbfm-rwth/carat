@@ -1,4 +1,6 @@
-#include"typedef.h"
+#include "typedef.h"
+#include "sort.h"
+
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @---------------------------------------------------------------------------
@@ -146,7 +148,7 @@ vec_quicksort (int **v, int inf, int sup, int dim, int (*comp)(const int *, cons
 @ with respect to comp.
 \**************************************************************************/
 void 
-pointer_mat_quicksort (int ***v, int inf, int sup, int rows, int cols, int (*comp)(const int * const *, const int * const *, int, int))
+pointer_mat_quicksort (int ***v, int inf, int sup, int rows, int cols, int (*comp)(int **, int **, int, int))
 {
 	int	low, med, high;
         int **tmp;

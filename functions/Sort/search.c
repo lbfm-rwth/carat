@@ -1,4 +1,6 @@
-#include"typedef.h"
+#include "typedef.h"
+#include "sort.h"
+
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @---------------------------------------------------------------------------
@@ -29,7 +31,7 @@
 @
 \**************************************************************************/
 int 
-mat_search (const matrix_TYP *M, const matrix_TYP **List, int List_no, int (*comp)(const matrix_TYP *, const matrix_TYP *))
+mat_search (const matrix_TYP *M, matrix_TYP **List, int List_no, int (*comp)(const matrix_TYP *, const matrix_TYP *))
 {
 	int	low, med, high;
         int found = FALSE
@@ -43,69 +45,6 @@ mat_search (const matrix_TYP *M, const matrix_TYP **List, int List_no, int (*com
            if(test == 0)
              return(med);
            if(test > 0)
-             low = med+1;
-           else
-             high = med-1;
-        }
-        return(-1);
-}
-
-
-
-/**************************************************************************\
-@---------------------------------------------------------------------------
-@ int vec_search(M, List, List_no, dim, comp)
-@ int *M, **List;
-@ int	List_no, dim, (*comp)();
-@---------------------------------------------------------------------------
-@
-\**************************************************************************/
-int 
-vec_search (const int *M, const int **List, int List_no, int dim, int (*comp)(const int *, const int *, int))
-{
-	int	low, med, high;
-        int found = FALSE, test;
-
-        low = 0; high = List_no-1;
-        while(found == FALSE && low <= high)
-        {
-           med = (low + high)/2;
-           test = comp(M, List[med], dim);
-           if(test == 0)
-             return(med);
-           if(test == 1)
-             low = med+1;
-           else
-             high = med-1;
-        }
-        return(-1);
-}
-
-
-
-
-/**************************************************************************\
-@---------------------------------------------------------------------------
-@ int pointer_mat_search(M, List, List_no, rows, cols, comp)
-@ int **M, ***List;
-@ int	List_no, rows, cols, (*comp)();
-@---------------------------------------------------------------------------
-@
-\**************************************************************************/
-int 
-pointer_mat_search (const int **M, const int ***List, int List_no, int rows, int cols, int (*comp)(const int **, const int **, int, int))
-{
-	int	low, med, high;
-        int found = FALSE, test;
-
-        low = 0; high = List_no;
-        while(found == FALSE && low <= high)
-        {
-           med = (low + high)/2;
-           test = comp(M, List[med], rows, cols);
-           if(test == 0)
-             return(med);
-           if(test == 1)
              low = med+1;
            else
              high = med-1;

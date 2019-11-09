@@ -1,4 +1,6 @@
-#include"typedef.h"
+#include "typedef.h"
+#include "sort.h"
+
 /**************************************************************************\
 @---------------------------------------------------------------------------
 @---------------------------------------------------------------------------
@@ -179,7 +181,7 @@ vec_comp (const int *v1, const int *v2, int dim)
 @
 \**************************************************************************/
 int 
-pointer_mat_comp (const int * const *m1, const int * const *m2, int rows, int cols)
+pointer_mat_comp (int **m1, int **m2, int rows, int cols)
 {
   int i,j;
   for(i=0;i<rows;i++)
@@ -209,7 +211,7 @@ pointer_mat_comp (const int * const *m1, const int * const *m2, int rows, int co
 @
 \**************************************************************************/
 int 
-pointer_lower_triangular_mat_comp (const int * const *m1, const int * const *m2, int n, int m)
+pointer_lower_triangular_mat_comp (int **m1, int **m2, int n, int m)
 {
   int i,j;
   for(i=0;i<n;i++)
