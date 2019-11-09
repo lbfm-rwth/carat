@@ -2,8 +2,8 @@
 extern "C" {
 #endif
 
-#ifndef _MATRIX_H_
-#define _MATRIX_H_
+#ifndef CARAT_MATRIX_H_
+#define CARAT_MATRIX_H_
 
 #include "typedef.h"
 

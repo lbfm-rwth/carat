@@ -3,8 +3,8 @@ extern "C" {
 #endif
 
 
-#ifndef _LINUX_LIST_H
-#define _LINUX_LIST_H
+#ifndef CARAT_LINUX_LIST_H
+#define CARAT_LINUX_LIST_H
 
 /*
  * Simple doubly linked list implementation.

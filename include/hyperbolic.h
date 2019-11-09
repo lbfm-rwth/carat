@@ -2,8 +2,8 @@
 extern "C" {
 #endif
 
-#ifndef _HYPERBOLIC_H_
-#define _HYPERBOLIC_H_
+#ifndef CARAT_HYPERBOLIC_H_
+#define CARAT_HYPERBOLIC_H_
 
 #include "typedef.h"
 

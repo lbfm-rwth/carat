@@ -1,5 +1,5 @@
-#ifndef _ZZ_P_H
-#define _ZZ_P_H
+#ifndef CARAT_ZZ_P_H
+#define CARAT_ZZ_P_H
 
 #include <stdio.h>
 #include <math.h>
@@ -126,5 +126,5 @@ extern void ZZ_intern(matrix_TYP * Gram,
 				    ZZ_tree_t * tree,
 				    QtoZ_TYP * inzidenz);
 			
-#endif /* _ZZ_P_H */
+#endif /* CARAT_ZZ_P_H */
 

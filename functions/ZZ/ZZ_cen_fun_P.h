@@ -1,5 +1,5 @@
-#ifndef _ZZ_CEN_FUN_P_H
-#define _ZZ_CEN_FUN_P_H
+#ifndef CARAT_ZZ_CEN_FUN_P_H
+#define CARAT_ZZ_CEN_FUN_P_H
 
 #include "typedef.h"
 #include "matrix.h"

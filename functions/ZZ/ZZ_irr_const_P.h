@@ -1,5 +1,5 @@
-#ifndef _ZZ_IRR_CONST_H
-#define _ZZ_IRR_CONST_H
+#ifndef CARAT_ZZ_IRR_CONST_H
+#define CARAT_ZZ_IRR_CONST_H
 
 #include "matrix.h"
 #include "ZZ_P.h"

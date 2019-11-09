@@ -1,5 +1,5 @@
-#ifndef _ZZ_H
-#define _ZZ_H
+#ifndef CARAT_ZZ_H
+#define CARAT_ZZ_H
 
 #include <stdlib.h>		/* for atoi */
 #include "typedef.h"
@@ -34,4 +34,4 @@ extern bravais_TYP **get_groups(bravais_TYP **ADGROUPS,
 extern int NUMBER;		/* Abbruch nach NUMBER Zentrierungen */
 extern int LEVEL;		/* Abbruch nach Iterationszahl LEVEL */
 
-#endif /* _ZZ_H */
+#endif /* CARAT_ZZ_H */
