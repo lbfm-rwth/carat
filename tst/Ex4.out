@@ -52,39 +52,39 @@
 ### Ex4-1 return code 0
 ### Test Ex4-2
 #6
-4x2	% the 1-th cozycle, length of orbit 1,name: 0
+4x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
-4x2/2	% the 2-th cozycle, length of orbit 2,name: 1
-0 0 
-0 0 
-1 0 
-0 0 
-4x2/2	% the 3-th cozycle, length of orbit 1,name: 3
+4x2/2	% the 2-th cocycle, length of orbit 2,name: 1
 0 0 
 0 0 
 1 0 
-1 0 
-4x2/2	% the 4-th cozycle, length of orbit 1,name: 4
 0 0 
-1 0 
+4x2/2	% the 3-th cocycle, length of orbit 1,name: 3
 0 0 
-0 0 
-4x2/2	% the 5-th cozycle, length of orbit 2,name: 5
 0 0 
 1 0 
 1 0 
+4x2/2	% the 4-th cocycle, length of orbit 1,name: 4
 0 0 
-4x2/2	% the 6-th cozycle, length of orbit 1,name: 7
+1 0 
+0 0 
+0 0 
+4x2/2	% the 5-th cocycle, length of orbit 2,name: 5
+0 0 
+1 0 
+1 0 
+0 0 
+4x2/2	% the 6-th cocycle, length of orbit 1,name: 7
 0 0 
 1 0 
 1 0 
 1 0 
 ### Ex4-2 return code 0
 ### Test Ex4-3
-#g2 % space group to the point group of Ex4_gn and the 1-th cozycle of Ex4_out
+#g2 % space group to the point group of Ex4_gn and the 1-th cocycle of Ex4_out
 5	% generator
  -1 0 0 0 0
   0 1 0 0 0
@@ -98,7 +98,7 @@
  1 0 0 0 0
  0 0 0 0 1
 % order of the group unknown
-#g2 % space group to the point group of Ex4_gn and the 2-th cozycle of Ex4_out
+#g2 % space group to the point group of Ex4_gn and the 2-th cocycle of Ex4_out
 5	/2		% generator
  -2 0 0 0 0
   0 2 0 0 0
@@ -112,7 +112,7 @@
  1 0 0 0 0
  0 0 0 0 1
 % order of the group unknown
-#g2 % space group to the point group of Ex4_gn and the 3-th cozycle of Ex4_out
+#g2 % space group to the point group of Ex4_gn and the 3-th cocycle of Ex4_out
 5	/2		% generator
  -2 0 0 0 0
   0 2 0 0 0
@@ -126,7 +126,7 @@
  1 0 0 0 0
  0 0 0 0 1
 % order of the group unknown
-#g2 % space group to the point group of Ex4_gn and the 4-th cozycle of Ex4_out
+#g2 % space group to the point group of Ex4_gn and the 4-th cocycle of Ex4_out
 5	/2		% generator
  -2 0 0 0 0
   0 2 0 0 1
@@ -140,7 +140,7 @@
  1 0 0 0 0
  0 0 0 0 1
 % order of the group unknown
-#g2 % space group to the point group of Ex4_gn and the 5-th cozycle of Ex4_out
+#g2 % space group to the point group of Ex4_gn and the 5-th cocycle of Ex4_out
 5	/2		% generator
  -2 0 0 0 0
   0 2 0 0 1
@@ -154,7 +154,7 @@
  1 0 0 0 0
  0 0 0 0 1
 % order of the group unknown
-#g2 % space group to the point group of Ex4_gn and the 6-th cozycle of Ex4_out
+#g2 % space group to the point group of Ex4_gn and the 6-th cocycle of Ex4_out
 5	/2		% generator
  -2 0 0 0 0
   0 2 0 0 1
@@ -844,77 +844,77 @@ L4 with (0,0) yields 2.L1
  2 1 2
  2 1 1 2
 % order of the group unknown
-4x2/2	cozycle to the group of g.2.2
+4x2/2	cocycle to the group of g.2.2
 0 0 
 0 0 
 -1 0 
 0 0 
-4x2/2	cozycle to the group of g.2.3
+4x2/2	cocycle to the group of g.2.3
 0 0 
 0 0 
 -1 0 
 0 0 
-4x2/2	cozycle to the group of g.2.4
+4x2/2	cocycle to the group of g.2.4
 -1 0 
 0 0 
 2 0 
 0 0 
-4x2/2	cozycle to the group of g.3.2
+4x2/2	cocycle to the group of g.3.2
 1 0 
 1 0 
 0 0 
 -2 0 
-4x2	cozycle to the group of g.3.3
+4x2	cocycle to the group of g.3.3
 0 0 
 0 0 
 0 0 
 -1 0 
-4x2	cozycle to the group of g.3.4
+4x2	cocycle to the group of g.3.4
 0 0 
 0 0 
 1 0 
 -1 0 
-4x2/2	cozycle to the group of g.4.2
+4x2/2	cocycle to the group of g.4.2
 0 0 
 -1 0 
 0 0 
 0 0 
-4x2/2	cozycle to the group of g.4.3
--1 0 
-2 0 
-0 0 
-0 0 
-4x2/2	cozycle to the group of g.4.4
+4x2/2	cocycle to the group of g.4.3
 -1 0 
 2 0 
 0 0 
 0 0 
-4x2/2	cozycle to the group of g.5.2
+4x2/2	cocycle to the group of g.4.4
+-1 0 
+2 0 
+0 0 
+0 0 
+4x2/2	cocycle to the group of g.5.2
 0 0 
 -1 0 
 -1 0 
 0 0 
-4x2/2	cozycle to the group of g.5.3
+4x2/2	cocycle to the group of g.5.3
 -1 0 
 2 0 
 -1 0 
 0 0 
-4x2	cozycle to the group of g.5.4
+4x2	cocycle to the group of g.5.4
 -1 0 
 1 0 
 1 0 
 0 0 
-4x2/2	cozycle to the group of g.6.2
+4x2/2	cocycle to the group of g.6.2
 1 0 
 0 0 
 0 0 
 -2 0 
-4x2/2	cozycle to the group of g.6.3
+4x2/2	cocycle to the group of g.6.3
 -1 0 
 2 0 
 0 0 
 -2 0 
-4x2/2	cozycle to the group of g.6.4
+4x2/2	cocycle to the group of g.6.4
 -1 0 
 2 0 
 2 0 

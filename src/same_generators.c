@@ -79,7 +79,7 @@ int main(int argc,char **argv){
        denominator *= (R[i]->gen[j]->kgv / GGT(R[i]->gen[j]->kgv,denominator));
      }
 
-     /* stick the rigth INTEGRAL cozycle at the end of the RG[j] */
+     /* stick the rigth INTEGRAL cocycle at the end of the RG[j] */
      for (j=0;j<R[i]->gen_no;j++){
         RG[j]->cols++;
         RG[j]->rows++;
@@ -90,7 +90,7 @@ int main(int argc,char **argv){
         Check_mat(RG[j]);
      }
 
-     /* get the cozycle on the right generators */
+     /* get the cocycle on the right generators */
      coz = reget_gen(RG,R[i]->gen_no,P,words,TRUE);
 
      /* the cozykle has to become the right denominator */
@@ -98,7 +98,7 @@ int main(int argc,char **argv){
      Check_mat(coz);
 
      /* output */
-     sprintf(comment,"standartized cozycle for the group of %s",FILENAMES[i+1]);
+     sprintf(comment,"standartized cocycle for the group of %s",FILENAMES[i+1]);
      put_cocycle(coz,P->dim,P->gen_no,NULL,comment);
 
 

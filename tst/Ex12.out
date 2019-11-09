@@ -88,152 +88,152 @@ L3 with (0,0) yields 1.L4
 ### Test Ex12-3-Ex12_min.108.2.4
 ### Ex12-3-Ex12_min.108.2.4 return code 0
 #4
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+5x2/3	% the 2-th cocycle, length of orbit 8,name: 1
 0 0 
 0 0 
 0 0 
 0 0 
 0 1 
-5x2/6	% the 3-th cozycle, length of orbit 8,name: 3
+5x2/6	% the 3-th cocycle, length of orbit 8,name: 3
 0 0 
 0 0 
 -3 0 
 0 -2 
 0 0 
-5x2/2	% the 4-th cozycle, length of orbit 1,name: 9
+5x2/2	% the 4-th cocycle, length of orbit 1,name: 9
 0 0 
 0 0 
 -3 0 
 0 -2 
 0 0 
 #2
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+5x2/3	% the 2-th cocycle, length of orbit 8,name: 1
 0 1 
 0 0 
 0 0 
 0 0 
 0 0 
 #4
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+5x2/3	% the 2-th cocycle, length of orbit 8,name: 1
 0 1 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/6	% the 3-th cozycle, length of orbit 8,name: 3
+5x2/6	% the 3-th cocycle, length of orbit 8,name: 3
 0 0 
 0 -2 
 3 0 
 3 0 
 -3 0 
-5x2/2	% the 4-th cozycle, length of orbit 1,name: 9
+5x2/2	% the 4-th cocycle, length of orbit 1,name: 9
 0 0 
 0 -2 
 3 0 
 3 0 
 -3 0 
 #2
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+5x2/3	% the 2-th cocycle, length of orbit 8,name: 1
 0 1 
 0 0 
 0 0 
 0 0 
 0 0 
 #4
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+5x2/3	% the 2-th cocycle, length of orbit 8,name: 1
 0 0 
 0 0 
 0 0 
 0 0 
 0 1 
-5x2/6	% the 3-th cozycle, length of orbit 8,name: 3
+5x2/6	% the 3-th cocycle, length of orbit 8,name: 3
 0 0 
 0 0 
 -3 0 
 0 -2 
 0 0 
-5x2/2	% the 4-th cozycle, length of orbit 1,name: 9
+5x2/2	% the 4-th cocycle, length of orbit 1,name: 9
 0 0 
 0 0 
 -3 0 
 0 -2 
 0 0 
 #2
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+5x2/3	% the 2-th cocycle, length of orbit 8,name: 1
 0 1 
 0 0 
 0 0 
 0 0 
 0 0 
 #4
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/6	% the 2-th cozycle, length of orbit 2,name: 1
+5x2/6	% the 2-th cocycle, length of orbit 2,name: 1
 -3 0 
 0 -2 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 3-th cozycle, length of orbit 2,name: 2
+5x2/3	% the 3-th cocycle, length of orbit 2,name: 2
 -3 0 
 0 -2 
 0 0 
 0 0 
 0 0 
-5x2/2	% the 4-th cozycle, length of orbit 1,name: 3
+5x2/2	% the 4-th cocycle, length of orbit 1,name: 3
 -3 0 
 0 -2 
 0 0 
 0 0 
 0 0 
 #2
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 2-th cozycle, length of orbit 2,name: 1
+5x2/3	% the 2-th cocycle, length of orbit 2,name: 1
 0 1 
 0 0 
 0 0 
@@ -263,152 +263,152 @@ L3 with (0,0) yields 1.L4
 ### Test Ex12-5-Ex12_min.108.2.4
 ### Ex12-5-Ex12_min.108.2.4 return code 0
 #4
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+5x2/3	% the 2-th cocycle, length of orbit 8,name: 1
 0 0 
 0 0 
 0 0 
 0 0 
 0 1 
-5x2/6	% the 3-th cozycle, length of orbit 8,name: 3
+5x2/6	% the 3-th cocycle, length of orbit 8,name: 3
 0 0 
 0 0 
 -3 0 
 0 -2 
 0 0 
-5x2/2	% the 4-th cozycle, length of orbit 1,name: 9
+5x2/2	% the 4-th cocycle, length of orbit 1,name: 9
 0 0 
 0 0 
 -3 0 
 0 -2 
 0 0 
 #2
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+5x2/3	% the 2-th cocycle, length of orbit 8,name: 1
 0 1 
 0 0 
 0 0 
 0 0 
 0 0 
 #4
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+5x2/3	% the 2-th cocycle, length of orbit 8,name: 1
 0 1 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/6	% the 3-th cozycle, length of orbit 8,name: 3
+5x2/6	% the 3-th cocycle, length of orbit 8,name: 3
 0 0 
 0 -2 
 3 0 
 3 0 
 -3 0 
-5x2/2	% the 4-th cozycle, length of orbit 1,name: 9
+5x2/2	% the 4-th cocycle, length of orbit 1,name: 9
 0 0 
 0 -2 
 3 0 
 3 0 
 -3 0 
 #2
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+5x2/3	% the 2-th cocycle, length of orbit 8,name: 1
 0 1 
 0 0 
 0 0 
 0 0 
 0 0 
 #4
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+5x2/3	% the 2-th cocycle, length of orbit 8,name: 1
 0 0 
 0 0 
 0 0 
 0 0 
 0 1 
-5x2/6	% the 3-th cozycle, length of orbit 8,name: 3
+5x2/6	% the 3-th cocycle, length of orbit 8,name: 3
 0 0 
 0 0 
 -3 0 
 0 -2 
 0 0 
-5x2/2	% the 4-th cozycle, length of orbit 1,name: 9
+5x2/2	% the 4-th cocycle, length of orbit 1,name: 9
 0 0 
 0 0 
 -3 0 
 0 -2 
 0 0 
 #2
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 2-th cozycle, length of orbit 8,name: 1
+5x2/3	% the 2-th cocycle, length of orbit 8,name: 1
 0 1 
 0 0 
 0 0 
 0 0 
 0 0 
 #4
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/6	% the 2-th cozycle, length of orbit 2,name: 1
+5x2/6	% the 2-th cocycle, length of orbit 2,name: 1
 -3 0 
 0 -2 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 3-th cozycle, length of orbit 2,name: 2
+5x2/3	% the 3-th cocycle, length of orbit 2,name: 2
 -3 0 
 0 -2 
 0 0 
 0 0 
 0 0 
-5x2/2	% the 4-th cozycle, length of orbit 1,name: 3
+5x2/2	% the 4-th cocycle, length of orbit 1,name: 3
 -3 0 
 0 -2 
 0 0 
 0 0 
 0 0 
 #2
-5x2	% the 1-th cozycle, length of orbit 1,name: 0
+5x2	% the 1-th cocycle, length of orbit 1,name: 0
 0 0 
 0 0 
 0 0 
 0 0 
 0 0 
-5x2/3	% the 2-th cozycle, length of orbit 2,name: 1
+5x2/3	% the 2-th cocycle, length of orbit 2,name: 1
 0 1 
 0 0 
 0 0 

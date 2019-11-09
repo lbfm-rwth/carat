@@ -8,7 +8,7 @@
 @ -------------------------------------------------------------------------
 @
 ***************************************************************************/
-matrix_TYP *convert_to_cozycle(matrix_TYP *x,matrix_TYP *cozycle,
+matrix_TYP *convert_to_cocycle(matrix_TYP *x,matrix_TYP *cocycle,
                                matrix_TYP *D)
 {
 
@@ -20,7 +20,7 @@ matrix_TYP *convert_to_cozycle(matrix_TYP *x,matrix_TYP *cozycle,
 
    matrix_TYP *erg;
 
-   erg = init_mat(cozycle->rows,1,"");
+   erg = init_mat(cocycle->rows,1,"");
 
    /* set first and last */
    for (first = 0;first<D->cols && D->array.SZ[first][first] == 1;first++);
@@ -30,7 +30,7 @@ matrix_TYP *convert_to_cozycle(matrix_TYP *x,matrix_TYP *cozycle,
       factor = x->array.SZ[i-first][0] *
                D->array.SZ[last-1][last-1] / D->array.SZ[i][i];
       for (j=0;j<erg->rows;j++){
-         erg->array.SZ[j][0] += (cozycle->array.SZ[j][i-first] * factor);
+         erg->array.SZ[j][0] += (cocycle->array.SZ[j][i-first] * factor);
       }
    }
 

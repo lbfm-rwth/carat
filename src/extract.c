@@ -88,7 +88,7 @@ int main(int argc,char **argv){
      printf("\n");
      printf("Options:\n");
      printf("-p    : extracts the linear part (default).\n");
-     printf("-c    : extracts the translational part as a vector system (1-cozycle).\n");
+     printf("-c    : extracts the translational part as a vector system (1-cocycle).\n");
      printf("-f    : do not calculate the formspace of the point group.\n");
      printf("-r    : reverses the process: Reads in the generators of the point group \n");
      printf("        of file1 and multiple vector systems for these generators from file2 \n");
@@ -220,9 +220,9 @@ int main(int argc,char **argv){
            Check_mat(COZ[k]);
            convert_cocycle_to_column(&COZ[k],1,G->dim,G->gen_no);
 
-           /* is it a valid cozycle? */
+           /* is it a valid cocycle? */
            if ((G->dim * G->gen_no != COZ[k]->rows) || (COZ[k]->cols != 1)){
-             fprintf(stderr,"The cozycle is not compatible to this point group\n");
+             fprintf(stderr,"The cocycle is not compatible to this point group\n");
              fprintf(stderr,"It should have %d * %d = %d rows\n",G->dim,G->gen_no,
                      G->dim*G->gen_no);
              exit(3);
@@ -245,12 +245,12 @@ int main(int argc,char **argv){
            }
            if (is_option('D')){
               sprintf(file, "%s.%d", FILENAMES[0], k + 1);
-              sprintf(comment, "space group to the point group of %s and the %d-th cozycle of %s",
+              sprintf(comment, "space group to the point group of %s and the %d-th cocycle of %s",
                       FILENAMES[0], k+1, FILENAMES[1]);
               put_bravais(H, file, comment);
            }
            else{
-              sprintf(comment, "space group to the point group of %s and the %d-th cozycle of %s",
+              sprintf(comment, "space group to the point group of %s and the %d-th cocycle of %s",
                       FILENAMES[0], k+1, FILENAMES[1]);
               put_bravais(H, NULL, comment);
            }
@@ -292,7 +292,7 @@ int main(int argc,char **argv){
         }
 
 
-        /* set the cozycle */
+        /* set the cocycle */
         X->kgv = kgv;
         for(i=0;i<G->gen_no;i++)
            for (j=0;j<G->dim-1;j++)
@@ -300,7 +300,7 @@ int main(int argc,char **argv){
                                              G->gen[i]->array.SZ[j][G->dim-1];
 
         Check_mat(X);
-        sprintf(comment,"cozycle to the group of %s",FILENAMES[0]);
+        sprintf(comment,"cocycle to the group of %s",FILENAMES[0]);
         put_cocycle(X,G->dim-1,G->gen_no,NULL,comment);
      }
   }

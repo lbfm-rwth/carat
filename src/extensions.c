@@ -80,7 +80,7 @@ int main(int argc,char **argv){
       printf("          greater than 4.\n");
       printf(" -v:      verbose mode. Give some echoing to stderr to\n");
       printf("          indicate a little what the program is doing.\n");
-      printf(" -i:      Identify the cozycles given in file3, ie. give\n");
+      printf(" -i:      Identify the cocycles given in file3, ie. give\n");
       printf("          the described space groups a name. CAUTION: The\n");
       printf("          name will depend on the generating set of the group\n");
       printf("          in file2 and the presentation in file1.\n");
@@ -215,7 +215,7 @@ int main(int argc,char **argv){
         if (is_trivial(G)){
            X[0] = init_mat(G->gen_no * G->dim,1,"");
            printf("#%d\n",1);
-           sprintf(comment,"%% the %d-th cozycle to the group of %s",
+           sprintf(comment,"%% the %d-th cocycle to the group of %s",
                    1,FN);
            if (is_option('S')){
               sprintf(file, "%s.%s", FN, "0");
@@ -237,7 +237,7 @@ int main(int argc,char **argv){
      else{
         X[0] = init_mat(G->gen_no * G->dim,1,"");
         printf("#%d\n",1);
-        sprintf(comment,"%% the %d-th cozycle to the group of %s",
+        sprintf(comment,"%% the %d-th cocycle to the group of %s",
                 1,FN);
         if (is_option('S')){
            sprintf(file, "%s.%s", FN, "0");
@@ -320,7 +320,7 @@ int main(int argc,char **argv){
         NAME = (char * ) malloc( mpz_sizeinbase( names + i , 10 ) + 2 );
         mpz_get_str( NAME ,10,names+i);
         sprintf(comment,
-             "%% the %d-th cozycle, length of orbit %d,name: %s",i+1,len[i],NAME);
+             "%% the %d-th cocycle, length of orbit %d,name: %s",i+1,len[i],NAME);
         if (is_option('S')){
            sprintf(file, "%s.%s", FN, NAME);
            R = extract_r(G, Y[i]);

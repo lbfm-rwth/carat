@@ -110,7 +110,7 @@ Here is a small compilation of programs which are desirable.
         Z-class.
       - Transform the space groups to corresponding generators, which
         is now done in Same_generators.
-      - Identify the resulting cozycles, Extract -i
+      - Identify the resulting cocycles, Extract -i
       In all the process: keep track of the transforming matrices!
 
     * a program which splits a Q-class into affine classes and calculates

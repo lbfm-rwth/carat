@@ -43,7 +43,7 @@ matrix_TYP *sg(bravais_TYP *R,
       denominator *= (R->gen[j]->kgv / GGT(R->gen[j]->kgv, denominator));
    }
 
-   /* stick the rigth INTEGRAL cozycle at the end of the RG[j] */
+   /* stick the rigth INTEGRAL cocycle at the end of the RG[j] */
    for (j = 0; j < R->gen_no; j++){
       RG[j]->cols++;
       RG[j]->rows++;
@@ -55,7 +55,7 @@ matrix_TYP *sg(bravais_TYP *R,
       }
    }
 
-   /* get the cozycle on the right generators */
+   /* get the cocycle on the right generators */
    coz = reget_gen(RG, R->gen_no, P, words, TRUE);
 
    /* the cozykle has to become the right denominator */

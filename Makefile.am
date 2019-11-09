@@ -177,7 +177,7 @@ libfunctions_a_SOURCES = \
     functions/Zassen/coboundary.c \
     functions/Zassen/cong_solve.c \
     functions/Zassen/convert_cocycle_to_column.c \
-    functions/Zassen/convert_to_cozycle.c \
+    functions/Zassen/convert_to_cocycle.c \
     functions/Zassen/normalop.c \
     functions/Zassen/put_cocycle.c \
     functions/Zassen/reget_gen.c \

@@ -84,7 +84,7 @@ void plus_translationen(bravais_TYP *G,
 /* -------------------------------------------------------------------- */
 /* extract_c								*/
 /* extracts the translational part of the affine (space) group G as a   */
-/* vector system (1-cozycle). 						*/
+/* vector system (1-cocycle). 						*/
 /* -------------------------------------------------------------------- */
 matrix_TYP *extract_c(bravais_TYP *G)
 {
@@ -102,7 +102,7 @@ matrix_TYP *extract_c(bravais_TYP *G)
      kgv = kgv*G->gen[i]->kgv/GGT(kgv,G->gen[i]->kgv);
   }
 
-  /* set the cozycle */
+  /* set the cocycle */
   X->kgv = kgv;
   for(i=0;i<G->gen_no;i++)
      for (j=0;j<G->dim-1;j++)

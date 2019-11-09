@@ -27,16 +27,16 @@ typedef struct {
    					   in the list (aff[0][0], aff[0][1], ... aff[1][0], ...) */
    matrix_TYP ***X;			/* matrices with informations about affine classes */
    matrix_TYP **X_2_inv;		/* inverse of ...->X[i][2] for each Z-class i */
-   matrix_TYP ***coz;                   /* cozycles of the affine classes */
+   matrix_TYP ***coz;                   /* cocycles of the affine classes */
    MP_INT **names;			/* names for affine classes */
    int **names_int;			/* names for affine classes in integers */
    int *coho_size;			/* size of the cohomology group for each Z-class */
    int all;				/* total number of affine classes */
    matrix_TYP *pres;                    /* presentation */
    QtoZ_TYP *INZ;			/* graph for Z-classes */
-   matrix_TYP ****stab_coz;             /* stabilizer in N_{Gl_n(Z)}(G) for each cozycle in each Z-class */
+   matrix_TYP ****stab_coz;             /* stabilizer in N_{Gl_n(Z)}(G) for each cocycle in each Z-class */
    int **stab_gen_no;                   /* number of generators from this stabilizer */
-   int ****WORDS;			/* Words for stabilizer of cozycles for each Z-class */
+   int ****WORDS;			/* Words for stabilizer of cocycles for each Z-class */
    int **NUMBER_OF_WORDS;		/* number of words */
    matrix_TYP ***N;			/* representation of normalizer on H^1 */
    matrix_TYP ***gen_inv;		/* inverses of generators for each Z-class */
@@ -112,7 +112,7 @@ void put_Q_data(Q_data_TYP *data,
 bravais_TYP *extract_r(bravais_TYP *G,
                        matrix_TYP *X);
 
-matrix_TYP **extensions_o(matrix_TYP *cozycle,
+matrix_TYP **extensions_o(matrix_TYP *cocycle,
                           matrix_TYP *D,
                           matrix_TYP *R,
                           bravais_TYP *G,
