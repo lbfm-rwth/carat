@@ -1,4 +1,6 @@
-#include"typedef.h"
+#include "typedef.h"
+#include "types.h"
+
 /*******************************************************************\
 | calculate the partial image of the matrices in 'perpbase'
 | under the partial automorphism and check, whether it is
@@ -7,8 +9,7 @@
 \*******************************************************************/
 
 
-static int 
-normal_aut_test (int *x, int I, veclist V)
+int normal_aut_test (int *x, int I, veclist V)
 {
   int i,j,k,l;
   int o,u,m;
@@ -83,10 +84,7 @@ normal_aut_test (int *x, int I, veclist V)
 }
 
 
-
-
-static void 
-mach_perp_matrices (fpstruct fp, matrix_TYP **P, matrix_TYP **Pbase, int n)
+void mach_perp_matrices (fpstruct fp, matrix_TYP **P, matrix_TYP **Pbase, int n)
 {
         int i,j,k;
 
@@ -164,8 +162,7 @@ mach_perp_matrices (fpstruct fp, matrix_TYP **P, matrix_TYP **Pbase, int n)
         }
 }
 
-static void 
-free_perp_matrices (int n)
+void free_perp_matrices (int n)
 {
    int i,j;
    for(i=0;i<perp_no;i++)

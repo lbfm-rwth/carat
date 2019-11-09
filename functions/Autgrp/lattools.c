@@ -1,11 +1,12 @@
 /*****	This file contains routines for lattice reduction and the
 	calculation of shortest vectors	*****/
 #include "typedef.h"
+#include "types.h"
 
 /*********************************************************************\
 | changes v according to the transformation matrix T, i.e. v := T*v
 \*********************************************************************/
-static void 
+void 
 change (int **v, int nv, int **T, int n)
 {
 	int	i, j, k, **w, *wi, *Ti, *vi, *vj, fac;
@@ -49,7 +50,7 @@ change (int **v, int nv, int **T, int n)
 |	LLL-reduction of the positive semidefinite 
 |	Gram-matrix F with transformation matrix T
 \**********************************************************************/
-static int 
+int 
 lll (int **F, int **T, int dim)
 {
 	int	**gram, i, j, m, l, rank, *ptmp, tmp;
@@ -122,7 +123,7 @@ lll (int **F, int **T, int dim)
 /**********************************************************************\
 |	initialization of the model
 \**********************************************************************/
-static void 
+void 
 initialize (int i, double **mu, double *B, int **gram)
 {
 	int	j, k;
@@ -146,7 +147,7 @@ initialize (int i, double **mu, double *B, int **gram)
 |	pair-reduction with vectors m and l,
 |	changes Gram-matrix, transformation matrix and model appropriately
 \**********************************************************************/
-static int 
+int 
 red (int *m, int *l, int **gram, int **T, double **mu, double *B, int dim, int *rank)
 {
 	double	r;
@@ -207,7 +208,7 @@ red (int *m, int *l, int **gram, int **T, double **mu, double *B, int dim, int *
 /**********************************************************************\
 | check the LLL-condition
 \**********************************************************************/
-static void 
+void 
 check (double *B, int *m, int *l, int **gram, int **T, double **mu, int dim, int *rank)
 {
 	if (B[*m] < (LLL_CONST - mu[*m][*m-1]*mu[*m][*m-1]) * B[*m-1])
@@ -222,7 +223,7 @@ check (double *B, int *m, int *l, int **gram, int **T, double **mu, int dim, int
 /**********************************************************************\
 |	go back in the recursion and change the model
 \**********************************************************************/
-static void 
+void 
 decrease (int *m, int *l, int **gram, double **mu, double *B, int *rank)
 {
 	*l -= 1;
@@ -241,7 +242,7 @@ decrease (int *m, int *l, int **gram, double **mu, double *B, int *rank)
 |	interchange the vectors nr. m and m-1
 |	and change the model appropriately
 \**********************************************************************/
-static void 
+void 
 interchange (int *m, int *l, int **gram, int **T, double **mu, double *B, int dim)
 {
 	int	i, tmp, *ptmp;
@@ -276,7 +277,7 @@ interchange (int *m, int *l, int **gram, int **T, double **mu, double *B, int di
 /**********************************************************************\
 |	rounds x to an integer	
 \**********************************************************************/
-static int 
+int 
 iround (double x)
 {
 	if (x >= 0)

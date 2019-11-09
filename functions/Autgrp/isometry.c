@@ -8,28 +8,11 @@
 @
 \**************************************************************************/
 
-#include"typedef.h"
+#include "typedef.h"
 #include "types.h"
-
-static int normal_option;
-static int perp_no;
-static int ***perp;
-static int perpdim;
-static int ***perpbase;
-static int ***perpprod;
-static int *perpvec;
-
-#include "isotools.c"
-#include "bachtools.c"
-#include "iotools.c"
-#include "lattools.c"
-#include "mattools.c"
-#include "orbtools.c"
-#include "preproc.c"
-#include "sorttools.c"
-#include "perfecttools.c"
 #include "matrix.h"
 #include "sort.h"
+
 
 /*
 @-------------------------------------------------------------------------

@@ -84,71 +84,85 @@ typedef struct {
 	int	PRINT;
 	} flagstruct;
 
+/* internal variables */
+extern int normal_option;
+extern int perp_no;
+extern int ***perp;
+extern int perpdim;
+extern int ***perpbase;
+extern int ***perpprod;
+extern int *perpvec;
+
+
 /* functions in auttools.c */
-static	int	cand(int *CI, int I, int *x, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags);
-static	void	autom(group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags);
-static	int	aut(int step, int *x, int **C, group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags);
+int	cand(int *CI, int I, int *x, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags);
+void	autom(group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags);
+int	aut(int step, int *x, int **C, group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags);
 
 /* functions in bachtools.c */
-static	void	bacher(bachpol *pol, int I, int S, veclist V, int **Fv);
-static	int	bachcomp(bachpol pol, int I, int S, veclist V, int **Fv);
-static	void	fputbach(FILE *outfile, bachpol pol);
+void	bacher(bachpol *pol, int I, int S, veclist V, int **Fv);
+int	bachcomp(bachpol pol, int I, int S, veclist V, int **Fv);
+void	fputbach(FILE *outfile, bachpol pol);
 
 /* functions in iotools.c */
-static  void	getflags(flagstruct *fl, int *options);
-static	bravais_TYP 	*putgens(group G, flagstruct flags);
-static	void	putord(group G, flagstruct flags, bravais_TYP *B);
-static	matrix_TYP	*putiso(int **X, flagstruct flags, int dim);
+void	getflags(flagstruct *fl, int *options);
+bravais_TYP 	*putgens(group G, flagstruct flags);
+void	putord(group G, flagstruct flags, bravais_TYP *B);
+matrix_TYP	*putiso(int **X, flagstruct flags, int dim);
 
 /* functions in isotools.c */
-static	int	isocand(int *CI, int I, int *x, veclist V, invar F, invar FF, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags);
-static	matrix_TYP 	*bs_isometry(veclist V, invar F, invar FF, fpstruct fp, int ***G, int nG, scpcomb *comb, bachpol *bach, flagstruct flags);
-static	int	iso(int step, int *x, int **C, veclist V, invar F, invar FF, fpstruct fp, int ***G, int nG, scpcomb *comb, bachpol *bach, flagstruct flags);
-static	int	isostab(int ****H, int pt, int ***G, int nG, veclist V, int Maxfail);
+int	isocand(int *CI, int I, int *x, veclist V, invar F, invar FF, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags);
+matrix_TYP 	*bs_isometry(veclist V, invar F, invar FF, fpstruct fp, int ***G, int nG, scpcomb *comb, bachpol *bach, flagstruct flags);
+int	iso(int step, int *x, int **C, veclist V, invar F, invar FF, fpstruct fp, int ***G, int nG, scpcomb *comb, bachpol *bach, flagstruct flags);
+int	isostab(int ****H, int pt, int ***G, int nG, veclist V, int Maxfail);
 
 /* functions in lattools.c */
-static	int	lll(int **F, int **T, int dim);
-static	void	initialize(int i, double **mu, double *B, int **gram);
-static	int	red(int *m, int *l, int **gram, int **T, double **mu, double *B, int dim, int *rank);
-static	void	check(double *B, int *m, int *l, int **gram, int **T, double **mu, int dim, int *rank);
-static	void	decrease(int *m, int *l, int **gram, double **mu, double *B, int *rank);
-static	void	interchange(int *m, int *l, int **gram, int **T, double **mu, double *B, int dim);
-static	int	iround(double x);
+void    change(int **v, int nv, int **T, int n);
+int	lll(int **F, int **T, int dim);
+void	initialize(int i, double **mu, double *B, int **gram);
+int	red(int *m, int *l, int **gram, int **T, double **mu, double *B, int dim, int *rank);
+void	check(double *B, int *m, int *l, int **gram, int **T, double **mu, int dim, int *rank);
+void	decrease(int *m, int *l, int **gram, double **mu, double *B, int *rank);
+void	interchange(int *m, int *l, int **gram, int **T, double **mu, double *B, int dim);
+int	iround(double x);
 
 /* functions in mattools.c */
-static	void	vecmatmul(int *x, int **A, int n, int *y);
-static	void	matmul(int **A, int **B, int n, int **C);
-static	int	scp(int *x, int **F, int *y, int n);
-static	int	sscp(int *x, int *y, int n);
-static	void	psolve(int **X, int **A, int **B, int n, int p);
-static	void	pgauss(int r, int **A, int **B, int n, int p);
-static	int	isprime(int n);
+void	vecmatmul(int *x, int **A, int n, int *y);
+void	matmul(int **A, int **B, int n, int **C);
+int	scp(int *x, int **F, int *y, int n);
+int	sscp(int *x, int *y, int n);
+void	psolve(int **X, int **A, int **B, int n, int p);
+void	pgauss(int r, int **A, int **B, int n, int p);
+int	isprime(int n);
 
 /* functions in orbtools.c */
-static int	operate(int nr, int **A, veclist V);
-static int	orbit(int *pt, int npt, int ***G, int nG, veclist V, int **orb);
-static int	orbitlen(int pt, int orblen, int ***G, int nG, veclist V);
-static int	delete(int *orb1, int l1, int *orb2, int l2);
-static void	stab(int I, group *G, fpstruct fp, veclist V);
-static void	matgen(int *x, int **X, int dim, int *per, int **v);
-static void	stabil(int **S, int *x1, int *x2, int *per, int **G, veclist V);
+int	operate(int nr, int **A, veclist V);
+int	orbit(int *pt, int npt, int ***G, int nG, veclist V, int **orb);
+int	orbitlen(int pt, int orblen, int ***G, int nG, veclist V);
+int	delete(int *orb1, int l1, int *orb2, int l2);
+void	stab(int I, group *G, fpstruct fp, veclist V);
+void	matgen(int *x, int **X, int dim, int *per, int **v);
+void	stabil(int **S, int *x1, int *x2, int *per, int **G, veclist V);
 
 /* functions in preproc.c */
-static void	checkvecs(veclist *V, invar F, veclist norm);
-static int	checkgen(int **g, invar F);
-static void	fingerprint(fpstruct *fp, invar F, veclist V);
-static int	possible(invar F, veclist V, int *per, int I, int J);
-static void	scpvector(int *scpvec, int *w, int *b, int I, int dep, invar F);
-static void	scpvecs(veclist *list, int ***vec, int I, int *b, int dep, veclist V, invar F);
-static void	base(scpcomb *com, int ***b, int **v, int **F, int dim);
-static void	coef(scpcomb *com, int **b, int **v, int **F, int dim);
-static void	scpforms(scpcomb *com, int **b, invar F);
+void	checkvecs(veclist *V, invar F, veclist norm);
+int	checkgen(int **g, invar F);
+void	fingerprint(fpstruct *fp, invar F, veclist V);
+int	possible(invar F, veclist V, int *per, int I, int J);
+void	scpvector(int *scpvec, int *w, int *b, int I, int dep, invar F);
+void	scpvecs(veclist *list, int ***vec, int I, int *b, int dep, veclist V, invar F);
+void	base(scpcomb *com, int ***b, int **v, int **F, int dim);
+void	coef(scpcomb *com, int **b, int **v, int **F, int dim);
+void	scpforms(scpcomb *com, int **b, invar F);
 
 /* functions in sorttools.c */
-static	int	comp(int *x, int *y, int n);
-static	int	numberof(int *vec, veclist V);
-static	void	sortvecs(veclist *V);
-static	void	quicksort(int **v, int inf, int sup, int dim);
+int	comp(int *x, int *y, int n);
+int	numberof(int *vec, veclist V);
+void	sortvecs(veclist *V);
+void	quicksort(int **v, int inf, int sup, int dim);
 
 /* functions in perfecttools.c */
-static int normal_aut_test(int *x, int I, veclist V);
+int     normal_aut_test(int *x, int I, veclist V);
+void    mach_perp_matrices (fpstruct fp, matrix_TYP **P, matrix_TYP **Pbase, int n);
+void    free_perp_matrices (int n);
+

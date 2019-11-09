@@ -1,6 +1,7 @@
-#include "typedef.h"
 /*****	This file contains routines to calculate 
 	and compare Bacher-polynomials	*****/
+#include "typedef.h"
+#include "types.h"
 
 
 /******************************************************************\
@@ -13,7 +14,7 @@
 |	then the Bacher-polynomial is the sum over the w in list
 |	of the monomials X^n_w	
 \******************************************************************/
-static void 
+void 
 bacher (bachpol *pol, int I, int S, veclist V, int **Fv)
 {
 	int	*list, nlist, *listxy, nxy, *counts;
@@ -110,7 +111,7 @@ bacher (bachpol *pol, int I, int S, veclist V, int **Fv)
 /******************************************************************\
 |  checks, whether the vector v[I] has the Bacher-polynomial pol
 \******************************************************************/
-static int 
+int 
 bachcomp (bachpol pol, int I, int S, veclist V, int **Fv)
 {
 	int	*co, *list, nlist, *listxy, nxy, count;
@@ -210,7 +211,7 @@ bachcomp (bachpol pol, int I, int S, veclist V, int **Fv)
 /*************************************************\
 |	prints a Bacher-polynomial
 \*************************************************/
-static void 
+void 
 fputbach (FILE *outfile, bachpol pol)
 {
 	int	i;

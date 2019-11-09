@@ -2,23 +2,8 @@
 
 #include "typedef.h"
 #include "types.h"
+#include "matrix.h"
 
-static int normal_option;
-static int perp_no;
-static int ***perp;
-static int perpdim;
-static int ***perpbase;
-static int ***perpprod;
-static int *perpvec;
-
-#include "auttools.c"
-#include "bachtools.c"
-#include "iotools.c"
-#include "lattools.c"
-#include "mattools.c"
-#include "orbtools.c"
-#include "preproc.c"
-#include "sorttools.c"
 
 /*************************************************************************\
 | The functions 'autgrp' calculates generators and the order of the group
@@ -577,7 +562,7 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
            exit(2);
         }
         for(i=0;i<perp_no;i++)
-          perp[i] = P[i]->array.SZ
+          perp[i] = P[i]->array.SZ;
         perpdim = Pdim;
         if((perpbase = (int ***)malloc(perpdim *sizeof(int **))) == 0)
         {

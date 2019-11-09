@@ -1,11 +1,12 @@
 /*****	This file includes some basic routines 
 	for matrix and vector operations	*****/
-#include"typedef.h"
+#include "typedef.h"
+#include "types.h"
 
 /********************************************************************\
 | multiplies 1xn-vector x with nxn-matrix A and puts result on y
 \********************************************************************/
-static void 
+void 
 vecmatmul (int *x, int **A, int n, int *y)
 {
 	int	i, j, xi, *Ai;
@@ -26,7 +27,7 @@ vecmatmul (int *x, int **A, int n, int *y)
 /********************************************************************\
 |	multiplies nxn-matrices A and B and puts result	on C
 \********************************************************************/
-static void 
+void 
 matmul (int **A, int **B, int n, int **C)
 {
 	int	i, j, k, *Ai, *Bk, *Ci, Aik;
@@ -53,7 +54,7 @@ matmul (int **A, int **B, int n, int **C)
 |	returns scalar product of 1xn-vectors x and y
 |	with respect to Gram-matrix F
 \********************************************************************/
-static int 
+int 
 scp (int *x, int **F, int *y, int n)
 {
 	int	i, j, sum, xi, *Fi;
@@ -74,7 +75,7 @@ scp (int *x, int **F, int *y, int n)
 /********************************************************************\
 |  returns standard scalar product of 1xn-vectors x and y, heavily used
 \********************************************************************/
-static int 
+int 
 sscp (int *x, int *y, int n)
 {
 	int	i, sum;
@@ -90,7 +91,7 @@ sscp (int *x, int *y, int n)
 |	computes X = B*A^-1 modulo the prime p, for nxn-matrices A and B,
 |	where A is invertible, A and B are modified !!!	
 \********************************************************************/
-static void 
+void 
 psolve (int **X, int **A, int **B, int n, int p)
 {
 	int	i, j, k, tmp, sum, ainv, *Xi, *Bi;
@@ -150,7 +151,7 @@ psolve (int **X, int **A, int **B, int n, int p)
 |	and that A[r][r] != 0 modulo p, 
 |	A and B	are changed !!!	
 \********************************************************************/
-static void 
+void 
 pgauss (int r, int **A, int **B, int n, int p)
 {
 	int	i, j, f, ainv, *Ar;
@@ -175,7 +176,7 @@ pgauss (int r, int **A, int **B, int n, int p)
 /********************************************************************\
 |	checks, whether n is a prime
 \********************************************************************/
-static int 
+int 
 isprime (int n)
 {
 	int	i;

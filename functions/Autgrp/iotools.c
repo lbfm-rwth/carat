@@ -1,12 +1,13 @@
-#include "typedef.h"
-#include "matrix.h"
 /*****	This file contains some routines for input/output	*****/
+#include "typedef.h"
+#include "types.h"
+#include "matrix.h"
 
 
 /*****************************************************\
 |	gets the options from the command line
 \*****************************************************/
-static void 
+void 
 getflags (flagstruct *fl, int *options)
 {
  if(options == NULL)
@@ -75,7 +76,7 @@ getflags (flagstruct *fl, int *options)
 |   saves the generators of the group, which are
 |   necessary for generating, in a bravais_TYP.
 \**************************************************************/
-static bravais_TYP *
+bravais_TYP *
 putgens (group G, flagstruct flags)
 {
 	int	i, j, k, l, dim, ngen, nr;
@@ -121,7 +122,7 @@ putgens (group G, flagstruct flags)
 |   writes the prime power decomposition
 |   of G.ord[flags.STAB] *...* G.ord[G.dim-1] to B->divisors
 \*********************************************************************/
-static void 
+void 
 putord (group G, flagstruct flags, bravais_TYP *B)
 {
 	int	i, j, dim,  fac;
@@ -150,7 +151,7 @@ putord (group G, flagstruct flags, bravais_TYP *B)
 /*******************************************************\
 | prints an isometry onto a matrix
 \*******************************************************/
-static matrix_TYP *
+matrix_TYP *
 putiso (int **X, flagstruct flags, int dim)
 {
 	int	i, j;

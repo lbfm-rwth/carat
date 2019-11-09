@@ -1,6 +1,7 @@
-#include "typedef.h"
 /*****	This file includes those routines for the isometry program which
 	differ from the routines for the automorphism program	*****/
+#include "typedef.h"
+#include "types.h"
 
 
 /*****************************************************************\
@@ -13,7 +14,7 @@
 |	returns their number 
 |	(should be fp.diag[I])
 \*****************************************************************/
-static int 
+int 
 isocand (int *CI, int I, int *x, veclist V, invar F, invar FF, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags)
 {
 	int	i, j, k, dim, okp, okm, sign, nr, fail, num;
@@ -251,7 +252,7 @@ isocand (int *CI, int I, int *x, veclist V, invar F, invar FF, fpstruct fp, scpc
 /*****************************************************\
 |	search for an isometry
 \*****************************************************/
-static matrix_TYP *
+matrix_TYP *
 bs_isometry (veclist V, invar F, invar FF, fpstruct fp, int ***G, int nG, scpcomb *comb, bachpol *bach, flagstruct flags)
 {
 	int	i, dim, *x, **C, **X, found;
@@ -310,7 +311,7 @@ bs_isometry (veclist V, invar F, invar FF, fpstruct fp, int ***G, int nG, scpcom
 /**********************************************************\
 |	the heart of the program: the recursion
 \**********************************************************/
-static int 
+int 
 iso (int step, int *x, int **C, veclist V, invar F, invar FF, fpstruct fp, int ***G, int nG, scpcomb *comb, bachpol *bach, flagstruct flags)
 {
 	FILE	*outfile;
@@ -412,7 +413,7 @@ iso (int step, int *x, int **C, veclist V, invar F, invar FF, fpstruct fp, int *
 |	G[0],...,G[nG-1] and elements stabilizing V.v[pt], which are 
 |	stored in H, returns the number of generators in H
 \*********************************************************************/
-static int 
+int 
 isostab (int ****H, int pt, int ***G, int nG, veclist V, int Maxfail)
 {
 	int	*orb, len, cnd, orblen, tmplen, rpt;
