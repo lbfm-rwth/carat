@@ -30,7 +30,7 @@ int main (int argc, char *argv[])
       printf("\n");
       printf("Forms the scalar product of the COLUMNS of matrices A in file1 w.r.t. the\n");
       printf("Gram matrices F in file2, i. e. it computes A^(tr) * F * A.\n");
-      printf("If file2 is ommitted, the identity matrix is used instead.\n");
+      printf("If file2 is omitted, the identity matrix is used instead.\n");
       if (is_option('h')){
          exit(0);
       }

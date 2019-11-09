@@ -25,7 +25,7 @@ int main (int argc, char *argv[])
      printf("Scalarmul file -n=numerator -d=denominator\n");
      printf("\n");
      printf("Multiplies all matrices in file with numerator/denominator.\n");
-     printf("If either of these is ommitted, it is set to 1.\n");
+     printf("If either of these is omitted, it is set to 1.\n");
      printf("\n");
      printf("\n");
      if (is_option('h')){
