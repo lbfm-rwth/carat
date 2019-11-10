@@ -103,7 +103,7 @@ rmattrans (double **A, double **B, double **C, int n)
 	int	i, j, k;
 
 
-	if ((D = (double**)malloc(n * sizeof(double))) == 0)
+	if ((D = (double**)malloc(n * sizeof(double *))) == 0)
 		exit (2);
 	for (i = 0; i < n; ++i)
 	{

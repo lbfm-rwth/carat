@@ -618,7 +618,7 @@ bravais_TYP **q2z(bravais_TYP *G,
       GROUPS[0]->normal = GL_n_Z(G->dim,&GROUPS[0]->normal_no);
       *number = 1;
       if (ADFLAG){
-          GROUPS[0]->zentr = (matrix_TYP **) malloc(1 * sizeof(matrix_TYP));
+          GROUPS[0]->zentr = (matrix_TYP **) malloc(1 * sizeof(matrix_TYP *));
           GROUPS[0]->zentr[0] = init_mat(G->dim,G->dim,"1");
           GROUPS[0]->zentr_no = 1;
       }

@@ -125,7 +125,7 @@ static bravais_TYP **get_supergr(char *pfad,
 	          Sstd = get_std_rep(pfad, NameSstd);
                   Sstdinv = init_bravais(Sstd->dim);
                   Sstdinv->gen_no = Sstd->gen_no;
-                  Sstdinv->gen = (matrix_TYP **)calloc(Sstd->gen_no, sizeof(bravais_TYP *));
+                  Sstdinv->gen = (matrix_TYP **)calloc(Sstd->gen_no, sizeof(matrix_TYP *));
                   for (j = 0; j < Sstd->gen_no; j++)
                      Sstdinv->gen[j] = mat_inv(Sstd->gen[j]);
                }

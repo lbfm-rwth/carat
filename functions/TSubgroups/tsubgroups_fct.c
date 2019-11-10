@@ -169,14 +169,14 @@ TSubgroup_TYP **tsubgroup(bravais_TYP *R,
    S = (TSubgroup_TYP **)calloc(no[0], sizeof(TSubgroup_TYP *));
    Rinv = init_bravais(R->dim);
    Rinv->gen_no = R->gen_no;
-   Rinv->gen = (matrix_TYP **)calloc(R->gen_no, sizeof(bravais_TYP *));
+   Rinv->gen = (matrix_TYP **)calloc(R->gen_no, sizeof(matrix_TYP *));
    for (i = 0; i < R->gen_no; i++){
       Rinv->gen[i] = mat_inv(R->gen[i]);
    }
    if (aflag){
       Pinv = init_bravais(P->dim);
       Pinv->gen_no = P->gen_no;
-      Pinv->gen = (matrix_TYP **)calloc(P->gen_no, sizeof(bravais_TYP *));
+      Pinv->gen = (matrix_TYP **)calloc(P->gen_no, sizeof(matrix_TYP *));
       for (i = 0; i < P->gen_no; i++){
          Pinv->gen[i] = mat_inv(P->gen[i]);
       }

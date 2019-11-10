@@ -165,7 +165,7 @@ Z_class (bravais_TYP *B, matrix_TYP *zen)
      C->gen[i] = B->cen[i];
   if(C->gen_no > 0)
   CS = gittstabneu(C, zen);
-   S->form = (matrix_TYP **) malloc(B->form_no *sizeof(matrix_TYP));
+   S->form = (matrix_TYP **) malloc(B->form_no *sizeof(matrix_TYP *));
    S->form_no = B->form_no;
    ztr = init_mat(zen->cols, zen->rows, "");
    for(i=0; i<zen->rows; i++)
@@ -188,7 +188,7 @@ Z_class (bravais_TYP *B, matrix_TYP *zen)
    if(C->gen_no > 0)
    {
    S->cen_no = CS->gen_no;
-   S->cen = (matrix_TYP **) malloc(S->cen_no *sizeof(matrix_TYP));
+   S->cen = (matrix_TYP **) malloc(S->cen_no *sizeof(matrix_TYP *));
    for(i=0; i<CS->gen_no; i++)
    {
       A1 = mat_mul(zinv, CS->gen[i]);
@@ -239,7 +239,7 @@ Z_class (bravais_TYP *B, matrix_TYP *zen)
    if(anz == 0)
      anz = 1;
    S->normal_no = anz;
-   S->normal = (matrix_TYP **) malloc(S->normal_no *sizeof(matrix_TYP));
+   S->normal = (matrix_TYP **) malloc(S->normal_no *sizeof(matrix_TYP *));
 
    anz = 0;
    for(i=0; i<NS->gen_no; i++)
@@ -263,7 +263,7 @@ Z_class (bravais_TYP *B, matrix_TYP *zen)
 	  if(B->normal_no == 1 && B->normal[0]->flags.Scalar == TRUE)
 	  {
 	     S->normal_no = 1;
-	     S->normal = (matrix_TYP **) malloc(S->normal_no *sizeof(matrix_TYP));
+	     S->normal = (matrix_TYP **) malloc(S->normal_no *sizeof(matrix_TYP *));
 	     S->normal[0] = einheitsmatrix(B->dim);
 	  }
 	  if(C->gen_no > 0) {

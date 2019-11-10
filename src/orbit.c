@@ -119,7 +119,7 @@ int main (int argc, char *argv[])
 
             if (mat_search(M[i],erg,length,mat_comp) == -1){
                tmp = orbit_alg(M[i],G, Stab, option, &l);
-               erg = (matrix_TYP **) realloc(erg,(length+l)*sizeof(matrix_TYP));
+               erg = (matrix_TYP **) realloc(erg,(length+l)*sizeof(matrix_TYP *));
                for (j=0;j<l;j++){
                   erg[length+j] = tmp[j];
                }

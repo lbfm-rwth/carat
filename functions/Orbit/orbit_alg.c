@@ -506,7 +506,7 @@ orbit_alg (matrix_TYP *M, bravais_TYP *G, bravais_TYP *S, int *option, int *leng
   standartisieren(M);
   h = hash_number(M);
   ergverz = hash_addbaum(M, NULL, erganz, ergverz, &schonda, h, NULL);
-  erg = (matrix_TYP **)malloc(EXT_SIZE *sizeof(matrix_TYP));
+  erg = (matrix_TYP **)malloc(EXT_SIZE *sizeof(matrix_TYP *));
   erg[0] = init_mat(M->rows, M->cols, "");
   hashverz = (int *)malloc(EXT_SIZE *sizeof(int));
     hashverz[0] = h;

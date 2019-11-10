@@ -343,7 +343,7 @@ int **Z;
     for(j = col; j < mat->cols - 1; j++) {
       Z[i][j] = Z[i][j+1];
     }
-    Z[i] = (int  *)realloc(Z[i], (mat->cols-1)*sizeof(int  *));
+    Z[i] = (int *)realloc(Z[i], (mat->cols-1)*sizeof(int));
   }
   
   if( mat->array.N != NULL) {
@@ -352,7 +352,7 @@ int **Z;
       for(j = col; j < mat->cols - 1; j++) {
         Z[i][j] = Z[i][j+1];
       }
-      Z[i] = (int  *)realloc(Z[i], (mat->cols-1)*sizeof(int  *));
+      Z[i] = (int *)realloc(Z[i], (mat->cols-1)*sizeof(int));
     }
   }
   

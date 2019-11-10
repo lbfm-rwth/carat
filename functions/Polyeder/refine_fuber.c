@@ -283,7 +283,7 @@ int refine_fund_domain(fund_domain *F, wall_TYP *h)
 
  p=0;n=0;
  old_no = F->vert_no;
- count = (int *)malloc(F->vert_no *sizeof(int *));
+ count = (int *)malloc(F->vert_no *sizeof(int));
  for(i=0;i<F->vert_no;i++)
   count[i] = 0;
  for(i=0;i<old_no;i++)

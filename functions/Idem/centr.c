@@ -501,7 +501,7 @@ static matrix_TYP **get_idem2(matrix_TYP **gen,int number,int *anz)
       }
    }
    else{
-      erg = (matrix_TYP **) malloc(1 * sizeof(matrix_TYP));
+      erg = (matrix_TYP **) malloc(1 * sizeof(matrix_TYP *));
       anz[0] = 1;
       erg[0] = ONE;
    }
@@ -696,7 +696,7 @@ matrix_TYP **idempotente(matrix_TYP **gen,int gen_no,matrix_TYP *form,
 
   /* put the centralizer and it's centre on the same pointer as idem */
   idem = (matrix_TYP **) realloc(idem,(anz[0]+dimc[0]+dimcc[0])
-                                     * sizeof(matrix_TYP));
+                                     * sizeof(matrix_TYP *));
   for (i=0;i<dimc[0];i++) idem[anz[0]+i] = centralizer[i];
   for (i=0;i<dimcc[0];i++) idem[anz[0]+dimc[0]+i] = ccentralizer[i];
 

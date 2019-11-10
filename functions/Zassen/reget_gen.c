@@ -193,7 +193,7 @@ matrix_TYP *reget_gen(matrix_TYP **map,int number,bravais_TYP *G,
                set the matrix and the word */
                ele[length] = tmp;
                ele_words[length] = (int *) malloc((ele_words[i][0]+2)
-                                               * sizeof(int*));
+                                               * sizeof(int));
                memcpy(ele_words[length],ele_words[i],
                       (ele_words[i][0]+1) * sizeof(int));
                ele_words[length][0] = ele_words[i][0]+1;
