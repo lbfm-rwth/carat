@@ -1,8 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
 #ifndef CARAT_TIETZETRANS_H
 #define CARAT_TIETZETRANS_H
 
@@ -77,8 +72,4 @@ int *sword;
 matrix_TYP *trans;
 }Stab_word_TYP;
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

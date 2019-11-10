@@ -1,8 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
 #ifndef CARAT_SYMM_H
 #define CARAT_SYMM_H
 
@@ -31,8 +26,4 @@ extern matrix_TYP *short_vectors(matrix_TYP *mat, int length,
 \*-------------------------------------------------------------*/
 extern matrix_TYP *shortest(matrix_TYP *mat, int *min_norm);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_HYPERBOLIC_H
 #define CARAT_HYPERBOLIC_H
 
@@ -18,8 +14,4 @@ extern matrix_TYP *hyperbolic_isometry(matrix_TYP *x1, matrix_TYP *x2,
 \*-------------------------------------------------------------*/
 extern bravais_TYP *hyperbolic_stabilizer(matrix_TYP *x, matrix_TYP *S);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

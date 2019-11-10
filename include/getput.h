@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_GETPUT_H
 #define CARAT_GETPUT_H
 
@@ -54,8 +50,4 @@ extern void read_header( int argc, char *argv[]);
 extern int is_option( char c);
 extern int optionnumber(char c);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

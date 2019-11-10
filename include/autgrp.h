@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_AUTGRP_H
 #define CARAT_AUTGRP_H
 
@@ -70,8 +66,4 @@ extern matrix_TYP *pr_isom(matrix_TYP **F1,
       int Erzanz,
       int *options);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

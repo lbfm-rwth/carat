@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_BAUM_H
 #define CARAT_BAUM_H
 
@@ -36,8 +32,4 @@ struct tree_node{
 void delete_tree_node(struct tree_node *old);
 void insert_tree_node(struct tree_node *parent, struct tree_node *new);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

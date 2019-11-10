@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_NAME_H
 #define CARAT_NAME_H
 
@@ -178,8 +174,4 @@ bravais_TYP *reverse_name(const char *qname,
 			  boolean iflag,
 			  char **affstring);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_LONGTOOLS_H
 #define CARAT_LONGTOOLS_H
 
@@ -105,8 +101,4 @@ extern matrix_TYP **long_solve_mat(matrix_TYP *A, matrix_TYP *B);
 \*-------------------------------------------------------------*/
 extern void dump_MP_mat(MP_INT **Mat, int rows, int cols, const char *comment);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

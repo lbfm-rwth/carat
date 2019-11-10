@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_BRAVAIS_H
 #define CARAT_BRAVAIS_H
 
@@ -81,8 +77,4 @@ void normalisator(bravais_TYP *H,
                   boolean b_option,
                   boolean o_option);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

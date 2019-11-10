@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_DATEI_H
 #define CARAT_DATEI_H
 
@@ -88,8 +84,4 @@ lattice_element **super_lattice(const char *symb,int dim,int almost,int zclass,
 
 const char *get_data_dir(void);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

@@ -1,8 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
 #ifndef CARAT_TSUBGROUPS_H
 #define CARAT_TSUBGROUPS_H
 
@@ -76,8 +71,4 @@ matrix_TYP **get_words(const char *pfad,
 
 bravais_TYP **tsupergroups(bravais_TYP *R,
                            int *anzahl);
-#endif
-
-#ifdef __cplusplus
-}
 #endif

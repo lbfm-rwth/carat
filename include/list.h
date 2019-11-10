@@ -1,8 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
 #ifndef CARAT_LIST_H
 #define CARAT_LIST_H
 
@@ -100,8 +95,4 @@ static __inline__ void list_splice(struct list_head *list, struct list_head *hea
 	((type *)((char *)(ptr)-(unsigned long)(&((type *)0)->member)))
 
 #endif
-#endif
-
-#ifdef __cplusplus
-}
 #endif

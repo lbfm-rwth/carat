@@ -1,8 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
 #ifndef CARAT_SORT_H
 #define CARAT_SORT_H
 
@@ -36,8 +31,4 @@ extern int vec_search(const matrix_TYP *M, const matrix_TYP * const *List, int L
 extern int pointer_mat_search(const matrix_TYP * const *M, const matrix_TYP * const * const  *List, int List_no,
      int rows, int cols, int (*comp)(const int **, const int **, int, int));
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

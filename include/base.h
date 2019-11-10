@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_BASE_H
 #define CARAT_BASE_H
 
@@ -44,8 +40,4 @@ matrix_TYP *conjugated(bravais_TYP *G,bravais_TYP *H,
 int strong_generators_2(matrix_TYP **base,bravais_TYP *U,matrix_TYP ***K,
                         int *anz,MP_INT *mp);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

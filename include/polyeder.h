@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_POLYEDER_H
 #define CARAT_POLYEDER_H
 
@@ -54,8 +50,4 @@ extern void free_vertex_fuber(vertex_TYP**);
 extern void free_wall_fuber(wall_TYP**);
 extern int wall_times_vertex_fuber(wall_TYP*, vertex_TYP*);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

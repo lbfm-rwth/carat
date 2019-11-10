@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_ZASSEN_H
 #define CARAT_ZASSEN_H
 
@@ -152,9 +148,4 @@ extern matrix_TYP *scalar(long n,
 extern matrix_TYP *calc_B(matrix_TYP **mat,
                           long anz_erzeuger);
 
-#endif
-
-
-#ifdef __cplusplus
-}
 #endif
