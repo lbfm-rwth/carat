@@ -193,29 +193,29 @@ const char *tempN;
 matrix_TYP *
 copy_mat (matrix_TYP *old)
 { 
-matrix_TYP *new= NULL;
+matrix_TYP *newMat= NULL;
 
   if ( old )
   { 
-    new= (matrix_TYP *)malloc( sizeof(matrix_TYP));
-    if ( new )
+    newMat= (matrix_TYP *)malloc( sizeof(matrix_TYP));
+    if ( newMat )
     { 
-      memcpy( (char *)new, (char *)old, sizeof(matrix_TYP) );
-      if ( new->array.SZ )
+      memcpy( (char *)newMat, (char *)old, sizeof(matrix_TYP) );
+      if ( newMat->array.SZ )
       { 
-        new->array.SZ= (int **)malloc2dim( old->rows, old->cols, sizeof(int) );
-        memcpy2dim( (char **)new->array.SZ, (const char **)old->array.SZ,
+        newMat->array.SZ= (int **)malloc2dim( old->rows, old->cols, sizeof(int) );
+        memcpy2dim( (char **)newMat->array.SZ, (const char **)old->array.SZ,
                     old->rows, old->cols, sizeof(int) );
       }
-      if ( new->array.N )
+      if ( newMat->array.N )
       { 
-        new->array.N= (int **)malloc2dim( old->rows, old->cols, sizeof(int) );
-        memcpy2dim( (char **)new->array.N,(const char **)old->array.N,
+        newMat->array.N= (int **)malloc2dim( old->rows, old->cols, sizeof(int) );
+        memcpy2dim( (char **)newMat->array.N,(const char **)old->array.N,
                     old->rows, old->cols, sizeof(int) );
       }
     }
   }
-  return new;
+  return newMat;
 }
 
 /*}}}  */

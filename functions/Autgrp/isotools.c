@@ -362,7 +362,7 @@ iso (int step, int *x, int **C, veclist V, invar F, invar FF, fpstruct fp, int *
 			}
 			orblen = orbit(&(x[step]), 1, G, nG, V, &orb);
 /* delete the orbit of the chosen vector from the list of candidates */
-			delete(C[step], fp.diag[step], orb, orblen);
+			delete_from_orbit(C[step], fp.diag[step], orb, orblen);
 			free(orb);
 			if (step == 0  &&  flags.PRINT == 1)
 /* if the -P option is given, print on top level the number of excluded 

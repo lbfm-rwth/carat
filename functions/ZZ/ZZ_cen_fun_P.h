@@ -33,7 +33,7 @@ extern boolean ZZ_successor(ZZ_data_t * data,
 					   ZZ_node_t ** act);
 extern int ZZ_ins_node(matrix_TYP * Gram,
 				      ZZ_data_t * data, ZZ_tree_t * tree,
-				      ZZ_node_t * father, ZZ_node_t * new,
+				      ZZ_node_t * father, ZZ_node_t * newnode,
 				      int ii, int jj,
 				      QtoZ_TYP *inzidenz,
 				      int *nr,

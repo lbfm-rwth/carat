@@ -23,7 +23,7 @@
 
 /*------------------------------------------------------------------------------- */
 static matrix_TYP *
-is_conjugated_ZZ (ZZ_node_t *n, ZZ_node_t *new)
+is_conjugated_ZZ (ZZ_node_t *n, ZZ_node_t *newnode)
 {
 	int i,
 	    Nanz;
@@ -47,7 +47,7 @@ is_conjugated_ZZ (ZZ_node_t *n, ZZ_node_t *new)
 	calculating the normalizer of the bravais group of the first
 	argument, and that it only calculates an isometry of formspaces. */
 	Tmp1 = is_z_equivalent_datei(n->col_group,
-	n->group,new->col_group,new->group,&n->perfect,&n->perfect_no);
+	n->group,newnode->col_group,newnode->group,&n->perfect,&n->perfect_no);
 
 	/* look whether we already got the bravais group n->brav */
 	if (n->brav == NULL){
@@ -77,7 +77,7 @@ is_conjugated_ZZ (ZZ_node_t *n, ZZ_node_t *new)
 		}
 
 		Tmp2 = long_mat_inv(Tmp1);
-		H = konj_bravais(new->col_group,Tmp2);
+		H = konj_bravais(newnode->col_group,Tmp2);
 		free_mat(Tmp2);
 
 		/* now we are in the position to look if H and n->col_group
@@ -125,7 +125,7 @@ is_conjugated_ZZ (ZZ_node_t *n, ZZ_node_t *new)
 
 
 /*------------------------------------------------------------------------------- */
-int deal_with_ZCLASS(ZZ_tree_t *tree, ZZ_node_t *new)
+int deal_with_ZCLASS(ZZ_tree_t *tree, ZZ_node_t *newnode)
 {
 
 	int f,
@@ -137,28 +137,28 @@ int deal_with_ZCLASS(ZZ_tree_t *tree, ZZ_node_t *new)
 
 
 	/* now calculate the (integral) representation
-	on the new lattice (bare in mind that it is
+	on the new lattice (bear in mind that it is
 	row invariant. There is a flaw: normalizer and
 	centralizer won't be correct */
 	f = tree->root->group->normal_no;
 	tree->root->group->normal_no=0;
 	g = tree->root->group->cen_no;
 	tree->root->group->cen_no=0;
-	new->group = konj_bravais(tree->root->group,new->U);
+	newnode->group = konj_bravais(tree->root->group,newnode->U);
 	tree->root->group->normal_no = f;
 	tree->root->group->cen_no = g;
 
 	/* the second flaw of konj_bravais is the formspace */
-	for (f=0;f<new->group->form_no;f++)
-		new->group->form[f]->kgv = 1;
-	long_rein_formspace(new->group->form,new->group->form_no,1);
+	for (f=0;f<newnode->group->form_no;f++)
+		newnode->group->form[f]->kgv = 1;
+	long_rein_formspace(newnode->group->form,newnode->group->form_no,1);
 
-	new->col_group = tr_bravais(new->group,1,FALSE);
+	newnode->col_group = tr_bravais(newnode->group,1,FALSE);
 
 	/* see if we've got an Z-equivalent rep. already */
 	n = tree->root;
 	while (n != NULL){
-	        X = is_conjugated_ZZ(n,new);
+	        X = is_conjugated_ZZ(n,newnode);
 		if (X != NULL){
 		        free_mat(X);
 			return TRUE;
@@ -180,23 +180,23 @@ matrix_TYP *special_deal_with_zclass(ZZ_tree_t *tree,
                                      int *nr)
 {
    ZZ_node_t *n,
-             *new;
+             *newnode;
 
    matrix_TYP *X;
 
 
    nr[0] = 0;
-   new = (ZZ_node_t *)calloc(1, sizeof(ZZ_node_t));
-   new->col_group = group;
-   new->group = tr_bravais(group, 1, FALSE);
+   newnode = (ZZ_node_t *)calloc(1, sizeof(ZZ_node_t));
+   newnode->col_group = group;
+   newnode->group = tr_bravais(group, 1, FALSE);
 
    n = tree->root;
    while (n != NULL){
-      X = is_conjugated_ZZ(n, new);
+      X = is_conjugated_ZZ(n, newnode);
       if (X != NULL){
-         free_bravais(new->group);
-         new->col_group = NULL;
-         free(new);
+         free_bravais(newnode->group);
+         newnode->col_group = NULL;
+         free(newnode);
          n = NULL;
          return(X);
       }
@@ -246,7 +246,7 @@ int in_bahn(matrix_TYP *lattice,
 
 
 /*------------------------------------------------------------------------------- */
-int orbit_under_normalizer(ZZ_tree_t *tree, ZZ_node_t *father, ZZ_node_t *new, QtoZ_TYP *inzidenz, int *nr, ZZ_node_t **nnn)
+int orbit_under_normalizer(ZZ_tree_t *tree, ZZ_node_t *father, ZZ_node_t *newnode, QtoZ_TYP *inzidenz, int *nr, ZZ_node_t **nnn)
 {
 
 	int i__,
@@ -267,7 +267,7 @@ int orbit_under_normalizer(ZZ_tree_t *tree, ZZ_node_t *father, ZZ_node_t *new, Q
 	orb[0]=0;
 	orb[1]=4;
 
-	tmp = copy_mat(new->U);
+	tmp = copy_mat(newnode->U);
 	long_row_hnf(tmp);
 	ZZ_transpose_array(tmp->array.SZ,tmp->cols);
 
@@ -311,7 +311,7 @@ int orbit_under_normalizer(ZZ_tree_t *tree, ZZ_node_t *father, ZZ_node_t *new, Q
 	p = father;
 	if (!flag){
 	        /* p = father; */
-		tmp = tr_pose(new->U);
+		tmp = tr_pose(newnode->U);
 		if (p->N_no_orbits == 0){
 			p->N_orbits = (matrix_TYP ***) malloc(1 *
 					sizeof(matrix_TYP **));
@@ -372,7 +372,7 @@ matrix_TYP *konjugierende(matrix_TYP *Li,
                           bravais_TYP *G,
                           ZZ_node_t *n)
 {
-   ZZ_node_t *new;
+   ZZ_node_t *newnode;
 
    matrix_TYP *X;
 
@@ -391,16 +391,16 @@ matrix_TYP *konjugierende(matrix_TYP *Li,
       group->form[f]->kgv = 1;
    long_rein_formspace(group->form, group->form_no, 1);
 
-   new = (ZZ_node_t *)calloc(1, sizeof(ZZ_node_t));
-   new->col_group = group;
-   new->group = tr_bravais(group, 1, FALSE);
+   newnode = (ZZ_node_t *)calloc(1, sizeof(ZZ_node_t));
+   newnode->col_group = group;
+   newnode->group = tr_bravais(group, 1, FALSE);
 
-   X = is_conjugated_ZZ(n, new);
+   X = is_conjugated_ZZ(n, newnode);
 
    /* clean */
-   free_bravais(new->group);
-   free_bravais(new->col_group);
-   free(new);
+   free_bravais(newnode->group);
+   free_bravais(newnode->col_group);
+   free(newnode);
 
    return(X);
 }

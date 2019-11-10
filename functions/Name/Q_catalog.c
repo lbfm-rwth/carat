@@ -433,7 +433,7 @@ database *load_database (const char *filename, int degree)
     name_element [COND_NO_IDEM] = "idempotent_number";
 
 
-  complete_name = xmalloc ( (strlen(filename) + 16) * sizeof(char), "load_database");
+  complete_name = (char *)xmalloc ( (strlen(filename) + 16) * sizeof(char), "load_database");
   
   datas = (database *) xmalloc (sizeof (database), "load_database");
   

@@ -139,7 +139,7 @@ int	isprime(int n);
 int	operate(int nr, int **A, veclist V);
 int	orbit(int *pt, int npt, int ***G, int nG, veclist V, int **orb);
 int	orbitlen(int pt, int orblen, int ***G, int nG, veclist V);
-int	delete(int *orb1, int l1, int *orb2, int l2);
+int	delete_from_orbit(int *orb1, int l1, int *orb2, int l2);
 void	stab(int I, group *G, fpstruct fp, veclist V);
 void	matgen(int *x, int **X, int dim, int *per, int **v);
 void	stabil(int **S, int *x1, int *x2, int *per, int **G, veclist V);

@@ -257,7 +257,7 @@ void
 autom (group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, flagstruct flags)
 {
 	FILE	*outfile;
-	int	i, j, dim, step, im, **C, nC, ***H, nH, **Ggng, found, try;
+	int	i, j, dim, step, im, **C, nC, ***H, nH, **Ggng, found, tries;
 	int	*x, *orb, *oc, noc, *bad, nbad;
 
 	dim = F.dim;
@@ -308,7 +308,7 @@ autom (group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, 
 		}
 		G->ord[step] = orbit(&(fp.e[step]), 1, H, nH, V, &orb);
 /* delete the orbit of the step-th base-vector from the candidates */
-		nC = delete(C[step], nC, orb, G->ord[step]);
+		nC = delete_from_orbit(C[step], nC, orb, G->ord[step]);
 		free(orb);
 		while (nC > 0  &&  (im = C[step][0]) != 0)
 		{
@@ -349,7 +349,7 @@ autom (group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, 
 			{
 				noc = orbit(&im, 1, H, nH, V, &oc);
 /* delete the orbit of im from the candidates for x[step] */
-				nC = delete(C[step], nC, oc, noc);
+				nC = delete_from_orbit(C[step], nC, oc, noc);
 				free(oc);
 				bad[nbad] = im;
 				++nbad;
@@ -398,28 +398,28 @@ autom (group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, 
 /* compute the new orbit of fp.e[step] */
 				G->ord[step] = orbit(&(fp.e[step]), 1, H, nH, V, &orb);
 /* delete the orbit from the candidates for x[step] */
-				nC = delete(C[step], nC, orb, G->ord[step]);
+				nC = delete_from_orbit(C[step], nC, orb, G->ord[step]);
 				free(orb);
 /* compute the new orbit of the vectors, which could not be continued to an
    automorphism */
 				noc = orbit(bad, nbad, H, nH, V, &oc);
 /* delete the orbit from the candidates */
-				nC = delete(C[step], nC, oc, noc);
+				nC = delete_from_orbit(C[step], nC, oc, noc);
 				free(oc);
 			}
 		}
 /* test, whether on step flags.STAB some generators may be omitted */
 		if (step == flags.STAB)
 		{
-			for (try = G->nsg[step]; try < G->ng[step]; ++try)
+			for (tries = G->nsg[step]; tries < G->ng[step]; ++tries)
 			{
 				nH = 0; 
-				for (j = 0; j < try; ++j)
+				for (j = 0; j < tries; ++j)
 				{
 					H[nH] = G->g[step][j];
 					++nH;
 				}
-				for (j = try+1; j < G->ng[step]; ++j)
+				for (j = tries+1; j < G->ng[step]; ++j)
 				{
 					H[nH] = G->g[step][j];
 					++nH;
@@ -433,15 +433,15 @@ autom (group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, 
 					}
 				}
 				if (orbitlen(fp.e[step], G->ord[step], H, nH, V) == G->ord[step])
-	/* the generator g[step][try] can be omitted */
+	/* the generator g[step][tries] can be omitted */
 				{
 					for (i = 0; i < dim; ++i)
-						free(G->g[step][try][i]);
-					free(G->g[step][try]);
-					for (i = try; i < G->ng[step]-1; ++i)
+						free(G->g[step][tries][i]);
+					free(G->g[step][tries]);
+					for (i = tries; i < G->ng[step]-1; ++i)
 						G->g[step][i] = G->g[step][i+1];
 					--G->ng[step];
-					--try;
+					--tries;
 				}
 			}
 		}
@@ -490,7 +490,7 @@ aut (int step, int *x, int **C, group *G, veclist V, invar F, fpstruct fp, scpco
 				return(found);
 /* delete the chosen vector from the list of candidates */
 			orb[0] = x[step];
-			delete(C[step], fp.diag[step], orb, 1);
+			delete_from_orbit(C[step], fp.diag[step], orb, 1);
 		}
 		else
 		{

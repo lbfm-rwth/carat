@@ -7,7 +7,7 @@
 
 
 
-static int and(int *a,int n)
+static int all_true(int *a,int n)
 {
   int i;
 
@@ -174,7 +174,7 @@ matrix_TYP *reget_gen(matrix_TYP **map,int number,bravais_TYP *G,
       }
 
 
-      for (i=0;i<length && !and(found,G->gen_no);i++){
+      for (i=0;i<length && !all_true(found,G->gen_no);i++){
          for (j=0;j<number;j++){
             tmp = mat_mul(ele[i],map[j]);
             tmp->cols--;tmp->rows--;  /* for red_pos */
@@ -210,7 +210,7 @@ matrix_TYP *reget_gen(matrix_TYP **map,int number,bravais_TYP *G,
          }
       }
 
-      if (!and(found,G->gen_no)){
+      if (!all_true(found,G->gen_no)){
          fprintf(stderr,"reget_gen: shouldn't happen\n");
          exit(3);
       }

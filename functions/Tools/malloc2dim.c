@@ -40,30 +40,30 @@
 char **
 calloc2dim (int r, int c, int size)
 {
-char **new; 
+char **array; 
 int i, j;
 
   if( r == 0 || c == 0 || size == 0 )
-    new= NULL;
+    array= NULL;
   else 
   {
-    new= (char **)malloc( r*sizeof(char *));
-    if ( new != NULL )
+    array= (char **)malloc( r*sizeof(char *));
+    if ( array != NULL )
     {
       i= 0;
       do
       {
-        new[i]= (char *)calloc( c, size );
-      } while ( new[i++] && i < r );
+        array[i]= (char *)calloc( c, size );
+      } while ( array[i++] && i < r );
       if ( i != r )
       { 
-        for ( j=0; j < i;j++) free ( (int *)new[i] );
-        free ( (int *)new );
-        new= NULL;
+        for ( j=0; j < i;j++) free ( (int *)array[i] );
+        free ( (int *)array );
+        array= NULL;
       }                         
     }
   }
-  return new;
+  return array;
 }
 
 /*}}}  */
@@ -84,30 +84,30 @@ int i, j;
 char **
 malloc2dim (int r, int c, int size)
 { 
-char **new; 
+char **array; 
 int i, j;
 
   if( r == 0 || c == 0 || size == 0 )
-    new= NULL;
+    array= NULL;
   else 
   {
-    new= (char **)malloc( r*sizeof(char *));
-    if ( new != NULL )
+    array= (char **)malloc( r*sizeof(char *));
+    if ( array != NULL )
     {
       i= 0;
       do
       {
-        new[i]= (char *)malloc( c*size);
-      } while ( new[i++] && i < r );
+        array[i]= (char *)malloc( c*size);
+      } while ( array[i++] && i < r );
       if ( i != r )
       { 
-        for ( j=0; j < i;j++) free ( (int *)new[i] );
-        free ( (int *)new );
-        new= NULL;
+        for ( j=0; j < i;j++) free ( (int *)array[i] );
+        free ( (int *)array );
+        array= NULL;
       }                         
     }
   }
-  return new;
+  return array;
 }
 
 /*}}}  */
