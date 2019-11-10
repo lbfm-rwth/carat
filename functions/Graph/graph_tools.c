@@ -147,7 +147,7 @@ matrix_TYP **all_cocycles(matrix_TYP *relator_input,
 /* there is a special case to handle, which is the case that there
 isn't a cohomology group at all */
   if (X[0][0]->cols <1){
-     Y = (matrix_TYP **)malloc(sizeof(matrix_TYP));
+     Y = (matrix_TYP **)malloc(sizeof(matrix_TYP *));
      Y[0] = init_mat(G->gen_no * G->dim,1,"");
      anzahl[0] = 1;
      N[0] = NULL;
@@ -443,7 +443,7 @@ void cen_to_norm(bravais_TYP *G)
 
    if (G->cen_no > 0){
       G->normal = (matrix_TYP **)realloc(G->normal, 
-                  (G->cen_no + G->normal_no) * sizeof(matrix_TYP));
+                  (G->cen_no + G->normal_no) * sizeof(matrix_TYP *));
       for (i = 0; i < G->cen_no; i++){
          G->normal[G->normal_no + i] = G->cen[i];
       }

@@ -66,7 +66,7 @@ long_solve_mat (matrix_TYP *A, matrix_TYP *B)
    }
 
 
-   if((erg = (matrix_TYP **)malloc(2 *sizeof(matrix_TYP **))) == NULL)
+   if((erg = (matrix_TYP **)malloc(2 *sizeof(matrix_TYP *))) == NULL)
    {
      printf("malloc of 'erg' in 'long_solve_mat' failed\n");
      exit(2);

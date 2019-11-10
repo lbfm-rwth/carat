@@ -53,7 +53,7 @@ matrix_TYP *min_pol(matrix_TYP *A)
    }
 
    /* prepare all variables */
-   potenzen = (matrix_TYP **) calloc(1 + A->cols , sizeof(matrix_TYP));
+   potenzen = (matrix_TYP **) calloc(1 + A->cols , sizeof(matrix_TYP *));
    potenzen[0] = init_mat(A->cols,A->cols,"1");
    potenzen[1] = copy_mat(A);
    lines = init_MP_mat(A->cols+1,A->cols*A->cols);

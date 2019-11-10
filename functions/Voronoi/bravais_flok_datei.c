@@ -212,7 +212,7 @@ matrix_TYP *is_z_equivalent_datei(bravais_TYP *G,bravais_TYP *G_tr,
                ming = minh;
 
                /* now calculate all perfect neigbours of hperfect */
-               gneighbours = (matrix_TYP **) malloc(sizeof(matrix_TYP));
+               gneighbours = (matrix_TYP **) malloc(sizeof(matrix_TYP *));
                gneighbours[0] = gp[0][i]->gram;
                anz_gneighbours = neighbours(&gneighbours,G,G_tr->form,gtrbifo,
                                                         GSV,ming);

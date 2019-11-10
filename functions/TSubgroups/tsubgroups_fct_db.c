@@ -86,7 +86,7 @@ TSubgroup_TYP **tsubgroup_db(bravais_TYP *R,
          inv = mat_inv(Name.trafo);
          Rinv = init_bravais(Rstd->dim);
          Rinv->gen_no = Rstd->gen_no;
-         Rinv->gen = (matrix_TYP **)calloc(Rstd->gen_no, sizeof(bravais_TYP *));
+         Rinv->gen = (matrix_TYP **)calloc(Rstd->gen_no, sizeof(matrix_TYP *));
          for (k = 0; k < Rstd->gen_no; k++){
             Rinv->gen[k] = mat_inv(Rstd->gen[k]);
          }

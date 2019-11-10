@@ -207,7 +207,7 @@ static matrix_TYP *static_orbit_rep(matrix_TYP *x,
    orbit = (matrix_TYP **) malloc(speicher * sizeof(matrix_TYP*));
    orbit[0] = copy_mat(x);
    if (word_flag){
-      orb_words = (int **) malloc(speicher * sizeof(int ));
+      orb_words = (int **) malloc(speicher * sizeof(int *));
       orb_words[0] = (int *) malloc(sizeof(int));
       orb_words[0][0] = 0;
    }
@@ -255,7 +255,7 @@ static matrix_TYP *static_orbit_rep(matrix_TYP *x,
                NUMBER_OF_WORDS[0]++;
                if (NUMBER_OF_WORDS[0] % MIN_SPEICHER)
                   WORDS[0] = (int **) realloc( WORDS[0] ,
-                               (NUMBER_OF_WORDS[0]+MIN_SPEICHER) * sizeof(int));
+                               (NUMBER_OF_WORDS[0]+MIN_SPEICHER) * sizeof(int *));
             }
          }
          else{
@@ -270,7 +270,7 @@ static matrix_TYP *static_orbit_rep(matrix_TYP *x,
                orbit = (matrix_TYP **) realloc(orbit,
                                     speicher * sizeof(matrix_TYP *));
                if (word_flag){
-                  orb_words = (int **)realloc(orb_words,speicher * sizeof(int));
+                  orb_words = (int **)realloc(orb_words,speicher * sizeof(int *));
                }
             }
 

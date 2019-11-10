@@ -308,7 +308,7 @@ matrix_TYP **calculate_S1(matrix_TYP *lattice,
    while (i < counter){
       for (j = 0; j < anz; j++){
          if (counter % 1024 == 0){
-	    list = (matrix_TYP **)realloc(list, (counter + 1024) * sizeof(int *));
+	    list = (matrix_TYP **)realloc(list, (counter + 1024) * sizeof(matrix_TYP *));
 	 }
          list[counter] = mat_mul(N[j], list[i]);
          long_col_hnf(list[counter]);

@@ -209,7 +209,7 @@ erg->grp->zentr_no = 0;
 erg->grp->normal_no = 0;
 for(i=0; i<konstit; i++)
   erg->grp->gen_no += grps[i]->gen_no;
-erg->grp->gen = (matrix_TYP **)malloc(erg->grp->gen_no *sizeof(matrix_TYP));
+erg->grp->gen = (matrix_TYP **)malloc(erg->grp->gen_no *sizeof(matrix_TYP *));
 for(i=0; i<erg->grp->gen_no; i++)
   erg->grp->gen[i]  = init_mat(erg->grp->dim, erg->grp->dim, "");
 j=0;
@@ -298,7 +298,7 @@ for(i=0; i<konstit; i++)
   if(zerleg[i][4] > 2)
     erg->grp->cen_no ++;
 }
-erg->grp->cen = (matrix_TYP **)malloc(erg->grp->cen_no *sizeof(matrix_TYP));
+erg->grp->cen = (matrix_TYP **)malloc(erg->grp->cen_no *sizeof(matrix_TYP *));
 for(i=0; i<erg->grp->cen_no; i++)
   erg->grp->cen[i]  = init_mat(erg->grp->dim, erg->grp->dim, "");
 j=0;
@@ -380,7 +380,7 @@ for(i=0; i<konstit; i++)
 
 if (erg->grp->normal_no > 0)
    erg->grp->normal = (matrix_TYP **) malloc(erg->grp->normal_no
-                                            * sizeof(matrix_TYP));
+                                            * sizeof(matrix_TYP *));
 else
    erg->grp->normal = NULL;
 

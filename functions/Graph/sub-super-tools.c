@@ -65,7 +65,7 @@ void plus_translationen(bravais_TYP *G,
   hilfsmat->kgv = mat->kgv;
 
   /* create the new translationmatrices for the spacegroup */
-  G->gen = (matrix_TYP **)realloc(G->gen,(G->gen_no + mat->cols)*sizeof(matrix_TYP));
+  G->gen = (matrix_TYP **)realloc(G->gen,(G->gen_no + mat->cols)*sizeof(matrix_TYP *));
   for (i=0; i<mat->cols; i++){
      G->gen[G->gen_no + i] = copy_mat(hilfsmat);
      for (j=0; j<G->dim-1; j++)
