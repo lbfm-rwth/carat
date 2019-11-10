@@ -84,15 +84,15 @@ long_solve_mat (matrix_TYP *A, matrix_TYP *B)
      if(A->kgv != 1)
      {
        for(i=0;i<A->cols;i++)
-         for(j=0;j<B->cols;j++)
+         for(j=0;j<Bcols;j++)
            erg[0]->array.SZ[i][j] *= A->kgv;
      }
-     if(B->kgv != 1)
+     if(B != NULL && B->kgv != 1)
        erg[0]->kgv *= B->kgv;
      Check_mat(erg[0]);
      for(i=0;i<A->cols;i++)
      {
-        for(j=0;j<B->cols;j++)
+        for(j=0;j<Bcols;j++)
           mpz_clear(&E[0][i][j]);
         free(E[0][i]);
      }
