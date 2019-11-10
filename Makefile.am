@@ -525,6 +525,7 @@ bin_ZZprog_LDADD = libfunctions.a
 all-local:
 	@( cd $(top_srcdir)/tables; if [ ! -d qcatalog ] ; then tar xf qcatalog.tar.gz ; fi )
 	@( cd $(top_srcdir)/tables/symbol && make )
+	@mkdir -p bin
 	@ln -f -s Datei bin/Bravais_catalog
 	@ln -f -s Extract bin/Standard_affine_form
 	@ln -f -s Extensions bin/Vector_systems
