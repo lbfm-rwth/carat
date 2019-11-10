@@ -91,12 +91,11 @@ if(fn[0] == '\n' ||
 }
 
 if(fn != NULL)
-  strtok (fn, "%");
-if(fn != NULL)
 {                               
+  strtok (fn, "%");
   B->fn = (char *)calloc( 1024, sizeof(char) );
   sprintf(B->fn, "%s/tables/%s", get_data_dir(), fn);
-  free ( fn );
+  free ( old_fn );
 }
 	/*------------------------------------------------------------*\
 	| Close input file												|
