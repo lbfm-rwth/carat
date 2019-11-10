@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_PRESENTATION_H
 #define CARAT_PRESENTATION_H
 
@@ -33,8 +29,4 @@ void check_base(bahn **s,
 void put_word(int *w,
               const char *O);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

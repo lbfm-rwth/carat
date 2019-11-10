@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_IDEM_H
 #define CARAT_IDEM_H
 
@@ -69,8 +65,4 @@ matrix_TYP *z_equivalent(bravais_TYP *G,
                          bravais_TYP **G_tr,
                          bravais_TYP *H);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

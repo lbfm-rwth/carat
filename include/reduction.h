@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_REDUCTION_H
 #define CARAT_REDUCTION_H
 
@@ -29,8 +25,4 @@ extern void reduction_sort(int **G,int **T,int n);
 extern matrix_TYP *short_reduce(matrix_TYP *A, matrix_TYP *SV, matrix_TYP *Trf);
 extern matrix_TYP *pr_short_red(matrix_TYP *A, matrix_TYP *Trf);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

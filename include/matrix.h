@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_MATRIX_H
 #define CARAT_MATRIX_H
 
@@ -209,8 +205,4 @@ extern int trace( matrix_TYP *mat);
 \*--------------------------------------------------------------*/
 extern matrix_TYP *einheitsmatrix( int n);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

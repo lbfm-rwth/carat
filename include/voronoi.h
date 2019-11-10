@@ -1,8 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
 #ifndef CARAT_VORONOI_H
 #define CARAT_VORONOI_H
 
@@ -115,8 +110,4 @@ extern matrix_TYP *is_z_equivalent_datei(bravais_TYP *G,bravais_TYP *Gtr,
 \****************************************************************************/
 extern void red_normal(bravais_TYP *G);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

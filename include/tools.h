@@ -1,8 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
 #ifndef CARAT_TOOLS_H
 #define CARAT_TOOLS_H
 
@@ -79,8 +74,4 @@ extern void gcd_darstell(int a1, int a2, int *v1, int *v2, int *gcd);
 extern int p_inv(int a, int p);
 extern int signum(int a);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

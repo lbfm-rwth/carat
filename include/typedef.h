@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_TYPEDEF_H
 #define CARAT_TYPEDEF_H
 
@@ -198,7 +194,3 @@ extern int INFO_LEVEL;
 
 
 #endif /* CARAT_TYPEDEF_H */
-
-#ifdef __cplusplus
-}
-#endif

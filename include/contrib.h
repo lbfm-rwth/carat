@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_CONTRIB_H
 #define CARAT_CONTRIB_H
 
@@ -21,8 +17,4 @@ int *torsionfree(bravais_TYP *R,
 
 matrix_TYP *suche_kand (bravais_TYP *Gen_A, bravais_TYP *Gen_B);
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

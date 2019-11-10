@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifndef CARAT_ORBIT_H
 #define CARAT_ORBIT_H
 
@@ -40,8 +36,4 @@ extern bravais_TYP *representation_on_lattice(matrix_TYP *x,bravais_TYP *G,
 matrix_TYP *translation_lattice(matrix_TYP **G,int number,matrix_TYP *P);
 
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif
