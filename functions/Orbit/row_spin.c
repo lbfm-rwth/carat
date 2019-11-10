@@ -233,7 +233,7 @@ matrix_TYP *row_spin(matrix_TYP *x,matrix_TYP **G,int no,int option)
   res = init_mat(rows,dim,"");
   write_MP_mat_to_matrix(res,A);
 
-  if (labs(denominator._mp_size>1)){
+  if (labs(denominator._mp_size)>1){
      fprintf(stderr,"denominator in row_spin to large!\n");
      fprintf(stderr,"(I thought this to be impossible)\n");
      exit(3);
