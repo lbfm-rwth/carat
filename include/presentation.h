@@ -2,8 +2,8 @@
 extern "C" {
 #endif
 
-#ifndef CATAT_PRESENTATION_H
-#define CATAT_PRESENTATION_H
+#ifndef CARAT_PRESENTATION_H
+#define CARAT_PRESENTATION_H
 
 /**********************************************************************
 |  FILE: presentation.c
