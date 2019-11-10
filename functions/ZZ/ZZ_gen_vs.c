@@ -41,7 +41,7 @@ matrix_TYP *ZZ_vec_bahn (int *vec, matrix_TYP **gen, int num)
 {
 	matrix_TYP *basis;
 	int **B, **T, *v, new_flag;
-	int i, j, k, dim, act, new, rank, flag;
+	int i, j, k, dim, act, pos, rank, flag;
 	
 	dim = gen[0]->rows;
 	
@@ -50,7 +50,7 @@ matrix_TYP *ZZ_vec_bahn (int *vec, matrix_TYP **gen, int num)
 	B = basis->array.SZ;
 	memcpy (B[0], vec, dim * sizeof (int));
 	rank = 1;
-	new = 1;
+	pos = 1;
 	flag = 1;
 	while (flag) {
 		for (act = 0; act < rank; act++) {
@@ -61,22 +61,22 @@ matrix_TYP *ZZ_vec_bahn (int *vec, matrix_TYP **gen, int num)
 				T = gen[i]->array.SZ;
 				new_flag = 0;
 				for (j = 0; j < dim; j++) {
-					B[new][j] = P (v[0], T[0][j]);
+					B[pos][j] = P (v[0], T[0][j]);
 					for (k = 1; k < dim; k++) {
-						B[new][j] = S(B[new][j], P(v[k], T[k][j]));
+						B[pos][j] = S(B[pos][j], P(v[k], T[k][j]));
 					}
-					if (B[new][j])
+					if (B[pos][j])
 						new_flag++;
 				}
 				if (new_flag)
-					new++;
+					pos++;
 			}
 		}
-		basis->rows = new;
+		basis->rows = pos;
 		i = p_gauss (basis);
 		flag = ((i == rank) || (i == dim)) ? 0 : 1;
 		rank = i;
-		new = i;
+		pos = i;
 	}
 	for (i = rank; i < (num + 1) * dim; i++) {
 		free (basis->array.SZ[i]);

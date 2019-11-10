@@ -1215,7 +1215,7 @@ static int suche_mat(matrix_TYP *mat,
 
 /*------------------------------------------------------------------------------- */
 int 
-ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *father, ZZ_node_t *new, int ii, int jj, QtoZ_TYP *inzidenz, int *nr, int *NEU, int *flagge, int *g, ZZ_node_t **nnn)
+ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *father, ZZ_node_t *newnode, int ii, int jj, QtoZ_TYP *inzidenz, int *nr, int *NEU, int *flagge, int *g, ZZ_node_t **nnn)
 {
 	ZZ_node_t *n;
 	ZZ_couple_t *c;
@@ -1228,34 +1228,34 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 	sum =
 		f =
 		g[0] = 0;
-	U = new->U->array.SZ;
+	U = newnode->U->array.SZ;
 	ABBRUCH = FALSE;
 
 	/*
-	 * Determine gcd of common factors of new->U
+	 * Determine gcd of common factors of newnode->U
 	 */
 	
-	if (new->el_div->array.SZ[0][0] == 1) {
+	if (newnode->el_div->array.SZ[0][0] == 1) {
 		n = father;
 	} else {
 		n = tree->root;
 	}
-	while ((n != NULL) && (n->level < new->level)) {
+	while ((n != NULL) && (n->level < newnode->level)) {
 		n = n->next;
 	}
 
 	if (n != NULL) {
 		/* We found a node on the same level, now look for
                    all on this level for an identical lattice */
-		g[0] = new->el_div->array.SZ[0][0];
-		nl = new->level;
+		g[0] = newnode->el_div->array.SZ[0][0];
+		nl = newnode->level;
 		do {
 			f = n->U_inv->kgv;
 			f *= g[0];
 			flag = TRUE;
 			for (i = 0; (i < data->p_consts.k) && flag; i++) {
 				flag = memcmp (n->k_vec[i],
-					       new->k_vec[i],
+					       newnode->k_vec[i],
 					       data->p_consts.s[i] *
 					       sizeof (int)) == 0;
 			}
@@ -1265,11 +1265,11 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 				 * Index-condition satisfied
 				 */
 
-				/* Multiply new->U and n->U_inv and check
+				/* Multiply newnode->U and n->U_inv and check
 				 * divisibility condition for each entry
 				 */
-				for (i = 0; i < new->U->rows; i++) {
-					for (j = 0; j < new->U->cols; j++) {
+				for (i = 0; i < newnode->U->rows; i++) {
+					for (j = 0; j < newnode->U->cols; j++) {
 						sum = 0;
 						for (k = 0;
 						     k < n->U_inv->rows;
@@ -1284,7 +1284,7 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 				c = father->child;
 				while (c != NULL) {
 					if (c->he == n) {
-						ZZ_free_node (data, new);
+						ZZ_free_node (data, newnode);
 				                /* next 7 lines by oliver: 9.8.00: for graph for QtoZ */
 						if (ZCLASS == 1 && GRAPH){
 						   nr[0] = suche_mat(n->U, inzidenz->gitter, inzidenz->anz);
@@ -1302,15 +1302,15 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 			}
 		next:
 			continue;
-		} while (((n = n->next) != NULL) && (n->level == new->level));
+		} while (((n = n->next) != NULL) && (n->level == newnode->level));
 	}
 	
 	if ((n == NULL) || (n->level > nl)) {
-		/* this is really a new lattice */
+		/* this is really a newnode lattice */
 
 		if (SUBDIRECT) {
 			for (i = 0; i < SUBDIRECT; i++) {
-				Tmp1 = mat_mul (new->U, PrI[i]);
+				Tmp1 = mat_mul (newnode->U, PrI[i]);
 				Tmp2 = long_elt_mat(NULL,Tmp1, NULL);
 				free_mat (Tmp1);
 				/* changed 30/06/97 tilman form:
@@ -1323,7 +1323,7 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 				free_mat (Tmp2);
 			}
 			if (i > SUBDIRECT) {
-				ZZ_free_node (data, new);
+				ZZ_free_node (data, newnode);
 				
 				/* next 2 lines by oliver: 9.8.00: for graph for QtoZ */
 				if (GRAPH)
@@ -1335,16 +1335,16 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 
 		if (ZCLASS == 1){
 		        /* second call of ZZ by q2z */
-			if (orbit_under_normalizer(tree,father,new,inzidenz,nr,nnn)){
-				ZZ_free_node (data, new);
+			if (orbit_under_normalizer(tree,father,newnode,inzidenz,nr,nnn)){
+				ZZ_free_node (data, newnode);
 				flagge[0] += 10;
 				return ABBRUCH;
 			}
                 }
 		if (ZCLASS == 2){
 		        /* first call of ZZ by q2z */
-			if (deal_with_ZCLASS(tree, new)){
-				ZZ_free_node (data, new);
+			if (deal_with_ZCLASS(tree, newnode)){
+				ZZ_free_node (data, newnode);
 				return ABBRUCH;
 			}
 		}
@@ -1356,37 +1356,37 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 		NEU[0] = 1;
 		
 		if (ZCLASS == 2 && GRAPH){
-		   U_vor = mat_inv(new->U);
+		   U_vor = mat_inv(newnode->U);
 		}
 		
-		/* !!!!!!!!!!!!!! new->U is changed in scal_pr !!!!!!!!!!!!!!!!!!! */
-		GMat = Mat = scal_pr (new->U, Gram, FALSE);
+		/* !!!!!!!!!!!!!! newnode->U is changed in scal_pr !!!!!!!!!!!!!!!!!!! */
+		GMat = Mat = scal_pr (newnode->U, Gram, FALSE);
 		if (ZCLASS == 2 && GRAPH){
 		   /* save transformation matrix */
-		   tmp = mat_mul(new->U, U_vor);
-		   new->Q = tr_pose(tmp);
+		   tmp = mat_mul(newnode->U, U_vor);
+		   newnode->Q = tr_pose(tmp);
 		   free_mat(tmp);
 		   free_mat(U_vor);
 		}
 		
 		if (ZCLASS == 1 && GRAPH){
 	           /* now calculate the (integral) representation
-                      on the new lattice (bare in mind that it is
+                      on the newnode lattice (bare in mind that it is
    	              row invariant. There is a flaw: normalizer and
  	              centralizer won't be correct */
 	           ff = tree->root->group->normal_no;
  	           tree->root->group->normal_no = 0;
 	           gg = tree->root->group->cen_no;
  	           tree->root->group->cen_no = 0;
-	           new->group = konj_bravais(tree->root->group, new->U);
+	           newnode->group = konj_bravais(tree->root->group, newnode->U);
 	           tree->root->group->normal_no = ff;
 	           tree->root->group->cen_no = gg;
 
 	           /* the second flaw of konj_bravais is the formspace */
-	           for (f = 0; f < new->group->form_no; f++)
-		      new->group->form[f]->kgv = 1;
-	           long_rein_formspace(new->group->form, new->group->form_no, 1);
-	           new->col_group = tr_bravais(new->group, 1, FALSE);
+	           for (f = 0; f < newnode->group->form_no; f++)
+		      newnode->group->form[f]->kgv = 1;
+	           long_rein_formspace(newnode->group->form, newnode->group->form_no, 1);
+	           newnode->col_group = tr_bravais(newnode->group, 1, FALSE);
 	        }
 	
 		if (LLLREDUCED)	{
@@ -1401,8 +1401,8 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 			GMat = Mat;
 			/*  Apply the LLL-Transformation to the basis
 			 */
-			Mat = new->U;
-			new->U = mat_mul (Trf, Mat);
+			Mat = newnode->U;
+			newnode->U = mat_mul (Trf, Mat);
 			free_mat (Mat);
 			free_mat(Trf);
 		}
@@ -1412,16 +1412,16 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 		/*
 		 * Invert the Basis-Transformation
 		 */
-		new->U_inv = mat_inv (new->U);
-		new->number = ++tree->node_count;
-		new->level = father->level + 1;
-		tree->last->next = new;
-		tree->last = new;
+		newnode->U_inv = mat_inv (newnode->U);
+		newnode->number = ++tree->node_count;
+		newnode->level = father->level + 1;
+		tree->last->next = newnode;
+		tree->last = newnode;
 		
-		if (new->number > NUMBER) {
+		if (newnode->number > NUMBER) {
 			ABBRUCH = 2;
 		}
-		if (new->level >= LEVEL) {
+		if (newnode->level >= LEVEL) {
 			ABBRUCH = 4;
 		}
 
@@ -1437,13 +1437,13 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 				 father->number, ii, jj, tree->node_count);
 			
 			if (U_option) {
-				fput_mat (ZZ_temp, new->el_div,
+				fput_mat (ZZ_temp, newnode->el_div,
 					  "Elementary divisors    :", 2);
 			}
-			ZZ_transpose_array(new->U->array.SZ, new->U->cols);
-			/* fput_mat (ZZ_temp, new->U,
+			ZZ_transpose_array(newnode->U->array.SZ, newnode->U->cols);
+			/* fput_mat (ZZ_temp, newnode->U,
 				  "Change of basis          :", 4); */
-			ZZ_transpose_array(new->U->array.SZ, new->U->cols);
+			ZZ_transpose_array(newnode->U->array.SZ, newnode->U->cols);
 			
 			if (G_option) {
 				fput_mat(ZZ_temp, el,
@@ -1454,20 +1454,20 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 			fflush (ZZ_temp);
 		}
 		if (TEMPORAER && NURUMF) {
-			ZZ_transpose_array(new->U->array.SZ, new->U->cols);
-			fput_mat (ZZ_temp, new->U,
+			ZZ_transpose_array(newnode->U->array.SZ, newnode->U->cols);
+			fput_mat (ZZ_temp, newnode->U,
 				  "Change of basis:", 4);
-			ZZ_transpose_array(new->U->array.SZ, new->U->cols);
-			ZZ_transpose_array(new->U_inv->array.SZ, new->U->cols);
-			fput_mat (ZZ_temp, new->U_inv,
+			ZZ_transpose_array(newnode->U->array.SZ, newnode->U->cols);
+			ZZ_transpose_array(newnode->U_inv->array.SZ, newnode->U->cols);
+			fput_mat (ZZ_temp, newnode->U_inv,
 				  "Inverse of it  :", 4);
-			ZZ_transpose_array(new->U_inv->array.SZ, new->U->cols);
+			ZZ_transpose_array(newnode->U_inv->array.SZ, newnode->U->cols);
 			fflush (ZZ_temp);
 		}
 		
 		/* eingefuegt von Oliver am 5.2.99 */
                 if (OFLAG){
-			OMAT[OANZ] = copy_mat(new->U);
+			OMAT[OANZ] = copy_mat(newnode->U);
       			OANZ += 1;
                 }
 		/* ------------------ */
@@ -1498,8 +1498,8 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 		   }
 		   flagge[0] += 100;
 		}
-		ZZ_free_node (data, new);
-		new = n;
+		ZZ_free_node (data, newnode);
+		newnode = n;
 	}
 	
 	/*
@@ -1510,14 +1510,14 @@ ZZ_ins_node (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, ZZ_node_t *fath
 	c->she.i = ii;
 	c->she.j = jj;
 	c->factor = g[0];
-	c->elder = new->parent;
-	new->parent = c;
+	c->elder = newnode->parent;
+	newnode->parent = c;
 
 	/*
 	 * Tell father, he's got a new son
 	 */
 	c = (ZZ_couple_t *) malloc (sizeof (ZZ_couple_t));
-	c->he = new;
+	c->he = newnode;
 	c->she.i = ii;
 	c->she.j = jj;
 	c->factor = g[0];

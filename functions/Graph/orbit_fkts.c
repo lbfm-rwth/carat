@@ -1025,7 +1025,7 @@ matrix_TYP **kernel_factor_fct(matrix_TYP **translationen,
          if (pos == -1){
             if (anz[0] >= size){
                size += 1024;
-               elem = realloc(elem, size * sizeof(matrix_TYP *));
+               elem = (matrix_TYP **)realloc(elem, size * sizeof(matrix_TYP *));
             }
             elem[anz[0]] = tmp;
             tmp = NULL;

@@ -38,7 +38,7 @@
 matrix_TYP *
 orbit_representatives (matrix_TYP **M, int Manz, bravais_TYP *G, int *option, int *orbit_no, int is_sorted)
 {
-   matrix_TYP *erg, **or;
+   matrix_TYP *erg, **orb;
    int i,j,k, no;
    int *merk, found;
 
@@ -58,13 +58,13 @@ orbit_representatives (matrix_TYP **M, int Manz, bravais_TYP *G, int *option, in
     if(i<Manz)
     {
        erg->array.SZ[0][no] = i;
-       or = orbit_alg(M[i], G, NULL, option, &(erg->array.SZ[1][no]));
+       orb = orbit_alg(M[i], G, NULL, option, &(erg->array.SZ[1][no]));
        merk[i] = no+1;
        if(is_sorted == 1)
        {
          for(j=1;j<erg->array.SZ[1][no];j++)
          {
-           found = mat_search(or[j], M, Manz, mat_comp);
+           found = mat_search(orb[j], M, Manz, mat_comp);
            if(found != -1)
              merk[found] = no+1;
          }
@@ -76,7 +76,7 @@ orbit_representatives (matrix_TYP **M, int Manz, bravais_TYP *G, int *option, in
            found = FALSE;
            for(k=i+1;k<Manz && found == FALSE;k++)
            {
-             if(merk[k] != 1 && cmp_mat(or[j], M[k]) == 0)
+             if(merk[k] != 1 && cmp_mat(orb[j], M[k]) == 0)
              {
               merk[k] = no+1;
               found = TRUE;
@@ -85,8 +85,8 @@ orbit_representatives (matrix_TYP **M, int Manz, bravais_TYP *G, int *option, in
          }
        }
        for(j=0;j<erg->array.SZ[1][no];j++)
-         free_mat(or[j]);
-       free(or);
+         free_mat(orb[j]);
+       free(orb);
        no++;
     }
   }

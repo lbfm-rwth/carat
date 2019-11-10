@@ -270,7 +270,7 @@ static matrix_TYP *static_orbit_rep(matrix_TYP *x,
                orbit = (matrix_TYP **) realloc(orbit,
                                     speicher * sizeof(matrix_TYP *));
                if (word_flag){
-                  orb_words = realloc(orb_words,speicher * sizeof(int));
+                  orb_words = (int **)realloc(orb_words,speicher * sizeof(int));
                }
             }
 

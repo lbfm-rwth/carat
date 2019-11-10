@@ -396,9 +396,9 @@ static matrix_TYP *cocycle_in_image(matrix_TYP *coz_darst,
                      /* new element in the orbit */
                      if (anz >= size){
                         size += MYSIZE;
-                        images = realloc(images, size * sizeof(matrix_TYP *));
-                        number = realloc(number, size * sizeof(int));
-                        koords = realloc(koords, size * sizeof(matrix_TYP *));
+                        images = (matrix_TYP **)realloc(images, size * sizeof(matrix_TYP *));
+                        number = (int *)realloc(number, size * sizeof(int));
+                        koords = (matrix_TYP **)realloc(koords, size * sizeof(matrix_TYP *));
                      }
                      images[anz] = tmp;
                      koords[anz] = copy_mat(koords[i]);
@@ -683,9 +683,9 @@ static void korrektes_urbild(matrix_TYP **preimage,
                /* new element in the orbit */
                if (anz >= size){
                   size += MYSIZE;
-                  orbit = realloc(orbit, size * sizeof(matrix_TYP *));
-                  number = realloc(number, size * sizeof(int));
-                  conj = realloc(conj, size * sizeof(matrix_TYP *));
+                  orbit = (matrix_TYP **)realloc(orbit, size * sizeof(matrix_TYP *));
+                  number = (int *)realloc(number, size * sizeof(int));
+                  conj = (matrix_TYP **)realloc(conj, size * sizeof(matrix_TYP *));
                }
                orbit[anz] = tmp;
                conj[anz] = mat_mul(NNN[j], conj[i]);
@@ -803,9 +803,9 @@ static matrix_TYP **calculate_all_preimages(matrix_TYP *preimage,
                anz[0]++;
                if (anz[0] >= size){
                   size += MYSIZE;
-                  preimages = realloc(preimages, size * sizeof(matrix_TYP *));
-                  number = realloc(number, size * sizeof(int));
-                  elements = realloc(elements, size * sizeof(matrix_TYP *));
+                  preimages = (matrix_TYP **)realloc(preimages, size * sizeof(matrix_TYP *));
+                  number = (int *)realloc(number, size * sizeof(int));
+                  elements = (matrix_TYP **)realloc(elements, size * sizeof(matrix_TYP *));
                }
                elements[anz[0] - 1] = tmp;
                preimages[anz[0] - 1] = mat_add(preimages[i], kernel_gen[j], eins, eins);
@@ -826,7 +826,7 @@ static matrix_TYP **calculate_all_preimages(matrix_TYP *preimage,
       alt = anz[0];
       anz[0] = anz[0] * b1_kernel_no;
       if (size < anz[0])
-         preimages = realloc(preimages, anz[0] * sizeof(matrix_TYP *));
+         preimages = (matrix_TYP **)realloc(preimages, anz[0] * sizeof(matrix_TYP *));
    }
    else{
       /* trivial case */

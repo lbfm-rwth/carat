@@ -126,7 +126,7 @@ orbitlen (int pt, int orblen, int ***G, int nG, veclist V)
 |	an entry 0 marks the end of the list, returns the length of orb1
 \**********************************************************************/
 int 
-delete (int *orb1, int l1, int *orb2, int l2)
+delete_from_orbit (int *orb1, int l1, int *orb2, int l2)
 {
 	int	i, j, len, o2i;
 

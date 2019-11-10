@@ -48,7 +48,7 @@ static int suche_mat(matrix_TYP *mat,
 void 
 ZZ_intern (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, QtoZ_TYP *inzidenz)
 {
-    ZZ_node_t *act, *new, *nnn;
+    ZZ_node_t *act, *newnode, *nnn;
     int g, i, j, k, l, m, n, d, di, end_num, act_anz, flag = 0, nr, NEU, zahl, flagge;
     int ABBRUCH = FALSE;
     matrix_TYP *gitter, *X, *Li;
@@ -84,17 +84,17 @@ ZZ_intern (matrix_TYP *Gram, ZZ_data_t *data, ZZ_tree_t *tree, QtoZ_TYP *inziden
 			for (n = k; n < 2 * k; n++) {
 			    act_anz++;
 			    ZZ_pick_epi (data, n, i, j);
-			    new = ZZ_center (data, act, i, j);
+			    newnode = ZZ_center (data, act, i, j);
 			    nr = 0;
 			    NEU = 0;
 			
 			    if (ZCLASS == 1 && GRAPH){
- 			       gitter = tr_pose(new->U);
+ 			       gitter = tr_pose(newnode->U);
  			    } else
  			       gitter = NULL;
  			    flagge = 0;
 			    ABBRUCH = ZZ_ins_node (Gram, data, tree,
-						   act, new, i, j,
+						   act, newnode, i, j,
 						   inzidenz, &nr, &NEU, &flagge, &g, &nnn);
 		            if (ZCLASS == 1 && GRAPH){
 			       if (NEU != 1){
@@ -183,8 +183,8 @@ fprintf(stderr, "F A L L   1!!!!!!!!!!!!!\n");
 			       }
 			       else{
 			          /* new lattice in the graph */
-                                  inzidenz->gitter[inzidenz->anz] = copy_mat(new->U);
-                                  inzidenz->tr_gitter[inzidenz->anz] = tr_pose(new->U);
+                                  inzidenz->gitter[inzidenz->anz] = copy_mat(newnode->U);
+                                  inzidenz->tr_gitter[inzidenz->anz] = tr_pose(newnode->U);
                                   inzidenz->inv_tr_gitter[inzidenz->anz] =
                                        mat_inv(inzidenz->tr_gitter[inzidenz->anz]);
                                   inzidenz->entry[inzidenz->anz] = (QtoZ_entry_TYP *)calloc(1024,

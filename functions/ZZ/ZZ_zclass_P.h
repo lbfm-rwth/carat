@@ -1,8 +1,8 @@
-extern int deal_with_ZCLASS(ZZ_tree_t *tree, ZZ_node_t *new);
+extern int deal_with_ZCLASS(ZZ_tree_t *tree, ZZ_node_t *newnode);
 extern int orbit_under_normalizer(
      ZZ_tree_t *tree,
      ZZ_node_t *father,
-     ZZ_node_t *new,
+     ZZ_node_t *newnode,
      QtoZ_TYP *inzidenz,
      int *nr,
      ZZ_node_t **nnn);

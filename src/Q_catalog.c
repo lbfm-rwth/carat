@@ -107,7 +107,7 @@ int possible_arguments (int *search_list, database *database,
   
   new_element = (char *) malloc(database->nr * sizeof(char));
   
-  new_element = memset (new_element, TRUE, database->nr);
+  memset (new_element, TRUE, database->nr);
 
 
   (*list_of_possible) = (int *) malloc(database->nr * sizeof(int));
