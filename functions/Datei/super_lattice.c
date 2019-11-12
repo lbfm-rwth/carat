@@ -18,7 +18,7 @@ lattice_element **super_lattice(const char *symb,int dim,int almost,int zclass,
    static char filename[1024];
 
    /* get the appropiate filename */
-   sprintf(filename, "%s/tables/lattices/dim%d/reverse_%s_%d_%d",
+   sprintf(filename, "%s/lattices/dim%d/reverse_%s_%d_%d",
            get_data_dir(), dim, symb, almost, zclass);
 
    infile = fopen(filename,"r");
@@ -47,7 +47,7 @@ lattice_element **super_lattice(const char *symb,int dim,int almost,int zclass,
 
          found = FALSE;
          /* get the appropiate filename */
-         sprintf(filename, "%s/tables/lattices/dim%d/lattice_%s_%d_%d",
+         sprintf(filename, "%s/lattices/dim%d/lattice_%s_%d_%d",
            get_data_dir(), dim, RES[i]->symbol, RES[i]->almost, RES[i]->zclass);
 
          infile = fopen(filename,"r");

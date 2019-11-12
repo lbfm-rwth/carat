@@ -40,7 +40,7 @@ TSubgroup_TYP **tsubgroup_db(bravais_TYP *R,
 
    /* berechne den Namen */
    dim = R->dim - 1;
-   sprintf(dbname, "%s/tables/qcatalog/data", get_data_dir());
+   sprintf(dbname, "%s/qcatalog/data", get_data_dir());
    database = load_database(dbname, dim);
    Name = name_fct(R, database);
 
@@ -55,7 +55,7 @@ TSubgroup_TYP **tsubgroup_db(bravais_TYP *R,
 
    if (found){
       i--;
-      sprintf(pfad, "%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/", get_data_dir(),
+      sprintf(pfad, "%s/qcatalog/dim%d/dir.%s/ordnung.%d/%s/", get_data_dir(),
               dim, database->entry[i].symbol,
               database->entry[i].order, database->entry[i].discriminant);
 

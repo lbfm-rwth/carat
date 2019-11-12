@@ -51,7 +51,7 @@ void display_HM_symbol(const char *qname,
 
    mpz_get_str(affstring,10,aff_name);
 
-   sprintf(hmtab, "%s/tables/qcatalog/translation_HM_symbol", get_data_dir());
+   sprintf(hmtab, "%s/qcatalog/translation_HM_symbol", get_data_dir());
    F = fopen(hmtab, "r");
 
    if (F == NULL){

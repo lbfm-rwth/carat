@@ -28,7 +28,7 @@ bravais_TYP *get_qclass_by_name(const char *name,
 
    bravais_TYP *G;
 
-   sprintf(dbname, "%s/tables/qcatalog/data", get_data_dir());
+   sprintf(dbname, "%s/qcatalog/data", get_data_dir());
    while (!found){
       database = load_database (dbname, dim);
 
@@ -41,14 +41,14 @@ bravais_TYP *get_qclass_by_name(const char *name,
       if (found){
          i--;
 
-         sprintf(filename, "%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/%s",
+         sprintf(filename, "%s/qcatalog/dim%d/dir.%s/ordnung.%d/%s/%s",
                           get_data_dir(),
                           dim,database->entry[i].symbol,
                           database->entry[i].order,
                           database->entry[i].discriminant,name);
          G = get_bravais(filename);
 
-         sprintf(filename, "%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/pres.%s",
+         sprintf(filename, "%s/qcatalog/dim%d/dir.%s/ordnung.%d/%s/pres.%s",
                           get_data_dir(),
                           dim,database->entry[i].symbol,
                           database->entry[i].order,

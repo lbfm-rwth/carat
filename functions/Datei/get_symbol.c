@@ -212,7 +212,7 @@ if(fn != NULL)
   strtok (fn, "%");
 if(fn != NULL)
 {
-  sprintf(sy->fn, "%s/tables/%s", get_data_dir(), fn);
+  sprintf(sy->fn, "%s/%s", get_data_dir(), fn);
 }
 else{
   /* added the free: tilman 7/5/97 */

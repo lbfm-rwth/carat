@@ -65,20 +65,14 @@ dnl
 dnl Other checks
 dnl
 
+dnl check for functions dealing with strings and integers
+AC_CHECK_FUNCS([strlcpy strlcat])
+
 dnl check whether libm / -lm is available and necessary
 AC_SEARCH_LIBS([floor], [m], [], [
   AC_MSG_ERROR([unable to find the floor() function])
 ])
 
-
-dnl
-dnl Define TOPDIR
-dnl
-dnl TODO: get rid of this? hardcoding paths in binaries seems problematic
-dnl TODO: at the very least, when installing this should be recompiled to
-dnl       a value relative to the $prefix
-dnl
-AC_DEFINE_UNQUOTED([TOPDIR], ["$ac_pwd"], [for functions/Datei/get_data_dir.c])
 
 dnl
 dnl Finally, generate the Makefiles and output everything

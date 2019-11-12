@@ -82,6 +82,7 @@ lattice_element **super_lattice(const char *symb,int dim,int almost,int zclass,
 | FILE: get_data_dir.c
 \*------------------------------------------------------------*/
 
+void setup_carat_location(const char * argv0);
 const char *get_data_dir(void);
 
 #endif

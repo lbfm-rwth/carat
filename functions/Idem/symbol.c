@@ -163,7 +163,7 @@ static char *identify_hom(bravais_TYP *G,int clear)
 
    if (atom_no == 0){
        /* read the file with all atoms */
-       sprintf(bravais_file, "%s/tables/symbol/atom_list", get_data_dir());
+       sprintf(bravais_file, "%s/symbol/atom_list", get_data_dir());
        atom_file = fopen(bravais_file,"r");
 
        if (atom_file == NULL){
@@ -184,7 +184,7 @@ static char *identify_hom(bravais_TYP *G,int clear)
 
        /* and their respective groups */
        for (i=0;i<atom_no;i++){
-          sprintf(bravais_file, "%s/tables/symbol/%s", get_data_dir(), Atoms[i].fn);
+          sprintf(bravais_file, "%s/symbol/%s", get_data_dir(), Atoms[i].fn);
           Atoms[i].grp = get_bravais(bravais_file);
           long_rein_formspace(G->form,G->form_no,1);
        }

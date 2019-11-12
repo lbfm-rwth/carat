@@ -212,7 +212,7 @@ bravais_TYP **tsupergroups(bravais_TYP *R,
 
    /* lade Datenbank */
    dim = R->dim - 1;
-   sprintf(dbname, "%s/tables/qcatalog/data", get_data_dir());
+   sprintf(dbname, "%s/qcatalog/data", get_data_dir());
    database = load_database(dbname, dim);
 
    /* berechne den Namen */
@@ -222,7 +222,7 @@ bravais_TYP **tsupergroups(bravais_TYP *R,
    for (i = 0; i < database->nr; i++){
       if (database->entry[i].order > Name.order &&
           database->entry[i].order % Name.order == 0){
-	  sprintf(pfad, "%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/", get_data_dir(),
+	  sprintf(pfad, "%s/qcatalog/dim%d/dir.%s/ordnung.%d/%s/", get_data_dir(),
                  dim, database->entry[i].symbol,
                  database->entry[i].order, database->entry[i].discriminant);
 
