@@ -407,8 +407,7 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 /* the generator is not Id and fixes fp.e[0],...,fp.e[j-1] but not fp.e[j] */
 		{
 			++G.ng[j];
-			if ((G.g[j] = (int***)realloc(G.g[j], G.ng[j] * sizeof(int**))) == 0)
-				exit (2);
+			G.g[j] = (int***)xrealloc(G.g[j], G.ng[j] * sizeof(int**));
 			if ((G.g[j][G.ng[j]-1] = (int**)malloc(dim * sizeof(int*))) == 0)
 				exit (2);
 			for (k = 0; k < dim; ++k)
@@ -926,8 +925,7 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 /* the generator is not Id and fixes fp.e[0],...,fp.e[j-1] but not fp.e[j] */
 		{
 			++G.ng[j];
-			if ((G.g[j] = (int***)realloc(G.g[j], G.ng[j] * sizeof(int**))) == 0)
-				exit (2);
+			G.g[j] = (int***)xrealloc(G.g[j], G.ng[j] * sizeof(int**));
 			if ((G.g[j][G.ng[j]-1] = (int**)malloc(dim * sizeof(int*))) == 0)
 				exit (2);
 			for (k = 0; k < dim; ++k)

@@ -139,22 +139,12 @@ normalizer (matrix_TYP *P, bravais_TYP *G, bravais_TYP *Gtr, int prime, int *V_n
 
               l = Vneu->stab->gen_no;
               Nanz += l;
-              if((N =(matrix_TYP **)realloc(N,Nanz *sizeof(matrix_TYP *)))
-                    == NULL)
-              {
-                printf("realloc of 'N' in 'normalizer' failed\n");
-                exit(2);
-              }
+              N =(matrix_TYP **)xrealloc(N,Nanz *sizeof(matrix_TYP *));
               for(k=0;k<l; k++)
                 N[Nanz-l+k] = copy_mat(Vneu->stab->gen[k]);
 
               Vanz++;
-              if((V=(voronoi_TYP **)realloc(V,Vanz *sizeof(voronoi_TYP *)))
-                       == NULL)
-              {
-                printf("realloc of 'V' in 'normalizer' failed\n");
-                exit(2);
-              }
+              V=(voronoi_TYP **)xrealloc(V,Vanz *sizeof(voronoi_TYP *));
               V[Vanz-1] = Vneu;
               Vneu = init_voronoi();
             }
@@ -162,12 +152,7 @@ normalizer (matrix_TYP *P, bravais_TYP *G, bravais_TYP *Gtr, int prime, int *V_n
             {
                V[i]->dir_reps->array.SZ[2][j] = no;
                Nanz ++;
-               if((N=(matrix_TYP **)realloc(N,Nanz *sizeof(matrix_TYP *)))
-                      == NULL)
-               {
-                 printf("realloc of 'N' in 'normalizer' failed\n");
-                 exit(2);
-               }
+               N=(matrix_TYP **)xrealloc(N,Nanz *sizeof(matrix_TYP *));
                N[Nanz-1] =  X;
                clear_voronoi(Vneu);
             }

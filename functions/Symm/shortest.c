@@ -170,16 +170,14 @@ vecschr (int m, double d)
            free(SV->array.SZ[i]);
          SV_size = SV_ext;
          SV->rows = 0;
-         if((SV->array.SZ = (int **)realloc(SV->array.SZ, SV_size *sizeof(int *))) == 0)
-                  exit(2);
+         SV->array.SZ = (int **)xrealloc(SV->array.SZ, SV_size *sizeof(int *));
           anzahl = 0;
         }
         anzahl++;
         if(SV->rows == SV_size)
         {
            SV_size += SV_ext;
-           if((SV->array.SZ = (int **)realloc(SV->array.SZ, SV_size *sizeof(int *))) == 0)
-                exit(2);
+           SV->array.SZ = (int **)xrealloc(SV->array.SZ, SV_size *sizeof(int *));
         }
         if((v = (int *)malloc((n+1) *sizeof(int))) == 0)
             exit(2);

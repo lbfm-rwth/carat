@@ -357,8 +357,7 @@ autom (group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, 
 /* a new generator has been found */
 			{
 				++G->ng[step];
-				if ((G->g[step] = (int***)realloc(G->g[step], G->ng[step] * sizeof(int**))) == 0)
-					exit (2);
+				G->g[step] = (int***)xrealloc(G->g[step], G->ng[step] * sizeof(int**));
 				if ((G->g[step][G->ng[step]-1] = (int**)malloc(dim * sizeof(int*))) == 0)
 					exit (2);
 				for (i = 0; i < dim; ++i)
@@ -370,8 +369,7 @@ autom (group *G, veclist V, invar F, fpstruct fp, scpcomb *comb, bachpol *bach, 
 /* append the new generator to G->g[step] */
 				matgen(x, Ggng, dim, fp.per, V.v);
 				++nH;
-				if ((H = (int***)realloc(H, nH * sizeof(int**))) == 0)
-					exit (2);
+				H = (int***)xrealloc(H, nH * sizeof(int**));
 				nH = 0;
 				for (i = step; i < dim; ++i)
 				{

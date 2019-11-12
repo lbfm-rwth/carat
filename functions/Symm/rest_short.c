@@ -181,8 +181,7 @@ vecschr (int m, double d)
           if(SV->rows == SV_size)
           {
              SV_size += SV_ext;
-             if((SV->array.SZ = (int **)realloc(SV->array.SZ, SV_size *sizeof(int *))) == 0)
-                  exit(2);
+             SV->array.SZ = (int **)xrealloc(SV->array.SZ, SV_size *sizeof(int *));
           }
           if((v = (int *)malloc((n+1) *sizeof(int))) == 0)
               exit(2);
@@ -305,8 +304,7 @@ rest_short (matrix_TYP *mat, int *restvec, int rkgv, int zaehler, int nenner, in
           SV_ext = 1;
         else
         {
-          if((SV->array.SZ = (int **)realloc(SV->array.SZ, SV_ext *sizeof(int *))) == 0)
-                exit(2);
+          SV->array.SZ = (int **)xrealloc(SV->array.SZ, SV_ext *sizeof(int *));
           SV_size = SV_ext;
         }
 	if ((grn = (int**)malloc(n * sizeof(int*))) == 0)

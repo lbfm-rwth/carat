@@ -540,8 +540,7 @@ isostab (int ****H, int pt, int ***G, int nG, veclist V, int Maxfail)
 						orblen = tmplen;
 						++nH;
 /* allocate memory for the new generator */
-						if ((*H = (int***)realloc(*H, (nH+1) * sizeof(int**))) == 0)
-							exit (2);
+						*H = (int***)xrealloc(*H, (nH+1) * sizeof(int**));
 						if (((*H)[nH] = (int**)malloc(dim * sizeof(int*))) == 0)
 							exit (2);
 						for (k = 0; k < dim; ++k)

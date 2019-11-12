@@ -67,8 +67,7 @@ orbit (int *pt, int npt, int ***G, int nG, veclist V, int **orb)
 /* the image is a new point in the orbit */
 			{
 				++norb;
-				if ((*orb = (int*)realloc(*orb, norb * sizeof(int))) == 0)
-					exit (2);
+				*orb = (int*)xrealloc(*orb, norb * sizeof(int));
 				(*orb)[norb-1] = im;
 				flag[im+V.n] = 1;
 			}
@@ -298,8 +297,7 @@ stab (int I, group *G, fpstruct fp, veclist V)
 						++G->ng[j];
 						++G->nsg[j];
 /* allocate memory for the new generator */
-						if ((G->g[j] = (int***)realloc(G->g[j], G->ng[j] * sizeof(int**))) == 0)
-							exit (2);
+						G->g[j] = (int***)xrealloc(G->g[j], G->ng[j] * sizeof(int**));
 						if ((G->g[j][G->ng[j]-1] = (int**)malloc(dim * sizeof(int*))) == 0)
 							exit (2);
 						for (k = 0; k < dim; ++k)
@@ -322,10 +320,8 @@ stab (int I, group *G, fpstruct fp, veclist V)
 						}
 						G->ord[j] = tmplen;
 						++nH;
-						if ((H = (int***)realloc(H, nH * sizeof(int**))) == 0)
-							exit (2);
-						if ((Hj = (int***)realloc(Hj, (nH+1) * sizeof(int**))) == 0)
-							exit (2);
+						H = (int***)xrealloc(H, nH * sizeof(int**));
+						Hj = (int***)xrealloc(Hj, (nH+1) * sizeof(int**));
 /* the new generator is appended to H */
 						H[nH-1] = Ggj[G->nsg[j]-1];
 /* the number of failures is reset to 0 */ 

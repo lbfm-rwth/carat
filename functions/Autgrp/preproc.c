@@ -244,8 +244,7 @@ scpvecs (veclist *list, int ***vec, int I, int *b, int dep, veclist V, invar F)
 		else if (nr >= list->n+1)
 		{
 			++list->n;
-			if ((list->v = (int**)realloc(list->v, (list->n+1) * sizeof(int*))) == 0)
-				exit (2);
+			list->v = (int**)xrealloc(list->v, (list->n+1) * sizeof(int*));
 			if ((list->v[list->n] = (int*)malloc(len * sizeof(int))) == 0)
 				exit (2);
 /* numberof changes the sign of scpvec if the first nonzero entry is < 0,
@@ -253,8 +252,7 @@ scpvecs (veclist *list, int ***vec, int I, int *b, int dep, veclist V, invar F)
 			listvn = list->v[list->n];
 			for (i = 0; i < len; ++i)
 				listvn[i] = scpvec[i];
-			if ((*vec = (int**)realloc(*vec, (list->n+1) * sizeof(int*))) == 0)
-				exit (2);
+			*vec = (int**)xrealloc(*vec, (list->n+1) * sizeof(int*));
 			if (((*vec)[list->n] = (int*)malloc(dim * sizeof(int))) == 0)
 				exit (2);
 			vecn = (*vec)[list->n];
@@ -415,20 +413,16 @@ base (scpcomb *com, int ***b, int **v, int **F, int dim)
 /* transform basis and transformation matrix */
 			change(*b, rank, tr, dim);
 			change(com->trans, rank, tr, nv);
-			if ((*b = (int**)realloc(*b, (rank+1) * sizeof(int*))) == 0)
-				exit (2);
+			*b = (int**)xrealloc(*b, (rank+1) * sizeof(int*));
 			if (((*b)[rank] = (int*)malloc(dim * sizeof(int))) == 0)
 				exit (2);
-			if ((com->trans = (int**)realloc(com->trans, (rank+1) * sizeof(int*))) == 0)
-				exit (2);
+			com->trans = (int**)xrealloc(com->trans, (rank+1) * sizeof(int*));
 			if ((com->trans[rank] = (int*)malloc(nv * sizeof(int))) == 0)
 				exit (2);
-			if ((f = (int**)realloc(f, (rank+1) * sizeof(int*))) == 0)
-				exit (2);
+			f = (int**)xrealloc(f, (rank+1) * sizeof(int*));
 			for (j = 0; j < rank; ++j)
 			{
-				if ((f[j] = (int*)realloc(f[j], (rank+1) * sizeof(int))) == 0)
-					exit (2);
+				f[j] = (int*)xrealloc(f[j], (rank+1) * sizeof(int));
 			}
 			if ((f[rank] = (int*)malloc((rank+1) * sizeof(int))) == 0)
 				exit (2);
@@ -441,12 +435,10 @@ base (scpcomb *com, int ***b, int **v, int **F, int dim)
 					f[k][j] = fj[k];
 				}
 			}
-			if ((tr = (int**)realloc(tr, (rank+1) * sizeof(int*))) == 0)
-				exit (2);
+			tr = (int**)xrealloc(tr, (rank+1) * sizeof(int*));
 			for (j = 0; j < rank; ++j)
 			{
-				if ((tr[j] = (int*)realloc(tr[j], (rank+1) * sizeof(int))) == 0)
-					exit (2);
+				tr[j] = (int*)xrealloc(tr[j], (rank+1) * sizeof(int));
 			}
 			if ((tr[rank] = (int*)malloc((rank+1) * sizeof(int))) == 0)
 				exit (2);

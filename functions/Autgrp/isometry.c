@@ -503,8 +503,7 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 /* get the automorphisms, which are already known */
 	{
 		ngen = Erzanz;
-		if ((G = (int***)realloc(G, ngen * sizeof(int**))) == 0)
-			exit (2);
+		G = (int***)xrealloc(G, ngen * sizeof(int**));
 		fail = 0;
                 i=0;
 		while (nG+fail < ngen)
@@ -1063,8 +1062,7 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 /* get the automorphisms, which are already known */
 	{
 		ngen = Erzanz;
-		if ((G = (int***)realloc(G, ngen * sizeof(int**))) == 0)
-			exit (2);
+		G = (int***)xrealloc(G, ngen * sizeof(int**));
 		fail = 0;
                 i=0;
 		while (nG+fail < ngen)
