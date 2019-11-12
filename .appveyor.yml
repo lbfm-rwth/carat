@@ -30,5 +30,5 @@ test_script:
 
 on_success:
   - bash -lc "cd $APPVEYOR_BUILD_FOLDER && gcov functions/*/*.c"
-  - curl -s https://codecov.io/bash > codecov.sh
+  - curl --retry 5 -s https://codecov.io/bash > codecov.sh
   - bash -lc "cd $APPVEYOR_BUILD_FOLDER && ./codecov.sh"
