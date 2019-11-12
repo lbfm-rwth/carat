@@ -13,6 +13,23 @@ Date := "10/11/2019", # dd/mm/yyyy format
 License := "GPL v@.0",
 
 Persons := [
+  #TODO: Add original authors
+  rec(
+    LastName      := "Horn",
+    FirstNames    := "Max",
+    IsAuthor      := true,
+    IsMaintainer  := false,
+    Email         := "max.horn@uni-siegen.de",
+    WWWHome       := "https://www.quendi.de/math",
+    PostalAddress := Concatenation(
+                       "Department Mathematik\n",
+                       "Universität Siegen\n",
+                       "Walter-Flex-Straße 3\n",
+                       "57072 Siegen\n",
+                       "Germany" ),
+    Place         := "Siegen",
+    Institution   := "Universität Siegen"
+  ),
   rec(
     LastName      := "Berhardt",
     FirstNames    := "Dominik",
@@ -64,27 +81,26 @@ PackageDoc := rec(
   BookName  := "GitHubPagesForGAP",
   ArchiveURLSubset := ["tex"],
   HTMLStart := "tex/index.html",
-  #PDFFile   := "doc/manual.pdf",
-  #SixFile   := "doc/manual.six",
+  PDFFile   := "doc/manual.pdf",
+  SixFile   := "doc/manual.six",
   LongTitle := "A set of C programms to deal with crystallographic groups",
 ),
 
 #TODO: What are our dependencies? 
-# The following dependencies are fake and for testing / demo purposes
-#Dependencies := rec(
-#  GAP := ">=4.8.1",
-#  NeededOtherPackages := [
-#    ["GAPDoc", ">= 1.2"],
-#    ["IO", ">= 4.1"],
-#  ],
-#  SuggestedOtherPackages := [["orb", ">= 4.2"]],
+# This is just here to make the site work.
+Dependencies := rec(
+  GAP := ">=4.8.1",
+  NeededOtherPackages := [
+    ["GAPDoc", ">= 1.2"],
+    ["IO", ">= 4.1"],
+  ],
+  SuggestedOtherPackages := [["orb", ">= 4.2"]],
   ExternalConditions := []
-#),
+),
 
 AvailabilityTest := ReturnTrue,
 
 Keywords := ["GitHub Pages", "CARAT"]
-
 ));
 
 

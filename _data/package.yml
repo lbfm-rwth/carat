@@ -1,19 +1,13 @@
-name: GitHubPagesForGAP
-version: "0.2"
-license: "0BSD"
-date: 2017-02-04
+name: Carat
+version: "1.1"
+license: "GPL v@.0"
+date: 2019-11-10
 description: |
-    A GitHub Pages generator for GAP packages
-
-authors:
-    - name: Max Horn
-      url: http://www.quendi.de/math
-    - name: A. U. Thor
+    Crystallographic AlgoRithms And Tables
 
 maintainers:
-    - name: Max Horn
-      url: http://www.quendi.de/math
-    - name: Jan Itor
+    - name: Dominik Berhardt
+      url: https://www.mathb.rwth-aachen.de/cms/MATHB/Der-Lehrstuhl/Team/Wissenschaftliche-Beschaeftigte/~rnsg/Dominik-Bernhardt/lidx/1/
 
 GAP: ">=4.8.1"
 
@@ -30,47 +24,45 @@ suggested-pkgs:
       version: ">= 4.2"
       url: "https://gap-packages.github.io/orb"
 
-www: https://gap-system.github.io/GitHubPagesForGAP/
+www: https://lbfm-rwth.github.io/Carat/
 readme: README.md
-packageinfo: https://gap-system.github.io/GitHubPagesForGAP/PackageInfo.g
-github: https://github.com/gap-system/GitHubPagesForGAP
+packageinfo: https://lbfm-rwth.github.io/Carat/PackageInfo.g
+github: https://github.com/lbfm-rwth/Carat
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-system/GitHubPagesForGAP/releases/download/v0.2/GitHubPagesForGAP-0.2.tar.gz
+      url: https://github.com/lbfm-rwth/Carat/releases/download/v1.1/Carat-1.1.tar.gz
     - name: .tar.bz2
-      url: https://github.com/gap-system/GitHubPagesForGAP/releases/download/v0.2/GitHubPagesForGAP-0.2.tar.bz2
+      url: https://github.com/lbfm-rwth/Carat/releases/download/v1.1/Carat-1.1.tar.bz2
 
 abstract: |
-    This is a pseudo package that contains no actual  <span class="pkgname">GAP</span> code. Instead, it is a template for other  GAP packages that allows to quickly setup GitHub Pages.
+    Carat is a computer package whichhandles enumeration, construction, recognition,and comparison problems for crystallographic groupsup to dimension 6. The name CARAT itself is anacronym for Crystallographic AlgoRithms And Tables.
 
 status: other
-doc-html: doc/chap0.html
+doc-html: tex/index.html
 doc-pdf: doc/manual.pdf
 keywords: |
-    GitHub Pages, GAP.
+    GitHub Pages, CARAT.
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>HTI17</span>]   <b class='BibAuthor'>Horn, M., Thor, A. U. and Itor, J.</b>,
-     <i class='BibTitle'>GitHubPagesForGAP, A GitHub Pages generator for GAP packages,
-             Version 0.2</i>
-     (<span class='BibYear'>2017</span>)<br />
+    [<span class='BibKey'>Ber19</span>]   <b class='BibAuthor'>Berhardt, D.</b>,
+     <i class='BibTitle'>Carat, Crystallographic AlgoRithms And Tables,
+             Version 1.1</i>
+     (<span class='BibYear'>2019</span>)<br />
     (<span class='BibNote'>GAP package</span>),
-    <span class='BibHowpublished'><a href="https://gap-system.github.io/GitHubPagesForGAP/">https://gap-system.github.io/GitHubPagesForGAP/</a></span>.
+    <span class='BibHowpublished'><a href="https://lbfm-rwth.github.io/Carat/">https://lbfm-rwth.github.io/Carat/</a></span>.
     </p>
     
 
 bibtex: |
-    @misc{ GitHubPagesForGAP0.2,
-      author =           {Horn, M. and Thor, A. U. and Itor, J.},
-      title =            {{GitHubPagesForGAP}, A GitHub Pages generator for GAP packages, {V}ersion 0.2},
-      month =            {Feb},
-      year =             {2017},
+    @misc{ Carat1.1,
+      author =           {Berhardt, D.},
+      title =            {{Carat}, Crystallographic AlgoRithms And Tables, {V}ersion 1.1},
+      month =            {Nov},
+      year =             {2019},
       note =             {GAP package},
-      howpublished =     {\href                              {https://gap-system.github.io/GitHubPagesForGAP/}
-                          {\texttt{https://gap-system.github.io/}\discretionary
-                          {}{}{}\texttt{GitHubPagesForGAP/}}},
-      keywords =         {GitHub Pages; GAP},
-      printedkey =       {HTI17}
+      howpublished =     {\href {https://lbfm-rwth.github.io/Carat/} {\texttt{https://lbfm-rwth.github.io/}\discretionary {}{}{}\texttt{Carat/}}},
+      keywords =         {GitHub Pages; CARAT},
+      printedkey =       {Ber19}
     }
 
