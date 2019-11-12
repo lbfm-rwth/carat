@@ -66,11 +66,7 @@ if (number != 1)
    for (i=2; i<=number; i++)
      k *= i;
 
-   if ( (set = (matrix_TYP **) malloc ((k+1) * sizeof (matrix_TYP *))) == NULL)
-     {
-       perror ("set");
-       exit (2);
-     }
+   set = (matrix_TYP **)xmalloc((k+1) * sizeof(matrix_TYP *));
 
    set [0] = copy_mat (N);
 
@@ -218,11 +214,7 @@ matrix_TYP *compute_q_matrix (bravais_TYP *G)
                               &class_counter,
                               1);
 
-  if ( (representant = (matrix_TYP **) malloc(class_counter * sizeof(matrix_TYP *)) ) == NULL)
-    {
-      perror ("representant");
-      exit (2);
-    }
+  representant = (matrix_TYP **)xmalloc(class_counter * sizeof(matrix_TYP *));
 
   for (i=0;i<class_counter;i++){
      representant[i] = Group[REP->array.SZ[0][i]];

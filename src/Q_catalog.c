@@ -327,13 +327,8 @@ void interactive_mode (int *search_list, database *database)
   int i;
   
   
-  if ( (cond = (conditions *) malloc (sizeof (conditions)) ) == NULL  ||
-       (cond->exists = (int *) malloc (NR_OF_ELEMENTS_IN_EACH_ENTRY * 
-				       sizeof (int)) ) == NULL )
-    {
-      perror ("interactive_mode");
-      exit (EXIT_FAILURE);
-    }
+  cond = (conditions *)xmalloc(sizeof (conditions));
+  cond->exists = (int *)xmalloc(NR_OF_ELEMENTS_IN_EACH_ENTRY * sizeof(int));
   
   for (i=0; i<NR_OF_ELEMENTS_IN_EACH_ENTRY; i++)
     (cond->exists) [i] = FALSE;
