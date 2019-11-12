@@ -1,4 +1,5 @@
 #include "typedef.h"
+#include "utils.h"
 #include "voronoi.h"
 #include "reduction.h"
 #include "autgrp.h"

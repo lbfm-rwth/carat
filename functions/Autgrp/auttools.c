@@ -1,6 +1,7 @@
 /*****	This file contains some routines to compute automorphisms of a lattice 
 	and to determine candidates for the image of a base vector	*****/
 #include "typedef.h"
+#include "utils.h"
 #include "types.h"
 
 

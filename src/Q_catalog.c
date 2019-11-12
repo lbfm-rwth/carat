@@ -6,6 +6,7 @@
 #include "name.h"
 #include "matrix.h"
 #include "datei.h"
+#include "utils.h"
 
 
 static void write_groups_to_file (int *write_list, database *database, char *string)

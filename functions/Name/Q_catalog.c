@@ -9,6 +9,7 @@
 ******************************************************************************/
 
 #include "typedef.h"
+#include "utils.h"
 #include "name.h"
 
 void (*(display_element [NR_OF_ELEMENTS_IN_EACH_ENTRY])) (entry *data);
@@ -16,30 +17,6 @@ void (*(load_element [NR_OF_ELEMENTS_IN_EACH_ENTRY])) (const char *string, entry
 void (*(delete_element [NR_OF_ELEMENTS_IN_EACH_ENTRY])) (entry *data);
 int (*(compare_element [NR_OF_ELEMENTS_IN_EACH_ENTRY])) (entry *data1, entry *data2);
 const char *name_element [NR_OF_ELEMENTS_IN_EACH_ENTRY];
-
-
-void *xmalloc_(size_t size, const char *funcname)
-{
-    void *ptr = malloc(size);
-    if (ptr == NULL)
-    {
-        perror(funcname);
-        exit(2);
-    }
-    return ptr;
-}
-
-void *xrealloc_(void *ptr, size_t size, const char *funcname)
-{
-    ptr = realloc(ptr, size);
-    if (ptr == NULL)
-    {
-        perror(funcname);
-        exit(2);
-    }
-    return ptr;
-}
-
 
 
 static void display_abbreviation (entry *element)

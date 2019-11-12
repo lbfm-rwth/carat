@@ -1,6 +1,7 @@
 /*****	This file contains routines to calculate 
 	and compare Bacher-polynomials	*****/
 #include "typedef.h"
+#include "utils.h"
 #include "types.h"
 
 

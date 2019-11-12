@@ -1,5 +1,6 @@
 /*****	This file contains some routines for input/output	*****/
 #include "typedef.h"
+#include "utils.h"
 #include "types.h"
 #include "matrix.h"
 

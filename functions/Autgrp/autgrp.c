@@ -1,5 +1,6 @@
 /*****	Main program for the automorphism program AUTO	*****/
 #include "typedef.h"
+#include "utils.h"
 #include "types.h"
 #include "sort.h"
 

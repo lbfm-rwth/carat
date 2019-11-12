@@ -1,6 +1,7 @@
 /*****	This file includes those routines for the isometry program which
 	differ from the routines for the automorphism program	*****/
 #include "typedef.h"
+#include "utils.h"
 #include "types.h"
 
 

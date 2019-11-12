@@ -1,5 +1,6 @@
 /*****	This file contains some routines for orbit calculations	*****/
 #include "typedef.h"
+#include "utils.h"
 #include "types.h"
 
 /**********************************************************************\
