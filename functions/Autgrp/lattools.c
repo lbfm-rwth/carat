@@ -1,6 +1,7 @@
 /*****	This file contains routines for lattice reduction and the
 	calculation of shortest vectors	*****/
 #include "typedef.h"
+#include "utils.h"
 #include "types.h"
 
 /*********************************************************************\

@@ -8,6 +8,7 @@
 \**************************************************************************/
 
 #include "typedef.h"
+#include "utils.h"
 #include "matrix.h"
 #include "reduction.h"
 #include "symm.h"

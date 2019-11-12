@@ -1,6 +1,7 @@
 /*****	This file includes some routines for 
 	the preprocessing of the algorithm	*****/
 #include "typedef.h"
+#include "utils.h"
 #include "types.h"
 
 /************************************************************************\

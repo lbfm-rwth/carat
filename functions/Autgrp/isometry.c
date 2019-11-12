@@ -9,6 +9,7 @@
 \**************************************************************************/
 
 #include "typedef.h"
+#include "utils.h"
 #include "types.h"
 #include "matrix.h"
 #include "sort.h"

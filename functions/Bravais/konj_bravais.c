@@ -1,4 +1,5 @@
-#include"typedef.h"
+#include "typedef.h"
+#include "utils.h"
 #include"matrix.h"
 #include"longtools.h"
 #include"bravais.h"

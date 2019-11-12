@@ -1,4 +1,5 @@
 #include "typedef.h"
+#include "utils.h"
 #include "gmp.h"
 #include "longtools.h"
 #include "matrix.h"

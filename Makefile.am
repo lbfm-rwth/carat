@@ -7,6 +7,7 @@ LIBS += $(GMP_LIBS)
 noinst_LIBRARIES = libfunctions.a
 
 libfunctions_a_SOURCES = \
+    functions/utils.c \
     functions/Autgrp/autgrp.c \
     functions/Autgrp/auttools.c \
     functions/Autgrp/bachtools.c \
