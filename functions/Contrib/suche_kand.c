@@ -16,19 +16,6 @@ static int **traces_of_prod_A;
 
 static int *image_of_Gen_A;
 
-static void *xmalloc (int size, const char *string)
-{
-  void *pointer;
-
-  if( (pointer = malloc(size)) == NULL)
-    {
-      perror (string);
-      exit (2);
-    }
-
-  return pointer;
-}
-
 static int krit_kon_mat (matrix_TYP **A, matrix_TYP **B, int anz,
 			 matrix_TYP ***M, int *dim)
 {
@@ -45,7 +32,7 @@ static int krit_kon_mat (matrix_TYP **A, matrix_TYP **B, int anz,
       AA = solve_endo (A, A, anz, &aa);
       if (ab == aa)
 	{
-	  Prod = (matrix_TYP **) xmalloc (aa * aa * sizeof (matrix_TYP *), "krit_kon_mat"); /* Prod = (matrix_TYP **) calloc (aa*aa, sizeof (matrix_TYP *)); */
+	  Prod = (matrix_TYP **) xmalloc (aa * aa * sizeof (matrix_TYP *)); /* Prod = (matrix_TYP **) calloc (aa*aa, sizeof (matrix_TYP *)); */
 	  for (i=0; i<aa; i++)
 	    for (j=0; j<aa; j++)
 	      Prod[i*aa + j] = mat_mul (AB[i], BA[j]);
@@ -219,10 +206,10 @@ static int **calc_traces_of_prod (bravais_TYP *G)
   
   matrix_TYP *waste;
   
-  mat = (int **) xmalloc(G->gen_no*sizeof(int *), "calc_traces_of_prod");
+  mat = (int **) xmalloc(G->gen_no*sizeof(int *));
   
   for (i=0; i<G->gen_no; i++)
-    mat[i] = (int *) xmalloc(G->gen_no*sizeof(int),"calc_traces_of_prod");
+    mat[i] = (int *) xmalloc(G->gen_no*sizeof(int));
 
   /* Keine Lust Symmetrie der Matrix zu benutzen! */
   for (i=0; i<G->gen_no; i++)
@@ -245,7 +232,7 @@ static int *calc_traces_of_inv (bravais_TYP *G)
   
   matrix_TYP *waste;
   
-  mat = (int *) xmalloc(G->gen_no*sizeof(int), "calc_traces_of_inv");
+  mat = (int *) xmalloc(G->gen_no*sizeof(int));
   
 
   for (i=0; i<G->gen_no; i++)
@@ -276,10 +263,9 @@ static int *con_classes (matrix_TYP **G, int order_of_G,
 
   *number_of_con_classes = 0;  
 
-  list = (int *)xmalloc(order_of_G * sizeof(int), "con_classes");
+  list = (int *)xmalloc(order_of_G * sizeof(int));
   
-  representant_of_con_class = (int *)xmalloc(order_of_G * sizeof(int),
-					     "con_classes");
+  representant_of_con_class = (int *)xmalloc(order_of_G * sizeof(int));
   /* Worst-Case-Allocation: Every element its own con_class. */
   
   for (i=0; i<order_of_G; i++)
@@ -323,7 +309,7 @@ static int *compute_trace (matrix_TYP **group, int group_order)
 {
   int i;
   
-  int *trace_list = (int *) xmalloc (group_order * sizeof(int), "compute_trace");
+  int *trace_list = (int *) xmalloc (group_order * sizeof(int));
   
   for (i=0; i<group_order; i++)
     trace_list[i] = trace (group[i]);
@@ -340,7 +326,7 @@ static int *compute_order  (matrix_TYP **group, int group_order)
 {
   int i;
   
-  int *order_list = (int *) xmalloc (group_order * sizeof(int), "compute_order");
+  int *order_list = (int *) xmalloc (group_order * sizeof(int));
   
   for (i=0; i<group_order; i++)
     order_list[i] = order (group[i]);
@@ -494,7 +480,7 @@ static int construct_Image_Gen_A (int next_gen, bravais_TYP *Gen_A,
   
 
 
-  Bild = (matrix_TYP **)xmalloc( (next_gen+1) * sizeof(matrix_TYP *),"construct_Image_Gen_A");
+  Bild = (matrix_TYP **)xmalloc( (next_gen+1) * sizeof(matrix_TYP *));
   
   
   for (i=0; i<next_gen; i++)
@@ -619,12 +605,12 @@ matrix_TYP *suche_kand (bravais_TYP *Gen_A, bravais_TYP *Gen_B)
   traces_of_inv_A = calc_traces_of_inv (Gen_A);
 
   
-  image_of_Gen_A = (int *) xmalloc (Gen_A->gen_no * sizeof(int), "suche_kand");
+  image_of_Gen_A = (int *) xmalloc (Gen_A->gen_no * sizeof(int));
 
 
   if (construct_Image_Gen_A( 0, Gen_A,group_order, Gen_B, Group_B) == TRUE)
     {
-      Bild = (matrix_TYP **)xmalloc(Gen_A->gen_no * sizeof(matrix_TYP *),"construct_Image_Gen_A");
+      Bild = (matrix_TYP **)xmalloc(Gen_A->gen_no * sizeof(matrix_TYP *));
       
       for (i=0; i<Gen_A->gen_no; i++)
 	Bild[i] = Group_B[image_of_Gen_A[i]];
