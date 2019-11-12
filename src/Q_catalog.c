@@ -40,8 +40,7 @@ static void write_groups_to_file (int *write_list, database *database, char *str
   for (i=0; i<database->nr; i++)
     if (write_list[i] == ALL_MATCH)
       {
-	sprintf (inputfilename, "%s/tables/qcatalog/dim%i/dir.%s/ordnung.%i/%s/%s",
-	     get_data_dir(), 
+	sprintf (inputfilename, "%s/qcatalog/dim%i/dir.%s/ordnung.%i/%s/%s", get_data_dir(), 
 		 (database->entry [i]).degree,
 		 (database->entry [i]).symbol,
 		 (database->entry [i]).order,
@@ -390,7 +389,7 @@ int main (int argc, char *argv[])
       exit (EXIT_SUCCESS);
     }
   
-  sprintf(dbname, "%s/tables/qcatalog/data", get_data_dir());
+  sprintf(dbname, "%s/qcatalog/data", get_data_dir());
   if (FILEANZ == 1){
     G = get_bravais(FILENAMES[0]);
 

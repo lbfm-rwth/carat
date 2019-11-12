@@ -94,7 +94,7 @@ if(fn != NULL)
 {                               
   strtok (fn, "%");
   B->fn = (char *)calloc( 1024, sizeof(char) );
-  sprintf(B->fn, "%s/tables/%s", get_data_dir(), fn);
+  sprintf(B->fn, "%s/%s", get_data_dir(), fn);
   free ( old_fn );
 }
 	/*------------------------------------------------------------*\

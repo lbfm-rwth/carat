@@ -57,7 +57,7 @@ matrix_TYP *q_class_inf (bravais_TYP *G,
           MATG->rows == database->entry[i].no_idem + 9 &&
           MATG->cols == database->entry[i].no_conclass ){
 
-          sprintf(filetmp, "%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/char.%s", get_data_dir(),
+          sprintf(filetmp, "%s/qcatalog/dim%d/dir.%s/ordnung.%d/%s/char.%s", get_data_dir(),
                           G->dim,database->entry[i].symbol,
                           orderG,database->entry[i].discriminant,
                           database->entry[i].abbreviation);
@@ -77,7 +77,7 @@ matrix_TYP *q_class_inf (bravais_TYP *G,
      not decide the Q-equivalence. In these cases, get the hands dirty */
   while (no_possible > 1) {
      i = possible[no_possible-1];
-     sprintf(filetmp, "%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/%s", get_data_dir(),
+     sprintf(filetmp, "%s/qcatalog/dim%d/dir.%s/ordnung.%d/%s/%s", get_data_dir(),
                      G->dim,database->entry[i].symbol,
                      orderG,database->entry[i].discriminant,
                      database->entry[i].abbreviation);
@@ -114,7 +114,7 @@ matrix_TYP *q_class_inf (bravais_TYP *G,
 
   if (OUT || (transformation && !ERG) ){
      i = possible[0];
-     sprintf(filetmp, "%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/%s", get_data_dir(),
+     sprintf(filetmp, "%s/qcatalog/dim%d/dir.%s/ordnung.%d/%s/%s", get_data_dir(),
                      G->dim,database->entry[i].symbol,
                      orderG,database->entry[i].discriminant,
                      database->entry[i].abbreviation);
@@ -129,7 +129,7 @@ matrix_TYP *q_class_inf (bravais_TYP *G,
 
   if (PRES){
     i = possible[0];
-     sprintf(filetmp, "%s/tables/qcatalog/dim%d/dir.%s/ordnung.%d/%s/pres.%s", get_data_dir(),
+     sprintf(filetmp, "%s/qcatalog/dim%d/dir.%s/ordnung.%d/%s/pres.%s", get_data_dir(),
                      G->dim,database->entry[i].symbol,
                      orderG,database->entry[i].discriminant,
                      database->entry[i].abbreviation);

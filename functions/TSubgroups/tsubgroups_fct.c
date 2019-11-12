@@ -125,7 +125,7 @@ TSubgroup_TYP **tsubgroup(bravais_TYP *R,
       aflag = TRUE;
       
    /* lade Datenbank */
-   sprintf(dbname, "%s/tables/qcatalog/data", get_data_dir());
+   sprintf(dbname, "%s/qcatalog/data", get_data_dir());
    database = load_database(dbname, P->dim);
 
 

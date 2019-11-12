@@ -1,4 +1,5 @@
 #include "typedef.h"
+#include "datei.h" // for setup_carat_location
 #include "getput.h"
 
 /**************************************************************************\
@@ -100,6 +101,7 @@ read_header (int argc, char *argv[])
            FILEANZ++;
      }
   }
+  setup_carat_location(argv[0]);
 } 
 
 

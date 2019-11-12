@@ -1,5 +1,5 @@
 AM_CFLAGS = -Wall -Wno-unused-result
-AM_CPPFLAGS = -I$(top_srcdir)/include $(GMP_CPPFLAGS)
+AM_CPPFLAGS = -I$(top_srcdir)/include $(GMP_CPPFLAGS) -DDATADIR="\"$(datadir)\""
 AM_LDFLAGS = $(GMP_LDFLAGS)
 LIBS += $(GMP_LIBS)
 
