@@ -11,12 +11,10 @@ change (int **v, int nv, int **T, int n)
 {
 	int	i, j, k, **w, *wi, *Ti, *vi, *vj, fac;
 
-	if ((w = (int**)malloc(nv * sizeof(int*))) == 0)
-		exit (2);
+	w = (int**)xmalloc(nv * sizeof(int*));
 	for (i = 0; i < nv; ++i)
 	{
-		if ((w[i] = (int*)malloc(n * sizeof(int))) == 0)
-			exit (2);
+		w[i] = (int*)xmalloc(n * sizeof(int));
 		wi = w[i];
 		for (j = 0; j < n; ++j)
 			wi[j] = 0;
@@ -57,20 +55,15 @@ lll (int **F, int **T, int dim)
 	double	**mu, *B;
 
 /* the weights */
-	if ((B = (double*)malloc(dim * sizeof(double))) == 0)
-		exit (2);
+	B = (double*)xmalloc(dim * sizeof(double));
 /* the model matrix */
-	if ((mu = (double**)malloc(dim * sizeof(double*))) == 0)
-		exit (2);
+	mu = (double**)xmalloc(dim * sizeof(double*));
 /* F is copied on gram and remains unchanged */
-	if ((gram = (int**)malloc(dim * sizeof(int*))) == 0)
-		exit (2);
+	gram = (int**)xmalloc(dim * sizeof(int*));
 	for (i = 0; i < dim; ++i)
 	{
-		if ((mu[i] = (double*)malloc(dim * sizeof(double))) == 0)
-			exit (2);
-		if ((gram[i] = (int*)malloc(dim * sizeof(int))) == 0)
-			exit (2);
+		mu[i] = (double*)xmalloc(dim * sizeof(double));
+		gram[i] = (int*)xmalloc(dim * sizeof(int));
 		for (j = 0; j < dim; ++j)
 		{
 			T[i][j] = 0;

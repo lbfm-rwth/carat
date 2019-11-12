@@ -37,24 +37,12 @@ hyperbolic_stabilizer (matrix_TYP *x, matrix_TYP *S)
   n = x->cols;
   xS = mat_mul(x, S);
   xS0 = solve_mat(xS);
-  if((Sred = (matrix_TYP **)malloc(1*sizeof(matrix_TYP *))) == NULL)
-  {
-     printf("malloc of 'Sred' in 'hyperbolic_stabilizer' failed\n");
-     exit(2);
-  }
+  Sred = (matrix_TYP **)xmalloc(1*sizeof(matrix_TYP *));
   Sred[0] = scal_pr(xS0, S, 1);
   G1 = pr_aut(Sred, 1, NULL, 0, NULL);
-  if((G = (bravais_TYP *)malloc(sizeof(bravais_TYP))) == NULL)
-  {
-     printf("malloc of 'G' in 'hyperbolic_stabilizer' failed\n");
-     exit(2);
-  }
+  G = (bravais_TYP *)xmalloc(sizeof(bravais_TYP));
   G->gen_no = G1->gen_no;
-  if((G->gen = (matrix_TYP **)malloc(G->gen_no *sizeof(matrix_TYP *))) == NULL)
-  {
-     printf("malloc of 'G->gen' in 'hyperbolic_stabilizer' failed\n");
-     exit(2);
-  }
+  G->gen = (matrix_TYP **)xmalloc(G->gen_no *sizeof(matrix_TYP *));
   G->zentr_no = G->form_no = G->normal_no = G->cen_no = 0;
   for(i=0;i<100;i++)
    G->divisors[i] = G1->divisors[i];

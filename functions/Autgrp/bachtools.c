@@ -25,8 +25,7 @@ bacher (bachpol *pol, int I, int S, veclist V, int **Fv)
 	dim = V.dim;
 	vI = V.v[I];
 /* list of vectors that have scalar product S with v[I] */
-	if ((list = (int*)malloc(2*V.n * sizeof(int))) == 0)
-		exit (2);
+	list = (int*)xmalloc(2*V.n * sizeof(int));
 	for (i = 0; i < 2*V.n; ++i)
 		list[i] = 0;
 	nlist = 0;
@@ -49,10 +48,8 @@ bacher (bachpol *pol, int I, int S, veclist V, int **Fv)
 	}
 /* there are nlist vectors that have scalar product S with v[I] */
 	pol->sum = nlist;
-	if ((counts = (int*)malloc(nlist * sizeof(int))) == 0)
-		exit (2);
-	if ((listxy = (int*)malloc(nlist * sizeof(int))) == 0)
-		exit (2);
+	counts = (int*)xmalloc(nlist * sizeof(int));
+	listxy = (int*)xmalloc(nlist * sizeof(int));
 	for (i = 0; i < nlist; ++i)
 	{
 /* listxy is the list of the nxy vectors from list that have scalar product S 
@@ -95,8 +92,7 @@ bacher (bachpol *pol, int I, int S, veclist V, int **Fv)
 		else if (counts[i] < pol->mind)
 			pol->mind = counts[i];
 	}
-	if ((pol->coef = (int*)malloc((pol->maxd - pol->mind + 1) * sizeof(int))) == 0)
-		exit (2);
+	pol->coef = (int*)xmalloc((pol->maxd - pol->mind + 1) * sizeof(int));
 	for (i = 0; i <= pol->maxd - pol->mind; ++i)
 		pol->coef[i] = 0;
 	for (i = 0; i < nlist; ++i)
@@ -120,12 +116,10 @@ bachcomp (bachpol pol, int I, int S, veclist V, int **Fv)
 	I = abs(I);
 	dim = V.dim;
 	vI = V.v[I];
-	if ((co = (int*)malloc((pol.maxd - pol.mind + 1) * sizeof(int))) == 0)
-		exit (2);
+	co = (int*)xmalloc((pol.maxd - pol.mind + 1) * sizeof(int));
 	for (i = 0; i <= pol.maxd-pol.mind; ++i)
 		co[i] = 0;
-	if ((list = (int*)malloc(pol.sum * sizeof(int))) == 0)
-		exit (2);
+	list = (int*)xmalloc(pol.sum * sizeof(int));
 	for (i = 0; i < pol.sum; ++i)
 		list[i] = 0;
 /* nlist should be equal to pol.sum */
@@ -158,8 +152,7 @@ bachcomp (bachpol pol, int I, int S, veclist V, int **Fv)
 	}
 /* listxy is the list of the nxy vectors from list that have scalar product S 
    with v[list[i]] */
-	if ((listxy = (int*)malloc(nlist * sizeof(int))) == 0)
-		exit (2);
+	listxy = (int*)xmalloc(nlist * sizeof(int));
 	for (i = 0; i < nlist; ++i)
 	{
 		for (j = 0; j < nlist; ++j)

@@ -43,11 +43,7 @@ konj_bravais (bravais_TYP *B, matrix_TYP *T)
    if(B->gen_no != 0)
    {
      G->gen_no = B->gen_no;
-     if( (G->gen = (matrix_TYP **)malloc(B->gen_no *sizeof(matrix_TYP *))) == NULL)
-     {
-        printf("malloc of 'G->gen' in 'konj_bravais' failed\n");
-        exit(2);
-     }
+     G->gen = (matrix_TYP **)xmalloc(B->gen_no *sizeof(matrix_TYP *));
      for(i=0;i<B->gen_no;i++)
      {
         waste = mat_mul(T, B->gen[i]);
@@ -60,11 +56,7 @@ konj_bravais (bravais_TYP *B, matrix_TYP *T)
    {
      Titr = tr_pose(Ti);
      G->form_no = B->form_no;
-     if( (G->form = (matrix_TYP **)malloc(B->form_no *sizeof(matrix_TYP *))) == NULL)
-     {
-        printf("malloc of 'G->form' in 'konj_bravais' failed\n");
-        exit(2);
-     }
+     G->form = (matrix_TYP **)xmalloc(B->form_no *sizeof(matrix_TYP *));
      for(i=0;i<B->form_no;i++)
      {
         waste = mat_mul(Titr, B->form[i]);
@@ -80,11 +72,7 @@ konj_bravais (bravais_TYP *B, matrix_TYP *T)
    if(B->zentr_no != 0)
    {
      G->zentr_no = B->zentr_no;
-     if( (G->zentr = (matrix_TYP **)malloc(B->zentr_no *sizeof(matrix_TYP *))) == NULL)
-     {
-        printf("malloc of 'G->zentr' in 'konj_bravais' failed\n");
-        exit(2);
-     }
+     G->zentr = (matrix_TYP **)xmalloc(B->zentr_no *sizeof(matrix_TYP *));
      for(i=0;i<B->zentr_no;i++)
      {
         waste = mat_mul(T, B->zentr[i]);
@@ -96,11 +84,7 @@ konj_bravais (bravais_TYP *B, matrix_TYP *T)
    if(B->normal_no != 0)
    {
      G->normal_no = B->normal_no;
-     if( (G->normal = (matrix_TYP **)malloc(B->normal_no *sizeof(matrix_TYP *))) == NULL)
-     {
-        printf("malloc of 'G->normal' in 'konj_bravais' failed\n");
-        exit(2);
-     }
+     G->normal = (matrix_TYP **)xmalloc(B->normal_no *sizeof(matrix_TYP *));
      for(i=0;i<B->normal_no;i++)
      {
         waste = mat_mul(T, B->normal[i]);
@@ -112,11 +96,7 @@ konj_bravais (bravais_TYP *B, matrix_TYP *T)
    if(B->cen_no != 0)
    {
      G->cen_no = B->cen_no;
-     if( (G->cen = (matrix_TYP **)malloc(B->cen_no *sizeof(matrix_TYP *))) == NULL)
-     {
-        printf("malloc of 'G->cen' in 'konj_bravais' failed\n");
-        exit(2);
-     }
+     G->cen = (matrix_TYP **)xmalloc(B->cen_no *sizeof(matrix_TYP *));
      for(i=0;i<B->cen_no;i++)
      {
         waste = mat_mul(T, B->cen[i]);

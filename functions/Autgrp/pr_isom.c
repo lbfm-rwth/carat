@@ -78,11 +78,7 @@ pr_isom (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP **Erz, int Erzan
   int i;
   int n, anz, max;
 
-  if((F = (matrix_TYP **) malloc(Fanz *sizeof(matrix_TYP *))) == NULL)
-  {
-    printf("malloc of 'F' in 'pr_isom' failed\n");
-    exit(2);
-  }
+  F = (matrix_TYP **) xmalloc(Fanz *sizeof(matrix_TYP *));
   n = F1[0]->cols;
   T = init_mat(n,n,"");
   for(i=0;i<n;i++)

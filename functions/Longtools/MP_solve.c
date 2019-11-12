@@ -41,34 +41,18 @@ MP_solve_mat (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols, int *X1cols
      MP_row_gauss(M, rows, cols);
    else
      MP_row_gauss_simultaneous(M, rows, cols, B, Bcols);
-   if((Mt = (MP_INT **)malloc(cols *sizeof(MP_INT *))) == 0)
-   {
-     printf("malloc of 'Mt' in 'MP_solve_mat' failed\n");
-     exit(2);
-   }
+   Mt = (MP_INT **)xmalloc(cols *sizeof(MP_INT *));
    for(i=0;i<cols;i++)
    {
-     if((Mt[i] = (MP_INT *)malloc(rows *sizeof(MP_INT))) == 0)
-     {
-       printf("malloc of 'Mt[%d]' in 'MP_solve_mat' failed\n", i);
-       exit(2);
-     }
+     Mt[i] = (MP_INT *)xmalloc(rows *sizeof(MP_INT));
    }
    for(i=0;i<rows;i++)
      for(j=0;j<cols;j++)
        mpz_init_set(&Mt[j][i], &M[i][j]);
-   if((Trf = (MP_INT **)malloc(cols *sizeof(MP_INT *))) == 0)
-   {
-     printf("malloc of 'Trf' in 'MP_solve_mat' failed\n");
-     exit(2);
-   }
+   Trf = (MP_INT **)xmalloc(cols *sizeof(MP_INT *));
    for(i=0;i<cols;i++)
    {
-     if((Trf[i] = (MP_INT *)malloc(cols *sizeof(MP_INT))) == 0)
-     {
-       printf("malloc of 'Trf[%d]' in 'MP_solve_mat' failed\n", i);
-       exit(2);
-     }
+     Trf[i] = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
      for(j=0;j<cols;j++)
         mpz_init(&Trf[i][j]);
      mpz_set_si(&Trf[i][i], 1);
@@ -82,11 +66,7 @@ MP_solve_mat (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols, int *X1cols
    dim = cols - rang;
    *X1cols = dim;
 
-   if((erg = (MP_INT ***)malloc(2 *sizeof(MP_INT **))) == 0)
-   {
-     printf("malloc of 'erg' in 'MP_solve_mat' failed\n");
-     exit(2);
-   }
+   erg = (MP_INT ***)xmalloc(2 *sizeof(MP_INT **));
 
    {
       /*********************************************************************\
@@ -99,19 +79,11 @@ MP_solve_mat (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols, int *X1cols
      }
      else
      {
-       if((erg[1] = (MP_INT  **)malloc(dim *sizeof(MP_INT *))) == 0)
-       {
-         printf("malloc of 'erg[1]' in 'MP_solve_mat' failed\n");
-         exit(2);
-       }
+       erg[1] = (MP_INT  **)xmalloc(dim *sizeof(MP_INT *));
 
        for(i=0;i<dim;i++)
        {
-         if((erg[1][i] = (MP_INT  *)malloc(cols *sizeof(MP_INT))) == 0)
-         {
-           printf("malloc of 'erg[1][%d]' in 'MP_solve_mat' failed\n", i);
-           exit(2);
-         }
+         erg[1][i] = (MP_INT  *)xmalloc(cols *sizeof(MP_INT));
        }
        for(i=0;i<dim;i++)
           for(j=0;j<cols;j++)
@@ -142,34 +114,18 @@ MP_solve_mat (MP_INT **M, int rows, int cols, MP_INT **B, int Bcols, int *X1cols
       | calculate a solution of the inhomogenous equation
       | Write this solution to erg[0]
       \*********************************************************************/
-      if ((erg[0] = (MP_INT **)malloc(cols *sizeof(MP_INT *))) == NULL)
-      {
-         printf("malloc of 'erg[0]' in 'MP_solve_mat' failed\n");
-         exit(2);
-       }
+      erg[0] = (MP_INT **)xmalloc(cols *sizeof(MP_INT *));
 
        for(i=0;i<cols;i++)
        {
-         if((erg[0][i] = (MP_INT  *)malloc(Bcols *sizeof(MP_INT))) == 0)
-         {
-           printf("malloc of 'erg[0][%d]' in 'MP_solve_mat' failed\n", i);
-           exit(2);
-         }
+         erg[0][i] = (MP_INT  *)xmalloc(Bcols *sizeof(MP_INT));
          for(j=0;j<Bcols;j++)
            mpz_init(&erg[0][i][j]);
        }
-      if ((Y = (MP_INT *)malloc(cols *sizeof(MP_INT))) == NULL)
-      {
-        printf("malloc of 'Y' in 'MP_solve_mat' failed\n");
-        exit(2);
-      }
+      Y = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
       for(i=0;i<cols;i++)
         mpz_init(&Y[i]);
-      if ((Z = (MP_INT *)malloc(cols *sizeof(MP_INT))) == NULL)
-      {
-        printf("malloc of 'Z' in 'MP_solve_mat' failed\n");
-        exit(2);
-      }
+      Z = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
       for(i=0;i<cols;i++)
         mpz_init(&Z[i]);
       mpz_init_set_si(&altkgv,1);

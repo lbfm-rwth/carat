@@ -35,16 +35,8 @@ int main(int argc, char *argv[])
         Fdim = G->form_no;
         S = trace_bifo(G->form, Gtr->form, Fdim);
         M = all_voronoi_neighbours(A, G, Gtr->form, S);
-        if( (av = (int *)malloc(Fdim *sizeof(int))) == NULL)
-        {
-          printf("malloc of av in main programm failed\n");
-          exit(2);
-        }
-        if( (pv = (int *)malloc(Fdim *sizeof(int))) == NULL)
-        {
-          printf("malloc of pv in main programm failed\n");
-          exit(2);
-        }
+        av = (int *)xmalloc(Fdim *sizeof(int));
+        pv = (int *)xmalloc(Fdim *sizeof(int));
         form_to_vec(av, A, G->form, Fdim, &i);
         printf("#%d\n", M->rows);
         for(i=0;i<M->rows;i++)

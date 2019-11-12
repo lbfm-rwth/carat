@@ -13,8 +13,7 @@ operate (int nr, int **A, veclist V)
 {
 	int	i, im, *w;
 
-	if ((w = (int*)malloc(V.dim * sizeof(int))) == 0)
-		exit (2);
+	w = (int*)xmalloc(V.dim * sizeof(int));
 	vecmatmul(V.v[abs(nr)], A, V.dim, w);
 	if (nr < 0)
 	{
@@ -44,11 +43,9 @@ orbit (int *pt, int npt, int ***G, int nG, veclist V, int **orb)
 {
 	int	i, norb, cnd, im, *flag;
 
-	if ((*orb = (int*)malloc(npt * sizeof(int))) == 0)
-		exit (2);
+	*orb = (int*)xmalloc(npt * sizeof(int));
 /* if flag[i + V.n] = 1, then the point i is already in the orbit */
-	if ((flag = (int*)malloc((2*V.n + 1) * sizeof(int))) == 0)
-		exit (2);
+	flag = (int*)xmalloc((2*V.n + 1) * sizeof(int));
 	for (i = 0; i <= 2*V.n; ++i)
 		flag[i] = 0;
 	for (i = 0; i < npt; ++i)
@@ -87,11 +84,9 @@ orbitlen (int pt, int orblen, int ***G, int nG, veclist V)
 {
 	int	i, len, cnd, im, *orb, *flag;
 
-	if ((orb = (int*)malloc(orblen * sizeof(int))) == 0)
-		exit(2);
+	orb = (int*)xmalloc(orblen * sizeof(int));
 /* if flag[i + V.n] = 1, then the point i is already in the orbit */
-	if ((flag = (int*)malloc((2*V.n + 1) * sizeof(int))) == 0)
-		exit(2);
+	flag = (int*)xmalloc((2*V.n + 1) * sizeof(int));
 	for (i = 0; i <= 2*V.n; ++i)
 		flag[i] = 0;
 	orb[0] = pt;
@@ -196,10 +191,8 @@ stab (int I, group *G, fpstruct fp, veclist V)
 	for (i = I; i < dim; ++i)
 		nH += G->ng[i];
 /* H are the generators of the group in which the stabilizer is computed */
-	if ((H = (int***)malloc(nH * sizeof(int**))) == 0)
-		exit (2);
-	if ((Hj = (int***)malloc((nH+1) * sizeof(int**))) == 0)
-		exit (2);
+	H = (int***)xmalloc(nH * sizeof(int**));
+	Hj = (int***)xmalloc((nH+1) * sizeof(int**));
 	k = 0;
 	for (i = I; i < dim; ++i)
 	{
@@ -210,30 +203,24 @@ stab (int I, group *G, fpstruct fp, veclist V)
 		}
 	}
 /* in w[V.n+i] an element is stored that maps fp.e[I] on v[i] */
-	if ((w = (int**)malloc((2*V.n+1) * sizeof(int*))) == 0)
-		exit (2);
+	w = (int**)xmalloc((2*V.n+1) * sizeof(int*));
 /* orb contains the orbit of fp.e[I] */
-	if ((orb = (int*)malloc(2*V.n * sizeof(int))) == 0)
-		exit (2);
+	orb = (int*)xmalloc(2*V.n * sizeof(int));
 	for (i = 0; i < 2*V.n; ++i)
 		orb[i] = 0;
 /* if flag[i + V.n] = 1, then the point i is already in the orbit */
-	if ((flag = (int*)malloc((2*V.n+1) * sizeof(int))) == 0)
-		exit (2);
+	flag = (int*)xmalloc((2*V.n+1) * sizeof(int));
 	for (i = 0; i <= 2*V.n; ++i)
 		flag[i] = 0;
 /* S is a matrix to hold a stabilizer element temporarily */
-	if ((S = (int**)malloc(dim * sizeof(int*))) == 0)
-		exit (2);
+	S = (int**)xmalloc(dim * sizeof(int*));
 	for (i = 0; i < dim; ++i)
 	{
-		if ((S[i] = (int*)malloc(dim * sizeof(int))) == 0)
-			exit (2);
+		S[i] = (int*)xmalloc(dim * sizeof(int));
 	}
 	orb[0] = fp.e[I];
 	flag[orb[0]+V.n] = 1;
-	if ((w[orb[0]+V.n] = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	w[orb[0]+V.n] = (int*)xmalloc(dim * sizeof(int));
 	for (i = 0; i < dim; ++i)
 		w[orb[0]+V.n][i] = fp.e[i];
 	cnd = 0;
@@ -263,8 +250,7 @@ stab (int I, group *G, fpstruct fp, veclist V)
 			{
 				orb[len] = im;
 				flag[im+V.n] = 1;
-				if ((w[im+V.n] = (int*)malloc(dim * sizeof(int))) == 0)
-					exit (2);
+				w[im+V.n] = (int*)xmalloc(dim * sizeof(int));
 				for (j = 0; j < dim; ++j)
 					w[im+V.n][j] = operate(w[orb[cnd]+V.n][j], H[i], V);
 				++len;
@@ -298,12 +284,10 @@ stab (int I, group *G, fpstruct fp, veclist V)
 						++G->nsg[j];
 /* allocate memory for the new generator */
 						G->g[j] = (int***)xrealloc(G->g[j], G->ng[j] * sizeof(int**));
-						if ((G->g[j][G->ng[j]-1] = (int**)malloc(dim * sizeof(int*))) == 0)
-							exit (2);
+						G->g[j][G->ng[j]-1] = (int**)xmalloc(dim * sizeof(int*));
 						for (k = 0; k < dim; ++k)
 						{
-							if ((G->g[j][G->ng[j]-1][k] = (int*)malloc(dim * sizeof(int))) == 0)
-								exit (2);
+							G->g[j][G->ng[j]-1][k] = (int*)xmalloc(dim * sizeof(int));
 						}
 						Ggj = G->g[j];
 /* the new generator is inserted as stabilizer element nr. nsg[j]-1 */
@@ -394,19 +378,14 @@ stabil (int **S, int *x1, int *x2, int *per, int **G, veclist V)
 	int	i, dim, *x, **XG, **X2;
 
 	dim = V.dim;
-	if ((XG = (int**)malloc(dim * sizeof(int*))) == 0)
-		exit (2);
-	if ((X2 = (int**)malloc(dim * sizeof(int*))) == 0)
-		exit (2);
+	XG = (int**)xmalloc(dim * sizeof(int*));
+	X2 = (int**)xmalloc(dim * sizeof(int*));
 	for (i = 0; i < dim; ++i)
 	{
-		if ((XG[i] = (int*)malloc(dim * sizeof(int))) == 0)
-			exit (2);
-		if ((X2[i] = (int*)malloc(dim * sizeof(int))) == 0)
-			exit (2);
+		XG[i] = (int*)xmalloc(dim * sizeof(int));
+		X2[i] = (int*)xmalloc(dim * sizeof(int));
 	}
-	if ((x = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	x = (int*)xmalloc(dim * sizeof(int));
 	for (i = 0; i < dim; ++i)
 		x[i] = operate(x1[i], G, V);
 /* XG is the composite mapping of the matrix corresponding to x1 and G */

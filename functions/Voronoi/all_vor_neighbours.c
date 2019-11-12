@@ -65,21 +65,9 @@ all_voronoi_neighbours (matrix_TYP *P, bravais_TYP *G, matrix_TYP **Ftr, matrix_
   \**********************************************************************/
   V = voronoi_vertices(P, G, &Vanz, &Pmin, &i);
   Wanz = Vanz;
-  if( (W = (wall_TYP **)malloc(Wanz *sizeof(wall_TYP *))) == NULL)
-  {
-     printf("malloc of W failed in all_perfect_neighbours\n");
-     exit(2);
-  }
-  if( (ww = (int *)malloc(Fdim *sizeof(int))) == NULL)
-  {
-     printf("malloc of ww failed in all_perfect_neighbours\n");
-     exit(2);
-  }
-  if( (pw = (int *)malloc(Fdim *sizeof(int))) == NULL)
-  {
-     printf("malloc of pw failed in all_perfect_neighbours\n");
-     exit(2);
-  }
+  W = (wall_TYP **)xmalloc(Wanz *sizeof(wall_TYP *));
+  ww = (int *)xmalloc(Fdim *sizeof(int));
+  pw = (int *)xmalloc(Fdim *sizeof(int));
   for(i=0;i<Vanz;i++)
   {
     W[i] = init_wall(Fdim);

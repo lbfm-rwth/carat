@@ -114,11 +114,7 @@ static void
 matrix_speichern (matrix_TYP *mat, matrix_TYP ***L, int *listsize, int *anz)
 {
    if((*anz) == 0)
-      if ((*L=(matrix_TYP **)malloc((*listsize)*sizeof(matrix_TYP *)))==NULL)
-      {
-         fprintf (stderr, "malloc failed\n");
-         exit (2);
-      }
+      *L=(matrix_TYP **)xmalloc((*listsize)*sizeof(matrix_TYP *));
    if ((*anz) >= (*listsize))
    {
      *listsize += EXT_SIZE;

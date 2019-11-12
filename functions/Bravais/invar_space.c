@@ -79,11 +79,7 @@ invar_space (matrix_TYP **B, int Banz, int fodim, int symm_opt, int epsilon, int
   
    if(fodim == 1)
    {
-     if( (erg = (matrix_TYP **)malloc(1 *sizeof(matrix_TYP *))) == NULL)
-     {
-       printf("malloc of 'erg' in 'invar_space' failed\n");
-       exit(2);
-     }
+     erg = (matrix_TYP **)xmalloc(1 *sizeof(matrix_TYP *));
      erg[0] = init_mat(dim,dim,"");
      startmat = init_mat(dim,dim,"");
      if(symm_opt == -1 && dim > 1)
@@ -184,11 +180,7 @@ invar_space (matrix_TYP **B, int Banz, int fodim, int symm_opt, int epsilon, int
    ff = pm1->rows;
 
    *anz = ff;
-   if( (erg = (matrix_TYP **)malloc(ff *sizeof(matrix_TYP *))) == NULL)
-   {
-     printf("malloc of 'erg' in 'invar_space' failed\n");
-     exit(2);
-   }
+   erg = (matrix_TYP **)xmalloc(ff *sizeof(matrix_TYP *));
    for(i=0; i<ff;i++)
    {
       erg[i] = init_mat(dim,dim,"");

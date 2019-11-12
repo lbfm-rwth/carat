@@ -50,18 +50,10 @@ p_lse_solve (matrix_TYP *A, matrix_TYP *B, int *anz, int p)
   if(p == 2)
     mphalbe = 0;
   n = A->rows, m = A->cols;
-  if( (C = (int **)malloc(n *sizeof(int *))) == 0)
-  {
-     printf("malloc of C in 'p_lse_solve' failed\n");
-     exit(2);
-  }
+  C = (int **)xmalloc(n *sizeof(int *));
   for(i=0;i<n;i++)
   {
-    if( (C[i] = (int *)malloc(m *sizeof(int))) == 0)
-    {
-       printf("malloc of C[%d] in 'p_lse_solve' failed\n", i);
-       exit(2);
-    }
+    C[i] = (int *)xmalloc(m *sizeof(int));
     for(j=0;j<m;j++)
       C[i][j] = A->array.SZ[i][j];
   }
@@ -75,18 +67,10 @@ p_lse_solve (matrix_TYP *A, matrix_TYP *B, int *anz, int p)
   {
      inhomo = TRUE;
      r = B->cols;
-     if( (D = (int **)malloc(n *sizeof(int *))) == 0)
-     {
-        printf("malloc of D in 'p_lse_solve' failed\n");
-        exit(2);
-     }
+     D = (int **)xmalloc(n *sizeof(int *));
      for(i=0;i<n;i++)
      {
-       if( (D[i] = (int *)malloc(r *sizeof(int))) == 0)
-       {
-          printf("malloc of D[%d] in 'p_lse_solve' failed\n", i);
-          exit(2);
-       }
+       D[i] = (int *)xmalloc(r *sizeof(int));
        for(j=0;j<r;j++)
          D[i][j] = B->array.SZ[i][j];
      }
@@ -261,22 +245,14 @@ p_lse_solve (matrix_TYP *A, matrix_TYP *B, int *anz, int p)
   }
   Xsize = m-rang+1;
   *anz = Xsize;
-  if((X = (matrix_TYP **)malloc(Xsize *sizeof(matrix_TYP *))) == 0)
-  {
-      printf("malloc of X in 'p_lse_solve' failed\n");
-      exit(2);
-  }
+  X = (matrix_TYP **)xmalloc(Xsize *sizeof(matrix_TYP *));
 
   /*******************************************************************\
   | pos[i] is the index j such that C[i][j] is the first nonzero
   | entry in the i-th row of C
   \*******************************************************************/
   pos = NULL;
-  if((pos = (int *)malloc((rang+2) *sizeof(int))) == 0)
-  {
-    printf("malloc of 'pos' in 'p_lse_solve' failed\n");
-    exit(2);
-  }
+  pos = (int *)xmalloc((rang+2) *sizeof(int));
 
   /* inserted tilman 11/4/97 */
   pos++; pos[-1] = -1;

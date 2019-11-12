@@ -229,37 +229,21 @@ orbit_subdivision (matrix_TYP *vecs, bravais_TYP *G, int *orbit_no)
 	V.dim = dim;
         V.len = vecs->cols;
         V.n = vecs->rows;
-	if ((orb = (int*)malloc(V.n * sizeof(int))) == 0)
-		exit (2);
-	if ((flag = (int*)malloc((V.n + 1) * sizeof(int))) == 0)
-		exit (2);
+	orb = (int*)xmalloc(V.n * sizeof(int));
+	flag = (int*)xmalloc((V.n + 1) * sizeof(int));
 	for (i = 0; i <= V.n; ++i)
 		flag[i] = 0;
-	if ((st_w = (int*)malloc(V.dim * sizeof(int))) == 0)
-		exit (2);
-	if ((V.v = (int**)malloc(((V.n)+1) * sizeof(int*))) == 0)
-		exit (2);
+	st_w = (int*)xmalloc(V.dim * sizeof(int));
+	V.v = (int**)xmalloc(((V.n)+1) * sizeof(int*));
         for(i=0;i<V.n;i++)
           V.v[i+1] = vecs->array.SZ[i];
-        if( (grp = (int ***)malloc(nG *sizeof(int **))) == NULL)
-        {
-          printf("malloc of 'grp' in 'orbit_subdivision' failed\n");
-          exit(2);
-        }
+        grp = (int ***)xmalloc(nG *sizeof(int **));
         for(i=0;i<nG;i++)
         {
-          if( (grp[i] = (int **)malloc(dim *sizeof(int *))) == NULL)
-          {
-            printf("malloc of 'grp[%d]' in 'orbit_subdivision' failed\n",i);
-            exit(2);
-          }
+          grp[i] = (int **)xmalloc(dim *sizeof(int *));
           for(j=0;j<dim;j++)
           {
-            if( (grp[i][j] = (int *)malloc(dim *sizeof(int))) == NULL)
-            {
-              printf("malloc of 'grp[%d][%d]' in 'orbit_subdivision' failed\n", i, j);
-              exit(2);
-            }
+            grp[i][j] = (int *)xmalloc(dim *sizeof(int));
             for(k=0;k<dim;k++)
               grp[i][j][k] = G->gen[i]->array.SZ[k][j];
           }

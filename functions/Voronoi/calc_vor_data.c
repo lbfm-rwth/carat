@@ -64,11 +64,7 @@ calc_voronoi_basics (voronoi_TYP *V, bravais_TYP *G, bravais_TYP *Gtr, int prime
      free(V->vert);
   }
   V->vert_no = anz;
-  if( (V->vert = (wall_TYP **)malloc(anz *sizeof(wall_TYP *))) == NULL)
-  {
-    printf("malloc of 'V->vert' in 'calc_voronoi_data1' failed\n");
-    exit(2);
-  }
+  V->vert = (wall_TYP **)xmalloc(anz *sizeof(wall_TYP *));
   for(i=0; i<anz;i++)
   {
     V->vert[i] = init_wall(G->form_no);
@@ -118,11 +114,7 @@ calc_voronoi_pol (voronoi_TYP *V, matrix_TYP *bifo)
 
    fdim = bifo->cols;
   
-   if( (W = (wall_TYP **)malloc(V->vert_no *sizeof(wall_TYP *))) == NULL)
-   {
-     printf("malloc of 'W' in 'calc_voronoi_full' failed\n");
-     exit(2);
-   }
+   W = (wall_TYP **)xmalloc(V->vert_no *sizeof(wall_TYP *));
    for(i=0;i<V->vert_no;i++)
    {
        W[i] = init_wall(fdim);
@@ -320,11 +312,7 @@ calc_voronoi_stab (voronoi_TYP *V, bravais_TYP *G, bravais_TYP *Gtr, matrix_TYP 
      printf("error in 'calc_voronoi_stab': form not G-perfect\n");
      exit(3);
    }
-   if( (bas = (matrix_TYP **)malloc(fdim *sizeof(matrix_TYP *))) == NULL)
-   {
-      printf("malloc of 'bas' in 'calc_voronoi_stab' failed\n");
-      exit(2);
-   }
+   bas = (matrix_TYP **)xmalloc(fdim *sizeof(matrix_TYP *));
    for(i=0;i<fdim;i++)
      bas[i] = vec_to_form(M1->array.SZ[i], V->Gtrred->form, fdim);
    free_mat(M1);
@@ -332,11 +320,7 @@ calc_voronoi_stab (voronoi_TYP *V, bravais_TYP *G, bravais_TYP *Gtr, matrix_TYP 
    /*******************************************************************\
    | calculate 'W', the symmetric matrices given by the vertices in V->vert
    \*******************************************************************/
-   if( (W = (matrix_TYP **) malloc(Vanz *sizeof(matrix_TYP *))) == NULL)
-   {
-     printf("malloc of 'W' in 'calc_voronoi_stab' failed\n");
-     exit(2);
-   }
+   W = (matrix_TYP **) xmalloc(Vanz *sizeof(matrix_TYP *));
    for(i=0;i<Vanz;i++)
      W[i] = vec_to_form(V->vert[i]->gl, V->Gtrred->form, fdim);
 
@@ -353,11 +337,7 @@ calc_voronoi_stab (voronoi_TYP *V, bravais_TYP *G, bravais_TYP *Gtr, matrix_TYP 
 
    V->stab = init_bravais(dim);
    V->stab->gen_no = S->gen_no;
-   if( (V->stab->gen = (matrix_TYP **)malloc(S->gen_no *sizeof(matrix_TYP *))) == NULL)
-   {
-     printf("malloc of 'V->stab->gen' in 'cal_voronoi_stab' failed\n");
-     exit(2);
-   }
+   V->stab->gen = (matrix_TYP **)xmalloc(S->gen_no *sizeof(matrix_TYP *));
    for(i=0;i<S->gen_no;i++)
    {
      M = tr_pose(S->gen[i]);
@@ -370,11 +350,7 @@ calc_voronoi_stab (voronoi_TYP *V, bravais_TYP *G, bravais_TYP *Gtr, matrix_TYP 
     V->stab->divisors[i] = S->divisors[i];
    free_bravais(S);
    V->linstab = init_bravais(fdim);
-   if( (V->linstab->gen = (matrix_TYP **)malloc(V->stab->gen_no *sizeof(matrix_TYP *))) == NULL)
-   {
-     printf("malloc of 'V->linstab->gen' in 'calc_voronoi_stab' failed\n");
-     exit(2);
-   }
+   V->linstab->gen = (matrix_TYP **)xmalloc(V->stab->gen_no *sizeof(matrix_TYP *));
    V->linstab->gen_no = V->stab->gen_no;
    for(i=0;i<V->stab->gen_no;i++)
      V->linstab->gen[i] = normlin(G->form, V->stab->gen[i], fdim);
@@ -480,11 +456,7 @@ calc_voronoi_isometry (voronoi_TYP *V1, voronoi_TYP *V2, bravais_TYP *G, bravais
      printf("error in 'calc_voronoi_stab': form not G-perfect\n");
      exit(3);
    }
-   if( (bas = (matrix_TYP **)malloc(fdim *sizeof(matrix_TYP *))) == NULL)
-   {
-      printf("malloc of 'bas' in 'calc_voronoi_stab' failed\n");
-      exit(2);
-   }
+   bas = (matrix_TYP **)xmalloc(fdim *sizeof(matrix_TYP *));
    for(i=0;i<fdim;i++)
      bas[i] = vec_to_form(M1->array.SZ[i], Vn2->Gtrred->form, fdim);
    free_mat(M1);
@@ -493,11 +465,7 @@ calc_voronoi_isometry (voronoi_TYP *V1, voronoi_TYP *V2, bravais_TYP *G, bravais
    | calculate 'W', the symmetric matrices given by the vertices
    | in Vn1->vert
    \*******************************************************************/
-   if( (W = (matrix_TYP **) malloc(Vanz *sizeof(matrix_TYP *))) == NULL)
-   {
-     printf("malloc of 'W' in 'calc_voronoi_stab' failed\n");
-     exit(2);
-   }
+   W = (matrix_TYP **) xmalloc(Vanz *sizeof(matrix_TYP *));
    for(i=0;i<Vanz;i++)
      W[i] = vec_to_form(Vn1->vert[i]->gl, Vn1->Gtrred->form, fdim);
 
@@ -586,11 +554,7 @@ calc_voronoi_dir_reps (voronoi_TYP *V, bravais_TYP *G, bravais_TYP *Gtr, matrix_
      calc_voronoi_stab(V, G, Gtr, bifo);
    if(V->pol == NULL)
      calc_voronoi_pol(V, bifo);
-   if( (M = (matrix_TYP **) malloc(V->pol->vert_no *sizeof(matrix_TYP *))) == NULL)
-   {
-      printf("malloc of 'M' in 'calc_voronoi_dir_reps' failed\n");
-      exit(2);
-   }
+   M = (matrix_TYP **) xmalloc(V->pol->vert_no *sizeof(matrix_TYP *));
    for(i=0;i<V->pol->vert_no;i++)
    {
      M[i] = init_mat(1, fdim, "");

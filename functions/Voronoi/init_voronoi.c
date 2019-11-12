@@ -32,11 +32,7 @@ init_voronoi (void)
 {
   voronoi_TYP *V;
 
-  if( (V = (voronoi_TYP *)malloc(sizeof(voronoi_TYP))) == NULL)
-  {
-    printf("malloc of 'V' in 'init_voronoi' failed\n");
-    exit(2);
-  }
+  V = (voronoi_TYP *)xmalloc(sizeof(voronoi_TYP));
   V->gram = NULL;
   V->SV_no = 0;
   V->min = 0;

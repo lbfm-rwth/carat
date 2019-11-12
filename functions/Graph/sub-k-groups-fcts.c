@@ -53,11 +53,7 @@ static bravais_TYP *my_konj_bravais(bravais_TYP *B,
    if(B->gen_no != 0)
    {
      G->gen_no = B->gen_no;
-     if( (G->gen = (matrix_TYP **)malloc(B->gen_no *sizeof(matrix_TYP *))) == NULL)
-     {
-        printf("malloc of 'G->gen' in 'konj_bravais' failed\n");
-        exit(2);
-     }
+     G->gen = (matrix_TYP **)xmalloc(B->gen_no *sizeof(matrix_TYP *));
      for(i=0;i<B->gen_no;i++)
      {
         waste = mat_mul(T, B->gen[i]);

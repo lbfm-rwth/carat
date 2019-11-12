@@ -80,8 +80,7 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
      flags.GEN = 0;
 /* F.n is the number of invariant forms */
 	F.n = Foanz;
-	if ((F.A = (int***)malloc(F.n * sizeof(int**))) == 0)
-		exit (2);
+	F.A = (int***)xmalloc(F.n * sizeof(int**));
 /* read the invariant forms */
         F.dim = Fo[0]->cols;
 	dim = F.dim;
@@ -95,12 +94,10 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
         }
         for(i=0;i<F.n;i++)
         {
-	  if ((F.A[i] = (int**)malloc(dim * sizeof(int*))) == 0)
-		exit (2);
+	  F.A[i] = (int**)xmalloc(dim * sizeof(int*));
           for(j=0;j<F.dim;j++)
           {
-	    if ((F.A[i][j] = (int*)malloc(dim * sizeof(int))) == 0)
-		  exit (2);
+	    F.A[i][j] = (int*)xmalloc(dim * sizeof(int));
             for(k=0;k<F.dim;k++)
               F.A[i][j][k] = Fo[i]->array.SZ[j][k];
           }
@@ -109,8 +106,7 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 /* some automorphisms are already known */
 	{
 		ngen = Erzanz;
-		if ((H = (int***)malloc(ngen * sizeof(int**))) == 0)
-			exit (2);
+		H = (int***)xmalloc(ngen * sizeof(int**));
 		nH = 0;
 		fail = 0;
                 for(i=0;i<ngen;i++)
@@ -124,12 +120,10 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
                 i = 0;
 		while (nH+fail < ngen)
 		{
-		    if ((H[nH] = (int**)malloc(dim * sizeof(int*))) == 0)
-			exit (2);
+		    H[nH] = (int**)xmalloc(dim * sizeof(int*));
                     for(j=0;j<dim;j++)
                     {
-		      if ((H[nH][j] = (int*)malloc(dim * sizeof(int))) == 0)
-		  	exit (2);
+		      H[nH][j] = (int*)xmalloc(dim * sizeof(int));
                       for(k=0;k<dim;k++)
                         H[nH][j][k] = Erz[i]->array.SZ[j][k];
                     }
@@ -157,12 +151,10 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 	V.len = dim + F.n;
 /* get the short vectors */
         V.n = SV->rows;
-        if ((V.v = (int**)malloc((V.n+1) * sizeof(int*))) == 0)
-			exit (2);
+        V.v = (int**)xmalloc((V.n+1) * sizeof(int*));
         for(i=0;i<=V.n;i++)
         {
-          if ((V.v[i] = (int*)malloc(V.len * sizeof(int))) == 0)
-			exit (2);
+          V.v[i] = (int*)xmalloc(V.len * sizeof(int));
         }
         for(i=1;i<= V.n;i++)
         {
@@ -202,16 +194,14 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 /* the norm-vector (i.e. the vector of the norms with respect to the different
    invariant forms) of each vector must be equal to the norm-vector of one
    of the vectors from the standard-base */
-	if ((norm.v = (int**)malloc((dim+1) * sizeof(int*))) == 0)
-		exit (2);
+	norm.v = (int**)xmalloc((dim+1) * sizeof(int*));
 	norm.n = dim;
 	norm.dim = F.n;
 	norm.len = F.n;
 	for (i = 1; i <= norm.n; ++i)
 	{
 /* norm.v[i] is the norm combination of the (i-1)-th base-vector */
-		if ((norm.v[i] = (int*)malloc(norm.dim * sizeof(int))) == 0)
-			exit (2);
+		norm.v[i] = (int*)xmalloc(norm.dim * sizeof(int));
 		for (k = 0; k < norm.dim; ++k)
 			norm.v[i][k] = F.A[k][i-1][i-1];
 	}
@@ -232,22 +222,19 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
    transposed of the vector v[j], hence the scalar product of v[j] and v[k] with
    respect to the Gram-matrix F.A[i] can be computed as standard scalar product
    of v[j] and F.v[i][k] */
-	if ((F.v = (int***)malloc(F.n * sizeof(int**))) == 0)
-		exit (2);
+	F.v = (int***)xmalloc(F.n * sizeof(int**));
 /* the product of the maximal entry in the short vectors with the maximal entry
    in F.v[i] should not exceed MAXNORM to avoid overflow */
 	max = MAXNORM / max;
 	for (i = 0; i < F.n; ++i)
 	{
 		FAi = F.A[i];
-		if ((F.v[i] = (int**)malloc((V.n+1) * sizeof(int*))) == 0)
-			exit (2);
+		F.v[i] = (int**)xmalloc((V.n+1) * sizeof(int*));
 		Fvi = F.v[i];
 		for (j = 1; j <= V.n; ++j)
 		{
 			Vvj = V.v[j];
-			if ((Fvi[j] = (int*)malloc(dim * sizeof(int))) == 0)
-				exit (2);
+			Fvi[j] = (int*)xmalloc(dim * sizeof(int));
 			Fvij = Fvi[j];
 			for (k = 0; k < dim; ++k)
 			{
@@ -262,17 +249,14 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 		}
 	}
 /* fp.per is the order in which the images of the base-vectors are set */
-	if ((fp.per = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	fp.per = (int*)xmalloc(dim * sizeof(int));
 /* fp.e[i] is the index in V.v of the i-th vector of the standard-base in the 
    new order */
-	if ((fp.e = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	fp.e = (int*)xmalloc(dim * sizeof(int));
 /* fp.diag is the diagonal of the fingerprint in the new order, fp.diag[i] is
    an upper bound for the length of the orbit of the i-th base-vector under
    the stabilizer of the preceding ones */
-	if ((fp.diag = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	fp.diag = (int*)xmalloc(dim * sizeof(int));
 /* compute the fingerprint */
 	fingerprint(&fp, F, V);
 	if (flags.PRINT == 1)
@@ -288,8 +272,7 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 		fclose(outfile);
 	}
 /* get the standard basis in the new order */
-	if ((vec = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	vec = (int*)xmalloc(dim * sizeof(int));
 	for (i = 0; i < dim; ++i)
 	{
 		for (j = 0; j < dim; ++j)
@@ -309,8 +292,7 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
    corresponding vector sums are computed for the standard-basis */
 	if (flags.DEPTH > 0)
 	{
-		if ((comb = (scpcomb*)malloc(dim * sizeof(scpcomb))) == 0)
-			exit (2);
+		comb = (scpcomb*)xmalloc(dim * sizeof(scpcomb));
 		for (i = 0; i < dim; ++i)
 		{
 /* compute the list of scalar product combinations and the corresponding
@@ -345,8 +327,7 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
    to 1/2 the norm of the base-vector (with respect to the first form) */
 	if (flags.BACH[0] == 1)
 	{
-		if ((bach = (bachpol*)malloc(flags.BACHDEP * sizeof(bachpol))) == 0)
-			exit (2);
+		bach = (bachpol*)xmalloc(flags.BACHDEP * sizeof(bachpol));
 		for (i = 0; i < flags.BACHDEP; ++i)
 		{
 			if (flags.BACH[2] == 0)
@@ -366,34 +347,27 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 	}
 /* set up the group: the generators in G.g[i] are matrices that fix the
    first i base-vectors but do not fix fp.e[i] */
-	if ((G.g = (int****)malloc(dim * sizeof(int***))) == 0)
-		exit (2);
+	G.g = (int****)xmalloc(dim * sizeof(int***));
 /* G.ng is the number of generators in G.g[i] */
-	if ((G.ng = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	G.ng = (int*)xmalloc(dim * sizeof(int));
 /* the first G.nsg[i] generators in G.g[i] are obtained as stabilizer elements
    and are not necessary to generate the group */
-	if ((G.nsg = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	G.nsg = (int*)xmalloc(dim * sizeof(int));
 /* G.ord[i] is the orbit length of fp.e[i] under the generators in 
    G.g[i] ... G.g[dim-1] */
-	if ((G.ord = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	G.ord = (int*)xmalloc(dim * sizeof(int));
 	for (i = 0; i < dim; ++i)
 	{
-		if ((G.g[i] = (int***)malloc(1 * sizeof(int**))) == 0)
-			exit (2);
+		G.g[i] = (int***)xmalloc(1 * sizeof(int**));
 		G.ng[i] = 0;
 		G.nsg[i] = 0;
 	}
 	G.dim = dim;
-	if ((G.g[0][0] = (int**)malloc(dim * sizeof(int*))) == 0)
-		exit (2);
+	G.g[0][0] = (int**)xmalloc(dim * sizeof(int*));
 /* -Id is always an automorphism */
 	for (i = 0; i < dim; ++i)
 	{
-		if ((G.g[0][0][i] = (int*)malloc(dim * sizeof(int))) == 0)
-			exit (2);
+		G.g[0][0][i] = (int*)xmalloc(dim * sizeof(int));
 		for (j = 0; j < dim; ++j)
 			G.g[0][0][i][j] = 0;
 		G.g[0][0][i][i] = -1;
@@ -408,12 +382,10 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 		{
 			++G.ng[j];
 			G.g[j] = (int***)xrealloc(G.g[j], G.ng[j] * sizeof(int**));
-			if ((G.g[j][G.ng[j]-1] = (int**)malloc(dim * sizeof(int*))) == 0)
-				exit (2);
+			G.g[j][G.ng[j]-1] = (int**)xmalloc(dim * sizeof(int*));
 			for (k = 0; k < dim; ++k)
 			{
-				if ((G.g[j][G.ng[j]-1][k] = (int*)malloc(dim * sizeof(int))) == 0)
-					exit (2);
+				G.g[j][G.ng[j]-1][k] = (int*)xmalloc(dim * sizeof(int));
 				for (l = 0; l < dim; ++l)
 					G.g[j][G.ng[j]-1][k][l] = H[i][k][l];
 			}
@@ -427,8 +399,7 @@ autgrp (matrix_TYP **Fo, int Foanz, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 	nH = 0;
 	for (i = 0; i < dim; ++i)
 		nH += G.ng[i];
-	if ((H = (int***)malloc(nH * sizeof(int**))) == 0)
-		exit (2);
+	H = (int***)xmalloc(nH * sizeof(int**));
 /* calculate the orbit lengths under the automorphisms known so far */
 	for (i = 0; i < dim; ++i)
 	{
@@ -557,47 +528,23 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 
         normal_option = TRUE;
         perp_no = Panz;
-        if((perp = (int ***)malloc(perp_no *sizeof(int **))) == 0)
-        {
-           printf("malloc of 'perp' in 'perfect_normalizer' failed\n");
-           exit(2);
-        }
+        perp = (int ***)xmalloc(perp_no *sizeof(int **));
         for(i=0;i<perp_no;i++)
           perp[i] = P[i]->array.SZ;
         perpdim = Pdim;
-        if((perpbase = (int ***)malloc(perpdim *sizeof(int **))) == 0)
-        {
-           printf("malloc of 'perpbase' in 'perfect_normalizer' failed\n");
-           exit(2);
-        }
+        perpbase = (int ***)xmalloc(perpdim *sizeof(int **));
         for(i=0;i<perpdim;i++)
           perpbase[i] = Pbase[i]->array.SZ;
-        if((perpprod = (int ***)malloc(perpdim *sizeof(int **))) == 0)
-        {
-           printf("malloc of 'perpprod' in 'perfect_normalizer' failed\n");
-           exit(2);
-        }
+        perpprod = (int ***)xmalloc(perpdim *sizeof(int **));
         for(i=0;i<perpdim;i++)
         {
-          if((perpprod[i] = (int **)malloc(Fo->cols *sizeof(int *))) == 0)
-          {
-             printf("malloc of 'perpprod[i]' in 'perfect_normalizer' failed\n");
-             exit(2);
-          }
+          perpprod[i] = (int **)xmalloc(Fo->cols *sizeof(int *));
           for(j=0;j<Fo->cols;j++)
           {
-            if((perpprod[i][j] = (int *)malloc((j+1) *sizeof(int))) == 0)
-            {
-               printf("malloc of 'perpprod[i]' in 'perfect_normalizer' failed\n");
-               exit(2);
-            }
+            perpprod[i][j] = (int *)xmalloc((j+1) *sizeof(int));
           }
         }
-        if((perpvec = (int *)malloc(perpdim *sizeof(int))) == 0)
-        {
-           printf("malloc of 'perpvec' in 'perfect_normalizer' failed\n");
-           exit(2);
-        }
+        perpvec = (int *)xmalloc(perpdim *sizeof(int));
         for(i=0;i<perpdim;i++)
           perpprod[i] = init_mat(Fo->cols, Fo->cols, "");
 /* get the flags from the command line */
@@ -608,8 +555,7 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
      flags.GEN = 0;
 /* F.n is the number of invariant forms */
 	F.n = 1;
-	if ((F.A = (int***)malloc(1 * sizeof(int**))) == 0)
-		exit (2);
+	F.A = (int***)xmalloc(1 * sizeof(int**));
 /* read the invariant forms */
         F.dim = Fo->cols;
 	dim = F.dim;
@@ -618,12 +564,10 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
             printf("error form 'Fo' in autgrp must be a square matrix\n");
             exit(2);
          }
-	  if ((F.A[0] = (int**)malloc(dim * sizeof(int*))) == 0)
-		exit (2);
+	  F.A[0] = (int**)xmalloc(dim * sizeof(int*));
           for(j=0;j<F.dim;j++)
           {
-	    if ((F.A[0][j] = (int*)malloc(dim * sizeof(int))) == 0)
-		  exit (2);
+	    F.A[0][j] = (int*)xmalloc(dim * sizeof(int));
             for(k=0;k<F.dim;k++)
               F.A[0][j][k] = Fo->array.SZ[j][k];
           }
@@ -631,8 +575,7 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 /* some automorphisms are already known */
 	{
 		ngen = Erzanz;
-		if ((H = (int***)malloc(ngen * sizeof(int**))) == 0)
-			exit (2);
+		H = (int***)xmalloc(ngen * sizeof(int**));
 		nH = 0;
 		fail = 0;
                 for(i=0;i<ngen;i++)
@@ -646,12 +589,10 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
                 i = 0;
 		while (nH+fail < ngen)
 		{
-		    if ((H[nH] = (int**)malloc(dim * sizeof(int*))) == 0)
-			exit (2);
+		    H[nH] = (int**)xmalloc(dim * sizeof(int*));
                     for(j=0;j<dim;j++)
                     {
-		      if ((H[nH][j] = (int*)malloc(dim * sizeof(int))) == 0)
-		  	exit (2);
+		      H[nH][j] = (int*)xmalloc(dim * sizeof(int));
                       for(k=0;k<dim;k++)
                         H[nH][j][k] = Erz[i]->array.SZ[j][k];
                     }
@@ -679,10 +620,8 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 	V.len = dim + F.n;
 /* get the short vectors */
         V.n = SV->rows;
-        if ((V.v = (int**)malloc((V.n+1) * sizeof(int*))) == 0)
-			exit (2);
-        if ((V.v[0] = (int*)malloc(V.len * sizeof(int))) == 0)
-			exit (2);
+        V.v = (int**)xmalloc((V.n+1) * sizeof(int*));
+        V.v[0] = (int*)xmalloc(V.len * sizeof(int));
         for(i=1;i<= V.n;i++)
         {
                V.v[i] = SV->array.SZ[i-1];
@@ -720,16 +659,14 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 /* the norm-vector (i.e. the vector of the norms with respect to the different
    invariant forms) of each vector must be equal to the norm-vector of one
    of the vectors from the standard-base */
-	if ((norm.v = (int**)malloc((dim+1) * sizeof(int*))) == 0)
-		exit (2);
+	norm.v = (int**)xmalloc((dim+1) * sizeof(int*));
 	norm.n = dim;
 	norm.dim = F.n;
 	norm.len = F.n;
 	for (i = 1; i <= norm.n; ++i)
 	{
 /* norm.v[i] is the norm combination of the (i-1)-th base-vector */
-		if ((norm.v[i] = (int*)malloc(norm.dim * sizeof(int))) == 0)
-			exit (2);
+		norm.v[i] = (int*)xmalloc(norm.dim * sizeof(int));
 		for (k = 0; k < norm.dim; ++k)
 			norm.v[i][k] = F.A[k][i-1][i-1];
 	}
@@ -750,22 +687,19 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
    transposed of the vector v[j], hence the scalar product of v[j] and v[k] with
    respect to the Gram-matrix F.A[i] can be computed as standard scalar product
    of v[j] and F.v[i][k] */
-	if ((F.v = (int***)malloc(F.n * sizeof(int**))) == 0)
-		exit (2);
+	F.v = (int***)xmalloc(F.n * sizeof(int**));
 /* the product of the maximal entry in the short vectors with the maximal entry
    in F.v[i] should not exceed MAXNORM to avoid overflow */
 	max = MAXNORM / max;
 	for (i = 0; i < F.n; ++i)
 	{
 		FAi = F.A[i];
-		if ((F.v[i] = (int**)malloc((V.n+1) * sizeof(int*))) == 0)
-			exit (2);
+		F.v[i] = (int**)xmalloc((V.n+1) * sizeof(int*));
 		Fvi = F.v[i];
 		for (j = 1; j <= V.n; ++j)
 		{
 			Vvj = V.v[j];
-			if ((Fvi[j] = (int*)malloc(dim * sizeof(int))) == 0)
-				exit (2);
+			Fvi[j] = (int*)xmalloc(dim * sizeof(int));
 			Fvij = Fvi[j];
 			for (k = 0; k < dim; ++k)
 			{
@@ -780,17 +714,14 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 		}
 	}
 /* fp.per is the order in which the images of the base-vectors are set */
-	if ((fp.per = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	fp.per = (int*)xmalloc(dim * sizeof(int));
 /* fp.e[i] is the index in V.v of the i-th vector of the standard-base in the 
    new order */
-	if ((fp.e = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	fp.e = (int*)xmalloc(dim * sizeof(int));
 /* fp.diag is the diagonal of the fingerprint in the new order, fp.diag[i] is
    an upper bound for the length of the orbit of the i-th base-vector under
    the stabilizer of the preceding ones */
-	if ((fp.diag = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	fp.diag = (int*)xmalloc(dim * sizeof(int));
 /* compute the fingerprint */
 	fingerprint(&fp, F, V);
 	if (flags.PRINT == 1)
@@ -806,8 +737,7 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 		fclose(outfile);
 	}
 /* get the standard basis in the new order */
-	if ((vec = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	vec = (int*)xmalloc(dim * sizeof(int));
 	for (i = 0; i < dim; ++i)
 	{
 		for (j = 0; j < dim; ++j)
@@ -827,8 +757,7 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
    corresponding vector sums are computed for the standard-basis */
 	if (flags.DEPTH > 0)
 	{
-		if ((comb = (scpcomb*)malloc(dim * sizeof(scpcomb))) == 0)
-			exit (2);
+		comb = (scpcomb*)xmalloc(dim * sizeof(scpcomb));
 		for (i = 0; i < dim; ++i)
 		{
 /* compute the list of scalar product combinations and the corresponding
@@ -863,8 +792,7 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
    to 1/2 the norm of the base-vector (with respect to the first form) */
 	if (flags.BACH[0] == 1)
 	{
-		if ((bach = (bachpol*)malloc(flags.BACHDEP * sizeof(bachpol))) == 0)
-			exit (2);
+		bach = (bachpol*)xmalloc(flags.BACHDEP * sizeof(bachpol));
 		for (i = 0; i < flags.BACHDEP; ++i)
 		{
 			if (flags.BACH[2] == 0)
@@ -884,34 +812,27 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 	}
 /* set up the group: the generators in G.g[i] are matrices that fix the
    first i base-vectors but do not fix fp.e[i] */
-	if ((G.g = (int****)malloc(dim * sizeof(int***))) == 0)
-		exit (2);
+	G.g = (int****)xmalloc(dim * sizeof(int***));
 /* G.ng is the number of generators in G.g[i] */
-	if ((G.ng = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	G.ng = (int*)xmalloc(dim * sizeof(int));
 /* the first G.nsg[i] generators in G.g[i] are obtained as stabilizer elements
    and are not necessary to generate the group */
-	if ((G.nsg = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	G.nsg = (int*)xmalloc(dim * sizeof(int));
 /* G.ord[i] is the orbit length of fp.e[i] under the generators in 
    G.g[i] ... G.g[dim-1] */
-	if ((G.ord = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	G.ord = (int*)xmalloc(dim * sizeof(int));
 	for (i = 0; i < dim; ++i)
 	{
-		if ((G.g[i] = (int***)malloc(1 * sizeof(int**))) == 0)
-			exit (2);
+		G.g[i] = (int***)xmalloc(1 * sizeof(int**));
 		G.ng[i] = 0;
 		G.nsg[i] = 0;
 	}
 	G.dim = dim;
-	if ((G.g[0][0] = (int**)malloc(dim * sizeof(int*))) == 0)
-		exit (2);
+	G.g[0][0] = (int**)xmalloc(dim * sizeof(int*));
 /* -Id is always an automorphism */
 	for (i = 0; i < dim; ++i)
 	{
-		if ((G.g[0][0][i] = (int*)malloc(dim * sizeof(int))) == 0)
-			exit (2);
+		G.g[0][0][i] = (int*)xmalloc(dim * sizeof(int));
 		for (j = 0; j < dim; ++j)
 			G.g[0][0][i][j] = 0;
 		G.g[0][0][i][i] = -1;
@@ -926,12 +847,10 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 		{
 			++G.ng[j];
 			G.g[j] = (int***)xrealloc(G.g[j], G.ng[j] * sizeof(int**));
-			if ((G.g[j][G.ng[j]-1] = (int**)malloc(dim * sizeof(int*))) == 0)
-				exit (2);
+			G.g[j][G.ng[j]-1] = (int**)xmalloc(dim * sizeof(int*));
 			for (k = 0; k < dim; ++k)
 			{
-				if ((G.g[j][G.ng[j]-1][k] = (int*)malloc(dim * sizeof(int))) == 0)
-					exit (2);
+				G.g[j][G.ng[j]-1][k] = (int*)xmalloc(dim * sizeof(int));
 				for (l = 0; l < dim; ++l)
 					G.g[j][G.ng[j]-1][k][l] = H[i][k][l];
 			}
@@ -945,8 +864,7 @@ perfect_normalizer (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erzanz
 	nH = 0;
 	for (i = 0; i < dim; ++i)
 		nH += G.ng[i];
-	if ((H = (int***)malloc(nH * sizeof(int**))) == 0)
-		exit (2);
+	H = (int***)xmalloc(nH * sizeof(int**));
 /* calculate the orbit lengths under the automorphisms known so far */
 	for (i = 0; i < dim; ++i)
 	{

@@ -46,10 +46,7 @@ int main (int argc, char *argv[])
 	  Mat = mget_mat (FILENAMES[1], &Mat_anz);
         else
         {
-          if( (Mat = (matrix_TYP **)malloc(1 *sizeof(matrix_TYP *))) == NULL){
-            printf("malloc of 'Mat' in main program failed\n");
-            exit(2);
-          }
+          Mat = (matrix_TYP **)xmalloc(1 *sizeof(matrix_TYP *));
           Mat[0] = init_mat(G->dim, G->dim, "1");
           Mat_anz  = 1;
         }

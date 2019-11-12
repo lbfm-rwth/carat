@@ -38,18 +38,10 @@ p_mat_det (matrix_TYP *Mat, int prime)
     fprintf(stderr, "error: can't calculate the determinante of a non-square matrix\n");
     exit(3);
   }
-  if((M = (int **)malloc(dim *sizeof(int *))) == 0)
-  {
-    fprintf(stderr, "malloc of M in 'p_mat_det' failed\n");
-    exit(2);
-  }
+  M = (int **)xmalloc(dim *sizeof(int *));
   for(i=0;i<dim;i++)
   {
-      if((M[i] = (int *)malloc(dim *sizeof(int))) == 0)
-      {
-        fprintf(stderr, "malloc of M[%d] in 'p_mat_det' failed\n", i);
-        exit(2);
-      }
+      M[i] = (int *)xmalloc(dim *sizeof(int));
   }
   for(i=0;i<dim;i++)
     for(j=0;j<dim;j++)

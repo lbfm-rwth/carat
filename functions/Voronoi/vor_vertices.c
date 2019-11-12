@@ -48,11 +48,7 @@ voronoi_vertices (matrix_TYP *form, bravais_TYP *grp, int *anz, int *form_min, i
     *SV_no = SV->rows;
     *form_min = min_norm;
     subdiv = orbit_subdivision(SV, grp, &orbit_anz);
-    if((vf = (matrix_TYP **)malloc(orbit_anz *sizeof(matrix_TYP *))) == NULL)
-    {
-       printf("malloc failed\n");
-       exit(2);
-    }
+    vf = (matrix_TYP **)xmalloc(orbit_anz *sizeof(matrix_TYP *));
     for(i=0;i<orbit_anz;i++)
     {
       vf[i] = init_mat(n, n, "");

@@ -45,11 +45,7 @@ tr_bravais (bravais_TYP *B, int calcforms, int invert)
    if(B->gen_no != 0)
    {
      G->gen_no = B->gen_no;
-     if( (G->gen = (matrix_TYP **)malloc(G->gen_no *sizeof(matrix_TYP *))) == NULL)
-     {
-        printf("malloc of 'G->gen' in 'tr_bravais' failed\n");
-        exit(2);
-     }
+     G->gen = (matrix_TYP **)xmalloc(G->gen_no *sizeof(matrix_TYP *));
      for(i=0;i<G->gen_no;i++)
        if (invert){
           tmp = mat_inv(B->gen[i]);
@@ -63,22 +59,14 @@ tr_bravais (bravais_TYP *B, int calcforms, int invert)
    if(B->zentr_no != 0)
    {
      G->zentr_no = B->zentr_no;
-     if( (G->zentr = (matrix_TYP **)malloc(G->zentr_no *sizeof(matrix_TYP *))) == NULL)
-     {
-        printf("malloc of 'G->zentr' in 'tr_bravais' failed\n");
-        exit(2);
-     }
+     G->zentr = (matrix_TYP **)xmalloc(G->zentr_no *sizeof(matrix_TYP *));
      for(i=0;i<G->zentr_no;i++)
        G->zentr[i] = tr_pose(B->zentr[i]);
    }
    if(B->normal_no != 0)
    {
      G->normal_no = B->normal_no;
-     if( (G->normal = (matrix_TYP **)malloc(G->normal_no *sizeof(matrix_TYP *))) == NULL)
-     {
-        printf("malloc of 'G->normal' in 'tr_bravais' failed\n");
-        exit(2);
-     }
+     G->normal = (matrix_TYP **)xmalloc(G->normal_no *sizeof(matrix_TYP *));
      for(i=0;i<G->normal_no;i++)
        if (invert){
           tmp = mat_inv(B->normal[i]);
@@ -92,11 +80,7 @@ tr_bravais (bravais_TYP *B, int calcforms, int invert)
    if(B->cen_no != 0)
    {
      G->cen_no = B->cen_no;
-     if( (G->cen = (matrix_TYP **)malloc(G->cen_no *sizeof(matrix_TYP *))) == NULL)
-     {
-        printf("malloc of 'G->cen' in 'tr_bravais' failed\n");
-        exit(2);
-     }
+     G->cen = (matrix_TYP **)xmalloc(G->cen_no *sizeof(matrix_TYP *));
      for(i=0;i<G->cen_no;i++)
        if (invert){
           tmp = mat_inv(B->cen[i]);

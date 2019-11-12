@@ -88,78 +88,40 @@ void mach_perp_matrices (fpstruct fp, matrix_TYP **P, matrix_TYP **Pbase, int n)
 {
         int i,j,k;
 
-        if((perp = (int ***)malloc(perp_no *sizeof(int **))) == 0)
-        {
-           printf("malloc of 'perp' in 'perfect_normalizer' failed\n");
-           exit(2);
-        }
+        perp = (int ***)xmalloc(perp_no *sizeof(int **));
         for(i=0;i<perp_no;i++)
         {
-         if((perp[i] = (int **)malloc(n *sizeof(int *))) == 0){
-           printf("malloc of perp[%d] in 'perfect_normalizer' failed\n", i);
-           exit(2);
-         }
+         perp[i] = (int **)xmalloc(n *sizeof(int *));
          for(j=0;j<n;j++)
          {
-          if((perp[i][j] = (int *)malloc(n *sizeof(int))) == 0){
-           printf("malloc of perp[%d][%d] in 'perfect_normalizer' failed\n", i, j);
-           exit(2);
-          }
+          perp[i][j] = (int *)xmalloc(n *sizeof(int));
          }
          for(j=0;j<n;j++)
            for(k=0;k<n;k++)
             perp[i][j][k] = P[i]->array.SZ[fp.per[j]][fp.per[k]];
         }
-        if((perpbase = (int ***)malloc(perpdim *sizeof(int **))) == 0)
-        {
-           printf("malloc of 'perpbase' in 'perfect_normalizer' failed\n");
-           exit(2);
-        }
+        perpbase = (int ***)xmalloc(perpdim *sizeof(int **));
         for(i=0;i<perpdim;i++)
         {
-         if((perpbase[i] = (int **)malloc(n *sizeof(int *))) == 0)
-         {
-           printf("malloc of perpbase[%d] in 'perfect_normalizer' failed\n", i);
-           exit(2);
-         }
+         perpbase[i] = (int **)xmalloc(n *sizeof(int *));
          for(j=0;j<n;j++)
          {
-          if((perpbase[i][j] = (int *)malloc(n *sizeof(int))) == 0)
-          {
-           printf("malloc of perpbase[%d][%d] in 'perfect_normalizer' failed\n", i, j);
-           exit(2);
-          }
+          perpbase[i][j] = (int *)xmalloc(n *sizeof(int));
          }
          for(j=0;j<n;j++)
            for(k=0;k<n;k++)
             perpbase[i][j][k] = Pbase[i]->array.SZ[j][k];
         }
-        if((perpprod = (int ***)malloc(perpdim *sizeof(int **))) == 0)
-        {
-           printf("malloc of 'perpprod' in 'perfect_normalizer' failed\n");
-           exit(2);
-        }
+        perpprod = (int ***)xmalloc(perpdim *sizeof(int **));
         for(i=0;i<perpdim;i++)
         {
-          if((perpprod[i] = (int **)malloc(n *sizeof(int *))) == 0)
-          {
-             printf("malloc of 'perpprod[i]' in 'perfect_normalizer' failed\n");
-             exit(2);
-          }
+          perpprod[i] = (int **)xmalloc(n *sizeof(int *));
           for(j=0;j<n;j++)
           {
-            if((perpprod[i][j] = (int *)malloc((j+1) *sizeof(int))) == 0)
-            {
-                printf("malloc of 'perpprod[i][j]' in 'perfect_normalizer' failed\n");
-                exit(2);
-            }
+            perpprod[i][j] = (int *)xmalloc((j+1) *sizeof(int));
           }
         }
-        if((perpvec = (int *)malloc(n *sizeof(int))) == 0)
-        {
-           printf("malloc of 'perpvec' in 'perfect_normalizer' failed\n");
-           exit(2);
-        }
+        perpvec = (int *)xmalloc(n *sizeof(int));
 }
 
 void free_perp_matrices (int n)
