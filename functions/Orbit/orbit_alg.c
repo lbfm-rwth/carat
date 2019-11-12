@@ -122,11 +122,7 @@ matrix_speichern (matrix_TYP *mat, matrix_TYP ***L, int *listsize, int *anz)
    if ((*anz) >= (*listsize))
    {
      *listsize += EXT_SIZE;
-     if ((*L=(matrix_TYP **)realloc(*L,(*listsize)*sizeof(matrix_TYP *)))==NULL)
-     {
-        fprintf (stderr, "realloc failed\n");
-        exit (2);
-     }
+     *L=(matrix_TYP **)xrealloc(*L,(*listsize)*sizeof(matrix_TYP *));
    }
    (*L)[(*anz)] = mat;
    (*anz) ++;
@@ -558,11 +554,7 @@ orbit_alg (matrix_TYP *M, bravais_TYP *G, bravais_TYP *S, int *option, int *leng
         {
           if(erganz == ergsize)
           {
-            if((hashverz = (int *)realloc(hashverz, (ergsize+EXT_SIZE)*sizeof(int))) == NULL)
-            {
-               printf("realloc failed\n");
-               exit(2);
-            }
+            hashverz = (int *)xrealloc(hashverz, (ergsize+EXT_SIZE)*sizeof(int));
           }
           hashverz[erganz] = h;
           matrix_speichern(A, &erg, &ergsize, &erganz);

@@ -191,10 +191,8 @@ chain (double X, double e)
 	       ((cond = fabs(cond / r[step]/ r[step]))< 1.0))
 	{
 		++step;
-		if ((r = (double*)realloc(r, (step+1) * sizeof(double))) == 0)
-			exit (2);
-		if ((a = (int*)realloc(a, step * sizeof(int))) == 0)
-			exit (2);
+		r = (double*)xrealloc(r, (step+1) * sizeof(double));
+		a = (int*)xrealloc(a, step * sizeof(int));
 
 		a[step-1] = rond(1/r[step-1]);
 		r[step] = 1/r[step-1] - a[step-1];
