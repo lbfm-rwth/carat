@@ -18,16 +18,26 @@ int (*(compare_element [NR_OF_ELEMENTS_IN_EACH_ENTRY])) (entry *data1, entry *da
 const char *name_element [NR_OF_ELEMENTS_IN_EACH_ENTRY];
 
 
-static void *xmalloc(int size, const char *string)
+void *xmalloc_(size_t size, const char *funcname)
 {
-  void *pointer;
-  if ( (pointer = malloc (size)) == NULL)
+    void *ptr = malloc(size);
+    if (ptr == NULL)
     {
-      perror (string);
-      exit (2);
+        perror(funcname);
+        exit(2);
     }
+    return ptr;
+}
 
-  return pointer;
+void *xrealloc_(void *ptr, size_t size, const char *funcname)
+{
+    ptr = realloc(ptr, size);
+    if (ptr == NULL)
+    {
+        perror(funcname);
+        exit(2);
+    }
+    return ptr;
 }
 
 
@@ -433,9 +443,9 @@ database *load_database (const char *filename, int degree)
     name_element [COND_NO_IDEM] = "idempotent_number";
 
 
-  complete_name = (char *)xmalloc ( (strlen(filename) + 16) * sizeof(char), "load_database");
+  complete_name = (char *)xmalloc((strlen(filename) + 16) * sizeof(char));
   
-  datas = (database *) xmalloc (sizeof (database), "load_database");
+  datas = (database *)xmalloc(sizeof(database));
   
   datas->nr = 0;
 
@@ -467,12 +477,9 @@ database *load_database (const char *filename, int degree)
 	     aber, wird 4 vom Nullpointer abgezogen und dann wird das
 	     eigentlich "realloc" mit Speicherzelle -4 aufgerufen, was
 	     zu einem Segmetation-fault fuehrt. */
-	  datas->entry = (entry *) xmalloc (entries_in_this_file * sizeof (entry), "load_database");
-	else if ( (datas->entry = (entry *) realloc (datas->entry, (datas->nr + entries_in_this_file) * sizeof (entry)) ) == NULL)
-	  {
-	    perror ("load database");
-	    exit (2);
-	  }
+	  datas->entry = (entry *) xmalloc(entries_in_this_file * sizeof (entry));
+	else
+	  datas->entry = (entry *) xrealloc (datas->entry, (datas->nr + entries_in_this_file) * sizeof (entry));
 	
 	for (j=0; j < entries_in_this_file; j++)
 	  read_database_entry (file, &(datas->entry [datas->nr + j]) );
