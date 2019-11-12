@@ -204,8 +204,7 @@ scpvecs (veclist *list, int ***vec, int I, int *b, int dep, veclist V, invar F)
 	list->v = (int**)xmalloc(1 * sizeof(int*));
 	list->dim = len;
 	list->len = len;
-	if ((list->v[0] = (int*)malloc(len * sizeof(int))) == 0)
-		exit (1);
+	list->v[0] = (int*)xmalloc(len * sizeof(int));
 	for (i = 0; i < len; ++i)
 		list->v[0][i] = 0;
 	list->n = 0;

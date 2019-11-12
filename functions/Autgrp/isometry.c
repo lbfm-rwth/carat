@@ -456,18 +456,10 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 				fprintf(stderr, "Error: dimension %d should be %d\n", i, dim);
 				exit (3);
 			}
-                        if((G[nG] = (int **)malloc(dim *sizeof(int *))) == 0)
-                        {
-                          printf("realloc of G[%d] in isometry failed\n", nG); 
-                          exit(2);
-                        }
+                        G[nG] = (int **)xmalloc(dim *sizeof(int *));
                         for(j=0;j<dim;j++)
                         {
-                          if((G[nG][j] = (int *)malloc(dim *sizeof(int))) == 0)
-                          {
-                            printf("realloc of G[%d][%d] in isometry failed\n", nG, j); 
-                            exit(2);
-                          }
+                          G[nG][j] = (int *)xmalloc(dim *sizeof(int));
                           for(k=0;k<dim;k++)
                               G[nG][j][k] = Erz[i]->array.SZ[k][j];
                         }
@@ -956,18 +948,10 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 				fprintf(stderr, "Error: dimension %d should be %d\n", i, dim);
 				exit (3);
 			}
-                        if((G[nG] = (int **)malloc(dim *sizeof(int *))) == 0)
-                        {
-                          printf("realloc of G[%d] in isometry failed\n", nG); 
-                          exit(2);
-                        }
+                        G[nG] = (int **)xmalloc(dim *sizeof(int *));
                         for(j=0;j<dim;j++)
                         {
-                          if((G[nG][j] = (int *)malloc(dim *sizeof(int))) == 0)
-                          {
-                            printf("realloc of G[%d][%d] in isometry failed\n", nG, j); 
-                            exit(2);
-                          }
+                          G[nG][j] = (int *)xmalloc(dim *sizeof(int));
                           for(k=0;k<dim;k++)
                               G[nG][j][k] = Erz[i]->array.SZ[k][j];
                         }

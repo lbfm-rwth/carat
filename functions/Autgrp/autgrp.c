@@ -804,8 +804,7 @@ perfect_normal_autgrp (matrix_TYP *Fo, matrix_TYP *SV, matrix_TYP **Erz, int Erz
    corresponding vector sums are computed for the standard-basis */
 	if (flags.DEPTH > 0)
 	{
-		if ((comb = (scpcomb*)malloc(dim * sizeof(scpcomb))) == 0)
-			exit (3);
+		comb = (scpcomb*)xmalloc(dim * sizeof(scpcomb));
 		for (i = 0; i < dim; ++i)
 		{
 /* compute the list of scalar product combinations and the corresponding
