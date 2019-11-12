@@ -176,8 +176,7 @@ vecschr (int m, double d)
              SV_size += SV_ext;
              SV->array.SZ = (int **)xrealloc(SV->array.SZ, SV_size *sizeof(int *));
           }
-          if((v = (int *)malloc((n+1) *sizeof(int))) == 0)
-              exit(2);
+          v = (int *)xmalloc((n+1) *sizeof(int));
 	  for (i = 0; i < m; ++i)
 	  {
 		  v[i] = 0;
@@ -300,25 +299,17 @@ short_vectors (matrix_TYP *mat, int length, int lengthmin, int find_opt, int cou
           SV->array.SZ = (int **)xrealloc(SV->array.SZ, SV_ext *sizeof(int *));
           SV_size = SV_ext;
         }
-	if ((grn = (int**)malloc(n * sizeof(int*))) == 0)
-		exit (2);
-	if ((ba = (int**)malloc(n * sizeof(int*))) == 0)
-		exit (2);
-	if ((mo = (double**)malloc(n * sizeof(double*))) == 0)
-		exit (2);
-	if ((ge = (double*)malloc(n * sizeof(double))) == 0)
-		exit (2);
-	if ((vec = (int*)malloc(n * sizeof(int))) == 0)
-		exit (2);
+	grn = (int**)xmalloc(n * sizeof(int*));
+	ba = (int**)xmalloc(n * sizeof(int*));
+	mo = (double**)xmalloc(n * sizeof(double*));
+	ge = (double*)xmalloc(n * sizeof(double));
+	vec = (int*)xmalloc(n * sizeof(int));
 	for (i = 0; i < n; ++i)
 	{
 		vec[i] = 0;
-		if ((grn[i] = (int*)malloc(n * sizeof(int))) == 0)
-			exit (2);
-		if ((ba[i] = (int*)malloc(n * sizeof(int))) == 0)
-			exit (2);
-		if ((mo[i] = (double*)malloc(n * sizeof(double))) == 0)
-			exit (2);
+		grn[i] = (int*)xmalloc(n * sizeof(int));
+		ba[i] = (int*)xmalloc(n * sizeof(int));
+		mo[i] = (double*)xmalloc(n * sizeof(double));
 		for (j = 0; j < n; ++j)
 		{
 			ba[i][j] = 0;

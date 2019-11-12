@@ -34,18 +34,10 @@ long_mat_inv (matrix_TYP *A)
      exit(3);
    }
    MA = matrix_to_MP_mat(A);
-   if((MB = (MP_INT **) malloc(A->cols *sizeof(MP_INT *))) == NULL)
-   {
-     printf("malloc of 'MB' in 'long_mat_inv' failed\n");
-     exit(2);
-   }
+   MB = (MP_INT **) xmalloc(A->cols *sizeof(MP_INT *));
    for(i=0;i<A->cols;i++)
    {
-     if((MB[i] = (MP_INT *) malloc(A->cols *sizeof(MP_INT))) == NULL)
-     {
-       printf("malloc of 'MB[%d]' in 'long_mat_inv' failed\n", i);
-       exit(2);
-     }
+     MB[i] = (MP_INT *) xmalloc(A->cols *sizeof(MP_INT));
      for(j=0;j<A->cols;j++)
        mpz_init(&MB[i][j]);
      mpz_set_si(&MB[i][i], 1);

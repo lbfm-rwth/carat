@@ -44,10 +44,7 @@ short_reduce (matrix_TYP *A, matrix_TYP *SV, matrix_TYP *Trf)
    dim = A->cols;
    min = SV->array.SZ[0][dim];
    anz = SV->rows;
-   if( (v = (int *)malloc(dim *sizeof(int ))) == NULL){
-     printf("malloc of 'v' in short_reduce failed\n");
-     exit(2);
-   }
+   v = (int *)xmalloc(dim *sizeof(int ));
    Aneu = copy_mat(A);
    B = Aneu->array.SZ;
    if(Trf != NULL)
@@ -55,17 +52,10 @@ short_reduce (matrix_TYP *A, matrix_TYP *SV, matrix_TYP *Trf)
    else
      T = NULL;
    S = SV->array.SZ;
-   if( (Titr = (int **)malloc(dim *sizeof(int *))) == NULL){
-     printf("malloc of 'Titr' in short_reduce failed\n");
-     exit(2);
-   }
+   Titr = (int **)xmalloc(dim *sizeof(int *));
    for(i=0;i<dim;i++)
    {
-     if( (Titr[i] = (int *)malloc(dim *sizeof(int))) == NULL)
-     {
-       printf("malloc of 'Titr[%d]' in short_reduce failed\n", i);
-       exit(2);
-     }
+     Titr[i] = (int *)xmalloc(dim *sizeof(int));
      for(j=0;j<dim;j++)
        Titr[i][j] = 0;
      Titr[i][i] = 1;

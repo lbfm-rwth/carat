@@ -34,18 +34,10 @@ matrix_to_MP_mat (matrix_TYP *M)
   m = M->cols;
   n = M->rows;
   
-  if((erg = (MP_INT **) malloc(n *sizeof(MP_INT *))) == NULL)
-  {
-    printf("malloc of 'erg' in mat_to_MP_mat failed\n");
-    exit(2);
-  }
+  erg = (MP_INT **) xmalloc(n *sizeof(MP_INT *));
   for(i=0;i<n;i++)
   {
-    if((erg[i] = (MP_INT *) malloc(m *sizeof(MP_INT))) == NULL)
-    {
-      printf("malloc of 'erg[%d]' in mat_to_MP_mat failed\n", i);
-      exit(2);
-    }
+    erg[i] = (MP_INT *) xmalloc(m *sizeof(MP_INT));
   }
   for(i=0;i<n;i++)
     for(j=0;j<m;j++)
@@ -135,18 +127,10 @@ init_MP_mat (int rows, int cols)
    MP_INT **E;
    int i,j;
 
-   if( (E = (MP_INT **)malloc(rows *sizeof(MP_INT *))) == NULL)
-   {
-     printf("malloc of 'E' in 'init_MP_mat' failed\n");
-     exit(2);
-   }
+   E = (MP_INT **)xmalloc(rows *sizeof(MP_INT *));
    for(i=0;i<rows;i++)
    {
-     if( (E[i] = (MP_INT *)malloc(cols *sizeof(MP_INT))) == NULL)
-     {
-       printf("malloc of 'E[%d]' in 'init_MP_mat' failed\n", i);
-       exit(2);
-     }
+     E[i] = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
      for(j=0;j<cols;j++)
         mpz_init(&E[i][j]);
    }

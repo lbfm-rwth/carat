@@ -20,18 +20,10 @@ mat_to_double (matrix_TYP *M)
 {
   int i,j;
   double **D;
-  if((D = (double **)malloc(M->rows *sizeof(double *))) == 0)
-  {
-      printf("malloc failed in mat_to_double\n");
-      exit(2);
-  }
+  D = (double **)xmalloc(M->rows *sizeof(double *));
   for(i=0;i<M->rows;i++)
   {
-    if((D[i] = (double *)malloc((i+1) *sizeof(double))) == 0)
-    {
-        printf("malloc failed in mat_to_double\n");
-        exit(2);
-    }
+    D[i] = (double *)xmalloc((i+1) *sizeof(double));
   }
   for(i=0;i<M->rows;i++)
     for(j=0;j<=i;j++)

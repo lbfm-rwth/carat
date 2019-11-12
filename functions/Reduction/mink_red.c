@@ -292,10 +292,7 @@ mink_red (matrix_TYP *G, matrix_TYP *Trf)
   if(n == 0 || n == 1)
      return(erg);
 
-  if((UUi = (matrix_TYP *)malloc(sizeof(matrix_TYP))) == NULL){
-    printf("malloc of 'UUi' in 'mink_red' failed\n");
-    exit(2);
-  }
+  UUi = (matrix_TYP *)xmalloc(sizeof(matrix_TYP));
   UUi->kgv = 1;
   ergmax = erg->array.SZ[n-1][n-1];
   kurvecs = short_vectors(erg, ergmax, 0, 0,0,&anz);

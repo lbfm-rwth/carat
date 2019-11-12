@@ -43,18 +43,10 @@ long_rein_mat (matrix_TYP *Mat)
    /***************************************************************\
    | Set Mt= Mat^{tr} transform Mt to Hermite normal form.
    \***************************************************************/
-   if((Mt = (MP_INT **)malloc(cols *sizeof(MP_INT *))) == NULL)
-   {
-     printf("malloc of 'Mt' in 'long_elt_mat' failed\n");
-     exit(2);
-   }
+   Mt = (MP_INT **)xmalloc(cols *sizeof(MP_INT *));
    for(i=0;i<cols;i++)
    {
-     if((Mt[i] = (MP_INT *)malloc(rows *sizeof(MP_INT))) == NULL)
-     {
-       printf("malloc of 'Mt[%d]' in 'long_elt_mat' failed\n", i);
-       exit(2);
-     }
+     Mt[i] = (MP_INT *)xmalloc(rows *sizeof(MP_INT));
      for(j=0;j<rows;j++)
        mpz_init_set_si(&Mt[i][j], Mat->array.SZ[j][i]);
    }
@@ -63,18 +55,10 @@ long_rein_mat (matrix_TYP *Mat)
    /***************************************************************\
    | Set trf =  left_tans
    \***************************************************************/
-     if((trf = (MP_INT **)malloc(rows *sizeof(MP_INT *))) == NULL)
-     {
-       printf("malloc of 'trf' in 'long_elt_mat' failed\n");
-       exit(2);
-     }
+     trf = (MP_INT **)xmalloc(rows *sizeof(MP_INT *));
      for(i=0;i<rows;i++)
      {
-       if((trf[i] = (MP_INT *)malloc(rows *sizeof(MP_INT))) == NULL)
-       {
-         printf("malloc of 'trf[%d]' in 'long_elt_mat' failed\n", i);
-         exit(2);
-       }
+       trf[i] = (MP_INT *)xmalloc(rows *sizeof(MP_INT));
        for(j=0;j<rows;j++)
          mpz_init_set_si(&trf[i][j], 0);
        mpz_set_si(&trf[i][i], 1);
@@ -82,18 +66,10 @@ long_rein_mat (matrix_TYP *Mat)
    /***************************************************************\
    | Set M= Mt^{tr} transform Mt to Hermite normal form.
    \***************************************************************/
-   if((M = (MP_INT **)malloc(rows *sizeof(MP_INT *))) == NULL)
-   {
-     printf("malloc of 'M' in 'long_elt_mat' failed\n");
-     exit(2);
-   }
+   M = (MP_INT **)xmalloc(rows *sizeof(MP_INT *));
    for(i=0;i<rows;i++)
    {
-     if((M[i] = (MP_INT *)malloc(cols *sizeof(MP_INT))) == NULL)
-     {
-       printf("malloc of 'M[%d]' in 'long_elt_mat' failed\n", i);
-       exit(2);
-     }
+     M[i] = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
      for(j=0;j<cols;j++)
        mpz_init_set(&M[i][j], &Mt[j][i]);
    }
@@ -342,18 +318,10 @@ long_rein_mat (matrix_TYP *Mat)
    |  Multiply trf with Mat
    \*-------------------------------------------------------------------*/
    M1 = matrix_to_MP_mat(Mat);
-   if( (M2 = (MP_INT **)malloc(rang *sizeof(MP_INT *))) == NULL)
-   {
-      printf("malloc of 'M2' in 'long_rein_mat'failed\n");
-      exit(2);
-   }
+   M2 = (MP_INT **)xmalloc(rang *sizeof(MP_INT *));
    for(i=0;i<rang;i++)
    {
-     if( (M2[i] = (MP_INT *)malloc(cols *sizeof(MP_INT))) == NULL)
-     {
-        printf("malloc of 'M2[%d]' in 'long_rein_mat'failed\n", i);
-        exit(2);
-     }
+     M2[i] = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
      for(j=0;j<cols;j++)
         mpz_init(&M2[i][j]);
    }

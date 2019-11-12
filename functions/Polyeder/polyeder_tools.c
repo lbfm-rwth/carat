@@ -649,11 +649,7 @@ copy_wall (wall_TYP *w)
   erg->nproduct = w->nproduct;
   if(w->nproduct != 0)
   {
-     if( (erg->product = (int *)malloc(w->nproduct *sizeof(int))) == 0)
-     {
-        printf("malloc failed in copy_wall\n");
-        exit(2);
-     }
+     erg->product = (int *)xmalloc(w->nproduct *sizeof(int));
   }
   for(i=0;i<w->nproduct;i++)
     erg->product[i] = w->product[i];

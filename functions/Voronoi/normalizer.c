@@ -83,22 +83,14 @@ normalizer (matrix_TYP *P, bravais_TYP *G, bravais_TYP *Gtr, int prime, int *V_n
    int lc, rc;
 
    fdim = G->form_no;
-   if( (V = (voronoi_TYP **)malloc(1 *sizeof(voronoi_TYP *))) == NULL)
-   {
-     printf("malloc of 'V' in 'normalizer' failed\n");
-     exit(2);
-   }
+   V = (voronoi_TYP **)xmalloc(1 *sizeof(voronoi_TYP *));
    V[0] = init_voronoi();
    V[0]->gram = copy_mat(P);
    Check_mat(V[0]->gram);
    bifo = trace_bifo(G->form, Gtr->form, fdim);
    calc_voronoi_complete(V[0], G, Gtr, bifo, prime);
    Nanz = V[0]->stab->gen_no;
-   if( (N = (matrix_TYP **)malloc(Nanz *sizeof(matrix_TYP *))) == NULL)
-   {
-     printf("malloc of 'N' in 'normalizer' failed\n");
-     exit(2);
-   }
+   N = (matrix_TYP **)xmalloc(Nanz *sizeof(matrix_TYP *));
    for(i=0;i<Nanz;i++)
      N[i] = copy_mat(V[0]->stab->gen[i]);
    Vanz = 1;

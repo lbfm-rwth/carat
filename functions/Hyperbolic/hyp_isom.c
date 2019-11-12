@@ -36,16 +36,8 @@ hyperbolic_isometry (matrix_TYP *x1, matrix_TYP *x2, matrix_TYP *S)
   int i,j,n;
 
   n = x1->cols;
-  if((S1red = (matrix_TYP **)malloc(1 *sizeof(matrix_TYP *))) == NULL)
-  {
-    printf("malloc of 'S1red' in 'hyperbolic_isometry' failed\n");
-    exit(2);
-  }
-  if((S2red = (matrix_TYP **)malloc(1 *sizeof(matrix_TYP *))) == NULL)
-  {
-    printf("malloc of 'S2red' in 'hyperbolic_isometry' failed\n");
-    exit(2);
-  }
+  S1red = (matrix_TYP **)xmalloc(1 *sizeof(matrix_TYP *));
+  S2red = (matrix_TYP **)xmalloc(1 *sizeof(matrix_TYP *));
   x1S = mat_mul(x1, S);
   x1SO = solve_mat(x1S);
   S1red[0] = scal_pr(x1SO, S, 1);

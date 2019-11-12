@@ -97,31 +97,15 @@ long_elt_mat (matrix_TYP *left_trans, matrix_TYP *Mat, matrix_TYP *right_trans)
    \***************************************************************/
    if(r_t_option == TRUE)
    {
-     if((rtrf = (MP_INT **)malloc(cols *sizeof(MP_INT *))) == NULL)
-     {
-       printf("malloc of 'rtrf' in 'long_elt_mat' failed\n");
-       exit(2);
-     }
+     rtrf = (MP_INT **)xmalloc(cols *sizeof(MP_INT *));
      for(i=0;i<cols;i++)
      {
-       if((rtrf[i] = (MP_INT *)malloc(cols *sizeof(MP_INT))) == NULL)
-       {
-         printf("malloc of 'rtrf[%d]' in 'long_elt_mat' failed\n", i);
-         exit(2);
-       }
+       rtrf[i] = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
      }
-     if((hilf = (MP_INT **)malloc(cols *sizeof(MP_INT *))) == NULL)
-     {
-       printf("malloc of 'hilf' in 'long_elt_mat' failed\n");
-       exit(2);
-     }
+     hilf = (MP_INT **)xmalloc(cols *sizeof(MP_INT *));
      for(i=0;i<cols;i++)
      {
-       if((hilf[i] = (MP_INT *)malloc(cols *sizeof(MP_INT))) == NULL)
-       {
-         printf("malloc of 'hilf[%d]' in 'long_elt_mat' failed\n", i);
-         exit(2);
-       }
+       hilf[i] = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
        for(j=0;j<cols;j++)
        {
        mpz_init_set_si(&hilf[i][j], right_trans->array.SZ[j][i]);
@@ -132,18 +116,10 @@ long_elt_mat (matrix_TYP *left_trans, matrix_TYP *Mat, matrix_TYP *right_trans)
    /***************************************************************\
    | Set Mt= Mat^{tr} transform Mt to Hermite normal form.
    \***************************************************************/
-   if((Mt = (MP_INT **)malloc(cols *sizeof(MP_INT *))) == NULL)
-   {
-     printf("malloc of 'Mt' in 'long_elt_mat' failed\n");
-     exit(2);
-   }
+   Mt = (MP_INT **)xmalloc(cols *sizeof(MP_INT *));
    for(i=0;i<cols;i++)
    {
-     if((Mt[i] = (MP_INT *)malloc(rows *sizeof(MP_INT))) == NULL)
-     {
-       printf("malloc of 'Mt[%d]' in 'long_elt_mat' failed\n", i);
-       exit(2);
-     }
+     Mt[i] = (MP_INT *)xmalloc(rows *sizeof(MP_INT));
      for(j=0;j<rows;j++)
        mpz_init_set_si(&Mt[i][j], Mat->array.SZ[j][i]);
    }
@@ -163,18 +139,10 @@ long_elt_mat (matrix_TYP *left_trans, matrix_TYP *Mat, matrix_TYP *right_trans)
    \***************************************************************/
    if(t_option == TRUE)
    {
-     if((trf = (MP_INT **)malloc(rows *sizeof(MP_INT *))) == NULL)
-     {
-       printf("malloc of 'trf' in 'long_elt_mat' failed\n");
-       exit(2);
-     }
+     trf = (MP_INT **)xmalloc(rows *sizeof(MP_INT *));
      for(i=0;i<rows;i++)
      {
-       if((trf[i] = (MP_INT *)malloc(rows *sizeof(MP_INT))) == NULL)
-       {
-         printf("malloc of 'trf[%d]' in 'long_elt_mat' failed\n", i);
-         exit(2);
-       }
+       trf[i] = (MP_INT *)xmalloc(rows *sizeof(MP_INT));
        for(j=0;j<rows;j++)
          mpz_init_set_si(&trf[i][j], left_trans->array.SZ[i][j]);
      }
@@ -183,18 +151,10 @@ long_elt_mat (matrix_TYP *left_trans, matrix_TYP *Mat, matrix_TYP *right_trans)
    /***************************************************************\
    | Set M= Mt^{tr} transform Mt to Hermite normal form.
    \***************************************************************/
-   if((M = (MP_INT **)malloc(rows *sizeof(MP_INT *))) == NULL)
-   {
-     printf("malloc of 'M' in 'long_elt_mat' failed\n");
-     exit(2);
-   }
+   M = (MP_INT **)xmalloc(rows *sizeof(MP_INT *));
    for(i=0;i<rows;i++)
    {
-     if((M[i] = (MP_INT *)malloc(cols *sizeof(MP_INT))) == NULL)
-     {
-       printf("malloc of 'M[%d]' in 'long_elt_mat' failed\n", i);
-       exit(2);
-     }
+     M[i] = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
      for(j=0;j<cols;j++)
        mpz_init_set(&M[i][j], &Mt[j][i]);
    }
@@ -559,11 +519,7 @@ long_elt_mat (matrix_TYP *left_trans, matrix_TYP *Mat, matrix_TYP *right_trans)
              }
              if(r_t_option == TRUE)
              {
-               if((help = (MP_INT *)malloc(cols *sizeof(MP_INT))) == NULL)
-                 {
-                 printf("malloc of 'help' in 'long_elt_mat' failed\n");
-                 exit(2);
-                 }
+               help = (MP_INT *)xmalloc(cols *sizeof(MP_INT));
                for(j=0;j<cols;j++)
                {
                   mpz_init_set(&help[j], &rtrf[j][step]);

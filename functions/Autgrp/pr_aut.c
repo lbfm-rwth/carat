@@ -68,18 +68,10 @@ pr_aut (matrix_TYP **Fo, int Foanz, matrix_TYP **Erz, int Erzanz, int *options)
    bravais_TYP *G, *G1;
    int n, anz, i;
 
-   if((F = (matrix_TYP **)malloc(Foanz *sizeof(matrix_TYP *))) == NULL) 
-   {
-     printf("malloc of F in 'pr_aut' failed\n");
-     exit(2);
-   }
+   F = (matrix_TYP **)xmalloc(Foanz *sizeof(matrix_TYP *));
    E = NULL;
    if(Erzanz != 0)
-     if((E = (matrix_TYP **)malloc(Foanz *sizeof(matrix_TYP *))) == NULL) 
-     {
-       printf("malloc of E in 'pr_aut' failed\n");
-       exit(2);
-     } 
+     E = (matrix_TYP **)xmalloc(Foanz *sizeof(matrix_TYP *)); 
    T = init_mat(Fo[0]->rows, Fo[0]->cols, "");
    n = Fo[0]->cols;
    for(i=0;i<n;i++)
@@ -97,22 +89,14 @@ pr_aut (matrix_TYP **Fo, int Foanz, matrix_TYP **Erz, int Erzanz, int *options)
      free_mat(w);
    }
    G1 = autgrp(F, Foanz, SV, E, Erzanz, options);
-   if ((G = (bravais_TYP *)malloc(sizeof(bravais_TYP))) == 0)
-   {
-     printf("malloc of 'G' in 'pr_aut' failed\n");
-     exit(2);
-   }
+   G = (bravais_TYP *)xmalloc(sizeof(bravais_TYP));
    G->gen_no = G1->gen_no;
    G->form_no = G->normal_no = G->cen_no = G->zentr_no = 0;
    for(i=0;i<100;i++)
      G->divisors[i] = G1->divisors[i];
    G->order = G1->order;
    G->dim = G1->gen[0]->cols;
-   if((G->gen = (matrix_TYP **)malloc(G->gen_no *sizeof(matrix_TYP *))) == NULL)
-   {
-     printf("mallocof 'G->gen' in 'pr_aut' failed\n");
-     exit(2);
-   }
+   G->gen = (matrix_TYP **)xmalloc(G->gen_no *sizeof(matrix_TYP *));
    for(i=0;i<G->gen_no;i++)
    {
      w = mat_mul(Ttr, G1->gen[i]);

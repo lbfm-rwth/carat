@@ -97,11 +97,7 @@ putgens (group G, flagstruct flags)
         B->gen_no = ngen;
         if(ngen > 0)
         {
-           if((B->gen = (matrix_TYP **)malloc(ngen *sizeof(matrix_TYP *))) == 0)
-           {
-             printf("malloc of 'B->gen' in 'putgens' failed\n");
-             exit(2);
-           }
+           B->gen = (matrix_TYP **)xmalloc(ngen *sizeof(matrix_TYP *));
         }
 	nr = 0;
 	for (i = flags.STAB; i < dim; ++i)

@@ -58,31 +58,15 @@ p_formspace (matrix_TYP **B, int Banz, int prime, int sym_opt, int *fdim)
      printf("error in p_formspace: invalid sym_opt value %d\n", sym_opt);
      exit(2);
   }
-  if( (pos = (int **)malloc(dim *sizeof(int *))) == NULL)
-  {
-     printf("malloc of 'pos' in 'p_formspace' failed\n");
-     exit(2);
-  }
+  pos = (int **)xmalloc(dim *sizeof(int *));
   for(i=0;i<dim;i++)
   {
-    if( (pos[i] = (int *)malloc(dim *sizeof(int))) == NULL)
-    {
-       printf("malloc of 'pos[%d]' in 'p_formspace' failed\n", i);
-       exit(2);
-    }
+    pos[i] = (int *)xmalloc(dim *sizeof(int));
   }
-  if( (sign = (int **)malloc(dim *sizeof(int *))) == NULL)
-  {
-     printf("malloc of 'sign' in 'p_formspace' failed\n");
-     exit(2);
-  }
+  sign = (int **)xmalloc(dim *sizeof(int *));
   for(i=0;i<dim;i++)
   {
-    if( (sign[i] = (int *)malloc(dim *sizeof(int))) == NULL)
-    {
-       printf("malloc of 'sign[%d]' in 'p_formspace' failed\n", i);
-       exit(2);
-    }
+    sign[i] = (int *)xmalloc(dim *sizeof(int));
   }
   if(sym_opt == 0)
   {
@@ -188,11 +172,7 @@ p_formspace (matrix_TYP **B, int Banz, int prime, int sym_opt, int *fdim)
     free_mat(Xk[0]);
   if(anz != 0)
   {
-    if( (E = (matrix_TYP **)malloc(anz *sizeof(matrix_TYP *))) == NULL)
-    {
-      printf("malloc of 'E' in 'p_formspace' failed\n");
-      exit(2);
-    }
+    E = (matrix_TYP **)xmalloc(anz *sizeof(matrix_TYP *));
   }
   else
      E = NULL;

@@ -103,12 +103,10 @@ rmattrans (double **A, double **B, double **C, int n)
 	int	i, j, k;
 
 
-	if ((D = (double**)malloc(n * sizeof(double *))) == 0)
-		exit (2);
+	D = (double**)xmalloc(n * sizeof(double *));
 	for (i = 0; i < n; ++i)
 	{
-		if ((D[i] = (double*)malloc(n * sizeof(double))) == 0)
-			exit (2);
+		D[i] = (double*)xmalloc(n * sizeof(double));
 	}
 
 	rmatmul(B, A, D, n);
@@ -176,10 +174,8 @@ chain (double X, double e)
         if (e<EPS) e = EPS;
 	cond = e;
 
-	if ((r = (double*)malloc(sizeof(double))) == 0)
-		exit (2);
-	if ((a = (int*)malloc(sizeof(int))) == 0)
-		exit (2);
+	r = (double*)xmalloc(sizeof(double));
+	a = (int*)xmalloc(sizeof(int));
 	temp = fabs(X);
 	rest = fabs(X) - temp;
 	step = 0;
@@ -336,20 +332,14 @@ symel (double **x, double ***g, int num, int dim, int eps, int **f)
 {
 	int	gc, i, j, k, den, maxden, step, neweps;
 
-	if ((sxt = (double**)malloc(dim * sizeof(double*))) == 0)
-		exit (2);
-	if ((st = (double**)malloc(dim * sizeof(double*))) == 0)
-		exit (2);
-	if ((st1 = (double**)malloc(dim * sizeof(double*))) == 0)
-			exit (2);
+	sxt = (double**)xmalloc(dim * sizeof(double*));
+	st = (double**)xmalloc(dim * sizeof(double*));
+	st1 = (double**)xmalloc(dim * sizeof(double*));
 	for (i = 0; i < dim; ++i)
 	{
-		if ((sxt[i] = (double*)malloc(dim * sizeof(double))) == 0)
-			exit (2);
-		if ((st[i] = (double*)malloc(dim * sizeof(double))) == 0)
-			exit (2);
-		if ((st1[i] = (double*)malloc(dim * sizeof(double))) == 0)
-			exit (2);
+		sxt[i] = (double*)xmalloc(dim * sizeof(double));
+		st[i] = (double*)xmalloc(dim * sizeof(double));
+		st1[i] = (double*)xmalloc(dim * sizeof(double));
 	}
 	for (i = 0; i < dim; ++i)
 	{
@@ -566,49 +556,33 @@ rform (matrix_TYP **B, int Banz, matrix_TYP *Fo, int epsilon)
         }
 	num = Banz;
         erg = init_mat(dim,dim, "k");
-	if ((g = (double***)malloc(num * sizeof(double**))) == 0)
-		exit (2);
-	if ((fac = (double*)malloc(num * sizeof(double))) == 0)
-		exit (2);
+	g = (double***)xmalloc(num * sizeof(double**));
+	fac = (double*)xmalloc(num * sizeof(double));
 	for (i = 0; i < num; ++i)
 	{
-		if ((g[i] = (double**)malloc(dim * sizeof(double*))) == 0)
-			exit (2);
+		g[i] = (double**)xmalloc(dim * sizeof(double*));
 		for (j = 0; j < dim; ++j)
 		{
-			if ((g[i][j] = (double*)malloc(dim*sizeof(double)))==0)
-				exit (2);
+			g[i][j] = (double*)xmalloc(dim*sizeof(double));
 			for (k = 0; k < dim; ++k)
                           g[i][j][k] = (double)B[i]->array.SZ[k][j];
 		}
 	}
 
-	if ((x = (double**)malloc(dim * sizeof(double*))) == 0)
-		exit (2);
-	if ((xt = (double**)malloc(dim * sizeof(double*))) == 0)
-			exit (2);
-	if ((t = (double**)malloc(dim * sizeof(double*))) == 0)
-			exit (2);
-	if ((t1 = (double**)malloc(dim * sizeof(double*))) == 0)
-			exit (2);
-	if ((save = (double**)malloc(dim * sizeof(double*))) == 0)
-		exit (2);
-	if ((pres = (double**)malloc(dim * sizeof(double*))) == 0)
-		exit (2);
+	x = (double**)xmalloc(dim * sizeof(double*));
+	xt = (double**)xmalloc(dim * sizeof(double*));
+	t = (double**)xmalloc(dim * sizeof(double*));
+	t1 = (double**)xmalloc(dim * sizeof(double*));
+	save = (double**)xmalloc(dim * sizeof(double*));
+	pres = (double**)xmalloc(dim * sizeof(double*));
 	for (i = 0; i < dim; ++i)
 	{
-		if ((x[i] = (double*)malloc(dim * sizeof(double))) == 0)
-			exit (2);
-		if ((xt[i] = (double*)malloc(dim * sizeof(double))) == 0)
-			exit (2);
-		if ((t[i] = (double*)malloc(dim * sizeof(double))) == 0)
-			exit (2);
-		if ((t1[i] = (double*)malloc(dim * sizeof(double))) == 0)
-			exit (2);
-		if ((save[i] = (double*)malloc(dim * sizeof(double))) == 0)
-			exit (2);
-		if ((pres[i] = (double*)malloc(dim * sizeof(double))) == 0)
-			exit (2);
+		x[i] = (double*)xmalloc(dim * sizeof(double));
+		xt[i] = (double*)xmalloc(dim * sizeof(double));
+		t[i] = (double*)xmalloc(dim * sizeof(double));
+		t1[i] = (double*)xmalloc(dim * sizeof(double));
+		save[i] = (double*)xmalloc(dim * sizeof(double));
+		pres[i] = (double*)xmalloc(dim * sizeof(double));
 	}
         d = Fo->cols;
 	if (d != dim)

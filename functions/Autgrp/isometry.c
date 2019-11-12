@@ -102,8 +102,7 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 /* F.n is the number of invariant forms */
 	F.n = Fanz;
 	F.v = 0;
-	if ((F.A = (int***)malloc(F.n * sizeof(int**))) == 0)
-		exit (2);
+	F.A = (int***)xmalloc(F.n * sizeof(int**));
 /* read the invariant forms of the first lattice */
         F.dim = F1[0]->cols;
         dim = F.dim;
@@ -122,18 +121,10 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
         }
         for(i=0;i<F.n;i++)
         {
-          if((F.A[i] = (int **)malloc(dim *sizeof(int *))) == 0)
-          {
-             printf("realloc of F.A[%d] failed in isometry\n", i);
-             exit(2);
-          }
+          F.A[i] = (int **)xmalloc(dim *sizeof(int *));
           for(j=0;j<dim;j++)
           {
-            if((F.A[i][j] = (int *)malloc(dim *sizeof(int))) == 0)
-            {
-               printf("realloc of F.A[%d][%d] failed in isometry\n", i, j);
-               exit(2);
-            }
+            F.A[i][j] = (int *)xmalloc(dim *sizeof(int));
             for(k=0;k<dim;k++)
              F.A[i][j][k] = F1[i]->array.SZ[j][k];
           }
@@ -142,25 +133,13 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 	V.dim = dim;
 	V.len = dim + F.n;
         V.n = SV1->rows;
-        if((V.v = (int **)malloc((V.n+1) *sizeof(int *))) == 0)
-        {
-           printf("realloc of V.v failed in isometry\n");
-           exit(2);
-        }
-        if((V.v[0] = (int *)malloc(V.len *sizeof(int))) == 0)
-        {
-           printf("realloc of V.v[0] failed in isometry\n");
-             exit(2);
-        }
+        V.v = (int **)xmalloc((V.n+1) *sizeof(int *));
+        V.v[0] = (int *)xmalloc(V.len *sizeof(int));
         for(j=0;j<V.len;j++)
            V.v[0][j] = 0;
         for(i=1;i<=V.n;i++)
         {
-          if((V.v[i] = (int *)malloc(V.len *sizeof(int))) == 0)
-          {
-             printf("realloc of V.v[%d] failed in isometry\n", i);
-             exit(2);
-          }
+          V.v[i] = (int *)xmalloc(V.len *sizeof(int));
           for(j=0;j<=V.dim;j++)
              V.v[i][j] = SV1->array.SZ[i-1][j];
         }
@@ -194,16 +173,14 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 /* the norm-vector (i.e. the vector of the norms with respect to the different
    invariant forms) of each vector must be equal to the norm-vector of one
    of the vectors from the standard-base */
-	if ((norm.v = (int**)malloc((dim+1) * sizeof(int*))) == 0)
-		exit (2);
+	norm.v = (int**)xmalloc((dim+1) * sizeof(int*));
 	norm.n = dim;
 	norm.dim = F.n;
 	norm.len = F.n;
 	for (i = 1; i <= norm.n; ++i)
 	{
 /* norm.v[i] is the norm combination of the (i-1)-th base-vector */
-		if ((norm.v[i] = (int*)malloc(norm.dim * sizeof(int))) == 0)
-			exit (2);
+		norm.v[i] = (int*)xmalloc(norm.dim * sizeof(int));
 		for (k = 0; k < norm.dim; ++k)
 			norm.v[i][k] = F.A[k][i-1][i-1];
 	}
@@ -215,22 +192,19 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
    transposed of the vector v[j], hence the scalar product of v[j] and v[k] with
    respect to the Gram-matrix F.A[i] can be computed as standard scalar product
    of v[j] and F.v[i][k] */
-	if ((F.v = (int***)malloc(F.n * sizeof(int**))) == 0)
-		exit (2);
+	F.v = (int***)xmalloc(F.n * sizeof(int**));
 /* the product of the maximal entry in the short vectors with the maximal entry
    in F.v[i] should not exceed MAXNORM to avoid overflow */
 	max = MAXNORM / max;
 	for (i = 0; i < F.n; ++i)
 	{
 		FAi = F.A[i];
-		if ((F.v[i] = (int**)malloc((V.n+1) * sizeof(int*))) == 0)
-			exit (2);
+		F.v[i] = (int**)xmalloc((V.n+1) * sizeof(int*));
 		Fvi = F.v[i];
 		for (j = 1; j <= V.n; ++j)
 		{
 			Vvj = V.v[j];
-			if ((Fvi[j] = (int*)malloc(dim * sizeof(int))) == 0)
-				exit (2);
+			Fvi[j] = (int*)xmalloc(dim * sizeof(int));
 			Fvij = Fvi[j];
 			for (k = 0; k < dim; ++k)
 			{
@@ -245,15 +219,12 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 		}
 	}
 /* fp.per is the order in which the images of the base vectors are chosen */
-	if ((fp.per = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	fp.per = (int*)xmalloc(dim * sizeof(int));
 /* fp.e[i] is the index in V.v of the i-th vector of the standard-base in the 
    new order */
-	if ((fp.e = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	fp.e = (int*)xmalloc(dim * sizeof(int));
 /* fp.diag is the diagonal of the fingerprint in the new order */
-	if ((fp.diag = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	fp.diag = (int*)xmalloc(dim * sizeof(int));
 /* compute the fingerprint */
 	fingerprint(&fp, F, V);
 	if (flags.PRINT == 1)
@@ -269,8 +240,7 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 		fclose(outfile);
 	}
 /* get the standard basis in the new order */
-	if ((vec = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	vec = (int*)xmalloc(dim * sizeof(int));
 	for (i = 0; i < dim; ++i)
 	{
 		for (j = 0; j < dim; ++j)
@@ -288,8 +258,7 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
    corresponding vector sums are computed for the basis of the first lattice */
 	if (flags.DEPTH > 0)
 	{
-		if ((comb = (scpcomb*)malloc(dim * sizeof(scpcomb))) == 0)
-			exit (2);
+		comb = (scpcomb*)xmalloc(dim * sizeof(scpcomb));
 		for (i = 0; i < dim; ++i)
 		{
 /* compute the list of scalar product combinations and the corresponding
@@ -324,8 +293,7 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
    to 1/2 the norm of the base-vector (with respect to the first form) */
 	if (flags.BACH[0] == 1)
 	{
-		if ((bach = (bachpol*)malloc(flags.BACHDEP * sizeof(bachpol))) == 0)
-			exit (2);
+		bach = (bachpol*)xmalloc(flags.BACHDEP * sizeof(bachpol));
 		for (i = 0; i < flags.BACHDEP; ++i)
 		{
 			if (flags.BACH[2] == 0)
@@ -355,8 +323,7 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 	}
 	free(F.v);
 /* FF are the invariant forms of the second lattice */
-	if ((FF.A = (int***)malloc(F.n * sizeof(int**))) == 0)
-		exit (2);
+	FF.A = (int***)xmalloc(F.n * sizeof(int**));
 	FF.n = F.n;
 	FF.dim = dim;
 	FF.v = 0;
@@ -371,18 +338,10 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
         }
         for(i=0;i<F.n;i++)
         {
-          if((FF.A[i] = (int **)malloc(dim *sizeof(int *))) == 0)
-          {
-             printf("realloc of FF.A[%d] failed in isometry\n", i);
-             exit(2);
-          }
+          FF.A[i] = (int **)xmalloc(dim *sizeof(int *));
           for(j=0;j<dim;j++)
           {
-            if((FF.A[i][j] = (int *)malloc(dim *sizeof(int))) == 0)
-            {
-               printf("realloc of FF.A[%d][%d] failed in isometry\n", i, j);
-               exit(2);
-            }
+            FF.A[i][j] = (int *)xmalloc(dim *sizeof(int));
             for(k=0;k<dim;k++)
              FF.A[i][j][k] = F2[i]->array.SZ[j][k];
           }
@@ -391,25 +350,13 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 	V.dim = dim;
 	V.len = dim + F.n;
         V.n = SV2->rows;
-        if((V.v = (int **)malloc((V.n+1) *sizeof(int *))) == 0)
-        {
-           printf("realloc of V.v failed in isometry\n");
-           exit(2);
-        }
-        if((V.v[0] = (int *)malloc(V.len *sizeof(int))) == 0)
-        {
-           printf("realloc of V.v[0] failed in isometry\n");
-             exit(2);
-        }
+        V.v = (int **)xmalloc((V.n+1) *sizeof(int *));
+        V.v[0] = (int *)xmalloc(V.len *sizeof(int));
         for(j=0;j<V.len;j++)
            V.v[0][j] = 0;
         for(i=1;i<=V.n;i++)
         {
-          if((V.v[i] = (int *)malloc(V.len *sizeof(int))) == 0)
-          {
-             printf("realloc of V.v[%d] failed in isometry\n", i);
-             exit(2);
-          }
+          V.v[i] = (int *)xmalloc(V.len *sizeof(int));
           for(j=0;j<=V.dim;j++)
            V.v[i][j] = SV2->array.SZ[i-1][j];
         }
@@ -465,22 +412,19 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 /* FF.v[i][j] is the transposed of the product of the Gram-matrix FF.A[i] 
    with the transposed of the vector V.v[j], which now is a short vector of
    the second lattice */
-	if ((FF.v = (int***)malloc(FF.n * sizeof(int**))) == 0)
-		exit (2);
+	FF.v = (int***)xmalloc(FF.n * sizeof(int**));
 /* the product of the maximal entry in the short vectors with the maximal entry
    in FF.v[i] should not exceed MAXNORM to avoid overflow */
 	max = MAXNORM / max;
 	for (i = 0; i < FF.n; ++i)
 	{
 		FAi = FF.A[i];
-		if ((FF.v[i] = (int**)malloc((V.n+1) * sizeof(int*))) == 0)
-			exit (2);
+		FF.v[i] = (int**)xmalloc((V.n+1) * sizeof(int*));
 		Fvi = FF.v[i];
 		for (j = 1; j <= V.n; ++j)
 		{
 			Vvj = V.v[j];
-			if ((Fvi[j] = (int*)malloc(dim * sizeof(int))) == 0)
-				exit (2);
+			Fvi[j] = (int*)xmalloc(dim * sizeof(int));
 			Fvij = Fvi[j];
 			for (k = 0; k < dim; ++k)
 			{
@@ -495,8 +439,7 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 		}
 	}
 /* G are the automorphisms of the second lattice */
-	if ((G = (int***)malloc(1 * sizeof(int**))) == 0)
-		exit (2);
+	G = (int***)xmalloc(1 * sizeof(int**));
 /* nG is the number of automorphisms of the second lattice */
 	nG = 0;
 	if (flags.GEN == 1)
@@ -546,12 +489,10 @@ isometry (matrix_TYP **F1, matrix_TYP **F2, int Fanz, matrix_TYP *SV1, matrix_TY
 	if (nG == 0)
 /* if no automorphisms are known at least take -Id */
 	{
-		if ((G[0] = (int**)malloc(dim * sizeof(int*))) == 0)
-			exit (2);
+		G[0] = (int**)xmalloc(dim * sizeof(int*));
 		for (i = 0; i < dim; ++i)
 		{
-			if ((G[0][i] = (int*)malloc(dim * sizeof(int))) == 0)
-				exit (2);
+			G[0][i] = (int*)xmalloc(dim * sizeof(int));
 			for (j = 0; j < dim; ++j)
 				G[0][i][j] = 0;
 			G[0][i][i] = -1;
@@ -694,8 +635,7 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 /* F.n is the number of invariant forms */
 	F.n = 1;
 	F.v = 0;
-	if ((F.A = (int***)malloc(F.n * sizeof(int**))) == 0)
-		exit (2);
+	F.A = (int***)xmalloc(F.n * sizeof(int**));
 /* read the invariant forms of the first lattice */
         F.dim = F1->cols;
         dim = F.dim;
@@ -704,18 +644,10 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
            printf("Non-square matrix as input for isometry\n");
            exit(2);
         }
-          if((F.A[0] = (int **)malloc(dim *sizeof(int *))) == 0)
-          {
-             printf("realloc of F.A[0] failed in isometry\n");
-             exit(2);
-          }
+          F.A[0] = (int **)xmalloc(dim *sizeof(int *));
           for(j=0;j<dim;j++)
           {
-            if((F.A[0][j] = (int *)malloc(dim *sizeof(int))) == 0)
-            {
-               printf("realloc of F.A[0][%d] failed in isometry\n", j);
-               exit(2);
-            }
+            F.A[0][j] = (int *)xmalloc(dim *sizeof(int));
             for(k=0;k<dim;k++)
              F.A[0][j][k] = F1->array.SZ[j][k];
           }
@@ -723,25 +655,13 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 	V.dim = dim;
 	V.len = dim + F.n;
         V.n = SV1->rows;
-        if((V.v = (int **)malloc((V.n+1) *sizeof(int *))) == 0)
-        {
-           printf("realloc of V.v failed in isometry\n");
-           exit(2);
-        }
-        if((V.v[0] = (int *)malloc(V.len *sizeof(int))) == 0)
-        {
-           printf("realloc of V.v[0] failed in isometry\n");
-             exit(2);
-        }
+        V.v = (int **)xmalloc((V.n+1) *sizeof(int *));
+        V.v[0] = (int *)xmalloc(V.len *sizeof(int));
         for(j=0;j<V.len;j++)
            V.v[0][j] = 0;
         for(i=1;i<=V.n;i++)
         {
-          if((V.v[i] = (int *)malloc(V.len *sizeof(int))) == 0)
-          {
-             printf("realloc of V.v[%d] failed in isometry\n", i);
-             exit(2);
-          }
+          V.v[i] = (int *)xmalloc(V.len *sizeof(int));
           for(j=0;j<=V.dim;j++)
              V.v[i][j] = SV1->array.SZ[i-1][j];
         }
@@ -775,16 +695,14 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 /* the norm-vector (i.e. the vector of the norms with respect to the different
    invariant forms) of each vector must be equal to the norm-vector of one
    of the vectors from the standard-base */
-	if ((norm.v = (int**)malloc((dim+1) * sizeof(int*))) == 0)
-		exit (2);
+	norm.v = (int**)xmalloc((dim+1) * sizeof(int*));
 	norm.n = dim;
 	norm.dim = F.n;
 	norm.len = F.n;
 	for (i = 1; i <= norm.n; ++i)
 	{
 /* norm.v[i] is the norm combination of the (i-1)-th base-vector */
-		if ((norm.v[i] = (int*)malloc(norm.dim * sizeof(int))) == 0)
-			exit (2);
+		norm.v[i] = (int*)xmalloc(norm.dim * sizeof(int));
 		for (k = 0; k < norm.dim; ++k)
 			norm.v[i][k] = F.A[k][i-1][i-1];
 	}
@@ -796,22 +714,19 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
    transposed of the vector v[j], hence the scalar product of v[j] and v[k] with
    respect to the Gram-matrix F.A[i] can be computed as standard scalar product
    of v[j] and F.v[i][k] */
-	if ((F.v = (int***)malloc(F.n * sizeof(int**))) == 0)
-		exit (2);
+	F.v = (int***)xmalloc(F.n * sizeof(int**));
 /* the product of the maximal entry in the short vectors with the maximal entry
    in F.v[i] should not exceed MAXNORM to avoid overflow */
 	max = MAXNORM / max;
 	for (i = 0; i < F.n; ++i)
 	{
 		FAi = F.A[i];
-		if ((F.v[i] = (int**)malloc((V.n+1) * sizeof(int*))) == 0)
-			exit (2);
+		F.v[i] = (int**)xmalloc((V.n+1) * sizeof(int*));
 		Fvi = F.v[i];
 		for (j = 1; j <= V.n; ++j)
 		{
 			Vvj = V.v[j];
-			if ((Fvi[j] = (int*)malloc(dim * sizeof(int))) == 0)
-				exit (2);
+			Fvi[j] = (int*)xmalloc(dim * sizeof(int));
 			Fvij = Fvi[j];
 			for (k = 0; k < dim; ++k)
 			{
@@ -826,15 +741,12 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 		}
 	}
 /* fp.per is the order in which the images of the base vectors are chosen */
-	if ((fp.per = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	fp.per = (int*)xmalloc(dim * sizeof(int));
 /* fp.e[i] is the index in V.v of the i-th vector of the standard-base in the 
    new order */
-	if ((fp.e = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	fp.e = (int*)xmalloc(dim * sizeof(int));
 /* fp.diag is the diagonal of the fingerprint in the new order */
-	if ((fp.diag = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	fp.diag = (int*)xmalloc(dim * sizeof(int));
 /* compute the fingerprint */
 	fingerprint(&fp, F, V);
         mach_perp_matrices(fp, P, Pbase, dim);
@@ -852,8 +764,7 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 		fclose(outfile);
 	}
 /* get the standard basis in the new order */
-	if ((vec = (int*)malloc(dim * sizeof(int))) == 0)
-		exit (2);
+	vec = (int*)xmalloc(dim * sizeof(int));
 	for (i = 0; i < dim; ++i)
 	{
 		for (j = 0; j < dim; ++j)
@@ -871,8 +782,7 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
    corresponding vector sums are computed for the basis of the first lattice */
 	if (flags.DEPTH > 0)
 	{
-		if ((comb = (scpcomb*)malloc(dim * sizeof(scpcomb))) == 0)
-			exit (2);
+		comb = (scpcomb*)xmalloc(dim * sizeof(scpcomb));
 		for (i = 0; i < dim; ++i)
 		{
 /* compute the list of scalar product combinations and the corresponding
@@ -907,8 +817,7 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
    to 1/2 the norm of the base-vector (with respect to the first form) */
 	if (flags.BACH[0] == 1)
 	{
-		if ((bach = (bachpol*)malloc(flags.BACHDEP * sizeof(bachpol))) == 0)
-			exit (2);
+		bach = (bachpol*)xmalloc(flags.BACHDEP * sizeof(bachpol));
 		for (i = 0; i < flags.BACHDEP; ++i)
 		{
 			if (flags.BACH[2] == 0)
@@ -938,23 +847,14 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 	}
 	free(F.v);
 /* FF are the invariant forms of the second lattice */
-	if ((FF.A = (int***)malloc(F.n * sizeof(int**))) == 0)
-		exit (2);
+	FF.A = (int***)xmalloc(F.n * sizeof(int**));
 	FF.n = F.n;
 	FF.dim = dim;
 /* read the invariant forms of the second lattice */
-          if((FF.A[0] = (int **)malloc(dim *sizeof(int *))) == 0)
-          {
-             printf("realloc of FF.A[0] failed in isometry\n");
-             exit(2);
-          }
+          FF.A[0] = (int **)xmalloc(dim *sizeof(int *));
           for(j=0;j<dim;j++)
           {
-            if((FF.A[0][j] = (int *)malloc(dim *sizeof(int))) == 0)
-            {
-               printf("realloc of FF.A[0][%d] failed in isometry\n", j);
-               exit(2);
-            }
+            FF.A[0][j] = (int *)xmalloc(dim *sizeof(int));
             for(k=0;k<dim;k++)
              FF.A[0][j][k] = F2->array.SZ[j][k];
           }
@@ -962,25 +862,13 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 	V.dim = dim;
 	V.len = dim + F.n;
         V.n = SV2->rows;
-        if((V.v = (int **)malloc((V.n+1) *sizeof(int *))) == 0)
-        {
-           printf("realloc of V.v failed in isometry\n");
-           exit(2);
-        }
-        if((V.v[0] = (int *)malloc(V.len *sizeof(int))) == 0)
-        {
-           printf("realloc of V.v[0] failed in isometry\n");
-             exit(2);
-        }
+        V.v = (int **)xmalloc((V.n+1) *sizeof(int *));
+        V.v[0] = (int *)xmalloc(V.len *sizeof(int));
         for(j=0;j<V.len;j++)
            V.v[0][j] = 0;
         for(i=1;i<=V.n;i++)
         {
-          if((V.v[i] = (int *)malloc(V.len *sizeof(int))) == 0)
-          {
-             printf("realloc of V.v[%d] failed in isometry\n", i);
-             exit(2);
-          }
+          V.v[i] = (int *)xmalloc(V.len *sizeof(int));
           for(j=0;j<=V.dim;j++)
              V.v[i][j] = SV2->array.SZ[i-1][j];
         }
@@ -1024,22 +912,19 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 /* FF.v[i][j] is the transposed of the product of the Gram-matrix FF.A[i] 
    with the transposed of the vector V.v[j], which now is a short vector of
    the second lattice */
-	if ((FF.v = (int***)malloc(FF.n * sizeof(int**))) == 0)
-		exit (2);
+	FF.v = (int***)xmalloc(FF.n * sizeof(int**));
 /* the product of the maximal entry in the short vectors with the maximal entry
    in FF.v[i] should not exceed MAXNORM to avoid overflow */
 	max = MAXNORM / max;
 	for (i = 0; i < FF.n; ++i)
 	{
 		FAi = FF.A[i];
-		if ((FF.v[i] = (int**)malloc((V.n+1) * sizeof(int*))) == 0)
-			exit (2);
+		FF.v[i] = (int**)xmalloc((V.n+1) * sizeof(int*));
 		Fvi = FF.v[i];
 		for (j = 1; j <= V.n; ++j)
 		{
 			Vvj = V.v[j];
-			if ((Fvi[j] = (int*)malloc(dim * sizeof(int))) == 0)
-				exit (2);
+			Fvi[j] = (int*)xmalloc(dim * sizeof(int));
 			Fvij = Fvi[j];
 			for (k = 0; k < dim; ++k)
 			{
@@ -1054,8 +939,7 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 		}
 	}
 /* G are the automorphisms of the second lattice */
-	if ((G = (int***)malloc(1 * sizeof(int**))) == 0)
-		exit (2);
+	G = (int***)xmalloc(1 * sizeof(int**));
 /* nG is the number of automorphisms of the second lattice */
 	nG = 0;
 	if (flags.GEN == 1)
@@ -1105,12 +989,10 @@ perfect_normal_isometry (matrix_TYP *F1, matrix_TYP *F2, matrix_TYP *SV1, matrix
 	if (nG == 0)
 /* if no automorphisms are known at least take -Id */
 	{
-		if ((G[0] = (int**)malloc(dim * sizeof(int*))) == 0)
-			exit (2);
+		G[0] = (int**)xmalloc(dim * sizeof(int*));
 		for (i = 0; i < dim; ++i)
 		{
-			if ((G[0][i] = (int*)malloc(dim * sizeof(int))) == 0)
-				exit (2);
+			G[0][i] = (int*)xmalloc(dim * sizeof(int));
 			for (j = 0; j < dim; ++j)
 				G[0][i][j] = 0;
 			G[0][i][i] = -1;

@@ -29,11 +29,7 @@ polyeder_to_vecs (polyeder_TYP *P)
   int i,j, dim;
   matrix_TYP **M;
 
-  if( (M = (matrix_TYP **)malloc(2 *sizeof(matrix_TYP *))) == NULL)
-  {
-    printf("malloc of 'M' in 'polyeder_to_vecs' failed\n");
-    exit(2);
-  }
+  M = (matrix_TYP **)xmalloc(2 *sizeof(matrix_TYP *));
   dim = P->vert[0]->dim;
   M[0] = init_mat(P->vert_no, dim, "");
   M[1] = init_mat(P->wall_no, dim, "");
