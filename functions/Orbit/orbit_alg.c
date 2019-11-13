@@ -454,7 +454,7 @@ orbit_alg (matrix_TYP *M, bravais_TYP *G, bravais_TYP *S, int *option, int *leng
   int i,j;
   matrix_TYP **erg;
   matrix_TYP **hist, **histinv;
-  matrix_TYP *I, *A, *K1, *K2;
+  matrix_TYP *I=NULL, *A, *K1, *K2;
   int h, *hashverz;
   int ergsize, histsize, histinvsize, Ssize;
   int erganz, histanz, histinvanz;
