@@ -12,14 +12,11 @@ There is also a [README](README.html) file.
 
 ## Dependencies
 
-This package requires GAP version {{site.data.package.GAP}}
-{% if site.data.package.needed-pkgs %}
-The following other GAP packages are needed:
+The following software is needed:
 {% for pkg in site.data.package.needed-pkgs %}
 - {% if pkg.url %}<a href="{{ pkg.url }}">{{ pkg.name }}</a> {% else %}{{ pkg.name }} {% endif %}
   {{- pkg.version -}}
 {% endfor %}
-{% endif %}
 {% if site.data.package.suggested-pkgs %}
 The following additional GAP packages are not required, but suggested:
 {% for pkg in site.data.package.suggested-pkgs %}
@@ -49,8 +46,6 @@ The following additional GAP packages are not required, but suggested:
 Please, cite this package as
 
 {{site.data.package.citeas}}
-
-You can get more info by typing `Cite("{{ site.data.package.name }}");` in the gap prompt.
 
 {% include button-bibtex.html %}
 
