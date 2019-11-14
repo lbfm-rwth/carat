@@ -5,28 +5,35 @@ date: 2019-11-10
 description: |
     Crystallographic AlgoRithms And Tables
 
+authors:
+    - name: Jürgen Opgenorth
+      url: 
+    - name: Tilman Schulz
+      url: 
+    - name: Wilhelm Plesken
+      url: https://www.mathb.rwth-aachen.de/cms/MATHB/Der-Lehrstuhl/Team/Professorinnen-und-Professoren/~rnmq/Univ-Prof-i-R-Dr-rer-nat-Wilhelm-Pl/lidx/1/
+
 maintainers:
     - name: Dominik Berhardt
       url: https://www.mathb.rwth-aachen.de/cms/MATHB/Der-Lehrstuhl/Team/Wissenschaftliche-Beschaeftigte/~rnsg/Dominik-Bernhardt/lidx/1/
 
-GAP: ">=4.8.1"
+contributors:
+    - name: Dominik Bernhardt
+      url: https://www.mathb.rwth-aachen.de/cms/MATHB/Der-Lehrstuhl/Team/Wissenschaftliche-Beschaeftigte/~rnsg/Dominik-Bernhardt/lidx/1/
+    - name: Franz Gähler
+      url: https://www.math.uni-bielefeld.de/~gaehler/
+    - name: Max Horn
+      url: https://www.quendi.de/math
+
 
 needed-pkgs:
-    - name: "GAPDoc"
-      version: ">= 1.2"
-      url: "http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc"
-    - name: "IO"
-      version: ">= 4.1"
-      url: "https://gap-packages.github.io/io"
+    - name: "gcc"
+      version: ">= ??"
+      url: "https://gcc.gnu.org"
 
-suggested-pkgs:
-    - name: "orb"
-      version: ">= 4.2"
-      url: "https://gap-packages.github.io/orb"
-
-www: https://lbfm-rwth.github.io/Carat/
+www: https://github.com/lbfm-rwth/carat/
 readme: README.md
-packageinfo: https://lbfm-rwth.github.io/Carat/PackageInfo.g
+packageinfo: https://github.com/lbfm-rwth/carat/PackageInfo.g
 github: https://github.com/lbfm-rwth/Carat
 
 downloads:
@@ -36,33 +43,33 @@ downloads:
       url: https://github.com/lbfm-rwth/Carat/releases/download/v1.1/Carat-1.1.tar.bz2
 
 abstract: |
-    Carat is a computer package whichhandles enumeration, construction, recognition,and comparison problems for crystallographic groupsup to dimension 6. The name CARAT itself is anacronym for Crystallographic AlgoRithms And Tables.
+    Carat is a computer package which handles enumeration, construction,\
+    recognition and comparison problems for crystallographic groups up to dimension 6.\
+    The name CARAT itself is anacronym for Crystallographic AlgoRithms And Tables.
 
 status: other
-doc-html: tex/index.html
+doc-html: doc/index.html
 doc-pdf: doc/manual.pdf
 keywords: |
     GitHub Pages, CARAT.
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>Ber19</span>]   <b class='BibAuthor'>Berhardt, D.</b>,
+    [<span class='BibKey'>OPS19</span>]   <b class='BibAuthor'>Opgenorth, J., Plesken, W. and Schulz, T.</b>,
      <i class='BibTitle'>Carat, Crystallographic AlgoRithms And Tables,
-             Version 1.1</i>
+             Version 2.0</i>
      (<span class='BibYear'>2019</span>)<br />
-    (<span class='BibNote'>GAP package</span>),
-    <span class='BibHowpublished'><a href="https://lbfm-rwth.github.io/Carat/">https://lbfm-rwth.github.io/Carat/</a></span>.
+    <span class='BibHowpublished'><a href="https://github.com/lbfm-rwth/carat/">https://github.com/lbfm-rwth/carat/</a></span>.
     </p>
     
 
 bibtex: |
     @misc{ Carat1.1,
-      author =           {Berhardt, D.},
+      author =           {Opgenorth, J., Plesken, W. and Schulz, T.},
       title =            {{Carat}, Crystallographic AlgoRithms And Tables, {V}ersion 1.1},
       month =            {Nov},
       year =             {2019},
-      note =             {GAP package},
-      howpublished =     {\href {https://lbfm-rwth.github.io/Carat/} {\texttt{https://lbfm-rwth.github.io/}\discretionary {}{}{}\texttt{Carat/}}},
+      howpublished =     {\href {https://github.com/lbfm-rwth/carat/} {\texttt{https://lbfm-rwth.github.io/}\discretionary {}{}{}\texttt{Carat/}}},
       keywords =         {GitHub Pages; CARAT},
-      printedkey =       {Ber19}
+      printedkey =       {OPS19}
     }
 
