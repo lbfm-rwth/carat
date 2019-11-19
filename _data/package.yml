@@ -28,7 +28,7 @@ contributors:
 
 needed-pkgs:
     - name: "gcc"
-      version: ">= ??"
+      version: ""
       url: "https://gcc.gnu.org"
 
 www: https://github.com/lbfm-rwth/carat/
@@ -43,8 +43,8 @@ downloads:
       url: https://github.com/lbfm-rwth/Carat/releases/download/v1.1/Carat-1.1.tar.bz2
 
 abstract: |
-    Carat is a computer package which handles enumeration, construction,\
-    recognition and comparison problems for crystallographic groups up to dimension 6.\
+    Carat is a computer package which handles enumeration, construction,
+    recognition and comparison problems for crystallographic groups up to dimension 6.
     The name CARAT itself is anacronym for Crystallographic AlgoRithms And Tables.
 
 status: other
