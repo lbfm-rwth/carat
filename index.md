@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# GAP Package {{site.data.package.name}}
+# {{site.data.package.name}}
 
 {{site.data.package.abstract}}
 

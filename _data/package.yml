@@ -27,7 +27,7 @@ contributors:
 
 
 needed-pkgs:
-    - name: "gcc"
+    - name: "A C compiler, for example gcc"
       version: ""
       url: "https://gcc.gnu.org"
 
