@@ -11,7 +11,7 @@ It is distributed via
 
      Lehrstuhl B fuer Mathematik
      RWTH-Aachen
-     Prof. Plesken
+     Prof. i.R. Plesken
      Pontdriesch 10-16
      52064 Aachen
      Germany
@@ -21,14 +21,19 @@ NOTE: CARAT was developed for crystallographic groups in dimensions up to 6.
 Most algorithms also work in higher dimensions. However, integer overflow
 is not trapped in general.
 
+## Website
+
+You can find the official CARAT homepage and documentation on:
+[https://lbfm-rwth.github.io/carat/](https://lbfm-rwth.github.io/carat/)
 
 ## Installation
 
 The easiest way to compile CARAT is to go to the CARAT base directory
-(the one containing this REAMDME), and issue the following
+(the one containing this README.md), and issue the following commands:
+     ./autogen.sh (only if you are building CARAT directly from GitHub)
+     ./configure
+     make
 
-    ./configure
-    make
 
 CARAT relies on the GMP library (along with its header files) being
 installed at a standard location, so that the compiler and linker will
