@@ -30,6 +30,9 @@ needed-pkgs:
     - name: "A C compiler, for example gcc"
       version: ""
       url: "https://gcc.gnu.org"
+    - name: "GMP library"
+      version: ""
+      url: "https://gmplib.org"
 
 www: https://github.com/lbfm-rwth/carat/
 readme: README.md
