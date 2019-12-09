@@ -74,11 +74,10 @@ int main (int argc, char *argv[])
   B = (symbol_out **) malloc(1 *sizeof(symbol_out *));
   B[0] = read_symbol(filename);
   ad_no++;
-  family_name = (char *) malloc(80 *sizeof(char));
-  strcpy(family_name, B[0]->fn);
   /*
   fprintf(stderr,"B[0]->fn: %s\n",B[0]->fn);
   */
+  family_name = strdup(B[0]->fn);
   family_name = strstr(family_name, "dim");
   family_name = family_name+5;
   get_zentr(B[0]);
