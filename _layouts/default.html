@@ -2,12 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Computer package {{ site.data.package.name }}</title>
-
-    {% if site.data.package.keywords and site.data.package.keywords.size > 0 %}
-    <meta name="keywords" content="{{site.data.package.keywords}}" />
-    {% endif %}
-
+    <title>Computer package CARAT</title>
+    <meta name="keywords" content="CARAT, crystallographic groups" />
     <link rel="stylesheet" type="text/css" href="stylesheets/styles.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css">
     <script type="text/javascript"
@@ -26,32 +22,25 @@
     <script>new ClipboardJS('.btn');</script>
     <div class="wrapper">
       <header>
-        <h1 class="header">{{ site.data.package.name }}</h1>
-        <p class="header">{{ site.data.package.description }}</p>
-        <p class="header">Version {{site.data.package.version}}<br>
-                          Released {{site.data.package.date}}</p>
+        <h1 class="header">CARAT</h1>
+        <p class="header">Crystallographic AlgoRithms And Tables</p>
+        <p class="header">Version {{site.data.release.version}}<br>
+                          Released {{site.data.release.date}}</p>
 
         <ul>
-          {% for item in site.data.package.downloads %}
-          <li class="download"><a class="buttons" href="{{ item.url }}">Download {{ item.name }}</a></li>
-          {% endfor %}
+          <li class="download"><a class="buttons" href="https://github.com/lbfm-rwth/carat/releases/download/v{{site.data.release.version}}/carat-{{site.data.release.version}}.tar.gz">Download .tar.gz</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/lbfm-rwth/carat/releases/download/v{{site.data.release.version}}/carat-{{site.data.release.version}}.tar.bz2">Download .tar.bz2</a></li>
+
           {% if site.github.repository_url %}
           <li><a class="buttons github" href="{{ site.github.repository_url }}">View On GitHub</a></li>
-          {% elsif site.data.package.github %}
-          <li><a class="buttons github" href="{{ site.data.package.github }}">View On GitHub</a></li>
+          {% else %}
+          <li><a class="buttons github" href="https://github.com/lbfm-rwth/carat">View On GitHub</a></li>
           {% endif %}
-          <li><a class="clean" href="{{ site.data.package.doc-html }}">Manual</a></li>
-
+          <li><a class="clean" href="doc/index.html">Manual</a></li>
         </ul>
 
         <p class="header">This project is maintained by
-          {% for person in site.data.package.maintainers %}
-            {% if person.url %}
-              <a class="header name" href="{{ person.url }}">{{ person.name }}</a>{% else %}
-              {{ person.name }}
-            {% endif %}
-            {%- unless forloop.last -%}, {%- endunless -%}
-          {% endfor %}
+          <a class="header name" href="https://www.mathb.rwth-aachen.de/cms/MATHB/Der-Lehrstuhl/Team/Wissenschaftliche-Beschaeftigte/~rnsg/Dominik-Bernhardt/lidx/1/">Dominik Berhardt</a>
         </p>
 
 
