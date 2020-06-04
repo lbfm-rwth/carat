@@ -18,3 +18,6 @@
 .deps/
 .dirstamp
 *.o
+
+/gh-pages/
+/tmp/
