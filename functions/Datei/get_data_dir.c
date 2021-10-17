@@ -66,7 +66,7 @@ void setup_carat_location(const char * argv0)
     // try do not promise to leave the buffer empty on a failed return.
     char locBuf[CARAT_PATH_MAX] = "";
 
-#ifdef SYS_IS_DARWIN
+#if defined(__APPLE__) && defined(__MACH__)
     uint32_t len = sizeof(locBuf);
     if (_NSGetExecutablePath(locBuf, &len) != 0) {
         *locBuf = 0;    // reset buffer after error
