@@ -380,8 +380,8 @@ bravais_TYP *catalog_number_v4(bravais_TYP *G,const char *symb,
        zclass[0] = 1;
        S = read_symbol_from_string(symb);
        T = S->grp;
-       free(S);
        free(S->fn);
+       free(S);
        TR[0] = init_mat(G->dim,G->dim,"1");
        if (T->zentr_no > 0){
           fprintf(stderr,"catalog_number: an error ocurred in the -I_n case\n");
