@@ -9,6 +9,10 @@
 
 #include <sys/stat.h>
 
+#if defined(__APPLE__) && defined(__MACH__)
+#include <mach-o/dyld.h>
+#endif
+
 #define CARAT_PATH_MAX 4096
 
 // location of the current executable
