@@ -144,7 +144,7 @@ static void setup_data_dir(void)
     }
 
     // perhaps this is a binary which was installed into PREFIX/bin, and the
-    // data tables were installed into RPEFIX/share/carat/tables?
+    // data tables were installed into PREFIX/share/carat/tables?
     strcpy(carat_data_location, carat_exec_location);
     strcat(carat_data_location, "/../share/carat/tables");
     if (is_valid_dir(carat_data_location)) {
@@ -152,7 +152,7 @@ static void setup_data_dir(void)
     }
 
     // instead of looking relative to the executable, try
-    // RPEFIX/share/carat/tables
+    // PREFIX/share/carat/tables
     strcpy(carat_data_location, DATADIR "/carat/tables");
     if (is_valid_dir(carat_data_location)) {
         return;
